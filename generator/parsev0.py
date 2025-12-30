@@ -76,7 +76,7 @@ def emit_trace(trace):
             # print("\n")
             # print(f"    // {field.description}")
             if field.valType == 'T':
-                print(f"    template <typename T>")
+                print("    template <typename T>")
             print(f"    {trace.name}& {field.name}({field.valType} f) {{")
 
             print(f"        j[\"{field.name}\"] = std::move(f);")
