@@ -25,6 +25,14 @@ class Figure {
         return *this;
     }
 
+    template <typename T, typename = std::enable_if_t<std::is_base_of_v<Trace, T>>>
+    Figure& addTraces(std::vector<T> traces) {
+        for (auto& trace : traces) {
+            _json["data"].push_back(std::move(trace.json));
+        }
+        return *this;
+    }
+
     Figure& setLayout(Layout layout) {
         _json["layout"] = std::move(layout.json);
         return *this;

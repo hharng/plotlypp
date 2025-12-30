@@ -1,12 +1,14 @@
+#include <cmath>
+#include <iostream>
 #include <plotlypp/plot.hpp>
 #include <plotlypp/traces/mesh3d.hpp>
 #include <plotlypp/traces/scatter.hpp>
 #include <plotlypp/traces/scatter3d.hpp>
 #include <plotlypp/traces/scattermap.hpp>
+#include <plotlypp/traces/scattersmith.hpp>
 #include <plotlypp/traces/surface.hpp>
 
-#include <cmath>
-#include <iostream>
+#include "basic_charts.hpp"
 
 // x_data = [1, 2, 3, 4, 5]
 // y_data = [3, 6, 4, 7, 5]
@@ -290,6 +292,40 @@ plotlypp::Figure genSubPlotsGrid() {
     return Figure().addTrace(std::move(trace1)).addTrace(std::move(trace2)).setLayout(std::move(domanLayout));
 }
 
+plotlypp::Figure genSmithCharts() {
+    // https://plotly.com/python/smith-charts/
+    // Smith Chart Subplots and Styling
+
+    using plotlypp::Figure;
+    using plotlypp::Layout;
+    using plotlypp::Scattersmith;
+
+    auto smith1 = Scattersmith()
+                      .imag(std::vector{1})
+                      .real(std::vector{1})
+                      .marker([](auto& m) { m.symbol(Scattersmith::Marker::Symbol::X).size(30).color("pink"); })
+                      .subplot("smith1");
+    auto smith2 = Scattersmith()
+                      .imag(std::vector{1})
+                      .real(std::vector{1})
+                      .marker(Scattersmith::Marker().symbol(Scattersmith::Marker::Symbol::X).size(30).color("green"))
+                      .subplot("smith2");
+
+    auto layout = Layout()
+                      .smith(Layout::Smith()
+                                 .realaxis(Layout::Smith::Realaxis().gridcolor("red"))
+                                 .imaginaryaxis(Layout::Smith::Imaginaryaxis().gridcolor("blue"))
+                                 .bgcolor("lightgrey")
+                                 .domain(Layout::Smith::Domain().x(std::vector{0., 0.45})))
+                      .smith(2, Layout::Smith()
+                                    .realaxis([](auto& r) { r.gridcolor("blue"); })
+                                    .imaginaryaxis([](auto& i) { i.gridcolor("red"); })
+                                    .bgcolor("lightgrey")
+                                    .domain([](auto& d) { d.x(std::vector{0.55, 1.}); }));
+
+    return Figure().addTrace(std::move(smith1)).addTrace(std::move(smith2)).setLayout(std::move(layout));
+}
+
 void WaitForEnter() {
     std::cout << "Press Enter to generate next plot...\n";
     std::cin.get();
@@ -297,6 +333,21 @@ void WaitForEnter() {
 
 int main() {
     using namespace plotlypp;
+
+    lineDashes().show();
+    WaitForEnter();
+
+    groupedScatter().show();
+    WaitForEnter();
+
+    scatterWithColorDimension().show();
+    WaitForEnter();
+
+    lineAndScatterWithNamesAxesTitle().show();
+    WaitForEnter();
+
+    genSmithCharts().show();
+    WaitForEnter();
 
     genSubPlotsGrid().show();
     WaitForEnter();

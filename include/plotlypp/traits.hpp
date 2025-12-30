@@ -13,7 +13,10 @@ namespace plotlypp {
 // types.
 
 template <typename T>
-struct is_data_array_element : std::is_arithmetic<T> {};
+struct is_data_array_element {
+    static constexpr bool value =
+        std::is_arithmetic_v<std::decay_t<T>> || std::is_convertible_v<std::decay_t<T>, std::string>;
+};
 
 template <typename T>
 struct is_data_array_element<std::vector<T>> {
