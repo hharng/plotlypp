@@ -12,6 +12,7 @@
 #include "basic_charts.hpp"
 #include "financial_charts.hpp"
 #include "maps.hpp"
+#include "scientific_charts.hpp"
 
 // x_data = [1, 2, 3, 4, 5]
 // y_data = [3, 6, 4, 7, 5]
@@ -398,12 +399,29 @@ void show3dCharts() {
     waitForEnter();
 }
 
+void showScientificCharts() {
+    using namespace plotlypp;
+
+    areaPolarChart().show();
+    waitForEnter();
+
+    multipleTraceRadarChart().show();
+    waitForEnter();
+
+    carpetWithScatterTrace().show();
+    waitForEnter();
+
+    colorscaleForContourPlot().show();
+    waitForEnter();
+}
+
 int main() {
     using namespace plotlypp;
-    show3dCharts();
-    // showFinancialCharts();
-    //  showMaps();
-    //   showBasicCharts();
+    showScientificCharts();
+    // show3dCharts();
+    //  showFinancialCharts();
+    //   showMaps();
+    //    showBasicCharts();
     return 0;
 
     lineDashes().show();
