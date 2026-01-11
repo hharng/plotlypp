@@ -9,6 +9,8 @@
 #include <plotlypp/traces/surface.hpp>
 
 #include "basic_charts.hpp"
+#include "financial_charts.hpp"
+#include "maps.hpp"
 
 // x_data = [1, 2, 3, 4, 5]
 // y_data = [3, 6, 4, 7, 5]
@@ -326,52 +328,119 @@ plotlypp::Figure genSmithCharts() {
     return Figure().addTrace(std::move(smith1)).addTrace(std::move(smith2)).setLayout(std::move(layout));
 }
 
-void WaitForEnter() {
+void waitForEnter() {
     std::cout << "Press Enter to generate next plot...\n";
     std::cin.get();
 }
 
-int main() {
+void showBasicCharts() {
     using namespace plotlypp;
 
-    lineDashes().show();
-    WaitForEnter();
-
-    groupedScatter().show();
-    WaitForEnter();
+    lineAndScatterWithNamesAxesTitle().show();
+    waitForEnter();
 
     scatterWithColorDimension().show();
-    WaitForEnter();
+    waitForEnter();
+
+    groupedScatter().show();
+    waitForEnter();
+
+    lineDashes().show();
+    waitForEnter();
+
+    // groupedBar().show();
+    // waitForEnter();
+
+    basicPie().show();
+    waitForEnter();
+
+    donut().show();
+    waitForEnter();
+
+    bubbleWithMarkerSizeAndColor().show();
+    waitForEnter();
+
+    categoricalDotPlot().show();
+    waitForEnter();
+
+    basicOverlaidArea().show();
+    waitForEnter();
+
+    // horizontalBar().show();
+    // waitForEnter();
+}
+
+void showMaps() {
+    using namespace plotlypp;
+
+    linesOnMaps().show();
+    waitForEnter();
+
+    lightTile().show();
+    waitForEnter();
+
+    outlineMapLocations().show();
+    waitForEnter();
+
+    scatterTileMaps().show();
+    waitForEnter();
+}
+
+void showFinancialCharts() {
+    using namespace plotlypp;
+
+    basicFunnel().show();
+    waitForEnter();
+
+    indicator().show();
+    waitForEnter();
+}
+
+int main() {
+    using namespace plotlypp;
+    showFinancialCharts();
+    // showMaps();
+    //  showBasicCharts();
+    return 0;
+
+    lineDashes().show();
+    waitForEnter();
+
+    groupedScatter().show();
+    waitForEnter();
+
+    scatterWithColorDimension().show();
+    waitForEnter();
 
     lineAndScatterWithNamesAxesTitle().show();
-    WaitForEnter();
+    waitForEnter();
 
     genSmithCharts().show();
-    WaitForEnter();
+    waitForEnter();
 
     genSubPlotsGrid().show();
-    WaitForEnter();
+    waitForEnter();
 
     genMultipleScatter().show();
-    WaitForEnter();
+    waitForEnter();
 
     gen3dSurfaces().show();
-    WaitForEnter();
+    waitForEnter();
 
     gen3dScatterHelix().show();
-    WaitForEnter();
+    waitForEnter();
 
     gen3dSurfaceContours().show();
-    WaitForEnter();
+    waitForEnter();
 
     genMesh3dTetrahedron().show();
-    WaitForEnter();
+    waitForEnter();
 
     gen3dSurfaceTorus().show();
-    WaitForEnter();
+    waitForEnter();
 
     gen3dScatterBubblePlanets().show();
-    WaitForEnter();
+    waitForEnter();
 
     genScatterMap().show();
 

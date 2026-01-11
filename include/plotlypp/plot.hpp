@@ -12,7 +12,7 @@
 
 #include <plotlypp/json.hpp>
 #include <plotlypp/layout/layout.hpp>
-#include <plotlypp/plotly_min_js.hpp>
+#include <plotlypp/plotly_min_js2.hpp>
 #include <plotlypp/trace.hpp>
 
 namespace plotlypp {

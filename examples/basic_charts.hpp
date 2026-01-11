@@ -1,6 +1,10 @@
+#include <string>
+#include <utility>
 #include <vector>
 
 #include <plotlypp/plot.hpp>
+#include <plotlypp/traces/bar.hpp>
+#include <plotlypp/traces/pie.hpp>
 #include <plotlypp/traces/scatter.hpp>
 
 namespace plotlypp {
@@ -148,358 +152,180 @@ var layout = {
 
 Plotly.newPlot('myDiv', data, layout);
 
-//
-Line Dash
-
-var trace1 = {
-  x: [1, 2, 3, 4, 5],
-  y: [1, 3, 2, 3, 1],
-  mode: 'lines',
-  name: 'Solid',
-  line: {
-    dash: 'solid',
-    width: 4
-  }
-};
-
-var trace2 = {
-  x: [1, 2, 3, 4, 5],
-  y: [6, 8, 7, 8, 6],
-  mode: 'lines',
-  name: 'dashdot',
-  line: {
-    dash: 'dashdot',
-    width: 4
-  }
-};
-
-var trace3 = {
-  x: [1, 2, 3, 4, 5],
-  y: [11, 13, 12, 13, 11],
-  mode: 'lines',
-  name: 'Solid',
-  line: {
-    dash: 'solid',
-    width: 4
-  }
-};
-
-var trace4 = {
-  x: [1, 2, 3, 4, 5],
-  y: [16, 18, 17, 18, 16],
-  mode: 'lines',
-  name: 'dot',
-  line: {
-    dash: 'dot',
-    width: 4
-  }
-};
-
-var data = [trace1, trace2, trace3, trace4];
-
-var layout = {
-  title: {
-    text: 'Line Dash'
-  },
-  xaxis: {
-    range: [0.75, 5.25],
-    autorange: false
-  },
-  yaxis: {
-    range: [0, 18.5],
-    autorange: false
-  },
-  legend: {
-    y: 0.5,
-    traceorder: 'reversed',
-    font: {
-      size: 16
-    }
-  }
-};
-
-Plotly.newPlot('myDiv', data, layout);
 */
 
+namespace plotlypp {
+
+// https://plotly.com/javascript/bar-charts/
+
+// TODO: layout attribute
+// Figure groupedBar() {
+//     auto trace1 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{20, 14, 23}).name("SF
+//     Zoo"); auto trace2 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{12, 18,
+//     29}).name("LA Zoo"); return Figure()
+//         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
+//         .setLayout(Layout().barmode("group"));
+// }
+
+// https://plotly.com/javascript/pie-charts/
+
+Figure basicPie() {
+    auto trace = Pie().values(std::vector{19, 26, 55}).labels(std::vector{"Residential", "Non-Residential", "Utility"});
+    return Figure().addTrace(std::move(trace)).setLayout(Layout().height(400).width(500));
+}
+
+Figure donut() {
+    auto trace1 = Pie()
+                      .values(std::vector{16, 15, 12, 6, 5, 4, 42})
+                      .labels(std::vector{"US", "China", "European Union", "Russian Federation", "Brazil", "India",
+                                          "Rest of World"})
+                      .domain(Pie::Domain().column(0))
+                      .name("GHG Emissions")
+                      .hoverinfo("label+percent+name")
+                      .hole(0.4);
+    auto trace2 = Pie()
+                      .values(std::vector{27, 11, 25, 8, 1, 3, 25})
+                      .labels(std::vector{"US", "China", "European Union", "Russian Federation", "Brazil", "India",
+                                          "Rest of World"})
+                      .text(std::vector{"CO2"})
+                      .textposition(Pie::Textposition::Inside)
+                      .domain(Pie::Domain().column(1))
+                      .name("CO2 Emissions")
+                      .hoverinfo("label+percent+name")
+                      .hole(0.4);
+    return Figure()
+        .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
+        .setLayout(Layout()
+                       .title([](auto& t) { t.text("Global Emissions 1990-2011"); })
+                       .annotations(Layout::Annotations()
+                                        .annotation(Layout::Annotations::Annotation()
+                                                        .font(Layout::Annotations::Annotation::Font().size(20))
+                                                        .showarrow(false)
+                                                        .text("GHG")
+                                                        .x(0.17)
+                                                        .y(0.5))
+                                        .annotation(Layout::Annotations::Annotation()
+                                                        .font(Layout::Annotations::Annotation::Font().size(20))
+                                                        .showarrow(false)
+                                                        .text("CO2")
+                                                        .x(0.82)
+                                                        .y(0.5)))
+                       .height(400)
+                       .width(600)
+                       .showlegend(false)
+                       .grid(Layout::Grid().rows(1).columns(2)));
+}
+
+// https://plotly.com/javascript/bubble-charts/
+
+Figure bubbleWithMarkerSizeAndColor() {
+    auto trace1 = Scatter()
+                      .x(std::vector{1, 2, 3, 4})
+                      .y(std::vector{10, 11, 12, 13})
+                      .mode("markers")
+                      .marker(Scatter::Marker()
+                                  .color(std::vector<std::string>{"rgb(93, 164, 214)", "rgb(255, 144, 14)",
+                                                                  "rgb(44, 160, 101)", "rgb(255, 65, 54)"})
+                                  .opacity(std::vector<double>{1, 0.8, 0.6, 0.4})
+                                  .size(std::vector<double>{40, 60, 80, 100}));
+    return Figure()
+        .addTrace(std::move(trace1))
+        .setLayout(
+            Layout().title([](auto& t) { t.text("Marker Size and Color"); }).showlegend(false).height(600).width(600));
+}
+
+// https://plotly.com/javascript/dot-plots/
+
+Figure categoricalDotPlot() {
+    std::vector<std::string> country = {"Switzerland (2011)", "Chile (2013)",   "Japan (2014)",  "United States (2012)",
+                                        "Slovenia (2014)",    "Canada (2011)",  "Poland (2010)", "Estonia (2015)",
+                                        "Luxembourg (2013)",  "Portugal (2011)"};
+    std::vector<double> voting_pop = {40, 45.7, 52, 53.6, 54.1, 54.2, 54.5, 54.7, 55.1, 56.6};
+    std::vector<double> reg_voters = {49.1, 42, 52.7, 84.3, 51.7, 61.1, 55.3, 64.2, 91.1, 58.9};
+
+    auto trace1 = Scatter()
+                      .x(voting_pop)
+                      .y(country)
+                      .mode("markers")
+                      .name("Percent of estimated voting age population")
+                      .marker(Scatter::Marker()
+                                  .color("rgba(156, 165, 196, 0.95)")
+                                  .line(Scatter::Marker::Line().color("rgba(156, 165, 19)").width(1))
+                                  .symbol(Scatter::Marker::Symbol::Circle)
+                                  .size(16));
+    auto trace2 = Scatter()
+                      .x(reg_voters)
+                      .y(country)
+                      .mode("markers")
+                      .name("Percent of estimated registered voters")
+                      .marker(Scatter::Marker()
+                                  .color("rgba(204, 204, 204, 0.95)")
+                                  .line(Scatter::Marker::Line().color("rgba(217, 217, 217, 1.0)").width(1))
+                                  .symbol(Scatter::Marker::Symbol::Circle)
+                                  .size(16));
+    return Figure()
+        .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
+        .setLayout(Layout()
+                       .title([](auto& t) {
+                           t.text("Votes cast for ten lowest voting age population in OECD "
+                                  "countries");
+                           t.font([](auto& f) { f.color("rgb(204, 204, 204)"); });
+                       })
+                       .xaxis(Layout::Xaxis()
+                                  .showgrid(false)
+                                  .showline(true)
+                                  .linecolor("rgb(102, 102, 102)")
+                                  .tickfont(Layout::Xaxis::Tickfont().color("rgb(102, 102, 102)"))
+                                  .tickmode(Layout::Xaxis::Tickmode::Linear)
+                                  .dtick(10)
+                                  .ticks(Layout::Xaxis::Ticks::Outside)
+                                  .tickcolor("rgb(102, 102, 102)"))
+                       .margin(Layout::Margin().l(140).r(40).b(50).t(80))
+                       .legend(Layout::Legend()
+                                   .font([](auto& f) { f.size(10); })
+                                   .yanchor(Layout::Legend::Yanchor::Middle)
+                                   .xanchor(Layout::Legend::Xanchor::Right))
+                       .width(600)
+                       .height(600)
+                       .paper_bgcolor("rgb(254, 247, 234)")
+                       .plot_bgcolor("rgb(254, 247, 234)")
+                       .hovermode(Layout::Hovermode::Closest));
+}
+
+// https://plotly.com/javascript/filled-area-plots/
+
+Figure basicOverlaidArea() {
+    auto trace1 = Scatter().x(std::vector{1, 2, 3, 4}).y(std::vector{0, 2, 3, 5}).fill(Scatter::Fill::Tozeroy);
+    auto trace2 = Scatter().x(std::vector{1, 2, 3, 4}).y(std::vector{3, 5, 1, 7}).fill(Scatter::Fill::Tonexty);
+    return Figure().addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)});
+}
+
+// https://plotly.com/javascript/horizontal-bar-charts/
+
+// TODO: layout attribute
+// Figure horizontalBar() {
+//     auto trace1 = Bar()
+//                       .x(std::vector{20, 14, 23})
+//                       .y(std::vector{"giraffes", "orangutans", "monkeys"})
+
+//                       .name("SF Zoo")
+//                       .orientation("h")
+//                       .marker(Bar::Marker().color("rgba(55,128,191,0.6)").width(1));
+//     auto trace2 = Bar()
+//                       .x(std::vector{12, 18, 29})
+//                       .y(std::vector{"giraffes", "orangutans", "monkeys"})
+//                       .name("LA Zoo")
+//                       .orientation("h")
+//                       .marker(Bar::Marker().color("rgba(255,153,51,0.6)").width(1));
+//     return Figure()
+//         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
+//         .setLayout(Layout().title([](auto& t) { t.text("Colored Bar Chart"); }).barmode("stack"));
+// }
+
+// Figure styledTable() {}
+
+} // namespace plotlypp
 /*
-https://plotly.com/javascript/bar-charts/
-//
-
-Grouped Bar chart
-
-var trace1 = {
-  x: ['giraffes', 'orangutans', 'monkeys'],
-  y: [20, 14, 23],
-  name: 'SF Zoo',
-  type: 'bar'
-};
-
-var trace2 = {
-  x: ['giraffes', 'orangutans', 'monkeys'],
-  y: [12, 18, 29],
-  name: 'LA Zoo',
-  type: 'bar'
-};
-
-var data = [trace1, trace2];
-
-var layout = {barmode: 'group'};
-
-Plotly.newPlot('myDiv', data, layout);
-
-
-https://plotly.com/javascript/pie-charts/
-
-Basic pie
-
-var data = [{
-  values: [19, 26, 55],
-  labels: ['Residential', 'Non-Residential', 'Utility'],
-  type: 'pie'
-}];
-
-var layout = {
-  height: 400,
-  width: 500
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
-
-//
-Donut
-
-var data = [{
-  values: [16, 15, 12, 6, 5, 4, 42],
-  labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
-  domain: {column: 0},
-  name: 'GHG Emissions',
-  hoverinfo: 'label+percent+name',
-  hole: .4,
-  type: 'pie'
-},{
-  values: [27, 11, 25, 8, 1, 3, 25],
-  labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
-  text: 'CO2',
-  textposition: 'inside',
-  domain: {column: 1},
-  name: 'CO2 Emissions',
-  hoverinfo: 'label+percent+name',
-  hole: .4,
-  type: 'pie'
-}];
-
-var layout = {
-  title: {
-    text: 'Global Emissions 1990-2011'
-  },
-  annotations: [
-    {
-      font: {
-        size: 20
-      },
-      showarrow: false,
-      text: 'GHG',
-      x: 0.17,
-      y: 0.5
-    },
-    {
-      font: {
-        size: 20
-      },
-      showarrow: false,
-      text: 'CO2',
-      x: 0.82,
-      y: 0.5
-    }
-  ],
-  height: 400,
-  width: 600,
-  showlegend: false,
-  grid: {rows: 1, columns: 2}
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
-
-//
-https://plotly.com/javascript/bubble-charts/
-Bubble with marker size and color
-
-var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 11, 12, 13],
-  mode: 'markers',
-  marker: {
-    color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-    opacity: [1, 0.8, 0.6, 0.4],
-    size: [40, 60, 80, 100]
-  }
-};
-
-var data = [trace1];
-
-var layout = {
-  title: {
-    text: 'Marker Size and Color'
-  },
-  showlegend: false,
-  height: 600,
-  width: 600
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
-
-//
-https://plotly.com/javascript/dot-plots/
-
-Categorical dot plot
-var country = ['Switzerland (2011)', 'Chile (2013)', 'Japan (2014)', 'United States (2012)', 'Slovenia (2014)', 'Canada
-(2011)', 'Poland (2010)', 'Estonia (2015)', 'Luxembourg (2013)', 'Portugal (2011)'];
-
-var votingPop = [40, 45.7, 52, 53.6, 54.1, 54.2, 54.5, 54.7, 55.1, 56.6];
-
-var regVoters = [49.1, 42, 52.7, 84.3, 51.7, 61.1, 55.3, 64.2, 91.1, 58.9];
-
-var trace1 = {
-  type: 'scatter',
-  x: votingPop,
-  y: country,
-  mode: 'markers',
-  name: 'Percent of estimated voting age population',
-  marker: {
-    color: 'rgba(156, 165, 196, 0.95)',
-    line: {
-      color: 'rgba(156, 165, 196, 1.0)',
-      width: 1,
-    },
-    symbol: 'circle',
-    size: 16
-  }
-};
-
-var trace2 = {
-  x: regVoters,
-  y: country,
-  mode: 'markers',
-  name: 'Percent of estimated registered voters',
-  marker: {
-    color: 'rgba(204, 204, 204, 0.95)',
-    line: {
-      color: 'rgba(217, 217, 217, 1.0)',
-      width: 1,
-    },
-    symbol: 'circle',
-    size: 16
-  }
-};
-
-var data = [trace1, trace2];
-
-var layout = {
-  title: {
-      text: 'Votes cast for ten lowest voting age population in OECD countries',
-      font: {
-          color: 'rgb(204, 204, 204)'
-      }
-  },
-  xaxis: {
-    showgrid: false,
-    showline: true,
-    linecolor: 'rgb(102, 102, 102)',
-    tickfont: {
-      font: {
-        color: 'rgb(102, 102, 102)'
-      }
-    },
-    tickmode: 'linear',
-    dtick: 10,
-    ticks: 'outside',
-    tickcolor: 'rgb(102, 102, 102)'
-  },
-  margin: {
-    l: 140,
-    r: 40,
-    b: 50,
-    t: 80
-  },
-  legend: {
-    font: {
-      size: 10,
-    },
-    yanchor: 'middle',
-    xanchor: 'right'
-  },
-  width: 600,
-  height: 600,
-  paper_bgcolor: 'rgb(254, 247, 234)',
-  plot_bgcolor: 'rgb(254, 247, 234)',
-  hovermode: 'closest'
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
-//
-https://plotly.com/javascript/filled-area-plots/
-basic overlaid area chart
-var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [0, 2, 3, 5],
-  fill: 'tozeroy',
-  type: 'scatter'
-};
-
-var trace2 = {
-  x: [1, 2, 3, 4],
-  y: [3, 5, 1, 7],
-  fill: 'tonexty',
-  type: 'scatter'
-};
-
-var data = [trace1, trace2];
-
-Plotly.newPlot('myDiv', data);
-
-
-//
-https://plotly.com/javascript/horizontal-bar-charts/
-Horizontal colored bar chart
-var trace1 = {
-  x: [20, 14, 23],
-  y: ['giraffes', 'orangutans', 'monkeys'],
-  name: 'SF Zoo',
-  orientation: 'h',
-  marker: {
-    color: 'rgba(55,128,191,0.6)',
-    width: 1
-  },
-  type: 'bar'
-};
-
-var trace2 = {
-  x: [12, 18, 29],
-  y: ['giraffes', 'orangutans', 'monkeys'],
-  name: 'LA Zoo',
-  orientation: 'h',
-  type: 'bar',
-  marker: {
-    color: 'rgba(255,153,51,0.6)',
-    width: 1
-  }
-};
-
-var data = [trace1, trace2];
-
-var layout = {
-  title: {
-    text: 'Colored Bar Chart'
-  },
-  barmode: 'stack'
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
 
 https://plotly.com/javascript/table/
 
