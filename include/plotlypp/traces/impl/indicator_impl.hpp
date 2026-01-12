@@ -655,15 +655,21 @@ Indicator::Gauge& Indicator::Gauge::shape(enum Shape f) {
     return *this;
 }
 
-Indicator::Gauge& Indicator::Gauge::steps(Steps f) {
+Indicator::Gauge& Indicator::Gauge::steps(Step f) {
     json["steps"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Indicator::Gauge& Indicator::Gauge::steps(Callable&& c) {
-    Steps f{};
+    Step f{};
     std::forward<Callable>(c)(f);
     return steps(std::move(f));
+}
+Indicator::Gauge& Indicator::Gauge::steps(const std::vector<Step>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["steps"] = std::move(jsonified);
+    return *this;
 }
 
 Indicator::Gauge& Indicator::Gauge::threshold(Threshold f) {
@@ -892,15 +898,21 @@ Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickformatstops(Tickformatstops f) {
+Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticklabelstep(int f) {
@@ -1138,68 +1150,56 @@ Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::weight(Calla
 }
 
 
-Indicator::Gauge::Axis::Tickformatstops& Indicator::Gauge::Axis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Indicator::Gauge::Axis::Tickformatstops& Indicator::Gauge::Axis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::name(std::string f) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::value(std::string f) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& Indicator::Gauge::Axis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Indicator::Gauge::Axis::Tickformatstop& Indicator::Gauge::Axis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -1263,102 +1263,90 @@ Indicator::Gauge::Bar::Line& Indicator::Gauge::Bar::Line::width(Callable&& c) {
 }
 
 
-Indicator::Gauge::Steps& Indicator::Gauge::Steps::step(Step f) {
-    json["step"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Indicator::Gauge::Steps& Indicator::Gauge::Steps::step(Callable&& c) {
-    Step f{};
-    std::forward<Callable>(c)(f);
-    return step(std::move(f));
-}
-
-
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::color(std::string f) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::color(Callable&& c) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::line(Line f) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::line(Callable&& c) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::name(std::string f) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::name(Callable&& c) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::range(const std::vector<double>& f) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::range(const std::vector<double>& f) {
     json["range"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::range(Callable&& c) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::range(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return range(std::move(f));
 }
 
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::templateitemname(std::string f) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::templateitemname(Callable&& c) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::thickness(double f) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step& Indicator::Gauge::Steps::Step::thickness(Callable&& c) {
+Indicator::Gauge::Step& Indicator::Gauge::Step::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
 
-Indicator::Gauge::Steps::Step::Line& Indicator::Gauge::Steps::Step::Line::color(std::string f) {
+Indicator::Gauge::Step::Line& Indicator::Gauge::Step::Line::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step::Line& Indicator::Gauge::Steps::Step::Line::color(Callable&& c) {
+Indicator::Gauge::Step::Line& Indicator::Gauge::Step::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Indicator::Gauge::Steps::Step::Line& Indicator::Gauge::Steps::Step::Line::width(double f) {
+Indicator::Gauge::Step::Line& Indicator::Gauge::Step::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Indicator::Gauge::Steps::Step::Line& Indicator::Gauge::Steps::Step::Line::width(Callable&& c) {
+Indicator::Gauge::Step::Line& Indicator::Gauge::Step::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));

@@ -95,7 +95,7 @@ def emit_array_field_setter(class_object, field, output_val_type, writer):
     writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<{output_val_type}>& f) {{")
     with IndentBlock(writer):
         if field.is_object:
-            writer.write("std::vector<json> jsonified(f.size());")
+            writer.write("std::vector<Json> jsonified(f.size());")
             writer.write("std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });")
             writer.write(f"json[\"{field.name}\"] = std::move(jsonified);")
         else:
@@ -262,7 +262,8 @@ def emit_class_public_members(class_object, writer):
                 emit_enum_array_field_setter(class_object, field, writer)
         else:
             if field.is_object:
-                output_val_types = [f"{field.name.title()}"]
+                field_type = field.object_type_name if field.object_type_name else field.name
+                output_val_types = [f"{field_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
             for output_val_type_overload in output_val_types:
@@ -298,7 +299,8 @@ def emit_class_public_members_decl(class_object, writer):
                 emit_enum_array_field_setter_decl(class_object, field, writer)
         else:
             if field.is_object:
-                output_val_types = [f"{field.name.title()}"]
+                field_type = field.object_type_name if field.object_type_name else field.name
+                output_val_types = [f"{field_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
             for output_val_type_overload in output_val_types:
@@ -437,6 +439,7 @@ class Field:
     is_enum: bool = False
     is_object: bool = False
     is_subplot_object: bool = False
+    object_type_name: Optional[str] = None
 
 @dataclasses.dataclass
 class StringEnum:
@@ -592,14 +595,20 @@ def parse_attributes(parent: Object, attributes_node: Dict[str, Any]):
             obj = Object()
             obj.name = f.name
             obj.description = f.description
-            parse_attributes(obj, node)
+
+            # For some reason, "arrayOk" is not set on arrays of objects.
+            is_array_of_objects = "items" in node and node["items"] and len(node["items"]) > 0
+            if is_array_of_objects:
+                f.array_ok = True
+                item_name = list(node["items"].keys())[0]
+                item_node = node["items"][item_name]
+                obj.name = item_name
+                f.object_type_name = item_name
+                parse_attributes(obj, item_node)
+            else:
+                parse_attributes(obj, node)
+
             parent.objects.append(obj)
-
-            # TODO: Items!
-            if "items" in node:
-                parse_attributes(obj, node["items"])
-
-
 
         elif "valType" in node:
             f.json_val_type = node["valType"]

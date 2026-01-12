@@ -55,7 +55,7 @@ class Parcats : public Trace {
     };
     static std::string to_string(Visible e);
 
-    class Dimensions;
+    class Dimension;
     class Domain;
     // Sets the font for the `dimension` labels.
     class Labelfont;
@@ -87,9 +87,10 @@ class Parcats : public Trace {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Parcats& countssrc(Callable&& c);
 
-    Parcats& dimensions(Dimensions f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimensions&>>>
+    Parcats& dimensions(Dimension f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
     Parcats& dimensions(Callable&& c);
+    Parcats& dimensions(const std::vector<Dimension>& f);
 
     Parcats& domain(Domain f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Domain&>>>
@@ -210,26 +211,7 @@ class Parcats : public Trace {
     Parcats& visible(enum Visible f);
 };
 
-class Parcats::Dimensions {
- public:
-    Dimensions() = default;
-    Dimensions(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    // The dimensions (variables) of the parallel categories diagram.
-    class Dimension;
-
-    // The dimensions (variables) of the parallel categories diagram.
-    Parcats::Dimensions& dimension(Dimension f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
-    Parcats::Dimensions& dimension(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-// The dimensions (variables) of the parallel categories diagram.
-class Parcats::Dimensions::Dimension {
+class Parcats::Dimension {
  public:
     Dimension() = default;
     Dimension(std::string jsonStr)
@@ -246,16 +228,16 @@ class Parcats::Dimensions::Dimension {
     // Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to
     // *array*. Used with `categoryorder`.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Dimensions::Dimension& categoryarray(const std::vector<T>& f);
+    Parcats::Dimension& categoryarray(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Dimensions::Dimension& categoryarray(Callable&& c);
+    Parcats::Dimension& categoryarray(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `categoryarray`.
-    Parcats::Dimensions::Dimension& categoryarraysrc(std::string f);
+    Parcats::Dimension& categoryarraysrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimensions::Dimension& categoryarraysrc(Callable&& c);
+    Parcats::Dimension& categoryarraysrc(Callable&& c);
 
     // Specifies the ordering logic for the categories in the dimension. By default, plotly uses *trace*, which
     // specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or
@@ -264,50 +246,50 @@ class Parcats::Dimensions::Dimension {
     // in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The
     // unspecified categories will follow the categories in `categoryarray`.
     // - Default: trace
-    Parcats::Dimensions::Dimension& categoryorder(enum Categoryorder f);
+    Parcats::Dimension& categoryorder(enum Categoryorder f);
 
     // The display index of dimension, from left to right, zero indexed, defaults to dimension index.
-    Parcats::Dimensions::Dimension& displayindex(int f);
+    Parcats::Dimension& displayindex(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Dimensions::Dimension& displayindex(Callable&& c);
+    Parcats::Dimension& displayindex(Callable&& c);
 
     // The shown name of the dimension.
-    Parcats::Dimensions::Dimension& label(std::string f);
+    Parcats::Dimension& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimensions::Dimension& label(Callable&& c);
+    Parcats::Dimension& label(Callable&& c);
 
     // Sets alternative tick labels for the categories in this dimension. Only has an effect if `categoryorder` is set
     // to *array*. Should be an array the same length as `categoryarray` Used with `categoryorder`.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Dimensions::Dimension& ticktext(const std::vector<T>& f);
+    Parcats::Dimension& ticktext(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Dimensions::Dimension& ticktext(Callable&& c);
+    Parcats::Dimension& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
-    Parcats::Dimensions::Dimension& ticktextsrc(std::string f);
+    Parcats::Dimension& ticktextsrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimensions::Dimension& ticktextsrc(Callable&& c);
+    Parcats::Dimension& ticktextsrc(Callable&& c);
 
     // Dimension values. `values[n]` represents the category value of the `n`th point in the dataset, therefore the
     // `values` vector for all dimensions must be the same (longer vectors will be truncated).
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Dimensions::Dimension& values(const std::vector<T>& f);
+    Parcats::Dimension& values(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Dimensions::Dimension& values(Callable&& c);
+    Parcats::Dimension& values(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `values`.
-    Parcats::Dimensions::Dimension& valuessrc(std::string f);
+    Parcats::Dimension& valuessrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimensions::Dimension& valuessrc(Callable&& c);
+    Parcats::Dimension& valuessrc(Callable&& c);
 
     // Shows the dimension when set to `true` (the default). Hides the dimension for `false`.
-    Parcats::Dimensions::Dimension& visible(bool f);
+    Parcats::Dimension& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Dimensions::Dimension& visible(Callable&& c);
+    Parcats::Dimension& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -783,7 +765,7 @@ class Parcats::Line::Colorbar {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the color of padded area.
@@ -939,9 +921,10 @@ class Parcats::Line::Colorbar {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Parcats::Line::Colorbar& tickformat(Callable&& c);
 
-    Parcats::Line::Colorbar& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Parcats::Line::Colorbar& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Parcats::Line::Colorbar& tickformatstops(Callable&& c);
+    Parcats::Line::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
     // default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
@@ -1158,23 +1141,7 @@ class Parcats::Line::Colorbar::Tickfont {
     Json json{};
 };
 
-class Parcats::Line::Colorbar::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Parcats::Line::Colorbar::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Parcats::Line::Colorbar::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Parcats::Line::Colorbar::Tickformatstops::Tickformatstop {
+class Parcats::Line::Colorbar::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -1182,36 +1149,36 @@ class Parcats::Line::Colorbar::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Parcats::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Parcats::Line::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& enabled(bool f);
+    Parcats::Line::Colorbar::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Parcats::Line::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& name(std::string f);
+    Parcats::Line::Colorbar::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Parcats::Line::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Parcats::Line::Colorbar::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Parcats::Line::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& value(std::string f);
+    Parcats::Line::Colorbar::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Parcats::Line::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

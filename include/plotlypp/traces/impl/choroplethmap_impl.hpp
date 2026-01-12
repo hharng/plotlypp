@@ -954,15 +954,21 @@ Choroplethmap::Colorbar& Choroplethmap::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Choroplethmap::Colorbar& Choroplethmap::Colorbar::tickformatstops(Tickformatstops f) {
+Choroplethmap::Colorbar& Choroplethmap::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Choroplethmap::Colorbar& Choroplethmap::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Choroplethmap::Colorbar& Choroplethmap::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Choroplethmap::Colorbar& Choroplethmap::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1274,68 +1280,56 @@ Choroplethmap::Colorbar::Tickfont& Choroplethmap::Colorbar::Tickfont::weight(Cal
 }
 
 
-Choroplethmap::Colorbar::Tickformatstops& Choroplethmap::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Choroplethmap::Colorbar::Tickformatstops& Choroplethmap::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Choroplethmap::Colorbar::Tickformatstops::Tickformatstop& Choroplethmap::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Choroplethmap::Colorbar::Tickformatstop& Choroplethmap::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

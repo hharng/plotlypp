@@ -54,15 +54,21 @@ Splom& Splom::diagonal(Callable&& c) {
     return diagonal(std::move(f));
 }
 
-Splom& Splom::dimensions(Dimensions f) {
+Splom& Splom::dimensions(Dimension f) {
     json["dimensions"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Splom& Splom::dimensions(Callable&& c) {
-    Dimensions f{};
+    Dimension f{};
     std::forward<Callable>(c)(f);
     return dimensions(std::move(f));
+}
+Splom& Splom::dimensions(const std::vector<Dimension>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["dimensions"] = std::move(jsonified);
+    return *this;
 }
 
 Splom& Splom::hoverinfo(std::string f) {
@@ -482,97 +488,85 @@ Splom::Diagonal& Splom::Diagonal::visible(Callable&& c) {
 }
 
 
-Splom::Dimensions& Splom::Dimensions::dimension(Dimension f) {
-    json["dimension"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Splom::Dimensions& Splom::Dimensions::dimension(Callable&& c) {
-    Dimension f{};
-    std::forward<Callable>(c)(f);
-    return dimension(std::move(f));
-}
-
-
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::axis(Axis f) {
+Splom::Dimension& Splom::Dimension::axis(Axis f) {
     json["axis"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::axis(Callable&& c) {
+Splom::Dimension& Splom::Dimension::axis(Callable&& c) {
     Axis f{};
     std::forward<Callable>(c)(f);
     return axis(std::move(f));
 }
 
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::label(std::string f) {
+Splom::Dimension& Splom::Dimension::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::label(Callable&& c) {
+Splom::Dimension& Splom::Dimension::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::name(std::string f) {
+Splom::Dimension& Splom::Dimension::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::name(Callable&& c) {
+Splom::Dimension& Splom::Dimension::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::templateitemname(std::string f) {
+Splom::Dimension& Splom::Dimension::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::templateitemname(Callable&& c) {
+Splom::Dimension& Splom::Dimension::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
 template <typename T, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::values(const std::vector<T>& f) {
+Splom::Dimension& Splom::Dimension::values(const std::vector<T>& f) {
     json["values"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::values(Callable&& c) {
+Splom::Dimension& Splom::Dimension::values(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
 }
 
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::valuessrc(std::string f) {
+Splom::Dimension& Splom::Dimension::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::valuessrc(Callable&& c) {
+Splom::Dimension& Splom::Dimension::valuessrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return valuessrc(std::move(f));
 }
 
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::visible(bool f) {
+Splom::Dimension& Splom::Dimension::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension& Splom::Dimensions::Dimension::visible(Callable&& c) {
+Splom::Dimension& Splom::Dimension::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-std::string Splom::Dimensions::Dimension::Axis::to_string(Type e) {
+std::string Splom::Dimension::Axis::to_string(Type e) {
     switch(e) {
         case Type::Linear: return "linear";
         case Type::Log: return "log";
@@ -583,18 +577,18 @@ std::string Splom::Dimensions::Dimension::Axis::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Splom::Dimensions::Dimension::Axis& Splom::Dimensions::Dimension::Axis::matches(bool f) {
+Splom::Dimension::Axis& Splom::Dimension::Axis::matches(bool f) {
     json["matches"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Dimensions::Dimension::Axis& Splom::Dimensions::Dimension::Axis::matches(Callable&& c) {
+Splom::Dimension::Axis& Splom::Dimension::Axis::matches(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return matches(std::move(f));
 }
 
-Splom::Dimensions::Dimension::Axis& Splom::Dimensions::Dimension::Axis::type(enum Type f) {
+Splom::Dimension::Axis& Splom::Dimension::Axis::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
@@ -2104,15 +2098,21 @@ Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickformatstops(Tickformatstops f) {
+Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -2424,68 +2424,56 @@ Splom::Marker::Colorbar::Tickfont& Splom::Marker::Colorbar::Tickfont::weight(Cal
 }
 
 
-Splom::Marker::Colorbar::Tickformatstops& Splom::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Splom::Marker::Colorbar::Tickformatstops& Splom::Marker::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& Splom::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

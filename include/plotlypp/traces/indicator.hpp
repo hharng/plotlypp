@@ -432,7 +432,7 @@ class Indicator::Gauge {
     class Axis;
     // Set the appearance of the gauge's value
     class Bar;
-    class Steps;
+    class Step;
     class Threshold;
 
     Indicator::Gauge& axis(Axis f);
@@ -463,9 +463,10 @@ class Indicator::Gauge {
     // - Default: angular
     Indicator::Gauge& shape(enum Shape f);
 
-    Indicator::Gauge& steps(Steps f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Steps&>>>
+    Indicator::Gauge& steps(Step f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Step&>>>
     Indicator::Gauge& steps(Callable&& c);
+    Indicator::Gauge& steps(const std::vector<Step>& f);
 
     Indicator::Gauge& threshold(Threshold f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Threshold&>>>
@@ -530,7 +531,7 @@ class Indicator::Gauge::Axis {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -640,9 +641,10 @@ class Indicator::Gauge::Axis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Indicator::Gauge::Axis& tickformat(Callable&& c);
 
-    Indicator::Gauge::Axis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Indicator::Gauge::Axis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Indicator::Gauge::Axis& tickformatstops(Callable&& c);
+    Indicator::Gauge::Axis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each
     // tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is
@@ -808,23 +810,7 @@ class Indicator::Gauge::Axis::Tickfont {
     Json json{};
 };
 
-class Indicator::Gauge::Axis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Indicator::Gauge::Axis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Indicator::Gauge::Axis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Indicator::Gauge::Axis::Tickformatstops::Tickformatstop {
+class Indicator::Gauge::Axis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -832,36 +818,36 @@ class Indicator::Gauge::Axis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Indicator::Gauge::Axis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Indicator::Gauge::Axis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Indicator::Gauge::Axis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Indicator::Gauge::Axis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& name(std::string f);
+    Indicator::Gauge::Axis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Indicator::Gauge::Axis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Indicator::Gauge::Axis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Indicator::Gauge::Axis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& value(std::string f);
+    Indicator::Gauge::Axis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Axis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Indicator::Gauge::Axis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -914,23 +900,7 @@ class Indicator::Gauge::Bar::Line {
     Json json{};
 };
 
-class Indicator::Gauge::Steps {
- public:
-    Steps() = default;
-    Steps(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Step;
-
-    Indicator::Gauge::Steps& step(Step f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Step&>>>
-    Indicator::Gauge::Steps& step(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Indicator::Gauge::Steps::Step {
+class Indicator::Gauge::Step {
  public:
     Step() = default;
     Step(std::string jsonStr)
@@ -939,60 +909,60 @@ class Indicator::Gauge::Steps::Step {
     class Line;
 
     // Sets the background color of the arc.
-    Indicator::Gauge::Steps::Step& color(std::string f);
+    Indicator::Gauge::Step& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Steps::Step& color(Callable&& c);
+    Indicator::Gauge::Step& color(Callable&& c);
 
-    Indicator::Gauge::Steps::Step& line(Line f);
+    Indicator::Gauge::Step& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
-    Indicator::Gauge::Steps::Step& line(Callable&& c);
+    Indicator::Gauge::Step& line(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Indicator::Gauge::Steps::Step& name(std::string f);
+    Indicator::Gauge::Step& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Steps::Step& name(Callable&& c);
+    Indicator::Gauge::Step& name(Callable&& c);
 
     // Sets the range of this axis.
-    Indicator::Gauge::Steps::Step& range(const std::vector<double>& f);
+    Indicator::Gauge::Step& range(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Indicator::Gauge::Steps::Step& range(Callable&& c);
+    Indicator::Gauge::Step& range(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Indicator::Gauge::Steps::Step& templateitemname(std::string f);
+    Indicator::Gauge::Step& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Steps::Step& templateitemname(Callable&& c);
+    Indicator::Gauge::Step& templateitemname(Callable&& c);
 
     // Sets the thickness of the bar as a fraction of the total thickness of the gauge.
-    Indicator::Gauge::Steps::Step& thickness(double f);
+    Indicator::Gauge::Step& thickness(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Indicator::Gauge::Steps::Step& thickness(Callable&& c);
+    Indicator::Gauge::Step& thickness(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Indicator::Gauge::Steps::Step::Line {
+class Indicator::Gauge::Step::Line {
  public:
     Line() = default;
     Line(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the color of the line enclosing each sector.
-    Indicator::Gauge::Steps::Step::Line& color(std::string f);
+    Indicator::Gauge::Step::Line& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Indicator::Gauge::Steps::Step::Line& color(Callable&& c);
+    Indicator::Gauge::Step::Line& color(Callable&& c);
 
     // Sets the width (in px) of the line enclosing each sector.
-    Indicator::Gauge::Steps::Step::Line& width(double f);
+    Indicator::Gauge::Step::Line& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Indicator::Gauge::Steps::Step::Line& width(Callable&& c);
+    Indicator::Gauge::Step::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

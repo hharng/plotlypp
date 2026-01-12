@@ -88,15 +88,21 @@ Parcats& Parcats::countssrc(Callable&& c) {
     return countssrc(std::move(f));
 }
 
-Parcats& Parcats::dimensions(Dimensions f) {
+Parcats& Parcats::dimensions(Dimension f) {
     json["dimensions"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Parcats& Parcats::dimensions(Callable&& c) {
-    Dimensions f{};
+    Dimension f{};
     std::forward<Callable>(c)(f);
     return dimensions(std::move(f));
+}
+Parcats& Parcats::dimensions(const std::vector<Dimension>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["dimensions"] = std::move(jsonified);
+    return *this;
 }
 
 Parcats& Parcats::domain(Domain f) {
@@ -275,19 +281,7 @@ Parcats& Parcats::visible(enum Visible f) {
     return *this;
 }
 
-
-Parcats::Dimensions& Parcats::Dimensions::dimension(Dimension f) {
-    json["dimension"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Parcats::Dimensions& Parcats::Dimensions::dimension(Callable&& c) {
-    Dimension f{};
-    std::forward<Callable>(c)(f);
-    return dimension(std::move(f));
-}
-
-std::string Parcats::Dimensions::Dimension::to_string(Categoryorder e) {
+std::string Parcats::Dimension::to_string(Categoryorder e) {
     switch(e) {
         case Categoryorder::Trace: return "trace";
         case Categoryorder::CategoryAscending: return "category ascending";
@@ -299,107 +293,107 @@ std::string Parcats::Dimensions::Dimension::to_string(Categoryorder e) {
 }
 
 template <typename T, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::categoryarray(const std::vector<T>& f) {
+Parcats::Dimension& Parcats::Dimension::categoryarray(const std::vector<T>& f) {
     json["categoryarray"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::categoryarray(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::categoryarray(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return categoryarray(std::move(f));
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::categoryarraysrc(std::string f) {
+Parcats::Dimension& Parcats::Dimension::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::categoryarraysrc(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::categoryarraysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return categoryarraysrc(std::move(f));
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::categoryorder(enum Categoryorder f) {
+Parcats::Dimension& Parcats::Dimension::categoryorder(enum Categoryorder f) {
     json["categoryorder"] = to_string(f);
     return *this;
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::displayindex(int f) {
+Parcats::Dimension& Parcats::Dimension::displayindex(int f) {
     json["displayindex"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::displayindex(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::displayindex(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return displayindex(std::move(f));
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::label(std::string f) {
+Parcats::Dimension& Parcats::Dimension::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::label(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
 template <typename T, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::ticktext(const std::vector<T>& f) {
+Parcats::Dimension& Parcats::Dimension::ticktext(const std::vector<T>& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::ticktext(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::ticktextsrc(std::string f) {
+Parcats::Dimension& Parcats::Dimension::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::ticktextsrc(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename T, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::values(const std::vector<T>& f) {
+Parcats::Dimension& Parcats::Dimension::values(const std::vector<T>& f) {
     json["values"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::values(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::values(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::valuessrc(std::string f) {
+Parcats::Dimension& Parcats::Dimension::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::valuessrc(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::valuessrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return valuessrc(std::move(f));
 }
 
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::visible(bool f) {
+Parcats::Dimension& Parcats::Dimension::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Dimensions::Dimension& Parcats::Dimensions::Dimension::visible(Callable&& c) {
+Parcats::Dimension& Parcats::Dimension::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
@@ -1241,15 +1235,21 @@ Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickformatstops(Tickformatstops f) {
+Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Parcats::Line::Colorbar& Parcats::Line::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1561,68 +1561,56 @@ Parcats::Line::Colorbar::Tickfont& Parcats::Line::Colorbar::Tickfont::weight(Cal
 }
 
 
-Parcats::Line::Colorbar::Tickformatstops& Parcats::Line::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Parcats::Line::Colorbar::Tickformatstops& Parcats::Line::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcats::Line::Colorbar::Tickformatstops::Tickformatstop& Parcats::Line::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Parcats::Line::Colorbar::Tickformatstop& Parcats::Line::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

@@ -327,8 +327,8 @@ void showBasicCharts() {
     lineDashes().show();
     waitForEnter();
 
-    // groupedBar().show();
-    // waitForEnter();
+    groupedBar().show();
+    waitForEnter();
 
     basicPie().show();
     waitForEnter();
@@ -345,8 +345,8 @@ void showBasicCharts() {
     basicOverlaidArea().show();
     waitForEnter();
 
-    // horizontalBar().show();
-    // waitForEnter();
+    horizontalBar().show();
+    waitForEnter();
 }
 
 void showMaps() {
@@ -378,23 +378,23 @@ void showFinancialCharts() {
 void show3dCharts() {
     using namespace plotlypp;
 
-    // multiple3DSurfacePlots().show();
-    // waitForEnter();
+    multiple3DSurfacePlots().show();
+    waitForEnter();
 
-    // meshCube().show();
-    // waitForEnter();
+    meshCube().show();
+    waitForEnter();
 
-    // gen3dLineSpiral().show();
-    // waitForEnter();
+    gen3dLineSpiral().show();
+    waitForEnter();
 
-    // gen3dScatterWithColorscalingAndMarkerStyling().show();
-    // waitForEnter();
+    gen3dScatterWithColorscalingAndMarkerStyling().show();
+    waitForEnter();
 
-    // simpleVolumePlot().show();
-    // waitForEnter();
+    simpleVolumePlot().show();
+    waitForEnter();
 
-    // multiple3dIsosurfaces().show();
-    // waitForEnter();
+    multiple3dIsosurfaces().show();
+    waitForEnter();
 
     bubbleChartSizedByVariable().show();
     waitForEnter();
@@ -422,23 +422,23 @@ void showScientificCharts() {
 void showStatisticalCharts() {
     using namespace plotlypp;
 
-    // coloredBoxPlot().show();
-    // waitForEnter();
+    coloredBoxPlot().show();
+    waitForEnter();
 
-    // coloredAndStyledHistograms().show();
-    // waitForEnter();
+    coloredAndStyledHistograms().show();
+    waitForEnter();
 
-    // continuousFilledErrorBars().show();
-    // waitForEnter();
+    continuousFilledErrorBars().show();
+    waitForEnter();
 
-    // asymmetricErrorBars().show();
-    // waitForEnter();
+    asymmetricErrorBars().show();
+    waitForEnter();
 
-    // gen2DHistogramBivariateNormal().show();
-    // waitForEnter();
+    gen2DHistogramBivariateNormal().show();
+    waitForEnter();
 
-    // gen2DHistogramContour().show();
-    // waitForEnter();
+    gen2DHistogramContour().show();
+    waitForEnter();
 
     basicHorizontalViolinPlot().show();
     waitForEnter();
@@ -446,12 +446,12 @@ void showStatisticalCharts() {
 
 int main() {
     using namespace plotlypp;
-    showStatisticalCharts();
-    // showScientificCharts();
-    //  show3dCharts();
-    //   showFinancialCharts();
-    //    showMaps();
-    //     showBasicCharts();
+    // showStatisticalCharts();
+    //  showScientificCharts();
+    //   show3dCharts();
+    //    showFinancialCharts();
+    //     showMaps();
+    showBasicCharts();
     return 0;
 
     lineDashes().show();

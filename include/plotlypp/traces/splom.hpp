@@ -36,7 +36,7 @@ class Splom : public Trace {
     static std::string to_string(Visible e);
 
     class Diagonal;
-    class Dimensions;
+    class Dimension;
     class Hoverlabel;
     class Legendgrouptitle;
     class Marker;
@@ -62,9 +62,10 @@ class Splom : public Trace {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Diagonal&>>>
     Splom& diagonal(Callable&& c);
 
-    Splom& dimensions(Dimensions f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimensions&>>>
+    Splom& dimensions(Dimension f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
     Splom& dimensions(Callable&& c);
+    Splom& dimensions(const std::vector<Dimension>& f);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
     // hovering. But, if `none` is set, click and hover events are still fired.
@@ -317,23 +318,7 @@ class Splom::Diagonal {
     Json json{};
 };
 
-class Splom::Dimensions {
- public:
-    Dimensions() = default;
-    Dimensions(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Dimension;
-
-    Splom::Dimensions& dimension(Dimension f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
-    Splom::Dimensions& dimension(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Splom::Dimensions::Dimension {
+class Splom::Dimension {
  public:
     Dimension() = default;
     Dimension(std::string jsonStr)
@@ -341,56 +326,56 @@ class Splom::Dimensions::Dimension {
 
     class Axis;
 
-    Splom::Dimensions::Dimension& axis(Axis f);
+    Splom::Dimension& axis(Axis f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Axis&>>>
-    Splom::Dimensions::Dimension& axis(Callable&& c);
+    Splom::Dimension& axis(Callable&& c);
 
     // Sets the label corresponding to this splom dimension.
-    Splom::Dimensions::Dimension& label(std::string f);
+    Splom::Dimension& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimensions::Dimension& label(Callable&& c);
+    Splom::Dimension& label(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Splom::Dimensions::Dimension& name(std::string f);
+    Splom::Dimension& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimensions::Dimension& name(Callable&& c);
+    Splom::Dimension& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Splom::Dimensions::Dimension& templateitemname(std::string f);
+    Splom::Dimension& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimensions::Dimension& templateitemname(Callable&& c);
+    Splom::Dimension& templateitemname(Callable&& c);
 
     // Sets the dimension values to be plotted.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Splom::Dimensions::Dimension& values(const std::vector<T>& f);
+    Splom::Dimension& values(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Splom::Dimensions::Dimension& values(Callable&& c);
+    Splom::Dimension& values(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `values`.
-    Splom::Dimensions::Dimension& valuessrc(std::string f);
+    Splom::Dimension& valuessrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimensions::Dimension& valuessrc(Callable&& c);
+    Splom::Dimension& valuessrc(Callable&& c);
 
     // Determines whether or not this dimension is shown on the graph. Note that even visible false dimension contribute
     // to the default grid generate by this splom trace.
-    Splom::Dimensions::Dimension& visible(bool f);
+    Splom::Dimension& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Dimensions::Dimension& visible(Callable&& c);
+    Splom::Dimension& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Splom::Dimensions::Dimension::Axis {
+class Splom::Dimension::Axis {
  public:
     Axis() = default;
     Axis(std::string jsonStr)
@@ -406,13 +391,13 @@ class Splom::Dimensions::Dimension::Axis {
 
     // Determines whether or not the x & y axes generated by this dimension match. Equivalent to setting the `matches`
     // axis attribute in the layout with the correct axis id.
-    Splom::Dimensions::Dimension::Axis& matches(bool f);
+    Splom::Dimension::Axis& matches(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Dimensions::Dimension::Axis& matches(Callable&& c);
+    Splom::Dimension::Axis& matches(Callable&& c);
 
     // Sets the axis type for this dimension's generated x and y axes. Note that the axis `type` values set in layout
     // take precedence over this attribute.
-    Splom::Dimensions::Dimension::Axis& type(enum Type f);
+    Splom::Dimension::Axis& type(enum Type f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1357,7 +1342,7 @@ class Splom::Marker::Colorbar {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the color of padded area.
@@ -1513,9 +1498,10 @@ class Splom::Marker::Colorbar {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Splom::Marker::Colorbar& tickformat(Callable&& c);
 
-    Splom::Marker::Colorbar& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Splom::Marker::Colorbar& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Splom::Marker::Colorbar& tickformatstops(Callable&& c);
+    Splom::Marker::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
     // default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
@@ -1732,23 +1718,7 @@ class Splom::Marker::Colorbar::Tickfont {
     Json json{};
 };
 
-class Splom::Marker::Colorbar::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Splom::Marker::Colorbar::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Splom::Marker::Colorbar::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Splom::Marker::Colorbar::Tickformatstops::Tickformatstop {
+class Splom::Marker::Colorbar::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -1756,36 +1726,36 @@ class Splom::Marker::Colorbar::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Splom::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& enabled(bool f);
+    Splom::Marker::Colorbar::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Splom::Marker::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& name(std::string f);
+    Splom::Marker::Colorbar::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Splom::Marker::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Splom::Marker::Colorbar::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Splom::Marker::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& value(std::string f);
+    Splom::Marker::Colorbar::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Splom::Marker::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

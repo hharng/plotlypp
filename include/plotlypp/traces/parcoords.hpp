@@ -41,7 +41,7 @@ class Parcoords : public Trace {
     };
     static std::string to_string(Visible e);
 
-    class Dimensions;
+    class Dimension;
     class Domain;
     // Sets the font for the `dimension` labels.
     class Labelfont;
@@ -68,9 +68,10 @@ class Parcoords : public Trace {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Parcoords& customdatasrc(Callable&& c);
 
-    Parcoords& dimensions(Dimensions f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimensions&>>>
+    Parcoords& dimensions(Dimension f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
     Parcoords& dimensions(Callable&& c);
+    Parcoords& dimensions(const std::vector<Dimension>& f);
 
     Parcoords& domain(Domain f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Domain&>>>
@@ -202,26 +203,7 @@ class Parcoords : public Trace {
     Parcoords& visible(enum Visible f);
 };
 
-class Parcoords::Dimensions {
- public:
-    Dimensions() = default;
-    Dimensions(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    // The dimensions (variables) of the parallel coordinates chart. 2..60 dimensions are supported.
-    class Dimension;
-
-    // The dimensions (variables) of the parallel coordinates chart. 2..60 dimensions are supported.
-    Parcoords::Dimensions& dimension(Dimension f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
-    Parcoords::Dimensions& dimension(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-// The dimensions (variables) of the parallel coordinates chart. 2..60 dimensions are supported.
-class Parcoords::Dimensions::Dimension {
+class Parcoords::Dimension {
  public:
     Dimension() = default;
     Dimension(std::string jsonStr)
@@ -230,97 +212,97 @@ class Parcoords::Dimensions::Dimension {
     // The domain range to which the filter on the dimension is constrained. Must be an array of `[fromValue, toValue]`
     // with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each
     // inner array is `[fromValue, toValue]`.
-    Parcoords::Dimensions::Dimension& constraintrange(const std::vector<double>& f);
+    Parcoords::Dimension& constraintrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Parcoords::Dimensions::Dimension& constraintrange(Callable&& c);
+    Parcoords::Dimension& constraintrange(Callable&& c);
 
     // The shown name of the dimension.
-    Parcoords::Dimensions::Dimension& label(std::string f);
+    Parcoords::Dimension& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& label(Callable&& c);
+    Parcoords::Dimension& label(Callable&& c);
 
     // Do we allow multiple selection ranges or just a single range?
-    Parcoords::Dimensions::Dimension& multiselect(bool f);
+    Parcoords::Dimension& multiselect(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcoords::Dimensions::Dimension& multiselect(Callable&& c);
+    Parcoords::Dimension& multiselect(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Parcoords::Dimensions::Dimension& name(std::string f);
+    Parcoords::Dimension& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& name(Callable&& c);
+    Parcoords::Dimension& name(Callable&& c);
 
     // The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array
     // of `[fromValue, toValue]` with finite numbers as elements.
-    Parcoords::Dimensions::Dimension& range(const std::vector<double>& f);
+    Parcoords::Dimension& range(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Parcoords::Dimensions::Dimension& range(Callable&& c);
+    Parcoords::Dimension& range(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Parcoords::Dimensions::Dimension& templateitemname(std::string f);
+    Parcoords::Dimension& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& templateitemname(Callable&& c);
+    Parcoords::Dimension& templateitemname(Callable&& c);
 
     // Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python.
     // For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see:
     // https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format. We add two items to d3's date formatter: *%h* for
     // half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example,
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-    Parcoords::Dimensions::Dimension& tickformat(std::string f);
+    Parcoords::Dimension& tickformat(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& tickformat(Callable&& c);
+    Parcoords::Dimension& tickformat(Callable&& c);
 
     // Sets the text displayed at the ticks position via `tickvals`.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcoords::Dimensions::Dimension& ticktext(const std::vector<T>& f);
+    Parcoords::Dimension& ticktext(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcoords::Dimensions::Dimension& ticktext(Callable&& c);
+    Parcoords::Dimension& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
-    Parcoords::Dimensions::Dimension& ticktextsrc(std::string f);
+    Parcoords::Dimension& ticktextsrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& ticktextsrc(Callable&& c);
+    Parcoords::Dimension& ticktextsrc(Callable&& c);
 
     // Sets the values at which ticks on this axis appear.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcoords::Dimensions::Dimension& tickvals(const std::vector<T>& f);
+    Parcoords::Dimension& tickvals(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcoords::Dimensions::Dimension& tickvals(Callable&& c);
+    Parcoords::Dimension& tickvals(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `tickvals`.
-    Parcoords::Dimensions::Dimension& tickvalssrc(std::string f);
+    Parcoords::Dimension& tickvalssrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& tickvalssrc(Callable&& c);
+    Parcoords::Dimension& tickvalssrc(Callable&& c);
 
     // Dimension values. `values[n]` represents the value of the `n`th point in the dataset, therefore the `values`
     // vector for all dimensions must be the same (longer vectors will be truncated). Each value must be a finite
     // number.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcoords::Dimensions::Dimension& values(const std::vector<T>& f);
+    Parcoords::Dimension& values(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcoords::Dimensions::Dimension& values(Callable&& c);
+    Parcoords::Dimension& values(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `values`.
-    Parcoords::Dimensions::Dimension& valuessrc(std::string f);
+    Parcoords::Dimension& valuessrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Dimensions::Dimension& valuessrc(Callable&& c);
+    Parcoords::Dimension& valuessrc(Callable&& c);
 
     // Shows the dimension when set to `true` (the default). Hides the dimension for `false`.
-    Parcoords::Dimensions::Dimension& visible(bool f);
+    Parcoords::Dimension& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcoords::Dimensions::Dimension& visible(Callable&& c);
+    Parcoords::Dimension& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -767,7 +749,7 @@ class Parcoords::Line::Colorbar {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the color of padded area.
@@ -923,9 +905,10 @@ class Parcoords::Line::Colorbar {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Parcoords::Line::Colorbar& tickformat(Callable&& c);
 
-    Parcoords::Line::Colorbar& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Parcoords::Line::Colorbar& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Parcoords::Line::Colorbar& tickformatstops(Callable&& c);
+    Parcoords::Line::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
     // default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
@@ -1142,23 +1125,7 @@ class Parcoords::Line::Colorbar::Tickfont {
     Json json{};
 };
 
-class Parcoords::Line::Colorbar::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Parcoords::Line::Colorbar::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Parcoords::Line::Colorbar::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop {
+class Parcoords::Line::Colorbar::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -1166,36 +1133,36 @@ class Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Parcoords::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Parcoords::Line::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& enabled(bool f);
+    Parcoords::Line::Colorbar::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Parcoords::Line::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& name(std::string f);
+    Parcoords::Line::Colorbar::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Parcoords::Line::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Parcoords::Line::Colorbar::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Parcoords::Line::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& value(std::string f);
+    Parcoords::Line::Colorbar::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcoords::Line::Colorbar::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Parcoords::Line::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

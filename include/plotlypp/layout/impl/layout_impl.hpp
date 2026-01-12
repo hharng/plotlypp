@@ -172,15 +172,21 @@ Layout& Layout::activeshape(Callable&& c) {
     return activeshape(std::move(f));
 }
 
-Layout& Layout::annotations(Annotations f) {
+Layout& Layout::annotations(Annotation f) {
     json["annotations"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout& Layout::annotations(Callable&& c) {
-    Annotations f{};
+    Annotation f{};
     std::forward<Callable>(c)(f);
     return annotations(std::move(f));
+}
+Layout& Layout::annotations(const std::vector<Annotation>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["annotations"] = std::move(jsonified);
+    return *this;
 }
 
 Layout& Layout::autosize(bool f) {
@@ -384,15 +390,21 @@ Layout& Layout::hoversubplots(enum Hoversubplots f) {
     return *this;
 }
 
-Layout& Layout::images(Images f) {
+Layout& Layout::images(Image f) {
     json["images"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout& Layout::images(Callable&& c) {
-    Images f{};
+    Image f{};
     std::forward<Callable>(c)(f);
     return images(std::move(f));
+}
+Layout& Layout::images(const std::vector<Image>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["images"] = std::move(jsonified);
+    return *this;
 }
 
 Layout& Layout::legend(Legend f) {
@@ -603,15 +615,21 @@ Layout& Layout::selectionrevision(Callable&& c) {
     return selectionrevision(std::move(f));
 }
 
-Layout& Layout::selections(Selections f) {
+Layout& Layout::selections(Selection f) {
     json["selections"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout& Layout::selections(Callable&& c) {
-    Selections f{};
+    Selection f{};
     std::forward<Callable>(c)(f);
     return selections(std::move(f));
+}
+Layout& Layout::selections(const std::vector<Selection>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["selections"] = std::move(jsonified);
+    return *this;
 }
 
 Layout& Layout::separators(std::string f) {
@@ -625,15 +643,21 @@ Layout& Layout::separators(Callable&& c) {
     return separators(std::move(f));
 }
 
-Layout& Layout::shapes(Shapes f) {
+Layout& Layout::shapes(Shape f) {
     json["shapes"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout& Layout::shapes(Callable&& c) {
-    Shapes f{};
+    Shape f{};
     std::forward<Callable>(c)(f);
     return shapes(std::move(f));
+}
+Layout& Layout::shapes(const std::vector<Shape>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["shapes"] = std::move(jsonified);
+    return *this;
 }
 
 Layout& Layout::showlegend(bool f) {
@@ -647,15 +671,21 @@ Layout& Layout::showlegend(Callable&& c) {
     return showlegend(std::move(f));
 }
 
-Layout& Layout::sliders(Sliders f) {
+Layout& Layout::sliders(Slider f) {
     json["sliders"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout& Layout::sliders(Callable&& c) {
-    Sliders f{};
+    Slider f{};
     std::forward<Callable>(c)(f);
     return sliders(std::move(f));
+}
+Layout& Layout::sliders(const std::vector<Slider>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["sliders"] = std::move(jsonified);
+    return *this;
 }
 
 Layout& Layout::smith(Smith f) {
@@ -756,15 +786,21 @@ Layout& Layout::uniformtext(Callable&& c) {
     return uniformtext(std::move(f));
 }
 
-Layout& Layout::updatemenus(Updatemenus f) {
+Layout& Layout::updatemenus(Updatemenu f) {
     json["updatemenus"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout& Layout::updatemenus(Callable&& c) {
-    Updatemenus f{};
+    Updatemenu f{};
     std::forward<Callable>(c)(f);
     return updatemenus(std::move(f));
+}
+Layout& Layout::updatemenus(const std::vector<Updatemenu>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["updatemenus"] = std::move(jsonified);
+    return *this;
 }
 
 Layout& Layout::width(double f) {
@@ -1155,19 +1191,7 @@ Layout::Activeshape& Layout::Activeshape::opacity(Callable&& c) {
     return opacity(std::move(f));
 }
 
-
-Layout::Annotations& Layout::Annotations::annotation(Annotation f) {
-    json["annotation"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Annotations& Layout::Annotations::annotation(Callable&& c) {
-    Annotation f{};
-    std::forward<Callable>(c)(f);
-    return annotation(std::move(f));
-}
-
-std::string Layout::Annotations::Annotation::to_string(Align e) {
+std::string Layout::Annotation::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Center: return "center";
@@ -1176,7 +1200,7 @@ std::string Layout::Annotations::Annotation::to_string(Align e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::to_string(Clicktoshow e) {
+std::string Layout::Annotation::to_string(Clicktoshow e) {
     switch(e) {
         case Clicktoshow::False: return "False";
         case Clicktoshow::Onoff: return "onoff";
@@ -1185,7 +1209,7 @@ std::string Layout::Annotations::Annotation::to_string(Clicktoshow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::to_string(Valign e) {
+std::string Layout::Annotation::to_string(Valign e) {
     switch(e) {
         case Valign::Top: return "top";
         case Valign::Middle: return "middle";
@@ -1194,7 +1218,7 @@ std::string Layout::Annotations::Annotation::to_string(Valign e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::to_string(Xanchor e) {
+std::string Layout::Annotation::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Auto: return "auto";
         case Xanchor::Left: return "left";
@@ -1204,7 +1228,7 @@ std::string Layout::Annotations::Annotation::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::to_string(Yanchor e) {
+std::string Layout::Annotation::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Auto: return "auto";
         case Yanchor::Top: return "top";
@@ -1215,456 +1239,456 @@ std::string Layout::Annotations::Annotation::to_string(Yanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::align(enum Align f) {
+Layout::Annotation& Layout::Annotation::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowcolor(std::string f) {
+Layout::Annotation& Layout::Annotation::arrowcolor(std::string f) {
     json["arrowcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowcolor(Callable&& c) {
+Layout::Annotation& Layout::Annotation::arrowcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrowcolor(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowhead(int f) {
+Layout::Annotation& Layout::Annotation::arrowhead(int f) {
     json["arrowhead"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowhead(Callable&& c) {
+Layout::Annotation& Layout::Annotation::arrowhead(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return arrowhead(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowside(std::string f) {
+Layout::Annotation& Layout::Annotation::arrowside(std::string f) {
     json["arrowside"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowside(Callable&& c) {
+Layout::Annotation& Layout::Annotation::arrowside(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrowside(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowsize(double f) {
+Layout::Annotation& Layout::Annotation::arrowsize(double f) {
     json["arrowsize"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowsize(Callable&& c) {
+Layout::Annotation& Layout::Annotation::arrowsize(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return arrowsize(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowwidth(double f) {
+Layout::Annotation& Layout::Annotation::arrowwidth(double f) {
     json["arrowwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::arrowwidth(Callable&& c) {
+Layout::Annotation& Layout::Annotation::arrowwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return arrowwidth(std::move(f));
 }
 
 template <typename T>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::ax(T f) {
+Layout::Annotation& Layout::Annotation::ax(T f) {
     json["ax"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::ax(Callable&& c) {
+Layout::Annotation& Layout::Annotation::ax(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return ax(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::axref(std::string f) {
+Layout::Annotation& Layout::Annotation::axref(std::string f) {
     json["axref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::axref(Callable&& c) {
+Layout::Annotation& Layout::Annotation::axref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return axref(std::move(f));
 }
 
 template <typename T>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::ay(T f) {
+Layout::Annotation& Layout::Annotation::ay(T f) {
     json["ay"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::ay(Callable&& c) {
+Layout::Annotation& Layout::Annotation::ay(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return ay(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::ayref(std::string f) {
+Layout::Annotation& Layout::Annotation::ayref(std::string f) {
     json["ayref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::ayref(Callable&& c) {
+Layout::Annotation& Layout::Annotation::ayref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ayref(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::bgcolor(std::string f) {
+Layout::Annotation& Layout::Annotation::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::bgcolor(Callable&& c) {
+Layout::Annotation& Layout::Annotation::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::bordercolor(std::string f) {
+Layout::Annotation& Layout::Annotation::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::bordercolor(Callable&& c) {
+Layout::Annotation& Layout::Annotation::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::borderpad(double f) {
+Layout::Annotation& Layout::Annotation::borderpad(double f) {
     json["borderpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::borderpad(Callable&& c) {
+Layout::Annotation& Layout::Annotation::borderpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderpad(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::borderwidth(double f) {
+Layout::Annotation& Layout::Annotation::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::borderwidth(Callable&& c) {
+Layout::Annotation& Layout::Annotation::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::captureevents(bool f) {
+Layout::Annotation& Layout::Annotation::captureevents(bool f) {
     json["captureevents"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::captureevents(Callable&& c) {
+Layout::Annotation& Layout::Annotation::captureevents(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return captureevents(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::clicktoshow(enum Clicktoshow f) {
+Layout::Annotation& Layout::Annotation::clicktoshow(enum Clicktoshow f) {
     json["clicktoshow"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::font(Font f) {
+Layout::Annotation& Layout::Annotation::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::font(Callable&& c) {
+Layout::Annotation& Layout::Annotation::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::height(double f) {
+Layout::Annotation& Layout::Annotation::height(double f) {
     json["height"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::height(Callable&& c) {
+Layout::Annotation& Layout::Annotation::height(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return height(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::hoverlabel(Hoverlabel f) {
+Layout::Annotation& Layout::Annotation::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::hoverlabel(Callable&& c) {
+Layout::Annotation& Layout::Annotation::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::hovertext(std::string f) {
+Layout::Annotation& Layout::Annotation::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::hovertext(Callable&& c) {
+Layout::Annotation& Layout::Annotation::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::name(std::string f) {
+Layout::Annotation& Layout::Annotation::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::name(Callable&& c) {
+Layout::Annotation& Layout::Annotation::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::opacity(double f) {
+Layout::Annotation& Layout::Annotation::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::opacity(Callable&& c) {
+Layout::Annotation& Layout::Annotation::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::showarrow(bool f) {
+Layout::Annotation& Layout::Annotation::showarrow(bool f) {
     json["showarrow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::showarrow(Callable&& c) {
+Layout::Annotation& Layout::Annotation::showarrow(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showarrow(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::standoff(double f) {
+Layout::Annotation& Layout::Annotation::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::standoff(Callable&& c) {
+Layout::Annotation& Layout::Annotation::standoff(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return standoff(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::startarrowhead(int f) {
+Layout::Annotation& Layout::Annotation::startarrowhead(int f) {
     json["startarrowhead"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::startarrowhead(Callable&& c) {
+Layout::Annotation& Layout::Annotation::startarrowhead(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return startarrowhead(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::startarrowsize(double f) {
+Layout::Annotation& Layout::Annotation::startarrowsize(double f) {
     json["startarrowsize"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::startarrowsize(Callable&& c) {
+Layout::Annotation& Layout::Annotation::startarrowsize(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return startarrowsize(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::startstandoff(double f) {
+Layout::Annotation& Layout::Annotation::startstandoff(double f) {
     json["startstandoff"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::startstandoff(Callable&& c) {
+Layout::Annotation& Layout::Annotation::startstandoff(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return startstandoff(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::templateitemname(std::string f) {
+Layout::Annotation& Layout::Annotation::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::templateitemname(Callable&& c) {
+Layout::Annotation& Layout::Annotation::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::text(std::string f) {
+Layout::Annotation& Layout::Annotation::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::text(Callable&& c) {
+Layout::Annotation& Layout::Annotation::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::textangle(double f) {
+Layout::Annotation& Layout::Annotation::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::textangle(Callable&& c) {
+Layout::Annotation& Layout::Annotation::textangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return textangle(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::valign(enum Valign f) {
+Layout::Annotation& Layout::Annotation::valign(enum Valign f) {
     json["valign"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::visible(bool f) {
+Layout::Annotation& Layout::Annotation::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::visible(Callable&& c) {
+Layout::Annotation& Layout::Annotation::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::width(double f) {
+Layout::Annotation& Layout::Annotation::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::width(Callable&& c) {
+Layout::Annotation& Layout::Annotation::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 template <typename T>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::x(T f) {
+Layout::Annotation& Layout::Annotation::x(T f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::x(Callable&& c) {
+Layout::Annotation& Layout::Annotation::x(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xanchor(enum Xanchor f) {
+Layout::Annotation& Layout::Annotation::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xclick(T f) {
+Layout::Annotation& Layout::Annotation::xclick(T f) {
     json["xclick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xclick(Callable&& c) {
+Layout::Annotation& Layout::Annotation::xclick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return xclick(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xref(std::string f) {
+Layout::Annotation& Layout::Annotation::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xref(Callable&& c) {
+Layout::Annotation& Layout::Annotation::xref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xref(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xshift(double f) {
+Layout::Annotation& Layout::Annotation::xshift(double f) {
     json["xshift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::xshift(Callable&& c) {
+Layout::Annotation& Layout::Annotation::xshift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xshift(std::move(f));
 }
 
 template <typename T>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::y(T f) {
+Layout::Annotation& Layout::Annotation::y(T f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::y(Callable&& c) {
+Layout::Annotation& Layout::Annotation::y(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yanchor(enum Yanchor f) {
+Layout::Annotation& Layout::Annotation::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yclick(T f) {
+Layout::Annotation& Layout::Annotation::yclick(T f) {
     json["yclick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yclick(Callable&& c) {
+Layout::Annotation& Layout::Annotation::yclick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return yclick(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yref(std::string f) {
+Layout::Annotation& Layout::Annotation::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yref(Callable&& c) {
+Layout::Annotation& Layout::Annotation::yref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yref(std::move(f));
 }
 
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yshift(double f) {
+Layout::Annotation& Layout::Annotation::yshift(double f) {
     json["yshift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation& Layout::Annotations::Annotation::yshift(Callable&& c) {
+Layout::Annotation& Layout::Annotation::yshift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return yshift(std::move(f));
 }
 
-std::string Layout::Annotations::Annotation::Font::to_string(Style e) {
+std::string Layout::Annotation::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1672,7 +1696,7 @@ std::string Layout::Annotations::Annotation::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::Font::to_string(Textcase e) {
+std::string Layout::Annotation::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1682,7 +1706,7 @@ std::string Layout::Annotations::Annotation::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::Font::to_string(Variant e) {
+std::string Layout::Annotation::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1695,122 +1719,122 @@ std::string Layout::Annotations::Annotation::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::color(std::string f) {
+Layout::Annotation::Font& Layout::Annotation::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::color(Callable&& c) {
+Layout::Annotation::Font& Layout::Annotation::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::family(std::string f) {
+Layout::Annotation::Font& Layout::Annotation::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::family(Callable&& c) {
+Layout::Annotation::Font& Layout::Annotation::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::lineposition(std::string f) {
+Layout::Annotation::Font& Layout::Annotation::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::lineposition(Callable&& c) {
+Layout::Annotation::Font& Layout::Annotation::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::shadow(std::string f) {
+Layout::Annotation::Font& Layout::Annotation::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::shadow(Callable&& c) {
+Layout::Annotation::Font& Layout::Annotation::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::size(double f) {
+Layout::Annotation::Font& Layout::Annotation::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::size(Callable&& c) {
+Layout::Annotation::Font& Layout::Annotation::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::style(enum Style f) {
+Layout::Annotation::Font& Layout::Annotation::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::textcase(enum Textcase f) {
+Layout::Annotation::Font& Layout::Annotation::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::variant(enum Variant f) {
+Layout::Annotation::Font& Layout::Annotation::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::weight(int f) {
+Layout::Annotation::Font& Layout::Annotation::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Font& Layout::Annotations::Annotation::Font::weight(Callable&& c) {
+Layout::Annotation::Font& Layout::Annotation::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Layout::Annotations::Annotation::Hoverlabel& Layout::Annotations::Annotation::Hoverlabel::bgcolor(std::string f) {
+Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel& Layout::Annotations::Annotation::Hoverlabel::bgcolor(Callable&& c) {
+Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel& Layout::Annotations::Annotation::Hoverlabel::bordercolor(std::string f) {
+Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel& Layout::Annotations::Annotation::Hoverlabel::bordercolor(Callable&& c) {
+Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel& Layout::Annotations::Annotation::Hoverlabel::font(Font f) {
+Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel& Layout::Annotations::Annotation::Hoverlabel::font(Callable&& c) {
+Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-std::string Layout::Annotations::Annotation::Hoverlabel::Font::to_string(Style e) {
+std::string Layout::Annotation::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1818,7 +1842,7 @@ std::string Layout::Annotations::Annotation::Hoverlabel::Font::to_string(Style e
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::Hoverlabel::Font::to_string(Textcase e) {
+std::string Layout::Annotation::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1828,7 +1852,7 @@ std::string Layout::Annotations::Annotation::Hoverlabel::Font::to_string(Textcas
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Annotations::Annotation::Hoverlabel::Font::to_string(Variant e) {
+std::string Layout::Annotation::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1841,82 +1865,82 @@ std::string Layout::Annotations::Annotation::Hoverlabel::Font::to_string(Variant
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::color(std::string f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::color(Callable&& c) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::family(std::string f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::family(Callable&& c) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::lineposition(std::string f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::lineposition(Callable&& c) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::shadow(std::string f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::shadow(Callable&& c) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::size(double f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::size(Callable&& c) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::style(enum Style f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::textcase(enum Textcase f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::variant(enum Variant f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::weight(int f) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Annotations::Annotation::Hoverlabel::Font& Layout::Annotations::Annotation::Hoverlabel::Font::weight(Callable&& c) {
+Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -2405,15 +2429,21 @@ Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformat(Callable&& 
     return tickformat(std::move(f));
 }
 
-Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(Tickformatstops f) {
+Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -2725,68 +2755,56 @@ Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::we
 }
 
 
-Layout::Coloraxis::Colorbar::Tickformatstops& Layout::Coloraxis::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Coloraxis::Colorbar::Tickformatstops& Layout::Coloraxis::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -4336,19 +4354,7 @@ Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::weight(C
     return weight(std::move(f));
 }
 
-
-Layout::Images& Layout::Images::image(Image f) {
-    json["image"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Images& Layout::Images::image(Callable&& c) {
-    Image f{};
-    std::forward<Callable>(c)(f);
-    return image(std::move(f));
-}
-
-std::string Layout::Images::Image::to_string(Layer e) {
+std::string Layout::Image::to_string(Layer e) {
     switch(e) {
         case Layer::Below: return "below";
         case Layer::Above: return "above";
@@ -4356,7 +4362,7 @@ std::string Layout::Images::Image::to_string(Layer e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Images::Image::to_string(Sizing e) {
+std::string Layout::Image::to_string(Sizing e) {
     switch(e) {
         case Sizing::Fill: return "fill";
         case Sizing::Contain: return "contain";
@@ -4365,7 +4371,7 @@ std::string Layout::Images::Image::to_string(Sizing e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Images::Image::to_string(Xanchor e) {
+std::string Layout::Image::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -4374,7 +4380,7 @@ std::string Layout::Images::Image::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Images::Image::to_string(Yanchor e) {
+std::string Layout::Image::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -4384,144 +4390,144 @@ std::string Layout::Images::Image::to_string(Yanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Images::Image& Layout::Images::Image::layer(enum Layer f) {
+Layout::Image& Layout::Image::layer(enum Layer f) {
     json["layer"] = to_string(f);
     return *this;
 }
 
-Layout::Images::Image& Layout::Images::Image::name(std::string f) {
+Layout::Image& Layout::Image::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::name(Callable&& c) {
+Layout::Image& Layout::Image::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::opacity(double f) {
+Layout::Image& Layout::Image::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::opacity(Callable&& c) {
+Layout::Image& Layout::Image::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::sizex(double f) {
+Layout::Image& Layout::Image::sizex(double f) {
     json["sizex"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::sizex(Callable&& c) {
+Layout::Image& Layout::Image::sizex(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return sizex(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::sizey(double f) {
+Layout::Image& Layout::Image::sizey(double f) {
     json["sizey"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::sizey(Callable&& c) {
+Layout::Image& Layout::Image::sizey(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return sizey(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::sizing(enum Sizing f) {
+Layout::Image& Layout::Image::sizing(enum Sizing f) {
     json["sizing"] = to_string(f);
     return *this;
 }
 
-Layout::Images::Image& Layout::Images::Image::source(std::string f) {
+Layout::Image& Layout::Image::source(std::string f) {
     json["source"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::source(Callable&& c) {
+Layout::Image& Layout::Image::source(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return source(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::templateitemname(std::string f) {
+Layout::Image& Layout::Image::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::templateitemname(Callable&& c) {
+Layout::Image& Layout::Image::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::visible(bool f) {
+Layout::Image& Layout::Image::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::visible(Callable&& c) {
+Layout::Image& Layout::Image::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
 template <typename T>
-Layout::Images::Image& Layout::Images::Image::x(T f) {
+Layout::Image& Layout::Image::x(T f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::x(Callable&& c) {
+Layout::Image& Layout::Image::x(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::xanchor(enum Xanchor f) {
+Layout::Image& Layout::Image::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Images::Image& Layout::Images::Image::xref(std::string f) {
+Layout::Image& Layout::Image::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::xref(Callable&& c) {
+Layout::Image& Layout::Image::xref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xref(std::move(f));
 }
 
 template <typename T>
-Layout::Images::Image& Layout::Images::Image::y(T f) {
+Layout::Image& Layout::Image::y(T f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::y(Callable&& c) {
+Layout::Image& Layout::Image::y(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Layout::Images::Image& Layout::Images::Image::yanchor(enum Yanchor f) {
+Layout::Image& Layout::Image::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Images::Image& Layout::Images::Image::yref(std::string f) {
+Layout::Image& Layout::Image::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Images::Image& Layout::Images::Image::yref(Callable&& c) {
+Layout::Image& Layout::Image::yref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yref(std::move(f));
@@ -5264,15 +5270,21 @@ Layout::Map& Layout::Map::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-Layout::Map& Layout::Map::layers(Layers f) {
+Layout::Map& Layout::Map::layers(Layer f) {
     json["layers"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Map& Layout::Map::layers(Callable&& c) {
-    Layers f{};
+    Layer f{};
     std::forward<Callable>(c)(f);
     return layers(std::move(f));
+}
+Layout::Map& Layout::Map::layers(const std::vector<Layer>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["layers"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Map& Layout::Map::pitch(double f) {
@@ -5434,19 +5446,7 @@ Layout::Map::Domain& Layout::Map::Domain::y(Callable&& c) {
     return y(std::move(f));
 }
 
-
-Layout::Map::Layers& Layout::Map::Layers::layer(Layer f) {
-    json["layer"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Map::Layers& Layout::Map::Layers::layer(Callable&& c) {
-    Layer f{};
-    std::forward<Callable>(c)(f);
-    return layer(std::move(f));
-}
-
-std::string Layout::Map::Layers::Layer::to_string(Sourcetype e) {
+std::string Layout::Map::Layer::to_string(Sourcetype e) {
     switch(e) {
         case Sourcetype::Geojson: return "geojson";
         case Sourcetype::Vector: return "vector";
@@ -5456,7 +5456,7 @@ std::string Layout::Map::Layers::Layer::to_string(Sourcetype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Map::Layers::Layer::to_string(Type e) {
+std::string Layout::Map::Layer::to_string(Type e) {
     switch(e) {
         case Type::Circle: return "circle";
         case Type::Line: return "line";
@@ -5468,213 +5468,213 @@ std::string Layout::Map::Layers::Layer::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::below(std::string f) {
+Layout::Map::Layer& Layout::Map::Layer::below(std::string f) {
     json["below"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::below(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::below(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return below(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::circle(Circle f) {
+Layout::Map::Layer& Layout::Map::Layer::circle(Circle f) {
     json["circle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::circle(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::circle(Callable&& c) {
     Circle f{};
     std::forward<Callable>(c)(f);
     return circle(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::color(std::string f) {
+Layout::Map::Layer& Layout::Map::Layer::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::color(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
 template <typename T>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::coordinates(T f) {
+Layout::Map::Layer& Layout::Map::Layer::coordinates(T f) {
     json["coordinates"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::coordinates(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::coordinates(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return coordinates(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::fill(Fill f) {
+Layout::Map::Layer& Layout::Map::Layer::fill(Fill f) {
     json["fill"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::fill(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::fill(Callable&& c) {
     Fill f{};
     std::forward<Callable>(c)(f);
     return fill(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::line(Line f) {
+Layout::Map::Layer& Layout::Map::Layer::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::line(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::maxzoom(double f) {
+Layout::Map::Layer& Layout::Map::Layer::maxzoom(double f) {
     json["maxzoom"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::maxzoom(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::maxzoom(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxzoom(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::minzoom(double f) {
+Layout::Map::Layer& Layout::Map::Layer::minzoom(double f) {
     json["minzoom"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::minzoom(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::minzoom(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minzoom(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::name(std::string f) {
+Layout::Map::Layer& Layout::Map::Layer::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::name(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::opacity(double f) {
+Layout::Map::Layer& Layout::Map::Layer::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::opacity(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
 template <typename T>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::source(T f) {
+Layout::Map::Layer& Layout::Map::Layer::source(T f) {
     json["source"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::source(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::source(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return source(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::sourceattribution(std::string f) {
+Layout::Map::Layer& Layout::Map::Layer::sourceattribution(std::string f) {
     json["sourceattribution"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::sourceattribution(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::sourceattribution(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sourceattribution(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::sourcelayer(std::string f) {
+Layout::Map::Layer& Layout::Map::Layer::sourcelayer(std::string f) {
     json["sourcelayer"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::sourcelayer(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::sourcelayer(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sourcelayer(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::sourcetype(enum Sourcetype f) {
+Layout::Map::Layer& Layout::Map::Layer::sourcetype(enum Sourcetype f) {
     json["sourcetype"] = to_string(f);
     return *this;
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::symbol(Symbol f) {
+Layout::Map::Layer& Layout::Map::Layer::symbol(Symbol f) {
     json["symbol"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::symbol(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::symbol(Callable&& c) {
     Symbol f{};
     std::forward<Callable>(c)(f);
     return symbol(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::templateitemname(std::string f) {
+Layout::Map::Layer& Layout::Map::Layer::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::templateitemname(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::type(enum Type f) {
+Layout::Map::Layer& Layout::Map::Layer::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::visible(bool f) {
+Layout::Map::Layer& Layout::Map::Layer::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer& Layout::Map::Layers::Layer::visible(Callable&& c) {
+Layout::Map::Layer& Layout::Map::Layer::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
 
-Layout::Map::Layers::Layer::Circle& Layout::Map::Layers::Layer::Circle::radius(double f) {
+Layout::Map::Layer::Circle& Layout::Map::Layer::Circle::radius(double f) {
     json["radius"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Circle& Layout::Map::Layers::Layer::Circle::radius(Callable&& c) {
+Layout::Map::Layer::Circle& Layout::Map::Layer::Circle::radius(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return radius(std::move(f));
 }
 
 
-Layout::Map::Layers::Layer::Fill& Layout::Map::Layers::Layer::Fill::outlinecolor(std::string f) {
+Layout::Map::Layer::Fill& Layout::Map::Layer::Fill::outlinecolor(std::string f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Fill& Layout::Map::Layers::Layer::Fill::outlinecolor(Callable&& c) {
+Layout::Map::Layer::Fill& Layout::Map::Layer::Fill::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
@@ -5682,40 +5682,40 @@ Layout::Map::Layers::Layer::Fill& Layout::Map::Layers::Layer::Fill::outlinecolor
 
 
 template <typename T, typename>
-Layout::Map::Layers::Layer::Line& Layout::Map::Layers::Layer::Line::dash(const std::vector<T>& f) {
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::dash(const std::vector<T>& f) {
     json["dash"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Map::Layers::Layer::Line& Layout::Map::Layers::Layer::Line::dash(Callable&& c) {
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::dash(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return dash(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Line& Layout::Map::Layers::Layer::Line::dashsrc(std::string f) {
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::dashsrc(std::string f) {
     json["dashsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Line& Layout::Map::Layers::Layer::Line::dashsrc(Callable&& c) {
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::dashsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return dashsrc(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Line& Layout::Map::Layers::Layer::Line::width(double f) {
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Line& Layout::Map::Layers::Layer::Line::width(Callable&& c) {
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Layout::Map::Layers::Layer::Symbol::to_string(Placement e) {
+std::string Layout::Map::Layer::Symbol::to_string(Placement e) {
     switch(e) {
         case Placement::Point: return "point";
         case Placement::Line: return "line";
@@ -5724,7 +5724,7 @@ std::string Layout::Map::Layers::Layer::Symbol::to_string(Placement e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Map::Layers::Layer::Symbol::to_string(Textposition e) {
+std::string Layout::Map::Layer::Symbol::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
         case Textposition::TopCenter: return "top center";
@@ -5740,61 +5740,61 @@ std::string Layout::Map::Layers::Layer::Symbol::to_string(Textposition e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::icon(std::string f) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::icon(std::string f) {
     json["icon"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::icon(Callable&& c) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::icon(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return icon(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::iconsize(double f) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::iconsize(double f) {
     json["iconsize"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::iconsize(Callable&& c) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::iconsize(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return iconsize(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::placement(enum Placement f) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::placement(enum Placement f) {
     json["placement"] = to_string(f);
     return *this;
 }
 
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::text(std::string f) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::text(Callable&& c) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::textfont(Textfont f) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::textfont(Callable&& c) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol& Layout::Map::Layers::Layer::Symbol::textposition(enum Textposition f) {
+Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
 
-std::string Layout::Map::Layers::Layer::Symbol::Textfont::to_string(Style e) {
+std::string Layout::Map::Layer::Symbol::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -5803,50 +5803,50 @@ std::string Layout::Map::Layers::Layer::Symbol::Textfont::to_string(Style e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::color(std::string f) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::color(Callable&& c) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::family(std::string f) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::family(Callable&& c) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::size(double f) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::size(Callable&& c) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::style(enum Style f) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::weight(int f) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Map::Layers::Layer::Symbol::Textfont& Layout::Map::Layers::Layer::Symbol::Textfont::weight(Callable&& c) {
+Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -5908,15 +5908,21 @@ Layout::Mapbox& Layout::Mapbox::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-Layout::Mapbox& Layout::Mapbox::layers(Layers f) {
+Layout::Mapbox& Layout::Mapbox::layers(Layer f) {
     json["layers"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Mapbox& Layout::Mapbox::layers(Callable&& c) {
-    Layers f{};
+    Layer f{};
     std::forward<Callable>(c)(f);
     return layers(std::move(f));
+}
+Layout::Mapbox& Layout::Mapbox::layers(const std::vector<Layer>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["layers"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Mapbox& Layout::Mapbox::pitch(double f) {
@@ -6078,19 +6084,7 @@ Layout::Mapbox::Domain& Layout::Mapbox::Domain::y(Callable&& c) {
     return y(std::move(f));
 }
 
-
-Layout::Mapbox::Layers& Layout::Mapbox::Layers::layer(Layer f) {
-    json["layer"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Mapbox::Layers& Layout::Mapbox::Layers::layer(Callable&& c) {
-    Layer f{};
-    std::forward<Callable>(c)(f);
-    return layer(std::move(f));
-}
-
-std::string Layout::Mapbox::Layers::Layer::to_string(Sourcetype e) {
+std::string Layout::Mapbox::Layer::to_string(Sourcetype e) {
     switch(e) {
         case Sourcetype::Geojson: return "geojson";
         case Sourcetype::Vector: return "vector";
@@ -6100,7 +6094,7 @@ std::string Layout::Mapbox::Layers::Layer::to_string(Sourcetype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Mapbox::Layers::Layer::to_string(Type e) {
+std::string Layout::Mapbox::Layer::to_string(Type e) {
     switch(e) {
         case Type::Circle: return "circle";
         case Type::Line: return "line";
@@ -6112,213 +6106,213 @@ std::string Layout::Mapbox::Layers::Layer::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::below(std::string f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::below(std::string f) {
     json["below"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::below(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::below(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return below(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::circle(Circle f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::circle(Circle f) {
     json["circle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::circle(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::circle(Callable&& c) {
     Circle f{};
     std::forward<Callable>(c)(f);
     return circle(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::color(std::string f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::color(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
 template <typename T>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::coordinates(T f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::coordinates(T f) {
     json["coordinates"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::coordinates(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::coordinates(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return coordinates(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::fill(Fill f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::fill(Fill f) {
     json["fill"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::fill(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::fill(Callable&& c) {
     Fill f{};
     std::forward<Callable>(c)(f);
     return fill(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::line(Line f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::line(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::maxzoom(double f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::maxzoom(double f) {
     json["maxzoom"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::maxzoom(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::maxzoom(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxzoom(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::minzoom(double f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::minzoom(double f) {
     json["minzoom"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::minzoom(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::minzoom(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minzoom(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::name(std::string f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::name(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::opacity(double f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::opacity(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
 template <typename T>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::source(T f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::source(T f) {
     json["source"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::source(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::source(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return source(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::sourceattribution(std::string f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourceattribution(std::string f) {
     json["sourceattribution"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::sourceattribution(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourceattribution(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sourceattribution(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::sourcelayer(std::string f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcelayer(std::string f) {
     json["sourcelayer"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::sourcelayer(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcelayer(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sourcelayer(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::sourcetype(enum Sourcetype f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcetype(enum Sourcetype f) {
     json["sourcetype"] = to_string(f);
     return *this;
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::symbol(Symbol f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::symbol(Symbol f) {
     json["symbol"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::symbol(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::symbol(Callable&& c) {
     Symbol f{};
     std::forward<Callable>(c)(f);
     return symbol(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::templateitemname(std::string f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::templateitemname(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::type(enum Type f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::visible(bool f) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer& Layout::Mapbox::Layers::Layer::visible(Callable&& c) {
+Layout::Mapbox::Layer& Layout::Mapbox::Layer::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
 
-Layout::Mapbox::Layers::Layer::Circle& Layout::Mapbox::Layers::Layer::Circle::radius(double f) {
+Layout::Mapbox::Layer::Circle& Layout::Mapbox::Layer::Circle::radius(double f) {
     json["radius"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Circle& Layout::Mapbox::Layers::Layer::Circle::radius(Callable&& c) {
+Layout::Mapbox::Layer::Circle& Layout::Mapbox::Layer::Circle::radius(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return radius(std::move(f));
 }
 
 
-Layout::Mapbox::Layers::Layer::Fill& Layout::Mapbox::Layers::Layer::Fill::outlinecolor(std::string f) {
+Layout::Mapbox::Layer::Fill& Layout::Mapbox::Layer::Fill::outlinecolor(std::string f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Fill& Layout::Mapbox::Layers::Layer::Fill::outlinecolor(Callable&& c) {
+Layout::Mapbox::Layer::Fill& Layout::Mapbox::Layer::Fill::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
@@ -6326,40 +6320,40 @@ Layout::Mapbox::Layers::Layer::Fill& Layout::Mapbox::Layers::Layer::Fill::outlin
 
 
 template <typename T, typename>
-Layout::Mapbox::Layers::Layer::Line& Layout::Mapbox::Layers::Layer::Line::dash(const std::vector<T>& f) {
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dash(const std::vector<T>& f) {
     json["dash"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Line& Layout::Mapbox::Layers::Layer::Line::dash(Callable&& c) {
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dash(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return dash(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Line& Layout::Mapbox::Layers::Layer::Line::dashsrc(std::string f) {
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dashsrc(std::string f) {
     json["dashsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Line& Layout::Mapbox::Layers::Layer::Line::dashsrc(Callable&& c) {
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dashsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return dashsrc(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Line& Layout::Mapbox::Layers::Layer::Line::width(double f) {
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Line& Layout::Mapbox::Layers::Layer::Line::width(Callable&& c) {
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Layout::Mapbox::Layers::Layer::Symbol::to_string(Placement e) {
+std::string Layout::Mapbox::Layer::Symbol::to_string(Placement e) {
     switch(e) {
         case Placement::Point: return "point";
         case Placement::Line: return "line";
@@ -6368,7 +6362,7 @@ std::string Layout::Mapbox::Layers::Layer::Symbol::to_string(Placement e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Mapbox::Layers::Layer::Symbol::to_string(Textposition e) {
+std::string Layout::Mapbox::Layer::Symbol::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
         case Textposition::TopCenter: return "top center";
@@ -6384,61 +6378,61 @@ std::string Layout::Mapbox::Layers::Layer::Symbol::to_string(Textposition e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::icon(std::string f) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::icon(std::string f) {
     json["icon"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::icon(Callable&& c) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::icon(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return icon(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::iconsize(double f) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::iconsize(double f) {
     json["iconsize"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::iconsize(Callable&& c) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::iconsize(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return iconsize(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::placement(enum Placement f) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::placement(enum Placement f) {
     json["placement"] = to_string(f);
     return *this;
 }
 
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::text(std::string f) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::text(Callable&& c) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::textfont(Textfont f) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::textfont(Callable&& c) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol& Layout::Mapbox::Layers::Layer::Symbol::textposition(enum Textposition f) {
+Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
 
-std::string Layout::Mapbox::Layers::Layer::Symbol::Textfont::to_string(Style e) {
+std::string Layout::Mapbox::Layer::Symbol::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -6447,50 +6441,50 @@ std::string Layout::Mapbox::Layers::Layer::Symbol::Textfont::to_string(Style e) 
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::color(std::string f) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::color(Callable&& c) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::family(std::string f) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::family(Callable&& c) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::size(double f) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::size(Callable&& c) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::style(enum Style f) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::weight(int f) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Mapbox::Layers::Layer::Symbol::Textfont& Layout::Mapbox::Layers::Layer::Symbol::Textfont::weight(Callable&& c) {
+Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -7830,15 +7824,21 @@ Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformat(Callable&& c)
     return tickformat(std::move(f));
 }
 
-Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(Tickformatstops f) {
+Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticklabelstep(int f) {
@@ -8093,68 +8093,56 @@ Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::weig
 }
 
 
-Layout::Polar::Angularaxis::Tickformatstops& Layout::Polar::Angularaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Polar::Angularaxis::Tickformatstops& Layout::Polar::Angularaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -8737,15 +8725,21 @@ Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(Tickformatstops f) {
+Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticklabelstep(int f) {
@@ -9088,68 +9082,56 @@ Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::weight
 }
 
 
-Layout::Polar::Radialaxis::Tickformatstops& Layout::Polar::Radialaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Polar::Radialaxis::Tickformatstops& Layout::Polar::Radialaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -9320,15 +9302,21 @@ std::string Layout::Scene::to_string(Hovermode e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Scene& Layout::Scene::annotations(Annotations f) {
+Layout::Scene& Layout::Scene::annotations(Annotation f) {
     json["annotations"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Scene& Layout::Scene::annotations(Callable&& c) {
-    Annotations f{};
+    Annotation f{};
     std::forward<Callable>(c)(f);
     return annotations(std::move(f));
+}
+Layout::Scene& Layout::Scene::annotations(const std::vector<Annotation>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["annotations"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Scene& Layout::Scene::aspectmode(enum Aspectmode f) {
@@ -9435,19 +9423,7 @@ Layout::Scene& Layout::Scene::zaxis(Callable&& c) {
     return zaxis(std::move(f));
 }
 
-
-Layout::Scene::Annotations& Layout::Scene::Annotations::annotation(Annotation f) {
-    json["annotation"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Scene::Annotations& Layout::Scene::Annotations::annotation(Callable&& c) {
-    Annotation f{};
-    std::forward<Callable>(c)(f);
-    return annotation(std::move(f));
-}
-
-std::string Layout::Scene::Annotations::Annotation::to_string(Align e) {
+std::string Layout::Scene::Annotation::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Center: return "center";
@@ -9456,7 +9432,7 @@ std::string Layout::Scene::Annotations::Annotation::to_string(Align e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::to_string(Valign e) {
+std::string Layout::Scene::Annotation::to_string(Valign e) {
     switch(e) {
         case Valign::Top: return "top";
         case Valign::Middle: return "middle";
@@ -9465,7 +9441,7 @@ std::string Layout::Scene::Annotations::Annotation::to_string(Valign e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::to_string(Xanchor e) {
+std::string Layout::Scene::Annotation::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Auto: return "auto";
         case Xanchor::Left: return "left";
@@ -9475,7 +9451,7 @@ std::string Layout::Scene::Annotations::Annotation::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::to_string(Yanchor e) {
+std::string Layout::Scene::Annotation::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Auto: return "auto";
         case Yanchor::Top: return "top";
@@ -9486,393 +9462,393 @@ std::string Layout::Scene::Annotations::Annotation::to_string(Yanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::align(enum Align f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowcolor(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowcolor(std::string f) {
     json["arrowcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowcolor(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrowcolor(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowhead(int f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowhead(int f) {
     json["arrowhead"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowhead(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowhead(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return arrowhead(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowside(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowside(std::string f) {
     json["arrowside"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowside(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowside(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrowside(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowsize(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowsize(double f) {
     json["arrowsize"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowsize(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowsize(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return arrowsize(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowwidth(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowwidth(double f) {
     json["arrowwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::arrowwidth(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::arrowwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return arrowwidth(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::ax(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::ax(double f) {
     json["ax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::ax(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::ax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ax(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::ay(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::ay(double f) {
     json["ay"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::ay(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::ay(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ay(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::bgcolor(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::bgcolor(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::bordercolor(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::bordercolor(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::borderpad(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::borderpad(double f) {
     json["borderpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::borderpad(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::borderpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderpad(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::borderwidth(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::borderwidth(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::captureevents(bool f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::captureevents(bool f) {
     json["captureevents"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::captureevents(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::captureevents(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return captureevents(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::font(Font f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::font(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::height(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::height(double f) {
     json["height"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::height(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::height(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return height(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::hoverlabel(Hoverlabel f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::hoverlabel(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::hovertext(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::hovertext(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::name(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::name(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::opacity(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::opacity(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::showarrow(bool f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::showarrow(bool f) {
     json["showarrow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::showarrow(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::showarrow(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showarrow(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::standoff(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::standoff(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::standoff(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return standoff(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::startarrowhead(int f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowhead(int f) {
     json["startarrowhead"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::startarrowhead(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowhead(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return startarrowhead(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::startarrowsize(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowsize(double f) {
     json["startarrowsize"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::startarrowsize(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowsize(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return startarrowsize(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::startstandoff(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::startstandoff(double f) {
     json["startstandoff"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::startstandoff(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::startstandoff(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return startstandoff(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::templateitemname(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::templateitemname(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::text(std::string f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::text(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::textangle(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::textangle(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::textangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return textangle(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::valign(enum Valign f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::valign(enum Valign f) {
     json["valign"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::visible(bool f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::visible(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::width(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::width(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 template <typename T>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::x(T f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::x(T f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::x(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::x(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::xanchor(enum Xanchor f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::xshift(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::xshift(double f) {
     json["xshift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::xshift(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::xshift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xshift(std::move(f));
 }
 
 template <typename T>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::y(T f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::y(T f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::y(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::y(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::yanchor(enum Yanchor f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::yshift(double f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::yshift(double f) {
     json["yshift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::yshift(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::yshift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return yshift(std::move(f));
 }
 
 template <typename T>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::z(T f) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::z(T f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Scene::Annotations::Annotation& Layout::Scene::Annotations::Annotation::z(Callable&& c) {
+Layout::Scene::Annotation& Layout::Scene::Annotation::z(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-std::string Layout::Scene::Annotations::Annotation::Font::to_string(Style e) {
+std::string Layout::Scene::Annotation::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -9880,7 +9856,7 @@ std::string Layout::Scene::Annotations::Annotation::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::Font::to_string(Textcase e) {
+std::string Layout::Scene::Annotation::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -9890,7 +9866,7 @@ std::string Layout::Scene::Annotations::Annotation::Font::to_string(Textcase e) 
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::Font::to_string(Variant e) {
+std::string Layout::Scene::Annotation::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -9903,122 +9879,122 @@ std::string Layout::Scene::Annotations::Annotation::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::color(std::string f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::color(Callable&& c) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::family(std::string f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::family(Callable&& c) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::lineposition(std::string f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::lineposition(Callable&& c) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::shadow(std::string f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::shadow(Callable&& c) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::size(double f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::size(Callable&& c) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::style(enum Style f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::textcase(enum Textcase f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::variant(enum Variant f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::weight(int f) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Font& Layout::Scene::Annotations::Annotation::Font::weight(Callable&& c) {
+Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Layout::Scene::Annotations::Annotation::Hoverlabel& Layout::Scene::Annotations::Annotation::Hoverlabel::bgcolor(std::string f) {
+Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel& Layout::Scene::Annotations::Annotation::Hoverlabel::bgcolor(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel& Layout::Scene::Annotations::Annotation::Hoverlabel::bordercolor(std::string f) {
+Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel& Layout::Scene::Annotations::Annotation::Hoverlabel::bordercolor(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel& Layout::Scene::Annotations::Annotation::Hoverlabel::font(Font f) {
+Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel& Layout::Scene::Annotations::Annotation::Hoverlabel::font(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-std::string Layout::Scene::Annotations::Annotation::Hoverlabel::Font::to_string(Style e) {
+std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -10026,7 +10002,7 @@ std::string Layout::Scene::Annotations::Annotation::Hoverlabel::Font::to_string(
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::Hoverlabel::Font::to_string(Textcase e) {
+std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -10036,7 +10012,7 @@ std::string Layout::Scene::Annotations::Annotation::Hoverlabel::Font::to_string(
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Scene::Annotations::Annotation::Hoverlabel::Font::to_string(Variant e) {
+std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -10049,82 +10025,82 @@ std::string Layout::Scene::Annotations::Annotation::Hoverlabel::Font::to_string(
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::color(std::string f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::color(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::family(std::string f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::family(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::lineposition(std::string f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::lineposition(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::shadow(std::string f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::shadow(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::size(double f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::size(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::style(enum Style f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::textcase(enum Textcase f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::variant(enum Variant f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::weight(int f) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Annotations::Annotation::Hoverlabel::Font& Layout::Scene::Annotations::Annotation::Hoverlabel::Font::weight(Callable&& c) {
+Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -10948,15 +10924,21 @@ Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(Tickformatstops f) {
+Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticklen(double f) {
@@ -11309,68 +11291,56 @@ Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::weight(Callable&
 }
 
 
-Layout::Scene::Xaxis::Tickformatstops& Layout::Scene::Xaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Scene::Xaxis::Tickformatstops& Layout::Scene::Xaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& Layout::Scene::Xaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -12077,15 +12047,21 @@ Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(Tickformatstops f) {
+Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticklen(double f) {
@@ -12438,68 +12414,56 @@ Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::weight(Callable&
 }
 
 
-Layout::Scene::Yaxis::Tickformatstops& Layout::Scene::Yaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Scene::Yaxis::Tickformatstops& Layout::Scene::Yaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& Layout::Scene::Yaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -13206,15 +13170,21 @@ Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(Tickformatstops f) {
+Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticklen(double f) {
@@ -13567,68 +13537,56 @@ Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::weight(Callable&
 }
 
 
-Layout::Scene::Zaxis::Tickformatstops& Layout::Scene::Zaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Scene::Zaxis::Tickformatstops& Layout::Scene::Zaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& Layout::Scene::Zaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -13769,19 +13727,7 @@ Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::weight(Cal
     return weight(std::move(f));
 }
 
-
-Layout::Selections& Layout::Selections::selection(Selection f) {
-    json["selection"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Selections& Layout::Selections::selection(Callable&& c) {
-    Selection f{};
-    std::forward<Callable>(c)(f);
-    return selection(std::move(f));
-}
-
-std::string Layout::Selections::Selection::to_string(Type e) {
+std::string Layout::Selection::to_string(Type e) {
     switch(e) {
         case Type::Rect: return "rect";
         case Type::Path: return "path";
@@ -13790,183 +13736,171 @@ std::string Layout::Selections::Selection::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::line(Line f) {
+Layout::Selection& Layout::Selection::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::line(Callable&& c) {
+Layout::Selection& Layout::Selection::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::name(std::string f) {
+Layout::Selection& Layout::Selection::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::name(Callable&& c) {
+Layout::Selection& Layout::Selection::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::opacity(double f) {
+Layout::Selection& Layout::Selection::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::opacity(Callable&& c) {
+Layout::Selection& Layout::Selection::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::path(std::string f) {
+Layout::Selection& Layout::Selection::path(std::string f) {
     json["path"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::path(Callable&& c) {
+Layout::Selection& Layout::Selection::path(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return path(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::templateitemname(std::string f) {
+Layout::Selection& Layout::Selection::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::templateitemname(Callable&& c) {
+Layout::Selection& Layout::Selection::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::type(enum Type f) {
+Layout::Selection& Layout::Selection::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Layout::Selections::Selection& Layout::Selections::Selection::x0(T f) {
+Layout::Selection& Layout::Selection::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::x0(Callable&& c) {
+Layout::Selection& Layout::Selection::x0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x0(std::move(f));
 }
 
 template <typename T>
-Layout::Selections::Selection& Layout::Selections::Selection::x1(T f) {
+Layout::Selection& Layout::Selection::x1(T f) {
     json["x1"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::x1(Callable&& c) {
+Layout::Selection& Layout::Selection::x1(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x1(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::xref(std::string f) {
+Layout::Selection& Layout::Selection::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::xref(Callable&& c) {
+Layout::Selection& Layout::Selection::xref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xref(std::move(f));
 }
 
 template <typename T>
-Layout::Selections::Selection& Layout::Selections::Selection::y0(T f) {
+Layout::Selection& Layout::Selection::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::y0(Callable&& c) {
+Layout::Selection& Layout::Selection::y0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y0(std::move(f));
 }
 
 template <typename T>
-Layout::Selections::Selection& Layout::Selections::Selection::y1(T f) {
+Layout::Selection& Layout::Selection::y1(T f) {
     json["y1"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::y1(Callable&& c) {
+Layout::Selection& Layout::Selection::y1(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y1(std::move(f));
 }
 
-Layout::Selections::Selection& Layout::Selections::Selection::yref(std::string f) {
+Layout::Selection& Layout::Selection::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection& Layout::Selections::Selection::yref(Callable&& c) {
+Layout::Selection& Layout::Selection::yref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yref(std::move(f));
 }
 
 
-Layout::Selections::Selection::Line& Layout::Selections::Selection::Line::color(std::string f) {
+Layout::Selection::Line& Layout::Selection::Line::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection::Line& Layout::Selections::Selection::Line::color(Callable&& c) {
+Layout::Selection::Line& Layout::Selection::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Selections::Selection::Line& Layout::Selections::Selection::Line::dash(std::string f) {
+Layout::Selection::Line& Layout::Selection::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection::Line& Layout::Selections::Selection::Line::dash(Callable&& c) {
+Layout::Selection::Line& Layout::Selection::Line::dash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return dash(std::move(f));
 }
 
-Layout::Selections::Selection::Line& Layout::Selections::Selection::Line::width(double f) {
+Layout::Selection::Line& Layout::Selection::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Selections::Selection::Line& Layout::Selections::Selection::Line::width(Callable&& c) {
+Layout::Selection::Line& Layout::Selection::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-
-Layout::Shapes& Layout::Shapes::shape(Shape f) {
-    json["shape"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Shapes& Layout::Shapes::shape(Callable&& c) {
-    Shape f{};
-    std::forward<Callable>(c)(f);
-    return shape(std::move(f));
-}
-
-std::string Layout::Shapes::Shape::to_string(Fillrule e) {
+std::string Layout::Shape::to_string(Fillrule e) {
     switch(e) {
         case Fillrule::Evenodd: return "evenodd";
         case Fillrule::Nonzero: return "nonzero";
@@ -13974,7 +13908,7 @@ std::string Layout::Shapes::Shape::to_string(Fillrule e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::to_string(Layer e) {
+std::string Layout::Shape::to_string(Layer e) {
     switch(e) {
         case Layer::Below: return "below";
         case Layer::Above: return "above";
@@ -13983,7 +13917,7 @@ std::string Layout::Shapes::Shape::to_string(Layer e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::to_string(Type e) {
+std::string Layout::Shape::to_string(Type e) {
     switch(e) {
         case Type::Circle: return "circle";
         case Type::Rect: return "rect";
@@ -13993,7 +13927,7 @@ std::string Layout::Shapes::Shape::to_string(Type e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::to_string(Visible e) {
+std::string Layout::Shape::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -14002,7 +13936,7 @@ std::string Layout::Shapes::Shape::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::to_string(Xsizemode e) {
+std::string Layout::Shape::to_string(Xsizemode e) {
     switch(e) {
         case Xsizemode::Scaled: return "scaled";
         case Xsizemode::Pixel: return "pixel";
@@ -14010,7 +13944,7 @@ std::string Layout::Shapes::Shape::to_string(Xsizemode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::to_string(Ysizemode e) {
+std::string Layout::Shape::to_string(Ysizemode e) {
     switch(e) {
         case Ysizemode::Scaled: return "scaled";
         case Ysizemode::Pixel: return "pixel";
@@ -14019,329 +13953,329 @@ std::string Layout::Shapes::Shape::to_string(Ysizemode e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::editable(bool f) {
+Layout::Shape& Layout::Shape::editable(bool f) {
     json["editable"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::editable(Callable&& c) {
+Layout::Shape& Layout::Shape::editable(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return editable(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::fillcolor(std::string f) {
+Layout::Shape& Layout::Shape::fillcolor(std::string f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::fillcolor(Callable&& c) {
+Layout::Shape& Layout::Shape::fillcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return fillcolor(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::fillrule(enum Fillrule f) {
+Layout::Shape& Layout::Shape::fillrule(enum Fillrule f) {
     json["fillrule"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::label(Label f) {
+Layout::Shape& Layout::Shape::label(Label f) {
     json["label"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::label(Callable&& c) {
+Layout::Shape& Layout::Shape::label(Callable&& c) {
     Label f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::layer(enum Layer f) {
+Layout::Shape& Layout::Shape::layer(enum Layer f) {
     json["layer"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::legend(std::string f) {
+Layout::Shape& Layout::Shape::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::legend(Callable&& c) {
+Layout::Shape& Layout::Shape::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendgroup(std::string f) {
+Layout::Shape& Layout::Shape::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendgroup(Callable&& c) {
+Layout::Shape& Layout::Shape::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendgrouptitle(Legendgrouptitle f) {
+Layout::Shape& Layout::Shape::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendgrouptitle(Callable&& c) {
+Layout::Shape& Layout::Shape::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendrank(double f) {
+Layout::Shape& Layout::Shape::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendrank(Callable&& c) {
+Layout::Shape& Layout::Shape::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendwidth(double f) {
+Layout::Shape& Layout::Shape::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::legendwidth(Callable&& c) {
+Layout::Shape& Layout::Shape::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::line(Line f) {
+Layout::Shape& Layout::Shape::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::line(Callable&& c) {
+Layout::Shape& Layout::Shape::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::name(std::string f) {
+Layout::Shape& Layout::Shape::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::name(Callable&& c) {
+Layout::Shape& Layout::Shape::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::opacity(double f) {
+Layout::Shape& Layout::Shape::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::opacity(Callable&& c) {
+Layout::Shape& Layout::Shape::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::path(std::string f) {
+Layout::Shape& Layout::Shape::path(std::string f) {
     json["path"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::path(Callable&& c) {
+Layout::Shape& Layout::Shape::path(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return path(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::showlegend(bool f) {
+Layout::Shape& Layout::Shape::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::showlegend(Callable&& c) {
+Layout::Shape& Layout::Shape::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::templateitemname(std::string f) {
+Layout::Shape& Layout::Shape::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::templateitemname(Callable&& c) {
+Layout::Shape& Layout::Shape::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::type(enum Type f) {
+Layout::Shape& Layout::Shape::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::visible(enum Visible f) {
+Layout::Shape& Layout::Shape::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Layout::Shapes::Shape& Layout::Shapes::Shape::x0(T f) {
+Layout::Shape& Layout::Shape::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::x0(Callable&& c) {
+Layout::Shape& Layout::Shape::x0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x0(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::x0shift(double f) {
+Layout::Shape& Layout::Shape::x0shift(double f) {
     json["x0shift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::x0shift(Callable&& c) {
+Layout::Shape& Layout::Shape::x0shift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x0shift(std::move(f));
 }
 
 template <typename T>
-Layout::Shapes::Shape& Layout::Shapes::Shape::x1(T f) {
+Layout::Shape& Layout::Shape::x1(T f) {
     json["x1"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::x1(Callable&& c) {
+Layout::Shape& Layout::Shape::x1(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x1(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::x1shift(double f) {
+Layout::Shape& Layout::Shape::x1shift(double f) {
     json["x1shift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::x1shift(Callable&& c) {
+Layout::Shape& Layout::Shape::x1shift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x1shift(std::move(f));
 }
 
 template <typename T>
-Layout::Shapes::Shape& Layout::Shapes::Shape::xanchor(T f) {
+Layout::Shape& Layout::Shape::xanchor(T f) {
     json["xanchor"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::xanchor(Callable&& c) {
+Layout::Shape& Layout::Shape::xanchor(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return xanchor(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::xref(std::string f) {
+Layout::Shape& Layout::Shape::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::xref(Callable&& c) {
+Layout::Shape& Layout::Shape::xref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xref(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::xsizemode(enum Xsizemode f) {
+Layout::Shape& Layout::Shape::xsizemode(enum Xsizemode f) {
     json["xsizemode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Layout::Shapes::Shape& Layout::Shapes::Shape::y0(T f) {
+Layout::Shape& Layout::Shape::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::y0(Callable&& c) {
+Layout::Shape& Layout::Shape::y0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y0(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::y0shift(double f) {
+Layout::Shape& Layout::Shape::y0shift(double f) {
     json["y0shift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::y0shift(Callable&& c) {
+Layout::Shape& Layout::Shape::y0shift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y0shift(std::move(f));
 }
 
 template <typename T>
-Layout::Shapes::Shape& Layout::Shapes::Shape::y1(T f) {
+Layout::Shape& Layout::Shape::y1(T f) {
     json["y1"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::y1(Callable&& c) {
+Layout::Shape& Layout::Shape::y1(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y1(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::y1shift(double f) {
+Layout::Shape& Layout::Shape::y1shift(double f) {
     json["y1shift"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::y1shift(Callable&& c) {
+Layout::Shape& Layout::Shape::y1shift(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y1shift(std::move(f));
 }
 
 template <typename T>
-Layout::Shapes::Shape& Layout::Shapes::Shape::yanchor(T f) {
+Layout::Shape& Layout::Shape::yanchor(T f) {
     json["yanchor"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::yanchor(Callable&& c) {
+Layout::Shape& Layout::Shape::yanchor(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return yanchor(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::yref(std::string f) {
+Layout::Shape& Layout::Shape::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape& Layout::Shapes::Shape::yref(Callable&& c) {
+Layout::Shape& Layout::Shape::yref(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yref(std::move(f));
 }
 
-Layout::Shapes::Shape& Layout::Shapes::Shape::ysizemode(enum Ysizemode f) {
+Layout::Shape& Layout::Shape::ysizemode(enum Ysizemode f) {
     json["ysizemode"] = to_string(f);
     return *this;
 }
 
-std::string Layout::Shapes::Shape::Label::to_string(Textposition e) {
+std::string Layout::Shape::Label::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
         case Textposition::TopCenter: return "top center";
@@ -14359,7 +14293,7 @@ std::string Layout::Shapes::Shape::Label::to_string(Textposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::Label::to_string(Xanchor e) {
+std::string Layout::Shape::Label::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Auto: return "auto";
         case Xanchor::Left: return "left";
@@ -14369,7 +14303,7 @@ std::string Layout::Shapes::Shape::Label::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::Label::to_string(Yanchor e) {
+std::string Layout::Shape::Label::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -14379,77 +14313,77 @@ std::string Layout::Shapes::Shape::Label::to_string(Yanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::font(Font f) {
+Layout::Shape::Label& Layout::Shape::Label::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::font(Callable&& c) {
+Layout::Shape::Label& Layout::Shape::Label::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::padding(double f) {
+Layout::Shape::Label& Layout::Shape::Label::padding(double f) {
     json["padding"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::padding(Callable&& c) {
+Layout::Shape::Label& Layout::Shape::Label::padding(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return padding(std::move(f));
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::text(std::string f) {
+Layout::Shape::Label& Layout::Shape::Label::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::text(Callable&& c) {
+Layout::Shape::Label& Layout::Shape::Label::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::textangle(double f) {
+Layout::Shape::Label& Layout::Shape::Label::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::textangle(Callable&& c) {
+Layout::Shape::Label& Layout::Shape::Label::textangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return textangle(std::move(f));
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::textposition(enum Textposition f) {
+Layout::Shape::Label& Layout::Shape::Label::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::texttemplate(std::string f) {
+Layout::Shape::Label& Layout::Shape::Label::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::texttemplate(Callable&& c) {
+Layout::Shape::Label& Layout::Shape::Label::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::xanchor(enum Xanchor f) {
+Layout::Shape::Label& Layout::Shape::Label::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Label& Layout::Shapes::Shape::Label::yanchor(enum Yanchor f) {
+Layout::Shape::Label& Layout::Shape::Label::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-std::string Layout::Shapes::Shape::Label::Font::to_string(Style e) {
+std::string Layout::Shape::Label::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -14457,7 +14391,7 @@ std::string Layout::Shapes::Shape::Label::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::Label::Font::to_string(Textcase e) {
+std::string Layout::Shape::Label::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -14467,7 +14401,7 @@ std::string Layout::Shapes::Shape::Label::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::Label::Font::to_string(Variant e) {
+std::string Layout::Shape::Label::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -14480,111 +14414,111 @@ std::string Layout::Shapes::Shape::Label::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::color(std::string f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::color(Callable&& c) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::family(std::string f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::family(Callable&& c) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::lineposition(std::string f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::lineposition(Callable&& c) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::shadow(std::string f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::shadow(Callable&& c) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::size(double f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::size(Callable&& c) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::style(enum Style f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::textcase(enum Textcase f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::variant(enum Variant f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::weight(int f) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Label::Font& Layout::Shapes::Shape::Label::Font::weight(Callable&& c) {
+Layout::Shape::Label::Font& Layout::Shape::Label::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Layout::Shapes::Shape::Legendgrouptitle& Layout::Shapes::Shape::Legendgrouptitle::font(Font f) {
+Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle& Layout::Shapes::Shape::Legendgrouptitle::font(Callable&& c) {
+Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Shapes::Shape::Legendgrouptitle& Layout::Shapes::Shape::Legendgrouptitle::text(std::string f) {
+Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle& Layout::Shapes::Shape::Legendgrouptitle::text(Callable&& c) {
+Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Layout::Shapes::Shape::Legendgrouptitle::Font::to_string(Style e) {
+std::string Layout::Shape::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -14592,7 +14526,7 @@ std::string Layout::Shapes::Shape::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::Legendgrouptitle::Font::to_string(Textcase e) {
+std::string Layout::Shape::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -14602,7 +14536,7 @@ std::string Layout::Shapes::Shape::Legendgrouptitle::Font::to_string(Textcase e)
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Shapes::Shape::Legendgrouptitle::Font::to_string(Variant e) {
+std::string Layout::Shape::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -14615,134 +14549,122 @@ std::string Layout::Shapes::Shape::Legendgrouptitle::Font::to_string(Variant e) 
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::color(std::string f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::color(Callable&& c) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::family(std::string f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::family(Callable&& c) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::lineposition(std::string f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::lineposition(Callable&& c) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::shadow(std::string f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::shadow(Callable&& c) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::size(double f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::size(Callable&& c) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::style(enum Style f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::textcase(enum Textcase f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::variant(enum Variant f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::weight(int f) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Legendgrouptitle::Font& Layout::Shapes::Shape::Legendgrouptitle::Font::weight(Callable&& c) {
+Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Layout::Shapes::Shape::Line& Layout::Shapes::Shape::Line::color(std::string f) {
+Layout::Shape::Line& Layout::Shape::Line::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Line& Layout::Shapes::Shape::Line::color(Callable&& c) {
+Layout::Shape::Line& Layout::Shape::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Shapes::Shape::Line& Layout::Shapes::Shape::Line::dash(std::string f) {
+Layout::Shape::Line& Layout::Shape::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Line& Layout::Shapes::Shape::Line::dash(Callable&& c) {
+Layout::Shape::Line& Layout::Shape::Line::dash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return dash(std::move(f));
 }
 
-Layout::Shapes::Shape::Line& Layout::Shapes::Shape::Line::width(double f) {
+Layout::Shape::Line& Layout::Shape::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Shapes::Shape::Line& Layout::Shapes::Shape::Line::width(Callable&& c) {
+Layout::Shape::Line& Layout::Shape::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-
-Layout::Sliders& Layout::Sliders::slider(Slider f) {
-    json["slider"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Sliders& Layout::Sliders::slider(Callable&& c) {
-    Slider f{};
-    std::forward<Callable>(c)(f);
-    return slider(std::move(f));
-}
-
-std::string Layout::Sliders::Slider::to_string(Lenmode e) {
+std::string Layout::Slider::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -14750,7 +14672,7 @@ std::string Layout::Sliders::Slider::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Sliders::Slider::to_string(Xanchor e) {
+std::string Layout::Slider::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Auto: return "auto";
         case Xanchor::Left: return "left";
@@ -14760,7 +14682,7 @@ std::string Layout::Sliders::Slider::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Sliders::Slider::to_string(Yanchor e) {
+std::string Layout::Slider::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Auto: return "auto";
         case Yanchor::Top: return "top";
@@ -14771,242 +14693,248 @@ std::string Layout::Sliders::Slider::to_string(Yanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::active(double f) {
+Layout::Slider& Layout::Slider::active(double f) {
     json["active"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::active(Callable&& c) {
+Layout::Slider& Layout::Slider::active(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return active(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::activebgcolor(std::string f) {
+Layout::Slider& Layout::Slider::activebgcolor(std::string f) {
     json["activebgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::activebgcolor(Callable&& c) {
+Layout::Slider& Layout::Slider::activebgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return activebgcolor(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::bgcolor(std::string f) {
+Layout::Slider& Layout::Slider::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::bgcolor(Callable&& c) {
+Layout::Slider& Layout::Slider::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::bordercolor(std::string f) {
+Layout::Slider& Layout::Slider::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::bordercolor(Callable&& c) {
+Layout::Slider& Layout::Slider::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::borderwidth(double f) {
+Layout::Slider& Layout::Slider::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::borderwidth(Callable&& c) {
+Layout::Slider& Layout::Slider::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::currentvalue(Currentvalue f) {
+Layout::Slider& Layout::Slider::currentvalue(Currentvalue f) {
     json["currentvalue"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::currentvalue(Callable&& c) {
+Layout::Slider& Layout::Slider::currentvalue(Callable&& c) {
     Currentvalue f{};
     std::forward<Callable>(c)(f);
     return currentvalue(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::font(Font f) {
+Layout::Slider& Layout::Slider::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::font(Callable&& c) {
+Layout::Slider& Layout::Slider::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::len(double f) {
+Layout::Slider& Layout::Slider::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::len(Callable&& c) {
+Layout::Slider& Layout::Slider::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::lenmode(enum Lenmode f) {
+Layout::Slider& Layout::Slider::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::minorticklen(double f) {
+Layout::Slider& Layout::Slider::minorticklen(double f) {
     json["minorticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::minorticklen(Callable&& c) {
+Layout::Slider& Layout::Slider::minorticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minorticklen(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::name(std::string f) {
+Layout::Slider& Layout::Slider::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::name(Callable&& c) {
+Layout::Slider& Layout::Slider::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::pad(Pad f) {
+Layout::Slider& Layout::Slider::pad(Pad f) {
     json["pad"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::pad(Callable&& c) {
+Layout::Slider& Layout::Slider::pad(Callable&& c) {
     Pad f{};
     std::forward<Callable>(c)(f);
     return pad(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::steps(Steps f) {
+Layout::Slider& Layout::Slider::steps(Step f) {
     json["steps"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::steps(Callable&& c) {
-    Steps f{};
+Layout::Slider& Layout::Slider::steps(Callable&& c) {
+    Step f{};
     std::forward<Callable>(c)(f);
     return steps(std::move(f));
 }
+Layout::Slider& Layout::Slider::steps(const std::vector<Step>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["steps"] = std::move(jsonified);
+    return *this;
+}
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::templateitemname(std::string f) {
+Layout::Slider& Layout::Slider::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::templateitemname(Callable&& c) {
+Layout::Slider& Layout::Slider::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::tickcolor(std::string f) {
+Layout::Slider& Layout::Slider::tickcolor(std::string f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::tickcolor(Callable&& c) {
+Layout::Slider& Layout::Slider::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::ticklen(double f) {
+Layout::Slider& Layout::Slider::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::ticklen(Callable&& c) {
+Layout::Slider& Layout::Slider::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::tickwidth(double f) {
+Layout::Slider& Layout::Slider::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::tickwidth(Callable&& c) {
+Layout::Slider& Layout::Slider::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::transition(Transition f) {
+Layout::Slider& Layout::Slider::transition(Transition f) {
     json["transition"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::transition(Callable&& c) {
+Layout::Slider& Layout::Slider::transition(Callable&& c) {
     Transition f{};
     std::forward<Callable>(c)(f);
     return transition(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::visible(bool f) {
+Layout::Slider& Layout::Slider::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::visible(Callable&& c) {
+Layout::Slider& Layout::Slider::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::x(double f) {
+Layout::Slider& Layout::Slider::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::x(Callable&& c) {
+Layout::Slider& Layout::Slider::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::xanchor(enum Xanchor f) {
+Layout::Slider& Layout::Slider::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::y(double f) {
+Layout::Slider& Layout::Slider::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider& Layout::Sliders::Slider::y(Callable&& c) {
+Layout::Slider& Layout::Slider::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Layout::Sliders::Slider& Layout::Sliders::Slider::yanchor(enum Yanchor f) {
+Layout::Slider& Layout::Slider::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-std::string Layout::Sliders::Slider::Currentvalue::to_string(Xanchor e) {
+std::string Layout::Slider::Currentvalue::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -15016,67 +14944,67 @@ std::string Layout::Sliders::Slider::Currentvalue::to_string(Xanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::font(Font f) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::font(Callable&& c) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::offset(double f) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::offset(double f) {
     json["offset"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::offset(Callable&& c) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::offset(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return offset(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::prefix(std::string f) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::prefix(std::string f) {
     json["prefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::prefix(Callable&& c) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::prefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return prefix(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::suffix(std::string f) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::suffix(std::string f) {
     json["suffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::suffix(Callable&& c) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::suffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return suffix(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::visible(bool f) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::visible(Callable&& c) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue& Layout::Sliders::Slider::Currentvalue::xanchor(enum Xanchor f) {
+Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-std::string Layout::Sliders::Slider::Currentvalue::Font::to_string(Style e) {
+std::string Layout::Slider::Currentvalue::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -15084,7 +15012,7 @@ std::string Layout::Sliders::Slider::Currentvalue::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Sliders::Slider::Currentvalue::Font::to_string(Textcase e) {
+std::string Layout::Slider::Currentvalue::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -15094,7 +15022,7 @@ std::string Layout::Sliders::Slider::Currentvalue::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Sliders::Slider::Currentvalue::Font::to_string(Variant e) {
+std::string Layout::Slider::Currentvalue::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -15107,88 +15035,88 @@ std::string Layout::Sliders::Slider::Currentvalue::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::color(std::string f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::color(Callable&& c) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::family(std::string f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::family(Callable&& c) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::lineposition(std::string f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::lineposition(Callable&& c) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::shadow(std::string f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::shadow(Callable&& c) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::size(double f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::size(Callable&& c) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::style(enum Style f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::textcase(enum Textcase f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::variant(enum Variant f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::weight(int f) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Currentvalue::Font& Layout::Sliders::Slider::Currentvalue::Font::weight(Callable&& c) {
+Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Layout::Sliders::Slider::Font::to_string(Style e) {
+std::string Layout::Slider::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -15196,7 +15124,7 @@ std::string Layout::Sliders::Slider::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Sliders::Slider::Font::to_string(Textcase e) {
+std::string Layout::Slider::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -15206,7 +15134,7 @@ std::string Layout::Sliders::Slider::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Sliders::Slider::Font::to_string(Variant e) {
+std::string Layout::Slider::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -15219,145 +15147,133 @@ std::string Layout::Sliders::Slider::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::color(std::string f) {
+Layout::Slider::Font& Layout::Slider::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::color(Callable&& c) {
+Layout::Slider::Font& Layout::Slider::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::family(std::string f) {
+Layout::Slider::Font& Layout::Slider::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::family(Callable&& c) {
+Layout::Slider::Font& Layout::Slider::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::lineposition(std::string f) {
+Layout::Slider::Font& Layout::Slider::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::lineposition(Callable&& c) {
+Layout::Slider::Font& Layout::Slider::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::shadow(std::string f) {
+Layout::Slider::Font& Layout::Slider::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::shadow(Callable&& c) {
+Layout::Slider::Font& Layout::Slider::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::size(double f) {
+Layout::Slider::Font& Layout::Slider::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::size(Callable&& c) {
+Layout::Slider::Font& Layout::Slider::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::style(enum Style f) {
+Layout::Slider::Font& Layout::Slider::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::textcase(enum Textcase f) {
+Layout::Slider::Font& Layout::Slider::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::variant(enum Variant f) {
+Layout::Slider::Font& Layout::Slider::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::weight(int f) {
+Layout::Slider::Font& Layout::Slider::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Font& Layout::Sliders::Slider::Font::weight(Callable&& c) {
+Layout::Slider::Font& Layout::Slider::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::b(double f) {
+Layout::Slider::Pad& Layout::Slider::Pad::b(double f) {
     json["b"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::b(Callable&& c) {
+Layout::Slider::Pad& Layout::Slider::Pad::b(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return b(std::move(f));
 }
 
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::l(double f) {
+Layout::Slider::Pad& Layout::Slider::Pad::l(double f) {
     json["l"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::l(Callable&& c) {
+Layout::Slider::Pad& Layout::Slider::Pad::l(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return l(std::move(f));
 }
 
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::r(double f) {
+Layout::Slider::Pad& Layout::Slider::Pad::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::r(Callable&& c) {
+Layout::Slider::Pad& Layout::Slider::Pad::r(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return r(std::move(f));
 }
 
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::t(double f) {
+Layout::Slider::Pad& Layout::Slider::Pad::t(double f) {
     json["t"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Pad& Layout::Sliders::Slider::Pad::t(Callable&& c) {
+Layout::Slider::Pad& Layout::Slider::Pad::t(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return t(std::move(f));
 }
 
-
-Layout::Sliders::Slider::Steps& Layout::Sliders::Slider::Steps::step(Step f) {
-    json["step"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Sliders::Slider::Steps& Layout::Sliders::Slider::Steps::step(Callable&& c) {
-    Step f{};
-    std::forward<Callable>(c)(f);
-    return step(std::move(f));
-}
-
-std::string Layout::Sliders::Slider::Steps::Step::to_string(Method e) {
+std::string Layout::Slider::Step::to_string(Method e) {
     switch(e) {
         case Method::Restyle: return "restyle";
         case Method::Relayout: return "relayout";
@@ -15369,89 +15285,89 @@ std::string Layout::Sliders::Slider::Steps::Step::to_string(Method e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::args(const std::vector<double>& f) {
+Layout::Slider::Step& Layout::Slider::Step::args(const std::vector<double>& f) {
     json["args"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::args(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::args(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return args(std::move(f));
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::execute(bool f) {
+Layout::Slider::Step& Layout::Slider::Step::execute(bool f) {
     json["execute"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::execute(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::execute(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return execute(std::move(f));
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::label(std::string f) {
+Layout::Slider::Step& Layout::Slider::Step::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::label(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::method(enum Method f) {
+Layout::Slider::Step& Layout::Slider::Step::method(enum Method f) {
     json["method"] = to_string(f);
     return *this;
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::name(std::string f) {
+Layout::Slider::Step& Layout::Slider::Step::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::name(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::templateitemname(std::string f) {
+Layout::Slider::Step& Layout::Slider::Step::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::templateitemname(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::value(std::string f) {
+Layout::Slider::Step& Layout::Slider::Step::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::value(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::visible(bool f) {
+Layout::Slider::Step& Layout::Slider::Step::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Steps::Step& Layout::Sliders::Slider::Steps::Step::visible(Callable&& c) {
+Layout::Slider::Step& Layout::Slider::Step::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-std::string Layout::Sliders::Slider::Transition::to_string(Easing e) {
+std::string Layout::Slider::Transition::to_string(Easing e) {
     switch(e) {
         case Easing::Linear: return "linear";
         case Easing::Quad: return "quad";
@@ -15494,18 +15410,18 @@ std::string Layout::Sliders::Slider::Transition::to_string(Easing e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Sliders::Slider::Transition& Layout::Sliders::Slider::Transition::duration(double f) {
+Layout::Slider::Transition& Layout::Slider::Transition::duration(double f) {
     json["duration"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Sliders::Slider::Transition& Layout::Sliders::Slider::Transition::duration(Callable&& c) {
+Layout::Slider::Transition& Layout::Slider::Transition::duration(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return duration(std::move(f));
 }
 
-Layout::Sliders::Slider::Transition& Layout::Sliders::Slider::Transition::easing(enum Easing f) {
+Layout::Slider::Transition& Layout::Slider::Transition::easing(enum Easing f) {
     json["easing"] = to_string(f);
     return *this;
 }
@@ -16836,15 +16752,21 @@ Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(Tickformatstops f) {
+Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticklabelstep(int f) {
@@ -17094,68 +17016,56 @@ Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::weight(Calla
 }
 
 
-Layout::Ternary::Aaxis::Tickformatstops& Layout::Ternary::Aaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Ternary::Aaxis::Tickformatstops& Layout::Ternary::Aaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -17623,15 +17533,21 @@ Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(Tickformatstops f) {
+Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticklabelstep(int f) {
@@ -17881,68 +17797,56 @@ Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::weight(Calla
 }
 
 
-Layout::Ternary::Baxis::Tickformatstops& Layout::Ternary::Baxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Ternary::Baxis::Tickformatstops& Layout::Ternary::Baxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& Layout::Ternary::Baxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -18410,15 +18314,21 @@ Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(Tickformatstops f) {
+Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticklabelstep(int f) {
@@ -18668,68 +18578,56 @@ Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::weight(Calla
 }
 
 
-Layout::Ternary::Caxis::Tickformatstops& Layout::Ternary::Caxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Ternary::Caxis::Tickformatstops& Layout::Ternary::Caxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& Layout::Ternary::Caxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -19439,19 +19337,7 @@ Layout::Uniformtext& Layout::Uniformtext::mode(enum Mode f) {
     return *this;
 }
 
-
-Layout::Updatemenus& Layout::Updatemenus::updatemenu(Updatemenu f) {
-    json["updatemenu"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Updatemenus& Layout::Updatemenus::updatemenu(Callable&& c) {
-    Updatemenu f{};
-    std::forward<Callable>(c)(f);
-    return updatemenu(std::move(f));
-}
-
-std::string Layout::Updatemenus::Updatemenu::to_string(Direction e) {
+std::string Layout::Updatemenu::to_string(Direction e) {
     switch(e) {
         case Direction::Left: return "left";
         case Direction::Right: return "right";
@@ -19461,7 +19347,7 @@ std::string Layout::Updatemenus::Updatemenu::to_string(Direction e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Updatemenus::Updatemenu::to_string(Type e) {
+std::string Layout::Updatemenu::to_string(Type e) {
     switch(e) {
         case Type::Dropdown: return "dropdown";
         case Type::Buttons: return "buttons";
@@ -19469,7 +19355,7 @@ std::string Layout::Updatemenus::Updatemenu::to_string(Type e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Updatemenus::Updatemenu::to_string(Xanchor e) {
+std::string Layout::Updatemenu::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Auto: return "auto";
         case Xanchor::Left: return "left";
@@ -19479,7 +19365,7 @@ std::string Layout::Updatemenus::Updatemenu::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Updatemenus::Updatemenu::to_string(Yanchor e) {
+std::string Layout::Updatemenu::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Auto: return "auto";
         case Yanchor::Top: return "top";
@@ -19490,182 +19376,176 @@ std::string Layout::Updatemenus::Updatemenu::to_string(Yanchor e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::active(int f) {
+Layout::Updatemenu& Layout::Updatemenu::active(int f) {
     json["active"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::active(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::active(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return active(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::bgcolor(std::string f) {
+Layout::Updatemenu& Layout::Updatemenu::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::bgcolor(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::bordercolor(std::string f) {
+Layout::Updatemenu& Layout::Updatemenu::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::bordercolor(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::borderwidth(double f) {
+Layout::Updatemenu& Layout::Updatemenu::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::borderwidth(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::buttons(Buttons f) {
+Layout::Updatemenu& Layout::Updatemenu::buttons(Button f) {
     json["buttons"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::buttons(Callable&& c) {
-    Buttons f{};
+Layout::Updatemenu& Layout::Updatemenu::buttons(Callable&& c) {
+    Button f{};
     std::forward<Callable>(c)(f);
     return buttons(std::move(f));
 }
+Layout::Updatemenu& Layout::Updatemenu::buttons(const std::vector<Button>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["buttons"] = std::move(jsonified);
+    return *this;
+}
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::direction(enum Direction f) {
+Layout::Updatemenu& Layout::Updatemenu::direction(enum Direction f) {
     json["direction"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::font(Font f) {
+Layout::Updatemenu& Layout::Updatemenu::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::font(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::name(std::string f) {
+Layout::Updatemenu& Layout::Updatemenu::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::name(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::pad(Pad f) {
+Layout::Updatemenu& Layout::Updatemenu::pad(Pad f) {
     json["pad"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::pad(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::pad(Callable&& c) {
     Pad f{};
     std::forward<Callable>(c)(f);
     return pad(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::showactive(bool f) {
+Layout::Updatemenu& Layout::Updatemenu::showactive(bool f) {
     json["showactive"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::showactive(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::showactive(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showactive(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::templateitemname(std::string f) {
+Layout::Updatemenu& Layout::Updatemenu::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::templateitemname(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::type(enum Type f) {
+Layout::Updatemenu& Layout::Updatemenu::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::visible(bool f) {
+Layout::Updatemenu& Layout::Updatemenu::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::visible(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::x(double f) {
+Layout::Updatemenu& Layout::Updatemenu::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::x(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::xanchor(enum Xanchor f) {
+Layout::Updatemenu& Layout::Updatemenu::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::y(double f) {
+Layout::Updatemenu& Layout::Updatemenu::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::y(Callable&& c) {
+Layout::Updatemenu& Layout::Updatemenu::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu& Layout::Updatemenus::Updatemenu::yanchor(enum Yanchor f) {
+Layout::Updatemenu& Layout::Updatemenu::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-
-Layout::Updatemenus::Updatemenu::Buttons& Layout::Updatemenus::Updatemenu::Buttons::button(Button f) {
-    json["button"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons& Layout::Updatemenus::Updatemenu::Buttons::button(Callable&& c) {
-    Button f{};
-    std::forward<Callable>(c)(f);
-    return button(std::move(f));
-}
-
-std::string Layout::Updatemenus::Updatemenu::Buttons::Button::to_string(Method e) {
+std::string Layout::Updatemenu::Button::to_string(Method e) {
     switch(e) {
         case Method::Restyle: return "restyle";
         case Method::Relayout: return "relayout";
@@ -19677,89 +19557,89 @@ std::string Layout::Updatemenus::Updatemenu::Buttons::Button::to_string(Method e
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::args(const std::vector<double>& f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::args(const std::vector<double>& f) {
     json["args"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::args(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::args(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return args(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::args2(const std::vector<double>& f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::args2(const std::vector<double>& f) {
     json["args2"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::args2(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::args2(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return args2(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::execute(bool f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::execute(bool f) {
     json["execute"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::execute(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::execute(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return execute(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::label(std::string f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::label(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::method(enum Method f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::method(enum Method f) {
     json["method"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::name(std::string f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::name(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::templateitemname(std::string f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::templateitemname(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::visible(bool f) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Buttons::Button& Layout::Updatemenus::Updatemenu::Buttons::Button::visible(Callable&& c) {
+Layout::Updatemenu::Button& Layout::Updatemenu::Button::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-std::string Layout::Updatemenus::Updatemenu::Font::to_string(Style e) {
+std::string Layout::Updatemenu::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -19767,7 +19647,7 @@ std::string Layout::Updatemenus::Updatemenu::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Updatemenus::Updatemenu::Font::to_string(Textcase e) {
+std::string Layout::Updatemenu::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -19777,7 +19657,7 @@ std::string Layout::Updatemenus::Updatemenu::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Updatemenus::Updatemenu::Font::to_string(Variant e) {
+std::string Layout::Updatemenu::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -19790,127 +19670,127 @@ std::string Layout::Updatemenus::Updatemenu::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::color(std::string f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::color(Callable&& c) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::family(std::string f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::family(Callable&& c) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::lineposition(std::string f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::lineposition(Callable&& c) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::shadow(std::string f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::shadow(Callable&& c) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::size(double f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::size(Callable&& c) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::style(enum Style f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::textcase(enum Textcase f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::variant(enum Variant f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::weight(int f) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Font& Layout::Updatemenus::Updatemenu::Font::weight(Callable&& c) {
+Layout::Updatemenu::Font& Layout::Updatemenu::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::b(double f) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::b(double f) {
     json["b"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::b(Callable&& c) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::b(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return b(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::l(double f) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::l(double f) {
     json["l"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::l(Callable&& c) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::l(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return l(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::r(double f) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::r(Callable&& c) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::r(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return r(std::move(f));
 }
 
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::t(double f) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::t(double f) {
     json["t"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Updatemenus::Updatemenu::Pad& Layout::Updatemenus::Updatemenu::Pad::t(Callable&& c) {
+Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::t(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return t(std::move(f));
@@ -20533,15 +20413,21 @@ Layout::Xaxis& Layout::Xaxis::range(Callable&& c) {
     return range(std::move(f));
 }
 
-Layout::Xaxis& Layout::Xaxis::rangebreaks(Rangebreaks f) {
+Layout::Xaxis& Layout::Xaxis::rangebreaks(Rangebreak f) {
     json["rangebreaks"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Xaxis& Layout::Xaxis::rangebreaks(Callable&& c) {
-    Rangebreaks f{};
+    Rangebreak f{};
     std::forward<Callable>(c)(f);
     return rangebreaks(std::move(f));
+}
+Layout::Xaxis& Layout::Xaxis::rangebreaks(const std::vector<Rangebreak>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["rangebreaks"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Xaxis& Layout::Xaxis::rangemode(enum Rangemode f) {
@@ -20784,15 +20670,21 @@ Layout::Xaxis& Layout::Xaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Xaxis& Layout::Xaxis::tickformatstops(Tickformatstops f) {
+Layout::Xaxis& Layout::Xaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Xaxis& Layout::Xaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Xaxis& Layout::Xaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Xaxis& Layout::Xaxis::ticklabelindex(int f) {
@@ -21287,19 +21179,7 @@ Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickwidth(Callable&& c) {
     return tickwidth(std::move(f));
 }
 
-
-Layout::Xaxis::Rangebreaks& Layout::Xaxis::Rangebreaks::rangebreak(Rangebreak f) {
-    json["rangebreak"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks& Layout::Xaxis::Rangebreaks::rangebreak(Callable&& c) {
-    Rangebreak f{};
-    std::forward<Callable>(c)(f);
-    return rangebreak(std::move(f));
-}
-
-std::string Layout::Xaxis::Rangebreaks::Rangebreak::to_string(Pattern e) {
+std::string Layout::Xaxis::Rangebreak::to_string(Pattern e) {
     switch(e) {
         case Pattern::DayOfWeek: return "day of week";
         case Pattern::Hour: return "hour";
@@ -21309,72 +21189,72 @@ std::string Layout::Xaxis::Rangebreaks::Rangebreak::to_string(Pattern e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::bounds(const std::vector<double>& f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::bounds(const std::vector<double>& f) {
     json["bounds"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::bounds(Callable&& c) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::bounds(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return bounds(std::move(f));
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::dvalue(double f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::dvalue(double f) {
     json["dvalue"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::dvalue(Callable&& c) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::dvalue(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dvalue(std::move(f));
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::enabled(bool f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::enabled(Callable&& c) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::name(std::string f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::name(Callable&& c) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::pattern(enum Pattern f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::pattern(enum Pattern f) {
     json["pattern"] = to_string(f);
     return *this;
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::templateitemname(std::string f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::templateitemname(Callable&& c) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::values(const std::vector<double>& f) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(const std::vector<double>& f) {
     json["values"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangebreaks::Rangebreak& Layout::Xaxis::Rangebreaks::Rangebreak::values(Callable&& c) {
+Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
@@ -21445,15 +21325,21 @@ Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::borderwidth(Callable
     return borderwidth(std::move(f));
 }
 
-Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(Buttons f) {
+Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(Button f) {
     json["buttons"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(Callable&& c) {
-    Buttons f{};
+    Button f{};
     std::forward<Callable>(c)(f);
     return buttons(std::move(f));
+}
+Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(const std::vector<Button>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["buttons"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::font(Font f) {
@@ -21510,19 +21396,7 @@ Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::yanchor(enum Yanchor
     return *this;
 }
 
-
-Layout::Xaxis::Rangeselector::Buttons& Layout::Xaxis::Rangeselector::Buttons::button(Button f) {
-    json["button"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Xaxis::Rangeselector::Buttons& Layout::Xaxis::Rangeselector::Buttons::button(Callable&& c) {
-    Button f{};
-    std::forward<Callable>(c)(f);
-    return button(std::move(f));
-}
-
-std::string Layout::Xaxis::Rangeselector::Buttons::Button::to_string(Step e) {
+std::string Layout::Xaxis::Rangeselector::Button::to_string(Step e) {
     switch(e) {
         case Step::Month: return "month";
         case Step::Year: return "year";
@@ -21535,7 +21409,7 @@ std::string Layout::Xaxis::Rangeselector::Buttons::Button::to_string(Step e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Layout::Xaxis::Rangeselector::Buttons::Button::to_string(Stepmode e) {
+std::string Layout::Xaxis::Rangeselector::Button::to_string(Stepmode e) {
     switch(e) {
         case Stepmode::Backward: return "backward";
         case Stepmode::Todate: return "todate";
@@ -21544,66 +21418,66 @@ std::string Layout::Xaxis::Rangeselector::Buttons::Button::to_string(Stepmode e)
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::count(double f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::count(double f) {
     json["count"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::count(Callable&& c) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::count(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return count(std::move(f));
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::label(std::string f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::label(Callable&& c) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::name(std::string f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::name(Callable&& c) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::step(enum Step f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::step(enum Step f) {
     json["step"] = to_string(f);
     return *this;
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::stepmode(enum Stepmode f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::stepmode(enum Stepmode f) {
     json["stepmode"] = to_string(f);
     return *this;
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::templateitemname(std::string f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::templateitemname(Callable&& c) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::visible(bool f) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Rangeselector::Buttons::Button& Layout::Xaxis::Rangeselector::Buttons::Button::visible(Callable&& c) {
+Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
@@ -21953,68 +21827,56 @@ Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::weight(Callable&& c) {
 }
 
 
-Layout::Xaxis::Tickformatstops& Layout::Xaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Xaxis::Tickformatstops& Layout::Xaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Xaxis::Tickformatstops::Tickformatstop& Layout::Xaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -22794,15 +22656,21 @@ Layout::Yaxis& Layout::Yaxis::range(Callable&& c) {
     return range(std::move(f));
 }
 
-Layout::Yaxis& Layout::Yaxis::rangebreaks(Rangebreaks f) {
+Layout::Yaxis& Layout::Yaxis::rangebreaks(Rangebreak f) {
     json["rangebreaks"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Yaxis& Layout::Yaxis::rangebreaks(Callable&& c) {
-    Rangebreaks f{};
+    Rangebreak f{};
     std::forward<Callable>(c)(f);
     return rangebreaks(std::move(f));
+}
+Layout::Yaxis& Layout::Yaxis::rangebreaks(const std::vector<Rangebreak>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["rangebreaks"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Yaxis& Layout::Yaxis::rangemode(enum Rangemode f) {
@@ -23034,15 +22902,21 @@ Layout::Yaxis& Layout::Yaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Layout::Yaxis& Layout::Yaxis::tickformatstops(Tickformatstops f) {
+Layout::Yaxis& Layout::Yaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Layout::Yaxis& Layout::Yaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Layout::Yaxis& Layout::Yaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Layout::Yaxis& Layout::Yaxis::ticklabelindex(int f) {
@@ -23537,19 +23411,7 @@ Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickwidth(Callable&& c) {
     return tickwidth(std::move(f));
 }
 
-
-Layout::Yaxis::Rangebreaks& Layout::Yaxis::Rangebreaks::rangebreak(Rangebreak f) {
-    json["rangebreak"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks& Layout::Yaxis::Rangebreaks::rangebreak(Callable&& c) {
-    Rangebreak f{};
-    std::forward<Callable>(c)(f);
-    return rangebreak(std::move(f));
-}
-
-std::string Layout::Yaxis::Rangebreaks::Rangebreak::to_string(Pattern e) {
+std::string Layout::Yaxis::Rangebreak::to_string(Pattern e) {
     switch(e) {
         case Pattern::DayOfWeek: return "day of week";
         case Pattern::Hour: return "hour";
@@ -23559,72 +23421,72 @@ std::string Layout::Yaxis::Rangebreaks::Rangebreak::to_string(Pattern e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::bounds(const std::vector<double>& f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::bounds(const std::vector<double>& f) {
     json["bounds"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::bounds(Callable&& c) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::bounds(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return bounds(std::move(f));
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::dvalue(double f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::dvalue(double f) {
     json["dvalue"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::dvalue(Callable&& c) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::dvalue(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dvalue(std::move(f));
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::enabled(bool f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::enabled(Callable&& c) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::name(std::string f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::name(Callable&& c) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::pattern(enum Pattern f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::pattern(enum Pattern f) {
     json["pattern"] = to_string(f);
     return *this;
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::templateitemname(std::string f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::templateitemname(Callable&& c) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::values(const std::vector<double>& f) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(const std::vector<double>& f) {
     json["values"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Rangebreaks::Rangebreak& Layout::Yaxis::Rangebreaks::Rangebreak::values(Callable&& c) {
+Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
@@ -23743,68 +23605,56 @@ Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::weight(Callable&& c) {
 }
 
 
-Layout::Yaxis::Tickformatstops& Layout::Yaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Layout::Yaxis::Tickformatstops& Layout::Yaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Layout::Yaxis::Tickformatstops::Tickformatstop& Layout::Yaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

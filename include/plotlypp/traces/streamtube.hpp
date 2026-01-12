@@ -565,7 +565,7 @@ class Streamtube::Colorbar {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the color of padded area.
@@ -721,9 +721,10 @@ class Streamtube::Colorbar {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Streamtube::Colorbar& tickformat(Callable&& c);
 
-    Streamtube::Colorbar& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Streamtube::Colorbar& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Streamtube::Colorbar& tickformatstops(Callable&& c);
+    Streamtube::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
     // default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
@@ -940,23 +941,7 @@ class Streamtube::Colorbar::Tickfont {
     Json json{};
 };
 
-class Streamtube::Colorbar::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Streamtube::Colorbar::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Streamtube::Colorbar::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Streamtube::Colorbar::Tickformatstops::Tickformatstop {
+class Streamtube::Colorbar::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -964,36 +949,36 @@ class Streamtube::Colorbar::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Streamtube::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Streamtube::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& enabled(bool f);
+    Streamtube::Colorbar::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Streamtube::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& name(std::string f);
+    Streamtube::Colorbar::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Streamtube::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Streamtube::Colorbar::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Streamtube::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& value(std::string f);
+    Streamtube::Colorbar::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Streamtube::Colorbar::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Streamtube::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

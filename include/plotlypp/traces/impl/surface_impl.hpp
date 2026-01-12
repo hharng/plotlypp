@@ -1113,15 +1113,21 @@ Surface::Colorbar& Surface::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickformatstops(Tickformatstops f) {
+Surface::Colorbar& Surface::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Surface::Colorbar& Surface::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Surface::Colorbar& Surface::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Surface::Colorbar& Surface::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1433,68 +1439,56 @@ Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::weight(Callable&& c) {
 }
 
 
-Surface::Colorbar::Tickformatstops& Surface::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Surface::Colorbar::Tickformatstops& Surface::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstops::Tickformatstop& Surface::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

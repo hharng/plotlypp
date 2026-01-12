@@ -137,7 +137,7 @@ class Layout {
 
     class Activeselection;
     class Activeshape;
-    class Annotations;
+    class Annotation;
     class Coloraxis;
     class Colorscale;
     // Sets the global font. Note that fonts used in traces and other layout components inherit from the global font.
@@ -145,7 +145,7 @@ class Layout {
     class Geo;
     class Grid;
     class Hoverlabel;
-    class Images;
+    class Image;
     class Legend;
     class Map;
     class Mapbox;
@@ -155,16 +155,16 @@ class Layout {
     class Newshape;
     class Polar;
     class Scene;
-    class Selections;
-    class Shapes;
-    class Sliders;
+    class Selection;
+    class Shape;
+    class Slider;
     class Smith;
     class Ternary;
     class Title;
     // Sets transition options used during Plotly.react updates.
     class Transition;
     class Uniformtext;
-    class Updatemenus;
+    class Updatemenu;
     class Xaxis;
     class Yaxis;
 
@@ -176,9 +176,10 @@ class Layout {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Activeshape&>>>
     Layout& activeshape(Callable&& c);
 
-    Layout& annotations(Annotations f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Annotations&>>>
+    Layout& annotations(Annotation f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Annotation&>>>
     Layout& annotations(Callable&& c);
+    Layout& annotations(const std::vector<Annotation>& f);
 
     // Determines whether or not a layout width or height that has been left undefined by the user is initialized on
     // each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized
@@ -308,9 +309,10 @@ class Layout {
     // - Default: overlaying
     Layout& hoversubplots(enum Hoversubplots f);
 
-    Layout& images(Images f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Images&>>>
+    Layout& images(Image f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Image&>>>
     Layout& images(Callable&& c);
+    Layout& images(const std::vector<Image>& f);
 
     Layout& legend(Legend f);
     Layout& legend(int index, Legend f);
@@ -401,9 +403,10 @@ class Layout {
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
     Layout& selectionrevision(Callable&& c);
 
-    Layout& selections(Selections f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Selections&>>>
+    Layout& selections(Selection f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Selection&>>>
     Layout& selections(Callable&& c);
+    Layout& selections(const std::vector<Selection>& f);
 
     // Sets the decimal and thousand separators. For example, *. * puts a '.' before decimals and a space between
     // thousands. In English locales, dflt is *.,* but other locales may alter this default.
@@ -411,9 +414,10 @@ class Layout {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout& separators(Callable&& c);
 
-    Layout& shapes(Shapes f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Shapes&>>>
+    Layout& shapes(Shape f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Shape&>>>
     Layout& shapes(Callable&& c);
+    Layout& shapes(const std::vector<Shape>& f);
 
     // Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a)
     // Two or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace
@@ -422,9 +426,10 @@ class Layout {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
     Layout& showlegend(Callable&& c);
 
-    Layout& sliders(Sliders f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Sliders&>>>
+    Layout& sliders(Slider f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Slider&>>>
     Layout& sliders(Callable&& c);
+    Layout& sliders(const std::vector<Slider>& f);
 
     Layout& smith(Smith f);
     Layout& smith(int index, Smith f);
@@ -485,9 +490,10 @@ class Layout {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Uniformtext&>>>
     Layout& uniformtext(Callable&& c);
 
-    Layout& updatemenus(Updatemenus f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Updatemenus&>>>
+    Layout& updatemenus(Updatemenu f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Updatemenu&>>>
     Layout& updatemenus(Callable&& c);
+    Layout& updatemenus(const std::vector<Updatemenu>& f);
 
     // Sets the plot's width (in px).
     Layout& width(double f);
@@ -744,23 +750,7 @@ class Layout::Activeshape {
     Json json{};
 };
 
-class Layout::Annotations {
- public:
-    Annotations() = default;
-    Annotations(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Annotation;
-
-    Layout::Annotations& annotation(Annotation f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Annotation&>>>
-    Layout::Annotations& annotation(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Annotations::Annotation {
+class Layout::Annotation {
  public:
     Annotation() = default;
     Annotation(std::string jsonStr)
@@ -810,45 +800,45 @@ class Layout::Annotations::Annotation {
     // Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans two or more lines
     // (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
     // - Default: center
-    Layout::Annotations::Annotation& align(enum Align f);
+    Layout::Annotation& align(enum Align f);
 
     // Sets the color of the annotation arrow.
-    Layout::Annotations::Annotation& arrowcolor(std::string f);
+    Layout::Annotation& arrowcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& arrowcolor(Callable&& c);
+    Layout::Annotation& arrowcolor(Callable&& c);
 
     // Sets the end annotation arrow head style.
-    Layout::Annotations::Annotation& arrowhead(int f);
+    Layout::Annotation& arrowhead(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Annotations::Annotation& arrowhead(Callable&& c);
+    Layout::Annotation& arrowhead(Callable&& c);
 
     // Sets the annotation arrow head position.
     // - Default: end
     // - Flags: ['end', 'start']
     // - Extras ['none']
-    Layout::Annotations::Annotation& arrowside(std::string f);
+    Layout::Annotation& arrowside(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& arrowside(Callable&& c);
+    Layout::Annotation& arrowside(Callable&& c);
 
     // Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head
     // about 3x as wide as the line.
-    Layout::Annotations::Annotation& arrowsize(double f);
+    Layout::Annotation& arrowsize(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& arrowsize(Callable&& c);
+    Layout::Annotation& arrowsize(Callable&& c);
 
     // Sets the width (in px) of annotation arrow line.
-    Layout::Annotations::Annotation& arrowwidth(double f);
+    Layout::Annotation& arrowwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& arrowwidth(Callable&& c);
+    Layout::Annotation& arrowwidth(Callable&& c);
 
     // Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)
     // component corresponds to an arrow pointing from right to left (left to right). If `axref` is not `pixel` and is
     // exactly the same as `xref`, this is an absolute value on that axis, like `x`, specified in the same coordinates
     // as `xref`.
     template <typename T>
-    Layout::Annotations::Annotation& ax(T f);
+    Layout::Annotation& ax(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Annotations::Annotation& ax(Callable&& c);
+    Layout::Annotation& ax(Callable&& c);
 
     // Indicates in what coordinates the tail of the annotation (ax,ay) is specified. If set to a x axis id (e.g. *x* or
     // *x2*), the `x` position refers to a x coordinate. If set to *paper*, the `x` position refers to the distance from
@@ -861,18 +851,18 @@ class Layout::Annotations::Annotation {
     // can be set to *pixel*, in which case the *ax* value is specified in pixels relative to *x*. Absolute positioning
     // is useful for trendline annotations which should continue to indicate the correct trend when zoomed. Relative
     // positioning is useful for specifying the text offset for an annotated point.
-    Layout::Annotations::Annotation& axref(std::string f);
+    Layout::Annotation& axref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& axref(Callable&& c);
+    Layout::Annotation& axref(Callable&& c);
 
     // Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)
     // component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is not `pixel` and is
     // exactly the same as `yref`, this is an absolute value on that axis, like `y`, specified in the same coordinates
     // as `yref`.
     template <typename T>
-    Layout::Annotations::Annotation& ay(T f);
+    Layout::Annotation& ay(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Annotations::Annotation& ay(Callable&& c);
+    Layout::Annotation& ay(Callable&& c);
 
     // Indicates in what coordinates the tail of the annotation (ax,ay) is specified. If set to a y axis id (e.g. *y* or
     // *y2*), the `y` position refers to a y coordinate. If set to *paper*, the `y` position refers to the distance from
@@ -885,37 +875,37 @@ class Layout::Annotations::Annotation {
     // *ayref* can be set to *pixel*, in which case the *ay* value is specified in pixels relative to *y*. Absolute
     // positioning is useful for trendline annotations which should continue to indicate the correct trend when zoomed.
     // Relative positioning is useful for specifying the text offset for an annotated point.
-    Layout::Annotations::Annotation& ayref(std::string f);
+    Layout::Annotation& ayref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& ayref(Callable&& c);
+    Layout::Annotation& ayref(Callable&& c);
 
     // Sets the background color of the annotation.
-    Layout::Annotations::Annotation& bgcolor(std::string f);
+    Layout::Annotation& bgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& bgcolor(Callable&& c);
+    Layout::Annotation& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the annotation `text`.
-    Layout::Annotations::Annotation& bordercolor(std::string f);
+    Layout::Annotation& bordercolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& bordercolor(Callable&& c);
+    Layout::Annotation& bordercolor(Callable&& c);
 
     // Sets the padding (in px) between the `text` and the enclosing border.
-    Layout::Annotations::Annotation& borderpad(double f);
+    Layout::Annotation& borderpad(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& borderpad(Callable&& c);
+    Layout::Annotation& borderpad(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the annotation `text`.
-    Layout::Annotations::Annotation& borderwidth(double f);
+    Layout::Annotation& borderwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& borderwidth(Callable&& c);
+    Layout::Annotation& borderwidth(Callable&& c);
 
     // Determines whether the annotation text box captures mouse move and click events, or allows those events to pass
     // through to data points in the plot that may be behind the annotation. By default `captureevents` is *false*
     // unless `hovertext` is provided. If you use the event `plotly_clickannotation` without `hovertext` you must
     // explicitly enable `captureevents`.
-    Layout::Annotations::Annotation& captureevents(bool f);
+    Layout::Annotation& captureevents(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Annotations::Annotation& captureevents(Callable&& c);
+    Layout::Annotation& captureevents(Callable&& c);
 
     // Makes this annotation respond to clicks on the plot. If you click a data point that exactly matches the `x` and
     // `y` values of this annotation, and it is hidden (visible: false), it will appear. In *onoff* mode, you must click
@@ -925,117 +915,117 @@ class Layout::Annotations::Annotation {
     // `yclick`. This is useful for example to label the side of a bar. To label markers though, `standoff` is preferred
     // over `xclick` and `yclick`.
     // - Default: False
-    Layout::Annotations::Annotation& clicktoshow(enum Clicktoshow f);
+    Layout::Annotation& clicktoshow(enum Clicktoshow f);
 
     // Sets the annotation text font.
-    Layout::Annotations::Annotation& font(Font f);
+    Layout::Annotation& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Annotations::Annotation& font(Callable&& c);
+    Layout::Annotation& font(Callable&& c);
 
     // Sets an explicit height for the text box. null (default) lets the text set the box height. Taller text will be
     // clipped.
-    Layout::Annotations::Annotation& height(double f);
+    Layout::Annotation& height(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& height(Callable&& c);
+    Layout::Annotation& height(Callable&& c);
 
-    Layout::Annotations::Annotation& hoverlabel(Hoverlabel f);
+    Layout::Annotation& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
-    Layout::Annotations::Annotation& hoverlabel(Callable&& c);
+    Layout::Annotation& hoverlabel(Callable&& c);
 
     // Sets text to appear when hovering over this annotation. If omitted or blank, no hover label will appear.
-    Layout::Annotations::Annotation& hovertext(std::string f);
+    Layout::Annotation& hovertext(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& hovertext(Callable&& c);
+    Layout::Annotation& hovertext(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Annotations::Annotation& name(std::string f);
+    Layout::Annotation& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& name(Callable&& c);
+    Layout::Annotation& name(Callable&& c);
 
     // Sets the opacity of the annotation (text + arrow).
-    Layout::Annotations::Annotation& opacity(double f);
+    Layout::Annotation& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& opacity(Callable&& c);
+    Layout::Annotation& opacity(Callable&& c);
 
     // Determines whether or not the annotation is drawn with an arrow. If *true*, `text` is placed near the arrow's
     // tail. If *false*, `text` lines up with the `x` and `y` provided.
-    Layout::Annotations::Annotation& showarrow(bool f);
+    Layout::Annotation& showarrow(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Annotations::Annotation& showarrow(Callable&& c);
+    Layout::Annotation& showarrow(Callable&& c);
 
     // Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to
     // point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector,
     // in contrast to `xshift` / `yshift` which moves everything by this amount.
-    Layout::Annotations::Annotation& standoff(double f);
+    Layout::Annotation& standoff(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& standoff(Callable&& c);
+    Layout::Annotation& standoff(Callable&& c);
 
     // Sets the start annotation arrow head style.
-    Layout::Annotations::Annotation& startarrowhead(int f);
+    Layout::Annotation& startarrowhead(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Annotations::Annotation& startarrowhead(Callable&& c);
+    Layout::Annotation& startarrowhead(Callable&& c);
 
     // Sets the size of the start annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head
     // about 3x as wide as the line.
-    Layout::Annotations::Annotation& startarrowsize(double f);
+    Layout::Annotation& startarrowsize(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& startarrowsize(Callable&& c);
+    Layout::Annotation& startarrowsize(Callable&& c);
 
     // Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to
     // point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector,
     // in contrast to `xshift` / `yshift` which moves everything by this amount.
-    Layout::Annotations::Annotation& startstandoff(double f);
+    Layout::Annotation& startstandoff(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& startstandoff(Callable&& c);
+    Layout::Annotation& startstandoff(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Annotations::Annotation& templateitemname(std::string f);
+    Layout::Annotation& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& templateitemname(Callable&& c);
+    Layout::Annotation& templateitemname(Callable&& c);
 
     // Sets the text associated with this annotation. Plotly uses a subset of HTML tags to do things like newline
     // (<br>), bold (<b></b>), italics (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub>, <s>, <u>
     // <span> are also supported.
-    Layout::Annotations::Annotation& text(std::string f);
+    Layout::Annotation& text(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& text(Callable&& c);
+    Layout::Annotation& text(Callable&& c);
 
     // Sets the angle at which the `text` is drawn with respect to the horizontal.
-    Layout::Annotations::Annotation& textangle(double f);
+    Layout::Annotation& textangle(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& textangle(Callable&& c);
+    Layout::Annotation& textangle(Callable&& c);
 
     // Sets the vertical alignment of the `text` within the box. Has an effect only if an explicit height is set to
     // override the text height.
     // - Default: middle
-    Layout::Annotations::Annotation& valign(enum Valign f);
+    Layout::Annotation& valign(enum Valign f);
 
     // Determines whether or not this annotation is visible.
-    Layout::Annotations::Annotation& visible(bool f);
+    Layout::Annotation& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Annotations::Annotation& visible(Callable&& c);
+    Layout::Annotation& visible(Callable&& c);
 
     // Sets an explicit width for the text box. null (default) lets the text set the box width. Wider text will be
     // clipped. There is no automatic wrapping; use <br> to start a new line.
-    Layout::Annotations::Annotation& width(double f);
+    Layout::Annotation& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& width(Callable&& c);
+    Layout::Annotation& width(Callable&& c);
 
     // Sets the annotation's x position. If the axis `type` is *log*, then you must take the log of your desired range.
     // If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix
     // milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers,
     // using the scale where each category is assigned a serial number from zero in the order it appears.
     template <typename T>
-    Layout::Annotations::Annotation& x(T f);
+    Layout::Annotation& x(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Annotations::Annotation& x(Callable&& c);
+    Layout::Annotation& x(Callable&& c);
 
     // Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or
     // *right* of the annotation. For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the
@@ -1043,14 +1033,14 @@ class Layout::Annotations::Annotation {
     // anchor is equivalent to *center* for data-referenced annotations or if there is an arrow, whereas for
     // paper-referenced with no arrow, the anchor picked corresponds to the closest side.
     // - Default: auto
-    Layout::Annotations::Annotation& xanchor(enum Xanchor f);
+    Layout::Annotation& xanchor(enum Xanchor f);
 
     // Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x`
     // value.
     template <typename T>
-    Layout::Annotations::Annotation& xclick(T f);
+    Layout::Annotation& xclick(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Annotations::Annotation& xclick(Callable&& c);
+    Layout::Annotation& xclick(Callable&& c);
 
     // Sets the annotation's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x
     // coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in
@@ -1059,24 +1049,24 @@ class Layout::Annotations::Annotation {
     // of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the
     // second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the
     // second x axis.
-    Layout::Annotations::Annotation& xref(std::string f);
+    Layout::Annotation& xref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& xref(Callable&& c);
+    Layout::Annotation& xref(Callable&& c);
 
     // Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many
     // pixels.
-    Layout::Annotations::Annotation& xshift(double f);
+    Layout::Annotation& xshift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& xshift(Callable&& c);
+    Layout::Annotation& xshift(Callable&& c);
 
     // Sets the annotation's y position. If the axis `type` is *log*, then you must take the log of your desired range.
     // If the axis `type` is *date*, it should be date strings, like date data, though Date objects and unix
     // milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it should be numbers,
     // using the scale where each category is assigned a serial number from zero in the order it appears.
     template <typename T>
-    Layout::Annotations::Annotation& y(T f);
+    Layout::Annotation& y(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Annotations::Annotation& y(Callable&& c);
+    Layout::Annotation& y(Callable&& c);
 
     // Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the annotation. For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the
@@ -1084,14 +1074,14 @@ class Layout::Annotations::Annotation {
     // equivalent to *middle* for data-referenced annotations or if there is an arrow, whereas for paper-referenced with
     // no arrow, the anchor picked corresponds to the closest side.
     // - Default: auto
-    Layout::Annotations::Annotation& yanchor(enum Yanchor f);
+    Layout::Annotation& yanchor(enum Yanchor f);
 
     // Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y`
     // value.
     template <typename T>
-    Layout::Annotations::Annotation& yclick(T f);
+    Layout::Annotation& yclick(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Annotations::Annotation& yclick(Callable&& c);
+    Layout::Annotation& yclick(Callable&& c);
 
     // Sets the annotation's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y
     // coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in
@@ -1100,21 +1090,21 @@ class Layout::Annotations::Annotation {
     // of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the
     // second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the
     // second y axis.
-    Layout::Annotations::Annotation& yref(std::string f);
+    Layout::Annotation& yref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation& yref(Callable&& c);
+    Layout::Annotation& yref(Callable&& c);
 
     // Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
-    Layout::Annotations::Annotation& yshift(double f);
+    Layout::Annotation& yshift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation& yshift(Callable&& c);
+    Layout::Annotation& yshift(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the annotation text font.
-class Layout::Annotations::Annotation::Font {
+class Layout::Annotation::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -1144,9 +1134,9 @@ class Layout::Annotations::Annotation::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Annotations::Annotation::Font& color(std::string f);
+    Layout::Annotation::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Font& color(Callable&& c);
+    Layout::Annotation::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1155,52 +1145,52 @@ class Layout::Annotations::Annotation::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Annotations::Annotation::Font& family(std::string f);
+    Layout::Annotation::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Font& family(Callable&& c);
+    Layout::Annotation::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Annotations::Annotation::Font& lineposition(std::string f);
+    Layout::Annotation::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Font& lineposition(Callable&& c);
+    Layout::Annotation::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Annotations::Annotation::Font& shadow(std::string f);
+    Layout::Annotation::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Font& shadow(Callable&& c);
+    Layout::Annotation::Font& shadow(Callable&& c);
 
-    Layout::Annotations::Annotation::Font& size(double f);
+    Layout::Annotation::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation::Font& size(Callable&& c);
+    Layout::Annotation::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Annotations::Annotation::Font& style(enum Style f);
+    Layout::Annotation::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Annotations::Annotation::Font& textcase(enum Textcase f);
+    Layout::Annotation::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Annotations::Annotation::Font& variant(enum Variant f);
+    Layout::Annotation::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Annotations::Annotation::Font& weight(int f);
+    Layout::Annotation::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Annotations::Annotation::Font& weight(Callable&& c);
+    Layout::Annotation::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Annotations::Annotation::Hoverlabel {
+class Layout::Annotation::Hoverlabel {
  public:
     Hoverlabel() = default;
     Hoverlabel(std::string jsonStr)
@@ -1212,21 +1202,21 @@ class Layout::Annotations::Annotation::Hoverlabel {
 
     // Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if
     // it was transparent.
-    Layout::Annotations::Annotation::Hoverlabel& bgcolor(std::string f);
+    Layout::Annotation::Hoverlabel& bgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Hoverlabel& bgcolor(Callable&& c);
+    Layout::Annotation::Hoverlabel& bgcolor(Callable&& c);
 
     // Sets the border color of the hover label. By default uses either dark grey or white, for maximum contrast with
     // `hoverlabel.bgcolor`.
-    Layout::Annotations::Annotation::Hoverlabel& bordercolor(std::string f);
+    Layout::Annotation::Hoverlabel& bordercolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Hoverlabel& bordercolor(Callable&& c);
+    Layout::Annotation::Hoverlabel& bordercolor(Callable&& c);
 
     // Sets the hover label text font. By default uses the global hover font and size, with color from
     // `hoverlabel.bordercolor`.
-    Layout::Annotations::Annotation::Hoverlabel& font(Font f);
+    Layout::Annotation::Hoverlabel& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Annotations::Annotation::Hoverlabel& font(Callable&& c);
+    Layout::Annotation::Hoverlabel& font(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1234,7 +1224,7 @@ class Layout::Annotations::Annotation::Hoverlabel {
 
 // Sets the hover label text font. By default uses the global hover font and size, with color from
 // `hoverlabel.bordercolor`.
-class Layout::Annotations::Annotation::Hoverlabel::Font {
+class Layout::Annotation::Hoverlabel::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -1264,9 +1254,9 @@ class Layout::Annotations::Annotation::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Annotations::Annotation::Hoverlabel::Font& color(std::string f);
+    Layout::Annotation::Hoverlabel::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Hoverlabel::Font& color(Callable&& c);
+    Layout::Annotation::Hoverlabel::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1275,46 +1265,46 @@ class Layout::Annotations::Annotation::Hoverlabel::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Annotations::Annotation::Hoverlabel::Font& family(std::string f);
+    Layout::Annotation::Hoverlabel::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Hoverlabel::Font& family(Callable&& c);
+    Layout::Annotation::Hoverlabel::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Annotations::Annotation::Hoverlabel::Font& lineposition(std::string f);
+    Layout::Annotation::Hoverlabel::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Hoverlabel::Font& lineposition(Callable&& c);
+    Layout::Annotation::Hoverlabel::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Annotations::Annotation::Hoverlabel::Font& shadow(std::string f);
+    Layout::Annotation::Hoverlabel::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Annotations::Annotation::Hoverlabel::Font& shadow(Callable&& c);
+    Layout::Annotation::Hoverlabel::Font& shadow(Callable&& c);
 
-    Layout::Annotations::Annotation::Hoverlabel::Font& size(double f);
+    Layout::Annotation::Hoverlabel::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Annotations::Annotation::Hoverlabel::Font& size(Callable&& c);
+    Layout::Annotation::Hoverlabel::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Annotations::Annotation::Hoverlabel::Font& style(enum Style f);
+    Layout::Annotation::Hoverlabel::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Annotations::Annotation::Hoverlabel::Font& textcase(enum Textcase f);
+    Layout::Annotation::Hoverlabel::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Annotations::Annotation::Hoverlabel::Font& variant(enum Variant f);
+    Layout::Annotation::Hoverlabel::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Annotations::Annotation::Hoverlabel::Font& weight(int f);
+    Layout::Annotation::Hoverlabel::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Annotations::Annotation::Hoverlabel::Font& weight(Callable&& c);
+    Layout::Annotation::Hoverlabel::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1512,7 +1502,7 @@ class Layout::Coloraxis::Colorbar {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the color of padded area.
@@ -1668,9 +1658,10 @@ class Layout::Coloraxis::Colorbar {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Coloraxis::Colorbar& tickformat(Callable&& c);
 
-    Layout::Coloraxis::Colorbar& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Coloraxis::Colorbar& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Coloraxis::Colorbar& tickformatstops(Callable&& c);
+    Layout::Coloraxis::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
     // default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
@@ -1887,23 +1878,7 @@ class Layout::Coloraxis::Colorbar::Tickfont {
     Json json{};
 };
 
-class Layout::Coloraxis::Colorbar::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Coloraxis::Colorbar::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Coloraxis::Colorbar::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop {
+class Layout::Coloraxis::Colorbar::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -1911,36 +1886,36 @@ class Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Coloraxis::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Coloraxis::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Coloraxis::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Coloraxis::Colorbar::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Coloraxis::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -3058,23 +3033,7 @@ class Layout::Hoverlabel::Grouptitlefont {
     Json json{};
 };
 
-class Layout::Images {
- public:
-    Images() = default;
-    Images(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Image;
-
-    Layout::Images& image(Image f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Image&>>>
-    Layout::Images& image(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Images::Image {
+class Layout::Image {
  public:
     Image() = default;
     Image(std::string jsonStr)
@@ -3110,69 +3069,69 @@ class Layout::Images::Image {
     // Specifies whether images are drawn below or above traces. When `xref` and `yref` are both set to `paper`, image
     // is drawn below the entire plot area.
     // - Default: above
-    Layout::Images::Image& layer(enum Layer f);
+    Layout::Image& layer(enum Layer f);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Images::Image& name(std::string f);
+    Layout::Image& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Images::Image& name(Callable&& c);
+    Layout::Image& name(Callable&& c);
 
     // Sets the opacity of the image.
-    Layout::Images::Image& opacity(double f);
+    Layout::Image& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Images::Image& opacity(Callable&& c);
+    Layout::Image& opacity(Callable&& c);
 
     // Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is
     // set to `paper`, units are sized relative to the plot width. When `xref` ends with ` domain`, units are sized
     // relative to the axis width.
-    Layout::Images::Image& sizex(double f);
+    Layout::Image& sizex(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Images::Image& sizex(Callable&& c);
+    Layout::Image& sizex(Callable&& c);
 
     // Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is
     // set to `paper`, units are sized relative to the plot height. When `yref` ends with ` domain`, units are sized
     // relative to the axis height.
-    Layout::Images::Image& sizey(double f);
+    Layout::Image& sizey(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Images::Image& sizey(Callable&& c);
+    Layout::Image& sizey(Callable&& c);
 
     // Specifies which dimension of the image to constrain.
     // - Default: contain
-    Layout::Images::Image& sizing(enum Sizing f);
+    Layout::Image& sizing(enum Sizing f);
 
     // Specifies the URL of the image to be used. The URL must be accessible from the domain where the plot code is run,
     // and can be either relative or absolute.
-    Layout::Images::Image& source(std::string f);
+    Layout::Image& source(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Images::Image& source(Callable&& c);
+    Layout::Image& source(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Images::Image& templateitemname(std::string f);
+    Layout::Image& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Images::Image& templateitemname(Callable&& c);
+    Layout::Image& templateitemname(Callable&& c);
 
     // Determines whether or not this image is visible.
-    Layout::Images::Image& visible(bool f);
+    Layout::Image& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Images::Image& visible(Callable&& c);
+    Layout::Image& visible(Callable&& c);
 
     // Sets the image's x position. When `xref` is set to `paper`, units are sized relative to the plot height. See
     // `xref` for more info
     template <typename T>
-    Layout::Images::Image& x(T f);
+    Layout::Image& x(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Images::Image& x(Callable&& c);
+    Layout::Image& x(Callable&& c);
 
     // Sets the anchor for the x position
     // - Default: left
-    Layout::Images::Image& xanchor(enum Xanchor f);
+    Layout::Image& xanchor(enum Xanchor f);
 
     // Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x
     // coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in
@@ -3181,20 +3140,20 @@ class Layout::Images::Image {
     // of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the
     // second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the
     // second x axis.
-    Layout::Images::Image& xref(std::string f);
+    Layout::Image& xref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Images::Image& xref(Callable&& c);
+    Layout::Image& xref(Callable&& c);
 
     // Sets the image's y position. When `yref` is set to `paper`, units are sized relative to the plot height. See
     // `yref` for more info
     template <typename T>
-    Layout::Images::Image& y(T f);
+    Layout::Image& y(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Images::Image& y(Callable&& c);
+    Layout::Image& y(Callable&& c);
 
     // Sets the anchor for the y position.
     // - Default: top
-    Layout::Images::Image& yanchor(enum Yanchor f);
+    Layout::Image& yanchor(enum Yanchor f);
 
     // Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y
     // coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in
@@ -3203,9 +3162,9 @@ class Layout::Images::Image {
     // of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the
     // second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the
     // second y axis.
-    Layout::Images::Image& yref(std::string f);
+    Layout::Image& yref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Images::Image& yref(Callable&& c);
+    Layout::Image& yref(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -3753,7 +3712,7 @@ class Layout::Map {
     class Bounds;
     class Center;
     class Domain;
-    class Layers;
+    class Layer;
 
     // Sets the bearing angle of the map in degrees counter-clockwise from North (map.bearing).
     Layout::Map& bearing(double f);
@@ -3772,9 +3731,10 @@ class Layout::Map {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Domain&>>>
     Layout::Map& domain(Callable&& c);
 
-    Layout::Map& layers(Layers f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Layers&>>>
+    Layout::Map& layers(Layer f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Layer&>>>
     Layout::Map& layers(Callable&& c);
+    Layout::Map& layers(const std::vector<Layer>& f);
 
     // Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the surface of the map)
     // (map.pitch).
@@ -3892,23 +3852,7 @@ class Layout::Map::Domain {
     Json json{};
 };
 
-class Layout::Map::Layers {
- public:
-    Layers() = default;
-    Layers(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Layer;
-
-    Layout::Map::Layers& layer(Layer f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Layer&>>>
-    Layout::Map::Layers& layer(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Map::Layers::Layer {
+class Layout::Map::Layer {
  public:
     Layer() = default;
     Layer(std::string jsonStr)
@@ -3938,101 +3882,101 @@ class Layout::Map::Layers::Layer {
 
     // Determines if the layer will be inserted before the layer with the specified ID. If omitted or set to '', the
     // layer will be inserted above every existing layer.
-    Layout::Map::Layers::Layer& below(std::string f);
+    Layout::Map::Layer& below(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer& below(Callable&& c);
+    Layout::Map::Layer& below(Callable&& c);
 
-    Layout::Map::Layers::Layer& circle(Circle f);
+    Layout::Map::Layer& circle(Circle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Circle&>>>
-    Layout::Map::Layers::Layer& circle(Callable&& c);
+    Layout::Map::Layer& circle(Callable&& c);
 
     // Sets the primary layer color. If `type` is *circle*, color corresponds to the circle color
     // (map.layer.paint.circle-color) If `type` is *line*, color corresponds to the line color
     // (map.layer.paint.line-color) If `type` is *fill*, color corresponds to the fill color
     // (map.layer.paint.fill-color) If `type` is *symbol*, color corresponds to the icon color
     // (map.layer.paint.icon-color)
-    Layout::Map::Layers::Layer& color(std::string f);
+    Layout::Map::Layer& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer& color(Callable&& c);
+    Layout::Map::Layer& color(Callable&& c);
 
     // Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order:
     // top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     template <typename T>
-    Layout::Map::Layers::Layer& coordinates(T f);
+    Layout::Map::Layer& coordinates(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Map::Layers::Layer& coordinates(Callable&& c);
+    Layout::Map::Layer& coordinates(Callable&& c);
 
-    Layout::Map::Layers::Layer& fill(Fill f);
+    Layout::Map::Layer& fill(Fill f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Fill&>>>
-    Layout::Map::Layers::Layer& fill(Callable&& c);
+    Layout::Map::Layer& fill(Callable&& c);
 
-    Layout::Map::Layers::Layer& line(Line f);
+    Layout::Map::Layer& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
-    Layout::Map::Layers::Layer& line(Callable&& c);
+    Layout::Map::Layer& line(Callable&& c);
 
     // Sets the maximum zoom level (map.layer.maxzoom). At zoom levels equal to or greater than the maxzoom, the layer
     // will be hidden.
-    Layout::Map::Layers::Layer& maxzoom(double f);
+    Layout::Map::Layer& maxzoom(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer& maxzoom(Callable&& c);
+    Layout::Map::Layer& maxzoom(Callable&& c);
 
     // Sets the minimum zoom level (map.layer.minzoom). At zoom levels less than the minzoom, the layer will be hidden.
-    Layout::Map::Layers::Layer& minzoom(double f);
+    Layout::Map::Layer& minzoom(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer& minzoom(Callable&& c);
+    Layout::Map::Layer& minzoom(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Map::Layers::Layer& name(std::string f);
+    Layout::Map::Layer& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer& name(Callable&& c);
+    Layout::Map::Layer& name(Callable&& c);
 
     // Sets the opacity of the layer. If `type` is *circle*, opacity corresponds to the circle opacity
     // (map.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity
     // (map.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity
     // (map.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text opacity
     // (map.layer.paint.text-opacity)
-    Layout::Map::Layers::Layer& opacity(double f);
+    Layout::Map::Layer& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer& opacity(Callable&& c);
+    Layout::Map::Layer& opacity(Callable&& c);
 
     // Sets the source data for this layer (map.layer.source). When `sourcetype` is set to *geojson*, `source` can be a
     // URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or
     // an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
     template <typename T>
-    Layout::Map::Layers::Layer& source(T f);
+    Layout::Map::Layer& source(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Map::Layers::Layer& source(Callable&& c);
+    Layout::Map::Layer& source(Callable&& c);
 
     // Sets the attribution for this source.
-    Layout::Map::Layers::Layer& sourceattribution(std::string f);
+    Layout::Map::Layer& sourceattribution(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer& sourceattribution(Callable&& c);
+    Layout::Map::Layer& sourceattribution(Callable&& c);
 
     // Specifies the layer to use from a vector tile source (map.layer.source-layer). Required for *vector* source type
     // that supports multiple layers.
-    Layout::Map::Layers::Layer& sourcelayer(std::string f);
+    Layout::Map::Layer& sourcelayer(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer& sourcelayer(Callable&& c);
+    Layout::Map::Layer& sourcelayer(Callable&& c);
 
     // Sets the source type for this layer, that is the type of the layer data.
     // - Default: geojson
-    Layout::Map::Layers::Layer& sourcetype(enum Sourcetype f);
+    Layout::Map::Layer& sourcetype(enum Sourcetype f);
 
-    Layout::Map::Layers::Layer& symbol(Symbol f);
+    Layout::Map::Layer& symbol(Symbol f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Symbol&>>>
-    Layout::Map::Layers::Layer& symbol(Callable&& c);
+    Layout::Map::Layer& symbol(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Map::Layers::Layer& templateitemname(std::string f);
+    Layout::Map::Layer& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer& templateitemname(Callable&& c);
+    Layout::Map::Layer& templateitemname(Callable&& c);
 
     // Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to
     // *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. but note that *line* and
@@ -4040,33 +3984,33 @@ class Layout::Map::Layers::Layer {
     // are allowed:  *circle*, *line*, *fill* and *symbol*. With `sourcetype` set to *raster* or `*image*`, only the
     // *raster* value is allowed.
     // - Default: circle
-    Layout::Map::Layers::Layer& type(enum Type f);
+    Layout::Map::Layer& type(enum Type f);
 
     // Determines whether this layer is displayed
-    Layout::Map::Layers::Layer& visible(bool f);
+    Layout::Map::Layer& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Map::Layers::Layer& visible(Callable&& c);
+    Layout::Map::Layer& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Map::Layers::Layer::Circle {
+class Layout::Map::Layer::Circle {
  public:
     Circle() = default;
     Circle(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the circle radius (map.layer.paint.circle-radius). Has an effect only when `type` is set to *circle*.
-    Layout::Map::Layers::Layer::Circle& radius(double f);
+    Layout::Map::Layer::Circle& radius(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer::Circle& radius(Callable&& c);
+    Layout::Map::Layer::Circle& radius(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Map::Layers::Layer::Fill {
+class Layout::Map::Layer::Fill {
  public:
     Fill() = default;
     Fill(std::string jsonStr)
@@ -4074,15 +4018,15 @@ class Layout::Map::Layers::Layer::Fill {
 
     // Sets the fill outline color (map.layer.paint.fill-outline-color). Has an effect only when `type` is set to
     // *fill*.
-    Layout::Map::Layers::Layer::Fill& outlinecolor(std::string f);
+    Layout::Map::Layer::Fill& outlinecolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer::Fill& outlinecolor(Callable&& c);
+    Layout::Map::Layer::Fill& outlinecolor(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Map::Layers::Layer::Line {
+class Layout::Map::Layer::Line {
  public:
     Line() = default;
     Line(std::string jsonStr)
@@ -4091,27 +4035,27 @@ class Layout::Map::Layers::Layer::Line {
     // Sets the length of dashes and gaps (map.layer.paint.line-dasharray). Has an effect only when `type` is set to
     // *line*.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Layout::Map::Layers::Layer::Line& dash(const std::vector<T>& f);
+    Layout::Map::Layer::Line& dash(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Layout::Map::Layers::Layer::Line& dash(Callable&& c);
+    Layout::Map::Layer::Line& dash(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `dash`.
-    Layout::Map::Layers::Layer::Line& dashsrc(std::string f);
+    Layout::Map::Layer::Line& dashsrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer::Line& dashsrc(Callable&& c);
+    Layout::Map::Layer::Line& dashsrc(Callable&& c);
 
     // Sets the line width (map.layer.paint.line-width). Has an effect only when `type` is set to *line*.
-    Layout::Map::Layers::Layer::Line& width(double f);
+    Layout::Map::Layer::Line& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer::Line& width(Callable&& c);
+    Layout::Map::Layer::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Map::Layers::Layer::Symbol {
+class Layout::Map::Layer::Symbol {
  public:
     Symbol() = default;
     Symbol(std::string jsonStr)
@@ -4142,35 +4086,35 @@ class Layout::Map::Layers::Layer::Symbol {
     class Textfont;
 
     // Sets the symbol icon image (map.layer.layout.icon-image). Full list: https://www.map.com/maki-icons/
-    Layout::Map::Layers::Layer::Symbol& icon(std::string f);
+    Layout::Map::Layer::Symbol& icon(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer::Symbol& icon(Callable&& c);
+    Layout::Map::Layer::Symbol& icon(Callable&& c);
 
     // Sets the symbol icon size (map.layer.layout.icon-size). Has an effect only when `type` is set to *symbol*.
-    Layout::Map::Layers::Layer::Symbol& iconsize(double f);
+    Layout::Map::Layer::Symbol& iconsize(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer::Symbol& iconsize(Callable&& c);
+    Layout::Map::Layer::Symbol& iconsize(Callable&& c);
 
     // Sets the symbol and/or text placement (map.layer.layout.symbol-placement). If `placement` is *point*, the label
     // is placed where the geometry is located If `placement` is *line*, the label is placed along the line of the
     // geometry If `placement` is *line-center*, the label is placed on the center of the geometry
     // - Default: point
-    Layout::Map::Layers::Layer::Symbol& placement(enum Placement f);
+    Layout::Map::Layer::Symbol& placement(enum Placement f);
 
     // Sets the symbol text (map.layer.layout.text-field).
-    Layout::Map::Layers::Layer::Symbol& text(std::string f);
+    Layout::Map::Layer::Symbol& text(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer::Symbol& text(Callable&& c);
+    Layout::Map::Layer::Symbol& text(Callable&& c);
 
     // Sets the icon text font (color=map.layer.paint.text-color, size=map.layer.layout.text-size). Has an effect only
     // when `type` is set to *symbol*.
-    Layout::Map::Layers::Layer::Symbol& textfont(Textfont f);
+    Layout::Map::Layer::Symbol& textfont(Textfont f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Textfont&>>>
-    Layout::Map::Layers::Layer::Symbol& textfont(Callable&& c);
+    Layout::Map::Layer::Symbol& textfont(Callable&& c);
 
     // Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     // - Default: middle center
-    Layout::Map::Layers::Layer::Symbol& textposition(enum Textposition f);
+    Layout::Map::Layer::Symbol& textposition(enum Textposition f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -4178,7 +4122,7 @@ class Layout::Map::Layers::Layer::Symbol {
 
 // Sets the icon text font (color=map.layer.paint.text-color, size=map.layer.layout.text-size). Has an effect only when
 // `type` is set to *symbol*.
-class Layout::Map::Layers::Layer::Symbol::Textfont {
+class Layout::Map::Layer::Symbol::Textfont {
  public:
     Textfont() = default;
     Textfont(std::string jsonStr)
@@ -4190,9 +4134,9 @@ class Layout::Map::Layers::Layer::Symbol::Textfont {
     };
     static std::string to_string(Style e);
 
-    Layout::Map::Layers::Layer::Symbol::Textfont& color(std::string f);
+    Layout::Map::Layer::Symbol::Textfont& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer::Symbol::Textfont& color(Callable&& c);
+    Layout::Map::Layer::Symbol::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -4201,22 +4145,22 @@ class Layout::Map::Layers::Layer::Symbol::Textfont {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Map::Layers::Layer::Symbol::Textfont& family(std::string f);
+    Layout::Map::Layer::Symbol::Textfont& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Map::Layers::Layer::Symbol::Textfont& family(Callable&& c);
+    Layout::Map::Layer::Symbol::Textfont& family(Callable&& c);
 
-    Layout::Map::Layers::Layer::Symbol::Textfont& size(double f);
+    Layout::Map::Layer::Symbol::Textfont& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Map::Layers::Layer::Symbol::Textfont& size(Callable&& c);
+    Layout::Map::Layer::Symbol::Textfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Map::Layers::Layer::Symbol::Textfont& style(enum Style f);
+    Layout::Map::Layer::Symbol::Textfont& style(enum Style f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Map::Layers::Layer::Symbol::Textfont& weight(int f);
+    Layout::Map::Layer::Symbol::Textfont& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Map::Layers::Layer::Symbol::Textfont& weight(Callable&& c);
+    Layout::Map::Layer::Symbol::Textfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -4231,7 +4175,7 @@ class Layout::Mapbox {
     class Bounds;
     class Center;
     class Domain;
-    class Layers;
+    class Layer;
 
     // Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in
     // the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g
@@ -4258,9 +4202,10 @@ class Layout::Mapbox {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Domain&>>>
     Layout::Mapbox& domain(Callable&& c);
 
-    Layout::Mapbox& layers(Layers f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Layers&>>>
+    Layout::Mapbox& layers(Layer f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Layer&>>>
     Layout::Mapbox& layers(Callable&& c);
+    Layout::Mapbox& layers(const std::vector<Layer>& f);
 
     // Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the surface of the map)
     // (mapbox.pitch).
@@ -4380,23 +4325,7 @@ class Layout::Mapbox::Domain {
     Json json{};
 };
 
-class Layout::Mapbox::Layers {
- public:
-    Layers() = default;
-    Layers(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Layer;
-
-    Layout::Mapbox::Layers& layer(Layer f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Layer&>>>
-    Layout::Mapbox::Layers& layer(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Mapbox::Layers::Layer {
+class Layout::Mapbox::Layer {
  public:
     Layer() = default;
     Layer(std::string jsonStr)
@@ -4426,102 +4355,102 @@ class Layout::Mapbox::Layers::Layer {
 
     // Determines if the layer will be inserted before the layer with the specified ID. If omitted or set to '', the
     // layer will be inserted above every existing layer.
-    Layout::Mapbox::Layers::Layer& below(std::string f);
+    Layout::Mapbox::Layer& below(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer& below(Callable&& c);
+    Layout::Mapbox::Layer& below(Callable&& c);
 
-    Layout::Mapbox::Layers::Layer& circle(Circle f);
+    Layout::Mapbox::Layer& circle(Circle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Circle&>>>
-    Layout::Mapbox::Layers::Layer& circle(Callable&& c);
+    Layout::Mapbox::Layer& circle(Callable&& c);
 
     // Sets the primary layer color. If `type` is *circle*, color corresponds to the circle color
     // (mapbox.layer.paint.circle-color) If `type` is *line*, color corresponds to the line color
     // (mapbox.layer.paint.line-color) If `type` is *fill*, color corresponds to the fill color
     // (mapbox.layer.paint.fill-color) If `type` is *symbol*, color corresponds to the icon color
     // (mapbox.layer.paint.icon-color)
-    Layout::Mapbox::Layers::Layer& color(std::string f);
+    Layout::Mapbox::Layer& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer& color(Callable&& c);
+    Layout::Mapbox::Layer& color(Callable&& c);
 
     // Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order:
     // top left, top right, bottom right, bottom left. Only has an effect for *image* `sourcetype`.
     template <typename T>
-    Layout::Mapbox::Layers::Layer& coordinates(T f);
+    Layout::Mapbox::Layer& coordinates(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Mapbox::Layers::Layer& coordinates(Callable&& c);
+    Layout::Mapbox::Layer& coordinates(Callable&& c);
 
-    Layout::Mapbox::Layers::Layer& fill(Fill f);
+    Layout::Mapbox::Layer& fill(Fill f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Fill&>>>
-    Layout::Mapbox::Layers::Layer& fill(Callable&& c);
+    Layout::Mapbox::Layer& fill(Callable&& c);
 
-    Layout::Mapbox::Layers::Layer& line(Line f);
+    Layout::Mapbox::Layer& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
-    Layout::Mapbox::Layers::Layer& line(Callable&& c);
+    Layout::Mapbox::Layer& line(Callable&& c);
 
     // Sets the maximum zoom level (mapbox.layer.maxzoom). At zoom levels equal to or greater than the maxzoom, the
     // layer will be hidden.
-    Layout::Mapbox::Layers::Layer& maxzoom(double f);
+    Layout::Mapbox::Layer& maxzoom(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer& maxzoom(Callable&& c);
+    Layout::Mapbox::Layer& maxzoom(Callable&& c);
 
     // Sets the minimum zoom level (mapbox.layer.minzoom). At zoom levels less than the minzoom, the layer will be
     // hidden.
-    Layout::Mapbox::Layers::Layer& minzoom(double f);
+    Layout::Mapbox::Layer& minzoom(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer& minzoom(Callable&& c);
+    Layout::Mapbox::Layer& minzoom(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Mapbox::Layers::Layer& name(std::string f);
+    Layout::Mapbox::Layer& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer& name(Callable&& c);
+    Layout::Mapbox::Layer& name(Callable&& c);
 
     // Sets the opacity of the layer. If `type` is *circle*, opacity corresponds to the circle opacity
     // (mapbox.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity
     // (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity
     // (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text opacity
     // (mapbox.layer.paint.text-opacity)
-    Layout::Mapbox::Layers::Layer& opacity(double f);
+    Layout::Mapbox::Layer& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer& opacity(Callable&& c);
+    Layout::Mapbox::Layer& opacity(Callable&& c);
 
     // Sets the source data for this layer (mapbox.layer.source). When `sourcetype` is set to *geojson*, `source` can be
     // a URL to a GeoJSON or a GeoJSON object. When `sourcetype` is set to *vector* or *raster*, `source` can be a URL
     // or an array of tile URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
     template <typename T>
-    Layout::Mapbox::Layers::Layer& source(T f);
+    Layout::Mapbox::Layer& source(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Mapbox::Layers::Layer& source(Callable&& c);
+    Layout::Mapbox::Layer& source(Callable&& c);
 
     // Sets the attribution for this source.
-    Layout::Mapbox::Layers::Layer& sourceattribution(std::string f);
+    Layout::Mapbox::Layer& sourceattribution(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer& sourceattribution(Callable&& c);
+    Layout::Mapbox::Layer& sourceattribution(Callable&& c);
 
     // Specifies the layer to use from a vector tile source (mapbox.layer.source-layer). Required for *vector* source
     // type that supports multiple layers.
-    Layout::Mapbox::Layers::Layer& sourcelayer(std::string f);
+    Layout::Mapbox::Layer& sourcelayer(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer& sourcelayer(Callable&& c);
+    Layout::Mapbox::Layer& sourcelayer(Callable&& c);
 
     // Sets the source type for this layer, that is the type of the layer data.
     // - Default: geojson
-    Layout::Mapbox::Layers::Layer& sourcetype(enum Sourcetype f);
+    Layout::Mapbox::Layer& sourcetype(enum Sourcetype f);
 
-    Layout::Mapbox::Layers::Layer& symbol(Symbol f);
+    Layout::Mapbox::Layer& symbol(Symbol f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Symbol&>>>
-    Layout::Mapbox::Layers::Layer& symbol(Callable&& c);
+    Layout::Mapbox::Layer& symbol(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Mapbox::Layers::Layer& templateitemname(std::string f);
+    Layout::Mapbox::Layer& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer& templateitemname(Callable&& c);
+    Layout::Mapbox::Layer& templateitemname(Callable&& c);
 
     // Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to
     // *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. but note that *line* and
@@ -4529,33 +4458,33 @@ class Layout::Mapbox::Layers::Layer {
     // are allowed:  *circle*, *line*, *fill* and *symbol*. With `sourcetype` set to *raster* or `*image*`, only the
     // *raster* value is allowed.
     // - Default: circle
-    Layout::Mapbox::Layers::Layer& type(enum Type f);
+    Layout::Mapbox::Layer& type(enum Type f);
 
     // Determines whether this layer is displayed
-    Layout::Mapbox::Layers::Layer& visible(bool f);
+    Layout::Mapbox::Layer& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Mapbox::Layers::Layer& visible(Callable&& c);
+    Layout::Mapbox::Layer& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Mapbox::Layers::Layer::Circle {
+class Layout::Mapbox::Layer::Circle {
  public:
     Circle() = default;
     Circle(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the circle radius (mapbox.layer.paint.circle-radius). Has an effect only when `type` is set to *circle*.
-    Layout::Mapbox::Layers::Layer::Circle& radius(double f);
+    Layout::Mapbox::Layer::Circle& radius(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer::Circle& radius(Callable&& c);
+    Layout::Mapbox::Layer::Circle& radius(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Mapbox::Layers::Layer::Fill {
+class Layout::Mapbox::Layer::Fill {
  public:
     Fill() = default;
     Fill(std::string jsonStr)
@@ -4563,15 +4492,15 @@ class Layout::Mapbox::Layers::Layer::Fill {
 
     // Sets the fill outline color (mapbox.layer.paint.fill-outline-color). Has an effect only when `type` is set to
     // *fill*.
-    Layout::Mapbox::Layers::Layer::Fill& outlinecolor(std::string f);
+    Layout::Mapbox::Layer::Fill& outlinecolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer::Fill& outlinecolor(Callable&& c);
+    Layout::Mapbox::Layer::Fill& outlinecolor(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Mapbox::Layers::Layer::Line {
+class Layout::Mapbox::Layer::Line {
  public:
     Line() = default;
     Line(std::string jsonStr)
@@ -4580,27 +4509,27 @@ class Layout::Mapbox::Layers::Layer::Line {
     // Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). Has an effect only when `type` is set to
     // *line*.
     template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Layout::Mapbox::Layers::Layer::Line& dash(const std::vector<T>& f);
+    Layout::Mapbox::Layer::Line& dash(const std::vector<T>& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Layout::Mapbox::Layers::Layer::Line& dash(Callable&& c);
+    Layout::Mapbox::Layer::Line& dash(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `dash`.
-    Layout::Mapbox::Layers::Layer::Line& dashsrc(std::string f);
+    Layout::Mapbox::Layer::Line& dashsrc(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer::Line& dashsrc(Callable&& c);
+    Layout::Mapbox::Layer::Line& dashsrc(Callable&& c);
 
     // Sets the line width (mapbox.layer.paint.line-width). Has an effect only when `type` is set to *line*.
-    Layout::Mapbox::Layers::Layer::Line& width(double f);
+    Layout::Mapbox::Layer::Line& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer::Line& width(Callable&& c);
+    Layout::Mapbox::Layer::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Mapbox::Layers::Layer::Symbol {
+class Layout::Mapbox::Layer::Symbol {
  public:
     Symbol() = default;
     Symbol(std::string jsonStr)
@@ -4631,35 +4560,35 @@ class Layout::Mapbox::Layers::Layer::Symbol {
     class Textfont;
 
     // Sets the symbol icon image (mapbox.layer.layout.icon-image). Full list: https://www.mapbox.com/maki-icons/
-    Layout::Mapbox::Layers::Layer::Symbol& icon(std::string f);
+    Layout::Mapbox::Layer::Symbol& icon(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer::Symbol& icon(Callable&& c);
+    Layout::Mapbox::Layer::Symbol& icon(Callable&& c);
 
     // Sets the symbol icon size (mapbox.layer.layout.icon-size). Has an effect only when `type` is set to *symbol*.
-    Layout::Mapbox::Layers::Layer::Symbol& iconsize(double f);
+    Layout::Mapbox::Layer::Symbol& iconsize(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer::Symbol& iconsize(Callable&& c);
+    Layout::Mapbox::Layer::Symbol& iconsize(Callable&& c);
 
     // Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). If `placement` is *point*, the
     // label is placed where the geometry is located If `placement` is *line*, the label is placed along the line of the
     // geometry If `placement` is *line-center*, the label is placed on the center of the geometry
     // - Default: point
-    Layout::Mapbox::Layers::Layer::Symbol& placement(enum Placement f);
+    Layout::Mapbox::Layer::Symbol& placement(enum Placement f);
 
     // Sets the symbol text (mapbox.layer.layout.text-field).
-    Layout::Mapbox::Layers::Layer::Symbol& text(std::string f);
+    Layout::Mapbox::Layer::Symbol& text(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer::Symbol& text(Callable&& c);
+    Layout::Mapbox::Layer::Symbol& text(Callable&& c);
 
     // Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect
     // only when `type` is set to *symbol*.
-    Layout::Mapbox::Layers::Layer::Symbol& textfont(Textfont f);
+    Layout::Mapbox::Layer::Symbol& textfont(Textfont f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Textfont&>>>
-    Layout::Mapbox::Layers::Layer::Symbol& textfont(Callable&& c);
+    Layout::Mapbox::Layer::Symbol& textfont(Callable&& c);
 
     // Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     // - Default: middle center
-    Layout::Mapbox::Layers::Layer::Symbol& textposition(enum Textposition f);
+    Layout::Mapbox::Layer::Symbol& textposition(enum Textposition f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -4667,7 +4596,7 @@ class Layout::Mapbox::Layers::Layer::Symbol {
 
 // Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect only
 // when `type` is set to *symbol*.
-class Layout::Mapbox::Layers::Layer::Symbol::Textfont {
+class Layout::Mapbox::Layer::Symbol::Textfont {
  public:
     Textfont() = default;
     Textfont(std::string jsonStr)
@@ -4679,9 +4608,9 @@ class Layout::Mapbox::Layers::Layer::Symbol::Textfont {
     };
     static std::string to_string(Style e);
 
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& color(std::string f);
+    Layout::Mapbox::Layer::Symbol::Textfont& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& color(Callable&& c);
+    Layout::Mapbox::Layer::Symbol::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -4690,22 +4619,22 @@ class Layout::Mapbox::Layers::Layer::Symbol::Textfont {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& family(std::string f);
+    Layout::Mapbox::Layer::Symbol::Textfont& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& family(Callable&& c);
+    Layout::Mapbox::Layer::Symbol::Textfont& family(Callable&& c);
 
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& size(double f);
+    Layout::Mapbox::Layer::Symbol::Textfont& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& size(Callable&& c);
+    Layout::Mapbox::Layer::Symbol::Textfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& style(enum Style f);
+    Layout::Mapbox::Layer::Symbol::Textfont& style(enum Style f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& weight(int f);
+    Layout::Mapbox::Layer::Symbol::Textfont& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Mapbox::Layers::Layer::Symbol::Textfont& weight(Callable&& c);
+    Layout::Mapbox::Layer::Symbol::Textfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -5492,7 +5421,7 @@ class Layout::Polar::Angularaxis {
 
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
 
     // Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric
     // string in trace data may be treated as a number during automatic axis `type` detection. Defaults to
@@ -5707,9 +5636,10 @@ class Layout::Polar::Angularaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Polar::Angularaxis& tickformat(Callable&& c);
 
-    Layout::Polar::Angularaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Polar::Angularaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Polar::Angularaxis& tickformatstops(Callable&& c);
+    Layout::Polar::Angularaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each
     // tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is
@@ -5885,23 +5815,7 @@ class Layout::Polar::Angularaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Polar::Angularaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Polar::Angularaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Polar::Angularaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop {
+class Layout::Polar::Angularaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -5909,36 +5823,36 @@ class Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Polar::Angularaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Polar::Angularaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Polar::Angularaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Polar::Angularaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Polar::Angularaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Polar::Angularaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Polar::Angularaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Polar::Angularaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Polar::Angularaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Polar::Angularaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Polar::Angularaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -6117,7 +6031,7 @@ class Layout::Polar::Radialaxis {
     class Autorangeoptions;
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the angle (in degrees) from which the radial axis is drawn. Note that by default, radial axis line on the
@@ -6374,9 +6288,10 @@ class Layout::Polar::Radialaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Polar::Radialaxis& tickformat(Callable&& c);
 
-    Layout::Polar::Radialaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Polar::Radialaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Polar::Radialaxis& tickformatstops(Callable&& c);
+    Layout::Polar::Radialaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each
     // tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is
@@ -6606,23 +6521,7 @@ class Layout::Polar::Radialaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Polar::Radialaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Polar::Radialaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Polar::Radialaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop {
+class Layout::Polar::Radialaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -6630,36 +6529,36 @@ class Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Polar::Radialaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Polar::Radialaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Polar::Radialaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Polar::Radialaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Polar::Radialaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Polar::Radialaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Polar::Radialaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Polar::Radialaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Polar::Radialaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Polar::Radialaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Polar::Radialaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -6804,7 +6703,7 @@ class Layout::Scene {
     };
     static std::string to_string(Hovermode e);
 
-    class Annotations;
+    class Annotation;
     // Sets this scene's axis aspectratio.
     class Aspectratio;
     class Camera;
@@ -6813,9 +6712,10 @@ class Layout::Scene {
     class Yaxis;
     class Zaxis;
 
-    Layout::Scene& annotations(Annotations f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Annotations&>>>
+    Layout::Scene& annotations(Annotation f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Annotation&>>>
     Layout::Scene& annotations(Callable&& c);
+    Layout::Scene& annotations(const std::vector<Annotation>& f);
 
     // If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges. If *data*, this scene's axes
     // are drawn in proportion with the axes' ranges. If *manual*, this scene's axes are drawn in proportion with the
@@ -6871,23 +6771,7 @@ class Layout::Scene {
     Json json{};
 };
 
-class Layout::Scene::Annotations {
- public:
-    Annotations() = default;
-    Annotations(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Annotation;
-
-    Layout::Scene::Annotations& annotation(Annotation f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Annotation&>>>
-    Layout::Scene::Annotations& annotation(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Scene::Annotations::Annotation {
+class Layout::Scene::Annotation {
  public:
     Annotation() = default;
     Annotation(std::string jsonStr)
@@ -6930,181 +6814,181 @@ class Layout::Scene::Annotations::Annotation {
     // Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans two or more lines
     // (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
     // - Default: center
-    Layout::Scene::Annotations::Annotation& align(enum Align f);
+    Layout::Scene::Annotation& align(enum Align f);
 
     // Sets the color of the annotation arrow.
-    Layout::Scene::Annotations::Annotation& arrowcolor(std::string f);
+    Layout::Scene::Annotation& arrowcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& arrowcolor(Callable&& c);
+    Layout::Scene::Annotation& arrowcolor(Callable&& c);
 
     // Sets the end annotation arrow head style.
-    Layout::Scene::Annotations::Annotation& arrowhead(int f);
+    Layout::Scene::Annotation& arrowhead(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Scene::Annotations::Annotation& arrowhead(Callable&& c);
+    Layout::Scene::Annotation& arrowhead(Callable&& c);
 
     // Sets the annotation arrow head position.
     // - Default: end
     // - Flags: ['end', 'start']
     // - Extras ['none']
-    Layout::Scene::Annotations::Annotation& arrowside(std::string f);
+    Layout::Scene::Annotation& arrowside(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& arrowside(Callable&& c);
+    Layout::Scene::Annotation& arrowside(Callable&& c);
 
     // Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head
     // about 3x as wide as the line.
-    Layout::Scene::Annotations::Annotation& arrowsize(double f);
+    Layout::Scene::Annotation& arrowsize(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& arrowsize(Callable&& c);
+    Layout::Scene::Annotation& arrowsize(Callable&& c);
 
     // Sets the width (in px) of annotation arrow line.
-    Layout::Scene::Annotations::Annotation& arrowwidth(double f);
+    Layout::Scene::Annotation& arrowwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& arrowwidth(Callable&& c);
+    Layout::Scene::Annotation& arrowwidth(Callable&& c);
 
     // Sets the x component of the arrow tail about the arrow head (in pixels).
-    Layout::Scene::Annotations::Annotation& ax(double f);
+    Layout::Scene::Annotation& ax(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& ax(Callable&& c);
+    Layout::Scene::Annotation& ax(Callable&& c);
 
     // Sets the y component of the arrow tail about the arrow head (in pixels).
-    Layout::Scene::Annotations::Annotation& ay(double f);
+    Layout::Scene::Annotation& ay(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& ay(Callable&& c);
+    Layout::Scene::Annotation& ay(Callable&& c);
 
     // Sets the background color of the annotation.
-    Layout::Scene::Annotations::Annotation& bgcolor(std::string f);
+    Layout::Scene::Annotation& bgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& bgcolor(Callable&& c);
+    Layout::Scene::Annotation& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the annotation `text`.
-    Layout::Scene::Annotations::Annotation& bordercolor(std::string f);
+    Layout::Scene::Annotation& bordercolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& bordercolor(Callable&& c);
+    Layout::Scene::Annotation& bordercolor(Callable&& c);
 
     // Sets the padding (in px) between the `text` and the enclosing border.
-    Layout::Scene::Annotations::Annotation& borderpad(double f);
+    Layout::Scene::Annotation& borderpad(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& borderpad(Callable&& c);
+    Layout::Scene::Annotation& borderpad(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the annotation `text`.
-    Layout::Scene::Annotations::Annotation& borderwidth(double f);
+    Layout::Scene::Annotation& borderwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& borderwidth(Callable&& c);
+    Layout::Scene::Annotation& borderwidth(Callable&& c);
 
     // Determines whether the annotation text box captures mouse move and click events, or allows those events to pass
     // through to data points in the plot that may be behind the annotation. By default `captureevents` is *false*
     // unless `hovertext` is provided. If you use the event `plotly_clickannotation` without `hovertext` you must
     // explicitly enable `captureevents`.
-    Layout::Scene::Annotations::Annotation& captureevents(bool f);
+    Layout::Scene::Annotation& captureevents(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Scene::Annotations::Annotation& captureevents(Callable&& c);
+    Layout::Scene::Annotation& captureevents(Callable&& c);
 
     // Sets the annotation text font.
-    Layout::Scene::Annotations::Annotation& font(Font f);
+    Layout::Scene::Annotation& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Scene::Annotations::Annotation& font(Callable&& c);
+    Layout::Scene::Annotation& font(Callable&& c);
 
     // Sets an explicit height for the text box. null (default) lets the text set the box height. Taller text will be
     // clipped.
-    Layout::Scene::Annotations::Annotation& height(double f);
+    Layout::Scene::Annotation& height(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& height(Callable&& c);
+    Layout::Scene::Annotation& height(Callable&& c);
 
-    Layout::Scene::Annotations::Annotation& hoverlabel(Hoverlabel f);
+    Layout::Scene::Annotation& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
-    Layout::Scene::Annotations::Annotation& hoverlabel(Callable&& c);
+    Layout::Scene::Annotation& hoverlabel(Callable&& c);
 
     // Sets text to appear when hovering over this annotation. If omitted or blank, no hover label will appear.
-    Layout::Scene::Annotations::Annotation& hovertext(std::string f);
+    Layout::Scene::Annotation& hovertext(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& hovertext(Callable&& c);
+    Layout::Scene::Annotation& hovertext(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Scene::Annotations::Annotation& name(std::string f);
+    Layout::Scene::Annotation& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& name(Callable&& c);
+    Layout::Scene::Annotation& name(Callable&& c);
 
     // Sets the opacity of the annotation (text + arrow).
-    Layout::Scene::Annotations::Annotation& opacity(double f);
+    Layout::Scene::Annotation& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& opacity(Callable&& c);
+    Layout::Scene::Annotation& opacity(Callable&& c);
 
     // Determines whether or not the annotation is drawn with an arrow. If *true*, `text` is placed near the arrow's
     // tail. If *false*, `text` lines up with the `x` and `y` provided.
-    Layout::Scene::Annotations::Annotation& showarrow(bool f);
+    Layout::Scene::Annotation& showarrow(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Scene::Annotations::Annotation& showarrow(Callable&& c);
+    Layout::Scene::Annotation& showarrow(Callable&& c);
 
     // Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to
     // point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector,
     // in contrast to `xshift` / `yshift` which moves everything by this amount.
-    Layout::Scene::Annotations::Annotation& standoff(double f);
+    Layout::Scene::Annotation& standoff(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& standoff(Callable&& c);
+    Layout::Scene::Annotation& standoff(Callable&& c);
 
     // Sets the start annotation arrow head style.
-    Layout::Scene::Annotations::Annotation& startarrowhead(int f);
+    Layout::Scene::Annotation& startarrowhead(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Scene::Annotations::Annotation& startarrowhead(Callable&& c);
+    Layout::Scene::Annotation& startarrowhead(Callable&& c);
 
     // Sets the size of the start annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head
     // about 3x as wide as the line.
-    Layout::Scene::Annotations::Annotation& startarrowsize(double f);
+    Layout::Scene::Annotation& startarrowsize(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& startarrowsize(Callable&& c);
+    Layout::Scene::Annotation& startarrowsize(Callable&& c);
 
     // Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to
     // point at the edge of a marker independent of zoom. Note that this shortens the arrow from the `ax` / `ay` vector,
     // in contrast to `xshift` / `yshift` which moves everything by this amount.
-    Layout::Scene::Annotations::Annotation& startstandoff(double f);
+    Layout::Scene::Annotation& startstandoff(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& startstandoff(Callable&& c);
+    Layout::Scene::Annotation& startstandoff(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Scene::Annotations::Annotation& templateitemname(std::string f);
+    Layout::Scene::Annotation& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& templateitemname(Callable&& c);
+    Layout::Scene::Annotation& templateitemname(Callable&& c);
 
     // Sets the text associated with this annotation. Plotly uses a subset of HTML tags to do things like newline
     // (<br>), bold (<b></b>), italics (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub>, <s>, <u>
     // <span> are also supported.
-    Layout::Scene::Annotations::Annotation& text(std::string f);
+    Layout::Scene::Annotation& text(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation& text(Callable&& c);
+    Layout::Scene::Annotation& text(Callable&& c);
 
     // Sets the angle at which the `text` is drawn with respect to the horizontal.
-    Layout::Scene::Annotations::Annotation& textangle(double f);
+    Layout::Scene::Annotation& textangle(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& textangle(Callable&& c);
+    Layout::Scene::Annotation& textangle(Callable&& c);
 
     // Sets the vertical alignment of the `text` within the box. Has an effect only if an explicit height is set to
     // override the text height.
     // - Default: middle
-    Layout::Scene::Annotations::Annotation& valign(enum Valign f);
+    Layout::Scene::Annotation& valign(enum Valign f);
 
     // Determines whether or not this annotation is visible.
-    Layout::Scene::Annotations::Annotation& visible(bool f);
+    Layout::Scene::Annotation& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Scene::Annotations::Annotation& visible(Callable&& c);
+    Layout::Scene::Annotation& visible(Callable&& c);
 
     // Sets an explicit width for the text box. null (default) lets the text set the box width. Wider text will be
     // clipped. There is no automatic wrapping; use <br> to start a new line.
-    Layout::Scene::Annotations::Annotation& width(double f);
+    Layout::Scene::Annotation& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& width(Callable&& c);
+    Layout::Scene::Annotation& width(Callable&& c);
 
     // Sets the annotation's x position.
     template <typename T>
-    Layout::Scene::Annotations::Annotation& x(T f);
+    Layout::Scene::Annotation& x(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Scene::Annotations::Annotation& x(Callable&& c);
+    Layout::Scene::Annotation& x(Callable&& c);
 
     // Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or
     // *right* of the annotation. For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the
@@ -7112,19 +6996,19 @@ class Layout::Scene::Annotations::Annotation {
     // anchor is equivalent to *center* for data-referenced annotations or if there is an arrow, whereas for
     // paper-referenced with no arrow, the anchor picked corresponds to the closest side.
     // - Default: auto
-    Layout::Scene::Annotations::Annotation& xanchor(enum Xanchor f);
+    Layout::Scene::Annotation& xanchor(enum Xanchor f);
 
     // Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many
     // pixels.
-    Layout::Scene::Annotations::Annotation& xshift(double f);
+    Layout::Scene::Annotation& xshift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& xshift(Callable&& c);
+    Layout::Scene::Annotation& xshift(Callable&& c);
 
     // Sets the annotation's y position.
     template <typename T>
-    Layout::Scene::Annotations::Annotation& y(T f);
+    Layout::Scene::Annotation& y(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Scene::Annotations::Annotation& y(Callable&& c);
+    Layout::Scene::Annotation& y(Callable&& c);
 
     // Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the annotation. For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the
@@ -7132,25 +7016,25 @@ class Layout::Scene::Annotations::Annotation {
     // equivalent to *middle* for data-referenced annotations or if there is an arrow, whereas for paper-referenced with
     // no arrow, the anchor picked corresponds to the closest side.
     // - Default: auto
-    Layout::Scene::Annotations::Annotation& yanchor(enum Yanchor f);
+    Layout::Scene::Annotation& yanchor(enum Yanchor f);
 
     // Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
-    Layout::Scene::Annotations::Annotation& yshift(double f);
+    Layout::Scene::Annotation& yshift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation& yshift(Callable&& c);
+    Layout::Scene::Annotation& yshift(Callable&& c);
 
     // Sets the annotation's z position.
     template <typename T>
-    Layout::Scene::Annotations::Annotation& z(T f);
+    Layout::Scene::Annotation& z(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Scene::Annotations::Annotation& z(Callable&& c);
+    Layout::Scene::Annotation& z(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the annotation text font.
-class Layout::Scene::Annotations::Annotation::Font {
+class Layout::Scene::Annotation::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -7180,9 +7064,9 @@ class Layout::Scene::Annotations::Annotation::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Scene::Annotations::Annotation::Font& color(std::string f);
+    Layout::Scene::Annotation::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Font& color(Callable&& c);
+    Layout::Scene::Annotation::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -7191,52 +7075,52 @@ class Layout::Scene::Annotations::Annotation::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Scene::Annotations::Annotation::Font& family(std::string f);
+    Layout::Scene::Annotation::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Font& family(Callable&& c);
+    Layout::Scene::Annotation::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Annotations::Annotation::Font& lineposition(std::string f);
+    Layout::Scene::Annotation::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Font& lineposition(Callable&& c);
+    Layout::Scene::Annotation::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Scene::Annotations::Annotation::Font& shadow(std::string f);
+    Layout::Scene::Annotation::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Font& shadow(Callable&& c);
+    Layout::Scene::Annotation::Font& shadow(Callable&& c);
 
-    Layout::Scene::Annotations::Annotation::Font& size(double f);
+    Layout::Scene::Annotation::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation::Font& size(Callable&& c);
+    Layout::Scene::Annotation::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Scene::Annotations::Annotation::Font& style(enum Style f);
+    Layout::Scene::Annotation::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Scene::Annotations::Annotation::Font& textcase(enum Textcase f);
+    Layout::Scene::Annotation::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Scene::Annotations::Annotation::Font& variant(enum Variant f);
+    Layout::Scene::Annotation::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Scene::Annotations::Annotation::Font& weight(int f);
+    Layout::Scene::Annotation::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Scene::Annotations::Annotation::Font& weight(Callable&& c);
+    Layout::Scene::Annotation::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Scene::Annotations::Annotation::Hoverlabel {
+class Layout::Scene::Annotation::Hoverlabel {
  public:
     Hoverlabel() = default;
     Hoverlabel(std::string jsonStr)
@@ -7248,21 +7132,21 @@ class Layout::Scene::Annotations::Annotation::Hoverlabel {
 
     // Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if
     // it was transparent.
-    Layout::Scene::Annotations::Annotation::Hoverlabel& bgcolor(std::string f);
+    Layout::Scene::Annotation::Hoverlabel& bgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel& bgcolor(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel& bgcolor(Callable&& c);
 
     // Sets the border color of the hover label. By default uses either dark grey or white, for maximum contrast with
     // `hoverlabel.bgcolor`.
-    Layout::Scene::Annotations::Annotation::Hoverlabel& bordercolor(std::string f);
+    Layout::Scene::Annotation::Hoverlabel& bordercolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel& bordercolor(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel& bordercolor(Callable&& c);
 
     // Sets the hover label text font. By default uses the global hover font and size, with color from
     // `hoverlabel.bordercolor`.
-    Layout::Scene::Annotations::Annotation::Hoverlabel& font(Font f);
+    Layout::Scene::Annotation::Hoverlabel& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel& font(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel& font(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -7270,7 +7154,7 @@ class Layout::Scene::Annotations::Annotation::Hoverlabel {
 
 // Sets the hover label text font. By default uses the global hover font and size, with color from
 // `hoverlabel.bordercolor`.
-class Layout::Scene::Annotations::Annotation::Hoverlabel::Font {
+class Layout::Scene::Annotation::Hoverlabel::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -7300,9 +7184,9 @@ class Layout::Scene::Annotations::Annotation::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& color(std::string f);
+    Layout::Scene::Annotation::Hoverlabel::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& color(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -7311,46 +7195,46 @@ class Layout::Scene::Annotations::Annotation::Hoverlabel::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& family(std::string f);
+    Layout::Scene::Annotation::Hoverlabel::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& family(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& lineposition(std::string f);
+    Layout::Scene::Annotation::Hoverlabel::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& lineposition(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& shadow(std::string f);
+    Layout::Scene::Annotation::Hoverlabel::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& shadow(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel::Font& shadow(Callable&& c);
 
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& size(double f);
+    Layout::Scene::Annotation::Hoverlabel::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& size(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& style(enum Style f);
+    Layout::Scene::Annotation::Hoverlabel::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& textcase(enum Textcase f);
+    Layout::Scene::Annotation::Hoverlabel::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& variant(enum Variant f);
+    Layout::Scene::Annotation::Hoverlabel::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& weight(int f);
+    Layout::Scene::Annotation::Hoverlabel::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Scene::Annotations::Annotation::Hoverlabel::Font& weight(Callable&& c);
+    Layout::Scene::Annotation::Hoverlabel::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -7701,7 +7585,7 @@ class Layout::Scene::Xaxis {
     class Autorangeoptions;
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for
@@ -7971,9 +7855,10 @@ class Layout::Scene::Xaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Scene::Xaxis& tickformat(Callable&& c);
 
-    Layout::Scene::Xaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Scene::Xaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Scene::Xaxis& tickformatstops(Callable&& c);
+    Layout::Scene::Xaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the tick length (in px).
     Layout::Scene::Xaxis& ticklen(double f);
@@ -8204,23 +8089,7 @@ class Layout::Scene::Xaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Scene::Xaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Scene::Xaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Scene::Xaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Scene::Xaxis::Tickformatstops::Tickformatstop {
+class Layout::Scene::Xaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -8228,36 +8097,36 @@ class Layout::Scene::Xaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Scene::Xaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Scene::Xaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Scene::Xaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Scene::Xaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Scene::Xaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Scene::Xaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Scene::Xaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Scene::Xaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Scene::Xaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Xaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Scene::Xaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -8513,7 +8382,7 @@ class Layout::Scene::Yaxis {
     class Autorangeoptions;
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for
@@ -8783,9 +8652,10 @@ class Layout::Scene::Yaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Scene::Yaxis& tickformat(Callable&& c);
 
-    Layout::Scene::Yaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Scene::Yaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Scene::Yaxis& tickformatstops(Callable&& c);
+    Layout::Scene::Yaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the tick length (in px).
     Layout::Scene::Yaxis& ticklen(double f);
@@ -9016,23 +8886,7 @@ class Layout::Scene::Yaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Scene::Yaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Scene::Yaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Scene::Yaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Scene::Yaxis::Tickformatstops::Tickformatstop {
+class Layout::Scene::Yaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -9040,36 +8894,36 @@ class Layout::Scene::Yaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Scene::Yaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Scene::Yaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Scene::Yaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Scene::Yaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Scene::Yaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Scene::Yaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Scene::Yaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Scene::Yaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Scene::Yaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Yaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Scene::Yaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -9325,7 +9179,7 @@ class Layout::Scene::Zaxis {
     class Autorangeoptions;
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for
@@ -9595,9 +9449,10 @@ class Layout::Scene::Zaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Scene::Zaxis& tickformat(Callable&& c);
 
-    Layout::Scene::Zaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Scene::Zaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Scene::Zaxis& tickformatstops(Callable&& c);
+    Layout::Scene::Zaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the tick length (in px).
     Layout::Scene::Zaxis& ticklen(double f);
@@ -9828,23 +9683,7 @@ class Layout::Scene::Zaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Scene::Zaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Scene::Zaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Scene::Zaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Scene::Zaxis::Tickformatstops::Tickformatstop {
+class Layout::Scene::Zaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -9852,36 +9691,36 @@ class Layout::Scene::Zaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Scene::Zaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Scene::Zaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Scene::Zaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Scene::Zaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Scene::Zaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Scene::Zaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Scene::Zaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Scene::Zaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Scene::Zaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Scene::Zaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Scene::Zaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -9997,23 +9836,7 @@ class Layout::Scene::Zaxis::Title::Font {
     Json json{};
 };
 
-class Layout::Selections {
- public:
-    Selections() = default;
-    Selections(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Selection;
-
-    Layout::Selections& selection(Selection f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Selection&>>>
-    Layout::Selections& selection(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Selections::Selection {
+class Layout::Selection {
  public:
     Selection() = default;
     Selection(std::string jsonStr)
@@ -10027,53 +9850,53 @@ class Layout::Selections::Selection {
 
     class Line;
 
-    Layout::Selections::Selection& line(Line f);
+    Layout::Selection& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
-    Layout::Selections::Selection& line(Callable&& c);
+    Layout::Selection& line(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Selections::Selection& name(std::string f);
+    Layout::Selection& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection& name(Callable&& c);
+    Layout::Selection& name(Callable&& c);
 
     // Sets the opacity of the selection.
-    Layout::Selections::Selection& opacity(double f);
+    Layout::Selection& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Selections::Selection& opacity(Callable&& c);
+    Layout::Selection& opacity(Callable&& c);
 
     // For `type` *path* - a valid SVG path similar to `shapes.path` in data coordinates. Allowed segments are: M, L and
     // Z.
-    Layout::Selections::Selection& path(std::string f);
+    Layout::Selection& path(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection& path(Callable&& c);
+    Layout::Selection& path(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Selections::Selection& templateitemname(std::string f);
+    Layout::Selection& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection& templateitemname(Callable&& c);
+    Layout::Selection& templateitemname(Callable&& c);
 
     // Specifies the selection type to be drawn. If *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`),
     // (`x1`,`y1`) and (`x0`,`y1`). If *path*, draw a custom SVG path using `path`.
-    Layout::Selections::Selection& type(enum Type f);
+    Layout::Selection& type(enum Type f);
 
     // Sets the selection's starting x position.
     template <typename T>
-    Layout::Selections::Selection& x0(T f);
+    Layout::Selection& x0(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Selections::Selection& x0(Callable&& c);
+    Layout::Selection& x0(Callable&& c);
 
     // Sets the selection's end x position.
     template <typename T>
-    Layout::Selections::Selection& x1(T f);
+    Layout::Selection& x1(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Selections::Selection& x1(Callable&& c);
+    Layout::Selection& x1(Callable&& c);
 
     // Sets the selection's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x
     // coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in
@@ -10082,21 +9905,21 @@ class Layout::Selections::Selection {
     // of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the
     // second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the
     // second x axis.
-    Layout::Selections::Selection& xref(std::string f);
+    Layout::Selection& xref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection& xref(Callable&& c);
+    Layout::Selection& xref(Callable&& c);
 
     // Sets the selection's starting y position.
     template <typename T>
-    Layout::Selections::Selection& y0(T f);
+    Layout::Selection& y0(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Selections::Selection& y0(Callable&& c);
+    Layout::Selection& y0(Callable&& c);
 
     // Sets the selection's end y position.
     template <typename T>
-    Layout::Selections::Selection& y1(T f);
+    Layout::Selection& y1(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Selections::Selection& y1(Callable&& c);
+    Layout::Selection& y1(Callable&& c);
 
     // Sets the selection's x coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y
     // coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in
@@ -10105,57 +9928,41 @@ class Layout::Selections::Selection {
     // of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the
     // second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the
     // second y axis.
-    Layout::Selections::Selection& yref(std::string f);
+    Layout::Selection& yref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection& yref(Callable&& c);
+    Layout::Selection& yref(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Selections::Selection::Line {
+class Layout::Selection::Line {
  public:
     Line() = default;
     Line(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the line color.
-    Layout::Selections::Selection::Line& color(std::string f);
+    Layout::Selection::Line& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection::Line& color(Callable&& c);
+    Layout::Selection::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
     // *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
-    Layout::Selections::Selection::Line& dash(std::string f);
+    Layout::Selection::Line& dash(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Selections::Selection::Line& dash(Callable&& c);
+    Layout::Selection::Line& dash(Callable&& c);
 
     // Sets the line width (in px).
-    Layout::Selections::Selection::Line& width(double f);
+    Layout::Selection::Line& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Selections::Selection::Line& width(Callable&& c);
+    Layout::Selection::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Shapes {
- public:
-    Shapes() = default;
-    Shapes(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Shape;
-
-    Layout::Shapes& shape(Shape f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Shape&>>>
-    Layout::Shapes& shape(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Shapes::Shape {
+class Layout::Shape {
  public:
     Shape() = default;
     Shape(std::string jsonStr)
@@ -10207,75 +10014,75 @@ class Layout::Shapes::Shape {
 
     // Determines whether the shape could be activated for edit or not. Has no effect when the older editable shapes
     // mode is enabled via `config.editable` or `config.edits.shapePosition`.
-    Layout::Shapes::Shape& editable(bool f);
+    Layout::Shape& editable(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Shapes::Shape& editable(Callable&& c);
+    Layout::Shape& editable(Callable&& c);
 
     // Sets the color filling the shape's interior. Only applies to closed shapes.
-    Layout::Shapes::Shape& fillcolor(std::string f);
+    Layout::Shape& fillcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& fillcolor(Callable&& c);
+    Layout::Shape& fillcolor(Callable&& c);
 
     // Determines which regions of complex paths constitute the interior. For more info please visit
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
     // - Default: evenodd
-    Layout::Shapes::Shape& fillrule(enum Fillrule f);
+    Layout::Shape& fillrule(enum Fillrule f);
 
-    Layout::Shapes::Shape& label(Label f);
+    Layout::Shape& label(Label f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Label&>>>
-    Layout::Shapes::Shape& label(Callable&& c);
+    Layout::Shape& label(Callable&& c);
 
     // Specifies whether shapes are drawn below gridlines (*below*), between gridlines and traces (*between*) or above
     // traces (*above*).
     // - Default: above
-    Layout::Shapes::Shape& layer(enum Layer f);
+    Layout::Shape& layer(enum Layer f);
 
     // Sets the reference to a legend to show this shape in. References to these legends are *legend*, *legend2*,
     // *legend3*, etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
-    Layout::Shapes::Shape& legend(std::string f);
+    Layout::Shape& legend(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& legend(Callable&& c);
+    Layout::Shape& legend(Callable&& c);
 
     // Sets the legend group for this shape. Traces and shapes part of the same legend group hide/show at the same time
     // when toggling legend items.
-    Layout::Shapes::Shape& legendgroup(std::string f);
+    Layout::Shape& legendgroup(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& legendgroup(Callable&& c);
+    Layout::Shape& legendgroup(Callable&& c);
 
-    Layout::Shapes::Shape& legendgrouptitle(Legendgrouptitle f);
+    Layout::Shape& legendgrouptitle(Legendgrouptitle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legendgrouptitle&>>>
-    Layout::Shapes::Shape& legendgrouptitle(Callable&& c);
+    Layout::Shape& legendgrouptitle(Callable&& c);
 
     // Sets the legend rank for this shape. Items and groups with smaller ranks are presented on top/left side while
     // with *reversed* `legend.traceorder` they are on bottom/right side. The default legendrank is 1000, so that you
     // can use ranks less than 1000 to place certain items before all unranked items, and ranks greater than 1000 to go
     // after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e.
     // according to their order in data and layout.
-    Layout::Shapes::Shape& legendrank(double f);
+    Layout::Shape& legendrank(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& legendrank(Callable&& c);
+    Layout::Shape& legendrank(Callable&& c);
 
     // Sets the width (in px or fraction) of the legend for this shape.
-    Layout::Shapes::Shape& legendwidth(double f);
+    Layout::Shape& legendwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& legendwidth(Callable&& c);
+    Layout::Shape& legendwidth(Callable&& c);
 
-    Layout::Shapes::Shape& line(Line f);
+    Layout::Shape& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
-    Layout::Shapes::Shape& line(Callable&& c);
+    Layout::Shape& line(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Shapes::Shape& name(std::string f);
+    Layout::Shape& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& name(Callable&& c);
+    Layout::Shape& name(Callable&& c);
 
     // Sets the opacity of the shape.
-    Layout::Shapes::Shape& opacity(double f);
+    Layout::Shape& opacity(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& opacity(Callable&& c);
+    Layout::Shape& opacity(Callable&& c);
 
     // For `type` *path* - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode`
     // being *scaled* and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of *pixel* size mode.
@@ -10288,67 +10095,67 @@ class Layout::Shapes::Shape {
     // describe fractional positions On data axes: because space and T are both normal components of path strings, we
     // can't use either to separate date from time parts. Therefore we'll use underscore for this purpose:
     // 2015-02-21_13:45:56.789
-    Layout::Shapes::Shape& path(std::string f);
+    Layout::Shape& path(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& path(Callable&& c);
+    Layout::Shape& path(Callable&& c);
 
     // Determines whether or not this shape is shown in the legend.
-    Layout::Shapes::Shape& showlegend(bool f);
+    Layout::Shape& showlegend(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Shapes::Shape& showlegend(Callable&& c);
+    Layout::Shape& showlegend(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Shapes::Shape& templateitemname(std::string f);
+    Layout::Shape& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& templateitemname(Callable&& c);
+    Layout::Shape& templateitemname(Callable&& c);
 
     // Specifies the shape type to be drawn. If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to
     // the axes' sizing mode. If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius
     // (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If *rect*, a rectangle is
     // drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`), (`x0`,`y0`) with respect to the axes' sizing
     // mode. If *path*, draw a custom SVG path using `path`. with respect to the axes' sizing mode.
-    Layout::Shapes::Shape& type(enum Type f);
+    Layout::Shape& type(enum Type f);
 
     // Determines whether or not this shape is visible. If *legendonly*, the shape is not drawn, but can appear as a
     // legend item (provided that the legend itself is visible).
     // - Default: True
-    Layout::Shapes::Shape& visible(enum Visible f);
+    Layout::Shape& visible(enum Visible f);
 
     // Sets the shape's starting x position. See `type` and `xsizemode` for more info.
     template <typename T>
-    Layout::Shapes::Shape& x0(T f);
+    Layout::Shape& x0(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Shapes::Shape& x0(Callable&& c);
+    Layout::Shape& x0(Callable&& c);
 
     // Shifts `x0` away from the center of the category when `xref` is a *category* or *multicategory* axis. -0.5
     // corresponds to the start of the category and 0.5 corresponds to the end of the category.
-    Layout::Shapes::Shape& x0shift(double f);
+    Layout::Shape& x0shift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& x0shift(Callable&& c);
+    Layout::Shape& x0shift(Callable&& c);
 
     // Sets the shape's end x position. See `type` and `xsizemode` for more info.
     template <typename T>
-    Layout::Shapes::Shape& x1(T f);
+    Layout::Shape& x1(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Shapes::Shape& x1(Callable&& c);
+    Layout::Shape& x1(Callable&& c);
 
     // Shifts `x1` away from the center of the category when `xref` is a *category* or *multicategory* axis. -0.5
     // corresponds to the start of the category and 0.5 corresponds to the end of the category.
-    Layout::Shapes::Shape& x1shift(double f);
+    Layout::Shape& x1shift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& x1shift(Callable&& c);
+    Layout::Shape& x1shift(Callable&& c);
 
     // Only relevant in conjunction with `xsizemode` set to *pixel*. Specifies the anchor point on the x axis to which
     // `x0`, `x1` and x coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a
     // certain data value. No effect when `xsizemode` not set to *pixel*.
     template <typename T>
-    Layout::Shapes::Shape& xanchor(T f);
+    Layout::Shape& xanchor(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Shapes::Shape& xanchor(Callable&& c);
+    Layout::Shape& xanchor(Callable&& c);
 
     // Sets the shape's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x
     // coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in
@@ -10357,9 +10164,9 @@ class Layout::Shapes::Shape {
     // of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the
     // second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the
     // second x axis.
-    Layout::Shapes::Shape& xref(std::string f);
+    Layout::Shape& xref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& xref(Callable&& c);
+    Layout::Shape& xref(Callable&& c);
 
     // Sets the shapes's sizing mode along the x axis. If set to *scaled*, `x0`, `x1` and x coordinates within `path`
     // refer to data values on the x axis or a fraction of the plot area's width (`xref` set to *paper*). If set to
@@ -10367,39 +10174,39 @@ class Layout::Shapes::Shape {
     // within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed width while maintaining a
     // position relative to data or plot fraction.
     // - Default: scaled
-    Layout::Shapes::Shape& xsizemode(enum Xsizemode f);
+    Layout::Shape& xsizemode(enum Xsizemode f);
 
     // Sets the shape's starting y position. See `type` and `ysizemode` for more info.
     template <typename T>
-    Layout::Shapes::Shape& y0(T f);
+    Layout::Shape& y0(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Shapes::Shape& y0(Callable&& c);
+    Layout::Shape& y0(Callable&& c);
 
     // Shifts `y0` away from the center of the category when `yref` is a *category* or *multicategory* axis. -0.5
     // corresponds to the start of the category and 0.5 corresponds to the end of the category.
-    Layout::Shapes::Shape& y0shift(double f);
+    Layout::Shape& y0shift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& y0shift(Callable&& c);
+    Layout::Shape& y0shift(Callable&& c);
 
     // Sets the shape's end y position. See `type` and `ysizemode` for more info.
     template <typename T>
-    Layout::Shapes::Shape& y1(T f);
+    Layout::Shape& y1(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Shapes::Shape& y1(Callable&& c);
+    Layout::Shape& y1(Callable&& c);
 
     // Shifts `y1` away from the center of the category when `yref` is a *category* or *multicategory* axis. -0.5
     // corresponds to the start of the category and 0.5 corresponds to the end of the category.
-    Layout::Shapes::Shape& y1shift(double f);
+    Layout::Shape& y1shift(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape& y1shift(Callable&& c);
+    Layout::Shape& y1shift(Callable&& c);
 
     // Only relevant in conjunction with `ysizemode` set to *pixel*. Specifies the anchor point on the y axis to which
     // `y0`, `y1` and y coordinates within `path` are relative to. E.g. useful to attach a pixel sized shape to a
     // certain data value. No effect when `ysizemode` not set to *pixel*.
     template <typename T>
-    Layout::Shapes::Shape& yanchor(T f);
+    Layout::Shape& yanchor(T f);
     template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Layout::Shapes::Shape& yanchor(Callable&& c);
+    Layout::Shape& yanchor(Callable&& c);
 
     // Sets the shape's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y
     // coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in
@@ -10408,9 +10215,9 @@ class Layout::Shapes::Shape {
     // of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the
     // second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the
     // second y axis.
-    Layout::Shapes::Shape& yref(std::string f);
+    Layout::Shape& yref(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape& yref(Callable&& c);
+    Layout::Shape& yref(Callable&& c);
 
     // Sets the shapes's sizing mode along the y axis. If set to *scaled*, `y0`, `y1` and y coordinates within `path`
     // refer to data values on the y axis or a fraction of the plot area's height (`yref` set to *paper*). If set to
@@ -10418,13 +10225,13 @@ class Layout::Shapes::Shape {
     // within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed height while maintaining a
     // position relative to data or plot fraction.
     // - Default: scaled
-    Layout::Shapes::Shape& ysizemode(enum Ysizemode f);
+    Layout::Shape& ysizemode(enum Ysizemode f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Shapes::Shape::Label {
+class Layout::Shape::Label {
  public:
     Label() = default;
     Label(std::string jsonStr)
@@ -10465,31 +10272,31 @@ class Layout::Shapes::Shape::Label {
     class Font;
 
     // Sets the shape label text font.
-    Layout::Shapes::Shape::Label& font(Font f);
+    Layout::Shape::Label& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Shapes::Shape::Label& font(Callable&& c);
+    Layout::Shape::Label& font(Callable&& c);
 
     // Sets padding (in px) between edge of label and edge of shape.
-    Layout::Shapes::Shape::Label& padding(double f);
+    Layout::Shape::Label& padding(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape::Label& padding(Callable&& c);
+    Layout::Shape::Label& padding(Callable&& c);
 
     // Sets the text to display with shape. It is also used for legend item if `name` is not provided.
-    Layout::Shapes::Shape::Label& text(std::string f);
+    Layout::Shape::Label& text(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Label& text(Callable&& c);
+    Layout::Shape::Label& text(Callable&& c);
 
     // Sets the angle at which the label text is drawn with respect to the horizontal. For lines, angle *auto* is the
     // same angle as the line. For all other shapes, angle *auto* is horizontal.
-    Layout::Shapes::Shape::Label& textangle(double f);
+    Layout::Shape::Label& textangle(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape::Label& textangle(Callable&& c);
+    Layout::Shape::Label& textangle(Callable&& c);
 
     // Sets the position of the label text relative to the shape. Supported values for rectangles, circles and paths are
     // *top left*, *top center*, *top right*, *middle left*, *middle center*, *middle right*, *bottom left*, *bottom
     // center*, and *bottom right*. Supported values for lines are *start*, *middle*, and *end*. Default: *middle
     // center* for rectangles, circles, and paths; *middle* for lines.
-    Layout::Shapes::Shape::Label& textposition(enum Textposition f);
+    Layout::Shape::Label& textposition(enum Textposition f);
 
     // Template string used for rendering the shape's label. Note that this will override `text`. Variables are inserted
     // using %{variable}, for example "x0: %{x0}". Numbers are formatted using d3-format's syntax %{variable:d3-format},
@@ -10502,27 +10309,27 @@ class Layout::Shapes::Shape::Label {
     // variables use datetimes, while all other variable values use values in ms. Finally, the template string has
     // access to variables `x0`, `x1`, `y0`, `y1`, `slope`, `dx`, `dy`, `width`, `height`, `length`, `xcenter` and
     // `ycenter`.
-    Layout::Shapes::Shape::Label& texttemplate(std::string f);
+    Layout::Shape::Label& texttemplate(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Label& texttemplate(Callable&& c);
+    Layout::Shape::Label& texttemplate(Callable&& c);
 
     // Sets the label's horizontal position anchor This anchor binds the specified `textposition` to the *left*,
     // *center* or *right* of the label text. For example, if `textposition` is set to *top right* and `xanchor` to
     // *right* then the right-most portion of the label text lines up with the right-most edge of the shape.
     // - Default: auto
-    Layout::Shapes::Shape::Label& xanchor(enum Xanchor f);
+    Layout::Shape::Label& xanchor(enum Xanchor f);
 
     // Sets the label's vertical position anchor This anchor binds the specified `textposition` to the *top*, *middle*
     // or *bottom* of the label text. For example, if `textposition` is set to *top right* and `yanchor` to *top* then
     // the top-most portion of the label text lines up with the top-most edge of the shape.
-    Layout::Shapes::Shape::Label& yanchor(enum Yanchor f);
+    Layout::Shape::Label& yanchor(enum Yanchor f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the shape label text font.
-class Layout::Shapes::Shape::Label::Font {
+class Layout::Shape::Label::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -10552,9 +10359,9 @@ class Layout::Shapes::Shape::Label::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Shapes::Shape::Label::Font& color(std::string f);
+    Layout::Shape::Label::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Label::Font& color(Callable&& c);
+    Layout::Shape::Label::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -10563,52 +10370,52 @@ class Layout::Shapes::Shape::Label::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Shapes::Shape::Label::Font& family(std::string f);
+    Layout::Shape::Label::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Label::Font& family(Callable&& c);
+    Layout::Shape::Label::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Shapes::Shape::Label::Font& lineposition(std::string f);
+    Layout::Shape::Label::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Label::Font& lineposition(Callable&& c);
+    Layout::Shape::Label::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Shapes::Shape::Label::Font& shadow(std::string f);
+    Layout::Shape::Label::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Label::Font& shadow(Callable&& c);
+    Layout::Shape::Label::Font& shadow(Callable&& c);
 
-    Layout::Shapes::Shape::Label::Font& size(double f);
+    Layout::Shape::Label::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape::Label::Font& size(Callable&& c);
+    Layout::Shape::Label::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Shapes::Shape::Label::Font& style(enum Style f);
+    Layout::Shape::Label::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Shapes::Shape::Label::Font& textcase(enum Textcase f);
+    Layout::Shape::Label::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Shapes::Shape::Label::Font& variant(enum Variant f);
+    Layout::Shape::Label::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Shapes::Shape::Label::Font& weight(int f);
+    Layout::Shape::Label::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Shapes::Shape::Label::Font& weight(Callable&& c);
+    Layout::Shape::Label::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Shapes::Shape::Legendgrouptitle {
+class Layout::Shape::Legendgrouptitle {
  public:
     Legendgrouptitle() = default;
     Legendgrouptitle(std::string jsonStr)
@@ -10618,21 +10425,21 @@ class Layout::Shapes::Shape::Legendgrouptitle {
     class Font;
 
     // Sets this legend group's title font.
-    Layout::Shapes::Shape::Legendgrouptitle& font(Font f);
+    Layout::Shape::Legendgrouptitle& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Shapes::Shape::Legendgrouptitle& font(Callable&& c);
+    Layout::Shape::Legendgrouptitle& font(Callable&& c);
 
     // Sets the title of the legend group.
-    Layout::Shapes::Shape::Legendgrouptitle& text(std::string f);
+    Layout::Shape::Legendgrouptitle& text(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Legendgrouptitle& text(Callable&& c);
+    Layout::Shape::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets this legend group's title font.
-class Layout::Shapes::Shape::Legendgrouptitle::Font {
+class Layout::Shape::Legendgrouptitle::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -10662,9 +10469,9 @@ class Layout::Shapes::Shape::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Shapes::Shape::Legendgrouptitle::Font& color(std::string f);
+    Layout::Shape::Legendgrouptitle::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Legendgrouptitle::Font& color(Callable&& c);
+    Layout::Shape::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -10673,94 +10480,78 @@ class Layout::Shapes::Shape::Legendgrouptitle::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Shapes::Shape::Legendgrouptitle::Font& family(std::string f);
+    Layout::Shape::Legendgrouptitle::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Legendgrouptitle::Font& family(Callable&& c);
+    Layout::Shape::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Shapes::Shape::Legendgrouptitle::Font& lineposition(std::string f);
+    Layout::Shape::Legendgrouptitle::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Legendgrouptitle::Font& lineposition(Callable&& c);
+    Layout::Shape::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Shapes::Shape::Legendgrouptitle::Font& shadow(std::string f);
+    Layout::Shape::Legendgrouptitle::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Legendgrouptitle::Font& shadow(Callable&& c);
+    Layout::Shape::Legendgrouptitle::Font& shadow(Callable&& c);
 
-    Layout::Shapes::Shape::Legendgrouptitle::Font& size(double f);
+    Layout::Shape::Legendgrouptitle::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape::Legendgrouptitle::Font& size(Callable&& c);
+    Layout::Shape::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Shapes::Shape::Legendgrouptitle::Font& style(enum Style f);
+    Layout::Shape::Legendgrouptitle::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Shapes::Shape::Legendgrouptitle::Font& textcase(enum Textcase f);
+    Layout::Shape::Legendgrouptitle::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Shapes::Shape::Legendgrouptitle::Font& variant(enum Variant f);
+    Layout::Shape::Legendgrouptitle::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Shapes::Shape::Legendgrouptitle::Font& weight(int f);
+    Layout::Shape::Legendgrouptitle::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Shapes::Shape::Legendgrouptitle::Font& weight(Callable&& c);
+    Layout::Shape::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Shapes::Shape::Line {
+class Layout::Shape::Line {
  public:
     Line() = default;
     Line(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the line color.
-    Layout::Shapes::Shape::Line& color(std::string f);
+    Layout::Shape::Line& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Line& color(Callable&& c);
+    Layout::Shape::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
     // *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
-    Layout::Shapes::Shape::Line& dash(std::string f);
+    Layout::Shape::Line& dash(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Shapes::Shape::Line& dash(Callable&& c);
+    Layout::Shape::Line& dash(Callable&& c);
 
     // Sets the line width (in px).
-    Layout::Shapes::Shape::Line& width(double f);
+    Layout::Shape::Line& width(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Shapes::Shape::Line& width(Callable&& c);
+    Layout::Shape::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Sliders {
- public:
-    Sliders() = default;
-    Sliders(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Slider;
-
-    Layout::Sliders& slider(Slider f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Slider&>>>
-    Layout::Sliders& slider(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Sliders::Slider {
+class Layout::Slider {
  public:
     Slider() = default;
     Slider(std::string jsonStr)
@@ -10793,134 +10584,135 @@ class Layout::Sliders::Slider {
     class Font;
     // Set the padding of the slider component along each side.
     class Pad;
-    class Steps;
+    class Step;
     class Transition;
 
     // Determines which button (by index starting from 0) is considered active.
-    Layout::Sliders::Slider& active(double f);
+    Layout::Slider& active(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& active(Callable&& c);
+    Layout::Slider& active(Callable&& c);
 
     // Sets the background color of the slider grip while dragging.
-    Layout::Sliders::Slider& activebgcolor(std::string f);
+    Layout::Slider& activebgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider& activebgcolor(Callable&& c);
+    Layout::Slider& activebgcolor(Callable&& c);
 
     // Sets the background color of the slider.
-    Layout::Sliders::Slider& bgcolor(std::string f);
+    Layout::Slider& bgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider& bgcolor(Callable&& c);
+    Layout::Slider& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the slider.
-    Layout::Sliders::Slider& bordercolor(std::string f);
+    Layout::Slider& bordercolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider& bordercolor(Callable&& c);
+    Layout::Slider& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the slider.
-    Layout::Sliders::Slider& borderwidth(double f);
+    Layout::Slider& borderwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& borderwidth(Callable&& c);
+    Layout::Slider& borderwidth(Callable&& c);
 
-    Layout::Sliders::Slider& currentvalue(Currentvalue f);
+    Layout::Slider& currentvalue(Currentvalue f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Currentvalue&>>>
-    Layout::Sliders::Slider& currentvalue(Callable&& c);
+    Layout::Slider& currentvalue(Callable&& c);
 
     // Sets the font of the slider step labels.
-    Layout::Sliders::Slider& font(Font f);
+    Layout::Slider& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Sliders::Slider& font(Callable&& c);
+    Layout::Slider& font(Callable&& c);
 
     // Sets the length of the slider This measure excludes the padding of both ends. That is, the slider's length is
     // this length minus the padding on both ends.
-    Layout::Sliders::Slider& len(double f);
+    Layout::Slider& len(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& len(Callable&& c);
+    Layout::Slider& len(Callable&& c);
 
     // Determines whether this slider length is set in units of plot *fraction* or in *pixels. Use `len` to set the
     // value.
     // - Default: fraction
-    Layout::Sliders::Slider& lenmode(enum Lenmode f);
+    Layout::Slider& lenmode(enum Lenmode f);
 
     // Sets the length in pixels of minor step tick marks
-    Layout::Sliders::Slider& minorticklen(double f);
+    Layout::Slider& minorticklen(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& minorticklen(Callable&& c);
+    Layout::Slider& minorticklen(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Sliders::Slider& name(std::string f);
+    Layout::Slider& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider& name(Callable&& c);
+    Layout::Slider& name(Callable&& c);
 
     // Set the padding of the slider component along each side.
-    Layout::Sliders::Slider& pad(Pad f);
+    Layout::Slider& pad(Pad f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Pad&>>>
-    Layout::Sliders::Slider& pad(Callable&& c);
+    Layout::Slider& pad(Callable&& c);
 
-    Layout::Sliders::Slider& steps(Steps f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Steps&>>>
-    Layout::Sliders::Slider& steps(Callable&& c);
+    Layout::Slider& steps(Step f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Step&>>>
+    Layout::Slider& steps(Callable&& c);
+    Layout::Slider& steps(const std::vector<Step>& f);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Sliders::Slider& templateitemname(std::string f);
+    Layout::Slider& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider& templateitemname(Callable&& c);
+    Layout::Slider& templateitemname(Callable&& c);
 
     // Sets the color of the border enclosing the slider.
-    Layout::Sliders::Slider& tickcolor(std::string f);
+    Layout::Slider& tickcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider& tickcolor(Callable&& c);
+    Layout::Slider& tickcolor(Callable&& c);
 
     // Sets the length in pixels of step tick marks
-    Layout::Sliders::Slider& ticklen(double f);
+    Layout::Slider& ticklen(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& ticklen(Callable&& c);
+    Layout::Slider& ticklen(Callable&& c);
 
     // Sets the tick width (in px).
-    Layout::Sliders::Slider& tickwidth(double f);
+    Layout::Slider& tickwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& tickwidth(Callable&& c);
+    Layout::Slider& tickwidth(Callable&& c);
 
-    Layout::Sliders::Slider& transition(Transition f);
+    Layout::Slider& transition(Transition f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Transition&>>>
-    Layout::Sliders::Slider& transition(Callable&& c);
+    Layout::Slider& transition(Callable&& c);
 
     // Determines whether or not the slider is visible.
-    Layout::Sliders::Slider& visible(bool f);
+    Layout::Slider& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Sliders::Slider& visible(Callable&& c);
+    Layout::Slider& visible(Callable&& c);
 
     // Sets the x position (in normalized coordinates) of the slider.
-    Layout::Sliders::Slider& x(double f);
+    Layout::Slider& x(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& x(Callable&& c);
+    Layout::Slider& x(Callable&& c);
 
     // Sets the slider's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the range selector.
     // - Default: left
-    Layout::Sliders::Slider& xanchor(enum Xanchor f);
+    Layout::Slider& xanchor(enum Xanchor f);
 
     // Sets the y position (in normalized coordinates) of the slider.
-    Layout::Sliders::Slider& y(double f);
+    Layout::Slider& y(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider& y(Callable&& c);
+    Layout::Slider& y(Callable&& c);
 
     // Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom*
     // of the range selector.
     // - Default: top
-    Layout::Sliders::Slider& yanchor(enum Yanchor f);
+    Layout::Slider& yanchor(enum Yanchor f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Sliders::Slider::Currentvalue {
+class Layout::Slider::Currentvalue {
  public:
     Currentvalue() = default;
     Currentvalue(std::string jsonStr)
@@ -10937,40 +10729,40 @@ class Layout::Sliders::Slider::Currentvalue {
     class Font;
 
     // Sets the font of the current value label text.
-    Layout::Sliders::Slider::Currentvalue& font(Font f);
+    Layout::Slider::Currentvalue& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Sliders::Slider::Currentvalue& font(Callable&& c);
+    Layout::Slider::Currentvalue& font(Callable&& c);
 
     // The amount of space, in pixels, between the current value label and the slider.
-    Layout::Sliders::Slider::Currentvalue& offset(double f);
+    Layout::Slider::Currentvalue& offset(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Currentvalue& offset(Callable&& c);
+    Layout::Slider::Currentvalue& offset(Callable&& c);
 
     // When currentvalue.visible is true, this sets the prefix of the label.
-    Layout::Sliders::Slider::Currentvalue& prefix(std::string f);
+    Layout::Slider::Currentvalue& prefix(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Currentvalue& prefix(Callable&& c);
+    Layout::Slider::Currentvalue& prefix(Callable&& c);
 
     // When currentvalue.visible is true, this sets the suffix of the label.
-    Layout::Sliders::Slider::Currentvalue& suffix(std::string f);
+    Layout::Slider::Currentvalue& suffix(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Currentvalue& suffix(Callable&& c);
+    Layout::Slider::Currentvalue& suffix(Callable&& c);
 
     // Shows the currently-selected value above the slider.
-    Layout::Sliders::Slider::Currentvalue& visible(bool f);
+    Layout::Slider::Currentvalue& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Sliders::Slider::Currentvalue& visible(Callable&& c);
+    Layout::Slider::Currentvalue& visible(Callable&& c);
 
     // The alignment of the value readout relative to the length of the slider.
     // - Default: left
-    Layout::Sliders::Slider::Currentvalue& xanchor(enum Xanchor f);
+    Layout::Slider::Currentvalue& xanchor(enum Xanchor f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the font of the current value label text.
-class Layout::Sliders::Slider::Currentvalue::Font {
+class Layout::Slider::Currentvalue::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -11000,9 +10792,9 @@ class Layout::Sliders::Slider::Currentvalue::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Sliders::Slider::Currentvalue::Font& color(std::string f);
+    Layout::Slider::Currentvalue::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Currentvalue::Font& color(Callable&& c);
+    Layout::Slider::Currentvalue::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -11011,53 +10803,53 @@ class Layout::Sliders::Slider::Currentvalue::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Sliders::Slider::Currentvalue::Font& family(std::string f);
+    Layout::Slider::Currentvalue::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Currentvalue::Font& family(Callable&& c);
+    Layout::Slider::Currentvalue::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Sliders::Slider::Currentvalue::Font& lineposition(std::string f);
+    Layout::Slider::Currentvalue::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Currentvalue::Font& lineposition(Callable&& c);
+    Layout::Slider::Currentvalue::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Sliders::Slider::Currentvalue::Font& shadow(std::string f);
+    Layout::Slider::Currentvalue::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Currentvalue::Font& shadow(Callable&& c);
+    Layout::Slider::Currentvalue::Font& shadow(Callable&& c);
 
-    Layout::Sliders::Slider::Currentvalue::Font& size(double f);
+    Layout::Slider::Currentvalue::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Currentvalue::Font& size(Callable&& c);
+    Layout::Slider::Currentvalue::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Sliders::Slider::Currentvalue::Font& style(enum Style f);
+    Layout::Slider::Currentvalue::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Sliders::Slider::Currentvalue::Font& textcase(enum Textcase f);
+    Layout::Slider::Currentvalue::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Sliders::Slider::Currentvalue::Font& variant(enum Variant f);
+    Layout::Slider::Currentvalue::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Sliders::Slider::Currentvalue::Font& weight(int f);
+    Layout::Slider::Currentvalue::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Sliders::Slider::Currentvalue::Font& weight(Callable&& c);
+    Layout::Slider::Currentvalue::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the font of the slider step labels.
-class Layout::Sliders::Slider::Font {
+class Layout::Slider::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -11087,9 +10879,9 @@ class Layout::Sliders::Slider::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Sliders::Slider::Font& color(std::string f);
+    Layout::Slider::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Font& color(Callable&& c);
+    Layout::Slider::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -11098,99 +10890,83 @@ class Layout::Sliders::Slider::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Sliders::Slider::Font& family(std::string f);
+    Layout::Slider::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Font& family(Callable&& c);
+    Layout::Slider::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Sliders::Slider::Font& lineposition(std::string f);
+    Layout::Slider::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Font& lineposition(Callable&& c);
+    Layout::Slider::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Sliders::Slider::Font& shadow(std::string f);
+    Layout::Slider::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Font& shadow(Callable&& c);
+    Layout::Slider::Font& shadow(Callable&& c);
 
-    Layout::Sliders::Slider::Font& size(double f);
+    Layout::Slider::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Font& size(Callable&& c);
+    Layout::Slider::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Sliders::Slider::Font& style(enum Style f);
+    Layout::Slider::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Sliders::Slider::Font& textcase(enum Textcase f);
+    Layout::Slider::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Sliders::Slider::Font& variant(enum Variant f);
+    Layout::Slider::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Sliders::Slider::Font& weight(int f);
+    Layout::Slider::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Sliders::Slider::Font& weight(Callable&& c);
+    Layout::Slider::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Set the padding of the slider component along each side.
-class Layout::Sliders::Slider::Pad {
+class Layout::Slider::Pad {
  public:
     Pad() = default;
     Pad(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // The amount of padding (in px) along the bottom of the component.
-    Layout::Sliders::Slider::Pad& b(double f);
+    Layout::Slider::Pad& b(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Pad& b(Callable&& c);
+    Layout::Slider::Pad& b(Callable&& c);
 
     // The amount of padding (in px) on the left side of the component.
-    Layout::Sliders::Slider::Pad& l(double f);
+    Layout::Slider::Pad& l(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Pad& l(Callable&& c);
+    Layout::Slider::Pad& l(Callable&& c);
 
     // The amount of padding (in px) on the right side of the component.
-    Layout::Sliders::Slider::Pad& r(double f);
+    Layout::Slider::Pad& r(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Pad& r(Callable&& c);
+    Layout::Slider::Pad& r(Callable&& c);
 
     // The amount of padding (in px) along the top of the component.
-    Layout::Sliders::Slider::Pad& t(double f);
+    Layout::Slider::Pad& t(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Pad& t(Callable&& c);
+    Layout::Slider::Pad& t(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Sliders::Slider::Steps {
- public:
-    Steps() = default;
-    Steps(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Step;
-
-    Layout::Sliders::Slider::Steps& step(Step f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Step&>>>
-    Layout::Sliders::Slider::Steps& step(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Sliders::Slider::Steps::Step {
+class Layout::Slider::Step {
  public:
     Step() = default;
     Step(std::string jsonStr)
@@ -11206,62 +10982,62 @@ class Layout::Sliders::Slider::Steps::Step {
     static std::string to_string(Method e);
 
     // Sets the arguments values to be passed to the Plotly method set in `method` on slide.
-    Layout::Sliders::Slider::Steps::Step& args(const std::vector<double>& f);
+    Layout::Slider::Step& args(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Sliders::Slider::Steps::Step& args(Callable&& c);
+    Layout::Slider::Step& args(Callable&& c);
 
     // When true, the API method is executed. When false, all other behaviors are the same and command execution is
     // skipped. This may be useful when hooking into, for example, the `plotly_sliderchange` method and executing the
     // API command manually without losing the benefit of the slider automatically binding to the state of the plot
     // through the specification of `method` and `args`.
-    Layout::Sliders::Slider::Steps::Step& execute(bool f);
+    Layout::Slider::Step& execute(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Sliders::Slider::Steps::Step& execute(Callable&& c);
+    Layout::Slider::Step& execute(Callable&& c);
 
     // Sets the text label to appear on the slider
-    Layout::Sliders::Slider::Steps::Step& label(std::string f);
+    Layout::Slider::Step& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Steps::Step& label(Callable&& c);
+    Layout::Slider::Step& label(Callable&& c);
 
     // Sets the Plotly method to be called when the slider value is changed. If the `skip` method is used, the API
     // slider will function as normal but will perform no API calls and will not bind automatically to state updates.
     // This may be used to create a component interface and attach to slider events manually via JavaScript.
     // - Default: restyle
-    Layout::Sliders::Slider::Steps::Step& method(enum Method f);
+    Layout::Slider::Step& method(enum Method f);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Sliders::Slider::Steps::Step& name(std::string f);
+    Layout::Slider::Step& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Steps::Step& name(Callable&& c);
+    Layout::Slider::Step& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Sliders::Slider::Steps::Step& templateitemname(std::string f);
+    Layout::Slider::Step& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Steps::Step& templateitemname(Callable&& c);
+    Layout::Slider::Step& templateitemname(Callable&& c);
 
     // Sets the value of the slider step, used to refer to the step programatically. Defaults to the slider label if not
     // provided.
-    Layout::Sliders::Slider::Steps::Step& value(std::string f);
+    Layout::Slider::Step& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Sliders::Slider::Steps::Step& value(Callable&& c);
+    Layout::Slider::Step& value(Callable&& c);
 
     // Determines whether or not this step is included in the slider.
-    Layout::Sliders::Slider::Steps::Step& visible(bool f);
+    Layout::Slider::Step& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Sliders::Slider::Steps::Step& visible(Callable&& c);
+    Layout::Slider::Step& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Sliders::Slider::Transition {
+class Layout::Slider::Transition {
  public:
     Transition() = default;
     Transition(std::string jsonStr)
@@ -11308,13 +11084,13 @@ class Layout::Sliders::Slider::Transition {
     static std::string to_string(Easing e);
 
     // Sets the duration of the slider transition
-    Layout::Sliders::Slider::Transition& duration(double f);
+    Layout::Slider::Transition& duration(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Sliders::Slider::Transition& duration(Callable&& c);
+    Layout::Slider::Transition& duration(Callable&& c);
 
     // Sets the easing function of the slider transition
     // - Default: cubic-in-out
-    Layout::Sliders::Slider::Transition& easing(enum Easing f);
+    Layout::Slider::Transition& easing(enum Easing f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -12053,7 +11829,7 @@ class Layout::Ternary::Aaxis {
 
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
@@ -12223,9 +11999,10 @@ class Layout::Ternary::Aaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Ternary::Aaxis& tickformat(Callable&& c);
 
-    Layout::Ternary::Aaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Ternary::Aaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Ternary::Aaxis& tickformatstops(Callable&& c);
+    Layout::Ternary::Aaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each
     // tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is
@@ -12395,23 +12172,7 @@ class Layout::Ternary::Aaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Ternary::Aaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Ternary::Aaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Ternary::Aaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop {
+class Layout::Ternary::Aaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -12419,36 +12180,36 @@ class Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Ternary::Aaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Ternary::Aaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Ternary::Aaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Ternary::Aaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Ternary::Aaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Ternary::Aaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Ternary::Aaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Ternary::Aaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Ternary::Aaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Aaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Ternary::Aaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -12625,7 +12386,7 @@ class Layout::Ternary::Baxis {
 
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
@@ -12795,9 +12556,10 @@ class Layout::Ternary::Baxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Ternary::Baxis& tickformat(Callable&& c);
 
-    Layout::Ternary::Baxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Ternary::Baxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Ternary::Baxis& tickformatstops(Callable&& c);
+    Layout::Ternary::Baxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each
     // tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is
@@ -12967,23 +12729,7 @@ class Layout::Ternary::Baxis::Tickfont {
     Json json{};
 };
 
-class Layout::Ternary::Baxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Ternary::Baxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Ternary::Baxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Ternary::Baxis::Tickformatstops::Tickformatstop {
+class Layout::Ternary::Baxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -12991,36 +12737,36 @@ class Layout::Ternary::Baxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Ternary::Baxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Ternary::Baxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Ternary::Baxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Ternary::Baxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Ternary::Baxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Ternary::Baxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Ternary::Baxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Ternary::Baxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Ternary::Baxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Baxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Ternary::Baxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -13197,7 +12943,7 @@ class Layout::Ternary::Caxis {
 
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
@@ -13367,9 +13113,10 @@ class Layout::Ternary::Caxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Ternary::Caxis& tickformat(Callable&& c);
 
-    Layout::Ternary::Caxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Ternary::Caxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Ternary::Caxis& tickformatstops(Callable&& c);
+    Layout::Ternary::Caxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Sets the spacing between tick labels as compared to the spacing between ticks. A value of 1 (default) means each
     // tick gets a label. A value of 2 means shows every 2nd label. A larger value n means only every nth tick is
@@ -13539,23 +13286,7 @@ class Layout::Ternary::Caxis::Tickfont {
     Json json{};
 };
 
-class Layout::Ternary::Caxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Ternary::Caxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Ternary::Caxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Ternary::Caxis::Tickformatstops::Tickformatstop {
+class Layout::Ternary::Caxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -13563,36 +13294,36 @@ class Layout::Ternary::Caxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Ternary::Caxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Ternary::Caxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Ternary::Caxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Ternary::Caxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Ternary::Caxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Ternary::Caxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Ternary::Caxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Ternary::Caxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Ternary::Caxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Ternary::Caxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Ternary::Caxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -14181,23 +13912,7 @@ class Layout::Uniformtext {
     Json json{};
 };
 
-class Layout::Updatemenus {
- public:
-    Updatemenus() = default;
-    Updatemenus(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Updatemenu;
-
-    Layout::Updatemenus& updatemenu(Updatemenu f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Updatemenu&>>>
-    Layout::Updatemenus& updatemenu(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Updatemenus::Updatemenu {
+class Layout::Updatemenu {
  public:
     Updatemenu() = default;
     Updatemenu(std::string jsonStr)
@@ -14233,124 +13948,109 @@ class Layout::Updatemenus::Updatemenu {
     };
     static std::string to_string(Yanchor e);
 
-    class Buttons;
+    class Button;
     // Sets the font of the update menu button text.
     class Font;
     // Sets the padding around the buttons or dropdown menu.
     class Pad;
 
     // Determines which button (by index starting from 0) is considered active.
-    Layout::Updatemenus::Updatemenu& active(int f);
+    Layout::Updatemenu& active(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Updatemenus::Updatemenu& active(Callable&& c);
+    Layout::Updatemenu& active(Callable&& c);
 
     // Sets the background color of the update menu buttons.
-    Layout::Updatemenus::Updatemenu& bgcolor(std::string f);
+    Layout::Updatemenu& bgcolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu& bgcolor(Callable&& c);
+    Layout::Updatemenu& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the update menu.
-    Layout::Updatemenus::Updatemenu& bordercolor(std::string f);
+    Layout::Updatemenu& bordercolor(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu& bordercolor(Callable&& c);
+    Layout::Updatemenu& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the update menu.
-    Layout::Updatemenus::Updatemenu& borderwidth(double f);
+    Layout::Updatemenu& borderwidth(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu& borderwidth(Callable&& c);
+    Layout::Updatemenu& borderwidth(Callable&& c);
 
-    Layout::Updatemenus::Updatemenu& buttons(Buttons f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Buttons&>>>
-    Layout::Updatemenus::Updatemenu& buttons(Callable&& c);
+    Layout::Updatemenu& buttons(Button f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Button&>>>
+    Layout::Updatemenu& buttons(Callable&& c);
+    Layout::Updatemenu& buttons(const std::vector<Button>& f);
 
     // Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of
     // buttons. For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order respectively.
     // - Default: down
-    Layout::Updatemenus::Updatemenu& direction(enum Direction f);
+    Layout::Updatemenu& direction(enum Direction f);
 
     // Sets the font of the update menu button text.
-    Layout::Updatemenus::Updatemenu& font(Font f);
+    Layout::Updatemenu& font(Font f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Font&>>>
-    Layout::Updatemenus::Updatemenu& font(Callable&& c);
+    Layout::Updatemenu& font(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Updatemenus::Updatemenu& name(std::string f);
+    Layout::Updatemenu& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu& name(Callable&& c);
+    Layout::Updatemenu& name(Callable&& c);
 
     // Sets the padding around the buttons or dropdown menu.
-    Layout::Updatemenus::Updatemenu& pad(Pad f);
+    Layout::Updatemenu& pad(Pad f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Pad&>>>
-    Layout::Updatemenus::Updatemenu& pad(Callable&& c);
+    Layout::Updatemenu& pad(Callable&& c);
 
     // Highlights active dropdown item or active button if true.
-    Layout::Updatemenus::Updatemenu& showactive(bool f);
+    Layout::Updatemenu& showactive(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Updatemenus::Updatemenu& showactive(Callable&& c);
+    Layout::Updatemenu& showactive(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Updatemenus::Updatemenu& templateitemname(std::string f);
+    Layout::Updatemenu& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu& templateitemname(Callable&& c);
+    Layout::Updatemenu& templateitemname(Callable&& c);
 
     // Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally
     // or vertically
     // - Default: dropdown
-    Layout::Updatemenus::Updatemenu& type(enum Type f);
+    Layout::Updatemenu& type(enum Type f);
 
     // Determines whether or not the update menu is visible.
-    Layout::Updatemenus::Updatemenu& visible(bool f);
+    Layout::Updatemenu& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Updatemenus::Updatemenu& visible(Callable&& c);
+    Layout::Updatemenu& visible(Callable&& c);
 
     // Sets the x position (in normalized coordinates) of the update menu.
-    Layout::Updatemenus::Updatemenu& x(double f);
+    Layout::Updatemenu& x(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu& x(Callable&& c);
+    Layout::Updatemenu& x(Callable&& c);
 
     // Sets the update menu's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the range selector.
     // - Default: right
-    Layout::Updatemenus::Updatemenu& xanchor(enum Xanchor f);
+    Layout::Updatemenu& xanchor(enum Xanchor f);
 
     // Sets the y position (in normalized coordinates) of the update menu.
-    Layout::Updatemenus::Updatemenu& y(double f);
+    Layout::Updatemenu& y(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu& y(Callable&& c);
+    Layout::Updatemenu& y(Callable&& c);
 
     // Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the range selector.
     // - Default: top
-    Layout::Updatemenus::Updatemenu& yanchor(enum Yanchor f);
+    Layout::Updatemenu& yanchor(enum Yanchor f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
-class Layout::Updatemenus::Updatemenu::Buttons {
- public:
-    Buttons() = default;
-    Buttons(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Button;
-
-    Layout::Updatemenus::Updatemenu::Buttons& button(Button f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Button&>>>
-    Layout::Updatemenus::Updatemenu::Buttons& button(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Updatemenus::Updatemenu::Buttons::Button {
+class Layout::Updatemenu::Button {
  public:
     Button() = default;
     Button(std::string jsonStr)
@@ -14366,63 +14066,63 @@ class Layout::Updatemenus::Updatemenu::Buttons::Button {
     static std::string to_string(Method e);
 
     // Sets the arguments values to be passed to the Plotly method set in `method` on click.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& args(const std::vector<double>& f);
+    Layout::Updatemenu::Button& args(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& args(Callable&& c);
+    Layout::Updatemenu::Button& args(Callable&& c);
 
     // Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking
     // this button while in the active state. Use this to create toggle buttons.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& args2(const std::vector<double>& f);
+    Layout::Updatemenu::Button& args2(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& args2(Callable&& c);
+    Layout::Updatemenu::Button& args2(Callable&& c);
 
     // When true, the API method is executed. When false, all other behaviors are the same and command execution is
     // skipped. This may be useful when hooking into, for example, the `plotly_buttonclicked` method and executing the
     // API command manually without losing the benefit of the updatemenu automatically binding to the state of the plot
     // through the specification of `method` and `args`.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& execute(bool f);
+    Layout::Updatemenu::Button& execute(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& execute(Callable&& c);
+    Layout::Updatemenu::Button& execute(Callable&& c);
 
     // Sets the text label to appear on the button.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& label(std::string f);
+    Layout::Updatemenu::Button& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& label(Callable&& c);
+    Layout::Updatemenu::Button& label(Callable&& c);
 
     // Sets the Plotly method to be called on click. If the `skip` method is used, the API updatemenu will function as
     // normal but will perform no API calls and will not bind automatically to state updates. This may be used to create
     // a component interface and attach to updatemenu events manually via JavaScript.
     // - Default: restyle
-    Layout::Updatemenus::Updatemenu::Buttons::Button& method(enum Method f);
+    Layout::Updatemenu::Button& method(enum Method f);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& name(std::string f);
+    Layout::Updatemenu::Button& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& name(Callable&& c);
+    Layout::Updatemenu::Button& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& templateitemname(std::string f);
+    Layout::Updatemenu::Button& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& templateitemname(Callable&& c);
+    Layout::Updatemenu::Button& templateitemname(Callable&& c);
 
     // Determines whether or not this button is visible.
-    Layout::Updatemenus::Updatemenu::Buttons::Button& visible(bool f);
+    Layout::Updatemenu::Button& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Updatemenus::Updatemenu::Buttons::Button& visible(Callable&& c);
+    Layout::Updatemenu::Button& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the font of the update menu button text.
-class Layout::Updatemenus::Updatemenu::Font {
+class Layout::Updatemenu::Font {
  public:
     Font() = default;
     Font(std::string jsonStr)
@@ -14452,9 +14152,9 @@ class Layout::Updatemenus::Updatemenu::Font {
     };
     static std::string to_string(Variant e);
 
-    Layout::Updatemenus::Updatemenu::Font& color(std::string f);
+    Layout::Updatemenu::Font& color(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Font& color(Callable&& c);
+    Layout::Updatemenu::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -14463,77 +14163,77 @@ class Layout::Updatemenus::Updatemenu::Font {
     // number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*, *Droid
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
-    Layout::Updatemenus::Updatemenu::Font& family(std::string f);
+    Layout::Updatemenu::Font& family(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Font& family(Callable&& c);
+    Layout::Updatemenu::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Updatemenus::Updatemenu::Font& lineposition(std::string f);
+    Layout::Updatemenu::Font& lineposition(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Font& lineposition(Callable&& c);
+    Layout::Updatemenu::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
-    Layout::Updatemenus::Updatemenu::Font& shadow(std::string f);
+    Layout::Updatemenu::Font& shadow(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Updatemenus::Updatemenu::Font& shadow(Callable&& c);
+    Layout::Updatemenu::Font& shadow(Callable&& c);
 
-    Layout::Updatemenus::Updatemenu::Font& size(double f);
+    Layout::Updatemenu::Font& size(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu::Font& size(Callable&& c);
+    Layout::Updatemenu::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
-    Layout::Updatemenus::Updatemenu::Font& style(enum Style f);
+    Layout::Updatemenu::Font& style(enum Style f);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
     // - Default: normal
-    Layout::Updatemenus::Updatemenu::Font& textcase(enum Textcase f);
+    Layout::Updatemenu::Font& textcase(enum Textcase f);
 
     // Sets the variant of the font.
     // - Default: normal
-    Layout::Updatemenus::Updatemenu::Font& variant(enum Variant f);
+    Layout::Updatemenu::Font& variant(enum Variant f);
 
     // Sets the weight (or boldness) of the font.
-    Layout::Updatemenus::Updatemenu::Font& weight(int f);
+    Layout::Updatemenu::Font& weight(int f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Layout::Updatemenus::Updatemenu::Font& weight(Callable&& c);
+    Layout::Updatemenu::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
 };
 
 // Sets the padding around the buttons or dropdown menu.
-class Layout::Updatemenus::Updatemenu::Pad {
+class Layout::Updatemenu::Pad {
  public:
     Pad() = default;
     Pad(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // The amount of padding (in px) along the bottom of the component.
-    Layout::Updatemenus::Updatemenu::Pad& b(double f);
+    Layout::Updatemenu::Pad& b(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu::Pad& b(Callable&& c);
+    Layout::Updatemenu::Pad& b(Callable&& c);
 
     // The amount of padding (in px) on the left side of the component.
-    Layout::Updatemenus::Updatemenu::Pad& l(double f);
+    Layout::Updatemenu::Pad& l(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu::Pad& l(Callable&& c);
+    Layout::Updatemenu::Pad& l(Callable&& c);
 
     // The amount of padding (in px) on the right side of the component.
-    Layout::Updatemenus::Updatemenu::Pad& r(double f);
+    Layout::Updatemenu::Pad& r(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu::Pad& r(Callable&& c);
+    Layout::Updatemenu::Pad& r(Callable&& c);
 
     // The amount of padding (in px) along the top of the component.
-    Layout::Updatemenus::Updatemenu::Pad& t(double f);
+    Layout::Updatemenu::Pad& t(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Updatemenus::Updatemenu::Pad& t(Callable&& c);
+    Layout::Updatemenu::Pad& t(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -14750,12 +14450,12 @@ class Layout::Xaxis {
 
     class Autorangeoptions;
     class Minor;
-    class Rangebreaks;
+    class Rangebreak;
     class Rangeselector;
     class Rangeslider;
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter
@@ -15009,9 +14709,10 @@ class Layout::Xaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout::Xaxis& range(Callable&& c);
 
-    Layout::Xaxis& rangebreaks(Rangebreaks f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Rangebreaks&>>>
+    Layout::Xaxis& rangebreaks(Rangebreak f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Rangebreak&>>>
     Layout::Xaxis& rangebreaks(Callable&& c);
+    Layout::Xaxis& rangebreaks(const std::vector<Rangebreak>& f);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
     // to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
@@ -15164,9 +14865,10 @@ class Layout::Xaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Xaxis& tickformat(Callable&& c);
 
-    Layout::Xaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Xaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Xaxis& tickformatstops(Callable&& c);
+    Layout::Xaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Only for axes with `type` *date* or *linear*. Instead of drawing the major tick label, draw the label for the
     // minor tick that is n positions away from the major tick. E.g. to always draw the label for the minor tick before
@@ -15497,23 +15199,7 @@ class Layout::Xaxis::Minor {
     Json json{};
 };
 
-class Layout::Xaxis::Rangebreaks {
- public:
-    Rangebreaks() = default;
-    Rangebreaks(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Rangebreak;
-
-    Layout::Xaxis::Rangebreaks& rangebreak(Rangebreak f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Rangebreak&>>>
-    Layout::Xaxis::Rangebreaks& rangebreak(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Xaxis::Rangebreaks::Rangebreak {
+class Layout::Xaxis::Rangebreak {
  public:
     Rangebreak() = default;
     Rangebreak(std::string jsonStr)
@@ -15527,28 +15213,28 @@ class Layout::Xaxis::Rangebreaks::Rangebreak {
     static std::string to_string(Pattern e);
 
     // Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    Layout::Xaxis::Rangebreaks::Rangebreak& bounds(const std::vector<double>& f);
+    Layout::Xaxis::Rangebreak& bounds(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Xaxis::Rangebreaks::Rangebreak& bounds(Callable&& c);
+    Layout::Xaxis::Rangebreak& bounds(Callable&& c);
 
     // Sets the size of each `values` item. The default is one day in milliseconds.
-    Layout::Xaxis::Rangebreaks::Rangebreak& dvalue(double f);
+    Layout::Xaxis::Rangebreak& dvalue(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Xaxis::Rangebreaks::Rangebreak& dvalue(Callable&& c);
+    Layout::Xaxis::Rangebreak& dvalue(Callable&& c);
 
     // Determines whether this axis rangebreak is enabled or disabled. Please note that `rangebreaks` only work for
     // *date* axis type.
-    Layout::Xaxis::Rangebreaks::Rangebreak& enabled(bool f);
+    Layout::Xaxis::Rangebreak& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Xaxis::Rangebreaks::Rangebreak& enabled(Callable&& c);
+    Layout::Xaxis::Rangebreak& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Xaxis::Rangebreaks::Rangebreak& name(std::string f);
+    Layout::Xaxis::Rangebreak& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Rangebreaks::Rangebreak& name(Callable&& c);
+    Layout::Xaxis::Rangebreak& name(Callable&& c);
 
     // Determines a pattern on the time line that generates breaks. If *day of week* - days of the week in English e.g.
     // 'Sunday' or `sun` (matching is case-insensitive and considers only the first three characters), as well as
@@ -15556,22 +15242,22 @@ class Layout::Xaxis::Rangebreaks::Rangebreak {
     // more info. Examples: - { pattern: 'day of week', bounds: [6, 1] }  or simply { bounds: ['sat', 'mon'] }   breaks
     // from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour', bounds: [17, 8] }   breaks from 5pm to
     // 8am (i.e. skips non-work hours).
-    Layout::Xaxis::Rangebreaks::Rangebreak& pattern(enum Pattern f);
+    Layout::Xaxis::Rangebreak& pattern(enum Pattern f);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Xaxis::Rangebreaks::Rangebreak& templateitemname(std::string f);
+    Layout::Xaxis::Rangebreak& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Rangebreaks::Rangebreak& templateitemname(Callable&& c);
+    Layout::Xaxis::Rangebreak& templateitemname(Callable&& c);
 
     // Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the
     // size of the values along the axis.
-    Layout::Xaxis::Rangebreaks::Rangebreak& values(const std::vector<double>& f);
+    Layout::Xaxis::Rangebreak& values(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Xaxis::Rangebreaks::Rangebreak& values(Callable&& c);
+    Layout::Xaxis::Rangebreak& values(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -15599,7 +15285,7 @@ class Layout::Xaxis::Rangeselector {
     };
     static std::string to_string(Yanchor e);
 
-    class Buttons;
+    class Button;
     // Sets the font of the range selector button text.
     class Font;
 
@@ -15623,9 +15309,10 @@ class Layout::Xaxis::Rangeselector {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeselector& borderwidth(Callable&& c);
 
-    Layout::Xaxis::Rangeselector& buttons(Buttons f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Buttons&>>>
+    Layout::Xaxis::Rangeselector& buttons(Button f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Button&>>>
     Layout::Xaxis::Rangeselector& buttons(Callable&& c);
+    Layout::Xaxis::Rangeselector& buttons(const std::vector<Button>& f);
 
     // Sets the font of the range selector button text.
     Layout::Xaxis::Rangeselector& font(Font f);
@@ -15662,26 +15349,7 @@ class Layout::Xaxis::Rangeselector {
     Json json{};
 };
 
-class Layout::Xaxis::Rangeselector::Buttons {
- public:
-    Buttons() = default;
-    Buttons(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    // Sets the specifications for each buttons. By default, a range selector comes with no buttons.
-    class Button;
-
-    // Sets the specifications for each buttons. By default, a range selector comes with no buttons.
-    Layout::Xaxis::Rangeselector::Buttons& button(Button f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Button&>>>
-    Layout::Xaxis::Rangeselector::Buttons& button(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-// Sets the specifications for each buttons. By default, a range selector comes with no buttons.
-class Layout::Xaxis::Rangeselector::Buttons::Button {
+class Layout::Xaxis::Rangeselector::Button {
  public:
     Button() = default;
     Button(std::string jsonStr)
@@ -15705,26 +15373,26 @@ class Layout::Xaxis::Rangeselector::Buttons::Button {
     static std::string to_string(Stepmode e);
 
     // Sets the number of steps to take to update the range. Use with `step` to specify the update interval.
-    Layout::Xaxis::Rangeselector::Buttons::Button& count(double f);
+    Layout::Xaxis::Rangeselector::Button& count(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Xaxis::Rangeselector::Buttons::Button& count(Callable&& c);
+    Layout::Xaxis::Rangeselector::Button& count(Callable&& c);
 
     // Sets the text label to appear on the button.
-    Layout::Xaxis::Rangeselector::Buttons::Button& label(std::string f);
+    Layout::Xaxis::Rangeselector::Button& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Rangeselector::Buttons::Button& label(Callable&& c);
+    Layout::Xaxis::Rangeselector::Button& label(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Xaxis::Rangeselector::Buttons::Button& name(std::string f);
+    Layout::Xaxis::Rangeselector::Button& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Rangeselector::Buttons::Button& name(Callable&& c);
+    Layout::Xaxis::Rangeselector::Button& name(Callable&& c);
 
     // The unit of measurement that the `count` value will set the range by.
     // - Default: month
-    Layout::Xaxis::Rangeselector::Buttons::Button& step(enum Step f);
+    Layout::Xaxis::Rangeselector::Button& step(enum Step f);
 
     // Sets the range update mode. If *backward*, the range update shifts the start of range back *count* times *step*
     // milliseconds. If *todate*, the range update shifts the start of range back to the first timestamp from *count*
@@ -15732,21 +15400,21 @@ class Layout::Xaxis::Rangeselector::Buttons::Button {
     // shifts the start of the range back to January 01 of the current year. Month and year *todate* are currently
     // available only for the built-in (Gregorian) calendar.
     // - Default: backward
-    Layout::Xaxis::Rangeselector::Buttons::Button& stepmode(enum Stepmode f);
+    Layout::Xaxis::Rangeselector::Button& stepmode(enum Stepmode f);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Xaxis::Rangeselector::Buttons::Button& templateitemname(std::string f);
+    Layout::Xaxis::Rangeselector::Button& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Rangeselector::Buttons::Button& templateitemname(Callable&& c);
+    Layout::Xaxis::Rangeselector::Button& templateitemname(Callable&& c);
 
     // Determines whether or not this button is visible.
-    Layout::Xaxis::Rangeselector::Buttons::Button& visible(bool f);
+    Layout::Xaxis::Rangeselector::Button& visible(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Xaxis::Rangeselector::Buttons::Button& visible(Callable&& c);
+    Layout::Xaxis::Rangeselector::Button& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -16012,23 +15680,7 @@ class Layout::Xaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Xaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Xaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Xaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Xaxis::Tickformatstops::Tickformatstop {
+class Layout::Xaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -16036,36 +15688,36 @@ class Layout::Xaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Xaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Xaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Xaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Xaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Xaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Xaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Xaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Xaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Xaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Xaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Xaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Xaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Xaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Xaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Xaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Xaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Xaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Xaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -16401,10 +16053,10 @@ class Layout::Yaxis {
 
     class Autorangeoptions;
     class Minor;
-    class Rangebreaks;
+    class Rangebreak;
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter
@@ -16665,9 +16317,10 @@ class Layout::Yaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout::Yaxis& range(Callable&& c);
 
-    Layout::Yaxis& rangebreaks(Rangebreaks f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Rangebreaks&>>>
+    Layout::Yaxis& rangebreaks(Rangebreak f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Rangebreak&>>>
     Layout::Yaxis& rangebreaks(Callable&& c);
+    Layout::Yaxis& rangebreaks(const std::vector<Rangebreak>& f);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
     // to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
@@ -16820,9 +16473,10 @@ class Layout::Yaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Layout::Yaxis& tickformat(Callable&& c);
 
-    Layout::Yaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Layout::Yaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Layout::Yaxis& tickformatstops(Callable&& c);
+    Layout::Yaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Only for axes with `type` *date* or *linear*. Instead of drawing the major tick label, draw the label for the
     // minor tick that is n positions away from the major tick. E.g. to always draw the label for the minor tick before
@@ -17153,23 +16807,7 @@ class Layout::Yaxis::Minor {
     Json json{};
 };
 
-class Layout::Yaxis::Rangebreaks {
- public:
-    Rangebreaks() = default;
-    Rangebreaks(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Rangebreak;
-
-    Layout::Yaxis::Rangebreaks& rangebreak(Rangebreak f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Rangebreak&>>>
-    Layout::Yaxis::Rangebreaks& rangebreak(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Yaxis::Rangebreaks::Rangebreak {
+class Layout::Yaxis::Rangebreak {
  public:
     Rangebreak() = default;
     Rangebreak(std::string jsonStr)
@@ -17183,28 +16821,28 @@ class Layout::Yaxis::Rangebreaks::Rangebreak {
     static std::string to_string(Pattern e);
 
     // Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
-    Layout::Yaxis::Rangebreaks::Rangebreak& bounds(const std::vector<double>& f);
+    Layout::Yaxis::Rangebreak& bounds(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Yaxis::Rangebreaks::Rangebreak& bounds(Callable&& c);
+    Layout::Yaxis::Rangebreak& bounds(Callable&& c);
 
     // Sets the size of each `values` item. The default is one day in milliseconds.
-    Layout::Yaxis::Rangebreaks::Rangebreak& dvalue(double f);
+    Layout::Yaxis::Rangebreak& dvalue(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Layout::Yaxis::Rangebreaks::Rangebreak& dvalue(Callable&& c);
+    Layout::Yaxis::Rangebreak& dvalue(Callable&& c);
 
     // Determines whether this axis rangebreak is enabled or disabled. Please note that `rangebreaks` only work for
     // *date* axis type.
-    Layout::Yaxis::Rangebreaks::Rangebreak& enabled(bool f);
+    Layout::Yaxis::Rangebreak& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Yaxis::Rangebreaks::Rangebreak& enabled(Callable&& c);
+    Layout::Yaxis::Rangebreak& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Yaxis::Rangebreaks::Rangebreak& name(std::string f);
+    Layout::Yaxis::Rangebreak& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Yaxis::Rangebreaks::Rangebreak& name(Callable&& c);
+    Layout::Yaxis::Rangebreak& name(Callable&& c);
 
     // Determines a pattern on the time line that generates breaks. If *day of week* - days of the week in English e.g.
     // 'Sunday' or `sun` (matching is case-insensitive and considers only the first three characters), as well as
@@ -17212,22 +16850,22 @@ class Layout::Yaxis::Rangebreaks::Rangebreak {
     // more info. Examples: - { pattern: 'day of week', bounds: [6, 1] }  or simply { bounds: ['sat', 'mon'] }   breaks
     // from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour', bounds: [17, 8] }   breaks from 5pm to
     // 8am (i.e. skips non-work hours).
-    Layout::Yaxis::Rangebreaks::Rangebreak& pattern(enum Pattern f);
+    Layout::Yaxis::Rangebreak& pattern(enum Pattern f);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Yaxis::Rangebreaks::Rangebreak& templateitemname(std::string f);
+    Layout::Yaxis::Rangebreak& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Yaxis::Rangebreaks::Rangebreak& templateitemname(Callable&& c);
+    Layout::Yaxis::Rangebreak& templateitemname(Callable&& c);
 
     // Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the
     // size of the values along the axis.
-    Layout::Yaxis::Rangebreaks::Rangebreak& values(const std::vector<double>& f);
+    Layout::Yaxis::Rangebreak& values(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Yaxis::Rangebreaks::Rangebreak& values(Callable&& c);
+    Layout::Yaxis::Rangebreak& values(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -17320,23 +16958,7 @@ class Layout::Yaxis::Tickfont {
     Json json{};
 };
 
-class Layout::Yaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Layout::Yaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Layout::Yaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Layout::Yaxis::Tickformatstops::Tickformatstop {
+class Layout::Yaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -17344,36 +16966,36 @@ class Layout::Yaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Layout::Yaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Layout::Yaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Layout::Yaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Layout::Yaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Layout::Yaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Layout::Yaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Layout::Yaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Layout::Yaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Layout::Yaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Layout::Yaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Yaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Layout::Yaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Layout::Yaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Layout::Yaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Yaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Layout::Yaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Layout::Yaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Layout::Yaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Layout::Yaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Layout::Yaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

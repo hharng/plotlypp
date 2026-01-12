@@ -906,15 +906,21 @@ Sankey::Link& Sankey::Link::color(const std::vector<std::string>& f) {
     return *this;
 }
 
-Sankey::Link& Sankey::Link::colorscales(Colorscales f) {
+Sankey::Link& Sankey::Link::colorscales(Concentrationscales f) {
     json["colorscales"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Sankey::Link& Sankey::Link::colorscales(Callable&& c) {
-    Colorscales f{};
+    Concentrationscales f{};
     std::forward<Callable>(c)(f);
     return colorscales(std::move(f));
+}
+Sankey::Link& Sankey::Link::colorscales(const std::vector<Concentrationscales>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["colorscales"] = std::move(jsonified);
+    return *this;
 }
 
 Sankey::Link& Sankey::Link::colorsrc(std::string f) {
@@ -1123,83 +1129,71 @@ Sankey::Link& Sankey::Link::valuesrc(Callable&& c) {
 }
 
 
-Sankey::Link::Colorscales& Sankey::Link::Colorscales::concentrationscales(Concentrationscales f) {
-    json["concentrationscales"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Sankey::Link::Colorscales& Sankey::Link::Colorscales::concentrationscales(Callable&& c) {
-    Concentrationscales f{};
-    std::forward<Callable>(c)(f);
-    return concentrationscales(std::move(f));
-}
-
-
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::cmax(double f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::cmax(Callable&& c) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::cmin(double f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::cmin(Callable&& c) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::colorscale(std::string f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::colorscale(Callable&& c) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::label(std::string f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::label(Callable&& c) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::name(std::string f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::name(Callable&& c) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::templateitemname(std::string f) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Sankey::Link::Colorscales::Concentrationscales& Sankey::Link::Colorscales::Concentrationscales::templateitemname(Callable&& c) {
+Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));

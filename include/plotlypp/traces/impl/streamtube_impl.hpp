@@ -1069,15 +1069,21 @@ Streamtube::Colorbar& Streamtube::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Tickformatstops f) {
+Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Streamtube::Colorbar& Streamtube::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1389,68 +1395,56 @@ Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::weight(Callable&
 }
 
 
-Streamtube::Colorbar::Tickformatstops& Streamtube::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstops& Streamtube::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstops::Tickformatstop& Streamtube::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

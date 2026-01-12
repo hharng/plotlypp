@@ -1163,15 +1163,21 @@ Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickformat(Callable&
     return tickformat(std::move(f));
 }
 
-Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickformatstops(Tickformatstops f) {
+Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1483,68 +1489,56 @@ Histogram2Dcontour::Colorbar::Tickfont& Histogram2Dcontour::Colorbar::Tickfont::
 }
 
 
-Histogram2Dcontour::Colorbar::Tickformatstops& Histogram2Dcontour::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Histogram2Dcontour::Colorbar::Tickformatstops& Histogram2Dcontour::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Histogram2Dcontour::Colorbar::Tickformatstop& Histogram2Dcontour::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

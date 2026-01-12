@@ -1270,15 +1270,21 @@ Contour::Colorbar& Contour::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Contour::Colorbar& Contour::Colorbar::tickformatstops(Tickformatstops f) {
+Contour::Colorbar& Contour::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Contour::Colorbar& Contour::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Contour::Colorbar& Contour::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Contour::Colorbar& Contour::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1590,68 +1596,56 @@ Contour::Colorbar::Tickfont& Contour::Colorbar::Tickfont::weight(Callable&& c) {
 }
 
 
-Contour::Colorbar::Tickformatstops& Contour::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Contour::Colorbar::Tickformatstops& Contour::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contour::Colorbar::Tickformatstops::Tickformatstop& Contour::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

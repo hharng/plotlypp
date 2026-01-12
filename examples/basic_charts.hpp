@@ -67,11 +67,10 @@ Figure groupedScatter() {
                       .mode("markers");
 
     auto layout = Layout()
+                      .scattermode(Layout::Scattermode::Group)
                       .title(([](auto& t) { t.text("Grouped by Country"); }))
                       .xaxis(Layout::Xaxis().title([](auto& t) { t.text("Country"); }))
                       .yaxis({"{\"title\": {\"text\": \"Medals\"}}"});
-
-    // TODO: still missing layout attributes!
 
     return Figure()
         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2), std::move(trace3)})
@@ -118,54 +117,15 @@ Figure lineDashes() {
         .setLayout(std::move(layout));
 }
 
-} // namespace plotlypp
-
-/*
-
-
-
-
-//
-Grouped Scatter Plot
-
-var trace1 = {
-
-
-var data = [trace1, trace2, trace3];
-
-var layout = {
-  scattermode: 'group',
-  title: {
-    text: 'Grouped by Country'
-  },
-  xaxis: {
-    title: {
-      text: 'Country'
-    }
-  },
-  yaxis: {
-    title: {
-      text: 'Medals'
-    }
-  }
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
-*/
-
-namespace plotlypp {
-
 // https://plotly.com/javascript/bar-charts/
 
-// TODO: layout attribute
-// Figure groupedBar() {
-//     auto trace1 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{20, 14, 23}).name("SF
-//     Zoo"); auto trace2 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{12, 18,
-//     29}).name("LA Zoo"); return Figure()
-//         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
-//         .setLayout(Layout().barmode("group"));
-// }
+Figure groupedBar() {
+    auto trace1 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{20, 14, 23}).name("SF Zoo");
+    auto trace2 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{12, 18, 29}).name("LA Zoo");
+    return Figure()
+        .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
+        .setLayout(Layout().barmode(Layout::Barmode::Group));
+}
 
 // https://plotly.com/javascript/pie-charts/
 
@@ -197,19 +157,18 @@ Figure donut() {
         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
         .setLayout(Layout()
                        .title([](auto& t) { t.text("Global Emissions 1990-2011"); })
-                       .annotations(Layout::Annotations()
-                                        .annotation(Layout::Annotations::Annotation()
-                                                        .font(Layout::Annotations::Annotation::Font().size(20))
-                                                        .showarrow(false)
-                                                        .text("GHG")
-                                                        .x(0.17)
-                                                        .y(0.5))
-                                        .annotation(Layout::Annotations::Annotation()
-                                                        .font(Layout::Annotations::Annotation::Font().size(20))
-                                                        .showarrow(false)
-                                                        .text("CO2")
-                                                        .x(0.82)
-                                                        .y(0.5)))
+                       .annotations({Layout::Annotation()
+                                         .font(Layout::Annotation::Font().size(20))
+                                         .showarrow(false)
+                                         .text("GHG")
+                                         .x(0.17)
+                                         .y(0.5),
+                                     Layout::Annotation()
+                                         .font(Layout::Annotation::Font().size(20))
+                                         .showarrow(false)
+                                         .text("CO2")
+                                         .x(0.82)
+                                         .y(0.5)})
                        .height(400)
                        .width(600)
                        .showlegend(false)
@@ -302,25 +261,24 @@ Figure basicOverlaidArea() {
 
 // https://plotly.com/javascript/horizontal-bar-charts/
 
-// TODO: layout attribute
-// Figure horizontalBar() {
-//     auto trace1 = Bar()
-//                       .x(std::vector{20, 14, 23})
-//                       .y(std::vector{"giraffes", "orangutans", "monkeys"})
+Figure horizontalBar() {
+    auto trace1 = Bar()
+                      .x(std::vector{20, 14, 23})
+                      .y(std::vector{"giraffes", "orangutans", "monkeys"})
 
-//                       .name("SF Zoo")
-//                       .orientation("h")
-//                       .marker(Bar::Marker().color("rgba(55,128,191,0.6)").width(1));
-//     auto trace2 = Bar()
-//                       .x(std::vector{12, 18, 29})
-//                       .y(std::vector{"giraffes", "orangutans", "monkeys"})
-//                       .name("LA Zoo")
-//                       .orientation("h")
-//                       .marker(Bar::Marker().color("rgba(255,153,51,0.6)").width(1));
-//     return Figure()
-//         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
-//         .setLayout(Layout().title([](auto& t) { t.text("Colored Bar Chart"); }).barmode("stack"));
-// }
+                      .name("SF Zoo")
+                      .orientation(Bar::Orientation::H)
+                      .marker(Bar::Marker().color("rgba(55,128,191,0.6)"));
+    auto trace2 = Bar()
+                      .x(std::vector{12, 18, 29})
+                      .y(std::vector{"giraffes", "orangutans", "monkeys"})
+                      .name("LA Zoo")
+                      .orientation(Bar::Orientation::H)
+                      .marker(Bar::Marker().color("rgba(255,153,51,0.6)"));
+    return Figure()
+        .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
+        .setLayout(Layout().title([](auto& t) { t.text("Colored Bar Chart"); }).barmode(Layout::Barmode::Stack));
+}
 
 // Figure styledTable() {}
 

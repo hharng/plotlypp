@@ -946,15 +946,21 @@ Densitymap::Colorbar& Densitymap::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Densitymap::Colorbar& Densitymap::Colorbar::tickformatstops(Tickformatstops f) {
+Densitymap::Colorbar& Densitymap::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Densitymap::Colorbar& Densitymap::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Densitymap::Colorbar& Densitymap::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Densitymap::Colorbar& Densitymap::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -1266,68 +1272,56 @@ Densitymap::Colorbar::Tickfont& Densitymap::Colorbar::Tickfont::weight(Callable&
 }
 
 
-Densitymap::Colorbar::Tickformatstops& Densitymap::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Densitymap::Colorbar::Tickformatstops& Densitymap::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Densitymap::Colorbar::Tickformatstops::Tickformatstop& Densitymap::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Densitymap::Colorbar::Tickformatstop& Densitymap::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

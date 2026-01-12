@@ -2279,15 +2279,21 @@ Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Tickformatstops f) {
+Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -2599,68 +2605,56 @@ Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::weight
 }
 
 
-Scatter3D::Line::Colorbar::Tickformatstops& Scatter3D::Line::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops& Scatter3D::Line::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -3454,15 +3448,21 @@ Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformat(Callable&& 
     return tickformat(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Tickformatstops f) {
+Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
@@ -3774,68 +3774,56 @@ Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::we
 }
 
 
-Scatter3D::Marker::Colorbar::Tickformatstops& Scatter3D::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops& Scatter3D::Marker::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

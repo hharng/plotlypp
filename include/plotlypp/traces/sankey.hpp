@@ -594,7 +594,7 @@ class Sankey::Link {
     };
     static std::string to_string(Hoverinfo e);
 
-    class Colorscales;
+    class Concentrationscales;
     class Hoverlabel;
     class Line;
 
@@ -610,9 +610,10 @@ class Sankey::Link {
     Sankey::Link& color(Callable&& c);
     Sankey::Link& color(const std::vector<std::string>& f);
 
-    Sankey::Link& colorscales(Colorscales f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorscales&>>>
+    Sankey::Link& colorscales(Concentrationscales f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Concentrationscales&>>>
     Sankey::Link& colorscales(Callable&& c);
+    Sankey::Link& colorscales(const std::vector<Concentrationscales>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Link& colorsrc(std::string f);
@@ -737,37 +738,21 @@ class Sankey::Link {
     Json json{};
 };
 
-class Sankey::Link::Colorscales {
- public:
-    Colorscales() = default;
-    Colorscales(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Concentrationscales;
-
-    Sankey::Link::Colorscales& concentrationscales(Concentrationscales f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Concentrationscales&>>>
-    Sankey::Link::Colorscales& concentrationscales(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Sankey::Link::Colorscales::Concentrationscales {
+class Sankey::Link::Concentrationscales {
  public:
     Concentrationscales() = default;
     Concentrationscales(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the upper bound of the color domain.
-    Sankey::Link::Colorscales::Concentrationscales& cmax(double f);
+    Sankey::Link::Concentrationscales& cmax(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Sankey::Link::Colorscales::Concentrationscales& cmax(Callable&& c);
+    Sankey::Link::Concentrationscales& cmax(Callable&& c);
 
     // Sets the lower bound of the color domain.
-    Sankey::Link::Colorscales::Concentrationscales& cmin(double f);
+    Sankey::Link::Concentrationscales& cmin(double f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Sankey::Link::Colorscales::Concentrationscales& cmin(Callable&& c);
+    Sankey::Link::Concentrationscales& cmin(Callable&& c);
 
     // Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb,
     // rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are
@@ -775,34 +760,34 @@ class Sankey::Link::Colorscales::Concentrationscales {
     // color space, use `cmin` and `cmax`. Alternatively, `colorscale` may be a palette name string of the following
     // list:
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
-    Sankey::Link::Colorscales::Concentrationscales& colorscale(std::string f);
-    Sankey::Link::Colorscales::Concentrationscales& colorscale(const std::vector<std::pair<double, std::string>>& f);
+    Sankey::Link::Concentrationscales& colorscale(std::string f);
+    Sankey::Link::Concentrationscales& colorscale(const std::vector<std::pair<double, std::string>>& f);
     template <typename Callable,
               typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
                                           std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Sankey::Link::Colorscales::Concentrationscales& colorscale(Callable&& c);
+    Sankey::Link::Concentrationscales& colorscale(Callable&& c);
 
     // The label of the links to color based on their concentration within a flow.
-    Sankey::Link::Colorscales::Concentrationscales& label(std::string f);
+    Sankey::Link::Concentrationscales& label(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Sankey::Link::Colorscales::Concentrationscales& label(Callable&& c);
+    Sankey::Link::Concentrationscales& label(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Sankey::Link::Colorscales::Concentrationscales& name(std::string f);
+    Sankey::Link::Concentrationscales& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Sankey::Link::Colorscales::Concentrationscales& name(Callable&& c);
+    Sankey::Link::Concentrationscales& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Sankey::Link::Colorscales::Concentrationscales& templateitemname(std::string f);
+    Sankey::Link::Concentrationscales& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Sankey::Link::Colorscales::Concentrationscales& templateitemname(Callable&& c);
+    Sankey::Link::Concentrationscales& templateitemname(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

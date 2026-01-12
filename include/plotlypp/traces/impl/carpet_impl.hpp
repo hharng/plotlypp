@@ -1007,15 +1007,21 @@ Carpet::Aaxis& Carpet::Aaxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Tickformatstops f) {
+Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Carpet::Aaxis& Carpet::Aaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Carpet::Aaxis& Carpet::Aaxis::tickmode(enum Tickmode f) {
@@ -1220,68 +1226,56 @@ Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::weight(Callable&& c) {
 }
 
 
-Carpet::Aaxis::Tickformatstops& Carpet::Aaxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstops& Carpet::Aaxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstops::Tickformatstop& Carpet::Aaxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
@@ -2006,15 +2000,21 @@ Carpet::Baxis& Carpet::Baxis::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tickformatstops(Tickformatstops f) {
+Carpet::Baxis& Carpet::Baxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
 Carpet::Baxis& Carpet::Baxis::tickformatstops(Callable&& c) {
-    Tickformatstops f{};
+    Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
+}
+Carpet::Baxis& Carpet::Baxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+    std::vector<Json> jsonified(f.size());
+    std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
+    json["tickformatstops"] = std::move(jsonified);
+    return *this;
 }
 
 Carpet::Baxis& Carpet::Baxis::tickmode(enum Tickmode f) {
@@ -2219,68 +2219,56 @@ Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::weight(Callable&& c) {
 }
 
 
-Carpet::Baxis::Tickformatstops& Carpet::Baxis::Tickformatstops::tickformatstop(Tickformatstop f) {
-    json["tickformatstop"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-Carpet::Baxis::Tickformatstops& Carpet::Baxis::Tickformatstops::tickformatstop(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstop(std::move(f));
-}
-
-
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::enabled(bool f) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::name(std::string f) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::value(std::string f) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstops::Tickformatstop& Carpet::Baxis::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));

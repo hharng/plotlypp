@@ -482,7 +482,7 @@ class Densitymapbox::Colorbar {
 
     // Sets the color bar's tick label font
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // Sets the color of padded area.
@@ -638,9 +638,10 @@ class Densitymapbox::Colorbar {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Densitymapbox::Colorbar& tickformat(Callable&& c);
 
-    Densitymapbox::Colorbar& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Densitymapbox::Colorbar& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Densitymapbox::Colorbar& tickformatstops(Callable&& c);
+    Densitymapbox::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
     // default value for inside tick labels is *hide past domain*. In other cases the default is *hide past div*.
@@ -857,23 +858,7 @@ class Densitymapbox::Colorbar::Tickfont {
     Json json{};
 };
 
-class Densitymapbox::Colorbar::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Densitymapbox::Colorbar::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Densitymapbox::Colorbar::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Densitymapbox::Colorbar::Tickformatstops::Tickformatstop {
+class Densitymapbox::Colorbar::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -881,36 +866,36 @@ class Densitymapbox::Colorbar::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Densitymapbox::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Densitymapbox::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& enabled(bool f);
+    Densitymapbox::Colorbar::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Densitymapbox::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& name(std::string f);
+    Densitymapbox::Colorbar::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Densitymapbox::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Densitymapbox::Colorbar::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Densitymapbox::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& value(std::string f);
+    Densitymapbox::Colorbar::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Densitymapbox::Colorbar::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Densitymapbox::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

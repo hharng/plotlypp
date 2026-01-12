@@ -371,7 +371,7 @@ class Carpet::Aaxis {
 
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // The stride between grid lines along the axis
@@ -635,9 +635,10 @@ class Carpet::Aaxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Carpet::Aaxis& tickformat(Callable&& c);
 
-    Carpet::Aaxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Carpet::Aaxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Carpet::Aaxis& tickformatstops(Callable&& c);
+    Carpet::Aaxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     //
     // - Default: array
@@ -781,23 +782,7 @@ class Carpet::Aaxis::Tickfont {
     Json json{};
 };
 
-class Carpet::Aaxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Carpet::Aaxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Carpet::Aaxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Carpet::Aaxis::Tickformatstops::Tickformatstop {
+class Carpet::Aaxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -805,36 +790,36 @@ class Carpet::Aaxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Carpet::Aaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Carpet::Aaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Carpet::Aaxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Carpet::Aaxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Carpet::Aaxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Carpet::Aaxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Carpet::Aaxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Carpet::Aaxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Carpet::Aaxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Carpet::Aaxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Carpet::Aaxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1052,7 +1037,7 @@ class Carpet::Baxis {
 
     // Sets the tick font.
     class Tickfont;
-    class Tickformatstops;
+    class Tickformatstop;
     class Title;
 
     // The stride between grid lines along the axis
@@ -1316,9 +1301,10 @@ class Carpet::Baxis {
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
     Carpet::Baxis& tickformat(Callable&& c);
 
-    Carpet::Baxis& tickformatstops(Tickformatstops f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstops&>>>
+    Carpet::Baxis& tickformatstops(Tickformatstop f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
     Carpet::Baxis& tickformatstops(Callable&& c);
+    Carpet::Baxis& tickformatstops(const std::vector<Tickformatstop>& f);
 
     //
     // - Default: array
@@ -1462,23 +1448,7 @@ class Carpet::Baxis::Tickfont {
     Json json{};
 };
 
-class Carpet::Baxis::Tickformatstops {
- public:
-    Tickformatstops() = default;
-    Tickformatstops(std::string jsonStr)
-    : json(parse(std::move(jsonStr))) {}
-
-    class Tickformatstop;
-
-    Carpet::Baxis::Tickformatstops& tickformatstop(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Carpet::Baxis::Tickformatstops& tickformatstop(Callable&& c);
-
-    // Advanced users may modify the JSON representation directly, at their own peril!
-    Json json{};
-};
-
-class Carpet::Baxis::Tickformatstops::Tickformatstop {
+class Carpet::Baxis::Tickformatstop {
  public:
     Tickformatstop() = default;
     Tickformatstop(std::string jsonStr)
@@ -1486,36 +1456,36 @@ class Carpet::Baxis::Tickformatstops::Tickformatstop {
 
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
-    Carpet::Baxis::Tickformatstops::Tickformatstop& dtickrange(const std::vector<double>& f);
+    Carpet::Baxis::Tickformatstop& dtickrange(const std::vector<double>& f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
-    Carpet::Baxis::Tickformatstops::Tickformatstop& dtickrange(Callable&& c);
+    Carpet::Baxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-    Carpet::Baxis::Tickformatstops::Tickformatstop& enabled(bool f);
+    Carpet::Baxis::Tickformatstop& enabled(bool f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Carpet::Baxis::Tickformatstops::Tickformatstop& enabled(Callable&& c);
+    Carpet::Baxis::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
-    Carpet::Baxis::Tickformatstops::Tickformatstop& name(std::string f);
+    Carpet::Baxis::Tickformatstop& name(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Carpet::Baxis::Tickformatstops::Tickformatstop& name(Callable&& c);
+    Carpet::Baxis::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
     // matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
-    Carpet::Baxis::Tickformatstops::Tickformatstop& templateitemname(std::string f);
+    Carpet::Baxis::Tickformatstop& templateitemname(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Carpet::Baxis::Tickformatstops::Tickformatstop& templateitemname(Callable&& c);
+    Carpet::Baxis::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
-    Carpet::Baxis::Tickformatstops::Tickformatstop& value(std::string f);
+    Carpet::Baxis::Tickformatstop& value(std::string f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Carpet::Baxis::Tickformatstops::Tickformatstop& value(Callable&& c);
+    Carpet::Baxis::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
