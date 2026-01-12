@@ -422,22 +422,25 @@ void showScientificCharts() {
 void showStatisticalCharts() {
     using namespace plotlypp;
 
-    coloredBoxPlot().show();
-    waitForEnter();
+    // coloredBoxPlot().show();
+    // waitForEnter();
 
-    coloredAndStyledHistograms().show();
-    waitForEnter();
+    // coloredAndStyledHistograms().show();
+    // waitForEnter();
 
-    continuousFilledErrorBars().show();
-    waitForEnter();
+    // continuousFilledErrorBars().show();
+    // waitForEnter();
 
-    asymmetricErrorBars().show();
-    waitForEnter();
+    // asymmetricErrorBars().show();
+    // waitForEnter();
 
-    gen2DHistogramBivariateNormal().show();
-    waitForEnter();
+    // gen2DHistogramBivariateNormal().show();
+    // waitForEnter();
 
-    gen2DHistogramContour().show();
+    // gen2DHistogramContour().show();
+    // waitForEnter();
+
+    basicHorizontalViolinPlot().show();
     waitForEnter();
 }
 

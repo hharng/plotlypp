@@ -9,6 +9,7 @@
 #include <plotlypp/traces/histogram2d.hpp>
 #include <plotlypp/traces/histogram2dcontour.hpp>
 #include <plotlypp/traces/scatter.hpp>
+#include <plotlypp/traces/violin.hpp>
 
 namespace plotlypp {
 
@@ -183,6 +184,35 @@ Figure gen2DHistogramContour() {
         y.push_back(dis(gen) + 1);
     }
     return Figure().addTrace(Histogram2Dcontour().x(x).y(y).colorscale("Blues"));
+}
+
+// https://plotly.com/javascript/violin/
+Figure basicHorizontalViolinPlot() {
+    std::vector<double> total_bill_data;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    // Bills centered around $40, std dev $10, min $5
+    std::normal_distribution<> dis(40.0, 10.0);
+    total_bill_data.reserve(100);
+    for (int i = 0; i < 100; ++i) {
+        total_bill_data.push_back(std::max(5.0, dis(gen)));
+    }
+
+    auto trace = Violin()
+                     .x(total_bill_data)
+                     .points(Violin::Points::False)
+                     .box(Violin::Box().visible(true))
+                     .line(Violin::Line().color("black"))
+                     .fillcolor("#8dd3c7")
+                     .opacity(0.6)
+                     .meanline(Violin::Meanline().visible(true))
+                     .y0("Total Bill");
+
+    return Figure()
+        .addTrace(std::move(trace))
+        .setLayout(Layout()
+                       .title([](auto& t) { t.text("Basic Horizontal Violin Plot"); })
+                       .xaxis(Layout::Xaxis().zeroline(false)));
 }
 
 } // namespace plotlypp
