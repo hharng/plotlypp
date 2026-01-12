@@ -11,29 +11,39 @@
 namespace plotlypp {
 
 std::string Image::to_string(Colormodel e) {
-    switch(e) {
-        case Colormodel::Rgb: return "rgb";
-        case Colormodel::Rgba: return "rgba";
-        case Colormodel::Rgba256: return "rgba256";
-        case Colormodel::Hsl: return "hsl";
-        case Colormodel::Hsla: return "hsla";
+    switch (e) {
+    case Colormodel::Rgb:
+        return "rgb";
+    case Colormodel::Rgba:
+        return "rgba";
+    case Colormodel::Rgba256:
+        return "rgba256";
+    case Colormodel::Hsl:
+        return "hsl";
+    case Colormodel::Hsla:
+        return "hsla";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Image::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
+    switch (e) {
+    case Visible::True:
+        return "True";
+    case Visible::False:
+        return "False";
+    case Visible::Legendonly:
+        return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Image::to_string(Zsmooth e) {
-    switch(e) {
-        case Zsmooth::Fast: return "fast";
-        case Zsmooth::False: return "False";
+    switch (e) {
+    case Zsmooth::Fast:
+        return "fast";
+    case Zsmooth::False:
+        return "False";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -473,10 +483,13 @@ Image& Image::zsrc(Callable&& c) {
 }
 
 std::string Image::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
+    switch (e) {
+    case Align::Left:
+        return "left";
+    case Align::Right:
+        return "right";
+    case Align::Auto:
+        return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -488,7 +501,7 @@ Image::Hoverlabel& Image::Hoverlabel::align(enum Align f) {
 }
 Image::Hoverlabel& Image::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -594,31 +607,43 @@ Image::Hoverlabel& Image::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Image::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Image::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Image::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -760,7 +785,7 @@ Image::Hoverlabel::Font& Image::Hoverlabel::Font::style(enum Style f) {
 }
 Image::Hoverlabel::Font& Image::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -782,7 +807,7 @@ Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcase(enum Textcase f) {
 }
 Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -804,7 +829,7 @@ Image::Hoverlabel::Font& Image::Hoverlabel::Font::variant(enum Variant f) {
 }
 Image::Hoverlabel::Font& Image::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -846,7 +871,6 @@ Image::Hoverlabel::Font& Image::Hoverlabel::Font::weightsrc(Callable&& c) {
     return weightsrc(std::move(f));
 }
 
-
 Image::Legendgrouptitle& Image::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -870,31 +894,43 @@ Image::Legendgrouptitle& Image::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Image::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Image::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Image::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -981,7 +1017,6 @@ Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::weight(Callable&& 
     return weight(std::move(f));
 }
 
-
 Image::Stream& Image::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -1005,4 +1040,3 @@ Image::Stream& Image::Stream::token(Callable&& c) {
 }
 
 } // namespace plotlypp
-

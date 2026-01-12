@@ -11,100 +11,163 @@
 namespace plotlypp {
 
 std::string Scatter3D::to_string(Surfaceaxis e) {
-    switch(e) {
-        case Surfaceaxis::Num_1: return "1";
-        case Surfaceaxis::Num_0: return "0";
-        case Surfaceaxis::Num_2: return "2";
+    switch (e) {
+    case Surfaceaxis::Num_1:
+        return "1";
+    case Surfaceaxis::Num_0:
+        return "0";
+    case Surfaceaxis::Num_2:
+        return "2";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
+    switch (e) {
+    case Textposition::TopLeft:
+        return "top left";
+    case Textposition::TopCenter:
+        return "top center";
+    case Textposition::TopRight:
+        return "top right";
+    case Textposition::MiddleLeft:
+        return "middle left";
+    case Textposition::MiddleCenter:
+        return "middle center";
+    case Textposition::MiddleRight:
+        return "middle right";
+    case Textposition::BottomLeft:
+        return "bottom left";
+    case Textposition::BottomCenter:
+        return "bottom center";
+    case Textposition::BottomRight:
+        return "bottom right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
+    switch (e) {
+    case Visible::True:
+        return "True";
+    case Visible::False:
+        return "False";
+    case Visible::Legendonly:
+        return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::to_string(Xcalendar e) {
-    switch(e) {
-        case Xcalendar::Chinese: return "chinese";
-        case Xcalendar::Coptic: return "coptic";
-        case Xcalendar::Discworld: return "discworld";
-        case Xcalendar::Ethiopian: return "ethiopian";
-        case Xcalendar::Gregorian: return "gregorian";
-        case Xcalendar::Hebrew: return "hebrew";
-        case Xcalendar::Islamic: return "islamic";
-        case Xcalendar::Jalali: return "jalali";
-        case Xcalendar::Julian: return "julian";
-        case Xcalendar::Mayan: return "mayan";
-        case Xcalendar::Nanakshahi: return "nanakshahi";
-        case Xcalendar::Nepali: return "nepali";
-        case Xcalendar::Persian: return "persian";
-        case Xcalendar::Taiwan: return "taiwan";
-        case Xcalendar::Thai: return "thai";
-        case Xcalendar::Ummalqura: return "ummalqura";
+    switch (e) {
+    case Xcalendar::Chinese:
+        return "chinese";
+    case Xcalendar::Coptic:
+        return "coptic";
+    case Xcalendar::Discworld:
+        return "discworld";
+    case Xcalendar::Ethiopian:
+        return "ethiopian";
+    case Xcalendar::Gregorian:
+        return "gregorian";
+    case Xcalendar::Hebrew:
+        return "hebrew";
+    case Xcalendar::Islamic:
+        return "islamic";
+    case Xcalendar::Jalali:
+        return "jalali";
+    case Xcalendar::Julian:
+        return "julian";
+    case Xcalendar::Mayan:
+        return "mayan";
+    case Xcalendar::Nanakshahi:
+        return "nanakshahi";
+    case Xcalendar::Nepali:
+        return "nepali";
+    case Xcalendar::Persian:
+        return "persian";
+    case Xcalendar::Taiwan:
+        return "taiwan";
+    case Xcalendar::Thai:
+        return "thai";
+    case Xcalendar::Ummalqura:
+        return "ummalqura";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::to_string(Ycalendar e) {
-    switch(e) {
-        case Ycalendar::Chinese: return "chinese";
-        case Ycalendar::Coptic: return "coptic";
-        case Ycalendar::Discworld: return "discworld";
-        case Ycalendar::Ethiopian: return "ethiopian";
-        case Ycalendar::Gregorian: return "gregorian";
-        case Ycalendar::Hebrew: return "hebrew";
-        case Ycalendar::Islamic: return "islamic";
-        case Ycalendar::Jalali: return "jalali";
-        case Ycalendar::Julian: return "julian";
-        case Ycalendar::Mayan: return "mayan";
-        case Ycalendar::Nanakshahi: return "nanakshahi";
-        case Ycalendar::Nepali: return "nepali";
-        case Ycalendar::Persian: return "persian";
-        case Ycalendar::Taiwan: return "taiwan";
-        case Ycalendar::Thai: return "thai";
-        case Ycalendar::Ummalqura: return "ummalqura";
+    switch (e) {
+    case Ycalendar::Chinese:
+        return "chinese";
+    case Ycalendar::Coptic:
+        return "coptic";
+    case Ycalendar::Discworld:
+        return "discworld";
+    case Ycalendar::Ethiopian:
+        return "ethiopian";
+    case Ycalendar::Gregorian:
+        return "gregorian";
+    case Ycalendar::Hebrew:
+        return "hebrew";
+    case Ycalendar::Islamic:
+        return "islamic";
+    case Ycalendar::Jalali:
+        return "jalali";
+    case Ycalendar::Julian:
+        return "julian";
+    case Ycalendar::Mayan:
+        return "mayan";
+    case Ycalendar::Nanakshahi:
+        return "nanakshahi";
+    case Ycalendar::Nepali:
+        return "nepali";
+    case Ycalendar::Persian:
+        return "persian";
+    case Ycalendar::Taiwan:
+        return "taiwan";
+    case Ycalendar::Thai:
+        return "thai";
+    case Ycalendar::Ummalqura:
+        return "ummalqura";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::to_string(Zcalendar e) {
-    switch(e) {
-        case Zcalendar::Chinese: return "chinese";
-        case Zcalendar::Coptic: return "coptic";
-        case Zcalendar::Discworld: return "discworld";
-        case Zcalendar::Ethiopian: return "ethiopian";
-        case Zcalendar::Gregorian: return "gregorian";
-        case Zcalendar::Hebrew: return "hebrew";
-        case Zcalendar::Islamic: return "islamic";
-        case Zcalendar::Jalali: return "jalali";
-        case Zcalendar::Julian: return "julian";
-        case Zcalendar::Mayan: return "mayan";
-        case Zcalendar::Nanakshahi: return "nanakshahi";
-        case Zcalendar::Nepali: return "nepali";
-        case Zcalendar::Persian: return "persian";
-        case Zcalendar::Taiwan: return "taiwan";
-        case Zcalendar::Thai: return "thai";
-        case Zcalendar::Ummalqura: return "ummalqura";
+    switch (e) {
+    case Zcalendar::Chinese:
+        return "chinese";
+    case Zcalendar::Coptic:
+        return "coptic";
+    case Zcalendar::Discworld:
+        return "discworld";
+    case Zcalendar::Ethiopian:
+        return "ethiopian";
+    case Zcalendar::Gregorian:
+        return "gregorian";
+    case Zcalendar::Hebrew:
+        return "hebrew";
+    case Zcalendar::Islamic:
+        return "islamic";
+    case Zcalendar::Jalali:
+        return "jalali";
+    case Zcalendar::Julian:
+        return "julian";
+    case Zcalendar::Mayan:
+        return "mayan";
+    case Zcalendar::Nanakshahi:
+        return "nanakshahi";
+    case Zcalendar::Nepali:
+        return "nepali";
+    case Zcalendar::Persian:
+        return "persian";
+    case Zcalendar::Taiwan:
+        return "taiwan";
+    case Zcalendar::Thai:
+        return "thai";
+    case Zcalendar::Ummalqura:
+        return "ummalqura";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -519,7 +582,7 @@ Scatter3D& Scatter3D::textposition(enum Textposition f) {
 }
 Scatter3D& Scatter3D::textposition(const std::vector<enum Textposition>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["textposition"] = std::move(stringified);
     return *this;
 }
@@ -718,11 +781,15 @@ Scatter3D& Scatter3D::zsrc(Callable&& c) {
 }
 
 std::string Scatter3D::Error_X::to_string(Type e) {
-    switch(e) {
-        case Type::Percent: return "percent";
-        case Type::Constant: return "constant";
-        case Type::Sqrt: return "sqrt";
-        case Type::Data: return "data";
+    switch (e) {
+    case Type::Percent:
+        return "percent";
+    case Type::Constant:
+        return "constant";
+    case Type::Sqrt:
+        return "sqrt";
+    case Type::Data:
+        return "data";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -890,11 +957,15 @@ Scatter3D::Error_X& Scatter3D::Error_X::width(Callable&& c) {
 }
 
 std::string Scatter3D::Error_Y::to_string(Type e) {
-    switch(e) {
-        case Type::Percent: return "percent";
-        case Type::Constant: return "constant";
-        case Type::Sqrt: return "sqrt";
-        case Type::Data: return "data";
+    switch (e) {
+    case Type::Percent:
+        return "percent";
+    case Type::Constant:
+        return "constant";
+    case Type::Sqrt:
+        return "sqrt";
+    case Type::Data:
+        return "data";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1062,11 +1133,15 @@ Scatter3D::Error_Y& Scatter3D::Error_Y::width(Callable&& c) {
 }
 
 std::string Scatter3D::Error_Z::to_string(Type e) {
-    switch(e) {
-        case Type::Percent: return "percent";
-        case Type::Constant: return "constant";
-        case Type::Sqrt: return "sqrt";
-        case Type::Data: return "data";
+    switch (e) {
+    case Type::Percent:
+        return "percent";
+    case Type::Constant:
+        return "constant";
+    case Type::Sqrt:
+        return "sqrt";
+    case Type::Data:
+        return "data";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1223,10 +1298,13 @@ Scatter3D::Error_Z& Scatter3D::Error_Z::width(Callable&& c) {
 }
 
 std::string Scatter3D::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
+    switch (e) {
+    case Align::Left:
+        return "left";
+    case Align::Right:
+        return "right";
+    case Align::Auto:
+        return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1238,7 +1316,7 @@ Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::align(enum Align f) {
 }
 Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -1344,31 +1422,43 @@ Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Scatter3D::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1510,7 +1600,7 @@ Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::style(enum Style f) {
 }
 Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1532,7 +1622,7 @@ Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcase(enum Textcase
 }
 Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1554,7 +1644,7 @@ Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variant(enum Variant f
 }
 Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1596,7 +1686,6 @@ Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weightsrc(Callable&& c
     return weightsrc(std::move(f));
 }
 
-
 Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -1620,31 +1709,43 @@ Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Scatter3D::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1732,13 +1833,19 @@ Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::weight(Cal
 }
 
 std::string Scatter3D::Line::to_string(Dash e) {
-    switch(e) {
-        case Dash::Dash: return "dash";
-        case Dash::Dashdot: return "dashdot";
-        case Dash::Dot: return "dot";
-        case Dash::Longdash: return "longdash";
-        case Dash::Longdashdot: return "longdashdot";
-        case Dash::Solid: return "solid";
+    switch (e) {
+    case Dash::Dash:
+        return "dash";
+    case Dash::Dashdot:
+        return "dashdot";
+    case Dash::Dot:
+        return "dot";
+    case Dash::Longdash:
+        return "longdash";
+    case Dash::Longdashdot:
+        return "longdashdot";
+    case Dash::Solid:
+        return "solid";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1901,143 +2008,195 @@ Scatter3D::Line& Scatter3D::Line::width(Callable&& c) {
 }
 
 std::string Scatter3D::Line::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
+    switch (e) {
+    case Exponentformat::None:
+        return "none";
+    case Exponentformat::E:
+        return "E";
+    case Exponentformat::Power:
+        return "power";
+    case Exponentformat::Si:
+        return "SI";
+    case Exponentformat::B:
+        return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
+    switch (e) {
+    case Lenmode::Fraction:
+        return "fraction";
+    case Lenmode::Pixels:
+        return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
+    switch (e) {
+    case Orientation::H:
+        return "h";
+    case Orientation::V:
+        return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
+    switch (e) {
+    case Showexponent::All:
+        return "all";
+    case Showexponent::First:
+        return "first";
+    case Showexponent::Last:
+        return "last";
+    case Showexponent::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
+    switch (e) {
+    case Showtickprefix::All:
+        return "all";
+    case Showtickprefix::First:
+        return "first";
+    case Showtickprefix::Last:
+        return "last";
+    case Showtickprefix::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
+    switch (e) {
+    case Showticksuffix::All:
+        return "all";
+    case Showticksuffix::First:
+        return "first";
+    case Showticksuffix::Last:
+        return "last";
+    case Showticksuffix::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
+    switch (e) {
+    case Thicknessmode::Fraction:
+        return "fraction";
+    case Thicknessmode::Pixels:
+        return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
+    switch (e) {
+    case Ticklabeloverflow::Allow:
+        return "allow";
+    case Ticklabeloverflow::HidePastDiv:
+        return "hide past div";
+    case Ticklabeloverflow::HidePastDomain:
+        return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
+    switch (e) {
+    case Ticklabelposition::Outside:
+        return "outside";
+    case Ticklabelposition::Inside:
+        return "inside";
+    case Ticklabelposition::OutsideTop:
+        return "outside top";
+    case Ticklabelposition::InsideTop:
+        return "inside top";
+    case Ticklabelposition::OutsideLeft:
+        return "outside left";
+    case Ticklabelposition::InsideLeft:
+        return "inside left";
+    case Ticklabelposition::OutsideRight:
+        return "outside right";
+    case Ticklabelposition::InsideRight:
+        return "inside right";
+    case Ticklabelposition::OutsideBottom:
+        return "outside bottom";
+    case Ticklabelposition::InsideBottom:
+        return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
+    switch (e) {
+    case Tickmode::Auto:
+        return "auto";
+    case Tickmode::Linear:
+        return "linear";
+    case Tickmode::Array:
+        return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
+    switch (e) {
+    case Ticks::Outside:
+        return "outside";
+    case Ticks::Inside:
+        return "inside";
+    case Ticks::Empty:
+        return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
+    switch (e) {
+    case Xanchor::Left:
+        return "left";
+    case Xanchor::Center:
+        return "center";
+    case Xanchor::Right:
+        return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
+    switch (e) {
+    case Xref::Container:
+        return "container";
+    case Xref::Paper:
+        return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
+    switch (e) {
+    case Yanchor::Top:
+        return "top";
+    case Yanchor::Middle:
+        return "middle";
+    case Yanchor::Bottom:
+        return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
+    switch (e) {
+    case Yref::Container:
+        return "container";
+    case Yref::Paper:
+        return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2487,31 +2646,43 @@ Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::yref(enum Yref f) {
 }
 
 std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2598,8 +2769,8 @@ Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::weight
     return weight(std::move(f));
 }
 
-
-Scatter3D::Line::Colorbar::Tickformatstops& Scatter3D::Line::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
+Scatter3D::Line::Colorbar::Tickformatstops&
+Scatter3D::Line::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
 }
@@ -2610,67 +2781,79 @@ Scatter3D::Line::Colorbar::Tickformatstops& Scatter3D::Line::Colorbar::Tickforma
     return tickformatstop(std::move(f));
 }
 
-
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Line::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 std::string Scatter3D::Line::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
+    switch (e) {
+    case Side::Right:
+        return "right";
+    case Side::Top:
+        return "top";
+    case Side::Bottom:
+        return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2704,31 +2887,43 @@ Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::text(Callabl
 }
 
 std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2816,23 +3011,33 @@ Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::
 }
 
 std::string Scatter3D::Marker::to_string(Sizemode e) {
-    switch(e) {
-        case Sizemode::Diameter: return "diameter";
-        case Sizemode::Area: return "area";
+    switch (e) {
+    case Sizemode::Diameter:
+        return "diameter";
+    case Sizemode::Area:
+        return "area";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::to_string(Symbol e) {
-    switch(e) {
-        case Symbol::Circle: return "circle";
-        case Symbol::CircleOpen: return "circle-open";
-        case Symbol::Cross: return "cross";
-        case Symbol::Diamond: return "diamond";
-        case Symbol::DiamondOpen: return "diamond-open";
-        case Symbol::Square: return "square";
-        case Symbol::SquareOpen: return "square-open";
-        case Symbol::X: return "x";
+    switch (e) {
+    case Symbol::Circle:
+        return "circle";
+    case Symbol::CircleOpen:
+        return "circle-open";
+    case Symbol::Cross:
+        return "cross";
+    case Symbol::Diamond:
+        return "diamond";
+    case Symbol::DiamondOpen:
+        return "diamond-open";
+    case Symbol::Square:
+        return "square";
+    case Symbol::SquareOpen:
+        return "square-open";
+    case Symbol::X:
+        return "x";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3059,7 +3264,7 @@ Scatter3D::Marker& Scatter3D::Marker::symbol(enum Symbol f) {
 }
 Scatter3D::Marker& Scatter3D::Marker::symbol(const std::vector<enum Symbol>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["symbol"] = std::move(stringified);
     return *this;
 }
@@ -3076,143 +3281,195 @@ Scatter3D::Marker& Scatter3D::Marker::symbolsrc(Callable&& c) {
 }
 
 std::string Scatter3D::Marker::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
+    switch (e) {
+    case Exponentformat::None:
+        return "none";
+    case Exponentformat::E:
+        return "E";
+    case Exponentformat::Power:
+        return "power";
+    case Exponentformat::Si:
+        return "SI";
+    case Exponentformat::B:
+        return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
+    switch (e) {
+    case Lenmode::Fraction:
+        return "fraction";
+    case Lenmode::Pixels:
+        return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
+    switch (e) {
+    case Orientation::H:
+        return "h";
+    case Orientation::V:
+        return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
+    switch (e) {
+    case Showexponent::All:
+        return "all";
+    case Showexponent::First:
+        return "first";
+    case Showexponent::Last:
+        return "last";
+    case Showexponent::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
+    switch (e) {
+    case Showtickprefix::All:
+        return "all";
+    case Showtickprefix::First:
+        return "first";
+    case Showtickprefix::Last:
+        return "last";
+    case Showtickprefix::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
+    switch (e) {
+    case Showticksuffix::All:
+        return "all";
+    case Showticksuffix::First:
+        return "first";
+    case Showticksuffix::Last:
+        return "last";
+    case Showticksuffix::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
+    switch (e) {
+    case Thicknessmode::Fraction:
+        return "fraction";
+    case Thicknessmode::Pixels:
+        return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
+    switch (e) {
+    case Ticklabeloverflow::Allow:
+        return "allow";
+    case Ticklabeloverflow::HidePastDiv:
+        return "hide past div";
+    case Ticklabeloverflow::HidePastDomain:
+        return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
+    switch (e) {
+    case Ticklabelposition::Outside:
+        return "outside";
+    case Ticklabelposition::Inside:
+        return "inside";
+    case Ticklabelposition::OutsideTop:
+        return "outside top";
+    case Ticklabelposition::InsideTop:
+        return "inside top";
+    case Ticklabelposition::OutsideLeft:
+        return "outside left";
+    case Ticklabelposition::InsideLeft:
+        return "inside left";
+    case Ticklabelposition::OutsideRight:
+        return "outside right";
+    case Ticklabelposition::InsideRight:
+        return "inside right";
+    case Ticklabelposition::OutsideBottom:
+        return "outside bottom";
+    case Ticklabelposition::InsideBottom:
+        return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
+    switch (e) {
+    case Tickmode::Auto:
+        return "auto";
+    case Tickmode::Linear:
+        return "linear";
+    case Tickmode::Array:
+        return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
+    switch (e) {
+    case Ticks::Outside:
+        return "outside";
+    case Ticks::Inside:
+        return "inside";
+    case Ticks::Empty:
+        return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
+    switch (e) {
+    case Xanchor::Left:
+        return "left";
+    case Xanchor::Center:
+        return "center";
+    case Xanchor::Right:
+        return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
+    switch (e) {
+    case Xref::Container:
+        return "container";
+    case Xref::Paper:
+        return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
+    switch (e) {
+    case Yanchor::Top:
+        return "top";
+    case Yanchor::Middle:
+        return "middle";
+    case Yanchor::Bottom:
+        return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
+    switch (e) {
+    case Yref::Container:
+        return "container";
+    case Yref::Paper:
+        return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3662,31 +3919,43 @@ Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::yref(enum Yref f) {
 }
 
 std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3773,79 +4042,92 @@ Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::we
     return weight(std::move(f));
 }
 
-
-Scatter3D::Marker::Colorbar::Tickformatstops& Scatter3D::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
+Scatter3D::Marker::Colorbar::Tickformatstops&
+Scatter3D::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops& Scatter3D::Marker::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstops&
+Scatter3D::Marker::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstop(std::move(f));
 }
 
-
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Scatter3D::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 std::string Scatter3D::Marker::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
+    switch (e) {
+    case Side::Right:
+        return "right";
+    case Side::Top:
+        return "top";
+    case Side::Bottom:
+        return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3879,31 +4161,43 @@ Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::text(Cal
 }
 
 std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3989,7 +4283,6 @@ Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Fo
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-
 
 Scatter3D::Marker::Line& Scatter3D::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -4120,7 +4413,6 @@ Scatter3D::Marker::Line& Scatter3D::Marker::Line::width(Callable&& c) {
     return width(std::move(f));
 }
 
-
 Scatter3D::Projection& Scatter3D::Projection::x(X f) {
     json["x"] = std::move(f.json);
     return *this;
@@ -4153,7 +4445,6 @@ Scatter3D::Projection& Scatter3D::Projection::z(Callable&& c) {
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
-
 
 Scatter3D::Projection::X& Scatter3D::Projection::X::opacity(double f) {
     json["opacity"] = std::move(f);
@@ -4188,7 +4479,6 @@ Scatter3D::Projection::X& Scatter3D::Projection::X::show(Callable&& c) {
     return show(std::move(f));
 }
 
-
 Scatter3D::Projection::Y& Scatter3D::Projection::Y::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
@@ -4221,7 +4511,6 @@ Scatter3D::Projection::Y& Scatter3D::Projection::Y::show(Callable&& c) {
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
-
 
 Scatter3D::Projection::Z& Scatter3D::Projection::Z::opacity(double f) {
     json["opacity"] = std::move(f);
@@ -4256,7 +4545,6 @@ Scatter3D::Projection::Z& Scatter3D::Projection::Z::show(Callable&& c) {
     return show(std::move(f));
 }
 
-
 Scatter3D::Stream& Scatter3D::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -4280,17 +4568,21 @@ Scatter3D::Stream& Scatter3D::Stream::token(Callable&& c) {
 }
 
 std::string Scatter3D::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Scatter3D::Textfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -4380,7 +4672,7 @@ Scatter3D::Textfont& Scatter3D::Textfont::style(enum Style f) {
 }
 Scatter3D::Textfont& Scatter3D::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -4402,7 +4694,7 @@ Scatter3D::Textfont& Scatter3D::Textfont::variant(enum Variant f) {
 }
 Scatter3D::Textfont& Scatter3D::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -4445,4 +4737,3 @@ Scatter3D::Textfont& Scatter3D::Textfont::weightsrc(Callable&& c) {
 }
 
 } // namespace plotlypp
-

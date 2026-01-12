@@ -11,113 +11,171 @@
 namespace plotlypp {
 
 std::string Histogram::to_string(Constraintext e) {
-    switch(e) {
-        case Constraintext::Inside: return "inside";
-        case Constraintext::Outside: return "outside";
-        case Constraintext::Both: return "both";
-        case Constraintext::None: return "none";
+    switch (e) {
+    case Constraintext::Inside:
+        return "inside";
+    case Constraintext::Outside:
+        return "outside";
+    case Constraintext::Both:
+        return "both";
+    case Constraintext::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Histfunc e) {
-    switch(e) {
-        case Histfunc::Count: return "count";
-        case Histfunc::Sum: return "sum";
-        case Histfunc::Avg: return "avg";
-        case Histfunc::Min: return "min";
-        case Histfunc::Max: return "max";
+    switch (e) {
+    case Histfunc::Count:
+        return "count";
+    case Histfunc::Sum:
+        return "sum";
+    case Histfunc::Avg:
+        return "avg";
+    case Histfunc::Min:
+        return "min";
+    case Histfunc::Max:
+        return "max";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Histnorm e) {
-    switch(e) {
-        case Histnorm::Empty: return "";
-        case Histnorm::Percent: return "percent";
-        case Histnorm::Probability: return "probability";
-        case Histnorm::Density: return "density";
-        case Histnorm::ProbabilityDensity: return "probability density";
+    switch (e) {
+    case Histnorm::Empty:
+        return "";
+    case Histnorm::Percent:
+        return "percent";
+    case Histnorm::Probability:
+        return "probability";
+    case Histnorm::Density:
+        return "density";
+    case Histnorm::ProbabilityDensity:
+        return "probability density";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Insidetextanchor e) {
-    switch(e) {
-        case Insidetextanchor::End: return "end";
-        case Insidetextanchor::Middle: return "middle";
-        case Insidetextanchor::Start: return "start";
+    switch (e) {
+    case Insidetextanchor::End:
+        return "end";
+    case Insidetextanchor::Middle:
+        return "middle";
+    case Insidetextanchor::Start:
+        return "start";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::V: return "v";
-        case Orientation::H: return "h";
+    switch (e) {
+    case Orientation::V:
+        return "v";
+    case Orientation::H:
+        return "h";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::Inside: return "inside";
-        case Textposition::Outside: return "outside";
-        case Textposition::Auto: return "auto";
-        case Textposition::None: return "none";
+    switch (e) {
+    case Textposition::Inside:
+        return "inside";
+    case Textposition::Outside:
+        return "outside";
+    case Textposition::Auto:
+        return "auto";
+    case Textposition::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
+    switch (e) {
+    case Visible::True:
+        return "True";
+    case Visible::False:
+        return "False";
+    case Visible::Legendonly:
+        return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Xcalendar e) {
-    switch(e) {
-        case Xcalendar::Chinese: return "chinese";
-        case Xcalendar::Coptic: return "coptic";
-        case Xcalendar::Discworld: return "discworld";
-        case Xcalendar::Ethiopian: return "ethiopian";
-        case Xcalendar::Gregorian: return "gregorian";
-        case Xcalendar::Hebrew: return "hebrew";
-        case Xcalendar::Islamic: return "islamic";
-        case Xcalendar::Jalali: return "jalali";
-        case Xcalendar::Julian: return "julian";
-        case Xcalendar::Mayan: return "mayan";
-        case Xcalendar::Nanakshahi: return "nanakshahi";
-        case Xcalendar::Nepali: return "nepali";
-        case Xcalendar::Persian: return "persian";
-        case Xcalendar::Taiwan: return "taiwan";
-        case Xcalendar::Thai: return "thai";
-        case Xcalendar::Ummalqura: return "ummalqura";
+    switch (e) {
+    case Xcalendar::Chinese:
+        return "chinese";
+    case Xcalendar::Coptic:
+        return "coptic";
+    case Xcalendar::Discworld:
+        return "discworld";
+    case Xcalendar::Ethiopian:
+        return "ethiopian";
+    case Xcalendar::Gregorian:
+        return "gregorian";
+    case Xcalendar::Hebrew:
+        return "hebrew";
+    case Xcalendar::Islamic:
+        return "islamic";
+    case Xcalendar::Jalali:
+        return "jalali";
+    case Xcalendar::Julian:
+        return "julian";
+    case Xcalendar::Mayan:
+        return "mayan";
+    case Xcalendar::Nanakshahi:
+        return "nanakshahi";
+    case Xcalendar::Nepali:
+        return "nepali";
+    case Xcalendar::Persian:
+        return "persian";
+    case Xcalendar::Taiwan:
+        return "taiwan";
+    case Xcalendar::Thai:
+        return "thai";
+    case Xcalendar::Ummalqura:
+        return "ummalqura";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::to_string(Ycalendar e) {
-    switch(e) {
-        case Ycalendar::Chinese: return "chinese";
-        case Ycalendar::Coptic: return "coptic";
-        case Ycalendar::Discworld: return "discworld";
-        case Ycalendar::Ethiopian: return "ethiopian";
-        case Ycalendar::Gregorian: return "gregorian";
-        case Ycalendar::Hebrew: return "hebrew";
-        case Ycalendar::Islamic: return "islamic";
-        case Ycalendar::Jalali: return "jalali";
-        case Ycalendar::Julian: return "julian";
-        case Ycalendar::Mayan: return "mayan";
-        case Ycalendar::Nanakshahi: return "nanakshahi";
-        case Ycalendar::Nepali: return "nepali";
-        case Ycalendar::Persian: return "persian";
-        case Ycalendar::Taiwan: return "taiwan";
-        case Ycalendar::Thai: return "thai";
-        case Ycalendar::Ummalqura: return "ummalqura";
+    switch (e) {
+    case Ycalendar::Chinese:
+        return "chinese";
+    case Ycalendar::Coptic:
+        return "coptic";
+    case Ycalendar::Discworld:
+        return "discworld";
+    case Ycalendar::Ethiopian:
+        return "ethiopian";
+    case Ycalendar::Gregorian:
+        return "gregorian";
+    case Ycalendar::Hebrew:
+        return "hebrew";
+    case Ycalendar::Islamic:
+        return "islamic";
+    case Ycalendar::Jalali:
+        return "jalali";
+    case Ycalendar::Julian:
+        return "julian";
+    case Ycalendar::Mayan:
+        return "mayan";
+    case Ycalendar::Nanakshahi:
+        return "nanakshahi";
+    case Ycalendar::Nepali:
+        return "nepali";
+    case Ycalendar::Persian:
+        return "persian";
+    case Ycalendar::Taiwan:
+        return "taiwan";
+    case Ycalendar::Thai:
+        return "thai";
+    case Ycalendar::Ummalqura:
+        return "ummalqura";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -824,18 +882,23 @@ Histogram& Histogram::zorder(Callable&& c) {
 }
 
 std::string Histogram::Cumulative::to_string(Currentbin e) {
-    switch(e) {
-        case Currentbin::Include: return "include";
-        case Currentbin::Exclude: return "exclude";
-        case Currentbin::Half: return "half";
+    switch (e) {
+    case Currentbin::Include:
+        return "include";
+    case Currentbin::Exclude:
+        return "exclude";
+    case Currentbin::Half:
+        return "half";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Cumulative::to_string(Direction e) {
-    switch(e) {
-        case Direction::Increasing: return "increasing";
-        case Direction::Decreasing: return "decreasing";
+    switch (e) {
+    case Direction::Increasing:
+        return "increasing";
+    case Direction::Decreasing:
+        return "decreasing";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -863,11 +926,15 @@ Histogram::Cumulative& Histogram::Cumulative::enabled(Callable&& c) {
 }
 
 std::string Histogram::Error_X::to_string(Type e) {
-    switch(e) {
-        case Type::Percent: return "percent";
-        case Type::Constant: return "constant";
-        case Type::Sqrt: return "sqrt";
-        case Type::Data: return "data";
+    switch (e) {
+    case Type::Percent:
+        return "percent";
+    case Type::Constant:
+        return "constant";
+    case Type::Sqrt:
+        return "sqrt";
+    case Type::Data:
+        return "data";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1035,11 +1102,15 @@ Histogram::Error_X& Histogram::Error_X::width(Callable&& c) {
 }
 
 std::string Histogram::Error_Y::to_string(Type e) {
-    switch(e) {
-        case Type::Percent: return "percent";
-        case Type::Constant: return "constant";
-        case Type::Sqrt: return "sqrt";
-        case Type::Data: return "data";
+    switch (e) {
+    case Type::Percent:
+        return "percent";
+    case Type::Constant:
+        return "constant";
+    case Type::Sqrt:
+        return "sqrt";
+    case Type::Data:
+        return "data";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1196,10 +1267,13 @@ Histogram::Error_Y& Histogram::Error_Y::width(Callable&& c) {
 }
 
 std::string Histogram::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
+    switch (e) {
+    case Align::Left:
+        return "left";
+    case Align::Right:
+        return "right";
+    case Align::Auto:
+        return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1211,7 +1285,7 @@ Histogram::Hoverlabel& Histogram::Hoverlabel::align(enum Align f) {
 }
 Histogram::Hoverlabel& Histogram::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -1317,31 +1391,43 @@ Histogram::Hoverlabel& Histogram::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Histogram::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1483,7 +1569,7 @@ Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::style(enum Style f) {
 }
 Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1505,7 +1591,7 @@ Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::textcase(enum Textcase
 }
 Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1527,7 +1613,7 @@ Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::variant(enum Variant f
 }
 Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1570,31 +1656,43 @@ Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::weightsrc(Callable&& c
 }
 
 std::string Histogram::Insidetextfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Insidetextfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Insidetextfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1681,7 +1779,6 @@ Histogram::Insidetextfont& Histogram::Insidetextfont::weight(Callable&& c) {
     return weight(std::move(f));
 }
 
-
 Histogram::Legendgrouptitle& Histogram::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -1705,31 +1802,43 @@ Histogram::Legendgrouptitle& Histogram::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Histogram::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1815,7 +1924,6 @@ Histogram::Legendgrouptitle::Font& Histogram::Legendgrouptitle::Font::weight(Cal
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-
 
 Histogram::Marker& Histogram::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -2018,143 +2126,195 @@ Histogram::Marker& Histogram::Marker::showscale(Callable&& c) {
 }
 
 std::string Histogram::Marker::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
+    switch (e) {
+    case Exponentformat::None:
+        return "none";
+    case Exponentformat::E:
+        return "E";
+    case Exponentformat::Power:
+        return "power";
+    case Exponentformat::Si:
+        return "SI";
+    case Exponentformat::B:
+        return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
+    switch (e) {
+    case Lenmode::Fraction:
+        return "fraction";
+    case Lenmode::Pixels:
+        return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
+    switch (e) {
+    case Orientation::H:
+        return "h";
+    case Orientation::V:
+        return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
+    switch (e) {
+    case Showexponent::All:
+        return "all";
+    case Showexponent::First:
+        return "first";
+    case Showexponent::Last:
+        return "last";
+    case Showexponent::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
+    switch (e) {
+    case Showtickprefix::All:
+        return "all";
+    case Showtickprefix::First:
+        return "first";
+    case Showtickprefix::Last:
+        return "last";
+    case Showtickprefix::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
+    switch (e) {
+    case Showticksuffix::All:
+        return "all";
+    case Showticksuffix::First:
+        return "first";
+    case Showticksuffix::Last:
+        return "last";
+    case Showticksuffix::None:
+        return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
+    switch (e) {
+    case Thicknessmode::Fraction:
+        return "fraction";
+    case Thicknessmode::Pixels:
+        return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
+    switch (e) {
+    case Ticklabeloverflow::Allow:
+        return "allow";
+    case Ticklabeloverflow::HidePastDiv:
+        return "hide past div";
+    case Ticklabeloverflow::HidePastDomain:
+        return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
+    switch (e) {
+    case Ticklabelposition::Outside:
+        return "outside";
+    case Ticklabelposition::Inside:
+        return "inside";
+    case Ticklabelposition::OutsideTop:
+        return "outside top";
+    case Ticklabelposition::InsideTop:
+        return "inside top";
+    case Ticklabelposition::OutsideLeft:
+        return "outside left";
+    case Ticklabelposition::InsideLeft:
+        return "inside left";
+    case Ticklabelposition::OutsideRight:
+        return "outside right";
+    case Ticklabelposition::InsideRight:
+        return "inside right";
+    case Ticklabelposition::OutsideBottom:
+        return "outside bottom";
+    case Ticklabelposition::InsideBottom:
+        return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
+    switch (e) {
+    case Tickmode::Auto:
+        return "auto";
+    case Tickmode::Linear:
+        return "linear";
+    case Tickmode::Array:
+        return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
+    switch (e) {
+    case Ticks::Outside:
+        return "outside";
+    case Ticks::Inside:
+        return "inside";
+    case Ticks::Empty:
+        return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
+    switch (e) {
+    case Xanchor::Left:
+        return "left";
+    case Xanchor::Center:
+        return "center";
+    case Xanchor::Right:
+        return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
+    switch (e) {
+    case Xref::Container:
+        return "container";
+    case Xref::Paper:
+        return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
+    switch (e) {
+    case Yanchor::Top:
+        return "top";
+    case Yanchor::Middle:
+        return "middle";
+    case Yanchor::Bottom:
+        return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
+    switch (e) {
+    case Yref::Container:
+        return "container";
+    case Yref::Paper:
+        return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2604,31 +2764,43 @@ Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::yref(enum Yref f) {
 }
 
 std::string Histogram::Marker::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2715,79 +2887,92 @@ Histogram::Marker::Colorbar::Tickfont& Histogram::Marker::Colorbar::Tickfont::we
     return weight(std::move(f));
 }
 
-
-Histogram::Marker::Colorbar::Tickformatstops& Histogram::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
+Histogram::Marker::Colorbar::Tickformatstops&
+Histogram::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram::Marker::Colorbar::Tickformatstops& Histogram::Marker::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
+Histogram::Marker::Colorbar::Tickformatstops&
+Histogram::Marker::Colorbar::Tickformatstops::tickformatstop(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstop(std::move(f));
 }
 
-
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop& Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop&
+Histogram::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 std::string Histogram::Marker::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
+    switch (e) {
+    case Side::Right:
+        return "right";
+    case Side::Top:
+        return "top";
+    case Side::Bottom:
+        return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2821,31 +3006,43 @@ Histogram::Marker::Colorbar::Title& Histogram::Marker::Colorbar::Title::text(Cal
 }
 
 std::string Histogram::Marker::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Marker::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2931,7 +3128,6 @@ Histogram::Marker::Colorbar::Title::Font& Histogram::Marker::Colorbar::Title::Fo
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-
 
 Histogram::Marker::Line& Histogram::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -3078,9 +3274,11 @@ Histogram::Marker::Line& Histogram::Marker::Line::widthsrc(Callable&& c) {
 }
 
 std::string Histogram::Marker::Pattern::to_string(Fillmode e) {
-    switch(e) {
-        case Fillmode::Replace: return "replace";
-        case Fillmode::Overlay: return "overlay";
+    switch (e) {
+    case Fillmode::Replace:
+        return "replace";
+    case Fillmode::Overlay:
+        return "overlay";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3233,31 +3431,43 @@ Histogram::Marker::Pattern& Histogram::Marker::Pattern::soliditysrc(Callable&& c
 }
 
 std::string Histogram::Outsidetextfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Outsidetextfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Outsidetextfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3344,7 +3554,6 @@ Histogram::Outsidetextfont& Histogram::Outsidetextfont::weight(Callable&& c) {
     return weight(std::move(f));
 }
 
-
 Histogram::Selected& Histogram::Selected::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
@@ -3366,7 +3575,6 @@ Histogram::Selected& Histogram::Selected::textfont(Callable&& c) {
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
-
 
 Histogram::Selected::Marker& Histogram::Selected::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -3390,7 +3598,6 @@ Histogram::Selected::Marker& Histogram::Selected::Marker::opacity(Callable&& c) 
     return opacity(std::move(f));
 }
 
-
 Histogram::Selected::Textfont& Histogram::Selected::Textfont::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
@@ -3401,7 +3608,6 @@ Histogram::Selected::Textfont& Histogram::Selected::Textfont::color(Callable&& c
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-
 
 Histogram::Stream& Histogram::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
@@ -3426,31 +3632,43 @@ Histogram::Stream& Histogram::Stream::token(Callable&& c) {
 }
 
 std::string Histogram::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
+    switch (e) {
+    case Style::Normal:
+        return "normal";
+    case Style::Italic:
+        return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Textfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
+    switch (e) {
+    case Textcase::Normal:
+        return "normal";
+    case Textcase::WordCaps:
+        return "word caps";
+    case Textcase::Upper:
+        return "upper";
+    case Textcase::Lower:
+        return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Histogram::Textfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
+    switch (e) {
+    case Variant::Normal:
+        return "normal";
+    case Variant::SmallCaps:
+        return "small-caps";
+    case Variant::AllSmallCaps:
+        return "all-small-caps";
+    case Variant::AllPetiteCaps:
+        return "all-petite-caps";
+    case Variant::PetiteCaps:
+        return "petite-caps";
+    case Variant::Unicase:
+        return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3537,7 +3755,6 @@ Histogram::Textfont& Histogram::Textfont::weight(Callable&& c) {
     return weight(std::move(f));
 }
 
-
 Histogram::Unselected& Histogram::Unselected::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
@@ -3559,7 +3776,6 @@ Histogram::Unselected& Histogram::Unselected::textfont(Callable&& c) {
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
-
 
 Histogram::Unselected::Marker& Histogram::Unselected::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -3583,7 +3799,6 @@ Histogram::Unselected::Marker& Histogram::Unselected::Marker::opacity(Callable&&
     return opacity(std::move(f));
 }
 
-
 Histogram::Unselected::Textfont& Histogram::Unselected::Textfont::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
@@ -3594,7 +3809,6 @@ Histogram::Unselected::Textfont& Histogram::Unselected::Textfont::color(Callable
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-
 
 template <typename T>
 Histogram::Xbins& Histogram::Xbins::end(T f) {
@@ -3631,7 +3845,6 @@ Histogram::Xbins& Histogram::Xbins::start(Callable&& c) {
     std::forward<Callable>(c)(f);
     return start(std::move(f));
 }
-
 
 template <typename T>
 Histogram::Ybins& Histogram::Ybins::end(T f) {
@@ -3670,4 +3883,3 @@ Histogram::Ybins& Histogram::Ybins::start(Callable&& c) {
 }
 
 } // namespace plotlypp
-

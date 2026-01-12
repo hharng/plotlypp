@@ -7,6 +7,7 @@
 #include <plotlypp/traces/contour.hpp>
 #include <plotlypp/traces/scattercarpet.hpp>
 #include <plotlypp/traces/scatterpolar.hpp>
+#include <plotlypp/traces/scattersmith.hpp>
 
 namespace plotlypp {
 
@@ -106,6 +107,35 @@ Figure colorscaleForContourPlot() {
     return Figure().addTrace(std::move(trace)).setLayout(Layout().title([](auto& t) {
         t.text("Colorscale for Contour Plot");
     }));
+}
+
+// https://plotly.com/python/smith-charts/
+
+Figure smithChartSubplotsWithStlying() {
+    auto smith1 = Scattersmith()
+                      .imag(std::vector{1})
+                      .real(std::vector{1})
+                      .marker([](auto& m) { m.symbol(Scattersmith::Marker::Symbol::X).size(30).color("pink"); })
+                      .subplot("smith1");
+    auto smith2 = Scattersmith()
+                      .imag(std::vector{1})
+                      .real(std::vector{1})
+                      .marker(Scattersmith::Marker().symbol(Scattersmith::Marker::Symbol::X).size(30).color("green"))
+                      .subplot("smith2");
+
+    auto layout = Layout()
+                      .smith(Layout::Smith()
+                                 .realaxis(Layout::Smith::Realaxis().gridcolor("red"))
+                                 .imaginaryaxis(Layout::Smith::Imaginaryaxis().gridcolor("blue"))
+                                 .bgcolor("lightgrey")
+                                 .domain(Layout::Smith::Domain().x(std::vector{0., 0.45})))
+                      .smith(2, Layout::Smith()
+                                    .realaxis([](auto& r) { r.gridcolor("blue"); })
+                                    .imaginaryaxis([](auto& i) { i.gridcolor("red"); })
+                                    .bgcolor("lightgrey")
+                                    .domain([](auto& d) { d.x(std::vector{0.55, 1.}); }));
+
+    return Figure().addTrace(std::move(smith1)).addTrace(std::move(smith2)).setLayout(std::move(layout));
 }
 
 } // namespace plotlypp

@@ -575,6 +575,9 @@ def parse_attributes(parent, attributes_node):
                         safe_val = safe_val.replace(" ", "")
                         # Some have hypens which are invalid. Note this has to be done after symbol mapping!
                         safe_val = safe_val.replace("-", "")
+                        # Some are empty strings (crazy!).
+                        if safe_val == "":
+                            safe_val = "Empty"
 
                         # Some are numbers which invalid enum identifiers. Enumerators can't start with a digit.
                         if safe_val[0] in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:

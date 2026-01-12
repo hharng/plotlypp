@@ -13,6 +13,7 @@
 #include "financial_charts.hpp"
 #include "maps.hpp"
 #include "scientific_charts.hpp"
+#include "statistical_charts.hpp"
 
 // x_data = [1, 2, 3, 4, 5]
 // y_data = [3, 6, 4, 7, 5]
@@ -413,15 +414,41 @@ void showScientificCharts() {
 
     colorscaleForContourPlot().show();
     waitForEnter();
+
+    smithChartSubplotsWithStlying().show();
+    waitForEnter();
+}
+
+void showStatisticalCharts() {
+    using namespace plotlypp;
+
+    coloredBoxPlot().show();
+    waitForEnter();
+
+    coloredAndStyledHistograms().show();
+    waitForEnter();
+
+    continuousFilledErrorBars().show();
+    waitForEnter();
+
+    asymmetricErrorBars().show();
+    waitForEnter();
+
+    gen2DHistogramBivariateNormal().show();
+    waitForEnter();
+
+    gen2DHistogramContour().show();
+    waitForEnter();
 }
 
 int main() {
     using namespace plotlypp;
-    showScientificCharts();
-    // show3dCharts();
-    //  showFinancialCharts();
-    //   showMaps();
-    //    showBasicCharts();
+    showStatisticalCharts();
+    // showScientificCharts();
+    //  show3dCharts();
+    //   showFinancialCharts();
+    //    showMaps();
+    //     showBasicCharts();
     return 0;
 
     lineDashes().show();
