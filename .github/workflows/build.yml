@@ -1,0 +1,55 @@
+name: C++ CI (Ninja)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # Enable manual trigger
+
+jobs:
+  build:
+    name: ${{ matrix.os }} - ${{ matrix.compiler }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            compiler: gcc
+            cxx: g++
+            cc: gcc
+
+          - os: ubuntu-latest
+            compiler: clang
+            cxx: clang++
+            cc: clang
+
+          - os: windows-latest
+            compiler: msvc
+            cxx: cl
+            cc: cl
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # 1. Setup MSVC environment (Windows Only)
+    # This adds cl.exe, link.exe, etc. to the PATH
+    - name: Setup MSVC
+      if: matrix.os == 'windows-latest'
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Install Ninja
+      uses: turtlesec-no/get-ninja@main
+
+    - name: Configure CMake
+      env:
+        CXX: ${{ matrix.cxx }}
+        CC: ${{ matrix.cc }}
+      run: >
+        cmake -S . -B build
+        -G "Ninja"
+        -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build
+      run: cmake --build build
