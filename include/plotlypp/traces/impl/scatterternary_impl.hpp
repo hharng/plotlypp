@@ -44,8 +44,8 @@ std::string Scatterternary::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scatterternary& Scatterternary::a(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary& Scatterternary::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
@@ -67,8 +67,8 @@ Scatterternary& Scatterternary::asrc(Callable&& c) {
     return asrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterternary& Scatterternary::b(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary& Scatterternary::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
@@ -90,8 +90,8 @@ Scatterternary& Scatterternary::bsrc(Callable&& c) {
     return bsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterternary& Scatterternary::c(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary& Scatterternary::c(Range&& f) {
     json["c"] = f;
     return *this;
 }
@@ -135,8 +135,8 @@ Scatterternary& Scatterternary::csrc(Callable&& c) {
     return csrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterternary& Scatterternary::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary& Scatterternary::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -274,8 +274,8 @@ Scatterternary& Scatterternary::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterternary& Scatterternary::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary& Scatterternary::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -2357,8 +2357,8 @@ Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::ticksuffix(C
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2380,8 +2380,8 @@ Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::ticktextsrc(
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

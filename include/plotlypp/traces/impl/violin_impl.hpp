@@ -106,8 +106,8 @@ Violin& Violin::box(Callable&& c) {
     return box(std::move(f));
 }
 
-template <typename T, typename>
-Violin& Violin::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Violin& Violin::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -240,8 +240,8 @@ Violin& Violin::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Violin& Violin::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Violin& Violin::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -607,8 +607,8 @@ Violin& Violin::width(Callable&& c) {
     return width(std::move(f));
 }
 
-template <typename T, typename>
-Violin& Violin::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Violin& Violin::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -664,8 +664,8 @@ Violin& Violin::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Violin& Violin::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Violin& Violin::y(Range&& f) {
     json["y"] = f;
     return *this;
 }

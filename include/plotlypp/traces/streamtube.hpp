@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -100,8 +99,8 @@ class Streamtube : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -162,8 +161,8 @@ class Streamtube : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -292,8 +291,8 @@ class Streamtube : public Trace {
     Streamtube& text(Callable&& c);
 
     // Sets the x components of the vector field.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& u(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& u(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -331,8 +330,8 @@ class Streamtube : public Trace {
     Streamtube& usrc(Callable&& c);
 
     // Sets the y components of the vector field.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& v(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& v(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -356,8 +355,8 @@ class Streamtube : public Trace {
     Streamtube& vsrc(Callable&& c);
 
     // Sets the z components of the vector field.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& w(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& w(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -376,8 +375,8 @@ class Streamtube : public Trace {
     Streamtube& wsrc(Callable&& c);
 
     // Sets the x coordinates of the vector field.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -399,8 +398,8 @@ class Streamtube : public Trace {
     Streamtube& xsrc(Callable&& c);
 
     // Sets the y coordinates of the vector field.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -422,8 +421,8 @@ class Streamtube : public Trace {
     Streamtube& ysrc(Callable&& c);
 
     // Sets the z coordinates of the vector field.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -771,8 +770,8 @@ class Streamtube::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -785,8 +784,8 @@ class Streamtube::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1506,8 +1505,8 @@ class Streamtube::Starts {
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the x components of the starting position of the streamtubes
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube::Starts& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube::Starts& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1519,8 +1518,8 @@ class Streamtube::Starts {
     Streamtube::Starts& xsrc(Callable&& c);
 
     // Sets the y components of the starting position of the streamtubes
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube::Starts& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube::Starts& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1532,8 +1531,8 @@ class Streamtube::Starts {
     Streamtube::Starts& ysrc(Callable&& c);
 
     // Sets the z components of the starting position of the streamtubes
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Streamtube::Starts& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Streamtube::Starts& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

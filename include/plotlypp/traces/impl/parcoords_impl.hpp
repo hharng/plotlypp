@@ -28,8 +28,8 @@ std::string Parcoords::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Parcoords& Parcoords::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords& Parcoords::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -79,8 +79,8 @@ Parcoords& Parcoords::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-template <typename T, typename>
-Parcoords& Parcoords::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords& Parcoords::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -373,8 +373,8 @@ Parcoords::Dimension& Parcoords::Dimension::tickformat(Callable&& c) {
     return tickformat(std::move(f));
 }
 
-template <typename T, typename>
-Parcoords::Dimension& Parcoords::Dimension::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords::Dimension& Parcoords::Dimension::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -396,8 +396,8 @@ Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Parcoords::Dimension& Parcoords::Dimension::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords::Dimension& Parcoords::Dimension::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -419,8 +419,8 @@ Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(Callable&& c) {
     return tickvalssrc(std::move(f));
 }
 
-template <typename T, typename>
-Parcoords::Dimension& Parcoords::Dimension::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords::Dimension& Parcoords::Dimension::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1346,8 +1346,8 @@ Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1369,8 +1369,8 @@ Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(Callable&& c) 
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

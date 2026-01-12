@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -84,8 +83,8 @@ class Scattermapbox : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scattermapbox& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scattermapbox& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -164,8 +163,8 @@ class Scattermapbox : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scattermapbox& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scattermapbox& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -177,8 +176,8 @@ class Scattermapbox : public Trace {
     Scattermapbox& idssrc(Callable&& c);
 
     // Sets the latitude coordinates (in degrees North).
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scattermapbox& lat(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scattermapbox& lat(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -224,8 +223,8 @@ class Scattermapbox : public Trace {
     Scattermapbox& line(Callable&& c);
 
     // Sets the longitude coordinates (in degrees East).
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scattermapbox& lon(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scattermapbox& lon(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1281,8 +1280,8 @@ class Scattermapbox::Marker::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scattermapbox::Marker::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scattermapbox::Marker::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1295,8 +1294,8 @@ class Scattermapbox::Marker::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scattermapbox::Marker::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scattermapbox::Marker::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

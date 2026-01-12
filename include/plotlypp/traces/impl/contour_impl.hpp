@@ -179,8 +179,8 @@ Contour& Contour::contours(Callable&& c) {
     return contours(std::move(f));
 }
 
-template <typename T, typename>
-Contour& Contour::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -309,8 +309,8 @@ Contour& Contour::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Contour& Contour::hovertext(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
@@ -332,8 +332,8 @@ Contour& Contour::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Contour& Contour::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -526,8 +526,8 @@ Contour& Contour::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Contour& Contour::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -610,8 +610,8 @@ Contour& Contour::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Contour& Contour::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -706,8 +706,8 @@ Contour& Contour::xtype(enum Xtype f) {
     return *this;
 }
 
-template <typename T, typename>
-Contour& Contour::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -802,8 +802,8 @@ Contour& Contour::ytype(enum Ytype f) {
     return *this;
 }
 
-template <typename T, typename>
-Contour& Contour::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour& Contour::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1351,8 +1351,8 @@ Contour::Colorbar& Contour::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Contour::Colorbar& Contour::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour::Colorbar& Contour::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1374,8 +1374,8 @@ Contour::Colorbar& Contour::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Contour::Colorbar& Contour::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Contour::Colorbar& Contour::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

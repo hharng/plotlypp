@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -70,8 +69,8 @@ class Candlestick : public Trace {
     class Stream;
 
     // Sets the close values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& close(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& close(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -84,8 +83,8 @@ class Candlestick : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -101,8 +100,8 @@ class Candlestick : public Trace {
     Candlestick& decreasing(Callable&& c);
 
     // Sets the high values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& high(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& high(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -145,8 +144,8 @@ class Candlestick : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -196,8 +195,8 @@ class Candlestick : public Trace {
     Candlestick& line(Callable&& c);
 
     // Sets the low values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& low(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& low(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -237,8 +236,8 @@ class Candlestick : public Trace {
     Candlestick& opacity(Callable&& c);
 
     // Sets the open values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& open(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& open(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -309,8 +308,8 @@ class Candlestick : public Trace {
     Candlestick& whiskerwidth(Callable&& c);
 
     // Sets the x coordinates. If absent, linear coordinate will be generated.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Candlestick& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Candlestick& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

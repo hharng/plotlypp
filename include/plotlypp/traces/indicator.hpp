@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -57,8 +56,8 @@ class Indicator : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Indicator& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Indicator& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -84,8 +83,8 @@ class Indicator : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Indicator& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Indicator& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -682,8 +681,8 @@ class Indicator::Gauge::Axis {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Indicator::Gauge::Axis& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Indicator::Gauge::Axis& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -696,8 +695,8 @@ class Indicator::Gauge::Axis {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Indicator::Gauge::Axis& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Indicator::Gauge::Axis& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

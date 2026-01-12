@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -161,8 +160,8 @@ class Histogram2D : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -233,8 +232,8 @@ class Histogram2D : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -383,8 +382,8 @@ class Histogram2D : public Trace {
     Histogram2D& visible(enum Visible f);
 
     // Sets the sample data to be binned on the x axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -432,8 +431,8 @@ class Histogram2D : public Trace {
     Histogram2D& xsrc(Callable&& c);
 
     // Sets the sample data to be binned on the y axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -481,8 +480,8 @@ class Histogram2D : public Trace {
     Histogram2D& ysrc(Callable&& c);
 
     // Sets the aggregation data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -855,8 +854,8 @@ class Histogram2D::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -869,8 +868,8 @@ class Histogram2D::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1519,8 +1518,8 @@ class Histogram2D::Marker {
     : json(parse(std::move(jsonStr))) {}
 
     // Sets the aggregation data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Histogram2D::Marker& color(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Histogram2D::Marker& color(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

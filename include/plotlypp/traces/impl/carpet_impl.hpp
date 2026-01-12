@@ -20,8 +20,8 @@ std::string Carpet::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Carpet& Carpet::a(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet& Carpet::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
@@ -65,8 +65,8 @@ Carpet& Carpet::asrc(Callable&& c) {
     return asrc(std::move(f));
 }
 
-template <typename T, typename>
-Carpet& Carpet::b(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet& Carpet::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
@@ -143,8 +143,8 @@ Carpet& Carpet::color(Callable&& c) {
     return color(std::move(f));
 }
 
-template <typename T, typename>
-Carpet& Carpet::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet& Carpet::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -199,8 +199,8 @@ Carpet& Carpet::font(Callable&& c) {
     return font(std::move(f));
 }
 
-template <typename T, typename>
-Carpet& Carpet::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet& Carpet::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -355,8 +355,8 @@ Carpet& Carpet::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Carpet& Carpet::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet& Carpet::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -389,8 +389,8 @@ Carpet& Carpet::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Carpet& Carpet::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet& Carpet::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -580,8 +580,8 @@ Carpet::Aaxis& Carpet::Aaxis::autotypenumbers(enum Autotypenumbers f) {
     return *this;
 }
 
-template <typename T, typename>
-Carpet::Aaxis& Carpet::Aaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet::Aaxis& Carpet::Aaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -1051,8 +1051,8 @@ Carpet::Aaxis& Carpet::Aaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Carpet::Aaxis& Carpet::Aaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet::Aaxis& Carpet::Aaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1074,8 +1074,8 @@ Carpet::Aaxis& Carpet::Aaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet::Aaxis& Carpet::Aaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -1573,8 +1573,8 @@ Carpet::Baxis& Carpet::Baxis::autotypenumbers(enum Autotypenumbers f) {
     return *this;
 }
 
-template <typename T, typename>
-Carpet::Baxis& Carpet::Baxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet::Baxis& Carpet::Baxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -2044,8 +2044,8 @@ Carpet::Baxis& Carpet::Baxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Carpet::Baxis& Carpet::Baxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet::Baxis& Carpet::Baxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2067,8 +2067,8 @@ Carpet::Baxis& Carpet::Baxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Carpet::Baxis& Carpet::Baxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Carpet::Baxis& Carpet::Baxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

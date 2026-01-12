@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -154,8 +153,8 @@ class Heatmap : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -225,8 +224,8 @@ class Heatmap : public Trace {
     Heatmap& hovertemplatesrc(Callable&& c);
 
     // Same as `text`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& hovertext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& hovertext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -239,8 +238,8 @@ class Heatmap : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -330,8 +329,8 @@ class Heatmap : public Trace {
     Heatmap& stream(Callable&& c);
 
     // Sets the text elements associated with each z value.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& text(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& text(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -389,8 +388,8 @@ class Heatmap : public Trace {
     Heatmap& visible(enum Visible f);
 
     // Sets the x coordinates.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -458,8 +457,8 @@ class Heatmap : public Trace {
     Heatmap& xtype(enum Xtype f);
 
     // Sets the y coordinates.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -527,8 +526,8 @@ class Heatmap : public Trace {
     Heatmap& ytype(enum Ytype f);
 
     // Sets the z data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -907,8 +906,8 @@ class Heatmap::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -921,8 +920,8 @@ class Heatmap::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Heatmap::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Heatmap::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

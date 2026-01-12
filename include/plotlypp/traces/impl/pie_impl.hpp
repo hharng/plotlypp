@@ -59,8 +59,8 @@ Pie& Pie::automargin(Callable&& c) {
     return automargin(std::move(f));
 }
 
-template <typename T, typename>
-Pie& Pie::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Pie& Pie::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -209,8 +209,8 @@ Pie& Pie::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Pie& Pie::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Pie& Pie::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -259,8 +259,8 @@ Pie& Pie::label0(Callable&& c) {
     return label0(std::move(f));
 }
 
-template <typename T, typename>
-Pie& Pie::labels(const std::vector<T>& f) {
+template <typename Range, typename>
+Pie& Pie::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
@@ -490,8 +490,8 @@ Pie& Pie::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Pie& Pie::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Pie& Pie::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -617,8 +617,8 @@ Pie& Pie::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Pie& Pie::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Pie& Pie::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1453,8 +1453,8 @@ Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(Callable&& c) {
 }
 
 
-template <typename T, typename>
-Pie::Marker& Pie::Marker::colors(const std::vector<T>& f) {
+template <typename Range, typename>
+Pie::Marker& Pie::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }

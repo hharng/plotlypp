@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -112,8 +111,8 @@ class Volume : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -185,8 +184,8 @@ class Volume : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -357,8 +356,8 @@ class Volume : public Trace {
     Volume& uirevision(Callable&& c);
 
     // Sets the 4th dimension (value) of the vertices.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume& value(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume& value(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -382,8 +381,8 @@ class Volume : public Trace {
     Volume& visible(enum Visible f);
 
     // Sets the X coordinates of the vertices on X axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -405,8 +404,8 @@ class Volume : public Trace {
     Volume& xsrc(Callable&& c);
 
     // Sets the Y coordinates of the vertices on Y axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -428,8 +427,8 @@ class Volume : public Trace {
     Volume& ysrc(Callable&& c);
 
     // Sets the Z coordinates of the vertices on Z axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -875,8 +874,8 @@ class Volume::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -889,8 +888,8 @@ class Volume::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1669,8 +1668,8 @@ class Volume::Slices::X {
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis x except start and end.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume::Slices::X& locations(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume::Slices::X& locations(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1705,8 +1704,8 @@ class Volume::Slices::Y {
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis y except start and end.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume::Slices::Y& locations(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume::Slices::Y& locations(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1741,8 +1740,8 @@ class Volume::Slices::Z {
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis z except start and end.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Volume::Slices::Z& locations(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Volume::Slices::Z& locations(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

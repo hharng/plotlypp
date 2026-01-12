@@ -121,8 +121,8 @@ Scatter3D& Scatter3D::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D& Scatter3D::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D& Scatter3D::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -266,8 +266,8 @@ Scatter3D& Scatter3D::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D& Scatter3D::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D& Scatter3D::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -600,8 +600,8 @@ Scatter3D& Scatter3D::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Scatter3D& Scatter3D::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D& Scatter3D::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -639,8 +639,8 @@ Scatter3D& Scatter3D::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D& Scatter3D::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D& Scatter3D::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -678,8 +678,8 @@ Scatter3D& Scatter3D::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D& Scatter3D::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D& Scatter3D::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -728,8 +728,8 @@ std::string Scatter3D::Error_X::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Error_X& Scatter3D::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -740,8 +740,8 @@ Scatter3D::Error_X& Scatter3D::Error_X::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Error_X& Scatter3D::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -900,8 +900,8 @@ std::string Scatter3D::Error_Y::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Error_Y& Scatter3D::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -912,8 +912,8 @@ Scatter3D::Error_Y& Scatter3D::Error_Y::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -1072,8 +1072,8 @@ std::string Scatter3D::Error_Z::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Error_Z& Scatter3D::Error_Z::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -1084,8 +1084,8 @@ Scatter3D::Error_Z& Scatter3D::Error_Z::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -2360,8 +2360,8 @@ Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2383,8 +2383,8 @@ Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktextsrc(Callable&& c) 
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -3529,8 +3529,8 @@ Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticksuffix(Callable&& 
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -3552,8 +3552,8 @@ Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktextsrc(Callable&&
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

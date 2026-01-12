@@ -134,8 +134,8 @@ Volume& Volume::contour(Callable&& c) {
     return contour(std::move(f));
 }
 
-template <typename T, typename>
-Volume& Volume::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume& Volume::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -257,8 +257,8 @@ Volume& Volume::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Volume& Volume::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume& Volume::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -578,8 +578,8 @@ Volume& Volume::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Volume& Volume::value(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume& Volume::value(Range&& f) {
     json["value"] = f;
     return *this;
 }
@@ -617,8 +617,8 @@ Volume& Volume::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Volume& Volume::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume& Volume::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -651,8 +651,8 @@ Volume& Volume::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Volume& Volume::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume& Volume::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -685,8 +685,8 @@ Volume& Volume::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Volume& Volume::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume& Volume::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1282,8 +1282,8 @@ Volume::Colorbar& Volume::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Volume::Colorbar& Volume::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume::Colorbar& Volume::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1305,8 +1305,8 @@ Volume::Colorbar& Volume::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Volume::Colorbar& Volume::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume::Colorbar& Volume::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -2432,8 +2432,8 @@ Volume::Slices::X& Volume::Slices::X::fill(Callable&& c) {
     return fill(std::move(f));
 }
 
-template <typename T, typename>
-Volume::Slices::X& Volume::Slices::X::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume::Slices::X& Volume::Slices::X::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -2478,8 +2478,8 @@ Volume::Slices::Y& Volume::Slices::Y::fill(Callable&& c) {
     return fill(std::move(f));
 }
 
-template <typename T, typename>
-Volume::Slices::Y& Volume::Slices::Y::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume::Slices::Y& Volume::Slices::Y::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -2524,8 +2524,8 @@ Volume::Slices::Z& Volume::Slices::Z::fill(Callable&& c) {
     return fill(std::move(f));
 }
 
-template <typename T, typename>
-Volume::Slices::Z& Volume::Slices::Z::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Volume::Slices::Z& Volume::Slices::Z::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }

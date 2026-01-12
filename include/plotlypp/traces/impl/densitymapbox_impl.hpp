@@ -79,8 +79,8 @@ Densitymapbox& Densitymapbox::colorscale(Callable&& c) {
     return colorscale(std::move(f));
 }
 
-template <typename T, typename>
-Densitymapbox& Densitymapbox::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox& Densitymapbox::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -191,8 +191,8 @@ Densitymapbox& Densitymapbox::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Densitymapbox& Densitymapbox::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox& Densitymapbox::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -214,8 +214,8 @@ Densitymapbox& Densitymapbox::idssrc(Callable&& c) {
     return idssrc(std::move(f));
 }
 
-template <typename T, typename>
-Densitymapbox& Densitymapbox::lat(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox& Densitymapbox::lat(Range&& f) {
     json["lat"] = f;
     return *this;
 }
@@ -292,8 +292,8 @@ Densitymapbox& Densitymapbox::legendwidth(Callable&& c) {
     return legendwidth(std::move(f));
 }
 
-template <typename T, typename>
-Densitymapbox& Densitymapbox::lon(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox& Densitymapbox::lon(Range&& f) {
     json["lon"] = f;
     return *this;
 }
@@ -500,8 +500,8 @@ Densitymapbox& Densitymapbox::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Densitymapbox& Densitymapbox::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox& Densitymapbox::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1027,8 +1027,8 @@ Densitymapbox::Colorbar& Densitymapbox::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Densitymapbox::Colorbar& Densitymapbox::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox::Colorbar& Densitymapbox::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1050,8 +1050,8 @@ Densitymapbox::Colorbar& Densitymapbox::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Densitymapbox::Colorbar& Densitymapbox::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Densitymapbox::Colorbar& Densitymapbox::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

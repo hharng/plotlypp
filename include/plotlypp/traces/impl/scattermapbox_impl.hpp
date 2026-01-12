@@ -76,8 +76,8 @@ Scattermapbox& Scattermapbox::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scattermapbox& Scattermapbox::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattermapbox& Scattermapbox::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -204,8 +204,8 @@ Scattermapbox& Scattermapbox::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattermapbox& Scattermapbox::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattermapbox& Scattermapbox::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -227,8 +227,8 @@ Scattermapbox& Scattermapbox::idssrc(Callable&& c) {
     return idssrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattermapbox& Scattermapbox::lat(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattermapbox& Scattermapbox::lat(Range&& f) {
     json["lat"] = f;
     return *this;
 }
@@ -316,8 +316,8 @@ Scattermapbox& Scattermapbox::line(Callable&& c) {
     return line(std::move(f));
 }
 
-template <typename T, typename>
-Scattermapbox& Scattermapbox::lon(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattermapbox& Scattermapbox::lon(Range&& f) {
     json["lon"] = f;
     return *this;
 }
@@ -1984,8 +1984,8 @@ Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::ticksuffix(Cal
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2007,8 +2007,8 @@ Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::ticktextsrc(Ca
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

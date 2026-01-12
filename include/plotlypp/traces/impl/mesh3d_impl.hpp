@@ -228,8 +228,8 @@ Mesh3D& Mesh3D::contour(Callable&& c) {
     return contour(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -256,8 +256,8 @@ Mesh3D& Mesh3D::delaunayaxis(enum Delaunayaxis f) {
     return *this;
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::facecolor(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::facecolor(Range&& f) {
     json["facecolor"] = f;
     return *this;
 }
@@ -379,8 +379,8 @@ Mesh3D& Mesh3D::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::i(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::i(Range&& f) {
     json["i"] = f;
     return *this;
 }
@@ -391,8 +391,8 @@ Mesh3D& Mesh3D::i(Callable&& c) {
     return i(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -414,8 +414,8 @@ Mesh3D& Mesh3D::idssrc(Callable&& c) {
     return idssrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::intensity(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::intensity(Range&& f) {
     json["intensity"] = f;
     return *this;
 }
@@ -453,8 +453,8 @@ Mesh3D& Mesh3D::isrc(Callable&& c) {
     return isrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::j(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::j(Range&& f) {
     json["j"] = f;
     return *this;
 }
@@ -476,8 +476,8 @@ Mesh3D& Mesh3D::jsrc(Callable&& c) {
     return jsrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::k(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::k(Range&& f) {
     json["k"] = f;
     return *this;
 }
@@ -730,8 +730,8 @@ Mesh3D& Mesh3D::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::vertexcolor(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::vertexcolor(Range&& f) {
     json["vertexcolor"] = f;
     return *this;
 }
@@ -758,8 +758,8 @@ Mesh3D& Mesh3D::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -797,8 +797,8 @@ Mesh3D& Mesh3D::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -836,8 +836,8 @@ Mesh3D& Mesh3D::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D& Mesh3D::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D& Mesh3D::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1335,8 +1335,8 @@ Mesh3D::Colorbar& Mesh3D::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D::Colorbar& Mesh3D::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1358,8 +1358,8 @@ Mesh3D::Colorbar& Mesh3D::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Mesh3D::Colorbar& Mesh3D::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

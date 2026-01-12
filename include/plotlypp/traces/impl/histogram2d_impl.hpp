@@ -176,8 +176,8 @@ Histogram2D& Histogram2D::colorscale(Callable&& c) {
     return colorscale(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2D& Histogram2D::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D& Histogram2D::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -272,8 +272,8 @@ Histogram2D& Histogram2D::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2D& Histogram2D::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D& Histogram2D::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -527,8 +527,8 @@ Histogram2D& Histogram2D::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Histogram2D& Histogram2D::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D& Histogram2D::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -610,8 +610,8 @@ Histogram2D& Histogram2D::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2D& Histogram2D::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D& Histogram2D::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -693,8 +693,8 @@ Histogram2D& Histogram2D::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2D& Histogram2D::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D& Histogram2D::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1236,8 +1236,8 @@ Histogram2D::Colorbar& Histogram2D::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D::Colorbar& Histogram2D::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1259,8 +1259,8 @@ Histogram2D::Colorbar& Histogram2D::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D::Colorbar& Histogram2D::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -2195,8 +2195,8 @@ Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::weight
 }
 
 
-template <typename T, typename>
-Histogram2D::Marker& Histogram2D::Marker::color(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2D::Marker& Histogram2D::Marker::color(Range&& f) {
     json["color"] = f;
     return *this;
 }

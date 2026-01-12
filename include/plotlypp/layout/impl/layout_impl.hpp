@@ -964,8 +964,8 @@ Layout& Layout::funnelareacolorway(Callable&& c) {
     return funnelareacolorway(std::move(f));
 }
 
-template <typename T, typename>
-Layout& Layout::hiddenlabels(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout& Layout::hiddenlabels(Range&& f) {
     json["hiddenlabels"] = f;
     return *this;
 }
@@ -2510,8 +2510,8 @@ Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticksuffix(Callable&& 
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2533,8 +2533,8 @@ Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktextsrc(Callable&&
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -5681,8 +5681,8 @@ Layout::Map::Layer::Fill& Layout::Map::Layer::Fill::outlinecolor(Callable&& c) {
 }
 
 
-template <typename T, typename>
-Layout::Map::Layer::Line& Layout::Map::Layer::Line::dash(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Map::Layer::Line& Layout::Map::Layer::Line::dash(Range&& f) {
     json["dash"] = f;
     return *this;
 }
@@ -6319,8 +6319,8 @@ Layout::Mapbox::Layer::Fill& Layout::Mapbox::Layer::Fill::outlinecolor(Callable&
 }
 
 
-template <typename T, typename>
-Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dash(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dash(Range&& f) {
     json["dash"] = f;
     return *this;
 }
@@ -7516,8 +7516,8 @@ Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::autotypenumbers(enum Aut
     return *this;
 }
 
-template <typename T, typename>
-Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -7895,8 +7895,8 @@ Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticksuffix(Callable&& c)
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -7918,8 +7918,8 @@ Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktextsrc(Callable&& c
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -8404,8 +8404,8 @@ Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::calendar(enum Calendar f) 
     return *this;
 }
 
-template <typename T, typename>
-Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -8796,8 +8796,8 @@ Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -8819,8 +8819,8 @@ Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktextsrc(Callable&& c) 
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -10553,8 +10553,8 @@ Layout::Scene::Xaxis& Layout::Scene::Xaxis::calendar(enum Calendar f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -10984,8 +10984,8 @@ Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -11007,8 +11007,8 @@ Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -11676,8 +11676,8 @@ Layout::Scene::Yaxis& Layout::Scene::Yaxis::calendar(enum Calendar f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -12107,8 +12107,8 @@ Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -12130,8 +12130,8 @@ Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -12799,8 +12799,8 @@ Layout::Scene::Zaxis& Layout::Scene::Zaxis::calendar(enum Calendar f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -13230,8 +13230,8 @@ Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -13253,8 +13253,8 @@ Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -15762,8 +15762,8 @@ Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticksuffix(Callable&
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -16189,8 +16189,8 @@ Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -16823,8 +16823,8 @@ Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -16846,8 +16846,8 @@ Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -17604,8 +17604,8 @@ Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -17627,8 +17627,8 @@ Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -18385,8 +18385,8 @@ Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -18408,8 +18408,8 @@ Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -20103,8 +20103,8 @@ Layout::Xaxis& Layout::Xaxis::calendar(enum Calendar f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Xaxis& Layout::Xaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Xaxis& Layout::Xaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -20809,8 +20809,8 @@ Layout::Xaxis& Layout::Xaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Xaxis& Layout::Xaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Xaxis& Layout::Xaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -20832,8 +20832,8 @@ Layout::Xaxis& Layout::Xaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Xaxis& Layout::Xaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Xaxis& Layout::Xaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -21145,8 +21145,8 @@ Layout::Xaxis::Minor& Layout::Xaxis::Minor::ticks(enum Ticks f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -22346,8 +22346,8 @@ Layout::Yaxis& Layout::Yaxis::calendar(enum Calendar f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Yaxis& Layout::Yaxis::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Yaxis& Layout::Yaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -23041,8 +23041,8 @@ Layout::Yaxis& Layout::Yaxis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Yaxis& Layout::Yaxis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Yaxis& Layout::Yaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -23064,8 +23064,8 @@ Layout::Yaxis& Layout::Yaxis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Layout::Yaxis& Layout::Yaxis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Yaxis& Layout::Yaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -23377,8 +23377,8 @@ Layout::Yaxis::Minor& Layout::Yaxis::Minor::ticks(enum Ticks f) {
     return *this;
 }
 
-template <typename T, typename>
-Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

@@ -292,8 +292,8 @@ std::string Parcats::Dimension::to_string(Categoryorder e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Parcats::Dimension& Parcats::Dimension::categoryarray(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcats::Dimension& Parcats::Dimension::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
@@ -342,8 +342,8 @@ Parcats::Dimension& Parcats::Dimension::label(Callable&& c) {
     return label(std::move(f));
 }
 
-template <typename T, typename>
-Parcats::Dimension& Parcats::Dimension::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcats::Dimension& Parcats::Dimension::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -365,8 +365,8 @@ Parcats::Dimension& Parcats::Dimension::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Parcats::Dimension& Parcats::Dimension::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcats::Dimension& Parcats::Dimension::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1316,8 +1316,8 @@ Parcats::Line::Colorbar& Parcats::Line::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Parcats::Line::Colorbar& Parcats::Line::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcats::Line::Colorbar& Parcats::Line::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1339,8 +1339,8 @@ Parcats::Line::Colorbar& Parcats::Line::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Parcats::Line::Colorbar& Parcats::Line::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

@@ -79,8 +79,8 @@ Choroplethmapbox& Choroplethmapbox::colorscale(Callable&& c) {
     return colorscale(std::move(f));
 }
 
-template <typename T, typename>
-Choroplethmapbox& Choroplethmapbox::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Choroplethmapbox& Choroplethmapbox::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -214,8 +214,8 @@ Choroplethmapbox& Choroplethmapbox::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Choroplethmapbox& Choroplethmapbox::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Choroplethmapbox& Choroplethmapbox::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -292,8 +292,8 @@ Choroplethmapbox& Choroplethmapbox::legendwidth(Callable&& c) {
     return legendwidth(std::move(f));
 }
 
-template <typename T, typename>
-Choroplethmapbox& Choroplethmapbox::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Choroplethmapbox& Choroplethmapbox::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -508,8 +508,8 @@ Choroplethmapbox& Choroplethmapbox::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Choroplethmapbox& Choroplethmapbox::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Choroplethmapbox& Choroplethmapbox::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1035,8 +1035,8 @@ Choroplethmapbox::Colorbar& Choroplethmapbox::Colorbar::ticksuffix(Callable&& c)
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Choroplethmapbox::Colorbar& Choroplethmapbox::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Choroplethmapbox::Colorbar& Choroplethmapbox::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1058,8 +1058,8 @@ Choroplethmapbox::Colorbar& Choroplethmapbox::Colorbar::ticktextsrc(Callable&& c
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Choroplethmapbox::Colorbar& Choroplethmapbox::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Choroplethmapbox::Colorbar& Choroplethmapbox::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

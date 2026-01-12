@@ -64,9 +64,9 @@ Figure multiple3DSurfacePlots() {
         z3.push_back(std::move(z3_row));
     }
 
-    auto trace1 = Surface().z(std::move(z1));
-    auto trace2 = Surface().z(std::move(z2)).showscale(false).opacity(0.9);
-    auto trace3 = Surface().z(std::move(z3)).showscale(false).opacity(0.9);
+    auto trace1 = Surface().z(z1);
+    auto trace2 = Surface().z(z2).showscale(false).opacity(0.9);
+    auto trace3 = Surface().z(z3).showscale(false).opacity(0.9);
     return Figure().addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2), std::move(trace3)});
 }
 
@@ -106,13 +106,8 @@ Figure gen3dLineSpiral() {
         z.push_back(i);
         c.push_back(std::to_string(i));
     }
-    return Figure().addTrace(Scatter3D()
-                                 .x(std::move(x))
-                                 .y(std::move(y))
-                                 .z(std::move(z))
-                                 .mode("lines")
-                                 .opacity(0.7)
-                                 .line(Scatter3D::Line().width(10).color(std::move(c)).colorscale("Viridis")));
+    return Figure().addTrace(Scatter3D().x(x).y(y).z(z).mode("lines").opacity(0.7).line(
+        Scatter3D::Line().width(10).color(std::move(c)).colorscale("Viridis")));
 }
 
 // https://plotly.com/python/3d-scatter-plots/
@@ -131,12 +126,8 @@ Figure gen3dScatterWithColorscalingAndMarkerStyling() {
     std::transform(t.begin(), t.end(), colors.begin(), [](auto e) { return std::to_string(e); });
 
     return Figure()
-        .addTrace(Scatter3D()
-                      .x(std::move(x))
-                      .y(std::move(y))
-                      .z(t)
-                      .mode("markers")
-                      .marker(Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)))
+        .addTrace(Scatter3D().x(x).y(y).z(t).mode("markers").marker(
+            Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)))
         .setLayout(Layout().margin(Layout::Margin().l(0).r(0).b(0).t(0)));
 }
 
@@ -173,9 +164,9 @@ Figure simpleVolumePlot() {
     }
 
     return Figure().addTrace(Volume()
-                                 .x(std::move(x_flat))
-                                 .y(std::move(y_flat))
-                                 .z(std::move(z_flat))
+                                 .x(x_flat)
+                                 .y(y_flat)
+                                 .z(z_flat)
                                  .value(std::move(values_flat))
                                  .isomin(0.1)
                                  .isomax(0.8)
@@ -215,9 +206,9 @@ Figure multiple3dIsosurfaces() {
 
     return Figure().addTrace(
         Isosurface()
-            .x(std::move(x_flat))
-            .y(std::move(y_flat))
-            .z(std::move(z_flat))
+            .x(x_flat)
+            .y(y_flat)
+            .z(z_flat)
             .value(std::move(values_flat))
             .isomin(10)
             .isomax(50)
@@ -241,9 +232,9 @@ plotlypp::Figure bubbleChartSizedByVariable() {
 
     return Figure()
         .addTrace(Scatter3D()
-                      .x(std::move(distanceFromSun))
-                      .y(std::move(density))
-                      .z(std::move(gravity))
+                      .x(distanceFromSun)
+                      .y(density)
+                      .z(gravity)
                       .text(std::move(planets))
                       .mode("markers")
                       .marker(Scatter3D::Marker()

@@ -134,8 +134,8 @@ Isosurface& Isosurface::contour(Callable&& c) {
     return contour(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface& Isosurface::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface& Isosurface::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -257,8 +257,8 @@ Isosurface& Isosurface::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface& Isosurface::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface& Isosurface::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -566,8 +566,8 @@ Isosurface& Isosurface::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface& Isosurface::value(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface& Isosurface::value(Range&& f) {
     json["value"] = f;
     return *this;
 }
@@ -605,8 +605,8 @@ Isosurface& Isosurface::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Isosurface& Isosurface::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface& Isosurface::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -639,8 +639,8 @@ Isosurface& Isosurface::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface& Isosurface::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface& Isosurface::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -673,8 +673,8 @@ Isosurface& Isosurface::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface& Isosurface::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface& Isosurface::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1270,8 +1270,8 @@ Isosurface::Colorbar& Isosurface::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface::Colorbar& Isosurface::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface::Colorbar& Isosurface::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1293,8 +1293,8 @@ Isosurface::Colorbar& Isosurface::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface::Colorbar& Isosurface::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface::Colorbar& Isosurface::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -2420,8 +2420,8 @@ Isosurface::Slices::X& Isosurface::Slices::X::fill(Callable&& c) {
     return fill(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface::Slices::X& Isosurface::Slices::X::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface::Slices::X& Isosurface::Slices::X::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -2466,8 +2466,8 @@ Isosurface::Slices::Y& Isosurface::Slices::Y::fill(Callable&& c) {
     return fill(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface::Slices::Y& Isosurface::Slices::Y::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface::Slices::Y& Isosurface::Slices::Y::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -2512,8 +2512,8 @@ Isosurface::Slices::Z& Isosurface::Slices::Z::fill(Callable&& c) {
     return fill(std::move(f));
 }
 
-template <typename T, typename>
-Isosurface::Slices::Z& Isosurface::Slices::Z::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Isosurface::Slices::Z& Isosurface::Slices::Z::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }

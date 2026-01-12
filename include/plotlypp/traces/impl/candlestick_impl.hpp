@@ -51,8 +51,8 @@ std::string Candlestick::to_string(Xperiodalignment e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::close(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::close(Range&& f) {
     json["close"] = f;
     return *this;
 }
@@ -74,8 +74,8 @@ Candlestick& Candlestick::closesrc(Callable&& c) {
     return closesrc(std::move(f));
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -108,8 +108,8 @@ Candlestick& Candlestick::decreasing(Callable&& c) {
     return decreasing(std::move(f));
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::high(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::high(Range&& f) {
     json["high"] = f;
     return *this;
 }
@@ -194,8 +194,8 @@ Candlestick& Candlestick::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -294,8 +294,8 @@ Candlestick& Candlestick::line(Callable&& c) {
     return line(std::move(f));
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::low(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::low(Range&& f) {
     json["low"] = f;
     return *this;
 }
@@ -367,8 +367,8 @@ Candlestick& Candlestick::opacity(Callable&& c) {
     return opacity(std::move(f));
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::open(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::open(Range&& f) {
     json["open"] = f;
     return *this;
 }
@@ -489,8 +489,8 @@ Candlestick& Candlestick::whiskerwidth(Callable&& c) {
     return whiskerwidth(std::move(f));
 }
 
-template <typename T, typename>
-Candlestick& Candlestick::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Candlestick& Candlestick::x(Range&& f) {
     json["x"] = f;
     return *this;
 }

@@ -200,8 +200,8 @@ Surface& Surface::contours(Callable&& c) {
     return contours(std::move(f));
 }
 
-template <typename T, typename>
-Surface& Surface::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface& Surface::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -323,8 +323,8 @@ Surface& Surface::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Surface& Surface::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface& Surface::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -540,8 +540,8 @@ Surface& Surface::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Surface& Surface::surfacecolor(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface& Surface::surfacecolor(Range&& f) {
     json["surfacecolor"] = f;
     return *this;
 }
@@ -617,8 +617,8 @@ Surface& Surface::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Surface& Surface::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface& Surface::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -656,8 +656,8 @@ Surface& Surface::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Surface& Surface::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface& Surface::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -695,8 +695,8 @@ Surface& Surface::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Surface& Surface::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface& Surface::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1194,8 +1194,8 @@ Surface::Colorbar& Surface::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Surface::Colorbar& Surface::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface::Colorbar& Surface::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1217,8 +1217,8 @@ Surface::Colorbar& Surface::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Surface::Colorbar& Surface::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Surface::Colorbar& Surface::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

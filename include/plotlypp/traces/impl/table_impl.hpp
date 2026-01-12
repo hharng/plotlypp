@@ -31,8 +31,8 @@ Table& Table::cells(Callable&& c) {
     return cells(std::move(f));
 }
 
-template <typename T, typename>
-Table& Table::columnorder(const std::vector<T>& f) {
+template <typename Range, typename>
+Table& Table::columnorder(Range&& f) {
     json["columnorder"] = f;
     return *this;
 }
@@ -80,8 +80,8 @@ Table& Table::columnwidthsrc(Callable&& c) {
     return columnwidthsrc(std::move(f));
 }
 
-template <typename T, typename>
-Table& Table::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Table& Table::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -162,8 +162,8 @@ Table& Table::hoverlabel(Callable&& c) {
     return hoverlabel(std::move(f));
 }
 
-template <typename T, typename>
-Table& Table::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Table& Table::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -361,8 +361,8 @@ Table::Cells& Table::Cells::font(Callable&& c) {
     return font(std::move(f));
 }
 
-template <typename T, typename>
-Table::Cells& Table::Cells::format(const std::vector<T>& f) {
+template <typename Range, typename>
+Table::Cells& Table::Cells::format(Range&& f) {
     json["format"] = f;
     return *this;
 }
@@ -458,8 +458,8 @@ Table::Cells& Table::Cells::suffixsrc(Callable&& c) {
     return suffixsrc(std::move(f));
 }
 
-template <typename T, typename>
-Table::Cells& Table::Cells::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Table::Cells& Table::Cells::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -913,8 +913,8 @@ Table::Header& Table::Header::font(Callable&& c) {
     return font(std::move(f));
 }
 
-template <typename T, typename>
-Table::Header& Table::Header::format(const std::vector<T>& f) {
+template <typename Range, typename>
+Table::Header& Table::Header::format(Range&& f) {
     json["format"] = f;
     return *this;
 }
@@ -1010,8 +1010,8 @@ Table::Header& Table::Header::suffixsrc(Callable&& c) {
     return suffixsrc(std::move(f));
 }
 
-template <typename T, typename>
-Table::Header& Table::Header::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Table::Header& Table::Header::values(Range&& f) {
     json["values"] = f;
     return *this;
 }

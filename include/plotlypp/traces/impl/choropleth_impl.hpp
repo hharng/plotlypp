@@ -78,8 +78,8 @@ Choropleth& Choropleth::colorscale(Callable&& c) {
     return colorscale(std::move(f));
 }
 
-template <typename T, typename>
-Choropleth& Choropleth::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Choropleth& Choropleth::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -224,8 +224,8 @@ Choropleth& Choropleth::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Choropleth& Choropleth::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Choropleth& Choropleth::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -307,8 +307,8 @@ Choropleth& Choropleth::locationmode(enum Locationmode f) {
     return *this;
 }
 
-template <typename T, typename>
-Choropleth& Choropleth::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Choropleth& Choropleth::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -512,8 +512,8 @@ Choropleth& Choropleth::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Choropleth& Choropleth::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Choropleth& Choropleth::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1039,8 +1039,8 @@ Choropleth::Colorbar& Choropleth::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Choropleth::Colorbar& Choropleth::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Choropleth::Colorbar& Choropleth::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1062,8 +1062,8 @@ Choropleth::Colorbar& Choropleth::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Choropleth::Colorbar& Choropleth::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Choropleth::Colorbar& Choropleth::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

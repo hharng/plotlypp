@@ -59,8 +59,8 @@ Treemap& Treemap::count(Callable&& c) {
     return count(std::move(f));
 }
 
-template <typename T, typename>
-Treemap& Treemap::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap& Treemap::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -182,8 +182,8 @@ Treemap& Treemap::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Treemap& Treemap::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap& Treemap::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -216,8 +216,8 @@ Treemap& Treemap::insidetextfont(Callable&& c) {
     return insidetextfont(std::move(f));
 }
 
-template <typename T, typename>
-Treemap& Treemap::labels(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap& Treemap::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
@@ -378,8 +378,8 @@ Treemap& Treemap::outsidetextfont(Callable&& c) {
     return outsidetextfont(std::move(f));
 }
 
-template <typename T, typename>
-Treemap& Treemap::parents(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap& Treemap::parents(Range&& f) {
     json["parents"] = f;
     return *this;
 }
@@ -445,8 +445,8 @@ Treemap& Treemap::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Treemap& Treemap::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap& Treemap::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -555,8 +555,8 @@ Treemap& Treemap::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Treemap& Treemap::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap& Treemap::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1477,8 +1477,8 @@ Treemap::Marker& Treemap::Marker::colorbar(Callable&& c) {
     return colorbar(std::move(f));
 }
 
-template <typename T, typename>
-Treemap::Marker& Treemap::Marker::colors(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap::Marker& Treemap::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
@@ -2046,8 +2046,8 @@ Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2069,8 +2069,8 @@ Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktextsrc(Callable&& c) 
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

@@ -36,8 +36,8 @@ std::string Contourcarpet::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::a(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
@@ -98,8 +98,8 @@ Contourcarpet& Contourcarpet::autocontour(Callable&& c) {
     return autocontour(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::b(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
@@ -197,8 +197,8 @@ Contourcarpet& Contourcarpet::contours(Callable&& c) {
     return contours(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -253,8 +253,8 @@ Contourcarpet& Contourcarpet::fillcolor(Callable&& c) {
     return fillcolor(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::hovertext(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
@@ -276,8 +276,8 @@ Contourcarpet& Contourcarpet::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -470,8 +470,8 @@ Contourcarpet& Contourcarpet::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -554,8 +554,8 @@ Contourcarpet& Contourcarpet::yaxis(Callable&& c) {
     return yaxis(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet& Contourcarpet::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet& Contourcarpet::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1092,8 +1092,8 @@ Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1115,8 +1115,8 @@ Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

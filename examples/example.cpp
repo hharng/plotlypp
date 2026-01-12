@@ -44,13 +44,8 @@ plotlypp::Figure gen3dScatterHelix() {
     std::vector<std::string> colors(t.size());
     std::transform(t.begin(), t.end(), colors.begin(), [](auto e) { return std::to_string(e); });
 
-    return Figure().addTrace(
-        Scatter3D()
-            .x(std::move(x))
-            .y(std::move(y))
-            .z(t)
-            .mode("markers")
-            .marker(Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)));
+    return Figure().addTrace(Scatter3D().x(x).y(y).z(t).mode("markers").marker(
+        Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)));
 }
 
 plotlypp::Figure gen3dScatterBubblePlanets() {
@@ -67,9 +62,9 @@ plotlypp::Figure gen3dScatterBubblePlanets() {
                                              "rgb(55, 255, 217)",  "rgb(38, 0, 171)",    "rgb(255, 255, 255)"};
 
     return Figure().addTrace(Scatter3D()
-                                 .x(std::move(distanceFromSun))
-                                 .y(std::move(density))
-                                 .z(std::move(gravity))
+                                 .x(distanceFromSun)
+                                 .y(density)
+                                 .z(gravity)
                                  .text(std::move(planets))
                                  .mode("markers")
                                  .marker(Scatter3D::Marker()
@@ -112,9 +107,9 @@ plotlypp::Figure gen3dSurfaces() {
         z3.push_back(std::move(r3));
     }
 
-    auto surface1 = Surface().z(std::move(z));
-    auto surface2 = Surface().z(std::move(z2)).showscale(false).opacity(0.9);
-    auto surface3 = Surface().z(std::move(z3)).showscale(false).opacity(0.9);
+    auto surface1 = Surface().z(z);
+    auto surface2 = Surface().z(z2).showscale(false).opacity(0.9);
+    auto surface3 = Surface().z(z3).showscale(false).opacity(0.9);
 
     auto fig = Figure().addTrace(std::move(surface1)).addTrace(std::move(surface2)).addTrace(std::move(surface3));
     return fig;
@@ -129,11 +124,7 @@ plotlypp::Figure gen3dSurfaceContours() {
     };
     auto xContours = Surface::Contours::X().show(true).start(1.5).end(2).size(0.04).color("white");
     auto zContours = Surface::Contours::Z().show(true).start(0.5).end(0.8).size(0.05);
-    auto surface = Surface()
-                       .x(std::move(x))
-                       .y(std::move(y))
-                       .z(std::move(z))
-                       .contours(Surface::Contours().x(std::move(xContours)).z(std::move(zContours)));
+    auto surface = Surface().x(x).y(y).z(z).contours(Surface::Contours().x(xContours).z(zContours));
     return Figure().addTrace(std::move(surface));
 }
 
@@ -170,7 +161,7 @@ plotlypp::Figure gen3dSurfaceTorus() {
         y.push_back(std::move(yr));
         z.push_back(std::move(zr));
     }
-    return Figure().addTrace(Surface().x(std::move(x)).y(std::move(y)).z(std::move(z)));
+    return Figure().addTrace(Surface().x(x).y(y).z(z));
 }
 
 plotlypp::Figure genMesh3dTetrahedron() {
@@ -191,9 +182,9 @@ plotlypp::Figure genMesh3dTetrahedron() {
                     .y(std::vector{0, 0, 1, 2})
                     .z(std::vector{0, 2, 0, 1})
                     .intensity(std::move(intensity))
-                    .i(std::move(i))
-                    .j(std::move(j))
-                    .k(std::move(k))
+                    .i(i)
+                    .j(j)
+                    .k(k)
                     .colorbar(Mesh3D::Colorbar().title(Mesh3D::Colorbar::Title().text("z")))
                     .colorscale(colorscale_t{{0, "gold"}, {0.5, "mediumturquoise"}, {1, "magenta"}})
                     .name("y")

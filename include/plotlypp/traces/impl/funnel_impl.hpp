@@ -113,8 +113,8 @@ Funnel& Funnel::constraintext(enum Constraintext f) {
     return *this;
 }
 
-template <typename T, typename>
-Funnel& Funnel::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnel& Funnel::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -247,8 +247,8 @@ Funnel& Funnel::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Funnel& Funnel::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnel& Funnel::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -620,8 +620,8 @@ Funnel& Funnel::width(Callable&& c) {
     return width(std::move(f));
 }
 
-template <typename T, typename>
-Funnel& Funnel::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnel& Funnel::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -706,8 +706,8 @@ Funnel& Funnel::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Funnel& Funnel::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnel& Funnel::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -2271,8 +2271,8 @@ Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2294,8 +2294,8 @@ Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

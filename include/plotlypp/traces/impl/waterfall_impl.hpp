@@ -124,8 +124,8 @@ Waterfall& Waterfall::constraintext(enum Constraintext f) {
     return *this;
 }
 
-template <typename T, typename>
-Waterfall& Waterfall::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Waterfall& Waterfall::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -269,8 +269,8 @@ Waterfall& Waterfall::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Waterfall& Waterfall::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Waterfall& Waterfall::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -374,8 +374,8 @@ Waterfall& Waterfall::legendwidth(Callable&& c) {
     return legendwidth(std::move(f));
 }
 
-template <typename T, typename>
-Waterfall& Waterfall::measure(const std::vector<T>& f) {
+template <typename Range, typename>
+Waterfall& Waterfall::measure(Range&& f) {
     json["measure"] = f;
     return *this;
 }
@@ -706,8 +706,8 @@ Waterfall& Waterfall::widthsrc(Callable&& c) {
     return widthsrc(std::move(f));
 }
 
-template <typename T, typename>
-Waterfall& Waterfall::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Waterfall& Waterfall::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -792,8 +792,8 @@ Waterfall& Waterfall::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Waterfall& Waterfall::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Waterfall& Waterfall::y(Range&& f) {
     json["y"] = f;
     return *this;
 }

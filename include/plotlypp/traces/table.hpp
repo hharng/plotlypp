@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -48,8 +47,8 @@ class Table : public Trace {
 
     // Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column
     // index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table& columnorder(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table& columnorder(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -74,8 +73,8 @@ class Table : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -115,8 +114,8 @@ class Table : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -241,8 +240,8 @@ class Table::Cells {
 
     // Sets the cell value formatting rule using d3 formatting mini-languages which are very similar to those in Python.
     // For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table::Cells& format(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table::Cells& format(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -287,8 +286,8 @@ class Table::Cells {
     // Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
     // vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite
     // number or a string.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table::Cells& values(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table::Cells& values(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -562,8 +561,8 @@ class Table::Header {
 
     // Sets the cell value formatting rule using d3 formatting mini-languages which are very similar to those in Python.
     // For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table::Header& format(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table::Header& format(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -608,8 +607,8 @@ class Table::Header {
     // Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the
     // `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be
     // a finite number or a string.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Table::Header& values(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Table::Header& values(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

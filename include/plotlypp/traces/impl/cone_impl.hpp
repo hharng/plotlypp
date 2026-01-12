@@ -136,8 +136,8 @@ Cone& Cone::colorscale(Callable&& c) {
     return colorscale(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -248,8 +248,8 @@ Cone& Cone::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -495,8 +495,8 @@ Cone& Cone::textsrc(Callable&& c) {
     return textsrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::u(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::u(Range&& f) {
     json["u"] = f;
     return *this;
 }
@@ -552,8 +552,8 @@ Cone& Cone::usrc(Callable&& c) {
     return usrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::v(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::v(Range&& f) {
     json["v"] = f;
     return *this;
 }
@@ -591,8 +591,8 @@ Cone& Cone::vsrc(Callable&& c) {
     return vsrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::w(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::w(Range&& f) {
     json["w"] = f;
     return *this;
 }
@@ -625,8 +625,8 @@ Cone& Cone::wsrc(Callable&& c) {
     return wsrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -659,8 +659,8 @@ Cone& Cone::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -693,8 +693,8 @@ Cone& Cone::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone& Cone::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone& Cone::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1187,8 +1187,8 @@ Cone::Colorbar& Cone::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Cone::Colorbar& Cone::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone::Colorbar& Cone::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1210,8 +1210,8 @@ Cone::Colorbar& Cone::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Cone::Colorbar& Cone::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Cone::Colorbar& Cone::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

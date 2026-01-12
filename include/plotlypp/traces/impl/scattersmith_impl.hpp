@@ -66,8 +66,8 @@ Scattersmith& Scattersmith::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scattersmith& Scattersmith::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattersmith& Scattersmith::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -205,8 +205,8 @@ Scattersmith& Scattersmith::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattersmith& Scattersmith::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattersmith& Scattersmith::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -228,8 +228,8 @@ Scattersmith& Scattersmith::idssrc(Callable&& c) {
     return idssrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattersmith& Scattersmith::imag(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattersmith& Scattersmith::imag(Range&& f) {
     json["imag"] = f;
     return *this;
 }
@@ -389,8 +389,8 @@ Scattersmith& Scattersmith::opacity(Callable&& c) {
     return opacity(std::move(f));
 }
 
-template <typename T, typename>
-Scattersmith& Scattersmith::real(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattersmith& Scattersmith::real(Range&& f) {
     json["real"] = f;
     return *this;
 }
@@ -2323,8 +2323,8 @@ Scattersmith::Marker::Colorbar& Scattersmith::Marker::Colorbar::ticksuffix(Calla
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scattersmith::Marker::Colorbar& Scattersmith::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattersmith::Marker::Colorbar& Scattersmith::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2346,8 +2346,8 @@ Scattersmith::Marker::Colorbar& Scattersmith::Marker::Colorbar::ticktextsrc(Call
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattersmith::Marker::Colorbar& Scattersmith::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattersmith::Marker::Colorbar& Scattersmith::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

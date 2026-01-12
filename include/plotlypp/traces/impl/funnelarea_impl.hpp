@@ -50,8 +50,8 @@ Funnelarea& Funnelarea::baseratio(Callable&& c) {
     return baseratio(std::move(f));
 }
 
-template <typename T, typename>
-Funnelarea& Funnelarea::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnelarea& Funnelarea::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -184,8 +184,8 @@ Funnelarea& Funnelarea::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Funnelarea& Funnelarea::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnelarea& Funnelarea::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -229,8 +229,8 @@ Funnelarea& Funnelarea::label0(Callable&& c) {
     return label0(std::move(f));
 }
 
-template <typename T, typename>
-Funnelarea& Funnelarea::labels(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnelarea& Funnelarea::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
@@ -401,8 +401,8 @@ Funnelarea& Funnelarea::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Funnelarea& Funnelarea::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnelarea& Funnelarea::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -528,8 +528,8 @@ Funnelarea& Funnelarea::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Funnelarea& Funnelarea::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnelarea& Funnelarea::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1364,8 +1364,8 @@ Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::weight(C
 }
 
 
-template <typename T, typename>
-Funnelarea::Marker& Funnelarea::Marker::colors(const std::vector<T>& f) {
+template <typename Range, typename>
+Funnelarea::Marker& Funnelarea::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }

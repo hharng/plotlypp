@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -151,8 +150,8 @@ class Box : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -241,8 +240,8 @@ class Box : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -296,8 +295,8 @@ class Box : public Trace {
     // Sets the lower fence values. There should be as many items as the number of boxes desired. This attribute has
     // effect only under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`) is
     // set, we compute the lower as the last sample point below 1.5 times the IQR.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& lowerfence(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& lowerfence(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -315,8 +314,8 @@ class Box : public Trace {
     // Sets the mean values. There should be as many items as the number of boxes desired. This attribute has effect
     // only under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set, we compute
     // the mean for each box using the sample values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& mean(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& mean(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -328,8 +327,8 @@ class Box : public Trace {
     Box& meansrc(Callable&& c);
 
     // Sets the median values. There should be as many items as the number of boxes desired.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& median(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& median(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -377,8 +376,8 @@ class Box : public Trace {
     // Sets the notch span from the boxes' `median` values. There should be as many items as the number of boxes
     // desired. This attribute has effect only under the q1/median/q3 signature. If `notchspan` is not provided but a
     // sample (in `y` or `x`) is set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& notchspan(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& notchspan(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -418,8 +417,8 @@ class Box : public Trace {
     Box& pointpos(Callable&& c);
 
     // Sets the Quartile 1 values. There should be as many items as the number of boxes desired.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& q1(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& q1(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -431,8 +430,8 @@ class Box : public Trace {
     Box& q1src(Callable&& c);
 
     // Sets the Quartile 3 values. There should be as many items as the number of boxes desired.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& q3(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& q3(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -456,8 +455,8 @@ class Box : public Trace {
     // Sets the standard deviation values. There should be as many items as the number of boxes desired. This attribute
     // has effect only under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set, we
     // compute the standard deviation for each box using the sample values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& sd(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& sd(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -545,8 +544,8 @@ class Box : public Trace {
     // Sets the upper fence values. There should be as many items as the number of boxes desired. This attribute has
     // effect only under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`) is
     // set, we compute the upper as the last sample point above 1.5 times the IQR.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& upperfence(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& upperfence(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -575,8 +574,8 @@ class Box : public Trace {
     Box& width(Callable&& c);
 
     // Sets the x sample data or coordinates. See overview for more info.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -635,8 +634,8 @@ class Box : public Trace {
     Box& xsrc(Callable&& c);
 
     // Sets the y sample data or coordinates. See overview for more info.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Box& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Box& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

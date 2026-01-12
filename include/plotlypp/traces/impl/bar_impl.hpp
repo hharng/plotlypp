@@ -174,8 +174,8 @@ Bar& Bar::constraintext(enum Constraintext f) {
     return *this;
 }
 
-template <typename T, typename>
-Bar& Bar::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar& Bar::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -330,8 +330,8 @@ Bar& Bar::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Bar& Bar::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar& Bar::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -744,8 +744,8 @@ Bar& Bar::widthsrc(Callable&& c) {
     return widthsrc(std::move(f));
 }
 
-template <typename T, typename>
-Bar& Bar::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar& Bar::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -835,8 +835,8 @@ Bar& Bar::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Bar& Bar::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar& Bar::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -948,8 +948,8 @@ std::string Bar::Error_X::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Bar::Error_X& Bar::Error_X::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar::Error_X& Bar::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -960,8 +960,8 @@ Bar::Error_X& Bar::Error_X::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Bar::Error_X& Bar::Error_X::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar::Error_X& Bar::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -1120,8 +1120,8 @@ std::string Bar::Error_Y::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Bar::Error_Y& Bar::Error_Y::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar::Error_Y& Bar::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -1132,8 +1132,8 @@ Bar::Error_Y& Bar::Error_Y::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Bar::Error_Y& Bar::Error_Y::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar::Error_Y& Bar::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -2693,8 +2693,8 @@ Bar::Marker::Colorbar& Bar::Marker::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Bar::Marker::Colorbar& Bar::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar::Marker::Colorbar& Bar::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2716,8 +2716,8 @@ Bar::Marker::Colorbar& Bar::Marker::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Bar::Marker::Colorbar& Bar::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Bar::Marker::Colorbar& Bar::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

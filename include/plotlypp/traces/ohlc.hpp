@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -70,8 +69,8 @@ class Ohlc : public Trace {
     class Stream;
 
     // Sets the close values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& close(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& close(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -84,8 +83,8 @@ class Ohlc : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -101,8 +100,8 @@ class Ohlc : public Trace {
     Ohlc& decreasing(Callable&& c);
 
     // Sets the high values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& high(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& high(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -145,8 +144,8 @@ class Ohlc : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -196,8 +195,8 @@ class Ohlc : public Trace {
     Ohlc& line(Callable&& c);
 
     // Sets the low values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& low(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& low(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -237,8 +236,8 @@ class Ohlc : public Trace {
     Ohlc& opacity(Callable&& c);
 
     // Sets the open values.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& open(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& open(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -308,8 +307,8 @@ class Ohlc : public Trace {
     Ohlc& visible(enum Visible f);
 
     // Sets the x coordinates. If absent, linear coordinate will be generated.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Ohlc& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Ohlc& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

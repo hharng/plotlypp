@@ -43,8 +43,8 @@ Sankey& Sankey::arrangement(enum Arrangement f) {
     return *this;
 }
 
-template <typename T, typename>
-Sankey& Sankey::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey& Sankey::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -99,8 +99,8 @@ Sankey& Sankey::hoverlabel(Callable&& c) {
     return hoverlabel(std::move(f));
 }
 
-template <typename T, typename>
-Sankey& Sankey::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey& Sankey::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -934,8 +934,8 @@ Sankey::Link& Sankey::Link::colorsrc(Callable&& c) {
     return colorsrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Link& Sankey::Link::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Link& Sankey::Link::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -1025,8 +1025,8 @@ Sankey::Link& Sankey::Link::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Link& Sankey::Link::label(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Link& Sankey::Link::label(Range&& f) {
     json["label"] = f;
     return *this;
 }
@@ -1059,8 +1059,8 @@ Sankey::Link& Sankey::Link::line(Callable&& c) {
     return line(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Link& Sankey::Link::source(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Link& Sankey::Link::source(Range&& f) {
     json["source"] = f;
     return *this;
 }
@@ -1082,8 +1082,8 @@ Sankey::Link& Sankey::Link::sourcesrc(Callable&& c) {
     return sourcesrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Link& Sankey::Link::target(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Link& Sankey::Link::target(Range&& f) {
     json["target"] = f;
     return *this;
 }
@@ -1105,8 +1105,8 @@ Sankey::Link& Sankey::Link::targetsrc(Callable&& c) {
     return targetsrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Link& Sankey::Link::value(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Link& Sankey::Link::value(Range&& f) {
     json["value"] = f;
     return *this;
 }
@@ -1677,8 +1677,8 @@ Sankey::Node& Sankey::Node::colorsrc(Callable&& c) {
     return colorsrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Node& Sankey::Node::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Node& Sankey::Node::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -1753,8 +1753,8 @@ Sankey::Node& Sankey::Node::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Node& Sankey::Node::label(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Node& Sankey::Node::label(Range&& f) {
     json["label"] = f;
     return *this;
 }
@@ -1809,8 +1809,8 @@ Sankey::Node& Sankey::Node::thickness(Callable&& c) {
     return thickness(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Node& Sankey::Node::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Node& Sankey::Node::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -1832,8 +1832,8 @@ Sankey::Node& Sankey::Node::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Sankey::Node& Sankey::Node::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Sankey::Node& Sankey::Node::y(Range&& f) {
     json["y"] = f;
     return *this;
 }

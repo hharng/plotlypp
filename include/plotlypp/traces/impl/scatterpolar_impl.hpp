@@ -75,8 +75,8 @@ Scatterpolar& Scatterpolar::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scatterpolar& Scatterpolar::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterpolar& Scatterpolar::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -236,8 +236,8 @@ Scatterpolar& Scatterpolar::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterpolar& Scatterpolar::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterpolar& Scatterpolar::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -397,8 +397,8 @@ Scatterpolar& Scatterpolar::opacity(Callable&& c) {
     return opacity(std::move(f));
 }
 
-template <typename T, typename>
-Scatterpolar& Scatterpolar::r(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterpolar& Scatterpolar::r(Range&& f) {
     json["r"] = f;
     return *this;
 }
@@ -573,8 +573,8 @@ Scatterpolar& Scatterpolar::texttemplatesrc(Callable&& c) {
     return texttemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterpolar& Scatterpolar::theta(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterpolar& Scatterpolar::theta(Range&& f) {
     json["theta"] = f;
     return *this;
 }
@@ -2383,8 +2383,8 @@ Scatterpolar::Marker::Colorbar& Scatterpolar::Marker::Colorbar::ticksuffix(Calla
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scatterpolar::Marker::Colorbar& Scatterpolar::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterpolar::Marker::Colorbar& Scatterpolar::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2406,8 +2406,8 @@ Scatterpolar::Marker::Colorbar& Scatterpolar::Marker::Colorbar::ticktextsrc(Call
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatterpolar::Marker::Colorbar& Scatterpolar::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatterpolar::Marker::Colorbar& Scatterpolar::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

@@ -44,8 +44,8 @@ Image& Image::colormodel(enum Colormodel f) {
     return *this;
 }
 
-template <typename T, typename>
-Image& Image::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Image& Image::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -152,8 +152,8 @@ Image& Image::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Image& Image::hovertext(const std::vector<T>& f) {
+template <typename Range, typename>
+Image& Image::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
@@ -175,8 +175,8 @@ Image& Image::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Image& Image::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Image& Image::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -314,8 +314,8 @@ Image& Image::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Image& Image::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Image& Image::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -411,8 +411,8 @@ Image& Image::yaxis(Callable&& c) {
     return yaxis(std::move(f));
 }
 
-template <typename T, typename>
-Image& Image::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Image& Image::z(Range&& f) {
     json["z"] = f;
     return *this;
 }

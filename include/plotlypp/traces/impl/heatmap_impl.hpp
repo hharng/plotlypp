@@ -166,8 +166,8 @@ Heatmap& Heatmap::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -285,8 +285,8 @@ Heatmap& Heatmap::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::hovertext(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
@@ -308,8 +308,8 @@ Heatmap& Heatmap::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -480,8 +480,8 @@ Heatmap& Heatmap::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -564,8 +564,8 @@ Heatmap& Heatmap::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -671,8 +671,8 @@ Heatmap& Heatmap::xtype(enum Xtype f) {
     return *this;
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -778,8 +778,8 @@ Heatmap& Heatmap::ytype(enum Ytype f) {
     return *this;
 }
 
-template <typename T, typename>
-Heatmap& Heatmap::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap& Heatmap::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1332,8 +1332,8 @@ Heatmap::Colorbar& Heatmap::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap::Colorbar& Heatmap::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1355,8 +1355,8 @@ Heatmap::Colorbar& Heatmap::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Heatmap::Colorbar& Heatmap::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

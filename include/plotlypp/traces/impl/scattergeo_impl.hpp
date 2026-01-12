@@ -64,8 +64,8 @@ Scattergeo& Scattergeo::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scattergeo& Scattergeo::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo& Scattergeo::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -226,8 +226,8 @@ Scattergeo& Scattergeo::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergeo& Scattergeo::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo& Scattergeo::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -249,8 +249,8 @@ Scattergeo& Scattergeo::idssrc(Callable&& c) {
     return idssrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergeo& Scattergeo::lat(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo& Scattergeo::lat(Range&& f) {
     json["lat"] = f;
     return *this;
 }
@@ -343,8 +343,8 @@ Scattergeo& Scattergeo::locationmode(enum Locationmode f) {
     return *this;
 }
 
-template <typename T, typename>
-Scattergeo& Scattergeo::locations(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo& Scattergeo::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
@@ -366,8 +366,8 @@ Scattergeo& Scattergeo::locationssrc(Callable&& c) {
     return locationssrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergeo& Scattergeo::lon(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo& Scattergeo::lon(Range&& f) {
     json["lon"] = f;
     return *this;
 }
@@ -2301,8 +2301,8 @@ Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticksuffix(Callable&
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2324,8 +2324,8 @@ Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktextsrc(Callable
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

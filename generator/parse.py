@@ -120,26 +120,32 @@ def emit_field_setter_decl(class_object, field, output_val_type, writer):
     def write_template_signature():
         if output_val_type == 'T':
             writer.write("template <typename T>")
-        elif field.json_val_type == 'data_array':
-            writer.write("template <typename T, typename=std::enable_if_t<is_data_array_element_v<T>>>")
 
     vec_type = "std::vector" in output_val_type
 
-    write_template_signature()
-    if vec_type:
-        # nlohmann json can't uses a const ref to_json for container types
-        writer.write(f"{class_object.name.title()}& {field.name}(const {output_val_type}& f);")
+    if field.json_val_type == 'data_array':
+        writer.write("template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>")
+        writer.write(f"{class_object.name.title()}& {field.name}(Range&& f);")
     else:
-        writer.write(f"{class_object.name.title()}& {field.name}({output_val_type} f);")
+        write_template_signature()
+        if vec_type:
+            # nlohmann json can't uses a const ref to_json for container types
+            writer.write(f"{class_object.name.title()}& {field.name}(const {output_val_type}& f);")
+        else:
+            writer.write(f"{class_object.name.title()}& {field.name}({output_val_type} f);")
 
     if field.is_subplot_object:
         # Add an index-first overload. Putting the index last we could default it and not need an overload but that
         # makes it less readable and less consistent with plotly.js.
-        write_template_signature()
-        if vec_type:
-            writer.write(f"{class_object.name.title()}& {field.name}(int index, const {output_val_type}& f);")
+        if field.json_val_type == 'data_array':
+            writer.write("template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>")
+            writer.write(f"{class_object.name.title()}& {field.name}(int index, Range&& f);")
         else:
-            writer.write(f"{class_object.name.title()}& {field.name}(int index, {output_val_type} f);")
+            write_template_signature()
+            if vec_type:
+                writer.write(f"{class_object.name.title()}& {field.name}(int index, const {output_val_type}& f);")
+            else:
+                writer.write(f"{class_object.name.title()}& {field.name}(int index, {output_val_type} f);")
 
 
 
@@ -147,16 +153,18 @@ def emit_field_setter(class_object, field, output_val_type, writer):
     def write_template_signature():
         if output_val_type == 'T':
             writer.write("template <typename T>")
-        elif field.json_val_type == 'data_array':
-            writer.write("template <typename T, typename>")
 
     vec_type = "std::vector" in output_val_type
 
-    write_template_signature()
-    if vec_type:
-        writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(const {output_val_type}& f) {{")
+    if field.json_val_type == 'data_array':
+        writer.write("template <typename Range, typename>")
+        writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(Range&& f) {{")
     else:
-        writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}({output_val_type} f) {{")
+        write_template_signature()
+        if vec_type:
+            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(const {output_val_type}& f) {{")
+        else:
+            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}({output_val_type} f) {{")
     with IndentBlock(writer):
         if field.is_object:
             writer.write(f"json[\"{field.name}\"] = std::move(f.json);")
@@ -168,11 +176,15 @@ def emit_field_setter(class_object, field, output_val_type, writer):
     if field.is_subplot_object:
         # Add an index-first overload. Putting the index last we could default it and not need an overload but that
         # makes it less readable and less consistent with plotly.js.
-        write_template_signature()
-        if vec_type:
-            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, const {output_val_type}& f) {{")
+        if field.json_val_type == 'data_array':
+            writer.write("template <typename Range, typename>")
+            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, Range&& f) {{")
         else:
-            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, {output_val_type} f) {{")
+            write_template_signature()
+            if vec_type:
+                writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, const {output_val_type}& f) {{")
+            else:
+                writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, {output_val_type} f) {{")
         with IndentBlock(writer):
             if field.is_object:
                 writer.write(f"json[\"{field.name}\" + std::to_string(index)] = std::move(f.json);")
@@ -262,8 +274,8 @@ def emit_class_public_members(class_object, writer):
                 emit_enum_array_field_setter(class_object, field, writer)
         else:
             if field.is_object:
-                field_type = field.object_type_name if field.object_type_name else field.name
-                output_val_types = [f"{field_type.title()}"]
+                object_type = field.object_type_name if field.object_type_name else field.name
+                output_val_types = [f"{object_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
             for output_val_type_overload in output_val_types:
@@ -374,10 +386,9 @@ def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path):
     writer.write("#include <vector>")
     writer.write("#include <type_traits>")
     writer.write("")
+    writer.write("#include <plotlypp/json.hpp>")
     writer.write("#include <plotlypp/trace.hpp>")
     writer.write("#include <plotlypp/traits.hpp>")
-    writer.write("")
-    writer.write("#include <plotlypp/json.hpp>")
     writer.write("")
     writer.write("namespace plotlypp {")
     writer.write("")
@@ -701,7 +712,6 @@ def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
 
     writer.write("#include <string>")
     writer.write("#include <vector>")
-    writer.write("")
     writer.write("")
     writer.write("#include <plotlypp/json.hpp>")
     writer.write("#include <plotlypp/traits.hpp>")

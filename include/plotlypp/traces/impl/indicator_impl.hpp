@@ -34,8 +34,8 @@ Indicator& Indicator::align(enum Align f) {
     return *this;
 }
 
-template <typename T, typename>
-Indicator& Indicator::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Indicator& Indicator::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -90,8 +90,8 @@ Indicator& Indicator::gauge(Callable&& c) {
     return gauge(std::move(f));
 }
 
-template <typename T, typename>
-Indicator& Indicator::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Indicator& Indicator::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -969,8 +969,8 @@ Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -992,8 +992,8 @@ Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

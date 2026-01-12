@@ -189,8 +189,8 @@ Histogram2Dcontour& Histogram2Dcontour::contours(Callable&& c) {
     return contours(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2Dcontour& Histogram2Dcontour::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour& Histogram2Dcontour::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -285,8 +285,8 @@ Histogram2Dcontour& Histogram2Dcontour::hovertemplatesrc(Callable&& c) {
     return hovertemplatesrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2Dcontour& Histogram2Dcontour::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour& Histogram2Dcontour::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -562,8 +562,8 @@ Histogram2Dcontour& Histogram2Dcontour::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Histogram2Dcontour& Histogram2Dcontour::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour& Histogram2Dcontour::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -634,8 +634,8 @@ Histogram2Dcontour& Histogram2Dcontour::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2Dcontour& Histogram2Dcontour::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour& Histogram2Dcontour::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -706,8 +706,8 @@ Histogram2Dcontour& Histogram2Dcontour::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2Dcontour& Histogram2Dcontour::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour& Histogram2Dcontour::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1244,8 +1244,8 @@ Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::ticksuffix(Callable&
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1267,8 +1267,8 @@ Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::ticktextsrc(Callable
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour::Colorbar& Histogram2Dcontour::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -2501,8 +2501,8 @@ Histogram2Dcontour::Line& Histogram2Dcontour::Line::width(Callable&& c) {
 }
 
 
-template <typename T, typename>
-Histogram2Dcontour::Marker& Histogram2Dcontour::Marker::color(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram2Dcontour::Marker& Histogram2Dcontour::Marker::color(Range&& f) {
     json["color"] = f;
     return *this;
 }

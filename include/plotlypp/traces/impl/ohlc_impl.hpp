@@ -51,8 +51,8 @@ std::string Ohlc::to_string(Xperiodalignment e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::close(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::close(Range&& f) {
     json["close"] = f;
     return *this;
 }
@@ -74,8 +74,8 @@ Ohlc& Ohlc::closesrc(Callable&& c) {
     return closesrc(std::move(f));
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -108,8 +108,8 @@ Ohlc& Ohlc::decreasing(Callable&& c) {
     return decreasing(std::move(f));
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::high(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::high(Range&& f) {
     json["high"] = f;
     return *this;
 }
@@ -194,8 +194,8 @@ Ohlc& Ohlc::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -294,8 +294,8 @@ Ohlc& Ohlc::line(Callable&& c) {
     return line(std::move(f));
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::low(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::low(Range&& f) {
     json["low"] = f;
     return *this;
 }
@@ -367,8 +367,8 @@ Ohlc& Ohlc::opacity(Callable&& c) {
     return opacity(std::move(f));
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::open(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::open(Range&& f) {
     json["open"] = f;
     return *this;
 }
@@ -489,8 +489,8 @@ Ohlc& Ohlc::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Ohlc& Ohlc::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Ohlc& Ohlc::x(Range&& f) {
     json["x"] = f;
     return *this;
 }

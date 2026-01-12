@@ -147,8 +147,8 @@ Box& Box::boxpoints(enum Boxpoints f) {
     return *this;
 }
 
-template <typename T, typename>
-Box& Box::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -303,8 +303,8 @@ Box& Box::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -403,8 +403,8 @@ Box& Box::line(Callable&& c) {
     return line(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::lowerfence(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::lowerfence(Range&& f) {
     json["lowerfence"] = f;
     return *this;
 }
@@ -437,8 +437,8 @@ Box& Box::marker(Callable&& c) {
     return marker(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::mean(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::mean(Range&& f) {
     json["mean"] = f;
     return *this;
 }
@@ -460,8 +460,8 @@ Box& Box::meansrc(Callable&& c) {
     return meansrc(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::median(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::median(Range&& f) {
     json["median"] = f;
     return *this;
 }
@@ -533,8 +533,8 @@ Box& Box::notched(Callable&& c) {
     return notched(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::notchspan(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::notchspan(Range&& f) {
     json["notchspan"] = f;
     return *this;
 }
@@ -605,8 +605,8 @@ Box& Box::pointpos(Callable&& c) {
     return pointpos(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::q1(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::q1(Range&& f) {
     json["q1"] = f;
     return *this;
 }
@@ -628,8 +628,8 @@ Box& Box::q1src(Callable&& c) {
     return q1src(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::q3(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::q3(Range&& f) {
     json["q3"] = f;
     return *this;
 }
@@ -656,8 +656,8 @@ Box& Box::quartilemethod(enum Quartilemethod f) {
     return *this;
 }
 
-template <typename T, typename>
-Box& Box::sd(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::sd(Range&& f) {
     json["sd"] = f;
     return *this;
 }
@@ -811,8 +811,8 @@ Box& Box::unselected(Callable&& c) {
     return unselected(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::upperfence(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::upperfence(Range&& f) {
     json["upperfence"] = f;
     return *this;
 }
@@ -861,8 +861,8 @@ Box& Box::width(Callable&& c) {
     return width(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -952,8 +952,8 @@ Box& Box::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Box& Box::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Box& Box::y(Range&& f) {
     json["y"] = f;
     return *this;
 }

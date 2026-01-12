@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -195,8 +194,8 @@ class Mesh3D : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -213,8 +212,8 @@ class Mesh3D : public Trace {
     Mesh3D& delaunayaxis(enum Delaunayaxis f);
 
     // Sets the color of each face Overrides *color* and *vertexcolor*.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& facecolor(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& facecolor(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -288,8 +287,8 @@ class Mesh3D : public Trace {
     // *first* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the
     // mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element
     // in `i` represents a point in space, which is the first vertex of a triangle.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& i(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& i(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -297,8 +296,8 @@ class Mesh3D : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -311,8 +310,8 @@ class Mesh3D : public Trace {
 
     // Sets the intensity values for vertices or cells as defined by `intensitymode`. It can be used for plotting fields
     // on meshes.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& intensity(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& intensity(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -336,8 +335,8 @@ class Mesh3D : public Trace {
     // *second* vertex of a triangle. For example, `{i[m], j[m], k[m]}`  together represent face m (triangle m) in the
     // mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element
     // in `j` represents a point in space, which is the second vertex of a triangle.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& j(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& j(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -352,8 +351,8 @@ class Mesh3D : public Trace {
     // *third* vertex of a triangle. For example, `{i[m], j[m], k[m]}` together represent face m (triangle m) in the
     // mesh, where `k[m] = n` points to the triplet  `{x[n], y[n], z[n]}` in the vertex arrays. Therefore, each element
     // in `k` represents a point in space, which is the third vertex of a triangle.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& k(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& k(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -494,8 +493,8 @@ class Mesh3D : public Trace {
     // Sets the color of each vertex Overrides *color*. While Red, green and blue colors are in the range of 0 and 255;
     // in the case of having vertex color data in RGBA format, the alpha color should be normalized to be between 0
     // and 1.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& vertexcolor(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& vertexcolor(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -513,8 +512,8 @@ class Mesh3D : public Trace {
 
     // Sets the X coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y
     // and Z coordinates of the nth vertex.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -541,8 +540,8 @@ class Mesh3D : public Trace {
 
     // Sets the Y coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y
     // and Z coordinates of the nth vertex.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -569,8 +568,8 @@ class Mesh3D : public Trace {
 
     // Sets the Z coordinates of the vertices. The nth element of vectors `x`, `y` and `z` jointly represent the X, Y
     // and Z coordinates of the nth vertex.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -922,8 +921,8 @@ class Mesh3D::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -936,8 +935,8 @@ class Mesh3D::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Mesh3D::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Mesh3D::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

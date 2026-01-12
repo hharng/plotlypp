@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -69,8 +68,8 @@ class Sankey : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -101,8 +100,8 @@ class Sankey : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -621,8 +620,8 @@ class Sankey::Link {
     Sankey::Link& colorsrc(Callable&& c);
 
     // Assigns extra data to each link.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Link& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Link& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -679,8 +678,8 @@ class Sankey::Link {
     Sankey::Link& hovertemplatesrc(Callable&& c);
 
     // The shown name of the link.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Link& label(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Link& label(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -696,8 +695,8 @@ class Sankey::Link {
     Sankey::Link& line(Callable&& c);
 
     // An integer number `[0..nodes.length - 1]` that represents the source node.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Link& source(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Link& source(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -709,8 +708,8 @@ class Sankey::Link {
     Sankey::Link& sourcesrc(Callable&& c);
 
     // An integer number `[0..nodes.length - 1]` that represents the target node.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Link& target(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Link& target(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -722,8 +721,8 @@ class Sankey::Link {
     Sankey::Link& targetsrc(Callable&& c);
 
     // A numeric value representing the flow volume value.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Link& value(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Link& value(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1081,8 +1080,8 @@ class Sankey::Node {
     Sankey::Node& colorsrc(Callable&& c);
 
     // Assigns extra data to each node.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Node& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Node& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1133,8 +1132,8 @@ class Sankey::Node {
     Sankey::Node& hovertemplatesrc(Callable&& c);
 
     // The shown name of the node.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Node& label(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Node& label(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1160,8 +1159,8 @@ class Sankey::Node {
     Sankey::Node& thickness(Callable&& c);
 
     // The normalized horizontal position of the node.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Node& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Node& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1173,8 +1172,8 @@ class Sankey::Node {
     Sankey::Node& xsrc(Callable&& c);
 
     // The normalized vertical position of the node.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Sankey::Node& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Sankey::Node& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

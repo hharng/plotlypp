@@ -59,8 +59,8 @@ Icicle& Icicle::count(Callable&& c) {
     return count(std::move(f));
 }
 
-template <typename T, typename>
-Icicle& Icicle::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle& Icicle::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -182,8 +182,8 @@ Icicle& Icicle::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Icicle& Icicle::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle& Icicle::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -216,8 +216,8 @@ Icicle& Icicle::insidetextfont(Callable&& c) {
     return insidetextfont(std::move(f));
 }
 
-template <typename T, typename>
-Icicle& Icicle::labels(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle& Icicle::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
@@ -389,8 +389,8 @@ Icicle& Icicle::outsidetextfont(Callable&& c) {
     return outsidetextfont(std::move(f));
 }
 
-template <typename T, typename>
-Icicle& Icicle::parents(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle& Icicle::parents(Range&& f) {
     json["parents"] = f;
     return *this;
 }
@@ -456,8 +456,8 @@ Icicle& Icicle::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Icicle& Icicle::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle& Icicle::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -566,8 +566,8 @@ Icicle& Icicle::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Icicle& Icicle::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle& Icicle::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1491,8 +1491,8 @@ Icicle::Marker& Icicle::Marker::colorbar(Callable&& c) {
     return colorbar(std::move(f));
 }
 
-template <typename T, typename>
-Icicle::Marker& Icicle::Marker::colors(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle::Marker& Icicle::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
@@ -2033,8 +2033,8 @@ Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2056,8 +2056,8 @@ Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

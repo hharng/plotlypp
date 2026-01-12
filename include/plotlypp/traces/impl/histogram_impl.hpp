@@ -194,8 +194,8 @@ Histogram& Histogram::cumulative(Callable&& c) {
     return cumulative(std::move(f));
 }
 
-template <typename T, typename>
-Histogram& Histogram::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram& Histogram::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -338,8 +338,8 @@ Histogram& Histogram::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram& Histogram::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram& Histogram::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -690,8 +690,8 @@ Histogram& Histogram::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Histogram& Histogram::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram& Histogram::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -751,8 +751,8 @@ Histogram& Histogram::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram& Histogram::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram& Histogram::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -873,8 +873,8 @@ std::string Histogram::Error_X::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Histogram::Error_X& Histogram::Error_X::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram::Error_X& Histogram::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -885,8 +885,8 @@ Histogram::Error_X& Histogram::Error_X::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Histogram::Error_X& Histogram::Error_X::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram::Error_X& Histogram::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -1045,8 +1045,8 @@ std::string Histogram::Error_Y::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Histogram::Error_Y& Histogram::Error_Y::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram::Error_Y& Histogram::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -1057,8 +1057,8 @@ Histogram::Error_Y& Histogram::Error_Y::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Histogram::Error_Y& Histogram::Error_Y::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram::Error_Y& Histogram::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -2477,8 +2477,8 @@ Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::ticksuffix(Callable&& 
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2500,8 +2500,8 @@ Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::ticktextsrc(Callable&&
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Histogram::Marker::Colorbar& Histogram::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

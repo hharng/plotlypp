@@ -44,8 +44,8 @@ std::string Scattercarpet::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scattercarpet& Scattercarpet::a(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattercarpet& Scattercarpet::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
@@ -67,8 +67,8 @@ Scattercarpet& Scattercarpet::asrc(Callable&& c) {
     return asrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattercarpet& Scattercarpet::b(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattercarpet& Scattercarpet::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
@@ -112,8 +112,8 @@ Scattercarpet& Scattercarpet::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scattercarpet& Scattercarpet::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattercarpet& Scattercarpet::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -251,8 +251,8 @@ Scattercarpet& Scattercarpet::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattercarpet& Scattercarpet::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattercarpet& Scattercarpet::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -2345,8 +2345,8 @@ Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticksuffix(Cal
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2368,8 +2368,8 @@ Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktextsrc(Ca
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

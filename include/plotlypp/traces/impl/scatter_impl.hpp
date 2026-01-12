@@ -168,8 +168,8 @@ Scatter& Scatter::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scatter& Scatter::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter& Scatter::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -378,8 +378,8 @@ Scatter& Scatter::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter& Scatter::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter& Scatter::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -740,8 +740,8 @@ Scatter& Scatter::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Scatter& Scatter::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter& Scatter::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -831,8 +831,8 @@ Scatter& Scatter::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter& Scatter::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter& Scatter::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -944,8 +944,8 @@ std::string Scatter::Error_X::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scatter::Error_X& Scatter::Error_X::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter::Error_X& Scatter::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -956,8 +956,8 @@ Scatter::Error_X& Scatter::Error_X::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scatter::Error_X& Scatter::Error_X::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter::Error_X& Scatter::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -1116,8 +1116,8 @@ std::string Scatter::Error_Y::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scatter::Error_Y& Scatter::Error_Y::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter::Error_Y& Scatter::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -1128,8 +1128,8 @@ Scatter::Error_Y& Scatter::Error_Y::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scatter::Error_Y& Scatter::Error_Y::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter::Error_Y& Scatter::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -3220,8 +3220,8 @@ Scatter::Marker::Colorbar& Scatter::Marker::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scatter::Marker::Colorbar& Scatter::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter::Marker::Colorbar& Scatter::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -3243,8 +3243,8 @@ Scatter::Marker::Colorbar& Scatter::Marker::Colorbar::ticktextsrc(Callable&& c) 
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scatter::Marker::Colorbar& Scatter::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scatter::Marker::Colorbar& Scatter::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

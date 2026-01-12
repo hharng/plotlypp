@@ -121,8 +121,8 @@ Scattergl& Scattergl::connectgaps(Callable&& c) {
     return connectgaps(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl& Scattergl::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl& Scattergl::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -293,8 +293,8 @@ Scattergl& Scattergl::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl& Scattergl::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl& Scattergl::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -623,8 +623,8 @@ Scattergl& Scattergl::visible(enum Visible f) {
     return *this;
 }
 
-template <typename T, typename>
-Scattergl& Scattergl::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl& Scattergl::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -714,8 +714,8 @@ Scattergl& Scattergl::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl& Scattergl::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl& Scattergl::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -816,8 +816,8 @@ std::string Scattergl::Error_X::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scattergl::Error_X& Scattergl::Error_X::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl::Error_X& Scattergl::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -828,8 +828,8 @@ Scattergl::Error_X& Scattergl::Error_X::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl::Error_X& Scattergl::Error_X::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl::Error_X& Scattergl::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -988,8 +988,8 @@ std::string Scattergl::Error_Y::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Scattergl::Error_Y& Scattergl::Error_Y::array(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl::Error_Y& Scattergl::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
@@ -1000,8 +1000,8 @@ Scattergl::Error_Y& Scattergl::Error_Y::array(Callable&& c) {
     return array(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl::Error_Y& Scattergl::Error_Y::arrayminus(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl::Error_Y& Scattergl::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
@@ -2780,8 +2780,8 @@ Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticksuffix(Callable&& 
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2803,8 +2803,8 @@ Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktextsrc(Callable&&
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

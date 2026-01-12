@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -227,8 +226,8 @@ class Parcats::Dimension {
 
     // Sets the order in which categories in this dimension appear. Only has an effect if `categoryorder` is set to
     // *array*. Used with `categoryorder`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Dimension& categoryarray(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Parcats::Dimension& categoryarray(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -260,8 +259,8 @@ class Parcats::Dimension {
 
     // Sets alternative tick labels for the categories in this dimension. Only has an effect if `categoryorder` is set
     // to *array*. Should be an array the same length as `categoryarray` Used with `categoryorder`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Dimension& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Parcats::Dimension& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -274,8 +273,8 @@ class Parcats::Dimension {
 
     // Dimension values. `values[n]` represents the category value of the `n`th point in the dataset, therefore the
     // `values` vector for all dimensions must be the same (longer vectors will be truncated).
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Dimension& values(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Parcats::Dimension& values(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -971,8 +970,8 @@ class Parcats::Line::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Line::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Parcats::Line::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -985,8 +984,8 @@ class Parcats::Line::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Parcats::Line::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Parcats::Line::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

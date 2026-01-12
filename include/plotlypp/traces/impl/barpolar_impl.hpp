@@ -57,8 +57,8 @@ Barpolar& Barpolar::basesrc(Callable&& c) {
     return basesrc(std::move(f));
 }
 
-template <typename T, typename>
-Barpolar& Barpolar::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Barpolar& Barpolar::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -191,8 +191,8 @@ Barpolar& Barpolar::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Barpolar& Barpolar::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Barpolar& Barpolar::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -356,8 +356,8 @@ Barpolar& Barpolar::opacity(Callable&& c) {
     return opacity(std::move(f));
 }
 
-template <typename T, typename>
-Barpolar& Barpolar::r(const std::vector<T>& f) {
+template <typename Range, typename>
+Barpolar& Barpolar::r(Range&& f) {
     json["r"] = f;
     return *this;
 }
@@ -473,8 +473,8 @@ Barpolar& Barpolar::textsrc(Callable&& c) {
     return textsrc(std::move(f));
 }
 
-template <typename T, typename>
-Barpolar& Barpolar::theta(const std::vector<T>& f) {
+template <typename Range, typename>
+Barpolar& Barpolar::theta(Range&& f) {
     json["theta"] = f;
     return *this;
 }
@@ -1736,8 +1736,8 @@ Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticksuffix(Callable&& c)
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1759,8 +1759,8 @@ Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktextsrc(Callable&& c
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

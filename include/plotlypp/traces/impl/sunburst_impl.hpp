@@ -54,8 +54,8 @@ Sunburst& Sunburst::count(Callable&& c) {
     return count(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst& Sunburst::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst& Sunburst::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -177,8 +177,8 @@ Sunburst& Sunburst::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst& Sunburst::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst& Sunburst::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -216,8 +216,8 @@ Sunburst& Sunburst::insidetextorientation(enum Insidetextorientation f) {
     return *this;
 }
 
-template <typename T, typename>
-Sunburst& Sunburst::labels(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst& Sunburst::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
@@ -389,8 +389,8 @@ Sunburst& Sunburst::outsidetextfont(Callable&& c) {
     return outsidetextfont(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst& Sunburst::parents(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst& Sunburst::parents(Range&& f) {
     json["parents"] = f;
     return *this;
 }
@@ -456,8 +456,8 @@ Sunburst& Sunburst::stream(Callable&& c) {
     return stream(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst& Sunburst::text(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst& Sunburst::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
@@ -550,8 +550,8 @@ Sunburst& Sunburst::uirevision(Callable&& c) {
     return uirevision(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst& Sunburst::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst& Sunburst::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -1475,8 +1475,8 @@ Sunburst::Marker& Sunburst::Marker::colorbar(Callable&& c) {
     return colorbar(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst::Marker& Sunburst::Marker::colors(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst::Marker& Sunburst::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
@@ -2017,8 +2017,8 @@ Sunburst::Marker::Colorbar& Sunburst::Marker::Colorbar::ticksuffix(Callable&& c)
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst::Marker::Colorbar& Sunburst::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst::Marker::Colorbar& Sunburst::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2040,8 +2040,8 @@ Sunburst::Marker::Colorbar& Sunburst::Marker::Colorbar::ticktextsrc(Callable&& c
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Sunburst::Marker::Colorbar& Sunburst::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Sunburst::Marker::Colorbar& Sunburst::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

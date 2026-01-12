@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -134,8 +133,8 @@ class Scatter3D : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -215,8 +214,8 @@ class Scatter3D : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -404,8 +403,8 @@ class Scatter3D : public Trace {
     Scatter3D& visible(enum Visible f);
 
     // Sets the x coordinates.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -431,8 +430,8 @@ class Scatter3D : public Trace {
     Scatter3D& xsrc(Callable&& c);
 
     // Sets the y coordinates.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -458,8 +457,8 @@ class Scatter3D : public Trace {
     Scatter3D& ysrc(Callable&& c);
 
     // Sets the z coordinates.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -500,8 +499,8 @@ class Scatter3D::Error_X {
     static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Error_X& array(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Error_X& array(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -509,8 +508,8 @@ class Scatter3D::Error_X {
 
     // Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal)
     // bars Values are plotted relative to the underlying data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Error_X& arrayminus(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Error_X& arrayminus(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -602,8 +601,8 @@ class Scatter3D::Error_Y {
     static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Error_Y& array(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Error_Y& array(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -611,8 +610,8 @@ class Scatter3D::Error_Y {
 
     // Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal)
     // bars Values are plotted relative to the underlying data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Error_Y& arrayminus(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Error_Y& arrayminus(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -704,8 +703,8 @@ class Scatter3D::Error_Z {
     static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Error_Z& array(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Error_Z& array(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -713,8 +712,8 @@ class Scatter3D::Error_Z {
 
     // Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal)
     // bars Values are plotted relative to the underlying data.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Error_Z& arrayminus(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Error_Z& arrayminus(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1549,8 +1548,8 @@ class Scatter3D::Line::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Line::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Line::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1563,8 +1562,8 @@ class Scatter3D::Line::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Line::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Line::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -2372,8 +2371,8 @@ class Scatter3D::Marker::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Marker::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Marker::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -2386,8 +2385,8 @@ class Scatter3D::Marker::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Scatter3D::Marker::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Scatter3D::Marker::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

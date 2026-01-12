@@ -12,10 +12,9 @@
 #include <type_traits>
 #include <vector>
 
+#include <plotlypp/json.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traits.hpp>
-
-#include <plotlypp/json.hpp>
 
 namespace plotlypp {
 
@@ -112,8 +111,8 @@ class Isosurface : public Trace {
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface& customdata(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface& customdata(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -185,8 +184,8 @@ class Isosurface : public Trace {
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface& ids(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface& ids(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -347,8 +346,8 @@ class Isosurface : public Trace {
     Isosurface& uirevision(Callable&& c);
 
     // Sets the 4th dimension (value) of the vertices.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface& value(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface& value(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -372,8 +371,8 @@ class Isosurface : public Trace {
     Isosurface& visible(enum Visible f);
 
     // Sets the X coordinates of the vertices on X axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface& x(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface& x(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -395,8 +394,8 @@ class Isosurface : public Trace {
     Isosurface& xsrc(Callable&& c);
 
     // Sets the Y coordinates of the vertices on Y axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface& y(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface& y(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -418,8 +417,8 @@ class Isosurface : public Trace {
     Isosurface& ysrc(Callable&& c);
 
     // Sets the Z coordinates of the vertices on Z axis.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface& z(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface& z(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -865,8 +864,8 @@ class Isosurface::Colorbar {
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface::Colorbar& ticktext(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface::Colorbar& ticktext(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -879,8 +878,8 @@ class Isosurface::Colorbar {
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface::Colorbar& tickvals(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface::Colorbar& tickvals(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1659,8 +1658,8 @@ class Isosurface::Slices::X {
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis x except start and end.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface::Slices::X& locations(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface::Slices::X& locations(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1695,8 +1694,8 @@ class Isosurface::Slices::Y {
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis y except start and end.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface::Slices::Y& locations(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface::Slices::Y& locations(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
@@ -1731,8 +1730,8 @@ class Isosurface::Slices::Z {
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis z except start and end.
-    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
-    Isosurface::Slices::Z& locations(const std::vector<T>& f);
+    template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
+    Isosurface::Slices::Z& locations(Range&& f);
     template <
         typename T, typename Callable,
         typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>

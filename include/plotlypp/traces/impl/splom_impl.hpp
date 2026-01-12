@@ -20,8 +20,8 @@ std::string Splom::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-template <typename T, typename>
-Splom& Splom::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Splom& Splom::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -160,8 +160,8 @@ Splom& Splom::hovertextsrc(Callable&& c) {
     return hovertextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Splom& Splom::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Splom& Splom::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -532,8 +532,8 @@ Splom::Dimension& Splom::Dimension::templateitemname(Callable&& c) {
     return templateitemname(std::move(f));
 }
 
-template <typename T, typename>
-Splom::Dimension& Splom::Dimension::values(const std::vector<T>& f) {
+template <typename Range, typename>
+Splom::Dimension& Splom::Dimension::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
@@ -2179,8 +2179,8 @@ Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -2202,8 +2202,8 @@ Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }

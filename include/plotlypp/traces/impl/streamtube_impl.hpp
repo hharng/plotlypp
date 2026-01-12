@@ -112,8 +112,8 @@ Streamtube& Streamtube::colorscale(Callable&& c) {
     return colorscale(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::customdata(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
@@ -209,8 +209,8 @@ Streamtube& Streamtube::hovertext(Callable&& c) {
     return hovertext(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::ids(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
@@ -458,8 +458,8 @@ Streamtube& Streamtube::text(Callable&& c) {
     return text(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::u(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::u(Range&& f) {
     json["u"] = f;
     return *this;
 }
@@ -515,8 +515,8 @@ Streamtube& Streamtube::usrc(Callable&& c) {
     return usrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::v(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::v(Range&& f) {
     json["v"] = f;
     return *this;
 }
@@ -554,8 +554,8 @@ Streamtube& Streamtube::vsrc(Callable&& c) {
     return vsrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::w(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::w(Range&& f) {
     json["w"] = f;
     return *this;
 }
@@ -588,8 +588,8 @@ Streamtube& Streamtube::wsrc(Callable&& c) {
     return wsrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -622,8 +622,8 @@ Streamtube& Streamtube::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -656,8 +656,8 @@ Streamtube& Streamtube::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube& Streamtube::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube& Streamtube::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
@@ -1150,8 +1150,8 @@ Streamtube::Colorbar& Streamtube::Colorbar::ticksuffix(Callable&& c) {
     return ticksuffix(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticktext(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube::Colorbar& Streamtube::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
@@ -1173,8 +1173,8 @@ Streamtube::Colorbar& Streamtube::Colorbar::ticktextsrc(Callable&& c) {
     return ticktextsrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickvals(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube::Colorbar& Streamtube::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
@@ -2221,8 +2221,8 @@ Streamtube::Lightposition& Streamtube::Lightposition::z(Callable&& c) {
 }
 
 
-template <typename T, typename>
-Streamtube::Starts& Streamtube::Starts::x(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube::Starts& Streamtube::Starts::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
@@ -2244,8 +2244,8 @@ Streamtube::Starts& Streamtube::Starts::xsrc(Callable&& c) {
     return xsrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube::Starts& Streamtube::Starts::y(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube::Starts& Streamtube::Starts::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
@@ -2267,8 +2267,8 @@ Streamtube::Starts& Streamtube::Starts::ysrc(Callable&& c) {
     return ysrc(std::move(f));
 }
 
-template <typename T, typename>
-Streamtube::Starts& Streamtube::Starts::z(const std::vector<T>& f) {
+template <typename Range, typename>
+Streamtube::Starts& Streamtube::Starts::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
