@@ -11,39 +11,29 @@
 namespace plotlypp {
 
 std::string Cone::to_string(Anchor e) {
-    switch (e) {
-    case Anchor::Tip:
-        return "tip";
-    case Anchor::Tail:
-        return "tail";
-    case Anchor::Cm:
-        return "cm";
-    case Anchor::Center:
-        return "center";
+    switch(e) {
+        case Anchor::Tip: return "tip";
+        case Anchor::Tail: return "tail";
+        case Anchor::Cm: return "cm";
+        case Anchor::Center: return "center";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::to_string(Sizemode e) {
-    switch (e) {
-    case Sizemode::Scaled:
-        return "scaled";
-    case Sizemode::Absolute:
-        return "absolute";
-    case Sizemode::Raw:
-        return "raw";
+    switch(e) {
+        case Sizemode::Scaled: return "scaled";
+        case Sizemode::Absolute: return "absolute";
+        case Sizemode::Raw: return "raw";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::to_string(Visible e) {
-    switch (e) {
-    case Visible::True:
-        return "True";
-    case Visible::False:
-        return "False";
-    case Visible::Legendonly:
-        return "legendonly";
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -738,195 +728,143 @@ Cone& Cone::zsrc(Callable&& c) {
 }
 
 std::string Cone::Colorbar::to_string(Exponentformat e) {
-    switch (e) {
-    case Exponentformat::None:
-        return "none";
-    case Exponentformat::E:
-        return "E";
-    case Exponentformat::Power:
-        return "power";
-    case Exponentformat::Si:
-        return "SI";
-    case Exponentformat::B:
-        return "B";
+    switch(e) {
+        case Exponentformat::None: return "none";
+        case Exponentformat::E: return "E";
+        case Exponentformat::Power: return "power";
+        case Exponentformat::Si: return "SI";
+        case Exponentformat::B: return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Lenmode e) {
-    switch (e) {
-    case Lenmode::Fraction:
-        return "fraction";
-    case Lenmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Lenmode::Fraction: return "fraction";
+        case Lenmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Orientation e) {
-    switch (e) {
-    case Orientation::H:
-        return "h";
-    case Orientation::V:
-        return "v";
+    switch(e) {
+        case Orientation::H: return "h";
+        case Orientation::V: return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Showexponent e) {
-    switch (e) {
-    case Showexponent::All:
-        return "all";
-    case Showexponent::First:
-        return "first";
-    case Showexponent::Last:
-        return "last";
-    case Showexponent::None:
-        return "none";
+    switch(e) {
+        case Showexponent::All: return "all";
+        case Showexponent::First: return "first";
+        case Showexponent::Last: return "last";
+        case Showexponent::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Showtickprefix e) {
-    switch (e) {
-    case Showtickprefix::All:
-        return "all";
-    case Showtickprefix::First:
-        return "first";
-    case Showtickprefix::Last:
-        return "last";
-    case Showtickprefix::None:
-        return "none";
+    switch(e) {
+        case Showtickprefix::All: return "all";
+        case Showtickprefix::First: return "first";
+        case Showtickprefix::Last: return "last";
+        case Showtickprefix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Showticksuffix e) {
-    switch (e) {
-    case Showticksuffix::All:
-        return "all";
-    case Showticksuffix::First:
-        return "first";
-    case Showticksuffix::Last:
-        return "last";
-    case Showticksuffix::None:
-        return "none";
+    switch(e) {
+        case Showticksuffix::All: return "all";
+        case Showticksuffix::First: return "first";
+        case Showticksuffix::Last: return "last";
+        case Showticksuffix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Thicknessmode e) {
-    switch (e) {
-    case Thicknessmode::Fraction:
-        return "fraction";
-    case Thicknessmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Thicknessmode::Fraction: return "fraction";
+        case Thicknessmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Ticklabeloverflow e) {
-    switch (e) {
-    case Ticklabeloverflow::Allow:
-        return "allow";
-    case Ticklabeloverflow::HidePastDiv:
-        return "hide past div";
-    case Ticklabeloverflow::HidePastDomain:
-        return "hide past domain";
+    switch(e) {
+        case Ticklabeloverflow::Allow: return "allow";
+        case Ticklabeloverflow::HidePastDiv: return "hide past div";
+        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Ticklabelposition e) {
-    switch (e) {
-    case Ticklabelposition::Outside:
-        return "outside";
-    case Ticklabelposition::Inside:
-        return "inside";
-    case Ticklabelposition::OutsideTop:
-        return "outside top";
-    case Ticklabelposition::InsideTop:
-        return "inside top";
-    case Ticklabelposition::OutsideLeft:
-        return "outside left";
-    case Ticklabelposition::InsideLeft:
-        return "inside left";
-    case Ticklabelposition::OutsideRight:
-        return "outside right";
-    case Ticklabelposition::InsideRight:
-        return "inside right";
-    case Ticklabelposition::OutsideBottom:
-        return "outside bottom";
-    case Ticklabelposition::InsideBottom:
-        return "inside bottom";
+    switch(e) {
+        case Ticklabelposition::Outside: return "outside";
+        case Ticklabelposition::Inside: return "inside";
+        case Ticklabelposition::OutsideTop: return "outside top";
+        case Ticklabelposition::InsideTop: return "inside top";
+        case Ticklabelposition::OutsideLeft: return "outside left";
+        case Ticklabelposition::InsideLeft: return "inside left";
+        case Ticklabelposition::OutsideRight: return "outside right";
+        case Ticklabelposition::InsideRight: return "inside right";
+        case Ticklabelposition::OutsideBottom: return "outside bottom";
+        case Ticklabelposition::InsideBottom: return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Tickmode e) {
-    switch (e) {
-    case Tickmode::Auto:
-        return "auto";
-    case Tickmode::Linear:
-        return "linear";
-    case Tickmode::Array:
-        return "array";
+    switch(e) {
+        case Tickmode::Auto: return "auto";
+        case Tickmode::Linear: return "linear";
+        case Tickmode::Array: return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Ticks e) {
-    switch (e) {
-    case Ticks::Outside:
-        return "outside";
-    case Ticks::Inside:
-        return "inside";
-    case Ticks::Empty:
-        return "";
+    switch(e) {
+        case Ticks::Outside: return "outside";
+        case Ticks::Inside: return "inside";
+        case Ticks::Empty: return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Xanchor e) {
-    switch (e) {
-    case Xanchor::Left:
-        return "left";
-    case Xanchor::Center:
-        return "center";
-    case Xanchor::Right:
-        return "right";
+    switch(e) {
+        case Xanchor::Left: return "left";
+        case Xanchor::Center: return "center";
+        case Xanchor::Right: return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Xref e) {
-    switch (e) {
-    case Xref::Container:
-        return "container";
-    case Xref::Paper:
-        return "paper";
+    switch(e) {
+        case Xref::Container: return "container";
+        case Xref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Yanchor e) {
-    switch (e) {
-    case Yanchor::Top:
-        return "top";
-    case Yanchor::Middle:
-        return "middle";
-    case Yanchor::Bottom:
-        return "bottom";
+    switch(e) {
+        case Yanchor::Top: return "top";
+        case Yanchor::Middle: return "middle";
+        case Yanchor::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::to_string(Yref e) {
-    switch (e) {
-    case Yref::Container:
-        return "container";
-    case Yref::Paper:
-        return "paper";
+    switch(e) {
+        case Yref::Container: return "container";
+        case Yref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1376,43 +1314,31 @@ Cone::Colorbar& Cone::Colorbar::yref(enum Yref f) {
 }
 
 std::string Cone::Colorbar::Tickfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::Tickfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::Tickfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1499,6 +1425,7 @@ Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::weight(Callable&& c) {
     return weight(std::move(f));
 }
 
+
 Cone::Colorbar::Tickformatstops& Cone::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
@@ -1510,14 +1437,13 @@ Cone::Colorbar::Tickformatstops& Cone::Colorbar::Tickformatstops::tickformatstop
     return tickformatstop(std::move(f));
 }
 
-Cone::Colorbar::Tickformatstops::Tickformatstop&
-Cone::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+
+Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Cone::Colorbar::Tickformatstops::Tickformatstop&
-Cone::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
@@ -1528,8 +1454,7 @@ Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops
     return *this;
 }
 template <typename Callable, typename>
-Cone::Colorbar::Tickformatstops::Tickformatstop&
-Cone::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
@@ -1546,14 +1471,12 @@ Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops
     return name(std::move(f));
 }
 
-Cone::Colorbar::Tickformatstops::Tickformatstop&
-Cone::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Cone::Colorbar::Tickformatstops::Tickformatstop&
-Cone::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
@@ -1571,13 +1494,10 @@ Cone::Colorbar::Tickformatstops::Tickformatstop& Cone::Colorbar::Tickformatstops
 }
 
 std::string Cone::Colorbar::Title::to_string(Side e) {
-    switch (e) {
-    case Side::Right:
-        return "right";
-    case Side::Top:
-        return "top";
-    case Side::Bottom:
-        return "bottom";
+    switch(e) {
+        case Side::Right: return "right";
+        case Side::Top: return "top";
+        case Side::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1611,43 +1531,31 @@ Cone::Colorbar::Title& Cone::Colorbar::Title::text(Callable&& c) {
 }
 
 std::string Cone::Colorbar::Title::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::Title::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Colorbar::Title::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1735,13 +1643,10 @@ Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::weight(Callable&& c) {
 }
 
 std::string Cone::Hoverlabel::to_string(Align e) {
-    switch (e) {
-    case Align::Left:
-        return "left";
-    case Align::Right:
-        return "right";
-    case Align::Auto:
-        return "auto";
+    switch(e) {
+        case Align::Left: return "left";
+        case Align::Right: return "right";
+        case Align::Auto: return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1753,7 +1658,7 @@ Cone::Hoverlabel& Cone::Hoverlabel::align(enum Align f) {
 }
 Cone::Hoverlabel& Cone::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -1859,43 +1764,31 @@ Cone::Hoverlabel& Cone::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Cone::Hoverlabel::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Hoverlabel::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Hoverlabel::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2037,7 +1930,7 @@ Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::style(enum Style f) {
 }
 Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -2059,7 +1952,7 @@ Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::textcase(enum Textcase f) {
 }
 Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -2081,7 +1974,7 @@ Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::variant(enum Variant f) {
 }
 Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -2123,6 +2016,7 @@ Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weightsrc(Callable&& c) {
     return weightsrc(std::move(f));
 }
 
+
 Cone::Legendgrouptitle& Cone::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -2146,43 +2040,31 @@ Cone::Legendgrouptitle& Cone::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Cone::Legendgrouptitle::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Cone::Legendgrouptitle::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2269,6 +2151,7 @@ Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::weight(Callable&& c)
     return weight(std::move(f));
 }
 
+
 Cone::Lighting& Cone::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
@@ -2346,6 +2229,7 @@ Cone::Lighting& Cone::Lighting::vertexnormalsepsilon(Callable&& c) {
     return vertexnormalsepsilon(std::move(f));
 }
 
+
 Cone::Lightposition& Cone::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
@@ -2379,6 +2263,7 @@ Cone::Lightposition& Cone::Lightposition::z(Callable&& c) {
     return z(std::move(f));
 }
 
+
 Cone::Stream& Cone::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -2402,3 +2287,4 @@ Cone::Stream& Cone::Stream::token(Callable&& c) {
 }
 
 } // namespace plotlypp
+

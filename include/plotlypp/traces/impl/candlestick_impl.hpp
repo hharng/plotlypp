@@ -11,63 +11,41 @@
 namespace plotlypp {
 
 std::string Candlestick::to_string(Visible e) {
-    switch (e) {
-    case Visible::True:
-        return "True";
-    case Visible::False:
-        return "False";
-    case Visible::Legendonly:
-        return "legendonly";
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Candlestick::to_string(Xcalendar e) {
-    switch (e) {
-    case Xcalendar::Chinese:
-        return "chinese";
-    case Xcalendar::Coptic:
-        return "coptic";
-    case Xcalendar::Discworld:
-        return "discworld";
-    case Xcalendar::Ethiopian:
-        return "ethiopian";
-    case Xcalendar::Gregorian:
-        return "gregorian";
-    case Xcalendar::Hebrew:
-        return "hebrew";
-    case Xcalendar::Islamic:
-        return "islamic";
-    case Xcalendar::Jalali:
-        return "jalali";
-    case Xcalendar::Julian:
-        return "julian";
-    case Xcalendar::Mayan:
-        return "mayan";
-    case Xcalendar::Nanakshahi:
-        return "nanakshahi";
-    case Xcalendar::Nepali:
-        return "nepali";
-    case Xcalendar::Persian:
-        return "persian";
-    case Xcalendar::Taiwan:
-        return "taiwan";
-    case Xcalendar::Thai:
-        return "thai";
-    case Xcalendar::Ummalqura:
-        return "ummalqura";
+    switch(e) {
+        case Xcalendar::Chinese: return "chinese";
+        case Xcalendar::Coptic: return "coptic";
+        case Xcalendar::Discworld: return "discworld";
+        case Xcalendar::Ethiopian: return "ethiopian";
+        case Xcalendar::Gregorian: return "gregorian";
+        case Xcalendar::Hebrew: return "hebrew";
+        case Xcalendar::Islamic: return "islamic";
+        case Xcalendar::Jalali: return "jalali";
+        case Xcalendar::Julian: return "julian";
+        case Xcalendar::Mayan: return "mayan";
+        case Xcalendar::Nanakshahi: return "nanakshahi";
+        case Xcalendar::Nepali: return "nepali";
+        case Xcalendar::Persian: return "persian";
+        case Xcalendar::Taiwan: return "taiwan";
+        case Xcalendar::Thai: return "thai";
+        case Xcalendar::Ummalqura: return "ummalqura";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Candlestick::to_string(Xperiodalignment e) {
-    switch (e) {
-    case Xperiodalignment::Start:
-        return "start";
-    case Xperiodalignment::Middle:
-        return "middle";
-    case Xperiodalignment::End:
-        return "end";
+    switch(e) {
+        case Xperiodalignment::Start: return "start";
+        case Xperiodalignment::Middle: return "middle";
+        case Xperiodalignment::End: return "end";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -623,6 +601,7 @@ Candlestick& Candlestick::zorder(Callable&& c) {
     return zorder(std::move(f));
 }
 
+
 Candlestick::Decreasing& Candlestick::Decreasing::fillcolor(std::string f) {
     json["fillcolor"] = std::move(f);
     return *this;
@@ -644,6 +623,7 @@ Candlestick::Decreasing& Candlestick::Decreasing::line(Callable&& c) {
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
+
 
 Candlestick::Decreasing::Line& Candlestick::Decreasing::Line::color(std::string f) {
     json["color"] = std::move(f);
@@ -668,13 +648,10 @@ Candlestick::Decreasing::Line& Candlestick::Decreasing::Line::width(Callable&& c
 }
 
 std::string Candlestick::Hoverlabel::to_string(Align e) {
-    switch (e) {
-    case Align::Left:
-        return "left";
-    case Align::Right:
-        return "right";
-    case Align::Auto:
-        return "auto";
+    switch(e) {
+        case Align::Left: return "left";
+        case Align::Right: return "right";
+        case Align::Auto: return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -686,7 +663,7 @@ Candlestick::Hoverlabel& Candlestick::Hoverlabel::align(enum Align f) {
 }
 Candlestick::Hoverlabel& Candlestick::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -803,43 +780,31 @@ Candlestick::Hoverlabel& Candlestick::Hoverlabel::split(Callable&& c) {
 }
 
 std::string Candlestick::Hoverlabel::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Candlestick::Hoverlabel::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Candlestick::Hoverlabel::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -981,7 +946,7 @@ Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::style(enum Style f
 }
 Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1003,7 +968,7 @@ Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::textcase(enum Text
 }
 Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1025,7 +990,7 @@ Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::variant(enum Varia
 }
 Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1067,6 +1032,7 @@ Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::weightsrc(Callable
     return weightsrc(std::move(f));
 }
 
+
 Candlestick::Increasing& Candlestick::Increasing::fillcolor(std::string f) {
     json["fillcolor"] = std::move(f);
     return *this;
@@ -1089,6 +1055,7 @@ Candlestick::Increasing& Candlestick::Increasing::line(Callable&& c) {
     return line(std::move(f));
 }
 
+
 Candlestick::Increasing::Line& Candlestick::Increasing::Line::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
@@ -1110,6 +1077,7 @@ Candlestick::Increasing::Line& Candlestick::Increasing::Line::width(Callable&& c
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
+
 
 Candlestick::Legendgrouptitle& Candlestick::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
@@ -1134,43 +1102,31 @@ Candlestick::Legendgrouptitle& Candlestick::Legendgrouptitle::text(Callable&& c)
 }
 
 std::string Candlestick::Legendgrouptitle::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Candlestick::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Candlestick::Legendgrouptitle::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1257,6 +1213,7 @@ Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::weight
     return weight(std::move(f));
 }
 
+
 Candlestick::Line& Candlestick::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
@@ -1267,6 +1224,7 @@ Candlestick::Line& Candlestick::Line::width(Callable&& c) {
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
+
 
 Candlestick::Stream& Candlestick::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
@@ -1291,3 +1249,4 @@ Candlestick::Stream& Candlestick::Stream::token(Callable&& c) {
 }
 
 } // namespace plotlypp
+

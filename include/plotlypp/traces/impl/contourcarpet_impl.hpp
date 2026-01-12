@@ -11,33 +11,26 @@
 namespace plotlypp {
 
 std::string Contourcarpet::to_string(Atype e) {
-    switch (e) {
-    case Atype::Array:
-        return "array";
-    case Atype::Scaled:
-        return "scaled";
+    switch(e) {
+        case Atype::Array: return "array";
+        case Atype::Scaled: return "scaled";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::to_string(Btype e) {
-    switch (e) {
-    case Btype::Array:
-        return "array";
-    case Btype::Scaled:
-        return "scaled";
+    switch(e) {
+        case Btype::Array: return "array";
+        case Btype::Scaled: return "scaled";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::to_string(Visible e) {
-    switch (e) {
-    case Visible::True:
-        return "True";
-    case Visible::False:
-        return "False";
-    case Visible::Legendonly:
-        return "legendonly";
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -640,195 +633,143 @@ Contourcarpet& Contourcarpet::zsrc(Callable&& c) {
 }
 
 std::string Contourcarpet::Colorbar::to_string(Exponentformat e) {
-    switch (e) {
-    case Exponentformat::None:
-        return "none";
-    case Exponentformat::E:
-        return "E";
-    case Exponentformat::Power:
-        return "power";
-    case Exponentformat::Si:
-        return "SI";
-    case Exponentformat::B:
-        return "B";
+    switch(e) {
+        case Exponentformat::None: return "none";
+        case Exponentformat::E: return "E";
+        case Exponentformat::Power: return "power";
+        case Exponentformat::Si: return "SI";
+        case Exponentformat::B: return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Lenmode e) {
-    switch (e) {
-    case Lenmode::Fraction:
-        return "fraction";
-    case Lenmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Lenmode::Fraction: return "fraction";
+        case Lenmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Orientation e) {
-    switch (e) {
-    case Orientation::H:
-        return "h";
-    case Orientation::V:
-        return "v";
+    switch(e) {
+        case Orientation::H: return "h";
+        case Orientation::V: return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Showexponent e) {
-    switch (e) {
-    case Showexponent::All:
-        return "all";
-    case Showexponent::First:
-        return "first";
-    case Showexponent::Last:
-        return "last";
-    case Showexponent::None:
-        return "none";
+    switch(e) {
+        case Showexponent::All: return "all";
+        case Showexponent::First: return "first";
+        case Showexponent::Last: return "last";
+        case Showexponent::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Showtickprefix e) {
-    switch (e) {
-    case Showtickprefix::All:
-        return "all";
-    case Showtickprefix::First:
-        return "first";
-    case Showtickprefix::Last:
-        return "last";
-    case Showtickprefix::None:
-        return "none";
+    switch(e) {
+        case Showtickprefix::All: return "all";
+        case Showtickprefix::First: return "first";
+        case Showtickprefix::Last: return "last";
+        case Showtickprefix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Showticksuffix e) {
-    switch (e) {
-    case Showticksuffix::All:
-        return "all";
-    case Showticksuffix::First:
-        return "first";
-    case Showticksuffix::Last:
-        return "last";
-    case Showticksuffix::None:
-        return "none";
+    switch(e) {
+        case Showticksuffix::All: return "all";
+        case Showticksuffix::First: return "first";
+        case Showticksuffix::Last: return "last";
+        case Showticksuffix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Thicknessmode e) {
-    switch (e) {
-    case Thicknessmode::Fraction:
-        return "fraction";
-    case Thicknessmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Thicknessmode::Fraction: return "fraction";
+        case Thicknessmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Ticklabeloverflow e) {
-    switch (e) {
-    case Ticklabeloverflow::Allow:
-        return "allow";
-    case Ticklabeloverflow::HidePastDiv:
-        return "hide past div";
-    case Ticklabeloverflow::HidePastDomain:
-        return "hide past domain";
+    switch(e) {
+        case Ticklabeloverflow::Allow: return "allow";
+        case Ticklabeloverflow::HidePastDiv: return "hide past div";
+        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Ticklabelposition e) {
-    switch (e) {
-    case Ticklabelposition::Outside:
-        return "outside";
-    case Ticklabelposition::Inside:
-        return "inside";
-    case Ticklabelposition::OutsideTop:
-        return "outside top";
-    case Ticklabelposition::InsideTop:
-        return "inside top";
-    case Ticklabelposition::OutsideLeft:
-        return "outside left";
-    case Ticklabelposition::InsideLeft:
-        return "inside left";
-    case Ticklabelposition::OutsideRight:
-        return "outside right";
-    case Ticklabelposition::InsideRight:
-        return "inside right";
-    case Ticklabelposition::OutsideBottom:
-        return "outside bottom";
-    case Ticklabelposition::InsideBottom:
-        return "inside bottom";
+    switch(e) {
+        case Ticklabelposition::Outside: return "outside";
+        case Ticklabelposition::Inside: return "inside";
+        case Ticklabelposition::OutsideTop: return "outside top";
+        case Ticklabelposition::InsideTop: return "inside top";
+        case Ticklabelposition::OutsideLeft: return "outside left";
+        case Ticklabelposition::InsideLeft: return "inside left";
+        case Ticklabelposition::OutsideRight: return "outside right";
+        case Ticklabelposition::InsideRight: return "inside right";
+        case Ticklabelposition::OutsideBottom: return "outside bottom";
+        case Ticklabelposition::InsideBottom: return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Tickmode e) {
-    switch (e) {
-    case Tickmode::Auto:
-        return "auto";
-    case Tickmode::Linear:
-        return "linear";
-    case Tickmode::Array:
-        return "array";
+    switch(e) {
+        case Tickmode::Auto: return "auto";
+        case Tickmode::Linear: return "linear";
+        case Tickmode::Array: return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Ticks e) {
-    switch (e) {
-    case Ticks::Outside:
-        return "outside";
-    case Ticks::Inside:
-        return "inside";
-    case Ticks::Empty:
-        return "";
+    switch(e) {
+        case Ticks::Outside: return "outside";
+        case Ticks::Inside: return "inside";
+        case Ticks::Empty: return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Xanchor e) {
-    switch (e) {
-    case Xanchor::Left:
-        return "left";
-    case Xanchor::Center:
-        return "center";
-    case Xanchor::Right:
-        return "right";
+    switch(e) {
+        case Xanchor::Left: return "left";
+        case Xanchor::Center: return "center";
+        case Xanchor::Right: return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Xref e) {
-    switch (e) {
-    case Xref::Container:
-        return "container";
-    case Xref::Paper:
-        return "paper";
+    switch(e) {
+        case Xref::Container: return "container";
+        case Xref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Yanchor e) {
-    switch (e) {
-    case Yanchor::Top:
-        return "top";
-    case Yanchor::Middle:
-        return "middle";
-    case Yanchor::Bottom:
-        return "bottom";
+    switch(e) {
+        case Yanchor::Top: return "top";
+        case Yanchor::Middle: return "middle";
+        case Yanchor::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::to_string(Yref e) {
-    switch (e) {
-    case Yref::Container:
-        return "container";
-    case Yref::Paper:
-        return "paper";
+    switch(e) {
+        case Yref::Container: return "container";
+        case Yref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1278,43 +1219,31 @@ Contourcarpet::Colorbar& Contourcarpet::Colorbar::yref(enum Yref f) {
 }
 
 std::string Contourcarpet::Colorbar::Tickfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::Tickfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::Tickfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1401,6 +1330,7 @@ Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::weight(Cal
     return weight(std::move(f));
 }
 
+
 Contourcarpet::Colorbar::Tickformatstops& Contourcarpet::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
@@ -1412,79 +1342,67 @@ Contourcarpet::Colorbar::Tickformatstops& Contourcarpet::Colorbar::Tickformatsto
     return tickformatstop(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop&
-Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Contourcarpet::Colorbar::Tickformatstops::Tickformatstop& Contourcarpet::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 std::string Contourcarpet::Colorbar::Title::to_string(Side e) {
-    switch (e) {
-    case Side::Right:
-        return "right";
-    case Side::Top:
-        return "top";
-    case Side::Bottom:
-        return "bottom";
+    switch(e) {
+        case Side::Right: return "right";
+        case Side::Top: return "top";
+        case Side::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1518,43 +1436,31 @@ Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::text(Callable&& 
 }
 
 std::string Contourcarpet::Colorbar::Title::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::Title::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Colorbar::Title::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1642,23 +1548,18 @@ Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::weig
 }
 
 std::string Contourcarpet::Contours::to_string(Coloring e) {
-    switch (e) {
-    case Coloring::Fill:
-        return "fill";
-    case Coloring::Lines:
-        return "lines";
-    case Coloring::None:
-        return "none";
+    switch(e) {
+        case Coloring::Fill: return "fill";
+        case Coloring::Lines: return "lines";
+        case Coloring::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Contours::to_string(Type e) {
-    switch (e) {
-    case Type::Levels:
-        return "levels";
-    case Type::Constraint:
-        return "constraint";
+    switch(e) {
+        case Type::Levels: return "levels";
+        case Type::Constraint: return "constraint";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1785,44 +1686,33 @@ Contourcarpet::Contours& Contourcarpet::Contours::value(Callable&& c) {
     return value(std::move(f));
 }
 
+
 std::string Contourcarpet::Contours::Labelfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Contours::Labelfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Contours::Labelfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1909,6 +1799,7 @@ Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::weight(C
     return weight(std::move(f));
 }
 
+
 Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -1932,43 +1823,31 @@ Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::text(Callable&
 }
 
 std::string Contourcarpet::Legendgrouptitle::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Contourcarpet::Legendgrouptitle::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2055,6 +1934,7 @@ Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::we
     return weight(std::move(f));
 }
 
+
 Contourcarpet::Line& Contourcarpet::Line::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
@@ -2099,6 +1979,7 @@ Contourcarpet::Line& Contourcarpet::Line::width(Callable&& c) {
     return width(std::move(f));
 }
 
+
 Contourcarpet::Stream& Contourcarpet::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -2122,3 +2003,4 @@ Contourcarpet::Stream& Contourcarpet::Stream::token(Callable&& c) {
 }
 
 } // namespace plotlypp
+

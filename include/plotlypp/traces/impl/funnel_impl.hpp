@@ -11,87 +11,65 @@
 namespace plotlypp {
 
 std::string Funnel::to_string(Constraintext e) {
-    switch (e) {
-    case Constraintext::Inside:
-        return "inside";
-    case Constraintext::Outside:
-        return "outside";
-    case Constraintext::Both:
-        return "both";
-    case Constraintext::None:
-        return "none";
+    switch(e) {
+        case Constraintext::Inside: return "inside";
+        case Constraintext::Outside: return "outside";
+        case Constraintext::Both: return "both";
+        case Constraintext::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::to_string(Insidetextanchor e) {
-    switch (e) {
-    case Insidetextanchor::End:
-        return "end";
-    case Insidetextanchor::Middle:
-        return "middle";
-    case Insidetextanchor::Start:
-        return "start";
+    switch(e) {
+        case Insidetextanchor::End: return "end";
+        case Insidetextanchor::Middle: return "middle";
+        case Insidetextanchor::Start: return "start";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::to_string(Orientation e) {
-    switch (e) {
-    case Orientation::V:
-        return "v";
-    case Orientation::H:
-        return "h";
+    switch(e) {
+        case Orientation::V: return "v";
+        case Orientation::H: return "h";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::to_string(Textposition e) {
-    switch (e) {
-    case Textposition::Inside:
-        return "inside";
-    case Textposition::Outside:
-        return "outside";
-    case Textposition::Auto:
-        return "auto";
-    case Textposition::None:
-        return "none";
+    switch(e) {
+        case Textposition::Inside: return "inside";
+        case Textposition::Outside: return "outside";
+        case Textposition::Auto: return "auto";
+        case Textposition::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::to_string(Visible e) {
-    switch (e) {
-    case Visible::True:
-        return "True";
-    case Visible::False:
-        return "False";
-    case Visible::Legendonly:
-        return "legendonly";
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::to_string(Xperiodalignment e) {
-    switch (e) {
-    case Xperiodalignment::Start:
-        return "start";
-    case Xperiodalignment::Middle:
-        return "middle";
-    case Xperiodalignment::End:
-        return "end";
+    switch(e) {
+        case Xperiodalignment::Start: return "start";
+        case Xperiodalignment::Middle: return "middle";
+        case Xperiodalignment::End: return "end";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::to_string(Yperiodalignment e) {
-    switch (e) {
-    case Yperiodalignment::Start:
-        return "start";
-    case Yperiodalignment::Middle:
-        return "middle";
-    case Yperiodalignment::End:
-        return "end";
+    switch(e) {
+        case Yperiodalignment::Start: return "start";
+        case Yperiodalignment::Middle: return "middle";
+        case Yperiodalignment::End: return "end";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -550,7 +528,7 @@ Funnel& Funnel::textposition(enum Textposition f) {
 }
 Funnel& Funnel::textposition(const std::vector<enum Textposition>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textposition"] = std::move(stringified);
     return *this;
 }
@@ -825,6 +803,7 @@ Funnel& Funnel::zorder(Callable&& c) {
     return zorder(std::move(f));
 }
 
+
 Funnel::Connector& Funnel::Connector::fillcolor(std::string f) {
     json["fillcolor"] = std::move(f);
     return *this;
@@ -857,6 +836,7 @@ Funnel::Connector& Funnel::Connector::visible(Callable&& c) {
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
+
 
 Funnel::Connector::Line& Funnel::Connector::Line::color(std::string f) {
     json["color"] = std::move(f);
@@ -892,13 +872,10 @@ Funnel::Connector::Line& Funnel::Connector::Line::width(Callable&& c) {
 }
 
 std::string Funnel::Hoverlabel::to_string(Align e) {
-    switch (e) {
-    case Align::Left:
-        return "left";
-    case Align::Right:
-        return "right";
-    case Align::Auto:
-        return "auto";
+    switch(e) {
+        case Align::Left: return "left";
+        case Align::Right: return "right";
+        case Align::Auto: return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -910,7 +887,7 @@ Funnel::Hoverlabel& Funnel::Hoverlabel::align(enum Align f) {
 }
 Funnel::Hoverlabel& Funnel::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -1016,43 +993,31 @@ Funnel::Hoverlabel& Funnel::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Funnel::Hoverlabel::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Hoverlabel::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Hoverlabel::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1194,7 +1159,7 @@ Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::style(enum Style f) {
 }
 Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1216,7 +1181,7 @@ Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::textcase(enum Textcase f) {
 }
 Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1238,7 +1203,7 @@ Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::variant(enum Variant f) {
 }
 Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1281,43 +1246,31 @@ Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::weightsrc(Callable&& c) {
 }
 
 std::string Funnel::Insidetextfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Insidetextfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Insidetextfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1459,7 +1412,7 @@ Funnel::Insidetextfont& Funnel::Insidetextfont::style(enum Style f) {
 }
 Funnel::Insidetextfont& Funnel::Insidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1481,7 +1434,7 @@ Funnel::Insidetextfont& Funnel::Insidetextfont::textcase(enum Textcase f) {
 }
 Funnel::Insidetextfont& Funnel::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1503,7 +1456,7 @@ Funnel::Insidetextfont& Funnel::Insidetextfont::variant(enum Variant f) {
 }
 Funnel::Insidetextfont& Funnel::Insidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1545,6 +1498,7 @@ Funnel::Insidetextfont& Funnel::Insidetextfont::weightsrc(Callable&& c) {
     return weightsrc(std::move(f));
 }
 
+
 Funnel::Legendgrouptitle& Funnel::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -1568,43 +1522,31 @@ Funnel::Legendgrouptitle& Funnel::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Funnel::Legendgrouptitle::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Legendgrouptitle::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1690,6 +1632,7 @@ Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::weight(Callable&
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
+
 
 Funnel::Marker& Funnel::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -1869,195 +1812,143 @@ Funnel::Marker& Funnel::Marker::showscale(Callable&& c) {
 }
 
 std::string Funnel::Marker::Colorbar::to_string(Exponentformat e) {
-    switch (e) {
-    case Exponentformat::None:
-        return "none";
-    case Exponentformat::E:
-        return "E";
-    case Exponentformat::Power:
-        return "power";
-    case Exponentformat::Si:
-        return "SI";
-    case Exponentformat::B:
-        return "B";
+    switch(e) {
+        case Exponentformat::None: return "none";
+        case Exponentformat::E: return "E";
+        case Exponentformat::Power: return "power";
+        case Exponentformat::Si: return "SI";
+        case Exponentformat::B: return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Lenmode e) {
-    switch (e) {
-    case Lenmode::Fraction:
-        return "fraction";
-    case Lenmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Lenmode::Fraction: return "fraction";
+        case Lenmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Orientation e) {
-    switch (e) {
-    case Orientation::H:
-        return "h";
-    case Orientation::V:
-        return "v";
+    switch(e) {
+        case Orientation::H: return "h";
+        case Orientation::V: return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Showexponent e) {
-    switch (e) {
-    case Showexponent::All:
-        return "all";
-    case Showexponent::First:
-        return "first";
-    case Showexponent::Last:
-        return "last";
-    case Showexponent::None:
-        return "none";
+    switch(e) {
+        case Showexponent::All: return "all";
+        case Showexponent::First: return "first";
+        case Showexponent::Last: return "last";
+        case Showexponent::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Showtickprefix e) {
-    switch (e) {
-    case Showtickprefix::All:
-        return "all";
-    case Showtickprefix::First:
-        return "first";
-    case Showtickprefix::Last:
-        return "last";
-    case Showtickprefix::None:
-        return "none";
+    switch(e) {
+        case Showtickprefix::All: return "all";
+        case Showtickprefix::First: return "first";
+        case Showtickprefix::Last: return "last";
+        case Showtickprefix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Showticksuffix e) {
-    switch (e) {
-    case Showticksuffix::All:
-        return "all";
-    case Showticksuffix::First:
-        return "first";
-    case Showticksuffix::Last:
-        return "last";
-    case Showticksuffix::None:
-        return "none";
+    switch(e) {
+        case Showticksuffix::All: return "all";
+        case Showticksuffix::First: return "first";
+        case Showticksuffix::Last: return "last";
+        case Showticksuffix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Thicknessmode e) {
-    switch (e) {
-    case Thicknessmode::Fraction:
-        return "fraction";
-    case Thicknessmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Thicknessmode::Fraction: return "fraction";
+        case Thicknessmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Ticklabeloverflow e) {
-    switch (e) {
-    case Ticklabeloverflow::Allow:
-        return "allow";
-    case Ticklabeloverflow::HidePastDiv:
-        return "hide past div";
-    case Ticklabeloverflow::HidePastDomain:
-        return "hide past domain";
+    switch(e) {
+        case Ticklabeloverflow::Allow: return "allow";
+        case Ticklabeloverflow::HidePastDiv: return "hide past div";
+        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Ticklabelposition e) {
-    switch (e) {
-    case Ticklabelposition::Outside:
-        return "outside";
-    case Ticklabelposition::Inside:
-        return "inside";
-    case Ticklabelposition::OutsideTop:
-        return "outside top";
-    case Ticklabelposition::InsideTop:
-        return "inside top";
-    case Ticklabelposition::OutsideLeft:
-        return "outside left";
-    case Ticklabelposition::InsideLeft:
-        return "inside left";
-    case Ticklabelposition::OutsideRight:
-        return "outside right";
-    case Ticklabelposition::InsideRight:
-        return "inside right";
-    case Ticklabelposition::OutsideBottom:
-        return "outside bottom";
-    case Ticklabelposition::InsideBottom:
-        return "inside bottom";
+    switch(e) {
+        case Ticklabelposition::Outside: return "outside";
+        case Ticklabelposition::Inside: return "inside";
+        case Ticklabelposition::OutsideTop: return "outside top";
+        case Ticklabelposition::InsideTop: return "inside top";
+        case Ticklabelposition::OutsideLeft: return "outside left";
+        case Ticklabelposition::InsideLeft: return "inside left";
+        case Ticklabelposition::OutsideRight: return "outside right";
+        case Ticklabelposition::InsideRight: return "inside right";
+        case Ticklabelposition::OutsideBottom: return "outside bottom";
+        case Ticklabelposition::InsideBottom: return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Tickmode e) {
-    switch (e) {
-    case Tickmode::Auto:
-        return "auto";
-    case Tickmode::Linear:
-        return "linear";
-    case Tickmode::Array:
-        return "array";
+    switch(e) {
+        case Tickmode::Auto: return "auto";
+        case Tickmode::Linear: return "linear";
+        case Tickmode::Array: return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Ticks e) {
-    switch (e) {
-    case Ticks::Outside:
-        return "outside";
-    case Ticks::Inside:
-        return "inside";
-    case Ticks::Empty:
-        return "";
+    switch(e) {
+        case Ticks::Outside: return "outside";
+        case Ticks::Inside: return "inside";
+        case Ticks::Empty: return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Xanchor e) {
-    switch (e) {
-    case Xanchor::Left:
-        return "left";
-    case Xanchor::Center:
-        return "center";
-    case Xanchor::Right:
-        return "right";
+    switch(e) {
+        case Xanchor::Left: return "left";
+        case Xanchor::Center: return "center";
+        case Xanchor::Right: return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Xref e) {
-    switch (e) {
-    case Xref::Container:
-        return "container";
-    case Xref::Paper:
-        return "paper";
+    switch(e) {
+        case Xref::Container: return "container";
+        case Xref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Yanchor e) {
-    switch (e) {
-    case Yanchor::Top:
-        return "top";
-    case Yanchor::Middle:
-        return "middle";
-    case Yanchor::Bottom:
-        return "bottom";
+    switch(e) {
+        case Yanchor::Top: return "top";
+        case Yanchor::Middle: return "middle";
+        case Yanchor::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::to_string(Yref e) {
-    switch (e) {
-    case Yref::Container:
-        return "container";
-    case Yref::Paper:
-        return "paper";
+    switch(e) {
+        case Yref::Container: return "container";
+        case Yref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2507,43 +2398,31 @@ Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::yref(enum Yref f) {
 }
 
 std::string Funnel::Marker::Colorbar::Tickfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::Tickfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::Tickfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2630,6 +2509,7 @@ Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::weight(C
     return weight(std::move(f));
 }
 
+
 Funnel::Marker::Colorbar::Tickformatstops& Funnel::Marker::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
@@ -2641,79 +2521,67 @@ Funnel::Marker::Colorbar::Tickformatstops& Funnel::Marker::Colorbar::Tickformats
     return tickformatstop(std::move(f));
 }
 
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop&
-Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop& Funnel::Marker::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 std::string Funnel::Marker::Colorbar::Title::to_string(Side e) {
-    switch (e) {
-    case Side::Right:
-        return "right";
-    case Side::Top:
-        return "top";
-    case Side::Bottom:
-        return "bottom";
+    switch(e) {
+        case Side::Right: return "right";
+        case Side::Top: return "top";
+        case Side::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2747,43 +2615,31 @@ Funnel::Marker::Colorbar::Title& Funnel::Marker::Colorbar::Title::text(Callable&
 }
 
 std::string Funnel::Marker::Colorbar::Title::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::Title::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Marker::Colorbar::Title::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2869,6 +2725,7 @@ Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::Font::we
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
+
 
 Funnel::Marker::Line& Funnel::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -3015,43 +2872,31 @@ Funnel::Marker::Line& Funnel::Marker::Line::widthsrc(Callable&& c) {
 }
 
 std::string Funnel::Outsidetextfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Outsidetextfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Outsidetextfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3193,7 +3038,7 @@ Funnel::Outsidetextfont& Funnel::Outsidetextfont::style(enum Style f) {
 }
 Funnel::Outsidetextfont& Funnel::Outsidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -3215,7 +3060,7 @@ Funnel::Outsidetextfont& Funnel::Outsidetextfont::textcase(enum Textcase f) {
 }
 Funnel::Outsidetextfont& Funnel::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -3237,7 +3082,7 @@ Funnel::Outsidetextfont& Funnel::Outsidetextfont::variant(enum Variant f) {
 }
 Funnel::Outsidetextfont& Funnel::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -3279,6 +3124,7 @@ Funnel::Outsidetextfont& Funnel::Outsidetextfont::weightsrc(Callable&& c) {
     return weightsrc(std::move(f));
 }
 
+
 Funnel::Stream& Funnel::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -3302,43 +3148,31 @@ Funnel::Stream& Funnel::Stream::token(Callable&& c) {
 }
 
 std::string Funnel::Textfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Textfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Funnel::Textfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -3480,7 +3314,7 @@ Funnel::Textfont& Funnel::Textfont::style(enum Style f) {
 }
 Funnel::Textfont& Funnel::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -3502,7 +3336,7 @@ Funnel::Textfont& Funnel::Textfont::textcase(enum Textcase f) {
 }
 Funnel::Textfont& Funnel::Textfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -3524,7 +3358,7 @@ Funnel::Textfont& Funnel::Textfont::variant(enum Variant f) {
 }
 Funnel::Textfont& Funnel::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -3567,3 +3401,4 @@ Funnel::Textfont& Funnel::Textfont::weightsrc(Callable&& c) {
 }
 
 } // namespace plotlypp
+

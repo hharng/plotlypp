@@ -8,44 +8,48 @@ import os
 import json
 from pathlib import Path
 import subprocess
+import sys
+from typing import Dict, Any, List, Optional
+import dataclasses
 
-
-def get_all_valtypes(d):
+def get_all_valtypes(d: Dict[str, Any]):
+    """Recursively finds all 'valType' values in a dictionary."""
     for key, value in d.items():
-        if key == 'valType':
+        if key == "valType":
             yield value
         if isinstance(value, dict):
             yield from get_all_valtypes(value)
     #{'number', 'color', 'flaglist', 'info_array', 'boolean', 'angle', 'integer', 'data_array', 'any', 'colorscale', 'subplotid', 'string', 'colorlist', 'enumerated'}
 
-valtype_map = {
-    'number': ['double'],
-    'boolean': ['bool'],
-    'angle': ['double'],
-    'integer': ['int'],
-    'subplotid': ['std::string'],
-    'string': ['std::string'],
-    'any': ['T'], # can usualle be dbl?
-    'data_array': ['std::vector<T>'], # with constraint
-    #'info_array': ['std::vector<std::string>'],#'std::vector<T>',
-    'info_array': ['std::vector<double>'],#'std::vector<T>',
-    'enumerated': ['ENUM'], # also need to json
+VALTYPE_MAP = {
+    "number": ["double"],
+    "boolean": ["bool"],
+    "angle": ["double"],
+    "integer": ["int"],
+    "subplotid": ["std::string"],
+    "string": ["std::string"],
+    "any": ["T"], # can usualle be dbl?
+    "data_array": ["std::vector<T>"], # with constraint
+    #"info_array": ["std::vector<std::string>"],#'std::vector<T>',
+    "info_array": ["std::vector<double>"],#'std::vector<T>',
+    "enumerated": ["ENUM"], # also need to json
     # Colors can be strings or numbers. The template for proper handling of std::string, const char*,
     # or double gets complicated, as does a vector of std::variant, so just use overloads instead.
     #'color': ["std::string", "double"], # also need to json
-    'color': ["std::string"], # also need to json
-    'flaglist': ['std::string'], # also need to json, basically enum
+    "color": ["std::string"], # also need to json
+    "flaglist": ["std::string"], # also need to json, basically enum
     #     "description": "A Plotly colorscale either picked by a name: (any of Greys, YlGnBu, Greens, YlOrRd, Bluered, RdBu, Reds, Blues, Picnic, Rainbow, Portland, Jet, Hot, Blackbody, Earth, Electric, Viridis, Cividis ) or customized as an {array} of 2-element {arrays} where the first element is the normalized color level value (starting at *0* and ending at *1*), and the second item is a valid color string.",
-    'colorscale': ['std::string', 'std::vector<std::pair<double, std::string>>'], # also need to json, basically enum --- could be smarter
+    "colorscale": ["std::string", "std::vector<std::pair<double, std::string>>"], # also need to json, basically enum --- could be smarter
     # Not really, but it's useful to add here
-    "object": ['OBJECT'],
+    "object": ["OBJECT"],
     # Maybe?
-    'colorlist': ["std::vector<std::string>"]
+    "colorlist": ["std::vector<std::string>"]
 }
 
 
 class IndentBlock:
-    def __init__(self, writer):
+    """Context manager for managing indentation in Writer."""
+    def __init__(self, writer: "Writer"):
         self.writer = writer
 
     def __enter__(self):
@@ -56,17 +60,22 @@ class IndentBlock:
 
 
 class Writer:
+    """Helper class for writing indented text to a file or stdout."""
     INDENT_SIZE = 4
-    def __init__(self, output_file=None):
-        self.indent_level = 0
-        self._output_file = output_file
+    def __init__(self, output_file: Optional[Path]=None):
+        self.indent_level: int = 0
+        self._output_file: Optional[Path] = output_file
         self._output_file_handle = open(self._output_file, "w") if self._output_file is not None else sys.stdout
-        # TODO: handle closing file
 
-    def write(self, line):
-        """Outputs input text with a newline at current indent level"""
+    def write(self, line: str):
+        """Outputs input text with a newline at current indent level."""
         indent = " " * self.INDENT_SIZE * self.indent_level
         print(f"{indent}{line}", file=self._output_file_handle)
+
+    def close(self):
+        """Closes the file handle if it's not stdout."""
+        if self._output_file is not None and self._output_file_handle is not sys.stdout:
+            self._output_file_handle.close()
 
 
 def emit_json_member(writer):
@@ -255,7 +264,7 @@ def emit_class_public_members(class_object, writer):
             if field.is_object:
                 output_val_types = [f"{field.name.title()}"]
             else:
-                output_val_types = valtype_map[field.json_val_type]
+                output_val_types = VALTYPE_MAP[field.json_val_type]
             for output_val_type_overload in output_val_types:
                 emit_field_setter(class_object, field, output_val_type_overload, writer)
             emit_lambda_setter(class_object, field, output_val_types, writer)
@@ -291,7 +300,7 @@ def emit_class_public_members_decl(class_object, writer):
             if field.is_object:
                 output_val_types = [f"{field.name.title()}"]
             else:
-                output_val_types = valtype_map[field.json_val_type]
+                output_val_types = VALTYPE_MAP[field.json_val_type]
             for output_val_type_overload in output_val_types:
                 emit_field_setter_decl(class_object, field, output_val_type_overload, writer)
             emit_lambda_setter_decl(class_object, field, output_val_types, writer)
@@ -352,7 +361,8 @@ def emit_preamble(writer):
     writer.write("")
 
 
-def emit_trace(trace, out_dir, impl_subdir):
+def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path):
+    """Emits C++ header and implementation files for a given trace."""
     out_file = out_dir/f"{trace.name}.hpp"
     writer = Writer(out_file)
 
@@ -393,6 +403,7 @@ def emit_trace(trace, out_dir, impl_subdir):
     writer.write("")
     writer.write(f"#include \"{impl_subdir}/{trace.name}_impl.hpp\"")
     writer.write("")
+    writer.close()
 
     writer = Writer(out_dir / impl_subdir / f"{trace.name}_impl.hpp")
     emit_preamble(writer)
@@ -403,36 +414,38 @@ def emit_trace(trace, out_dir, impl_subdir):
         emit_class_public_members(obj, writer)
     writer.write("} // namespace plotlypp")
     writer.write("")
+    writer.close()
 
 
+@dataclasses.dataclass
 class Object:
-    def __init__(self):
-        self.name = ""
-        self.description = ""
-        self.fields = []
+    """Represents a Plotly object node in the schema."""
+    name: str = ""
+    description: str = ""
+    fields: List["Field"] = dataclasses.field(default_factory=list)
+    enums: List["StringEnum"] = dataclasses.field(default_factory=list)
+    flaglists: List[str] = dataclasses.field(default_factory=list)
+    objects: List["Object"] = dataclasses.field(default_factory=list)
 
-        self.enums = []
-        self.flaglists = []
-        self.objects = []
-
+@dataclasses.dataclass
 class Field:
-    def __init__(self, name: str):
-        self.name = name # name vs JSON name for CamelCase classes?
-        self.description = ""
-        #self.val_type = None
-        self.json_val_type = None
-        self.array_ok = False
-        self.is_enum = False
-        self.is_object = False
-        self.is_subplot_object = False
+    """Represents a field within a Plotly object."""
+    name: str # name vs JSON name for CamelCase classes?
+    description: str = ""
+    json_val_type: Optional[str] = None
+    array_ok: bool = False
+    is_enum: bool = False
+    is_object: bool = False
+    is_subplot_object: bool = False
 
+@dataclasses.dataclass
 class StringEnum:
-    def __init__(self):
-        self.name = ""
-        self.safe_to_json_vals = {}
+    """Represents an enumerated type with string values in JSON."""
+    name: str = ""
+    safe_to_json_vals: Dict[str, str] = dataclasses.field(default_factory=dict)
 
 # Translate enum symbol strings to valid name identifiers
-json_symbol_name_map = {
+JSON_SYMBOL_NAME_MAP = {
     "": "Empty",
     "=": "Eq",
     ">": "Gt",
@@ -452,7 +465,7 @@ json_symbol_name_map = {
     ".": "Dot"
 }
 
-json_name_escape_map = {
+JSON_NAME_ESCAPE_MAP = {
     "\\" : "\\\\"
 }
 
@@ -465,7 +478,8 @@ def safe_field_name(name: str) -> str:
 
 
 def looks_like_regex(name: str) -> bool:
-    regex_chars = {'^', '(', ')', '[', ']', '*', '$', '+'}
+    """Checks if a string looks like it contains regex characters."""
+    regex_chars = {"^", "(", ")", "[", "]", "*", "$", "+"}
     for c in name:
         #if not c.isalnum() and c != '_':
         if c in regex_chars:
@@ -493,8 +507,61 @@ def looks_like_regex(name: str) -> bool:
 #         output(f"{f.name}", indent)
 
 
+def _clean_enum_value(val: Any) -> (str, str):
+    """Cleans an enum value string to be a valid C++ identifier."""
+    json_val = str(val)
+    safe_val = str(val)
+    if json_val in JSON_NAME_ESCAPE_MAP:
+        json_val = JSON_NAME_ESCAPE_MAP[json_val]
 
-def parse_attributes(parent, attributes_node):
+    # Some are invalid symbols
+    if safe_val in JSON_SYMBOL_NAME_MAP:
+        safe_val = JSON_SYMBOL_NAME_MAP[safe_val]
+
+    # To avoid keyword conflicts, and for style, use upper case. Avoid uppercase due to macro conflicts.
+    safe_val = safe_val.title()
+    # Some names have spaces! Remove spaces, since we should be in Pascale case style now.
+    safe_val = safe_val.replace(" ", "")
+    # Some have hypens which are invalid. Note this has to be done after symbol mapping!
+    safe_val = safe_val.replace("-", "")
+    # Some are empty strings (crazy!).
+    if safe_val == "":
+        safe_val = "Empty"
+
+    # Some are numbers which invalid enum identifiers. Enumerators can't start with a digit.
+    if safe_val[0] in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+        safe_val = "Num_" + safe_val
+    return safe_val, json_val
+
+def _parse_enumerated_attribute(parent: "Object", f: "Field", node: Dict[str, Any]):
+    """Parses an enumerated attribute, creating an enum if necessary."""
+    # Some "enums" have regex enumerators. These can't be statically defined so treat them as strings.
+    for val in node["values"]:
+        if looks_like_regex(str(val)):
+            print("set as string")
+            f.json_val_type = "string"
+            return
+
+    f.is_enum = True
+    # Also create an enum which will be associated with the parent trace.
+    e = StringEnum()
+    e.name = f.name
+    e.description = f.description
+
+    if "dflt" in node:
+        f.description += f"\nDefault: {node['dflt']}"
+
+    for val in node["values"]:
+        # Some enums contain "True" of "False" which get mistakenly parse to Python bools.
+        safe_val, json_val = _clean_enum_value(val)
+        # The map also handles the uniqueness requirement.
+        e.safe_to_json_vals[safe_val] = json_val
+
+    parent.enums.append(e)
+
+
+def parse_attributes(parent: Object, attributes_node: Dict[str, Any]):
+    """Parses attributes from a schema node into Fields, Enums, or nested Objects."""
     for name, node in attributes_node.items():
         if name == "_deprecated":
             continue
@@ -542,51 +609,7 @@ def parse_attributes(parent, attributes_node):
                 f.array_ok = True
 
             if f.json_val_type == "enumerated":
-                # Some "enums" have regex enumerators. These can't be statically defined so treat them as strings.
-                for val in node['values']:
-                    if looks_like_regex(str(val)):
-                        print("set as string")
-                        f.json_val_type = "string"
-                        break
-                if f.json_val_type == "enumerated":
-                    f.is_enum = True
-                    # Also create an enum which will be associated with the parent trace.
-                    e = StringEnum()
-                    e.name = f.name
-                    e.description = f.description
-
-                    if "dflt" in node:
-                        f.description += f"\nDefault: {node["dflt"]}"
-
-                    for val in node['values']:
-                        # Some enums contain "True" of "False" which get mistakenly parse to Python bools.
-                        json_val = str(val)
-                        safe_val = str(val)
-                        if json_val in json_name_escape_map:
-                            json_val = json_name_escape_map[json_val]
-
-                        # Some are invalid symbols
-                        if safe_val in json_symbol_name_map:
-                            safe_val = json_symbol_name_map[safe_val]
-
-                        # To avoid keyword conflicts, and for style, use upper case. Avoid uppercase due to macro conflicts.
-                        safe_val = safe_val.title()
-                        # Some names have spaces! Remove spaces, since we should be in Pascale case style now.
-                        safe_val = safe_val.replace(" ", "")
-                        # Some have hypens which are invalid. Note this has to be done after symbol mapping!
-                        safe_val = safe_val.replace("-", "")
-                        # Some are empty strings (crazy!).
-                        if safe_val == "":
-                            safe_val = "Empty"
-
-                        # Some are numbers which invalid enum identifiers. Enumerators can't start with a digit.
-                        if safe_val[0] in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-                            safe_val = "Num_" + safe_val
-
-                        # The map also handles the uniqueness requirement.
-                        e.safe_to_json_vals[safe_val] = json_val
-
-                    parent.enums.append(e)
+                _parse_enumerated_attribute(parent, f, node)
 
             if f.json_val_type == "flaglist":
                 if "dflt" in node:
@@ -612,7 +635,8 @@ def parse_meta(trace, meta_node):
             print(f"Skipping unknown meta field {name}. Does parser needs updating?")
 
 
-def create_trace(name, trace_node):
+def create_trace(name: str, trace_node: Dict[str, Any]):
+    """Creates and emits a trace object from a schema node."""
     trace = Object()
     trace.name = name # TODO: convert case
 
@@ -636,8 +660,7 @@ def create_trace(name, trace_node):
     os.makedirs(traces_dir / impl_subdir, exist_ok=True)
     emit_trace(trace, traces_dir, impl_subdir)
     # We did our best with formatting, but let's auto format to catch long comments, etc.
-    subprocess.run(["clang-format", "--style=file", "-i", str(traces_dir/f"{trace.name}.hpp")])
-
+    subprocess.run(["clang-format", "--style=file", "-i", str(traces_dir/f"{trace.name}.hpp")], check=True)
 
 def create_traces(schema):
     for name, trace_node in schema['traces'].items():
@@ -658,8 +681,10 @@ def package_js():
     writer.write(')plotly";')
     writer.write("")
     writer.write("} // namespace plotlypp")
+    writer.close()
 
-def emit_layout(layout, out_dir, impl_subdir):
+def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
+    """Emits C++ header and implementation files for the layout object."""
     out_file = out_dir/f"{layout.name}.hpp"
     writer = Writer(out_file)
 
@@ -686,6 +711,7 @@ def emit_layout(layout, out_dir, impl_subdir):
     writer.write("")
     writer.write(f"#include \"{impl_subdir}/{layout.name}_impl.hpp\"")
     writer.write("")
+    writer.close()
 
     writer = Writer(out_dir / impl_subdir / f"{layout.name}_impl.hpp")
     emit_preamble(writer)
@@ -696,20 +722,25 @@ def emit_layout(layout, out_dir, impl_subdir):
         emit_class_public_members(obj, writer)
     writer.write("} // namespace plotlypp")
     writer.write("")
+    writer.close()
 
 
-def create_layout(layout_node):
+def collect_layout_attributes(schema):
+    """Merges layoutAttributes from schema.layout and schema.traces."""
+    attributes = schema["layout"]["layoutAttributes"].copy()
+    for trace in schema["traces"].values():
+        if "layoutAttributes" in trace:
+            attributes.update(trace["layoutAttributes"])
+    return attributes
+
+
+def create_layout(layout_attributes_node):
+    """Creates and emits the layout object from a schema node."""
     layout = Object()
     layout.name = "layout"
     print("Parsing layout")
 
-    for node_name, node in layout_node.items():
-        if node_name != "layoutAttributes":
-            print(f"Skipping unknown layout field {node_name}. Does parser needs updating?")
-            continue
-
-        # layoutAttributes
-        parse_attributes(layout, node)
+    parse_attributes(layout, layout_attributes_node)
 
     top_level_src_dir = Path(__file__).parent.parent / "include" / "plotlypp"
     layout_dir = top_level_src_dir / "layout"
@@ -718,10 +749,10 @@ def create_layout(layout_node):
 
     emit_layout(layout, layout_dir, impl_subdir)
     # We did our best with formatting, but let's auto format to catch long comments, etc.
-    subprocess.run(["clang-format", "--style=file", "-i", str(layout_dir/f"{layout.name}.hpp")])
-
+    subprocess.run(["clang-format", "--style=file", "-i", str(layout_dir/f"{layout.name}.hpp")], check=True)
 
 def main():
+    """Main function to parse schema and generate C++ files."""
     schema = {}
     with open(Path(__file__).parent / 'schema.json') as f:
         schema = json.load(f)
@@ -750,7 +781,8 @@ def main():
     #     for kk, vv in schema['layout']['layoutAttributes'].items():
     #         print(kk)
     #     print(schema['layout']['layoutAttributes']['title'])
-    create_layout(schema['layout'])
+    layout_attributes = collect_layout_attributes(schema)
+    create_layout(layout_attributes)
 
 # layout
 #      layoutAttributes

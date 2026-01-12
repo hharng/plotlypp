@@ -89,6 +89,52 @@ class Layout {
     };
     static std::string to_string(Selectdirection e);
 
+    enum class Barmode {
+        Stack,
+        Group,
+        Overlay,
+        Relative,
+    };
+    static std::string to_string(Barmode e);
+
+    enum class Barnorm {
+        Empty,
+        Fraction,
+        Percent,
+    };
+    static std::string to_string(Barnorm e);
+
+    enum class Boxmode {
+        Group,
+        Overlay,
+    };
+    static std::string to_string(Boxmode e);
+
+    enum class Funnelmode {
+        Stack,
+        Group,
+        Overlay,
+    };
+    static std::string to_string(Funnelmode e);
+
+    enum class Scattermode {
+        Group,
+        Overlay,
+    };
+    static std::string to_string(Scattermode e);
+
+    enum class Violinmode {
+        Group,
+        Overlay,
+    };
+    static std::string to_string(Violinmode e);
+
+    enum class Waterfallmode {
+        Group,
+        Overlay,
+    };
+    static std::string to_string(Waterfallmode e);
+
     class Activeselection;
     class Activeshape;
     class Annotations;
@@ -457,6 +503,202 @@ class Layout {
     Layout& yaxis(int index, Yaxis f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Yaxis&>>>
     Layout& yaxis(Callable&& c);
+
+    // Sets the rounding of bar corners. May be an integer number of pixels, or a percentage of bar width (as a string
+    // ending in %).
+    template <typename T>
+    Layout& barcornerradius(T f);
+    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
+    Layout& barcornerradius(Callable&& c);
+
+    // Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    Layout& bargap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& bargap(Callable&& c);
+
+    // Sets the gap (in plot fraction) between bars of the same location coordinate.
+    Layout& bargroupgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& bargroupgap(Callable&& c);
+
+    // Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are
+    // stacked on top of one another With *relative*, the bars are stacked on top of one another, with negative values
+    // below the axis, positive values above With *group*, the bars are plotted next to one another centered around the
+    // shared location. With *overlay*, the bars are plotted over one another, you might need to reduce *opacity* to see
+    // multiple bars.
+    // - Default: group
+    Layout& barmode(enum Barmode f);
+
+    // Sets the normalization for bar traces on the graph. With *fraction*, the value of each bar is divided by the sum
+    // of all values at that location coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    // - Default:
+    Layout& barnorm(enum Barnorm f);
+
+    // Sets the gap (in plot fraction) between boxes of adjacent location coordinates. Has no effect on traces that have
+    // *width* set.
+    Layout& boxgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& boxgap(Callable&& c);
+
+    // Sets the gap (in plot fraction) between boxes of the same location coordinate. Has no effect on traces that have
+    // *width* set.
+    Layout& boxgroupgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& boxgroupgap(Callable&& c);
+
+    // Determines how boxes at the same location coordinate are displayed on the graph. If *group*, the boxes are
+    // plotted next to one another centered around the shared location. If *overlay*, the boxes are plotted over one
+    // another, you might need to set *opacity* to see them multiple boxes. Has no effect on traces that have *width*
+    // set.
+    // - Default: overlay
+    Layout& boxmode(enum Boxmode f);
+
+    // Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    Layout& funnelgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& funnelgap(Callable&& c);
+
+    // Sets the gap (in plot fraction) between bars of the same location coordinate.
+    Layout& funnelgroupgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& funnelgroupgap(Callable&& c);
+
+    // Determines how bars at the same location coordinate are displayed on the graph. With *stack*, the bars are
+    // stacked on top of one another With *group*, the bars are plotted next to one another centered around the shared
+    // location. With *overlay*, the bars are plotted over one another, you might need to reduce *opacity* to see
+    // multiple bars.
+    // - Default: stack
+    Layout& funnelmode(enum Funnelmode f);
+
+    // If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will
+    // be extended to three times its original length by first repeating every color 20% lighter then each color 20%
+    // darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you
+    // can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+    Layout& extendfunnelareacolors(bool f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
+    Layout& extendfunnelareacolors(Callable&& c);
+
+    // Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a
+    // new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
+    Layout& funnelareacolorway(const std::vector<std::string>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& funnelareacolorway(Callable&& c);
+
+    // hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can
+    // simultaneously hide slices from several pies/funnelarea charts
+    template <typename T, typename = std::enable_if_t<is_data_array_element_v<T>>>
+    Layout& hiddenlabels(const std::vector<T>& f);
+    template <
+        typename T, typename Callable,
+        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
+    Layout& hiddenlabels(Callable&& c);
+
+    // Sets the source reference on Chart Studio Cloud for `hiddenlabels`.
+    Layout& hiddenlabelssrc(std::string f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout& hiddenlabelssrc(Callable&& c);
+
+    // If `true`, the icicle slice colors (whether given by `iciclecolorway` or inherited from `colorway`) will be
+    // extended to three times its original length by first repeating every color 20% lighter then each color 20%
+    // darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you
+    // can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+    Layout& extendiciclecolors(bool f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
+    Layout& extendiciclecolors(Callable&& c);
+
+    // Sets the default icicle slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new
+    // list here it can still be extended with lighter and darker colors, see `extendiciclecolors`.
+    Layout& iciclecolorway(const std::vector<std::string>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& iciclecolorway(Callable&& c);
+
+    // If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to
+    // three times its original length by first repeating every color 20% lighter then each color 20% darker. This is
+    // intended to reduce the likelihood of reusing the same color when you have many slices, but you can set `false` to
+    // disable. Colors provided in the trace, using `marker.colors`, are never extended.
+    Layout& extendpiecolors(bool f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
+    Layout& extendpiecolors(Callable&& c);
+
+    // Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new
+    // list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
+    Layout& piecolorway(const std::vector<std::string>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& piecolorway(Callable&& c);
+
+    // Sets the gap (in plot fraction) between scatter points of adjacent location coordinates. Defaults to `bargap`.
+    Layout& scattergap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& scattergap(Callable&& c);
+
+    // Determines how scatter points at the same location coordinate are displayed on the graph. With *group*, the
+    // scatter points are plotted next to one another centered around the shared location. With *overlay*, the scatter
+    // points are plotted over one another, you might need to reduce *opacity* to see multiple scatter points.
+    // - Default: overlay
+    Layout& scattermode(enum Scattermode f);
+
+    // If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be
+    // extended to three times its original length by first repeating every color 20% lighter then each color 20%
+    // darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you
+    // can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+    Layout& extendsunburstcolors(bool f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
+    Layout& extendsunburstcolors(Callable&& c);
+
+    // Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a
+    // new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
+    Layout& sunburstcolorway(const std::vector<std::string>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& sunburstcolorway(Callable&& c);
+
+    // If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be
+    // extended to three times its original length by first repeating every color 20% lighter then each color 20%
+    // darker. This is intended to reduce the likelihood of reusing the same color when you have many slices, but you
+    // can set `false` to disable. Colors provided in the trace, using `marker.colors`, are never extended.
+    Layout& extendtreemapcolors(bool f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
+    Layout& extendtreemapcolors(Callable&& c);
+
+    // Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a
+    // new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
+    Layout& treemapcolorway(const std::vector<std::string>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& treemapcolorway(Callable&& c);
+
+    // Sets the gap (in plot fraction) between violins of adjacent location coordinates. Has no effect on traces that
+    // have *width* set.
+    Layout& violingap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& violingap(Callable&& c);
+
+    // Sets the gap (in plot fraction) between violins of the same location coordinate. Has no effect on traces that
+    // have *width* set.
+    Layout& violingroupgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& violingroupgap(Callable&& c);
+
+    // Determines how violins at the same location coordinate are displayed on the graph. If *group*, the violins are
+    // plotted next to one another centered around the shared location. If *overlay*, the violins are plotted over one
+    // another, you might need to set *opacity* to see them multiple violins. Has no effect on traces that have *width*
+    // set.
+    // - Default: overlay
+    Layout& violinmode(enum Violinmode f);
+
+    // Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    Layout& waterfallgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& waterfallgap(Callable&& c);
+
+    // Sets the gap (in plot fraction) between bars of the same location coordinate.
+    Layout& waterfallgroupgap(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
+    Layout& waterfallgroupgap(Callable&& c);
+
+    // Determines how bars at the same location coordinate are displayed on the graph. With *group*, the bars are
+    // plotted next to one another centered around the shared location. With *overlay*, the bars are plotted over one
+    // another, you might need to reduce *opacity* to see multiple bars.
+    // - Default: group
+    Layout& waterfallmode(enum Waterfallmode f);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

@@ -11,13 +11,10 @@
 namespace plotlypp {
 
 std::string Isosurface::to_string(Visible e) {
-    switch (e) {
-    case Visible::True:
-        return "True";
-    case Visible::False:
-        return "False";
-    case Visible::Legendonly:
-        return "legendonly";
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -710,6 +707,7 @@ Isosurface& Isosurface::zsrc(Callable&& c) {
     return zsrc(std::move(f));
 }
 
+
 Isosurface::Caps& Isosurface::Caps::x(X f) {
     json["x"] = std::move(f.json);
     return *this;
@@ -743,6 +741,7 @@ Isosurface::Caps& Isosurface::Caps::z(Callable&& c) {
     return z(std::move(f));
 }
 
+
 Isosurface::Caps::X& Isosurface::Caps::X::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
@@ -765,6 +764,7 @@ Isosurface::Caps::X& Isosurface::Caps::X::show(Callable&& c) {
     return show(std::move(f));
 }
 
+
 Isosurface::Caps::Y& Isosurface::Caps::Y::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
@@ -786,6 +786,7 @@ Isosurface::Caps::Y& Isosurface::Caps::Y::show(Callable&& c) {
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
+
 
 Isosurface::Caps::Z& Isosurface::Caps::Z::fill(double f) {
     json["fill"] = std::move(f);
@@ -810,195 +811,143 @@ Isosurface::Caps::Z& Isosurface::Caps::Z::show(Callable&& c) {
 }
 
 std::string Isosurface::Colorbar::to_string(Exponentformat e) {
-    switch (e) {
-    case Exponentformat::None:
-        return "none";
-    case Exponentformat::E:
-        return "E";
-    case Exponentformat::Power:
-        return "power";
-    case Exponentformat::Si:
-        return "SI";
-    case Exponentformat::B:
-        return "B";
+    switch(e) {
+        case Exponentformat::None: return "none";
+        case Exponentformat::E: return "E";
+        case Exponentformat::Power: return "power";
+        case Exponentformat::Si: return "SI";
+        case Exponentformat::B: return "B";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Lenmode e) {
-    switch (e) {
-    case Lenmode::Fraction:
-        return "fraction";
-    case Lenmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Lenmode::Fraction: return "fraction";
+        case Lenmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Orientation e) {
-    switch (e) {
-    case Orientation::H:
-        return "h";
-    case Orientation::V:
-        return "v";
+    switch(e) {
+        case Orientation::H: return "h";
+        case Orientation::V: return "v";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Showexponent e) {
-    switch (e) {
-    case Showexponent::All:
-        return "all";
-    case Showexponent::First:
-        return "first";
-    case Showexponent::Last:
-        return "last";
-    case Showexponent::None:
-        return "none";
+    switch(e) {
+        case Showexponent::All: return "all";
+        case Showexponent::First: return "first";
+        case Showexponent::Last: return "last";
+        case Showexponent::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Showtickprefix e) {
-    switch (e) {
-    case Showtickprefix::All:
-        return "all";
-    case Showtickprefix::First:
-        return "first";
-    case Showtickprefix::Last:
-        return "last";
-    case Showtickprefix::None:
-        return "none";
+    switch(e) {
+        case Showtickprefix::All: return "all";
+        case Showtickprefix::First: return "first";
+        case Showtickprefix::Last: return "last";
+        case Showtickprefix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Showticksuffix e) {
-    switch (e) {
-    case Showticksuffix::All:
-        return "all";
-    case Showticksuffix::First:
-        return "first";
-    case Showticksuffix::Last:
-        return "last";
-    case Showticksuffix::None:
-        return "none";
+    switch(e) {
+        case Showticksuffix::All: return "all";
+        case Showticksuffix::First: return "first";
+        case Showticksuffix::Last: return "last";
+        case Showticksuffix::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Thicknessmode e) {
-    switch (e) {
-    case Thicknessmode::Fraction:
-        return "fraction";
-    case Thicknessmode::Pixels:
-        return "pixels";
+    switch(e) {
+        case Thicknessmode::Fraction: return "fraction";
+        case Thicknessmode::Pixels: return "pixels";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Ticklabeloverflow e) {
-    switch (e) {
-    case Ticklabeloverflow::Allow:
-        return "allow";
-    case Ticklabeloverflow::HidePastDiv:
-        return "hide past div";
-    case Ticklabeloverflow::HidePastDomain:
-        return "hide past domain";
+    switch(e) {
+        case Ticklabeloverflow::Allow: return "allow";
+        case Ticklabeloverflow::HidePastDiv: return "hide past div";
+        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Ticklabelposition e) {
-    switch (e) {
-    case Ticklabelposition::Outside:
-        return "outside";
-    case Ticklabelposition::Inside:
-        return "inside";
-    case Ticklabelposition::OutsideTop:
-        return "outside top";
-    case Ticklabelposition::InsideTop:
-        return "inside top";
-    case Ticklabelposition::OutsideLeft:
-        return "outside left";
-    case Ticklabelposition::InsideLeft:
-        return "inside left";
-    case Ticklabelposition::OutsideRight:
-        return "outside right";
-    case Ticklabelposition::InsideRight:
-        return "inside right";
-    case Ticklabelposition::OutsideBottom:
-        return "outside bottom";
-    case Ticklabelposition::InsideBottom:
-        return "inside bottom";
+    switch(e) {
+        case Ticklabelposition::Outside: return "outside";
+        case Ticklabelposition::Inside: return "inside";
+        case Ticklabelposition::OutsideTop: return "outside top";
+        case Ticklabelposition::InsideTop: return "inside top";
+        case Ticklabelposition::OutsideLeft: return "outside left";
+        case Ticklabelposition::InsideLeft: return "inside left";
+        case Ticklabelposition::OutsideRight: return "outside right";
+        case Ticklabelposition::InsideRight: return "inside right";
+        case Ticklabelposition::OutsideBottom: return "outside bottom";
+        case Ticklabelposition::InsideBottom: return "inside bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Tickmode e) {
-    switch (e) {
-    case Tickmode::Auto:
-        return "auto";
-    case Tickmode::Linear:
-        return "linear";
-    case Tickmode::Array:
-        return "array";
+    switch(e) {
+        case Tickmode::Auto: return "auto";
+        case Tickmode::Linear: return "linear";
+        case Tickmode::Array: return "array";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Ticks e) {
-    switch (e) {
-    case Ticks::Outside:
-        return "outside";
-    case Ticks::Inside:
-        return "inside";
-    case Ticks::Empty:
-        return "";
+    switch(e) {
+        case Ticks::Outside: return "outside";
+        case Ticks::Inside: return "inside";
+        case Ticks::Empty: return "";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Xanchor e) {
-    switch (e) {
-    case Xanchor::Left:
-        return "left";
-    case Xanchor::Center:
-        return "center";
-    case Xanchor::Right:
-        return "right";
+    switch(e) {
+        case Xanchor::Left: return "left";
+        case Xanchor::Center: return "center";
+        case Xanchor::Right: return "right";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Xref e) {
-    switch (e) {
-    case Xref::Container:
-        return "container";
-    case Xref::Paper:
-        return "paper";
+    switch(e) {
+        case Xref::Container: return "container";
+        case Xref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Yanchor e) {
-    switch (e) {
-    case Yanchor::Top:
-        return "top";
-    case Yanchor::Middle:
-        return "middle";
-    case Yanchor::Bottom:
-        return "bottom";
+    switch(e) {
+        case Yanchor::Top: return "top";
+        case Yanchor::Middle: return "middle";
+        case Yanchor::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::to_string(Yref e) {
-    switch (e) {
-    case Yref::Container:
-        return "container";
-    case Yref::Paper:
-        return "paper";
+    switch(e) {
+        case Yref::Container: return "container";
+        case Yref::Paper: return "paper";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1448,43 +1397,31 @@ Isosurface::Colorbar& Isosurface::Colorbar::yref(enum Yref f) {
 }
 
 std::string Isosurface::Colorbar::Tickfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::Tickfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::Tickfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1571,6 +1508,7 @@ Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::weight(Callable&
     return weight(std::move(f));
 }
 
+
 Isosurface::Colorbar::Tickformatstops& Isosurface::Colorbar::Tickformatstops::tickformatstop(Tickformatstop f) {
     json["tickformatstop"] = std::move(f.json);
     return *this;
@@ -1582,79 +1520,67 @@ Isosurface::Colorbar::Tickformatstops& Isosurface::Colorbar::Tickformatstops::ti
     return tickformatstop(std::move(f));
 }
 
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
+
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::dtickrange(const std::vector<double>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Isosurface::Colorbar::Tickformatstops::Tickformatstop&
-Isosurface::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
+Isosurface::Colorbar::Tickformatstops::Tickformatstop& Isosurface::Colorbar::Tickformatstops::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 std::string Isosurface::Colorbar::Title::to_string(Side e) {
-    switch (e) {
-    case Side::Right:
-        return "right";
-    case Side::Top:
-        return "top";
-    case Side::Bottom:
-        return "bottom";
+    switch(e) {
+        case Side::Right: return "right";
+        case Side::Top: return "top";
+        case Side::Bottom: return "bottom";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1688,43 +1614,31 @@ Isosurface::Colorbar::Title& Isosurface::Colorbar::Title::text(Callable&& c) {
 }
 
 std::string Isosurface::Colorbar::Title::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::Title::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Colorbar::Title::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1811,6 +1725,7 @@ Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::weight(Cal
     return weight(std::move(f));
 }
 
+
 Isosurface::Contour& Isosurface::Contour::color(std::string f) {
     json["color"] = std::move(f);
     return *this;
@@ -1845,13 +1760,10 @@ Isosurface::Contour& Isosurface::Contour::width(Callable&& c) {
 }
 
 std::string Isosurface::Hoverlabel::to_string(Align e) {
-    switch (e) {
-    case Align::Left:
-        return "left";
-    case Align::Right:
-        return "right";
-    case Align::Auto:
-        return "auto";
+    switch(e) {
+        case Align::Left: return "left";
+        case Align::Right: return "right";
+        case Align::Auto: return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1863,7 +1775,7 @@ Isosurface::Hoverlabel& Isosurface::Hoverlabel::align(enum Align f) {
 }
 Isosurface::Hoverlabel& Isosurface::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -1969,43 +1881,31 @@ Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Isosurface::Hoverlabel::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Hoverlabel::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Hoverlabel::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2147,7 +2047,7 @@ Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::style(enum Style f) 
 }
 Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -2169,7 +2069,7 @@ Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::textcase(enum Textca
 }
 Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -2191,7 +2091,7 @@ Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::variant(enum Variant
 }
 Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -2233,6 +2133,7 @@ Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weightsrc(Callable&&
     return weightsrc(std::move(f));
 }
 
+
 Isosurface::Legendgrouptitle& Isosurface::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -2256,43 +2157,31 @@ Isosurface::Legendgrouptitle& Isosurface::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Isosurface::Legendgrouptitle::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Isosurface::Legendgrouptitle::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2379,6 +2268,7 @@ Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::weight(C
     return weight(std::move(f));
 }
 
+
 Isosurface::Lighting& Isosurface::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
@@ -2456,6 +2346,7 @@ Isosurface::Lighting& Isosurface::Lighting::vertexnormalsepsilon(Callable&& c) {
     return vertexnormalsepsilon(std::move(f));
 }
 
+
 Isosurface::Lightposition& Isosurface::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
@@ -2489,6 +2380,7 @@ Isosurface::Lightposition& Isosurface::Lightposition::z(Callable&& c) {
     return z(std::move(f));
 }
 
+
 Isosurface::Slices& Isosurface::Slices::x(X f) {
     json["x"] = std::move(f.json);
     return *this;
@@ -2521,6 +2413,7 @@ Isosurface::Slices& Isosurface::Slices::z(Callable&& c) {
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
+
 
 Isosurface::Slices::X& Isosurface::Slices::X::fill(double f) {
     json["fill"] = std::move(f);
@@ -2567,6 +2460,7 @@ Isosurface::Slices::X& Isosurface::Slices::X::show(Callable&& c) {
     return show(std::move(f));
 }
 
+
 Isosurface::Slices::Y& Isosurface::Slices::Y::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
@@ -2611,6 +2505,7 @@ Isosurface::Slices::Y& Isosurface::Slices::Y::show(Callable&& c) {
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
+
 
 Isosurface::Slices::Z& Isosurface::Slices::Z::fill(double f) {
     json["fill"] = std::move(f);
@@ -2657,6 +2552,7 @@ Isosurface::Slices::Z& Isosurface::Slices::Z::show(Callable&& c) {
     return show(std::move(f));
 }
 
+
 Isosurface::Spaceframe& Isosurface::Spaceframe::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
@@ -2679,6 +2575,7 @@ Isosurface::Spaceframe& Isosurface::Spaceframe::show(Callable&& c) {
     return show(std::move(f));
 }
 
+
 Isosurface::Stream& Isosurface::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -2700,6 +2597,7 @@ Isosurface::Stream& Isosurface::Stream::token(Callable&& c) {
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
+
 
 Isosurface::Surface& Isosurface::Surface::count(int f) {
     json["count"] = std::move(f);
@@ -2746,3 +2644,4 @@ Isosurface::Surface& Isosurface::Surface::show(Callable&& c) {
 }
 
 } // namespace plotlypp
+

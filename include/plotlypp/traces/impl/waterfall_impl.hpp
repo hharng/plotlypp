@@ -11,87 +11,65 @@
 namespace plotlypp {
 
 std::string Waterfall::to_string(Constraintext e) {
-    switch (e) {
-    case Constraintext::Inside:
-        return "inside";
-    case Constraintext::Outside:
-        return "outside";
-    case Constraintext::Both:
-        return "both";
-    case Constraintext::None:
-        return "none";
+    switch(e) {
+        case Constraintext::Inside: return "inside";
+        case Constraintext::Outside: return "outside";
+        case Constraintext::Both: return "both";
+        case Constraintext::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::to_string(Insidetextanchor e) {
-    switch (e) {
-    case Insidetextanchor::End:
-        return "end";
-    case Insidetextanchor::Middle:
-        return "middle";
-    case Insidetextanchor::Start:
-        return "start";
+    switch(e) {
+        case Insidetextanchor::End: return "end";
+        case Insidetextanchor::Middle: return "middle";
+        case Insidetextanchor::Start: return "start";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::to_string(Orientation e) {
-    switch (e) {
-    case Orientation::V:
-        return "v";
-    case Orientation::H:
-        return "h";
+    switch(e) {
+        case Orientation::V: return "v";
+        case Orientation::H: return "h";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::to_string(Textposition e) {
-    switch (e) {
-    case Textposition::Inside:
-        return "inside";
-    case Textposition::Outside:
-        return "outside";
-    case Textposition::Auto:
-        return "auto";
-    case Textposition::None:
-        return "none";
+    switch(e) {
+        case Textposition::Inside: return "inside";
+        case Textposition::Outside: return "outside";
+        case Textposition::Auto: return "auto";
+        case Textposition::None: return "none";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::to_string(Visible e) {
-    switch (e) {
-    case Visible::True:
-        return "True";
-    case Visible::False:
-        return "False";
-    case Visible::Legendonly:
-        return "legendonly";
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::to_string(Xperiodalignment e) {
-    switch (e) {
-    case Xperiodalignment::Start:
-        return "start";
-    case Xperiodalignment::Middle:
-        return "middle";
-    case Xperiodalignment::End:
-        return "end";
+    switch(e) {
+        case Xperiodalignment::Start: return "start";
+        case Xperiodalignment::Middle: return "middle";
+        case Xperiodalignment::End: return "end";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::to_string(Yperiodalignment e) {
-    switch (e) {
-    case Yperiodalignment::Start:
-        return "start";
-    case Yperiodalignment::Middle:
-        return "middle";
-    case Yperiodalignment::End:
-        return "end";
+    switch(e) {
+        case Yperiodalignment::Start: return "start";
+        case Yperiodalignment::Middle: return "middle";
+        case Yperiodalignment::End: return "end";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -610,7 +588,7 @@ Waterfall& Waterfall::textposition(enum Textposition f) {
 }
 Waterfall& Waterfall::textposition(const std::vector<enum Textposition>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textposition"] = std::move(stringified);
     return *this;
 }
@@ -912,11 +890,9 @@ Waterfall& Waterfall::zorder(Callable&& c) {
 }
 
 std::string Waterfall::Connector::to_string(Mode e) {
-    switch (e) {
-    case Mode::Spanning:
-        return "spanning";
-    case Mode::Between:
-        return "between";
+    switch(e) {
+        case Mode::Spanning: return "spanning";
+        case Mode::Between: return "between";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -948,6 +924,7 @@ Waterfall::Connector& Waterfall::Connector::visible(Callable&& c) {
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
+
 
 Waterfall::Connector::Line& Waterfall::Connector::Line::color(std::string f) {
     json["color"] = std::move(f);
@@ -982,6 +959,7 @@ Waterfall::Connector::Line& Waterfall::Connector::Line::width(Callable&& c) {
     return width(std::move(f));
 }
 
+
 Waterfall::Decreasing& Waterfall::Decreasing::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
@@ -992,6 +970,7 @@ Waterfall::Decreasing& Waterfall::Decreasing::marker(Callable&& c) {
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
+
 
 Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -1014,6 +993,7 @@ Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::line(Callable&& c)
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
+
 
 Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::color(std::string f) {
     json["color"] = std::move(f);
@@ -1038,13 +1018,10 @@ Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::width(
 }
 
 std::string Waterfall::Hoverlabel::to_string(Align e) {
-    switch (e) {
-    case Align::Left:
-        return "left";
-    case Align::Right:
-        return "right";
-    case Align::Auto:
-        return "auto";
+    switch(e) {
+        case Align::Left: return "left";
+        case Align::Right: return "right";
+        case Align::Auto: return "auto";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1056,7 +1033,7 @@ Waterfall::Hoverlabel& Waterfall::Hoverlabel::align(enum Align f) {
 }
 Waterfall::Hoverlabel& Waterfall::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
@@ -1162,43 +1139,31 @@ Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelengthsrc(Callable&& c) {
 }
 
 std::string Waterfall::Hoverlabel::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Hoverlabel::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Hoverlabel::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1340,7 +1305,7 @@ Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::style(enum Style f) {
 }
 Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1362,7 +1327,7 @@ Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcase(enum Textcase
 }
 Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1384,7 +1349,7 @@ Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variant(enum Variant f
 }
 Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1426,6 +1391,7 @@ Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weightsrc(Callable&& c
     return weightsrc(std::move(f));
 }
 
+
 Waterfall::Increasing& Waterfall::Increasing::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
@@ -1436,6 +1402,7 @@ Waterfall::Increasing& Waterfall::Increasing::marker(Callable&& c) {
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
+
 
 Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -1458,6 +1425,7 @@ Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::line(Callable&& c)
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
+
 
 Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::color(std::string f) {
     json["color"] = std::move(f);
@@ -1482,43 +1450,31 @@ Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::width(
 }
 
 std::string Waterfall::Insidetextfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Insidetextfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Insidetextfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1660,7 +1616,7 @@ Waterfall::Insidetextfont& Waterfall::Insidetextfont::style(enum Style f) {
 }
 Waterfall::Insidetextfont& Waterfall::Insidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -1682,7 +1638,7 @@ Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcase(enum Textcase f) 
 }
 Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -1704,7 +1660,7 @@ Waterfall::Insidetextfont& Waterfall::Insidetextfont::variant(enum Variant f) {
 }
 Waterfall::Insidetextfont& Waterfall::Insidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -1746,6 +1702,7 @@ Waterfall::Insidetextfont& Waterfall::Insidetextfont::weightsrc(Callable&& c) {
     return weightsrc(std::move(f));
 }
 
+
 Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
@@ -1769,43 +1726,31 @@ Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::text(Callable&& c) {
 }
 
 std::string Waterfall::Legendgrouptitle::Font::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Legendgrouptitle::Font::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -1893,43 +1838,31 @@ Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::weight(Cal
 }
 
 std::string Waterfall::Outsidetextfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Outsidetextfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Outsidetextfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2071,7 +2004,7 @@ Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::style(enum Style f) {
 }
 Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -2093,7 +2026,7 @@ Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcase(enum Textcase f
 }
 Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -2115,7 +2048,7 @@ Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variant(enum Variant f) 
 }
 Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -2157,6 +2090,7 @@ Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weightsrc(Callable&& c) 
     return weightsrc(std::move(f));
 }
 
+
 Waterfall::Stream& Waterfall::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
@@ -2180,43 +2114,31 @@ Waterfall::Stream& Waterfall::Stream::token(Callable&& c) {
 }
 
 std::string Waterfall::Textfont::to_string(Style e) {
-    switch (e) {
-    case Style::Normal:
-        return "normal";
-    case Style::Italic:
-        return "italic";
+    switch(e) {
+        case Style::Normal: return "normal";
+        case Style::Italic: return "italic";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Textfont::to_string(Textcase e) {
-    switch (e) {
-    case Textcase::Normal:
-        return "normal";
-    case Textcase::WordCaps:
-        return "word caps";
-    case Textcase::Upper:
-        return "upper";
-    case Textcase::Lower:
-        return "lower";
+    switch(e) {
+        case Textcase::Normal: return "normal";
+        case Textcase::WordCaps: return "word caps";
+        case Textcase::Upper: return "upper";
+        case Textcase::Lower: return "lower";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 std::string Waterfall::Textfont::to_string(Variant e) {
-    switch (e) {
-    case Variant::Normal:
-        return "normal";
-    case Variant::SmallCaps:
-        return "small-caps";
-    case Variant::AllSmallCaps:
-        return "all-small-caps";
-    case Variant::AllPetiteCaps:
-        return "all-petite-caps";
-    case Variant::PetiteCaps:
-        return "petite-caps";
-    case Variant::Unicase:
-        return "unicase";
+    switch(e) {
+        case Variant::Normal: return "normal";
+        case Variant::SmallCaps: return "small-caps";
+        case Variant::AllSmallCaps: return "all-small-caps";
+        case Variant::AllPetiteCaps: return "all-petite-caps";
+        case Variant::PetiteCaps: return "petite-caps";
+        case Variant::Unicase: return "unicase";
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
@@ -2358,7 +2280,7 @@ Waterfall::Textfont& Waterfall::Textfont::style(enum Style f) {
 }
 Waterfall::Textfont& Waterfall::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
@@ -2380,7 +2302,7 @@ Waterfall::Textfont& Waterfall::Textfont::textcase(enum Textcase f) {
 }
 Waterfall::Textfont& Waterfall::Textfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
@@ -2402,7 +2324,7 @@ Waterfall::Textfont& Waterfall::Textfont::variant(enum Variant f) {
 }
 Waterfall::Textfont& Waterfall::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e) { return to_string(e); });
+    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
@@ -2444,6 +2366,7 @@ Waterfall::Textfont& Waterfall::Textfont::weightsrc(Callable&& c) {
     return weightsrc(std::move(f));
 }
 
+
 Waterfall::Totals& Waterfall::Totals::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
@@ -2454,6 +2377,7 @@ Waterfall::Totals& Waterfall::Totals::marker(Callable&& c) {
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
+
 
 Waterfall::Totals::Marker& Waterfall::Totals::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -2476,6 +2400,7 @@ Waterfall::Totals::Marker& Waterfall::Totals::Marker::line(Callable&& c) {
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
+
 
 Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::color(std::string f) {
     json["color"] = std::move(f);
@@ -2500,3 +2425,4 @@ Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::width(Callable
 }
 
 } // namespace plotlypp
+
