@@ -16,7 +16,8 @@ add_executable(example
     financial_charts.cpp
     maps.cpp
     scientific_charts.cpp
-    statistical_charts.cpp)
+    statistical_charts.cpp
+    subplots.cpp)
 
 target_link_libraries(example
   PRIVATE

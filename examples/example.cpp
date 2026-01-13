@@ -156,33 +156,33 @@ void showStatisticalCharts() {
 void showSubplots() {
     using namespace plotlypp;
 
-    // subplotsGridLayout().show();
-    // waitForEnter();
+    subplotsGridLayout().show();
+    waitForEnter();
 
-    // subplotsDomainLayout().show();
-    // waitForEnter();
+    subplotsDomainLayout().show();
+    waitForEnter();
 
-    // multipleSubplotsWithSharedAxes().show();
-    // waitForEnter();
+    multipleSubplotsWithSharedAxes().show();
+    waitForEnter();
 
-    // gen3dSubplots().show();
-    // waitForEnter();
+    gen3dSubplots().show();
+    waitForEnter();
 
     insetGraph().show();
     waitForEnter();
 
-    volcano_plot().show();
+    mixedSubplots().show();
     waitForEnter();
 }
 
 int main() {
-    using namespace plotlypp;
-    // showStatisticalCharts();
-    //  showScientificCharts();
-    //   show3dCharts();
-    //    showFinancialCharts();
-    //     showMaps();
-    // showBasicCharts();
+    showStatisticalCharts();
+    showScientificCharts();
+    show3dCharts();
+    showFinancialCharts();
+    showMaps();
+    showBasicCharts();
     showSubplots();
+
     std::cout << "Done" << "\n";
 }
