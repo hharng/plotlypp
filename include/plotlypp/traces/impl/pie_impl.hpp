@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Pie::to_string(Direction e) {
+inline std::string Pie::to_string(Direction e) {
     switch(e) {
         case Direction::Clockwise: return "clockwise";
         case Direction::Counterclockwise: return "counterclockwise";
@@ -18,7 +18,7 @@ std::string Pie::to_string(Direction e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::to_string(Insidetextorientation e) {
+inline std::string Pie::to_string(Insidetextorientation e) {
     switch(e) {
         case Insidetextorientation::Horizontal: return "horizontal";
         case Insidetextorientation::Radial: return "radial";
@@ -28,7 +28,7 @@ std::string Pie::to_string(Insidetextorientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::to_string(Textposition e) {
+inline std::string Pie::to_string(Textposition e) {
     switch(e) {
         case Textposition::Inside: return "inside";
         case Textposition::Outside: return "outside";
@@ -38,7 +38,7 @@ std::string Pie::to_string(Textposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::to_string(Visible e) {
+inline std::string Pie::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -48,649 +48,673 @@ std::string Pie::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie& Pie::automargin(bool f) {
+inline Pie& Pie::automargin(bool f) {
     json["automargin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::automargin(Callable&& c) {
+inline Pie& Pie::automargin(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return automargin(std::move(f));
 }
 
 template <typename Range, typename>
-Pie& Pie::customdata(Range&& f) {
+inline Pie& Pie::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::customdata(Callable&& c) {
+inline Pie& Pie::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Pie& Pie::customdatasrc(std::string f) {
+inline Pie& Pie::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::customdatasrc(Callable&& c) {
+inline Pie& Pie::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Pie& Pie::direction(enum Direction f) {
+inline Pie& Pie::direction(enum Direction f) {
     json["direction"] = to_string(f);
     return *this;
 }
 
-Pie& Pie::dlabel(double f) {
+inline Pie& Pie::dlabel(double f) {
     json["dlabel"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::dlabel(Callable&& c) {
+inline Pie& Pie::dlabel(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dlabel(std::move(f));
 }
 
-Pie& Pie::domain(Domain f) {
+inline Pie& Pie::domain(Domain f) {
     json["domain"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::domain(Callable&& c) {
+inline Pie& Pie::domain(Callable&& c) {
     Domain f{};
     std::forward<Callable>(c)(f);
     return domain(std::move(f));
 }
 
-Pie& Pie::hole(double f) {
+inline Pie& Pie::hole(double f) {
     json["hole"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hole(Callable&& c) {
+inline Pie& Pie::hole(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return hole(std::move(f));
 }
 
-Pie& Pie::hoverinfo(std::string f) {
+inline Pie& Pie::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hoverinfo(Callable&& c) {
+inline Pie& Pie::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Pie& Pie::hoverinfo(const std::vector<std::string>& f) {
+inline Pie& Pie::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Pie& Pie::hoverinfosrc(std::string f) {
+inline Pie& Pie::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hoverinfosrc(Callable&& c) {
+inline Pie& Pie::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Pie& Pie::hoverlabel(Hoverlabel f) {
+inline Pie& Pie::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hoverlabel(Callable&& c) {
+inline Pie& Pie::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Pie& Pie::hovertemplate(std::string f) {
+inline Pie& Pie::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hovertemplate(Callable&& c) {
+inline Pie& Pie::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Pie& Pie::hovertemplate(const std::vector<std::string>& f) {
+inline Pie& Pie::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Pie& Pie::hovertemplatesrc(std::string f) {
+inline Pie& Pie::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hovertemplatesrc(Callable&& c) {
+inline Pie& Pie::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Pie& Pie::hovertext(std::string f) {
+inline Pie& Pie::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hovertext(Callable&& c) {
+inline Pie& Pie::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
-Pie& Pie::hovertext(const std::vector<std::string>& f) {
+inline Pie& Pie::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
 }
 
-Pie& Pie::hovertextsrc(std::string f) {
+inline Pie& Pie::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::hovertextsrc(Callable&& c) {
+inline Pie& Pie::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Pie& Pie::ids(Range&& f) {
+inline Pie& Pie::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::ids(Callable&& c) {
+inline Pie& Pie::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Pie& Pie::idssrc(std::string f) {
+inline Pie& Pie::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::idssrc(Callable&& c) {
+inline Pie& Pie::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Pie& Pie::insidetextfont(Insidetextfont f) {
+inline Pie& Pie::insidetextfont(Insidetextfont f) {
     json["insidetextfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::insidetextfont(Callable&& c) {
+inline Pie& Pie::insidetextfont(Callable&& c) {
     Insidetextfont f{};
     std::forward<Callable>(c)(f);
     return insidetextfont(std::move(f));
 }
 
-Pie& Pie::insidetextorientation(enum Insidetextorientation f) {
+inline Pie& Pie::insidetextorientation(enum Insidetextorientation f) {
     json["insidetextorientation"] = to_string(f);
     return *this;
 }
 
-Pie& Pie::label0(double f) {
+inline Pie& Pie::label0(double f) {
     json["label0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::label0(Callable&& c) {
+inline Pie& Pie::label0(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return label0(std::move(f));
 }
 
 template <typename Range, typename>
-Pie& Pie::labels(Range&& f) {
+inline Pie& Pie::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::labels(Callable&& c) {
+inline Pie& Pie::labels(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return labels(std::move(f));
 }
 
-Pie& Pie::labelssrc(std::string f) {
+inline Pie& Pie::labelssrc(std::string f) {
     json["labelssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::labelssrc(Callable&& c) {
+inline Pie& Pie::labelssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelssrc(std::move(f));
 }
 
-Pie& Pie::legend(std::string f) {
+inline Pie& Pie::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::legend(Callable&& c) {
+inline Pie& Pie::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Pie& Pie::legendgroup(std::string f) {
+inline Pie& Pie::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::legendgroup(Callable&& c) {
+inline Pie& Pie::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Pie& Pie::legendgrouptitle(Legendgrouptitle f) {
+inline Pie& Pie::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::legendgrouptitle(Callable&& c) {
+inline Pie& Pie::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Pie& Pie::legendrank(double f) {
+inline Pie& Pie::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::legendrank(Callable&& c) {
+inline Pie& Pie::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Pie& Pie::legendwidth(double f) {
+inline Pie& Pie::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::legendwidth(Callable&& c) {
+inline Pie& Pie::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Pie& Pie::marker(Marker f) {
+inline Pie& Pie::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::marker(Callable&& c) {
+inline Pie& Pie::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
 template <typename T>
-Pie& Pie::meta(T f) {
+inline Pie& Pie::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::meta(Callable&& c) {
+inline Pie& Pie::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Pie& Pie::meta(const std::vector<T>& f) {
+inline Pie& Pie::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Pie& Pie::metasrc(std::string f) {
+inline Pie& Pie::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::metasrc(Callable&& c) {
+inline Pie& Pie::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Pie& Pie::name(std::string f) {
+inline Pie& Pie::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::name(Callable&& c) {
+inline Pie& Pie::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Pie& Pie::opacity(double f) {
+inline Pie& Pie::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::opacity(Callable&& c) {
+inline Pie& Pie::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Pie& Pie::outsidetextfont(Outsidetextfont f) {
+inline Pie& Pie::outsidetextfont(Outsidetextfont f) {
     json["outsidetextfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::outsidetextfont(Callable&& c) {
+inline Pie& Pie::outsidetextfont(Callable&& c) {
     Outsidetextfont f{};
     std::forward<Callable>(c)(f);
     return outsidetextfont(std::move(f));
 }
 
-Pie& Pie::pull(double f) {
+inline Pie& Pie::pull(double f) {
     json["pull"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::pull(Callable&& c) {
+inline Pie& Pie::pull(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return pull(std::move(f));
 }
-Pie& Pie::pull(const std::vector<double>& f) {
+inline Pie& Pie::pull(const std::vector<double>& f) {
     json["pull"] = f;
     return *this;
 }
 
-Pie& Pie::pullsrc(std::string f) {
+inline Pie& Pie::pullsrc(std::string f) {
     json["pullsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::pullsrc(Callable&& c) {
+inline Pie& Pie::pullsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return pullsrc(std::move(f));
 }
 
-Pie& Pie::rotation(double f) {
+inline Pie& Pie::rotation(double f) {
     json["rotation"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::rotation(Callable&& c) {
+inline Pie& Pie::rotation(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return rotation(std::move(f));
 }
 
-Pie& Pie::scalegroup(std::string f) {
+inline Pie& Pie::scalegroup(std::string f) {
     json["scalegroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::scalegroup(Callable&& c) {
+inline Pie& Pie::scalegroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return scalegroup(std::move(f));
 }
 
-Pie& Pie::showlegend(bool f) {
+inline Pie& Pie::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::showlegend(Callable&& c) {
+inline Pie& Pie::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Pie& Pie::sort(bool f) {
+inline Pie& Pie::sort(bool f) {
     json["sort"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::sort(Callable&& c) {
+inline Pie& Pie::sort(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return sort(std::move(f));
 }
 
-Pie& Pie::stream(Stream f) {
+inline Pie& Pie::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::stream(Callable&& c) {
+inline Pie& Pie::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
 template <typename Range, typename>
-Pie& Pie::text(Range&& f) {
+inline Pie& Pie::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::text(Callable&& c) {
+inline Pie& Pie::text(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Pie& Pie::textfont(Textfont f) {
+inline Pie& Pie::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::textfont(Callable&& c) {
+inline Pie& Pie::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Pie& Pie::textinfo(std::string f) {
+inline Pie& Pie::textinfo(std::string f) {
     json["textinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::textinfo(Callable&& c) {
+inline Pie& Pie::textinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textinfo(std::move(f));
 }
 
-Pie& Pie::textposition(enum Textposition f) {
+inline Pie& Pie::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
-Pie& Pie::textposition(const std::vector<enum Textposition>& f) {
+inline Pie& Pie::textposition(const std::vector<enum Textposition>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textposition"] = std::move(stringified);
     return *this;
 }
 
-Pie& Pie::textpositionsrc(std::string f) {
+inline Pie& Pie::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::textpositionsrc(Callable&& c) {
+inline Pie& Pie::textpositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textpositionsrc(std::move(f));
 }
 
-Pie& Pie::textsrc(std::string f) {
+inline Pie& Pie::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::textsrc(Callable&& c) {
+inline Pie& Pie::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Pie& Pie::texttemplate(std::string f) {
+inline Pie& Pie::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::texttemplate(Callable&& c) {
+inline Pie& Pie::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
-Pie& Pie::texttemplate(const std::vector<std::string>& f) {
+inline Pie& Pie::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
     return *this;
 }
 
-Pie& Pie::texttemplatesrc(std::string f) {
+inline Pie& Pie::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::texttemplatesrc(Callable&& c) {
+inline Pie& Pie::texttemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplatesrc(std::move(f));
 }
 
-Pie& Pie::title(Title f) {
+inline Pie& Pie::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::title(Callable&& c) {
+inline Pie& Pie::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Pie& Pie::uid(std::string f) {
+inline Pie& Pie::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::uid(Callable&& c) {
+inline Pie& Pie::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Pie& Pie::uirevision(T f) {
+inline Pie& Pie::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::uirevision(Callable&& c) {
+inline Pie& Pie::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
 template <typename Range, typename>
-Pie& Pie::values(Range&& f) {
+inline Pie& Pie::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie& Pie::values(Callable&& c) {
+inline Pie& Pie::values(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
 }
 
-Pie& Pie::valuessrc(std::string f) {
+inline Pie& Pie::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie& Pie::valuessrc(Callable&& c) {
+inline Pie& Pie::valuessrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return valuessrc(std::move(f));
 }
 
-Pie& Pie::visible(enum Visible f) {
+inline Pie& Pie::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 
-Pie::Domain& Pie::Domain::column(int f) {
+inline Pie::Domain& Pie::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Domain& Pie::Domain::column(Callable&& c) {
+inline Pie::Domain& Pie::Domain::column(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return column(std::move(f));
 }
 
-Pie::Domain& Pie::Domain::row(int f) {
+inline Pie::Domain& Pie::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Domain& Pie::Domain::row(Callable&& c) {
+inline Pie::Domain& Pie::Domain::row(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return row(std::move(f));
 }
 
-Pie::Domain& Pie::Domain::x(const std::vector<double>& f) {
+inline Pie::Domain& Pie::Domain::x(const std::vector<double>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Pie::Domain& Pie::Domain::x(const std::vector<std::string>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Pie::Domain& Pie::Domain::x(const std::vector<std::vector<std::string>>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Pie::Domain& Pie::Domain::x(const std::vector<std::vector<double>>& f) {
     json["x"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Pie::Domain& Pie::Domain::x(Callable&& c) {
+inline Pie::Domain& Pie::Domain::x(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Pie::Domain& Pie::Domain::y(const std::vector<double>& f) {
+inline Pie::Domain& Pie::Domain::y(const std::vector<double>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Pie::Domain& Pie::Domain::y(const std::vector<std::string>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Pie::Domain& Pie::Domain::y(const std::vector<std::vector<std::string>>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Pie::Domain& Pie::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Pie::Domain& Pie::Domain::y(Callable&& c) {
+inline Pie::Domain& Pie::Domain::y(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-std::string Pie::Hoverlabel::to_string(Align e) {
+inline std::string Pie::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -700,118 +724,134 @@ std::string Pie::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::align(enum Align f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Pie::Hoverlabel& Pie::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::alignsrc(std::string f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::alignsrc(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(std::string f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::bgcolorsrc(std::string f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(std::string f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::bordercolorsrc(std::string f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::font(Font f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::font(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::namelength(int f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::namelength(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Pie::Hoverlabel& Pie::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(std::string f) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Pie::Hoverlabel::Font::to_string(Style e) {
+inline std::string Pie::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -819,7 +859,7 @@ std::string Pie::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Pie::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -829,7 +869,7 @@ std::string Pie::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Pie::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -842,229 +882,237 @@ std::string Pie::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::colorsrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(double f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::sizesrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::style(enum Style f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::stylesrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variant(enum Variant f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variantsrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(int f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(std::string f) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
-std::string Pie::Insidetextfont::to_string(Style e) {
+inline std::string Pie::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1072,7 +1120,7 @@ std::string Pie::Insidetextfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Insidetextfont::to_string(Textcase e) {
+inline std::string Pie::Insidetextfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1082,7 +1130,7 @@ std::string Pie::Insidetextfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Insidetextfont::to_string(Variant e) {
+inline std::string Pie::Insidetextfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1095,252 +1143,260 @@ std::string Pie::Insidetextfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::color(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Insidetextfont& Pie::Insidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::color(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Pie::Insidetextfont& Pie::Insidetextfont::color(const std::vector<std::string>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Pie::Insidetextfont& Pie::Insidetextfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::colorsrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::colorsrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::family(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::family(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Pie::Insidetextfont& Pie::Insidetextfont::family(const std::vector<std::string>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::familysrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::familysrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::lineposition(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::lineposition(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Pie::Insidetextfont& Pie::Insidetextfont::lineposition(const std::vector<std::string>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::linepositionsrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::linepositionsrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::shadow(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::shadow(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Pie::Insidetextfont& Pie::Insidetextfont::shadow(const std::vector<std::string>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::shadowsrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::shadowsrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::size(double f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::size(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Pie::Insidetextfont& Pie::Insidetextfont::size(const std::vector<double>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::sizesrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::sizesrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::style(enum Style f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Pie::Insidetextfont& Pie::Insidetextfont::style(const std::vector<enum Style>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::stylesrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::stylesrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::textcase(enum Textcase f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Pie::Insidetextfont& Pie::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::textcasesrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::textcasesrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::variant(enum Variant f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Pie::Insidetextfont& Pie::Insidetextfont::variant(const std::vector<enum Variant>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::variantsrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::variantsrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::weight(int f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::weight(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Pie::Insidetextfont& Pie::Insidetextfont::weight(const std::vector<int>& f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Pie::Insidetextfont& Pie::Insidetextfont::weightsrc(std::string f) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Insidetextfont& Pie::Insidetextfont::weightsrc(Callable&& c) {
+inline Pie::Insidetextfont& Pie::Insidetextfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Pie::Legendgrouptitle& Pie::Legendgrouptitle::font(Font f) {
+inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle& Pie::Legendgrouptitle::font(Callable&& c) {
+inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(std::string f) {
+inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(Callable&& c) {
+inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Pie::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Pie::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1348,7 +1404,7 @@ std::string Pie::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Pie::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1358,7 +1414,7 @@ std::string Pie::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Pie::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1371,82 +1427,86 @@ std::string Pie::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(std::string f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(Callable&& c) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(std::string f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(Callable&& c) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::shadow(std::string f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::size(double f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::size(Callable&& c) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::style(enum Style f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(int f) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -1454,104 +1514,112 @@ Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(Callable&& c) {
 
 
 template <typename Range, typename>
-Pie::Marker& Pie::Marker::colors(Range&& f) {
+inline Pie::Marker& Pie::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Pie::Marker& Pie::Marker::colors(Callable&& c) {
+inline Pie::Marker& Pie::Marker::colors(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return colors(std::move(f));
 }
 
-Pie::Marker& Pie::Marker::colorssrc(std::string f) {
+inline Pie::Marker& Pie::Marker::colorssrc(std::string f) {
     json["colorssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker& Pie::Marker::colorssrc(Callable&& c) {
+inline Pie::Marker& Pie::Marker::colorssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorssrc(std::move(f));
 }
 
-Pie::Marker& Pie::Marker::line(Line f) {
+inline Pie::Marker& Pie::Marker::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker& Pie::Marker::line(Callable&& c) {
+inline Pie::Marker& Pie::Marker::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Pie::Marker& Pie::Marker::pattern(Pattern f) {
+inline Pie::Marker& Pie::Marker::pattern(Pattern f) {
     json["pattern"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker& Pie::Marker::pattern(Callable&& c) {
+inline Pie::Marker& Pie::Marker::pattern(Callable&& c) {
     Pattern f{};
     std::forward<Callable>(c)(f);
     return pattern(std::move(f));
 }
 
 
-Pie::Marker::Line& Pie::Marker::Line::color(std::string f) {
+inline Pie::Marker::Line& Pie::Marker::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Marker::Line& Pie::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Line& Pie::Marker::Line::color(Callable&& c) {
+inline Pie::Marker::Line& Pie::Marker::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Pie::Marker::Line& Pie::Marker::Line::color(const std::vector<std::string>& f) {
+inline Pie::Marker::Line& Pie::Marker::Line::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Pie::Marker::Line& Pie::Marker::Line::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Pie::Marker::Line& Pie::Marker::Line::colorsrc(std::string f) {
+inline Pie::Marker::Line& Pie::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Line& Pie::Marker::Line::colorsrc(Callable&& c) {
+inline Pie::Marker::Line& Pie::Marker::Line::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Pie::Marker::Line& Pie::Marker::Line::width(double f) {
+inline Pie::Marker::Line& Pie::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Line& Pie::Marker::Line::width(Callable&& c) {
+inline Pie::Marker::Line& Pie::Marker::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
-Pie::Marker::Line& Pie::Marker::Line::width(const std::vector<double>& f) {
+inline Pie::Marker::Line& Pie::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
     return *this;
 }
 
-Pie::Marker::Line& Pie::Marker::Line::widthsrc(std::string f) {
+inline Pie::Marker::Line& Pie::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Line& Pie::Marker::Line::widthsrc(Callable&& c) {
+inline Pie::Marker::Line& Pie::Marker::Line::widthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return widthsrc(std::move(f));
 }
 
-std::string Pie::Marker::Pattern::to_string(Fillmode e) {
+inline std::string Pie::Marker::Pattern::to_string(Fillmode e) {
     switch(e) {
         case Fillmode::Replace: return "replace";
         case Fillmode::Overlay: return "overlay";
@@ -1560,153 +1628,169 @@ std::string Pie::Marker::Pattern::to_string(Fillmode e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolorsrc(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolorsrc(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(std::string f) {
+    json["fgcolor"] = std::move(f);
+    return *this;
+}
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(double f) {
     json["fgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return fgcolor(std::move(f));
 }
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
+    json["fgcolor"] = f;
+    return *this;
+}
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(const std::vector<double>& f) {
     json["fgcolor"] = f;
     return *this;
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolorsrc(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolorsrc(std::string f) {
     json["fgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolorsrc(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return fgcolorsrc(std::move(f));
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgopacity(double f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgopacity(double f) {
     json["fgopacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::fgopacity(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgopacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return fgopacity(std::move(f));
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::fillmode(enum Fillmode f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::fillmode(enum Fillmode f) {
     json["fillmode"] = to_string(f);
     return *this;
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::shape(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::shape(std::string f) {
     json["shape"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::shape(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::shape(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shape(std::move(f));
 }
-Pie::Marker::Pattern& Pie::Marker::Pattern::shape(const std::vector<std::string>& f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::shape(const std::vector<std::string>& f) {
     json["shape"] = f;
     return *this;
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::shapesrc(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::shapesrc(std::string f) {
     json["shapesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::shapesrc(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::shapesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shapesrc(std::move(f));
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::size(double f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::size(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Pie::Marker::Pattern& Pie::Marker::Pattern::size(const std::vector<double>& f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::sizesrc(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::sizesrc(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(double f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(double f) {
     json["solidity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return solidity(std::move(f));
 }
-Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(const std::vector<double>& f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(const std::vector<double>& f) {
     json["solidity"] = f;
     return *this;
 }
 
-Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(std::string f) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(std::string f) {
     json["soliditysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(Callable&& c) {
+inline Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return soliditysrc(std::move(f));
 }
 
-std::string Pie::Outsidetextfont::to_string(Style e) {
+inline std::string Pie::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1714,7 +1798,7 @@ std::string Pie::Outsidetextfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Outsidetextfont::to_string(Textcase e) {
+inline std::string Pie::Outsidetextfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1724,7 +1808,7 @@ std::string Pie::Outsidetextfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Outsidetextfont::to_string(Variant e) {
+inline std::string Pie::Outsidetextfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1737,252 +1821,260 @@ std::string Pie::Outsidetextfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::color(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::color(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::color(const std::vector<std::string>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::colorsrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::colorsrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::family(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::family(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::family(const std::vector<std::string>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::linepositionsrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::linepositionsrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(const std::vector<std::string>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::shadowsrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::shadowsrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::size(double f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::size(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::size(const std::vector<double>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::sizesrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::sizesrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::style(enum Style f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::style(const std::vector<enum Style>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::stylesrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::stylesrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::textcase(enum Textcase f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::textcasesrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::textcasesrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::variant(enum Variant f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::variantsrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::variantsrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::weight(int f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::weight(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Pie::Outsidetextfont& Pie::Outsidetextfont::weight(const std::vector<int>& f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Pie::Outsidetextfont& Pie::Outsidetextfont::weightsrc(std::string f) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Outsidetextfont& Pie::Outsidetextfont::weightsrc(Callable&& c) {
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Pie::Stream& Pie::Stream::maxpoints(double f) {
+inline Pie::Stream& Pie::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Stream& Pie::Stream::maxpoints(Callable&& c) {
+inline Pie::Stream& Pie::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Pie::Stream& Pie::Stream::token(std::string f) {
+inline Pie::Stream& Pie::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Stream& Pie::Stream::token(Callable&& c) {
+inline Pie::Stream& Pie::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Pie::Textfont::to_string(Style e) {
+inline std::string Pie::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1990,7 +2082,7 @@ std::string Pie::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Textfont::to_string(Textcase e) {
+inline std::string Pie::Textfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2000,7 +2092,7 @@ std::string Pie::Textfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Textfont::to_string(Variant e) {
+inline std::string Pie::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2013,229 +2105,237 @@ std::string Pie::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Textfont& Pie::Textfont::color(std::string f) {
+inline Pie::Textfont& Pie::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Textfont& Pie::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::color(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Pie::Textfont& Pie::Textfont::color(const std::vector<std::string>& f) {
+inline Pie::Textfont& Pie::Textfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Pie::Textfont& Pie::Textfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::colorsrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::colorsrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::family(std::string f) {
+inline Pie::Textfont& Pie::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::family(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Pie::Textfont& Pie::Textfont::family(const std::vector<std::string>& f) {
+inline Pie::Textfont& Pie::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::familysrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::familysrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::lineposition(std::string f) {
+inline Pie::Textfont& Pie::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::lineposition(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Pie::Textfont& Pie::Textfont::lineposition(const std::vector<std::string>& f) {
+inline Pie::Textfont& Pie::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::linepositionsrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::linepositionsrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::shadow(std::string f) {
+inline Pie::Textfont& Pie::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::shadow(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Pie::Textfont& Pie::Textfont::shadow(const std::vector<std::string>& f) {
+inline Pie::Textfont& Pie::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::shadowsrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::shadowsrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::size(double f) {
+inline Pie::Textfont& Pie::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::size(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Pie::Textfont& Pie::Textfont::size(const std::vector<double>& f) {
+inline Pie::Textfont& Pie::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::sizesrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::sizesrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::style(enum Style f) {
+inline Pie::Textfont& Pie::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Pie::Textfont& Pie::Textfont::style(const std::vector<enum Style>& f) {
+inline Pie::Textfont& Pie::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::stylesrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::stylesrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::textcase(enum Textcase f) {
+inline Pie::Textfont& Pie::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Pie::Textfont& Pie::Textfont::textcase(const std::vector<enum Textcase>& f) {
+inline Pie::Textfont& Pie::Textfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::textcasesrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::textcasesrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::variant(enum Variant f) {
+inline Pie::Textfont& Pie::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Pie::Textfont& Pie::Textfont::variant(const std::vector<enum Variant>& f) {
+inline Pie::Textfont& Pie::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::variantsrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::variantsrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Pie::Textfont& Pie::Textfont::weight(int f) {
+inline Pie::Textfont& Pie::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::weight(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Pie::Textfont& Pie::Textfont::weight(const std::vector<int>& f) {
+inline Pie::Textfont& Pie::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Pie::Textfont& Pie::Textfont::weightsrc(std::string f) {
+inline Pie::Textfont& Pie::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Textfont& Pie::Textfont::weightsrc(Callable&& c) {
+inline Pie::Textfont& Pie::Textfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
-std::string Pie::Title::to_string(Position e) {
+inline std::string Pie::Title::to_string(Position e) {
     switch(e) {
         case Position::TopLeft: return "top left";
         case Position::TopCenter: return "top center";
@@ -2249,34 +2349,34 @@ std::string Pie::Title::to_string(Position e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Title& Pie::Title::font(Font f) {
+inline Pie::Title& Pie::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title& Pie::Title::font(Callable&& c) {
+inline Pie::Title& Pie::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Pie::Title& Pie::Title::position(enum Position f) {
+inline Pie::Title& Pie::Title::position(enum Position f) {
     json["position"] = to_string(f);
     return *this;
 }
 
-Pie::Title& Pie::Title::text(std::string f) {
+inline Pie::Title& Pie::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title& Pie::Title::text(Callable&& c) {
+inline Pie::Title& Pie::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Pie::Title::Font::to_string(Style e) {
+inline std::string Pie::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2284,7 +2384,7 @@ std::string Pie::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Title::Font::to_string(Textcase e) {
+inline std::string Pie::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2294,7 +2394,7 @@ std::string Pie::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Pie::Title::Font::to_string(Variant e) {
+inline std::string Pie::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2307,223 +2407,231 @@ std::string Pie::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Pie::Title::Font& Pie::Title::Font::color(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Pie::Title::Font& Pie::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::color(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Pie::Title::Font& Pie::Title::Font::color(const std::vector<std::string>& f) {
+inline Pie::Title::Font& Pie::Title::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Pie::Title::Font& Pie::Title::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::colorsrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::colorsrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::family(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::family(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Pie::Title::Font& Pie::Title::Font::family(const std::vector<std::string>& f) {
+inline Pie::Title::Font& Pie::Title::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::familysrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::familysrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::lineposition(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::lineposition(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Pie::Title::Font& Pie::Title::Font::lineposition(const std::vector<std::string>& f) {
+inline Pie::Title::Font& Pie::Title::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::linepositionsrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::linepositionsrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::shadow(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::shadow(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Pie::Title::Font& Pie::Title::Font::shadow(const std::vector<std::string>& f) {
+inline Pie::Title::Font& Pie::Title::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::shadowsrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::shadowsrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::size(double f) {
+inline Pie::Title::Font& Pie::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::size(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Pie::Title::Font& Pie::Title::Font::size(const std::vector<double>& f) {
+inline Pie::Title::Font& Pie::Title::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::sizesrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::sizesrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::style(enum Style f) {
+inline Pie::Title::Font& Pie::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Pie::Title::Font& Pie::Title::Font::style(const std::vector<enum Style>& f) {
+inline Pie::Title::Font& Pie::Title::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::stylesrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::stylesrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::textcase(enum Textcase f) {
+inline Pie::Title::Font& Pie::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Pie::Title::Font& Pie::Title::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Pie::Title::Font& Pie::Title::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::textcasesrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::textcasesrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::variant(enum Variant f) {
+inline Pie::Title::Font& Pie::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Pie::Title::Font& Pie::Title::Font::variant(const std::vector<enum Variant>& f) {
+inline Pie::Title::Font& Pie::Title::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::variantsrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::variantsrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Pie::Title::Font& Pie::Title::Font::weight(int f) {
+inline Pie::Title::Font& Pie::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::weight(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Pie::Title::Font& Pie::Title::Font::weight(const std::vector<int>& f) {
+inline Pie::Title::Font& Pie::Title::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Pie::Title::Font& Pie::Title::Font::weightsrc(std::string f) {
+inline Pie::Title::Font& Pie::Title::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Pie::Title::Font& Pie::Title::Font::weightsrc(Callable&& c) {
+inline Pie::Title::Font& Pie::Title::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));

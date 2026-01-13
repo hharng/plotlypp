@@ -216,6 +216,8 @@ class Layout {
     Layout& coloraxis(int index, Coloraxis f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Coloraxis&>>>
     Layout& coloraxis(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Coloraxis&>>>
+    Layout& coloraxis(int index, Callable&& c);
 
     Layout& colorscale(Colorscale f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorscale&>>>
@@ -223,7 +225,9 @@ class Layout {
 
     // Sets the default trace colors.
     Layout& colorway(const std::vector<std::string>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& colorway(const std::vector<double>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                                             std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout& colorway(Callable&& c);
 
     // Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in
@@ -263,6 +267,8 @@ class Layout {
     Layout& geo(int index, Geo f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Geo&>>>
     Layout& geo(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Geo&>>>
+    Layout& geo(int index, Callable&& c);
 
     Layout& grid(Grid f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Grid&>>>
@@ -318,16 +324,22 @@ class Layout {
     Layout& legend(int index, Legend f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legend&>>>
     Layout& legend(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legend&>>>
+    Layout& legend(int index, Callable&& c);
 
     Layout& map(Map f);
     Layout& map(int index, Map f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Map&>>>
     Layout& map(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Map&>>>
+    Layout& map(int index, Callable&& c);
 
     Layout& mapbox(Mapbox f);
     Layout& mapbox(int index, Mapbox f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Mapbox&>>>
     Layout& mapbox(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Mapbox&>>>
+    Layout& mapbox(int index, Callable&& c);
 
     Layout& margin(Margin f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Margin&>>>
@@ -374,23 +386,31 @@ class Layout {
 
     // Sets the background color of the paper where the graph is drawn.
     Layout& paper_bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout& paper_bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout& paper_bgcolor(Callable&& c);
 
     // Sets the background color of the plotting area in-between x and y axes.
     Layout& plot_bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout& plot_bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout& plot_bgcolor(Callable&& c);
 
     Layout& polar(Polar f);
     Layout& polar(int index, Polar f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Polar&>>>
     Layout& polar(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Polar&>>>
+    Layout& polar(int index, Callable&& c);
 
     Layout& scene(Scene f);
     Layout& scene(int index, Scene f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Scene&>>>
     Layout& scene(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Scene&>>>
+    Layout& scene(int index, Callable&& c);
 
     // When `dragmode` is set to *select*, this limits the selection of the drag to horizontal, vertical or diagonal.
     // *h* only allows horizontal selection, *v* only vertical, *d* only diagonal and *any* sets no limit.
@@ -435,6 +455,8 @@ class Layout {
     Layout& smith(int index, Smith f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Smith&>>>
     Layout& smith(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Smith&>>>
+    Layout& smith(int index, Callable&& c);
 
     // Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no cutoff, 0 means no
     // looking for data). As with hoverdistance, distance does not apply to area-like objects. In addition, some objects
@@ -462,6 +484,8 @@ class Layout {
     Layout& ternary(int index, Ternary f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Ternary&>>>
     Layout& ternary(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Ternary&>>>
+    Layout& ternary(int index, Callable&& c);
 
     Layout& title(Title f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Title&>>>
@@ -504,11 +528,15 @@ class Layout {
     Layout& xaxis(int index, Xaxis f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Xaxis&>>>
     Layout& xaxis(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Xaxis&>>>
+    Layout& xaxis(int index, Callable&& c);
 
     Layout& yaxis(Yaxis f);
     Layout& yaxis(int index, Yaxis f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Yaxis&>>>
     Layout& yaxis(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Yaxis&>>>
+    Layout& yaxis(int index, Callable&& c);
 
     // Sets the rounding of bar corners. May be an integer number of pixels, or a percentage of bar width (as a string
     // ending in %).
@@ -587,7 +615,9 @@ class Layout {
     // Sets the default funnelarea slice colors. Defaults to the main `colorway` used for trace colors. If you specify a
     // new list here it can still be extended with lighter and darker colors, see `extendfunnelareacolors`.
     Layout& funnelareacolorway(const std::vector<std::string>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& funnelareacolorway(const std::vector<double>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                                             std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout& funnelareacolorway(Callable&& c);
 
     // hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can
@@ -615,7 +645,9 @@ class Layout {
     // Sets the default icicle slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new
     // list here it can still be extended with lighter and darker colors, see `extendiciclecolors`.
     Layout& iciclecolorway(const std::vector<std::string>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& iciclecolorway(const std::vector<double>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                                             std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout& iciclecolorway(Callable&& c);
 
     // If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to
@@ -629,7 +661,9 @@ class Layout {
     // Sets the default pie slice colors. Defaults to the main `colorway` used for trace colors. If you specify a new
     // list here it can still be extended with lighter and darker colors, see `extendpiecolors`.
     Layout& piecolorway(const std::vector<std::string>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& piecolorway(const std::vector<double>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                                             std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout& piecolorway(Callable&& c);
 
     // Sets the gap (in plot fraction) between scatter points of adjacent location coordinates. Defaults to `bargap`.
@@ -654,7 +688,9 @@ class Layout {
     // Sets the default sunburst slice colors. Defaults to the main `colorway` used for trace colors. If you specify a
     // new list here it can still be extended with lighter and darker colors, see `extendsunburstcolors`.
     Layout& sunburstcolorway(const std::vector<std::string>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& sunburstcolorway(const std::vector<double>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                                             std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout& sunburstcolorway(Callable&& c);
 
     // If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be
@@ -668,7 +704,9 @@ class Layout {
     // Sets the default treemap slice colors. Defaults to the main `colorway` used for trace colors. If you specify a
     // new list here it can still be extended with lighter and darker colors, see `extendtreemapcolors`.
     Layout& treemapcolorway(const std::vector<std::string>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&>>>
+    Layout& treemapcolorway(const std::vector<double>& f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                                             std::is_invocable_v<Callable, std::vector<double>&>>>
     Layout& treemapcolorway(Callable&& c);
 
     // Sets the gap (in plot fraction) between violins of adjacent location coordinates. Has no effect on traces that
@@ -718,7 +756,9 @@ class Layout::Activeselection {
 
     // Sets the color filling the active selection' interior.
     Layout::Activeselection& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Activeselection& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Activeselection& fillcolor(Callable&& c);
 
     // Sets the opacity of the active selection.
@@ -738,7 +778,9 @@ class Layout::Activeshape {
 
     // Sets the color filling the active shape' interior.
     Layout::Activeshape& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Activeshape& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Activeshape& fillcolor(Callable&& c);
 
     // Sets the opacity of the active shape.
@@ -804,7 +846,9 @@ class Layout::Annotation {
 
     // Sets the color of the annotation arrow.
     Layout::Annotation& arrowcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation& arrowcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation& arrowcolor(Callable&& c);
 
     // Sets the end annotation arrow head style.
@@ -881,12 +925,16 @@ class Layout::Annotation {
 
     // Sets the background color of the annotation.
     Layout::Annotation& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the annotation `text`.
     Layout::Annotation& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation& bordercolor(Callable&& c);
 
     // Sets the padding (in px) between the `text` and the enclosing border.
@@ -1135,7 +1183,9 @@ class Layout::Annotation::Font {
     static std::string to_string(Variant e);
 
     Layout::Annotation::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1203,13 +1253,17 @@ class Layout::Annotation::Hoverlabel {
     // Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if
     // it was transparent.
     Layout::Annotation::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation::Hoverlabel& bgcolor(Callable&& c);
 
     // Sets the border color of the hover label. By default uses either dark grey or white, for maximum contrast with
     // `hoverlabel.bgcolor`.
     Layout::Annotation::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation::Hoverlabel& bordercolor(Callable&& c);
 
     // Sets the hover label text font. By default uses the global hover font and size, with color from
@@ -1255,7 +1309,9 @@ class Layout::Annotation::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Layout::Annotation::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Annotation::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Annotation::Hoverlabel::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1507,12 +1563,16 @@ class Layout::Coloraxis::Colorbar {
 
     // Sets the color of padded area.
     Layout::Coloraxis::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Coloraxis::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Coloraxis::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Layout::Coloraxis::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Coloraxis::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Coloraxis::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1581,7 +1641,9 @@ class Layout::Coloraxis::Colorbar {
 
     // Sets the axis line color.
     Layout::Coloraxis::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Coloraxis::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Coloraxis::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1641,7 +1703,9 @@ class Layout::Coloraxis::Colorbar {
 
     // Sets the tick color.
     Layout::Coloraxis::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Coloraxis::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Coloraxis::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1823,7 +1887,9 @@ class Layout::Coloraxis::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Coloraxis::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Coloraxis::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Coloraxis::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1887,7 +1953,14 @@ class Layout::Coloraxis::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Coloraxis::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1987,7 +2060,9 @@ class Layout::Coloraxis::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Coloraxis::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Coloraxis::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Coloraxis::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -2110,7 +2185,9 @@ class Layout::Font {
     static std::string to_string(Variant e);
 
     Layout::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -2203,7 +2280,9 @@ class Layout::Geo {
 
     // Set the background color of the map
     Layout::Geo& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& bgcolor(Callable&& c);
 
     Layout::Geo& center(Center f);
@@ -2212,7 +2291,9 @@ class Layout::Geo {
 
     // Sets the coastline color.
     Layout::Geo& coastlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& coastlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& coastlinecolor(Callable&& c);
 
     // Sets the coastline stroke width (in px).
@@ -2222,7 +2303,9 @@ class Layout::Geo {
 
     // Sets line color of the country boundaries.
     Layout::Geo& countrycolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& countrycolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& countrycolor(Callable&& c);
 
     // Sets line width (in px) of the country boundaries.
@@ -2246,7 +2329,9 @@ class Layout::Geo {
 
     // Sets the color the frame.
     Layout::Geo& framecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& framecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& framecolor(Callable&& c);
 
     // Sets the stroke width (in px) of the frame.
@@ -2256,12 +2341,16 @@ class Layout::Geo {
 
     // Sets the color of the lakes.
     Layout::Geo& lakecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& lakecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& lakecolor(Callable&& c);
 
     // Sets the land mass color.
     Layout::Geo& landcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& landcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& landcolor(Callable&& c);
 
     Layout::Geo& lataxis(Lataxis f);
@@ -2274,7 +2363,9 @@ class Layout::Geo {
 
     // Sets the ocean color
     Layout::Geo& oceancolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& oceancolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& oceancolor(Callable&& c);
 
     Layout::Geo& projection(Projection f);
@@ -2288,7 +2379,9 @@ class Layout::Geo {
 
     // Sets color of the rivers.
     Layout::Geo& rivercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& rivercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& rivercolor(Callable&& c);
 
     // Sets the stroke width (in px) of the rivers.
@@ -2342,7 +2435,9 @@ class Layout::Geo {
 
     // Sets the color of the subunits boundaries.
     Layout::Geo& subunitcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo& subunitcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo& subunitcolor(Callable&& c);
 
     // Sets the stroke width (in px) of the subunits boundaries.
@@ -2410,13 +2505,27 @@ class Layout::Geo::Domain {
     // Sets the horizontal domain of this geo subplot (in plot fraction). Note that geo subplots are constrained by
     // domain. In general, when `projection.scale` is set to 1. a map will fit either its x or y domain, but not both.
     Layout::Geo::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Geo::Domain& x(const std::vector<std::string>& f);
+    Layout::Geo::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Geo::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Geo::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this geo subplot (in plot fraction). Note that geo subplots are constrained by
     // domain. In general, when `projection.scale` is set to 1. a map will fit either its x or y domain, but not both.
     Layout::Geo::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Geo::Domain& y(const std::vector<std::string>& f);
+    Layout::Geo::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Geo::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Geo::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2436,7 +2545,9 @@ class Layout::Geo::Lataxis {
 
     // Sets the graticule's stroke color.
     Layout::Geo::Lataxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo::Lataxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo::Lataxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -2452,7 +2563,14 @@ class Layout::Geo::Lataxis {
 
     // Sets the range of this axis (in degrees), sets the map's clipped coordinates.
     Layout::Geo::Lataxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Geo::Lataxis& range(const std::vector<std::string>& f);
+    Layout::Geo::Lataxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Geo::Lataxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Geo::Lataxis& range(Callable&& c);
 
     // Sets whether or not graticule are shown on the map.
@@ -2482,7 +2600,9 @@ class Layout::Geo::Lonaxis {
 
     // Sets the graticule's stroke color.
     Layout::Geo::Lonaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Geo::Lonaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Geo::Lonaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -2498,7 +2618,14 @@ class Layout::Geo::Lonaxis {
 
     // Sets the range of this axis (in degrees), sets the map's clipped coordinates.
     Layout::Geo::Lonaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Geo::Lonaxis& range(const std::vector<std::string>& f);
+    Layout::Geo::Lonaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Geo::Lonaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Geo::Lonaxis& range(Callable&& c);
 
     // Sets whether or not graticule are shown on the map.
@@ -2619,7 +2746,14 @@ class Layout::Geo::Projection {
 
     // For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
     Layout::Geo::Projection& parallels(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Geo::Projection& parallels(const std::vector<std::string>& f);
+    Layout::Geo::Projection& parallels(const std::vector<std::vector<std::string>>& f);
+    Layout::Geo::Projection& parallels(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Geo::Projection& parallels(Callable&& c);
 
     Layout::Geo::Projection& rotation(Rotation f);
@@ -2739,14 +2873,28 @@ class Layout::Grid {
     // column, and y axes within the same row. Non-cartesian subplots and traces that support `domain` can place
     // themselves in this grid separately using the `gridcell` attribute.
     Layout::Grid& subplots(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Grid& subplots(const std::vector<std::string>& f);
+    Layout::Grid& subplots(const std::vector<std::vector<std::string>>& f);
+    Layout::Grid& subplots(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Grid& subplots(Callable&& c);
 
     // Used with `yaxes` when the x and y axes are shared across columns and rows. Each entry should be an x axis id
     // like *x*, *x2*, etc., or ** to not put an x axis in that column. Entries other than ** must be unique. Ignored if
     // `subplots` is present. If missing but `yaxes` is present, will generate consecutive IDs.
     Layout::Grid& xaxes(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Grid& xaxes(const std::vector<std::string>& f);
+    Layout::Grid& xaxes(const std::vector<std::vector<std::string>>& f);
+    Layout::Grid& xaxes(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Grid& xaxes(Callable&& c);
 
     // Horizontal space between grid cells, expressed as a fraction of the total width available to one cell. Defaults
@@ -2764,7 +2912,14 @@ class Layout::Grid {
     // like *y*, *y2*, etc., or ** to not put a y axis in that row. Entries other than ** must be unique. Ignored if
     // `subplots` is present. If missing but `xaxes` is present, will generate consecutive IDs.
     Layout::Grid& yaxes(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Grid& yaxes(const std::vector<std::string>& f);
+    Layout::Grid& yaxes(const std::vector<std::vector<std::string>>& f);
+    Layout::Grid& yaxes(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Grid& yaxes(Callable&& c);
 
     // Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to
@@ -2791,13 +2946,27 @@ class Layout::Grid::Domain {
     // Sets the horizontal domain of this grid subplot (in plot fraction). The first and last cells end exactly at the
     // domain edges, with no grout around the edges.
     Layout::Grid::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Grid::Domain& x(const std::vector<std::string>& f);
+    Layout::Grid::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Grid::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Grid::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this grid subplot (in plot fraction). The first and last cells end exactly at the
     // domain edges, with no grout around the edges.
     Layout::Grid::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Grid::Domain& y(const std::vector<std::string>& f);
+    Layout::Grid::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Grid::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Grid::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2829,12 +2998,16 @@ class Layout::Hoverlabel {
 
     // Sets the background color of all hover labels on graph
     Layout::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Hoverlabel& bgcolor(Callable&& c);
 
     // Sets the border color of all hover labels on graph.
     Layout::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Hoverlabel& bordercolor(Callable&& c);
 
     // Sets the default hover label font used by all traces on the graph.
@@ -2891,7 +3064,9 @@ class Layout::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Layout::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Hoverlabel::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -2978,7 +3153,9 @@ class Layout::Hoverlabel::Grouptitlefont {
     static std::string to_string(Variant e);
 
     Layout::Hoverlabel::Grouptitlefont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Hoverlabel::Grouptitlefont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Hoverlabel::Grouptitlefont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -3257,12 +3434,16 @@ class Layout::Legend {
 
     // Sets the legend background color. Defaults to `layout.paper_bgcolor`.
     Layout::Legend& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Legend& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Legend& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the legend.
     Layout::Legend& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Legend& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Legend& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the legend.
@@ -3437,7 +3618,9 @@ class Layout::Legend::Font {
     static std::string to_string(Variant e);
 
     Layout::Legend::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Legend::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Legend::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -3524,7 +3707,9 @@ class Layout::Legend::Grouptitlefont {
     static std::string to_string(Variant e);
 
     Layout::Legend::Grouptitlefont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Legend::Grouptitlefont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Legend::Grouptitlefont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -3648,7 +3833,9 @@ class Layout::Legend::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Legend::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Legend::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Legend::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -3840,12 +4027,26 @@ class Layout::Map::Domain {
 
     // Sets the horizontal domain of this map subplot (in plot fraction).
     Layout::Map::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Map::Domain& x(const std::vector<std::string>& f);
+    Layout::Map::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Map::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Map::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this map subplot (in plot fraction).
     Layout::Map::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Map::Domain& y(const std::vector<std::string>& f);
+    Layout::Map::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Map::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Map::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -3896,7 +4097,9 @@ class Layout::Map::Layer {
     // (map.layer.paint.fill-color) If `type` is *symbol*, color corresponds to the icon color
     // (map.layer.paint.icon-color)
     Layout::Map::Layer& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Map::Layer& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Map::Layer& color(Callable&& c);
 
     // Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order:
@@ -4019,7 +4222,9 @@ class Layout::Map::Layer::Fill {
     // Sets the fill outline color (map.layer.paint.fill-outline-color). Has an effect only when `type` is set to
     // *fill*.
     Layout::Map::Layer::Fill& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Map::Layer::Fill& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Map::Layer::Fill& outlinecolor(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -4135,7 +4340,9 @@ class Layout::Map::Layer::Symbol::Textfont {
     static std::string to_string(Style e);
 
     Layout::Map::Layer::Symbol::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Map::Layer::Symbol::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Map::Layer::Symbol::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -4313,12 +4520,26 @@ class Layout::Mapbox::Domain {
 
     // Sets the horizontal domain of this mapbox subplot (in plot fraction).
     Layout::Mapbox::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Mapbox::Domain& x(const std::vector<std::string>& f);
+    Layout::Mapbox::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Mapbox::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Mapbox::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this mapbox subplot (in plot fraction).
     Layout::Mapbox::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Mapbox::Domain& y(const std::vector<std::string>& f);
+    Layout::Mapbox::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Mapbox::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Mapbox::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -4369,7 +4590,9 @@ class Layout::Mapbox::Layer {
     // (mapbox.layer.paint.fill-color) If `type` is *symbol*, color corresponds to the icon color
     // (mapbox.layer.paint.icon-color)
     Layout::Mapbox::Layer& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Mapbox::Layer& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Mapbox::Layer& color(Callable&& c);
 
     // Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order:
@@ -4493,7 +4716,9 @@ class Layout::Mapbox::Layer::Fill {
     // Sets the fill outline color (mapbox.layer.paint.fill-outline-color). Has an effect only when `type` is set to
     // *fill*.
     Layout::Mapbox::Layer::Fill& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Mapbox::Layer::Fill& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Mapbox::Layer::Fill& outlinecolor(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -4609,7 +4834,9 @@ class Layout::Mapbox::Layer::Symbol::Textfont {
     static std::string to_string(Style e);
 
     Layout::Mapbox::Layer::Symbol::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Mapbox::Layer::Symbol::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Mapbox::Layer::Symbol::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -4695,7 +4922,9 @@ class Layout::Modebar {
 
     // Sets the color of the active or hovered on icons in the modebar.
     Layout::Modebar& activecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Modebar& activecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Modebar& activecolor(Callable&& c);
 
     // Determines which predefined modebar buttons to add. Please note that these buttons will only be shown if they are
@@ -4714,12 +4943,16 @@ class Layout::Modebar {
 
     // Sets the background color of the modebar.
     Layout::Modebar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Modebar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Modebar& bgcolor(Callable&& c);
 
     // Sets the color of the icons in the modebar.
     Layout::Modebar& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Modebar& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Modebar& color(Callable&& c);
 
     // Sets the orientation of the modebar.
@@ -4792,7 +5025,9 @@ class Layout::Newselection::Line {
 
     // Sets the line color. By default uses either dark grey or white to increase contrast with background color.
     Layout::Newselection::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Newselection::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Newselection::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -4857,7 +5092,9 @@ class Layout::Newshape {
     // Sets the color filling new shapes' interior. Please note that if using a fillcolor with alpha greater than half,
     // drag inside the active shape starts moving the shape underneath, otherwise a new shape could be started over.
     Layout::Newshape& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Newshape& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Newshape& fillcolor(Callable&& c);
 
     // Determines the path's interior. For more info please visit
@@ -5060,7 +5297,9 @@ class Layout::Newshape::Label::Font {
     static std::string to_string(Variant e);
 
     Layout::Newshape::Label::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Newshape::Label::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Newshape::Label::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -5170,7 +5409,9 @@ class Layout::Newshape::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Layout::Newshape::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Newshape::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Newshape::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -5233,7 +5474,9 @@ class Layout::Newshape::Line {
 
     // Sets the line color. By default uses either dark grey or white to increase contrast with background color.
     Layout::Newshape::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Newshape::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Newshape::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -5273,7 +5516,9 @@ class Layout::Polar {
 
     // Set the background color of the subplot
     Layout::Polar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar& bgcolor(Callable&& c);
 
     Layout::Polar& domain(Domain f);
@@ -5299,7 +5544,14 @@ class Layout::Polar {
     // Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the
     // counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
     Layout::Polar& sector(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar& sector(const std::vector<std::string>& f);
+    Layout::Polar& sector(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar& sector(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar& sector(Callable&& c);
 
     // Controls persistence of user-driven changes in axis attributes, if not overridden in the individual axes.
@@ -5457,7 +5709,9 @@ class Layout::Polar::Angularaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Polar::Angularaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Angularaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Angularaxis& color(Callable&& c);
 
     // Sets the direction corresponding to positive angles.
@@ -5489,7 +5743,9 @@ class Layout::Polar::Angularaxis {
 
     // Sets the color of the grid lines.
     Layout::Polar::Angularaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Angularaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Angularaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -5531,7 +5787,9 @@ class Layout::Polar::Angularaxis {
 
     // Sets the axis line color.
     Layout::Polar::Angularaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Angularaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Angularaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -5619,7 +5877,9 @@ class Layout::Polar::Angularaxis {
 
     // Sets the tick color.
     Layout::Polar::Angularaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Angularaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Angularaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -5760,7 +6020,9 @@ class Layout::Polar::Angularaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Polar::Angularaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Angularaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Angularaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -5824,7 +6086,14 @@ class Layout::Polar::Angularaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Polar::Angularaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar::Angularaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Polar::Angularaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar::Angularaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar::Angularaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -5876,12 +6145,26 @@ class Layout::Polar::Domain {
 
     // Sets the horizontal domain of this polar subplot (in plot fraction).
     Layout::Polar::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar::Domain& x(const std::vector<std::string>& f);
+    Layout::Polar::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this polar subplot (in plot fraction).
     Layout::Polar::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar::Domain& y(const std::vector<std::string>& f);
+    Layout::Polar::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -6057,7 +6340,14 @@ class Layout::Polar::Radialaxis {
     // When `tickangle` is set to *auto*, it will be set to the first angle in this array that is large enough to
     // prevent label overlap.
     Layout::Polar::Radialaxis& autotickangles(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar::Radialaxis& autotickangles(const std::vector<std::string>& f);
+    Layout::Polar::Radialaxis& autotickangles(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar::Radialaxis& autotickangles(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar::Radialaxis& autotickangles(Callable&& c);
 
     // Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric
@@ -6099,7 +6389,9 @@ class Layout::Polar::Radialaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Polar::Radialaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Radialaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Radialaxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -6127,7 +6419,9 @@ class Layout::Polar::Radialaxis {
 
     // Sets the color of the grid lines.
     Layout::Polar::Radialaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Radialaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Radialaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -6169,7 +6463,9 @@ class Layout::Polar::Radialaxis {
 
     // Sets the axis line color.
     Layout::Polar::Radialaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Radialaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Radialaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -6206,7 +6502,14 @@ class Layout::Polar::Radialaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears. Leaving either or both elements `null` impacts the default `autorange`.
     Layout::Polar::Radialaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar::Radialaxis& range(const std::vector<std::string>& f);
+    Layout::Polar::Radialaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar::Radialaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar::Radialaxis& range(Callable&& c);
 
     // If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative,
@@ -6271,7 +6574,9 @@ class Layout::Polar::Radialaxis {
 
     // Sets the tick color.
     Layout::Polar::Radialaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Radialaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Radialaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -6466,7 +6771,9 @@ class Layout::Polar::Radialaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Polar::Radialaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Radialaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Radialaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -6530,7 +6837,14 @@ class Layout::Polar::Radialaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Polar::Radialaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Polar::Radialaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Polar::Radialaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Polar::Radialaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Polar::Radialaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -6619,7 +6933,9 @@ class Layout::Polar::Radialaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Polar::Radialaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Polar::Radialaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Polar::Radialaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -6731,7 +7047,9 @@ class Layout::Scene {
     Layout::Scene& aspectratio(Callable&& c);
 
     Layout::Scene& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene& bgcolor(Callable&& c);
 
     Layout::Scene& camera(Camera f);
@@ -6818,7 +7136,9 @@ class Layout::Scene::Annotation {
 
     // Sets the color of the annotation arrow.
     Layout::Scene::Annotation& arrowcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation& arrowcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation& arrowcolor(Callable&& c);
 
     // Sets the end annotation arrow head style.
@@ -6857,12 +7177,16 @@ class Layout::Scene::Annotation {
 
     // Sets the background color of the annotation.
     Layout::Scene::Annotation& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the annotation `text`.
     Layout::Scene::Annotation& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation& bordercolor(Callable&& c);
 
     // Sets the padding (in px) between the `text` and the enclosing border.
@@ -7065,7 +7389,9 @@ class Layout::Scene::Annotation::Font {
     static std::string to_string(Variant e);
 
     Layout::Scene::Annotation::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -7133,13 +7459,17 @@ class Layout::Scene::Annotation::Hoverlabel {
     // Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if
     // it was transparent.
     Layout::Scene::Annotation::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation::Hoverlabel& bgcolor(Callable&& c);
 
     // Sets the border color of the hover label. By default uses either dark grey or white, for maximum contrast with
     // `hoverlabel.bgcolor`.
     Layout::Scene::Annotation::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation::Hoverlabel& bordercolor(Callable&& c);
 
     // Sets the hover label text font. By default uses the global hover font and size, with color from
@@ -7185,7 +7515,9 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Layout::Scene::Annotation::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Annotation::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Annotation::Hoverlabel::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -7433,12 +7765,26 @@ class Layout::Scene::Domain {
 
     // Sets the horizontal domain of this scene subplot (in plot fraction).
     Layout::Scene::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Domain& x(const std::vector<std::string>& f);
+    Layout::Scene::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this scene subplot (in plot fraction).
     Layout::Scene::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Domain& y(const std::vector<std::string>& f);
+    Layout::Scene::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -7609,7 +7955,9 @@ class Layout::Scene::Xaxis {
 
     // Sets the background color of this axis' wall.
     Layout::Scene::Xaxis& backgroundcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& backgroundcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& backgroundcolor(Callable&& c);
 
     // Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar
@@ -7645,7 +7993,9 @@ class Layout::Scene::Xaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Scene::Xaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -7673,7 +8023,9 @@ class Layout::Scene::Xaxis {
 
     // Sets the color of the grid lines.
     Layout::Scene::Xaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& gridcolor(Callable&& c);
 
     // Sets the width (in px) of the grid lines.
@@ -7702,7 +8054,9 @@ class Layout::Scene::Xaxis {
 
     // Sets the axis line color.
     Layout::Scene::Xaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -7746,7 +8100,14 @@ class Layout::Scene::Xaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears. Leaving either or both elements `null` impacts the default `autorange`.
     Layout::Scene::Xaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Xaxis& range(const std::vector<std::string>& f);
+    Layout::Scene::Xaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Xaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Xaxis& range(Callable&& c);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
@@ -7806,7 +8167,9 @@ class Layout::Scene::Xaxis {
 
     // Sets the color of the spikes.
     Layout::Scene::Xaxis& spikecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& spikecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& spikecolor(Callable&& c);
 
     // Sets whether or not spikes extending from the projection data points to this axis' wall boundaries are shown on
@@ -7838,7 +8201,9 @@ class Layout::Scene::Xaxis {
 
     // Sets the tick color.
     Layout::Scene::Xaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -7941,7 +8306,9 @@ class Layout::Scene::Xaxis {
 
     // Sets the line color of the zero line.
     Layout::Scene::Xaxis& zerolinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis& zerolinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis& zerolinecolor(Callable&& c);
 
     // Sets the width (in px) of the zero line.
@@ -8034,7 +8401,9 @@ class Layout::Scene::Xaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Scene::Xaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -8098,7 +8467,14 @@ class Layout::Scene::Xaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Scene::Xaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Xaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Scene::Xaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Xaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Xaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -8187,7 +8563,9 @@ class Layout::Scene::Xaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Scene::Xaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Xaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Xaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -8406,7 +8784,9 @@ class Layout::Scene::Yaxis {
 
     // Sets the background color of this axis' wall.
     Layout::Scene::Yaxis& backgroundcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& backgroundcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& backgroundcolor(Callable&& c);
 
     // Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar
@@ -8442,7 +8822,9 @@ class Layout::Scene::Yaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Scene::Yaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -8470,7 +8852,9 @@ class Layout::Scene::Yaxis {
 
     // Sets the color of the grid lines.
     Layout::Scene::Yaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& gridcolor(Callable&& c);
 
     // Sets the width (in px) of the grid lines.
@@ -8499,7 +8883,9 @@ class Layout::Scene::Yaxis {
 
     // Sets the axis line color.
     Layout::Scene::Yaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -8543,7 +8929,14 @@ class Layout::Scene::Yaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears. Leaving either or both elements `null` impacts the default `autorange`.
     Layout::Scene::Yaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Yaxis& range(const std::vector<std::string>& f);
+    Layout::Scene::Yaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Yaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Yaxis& range(Callable&& c);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
@@ -8603,7 +8996,9 @@ class Layout::Scene::Yaxis {
 
     // Sets the color of the spikes.
     Layout::Scene::Yaxis& spikecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& spikecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& spikecolor(Callable&& c);
 
     // Sets whether or not spikes extending from the projection data points to this axis' wall boundaries are shown on
@@ -8635,7 +9030,9 @@ class Layout::Scene::Yaxis {
 
     // Sets the tick color.
     Layout::Scene::Yaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -8738,7 +9135,9 @@ class Layout::Scene::Yaxis {
 
     // Sets the line color of the zero line.
     Layout::Scene::Yaxis& zerolinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis& zerolinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis& zerolinecolor(Callable&& c);
 
     // Sets the width (in px) of the zero line.
@@ -8831,7 +9230,9 @@ class Layout::Scene::Yaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Scene::Yaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -8895,7 +9296,14 @@ class Layout::Scene::Yaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Scene::Yaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Yaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Scene::Yaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Yaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Yaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -8984,7 +9392,9 @@ class Layout::Scene::Yaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Scene::Yaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Yaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Yaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -9203,7 +9613,9 @@ class Layout::Scene::Zaxis {
 
     // Sets the background color of this axis' wall.
     Layout::Scene::Zaxis& backgroundcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& backgroundcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& backgroundcolor(Callable&& c);
 
     // Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar
@@ -9239,7 +9651,9 @@ class Layout::Scene::Zaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Scene::Zaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -9267,7 +9681,9 @@ class Layout::Scene::Zaxis {
 
     // Sets the color of the grid lines.
     Layout::Scene::Zaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& gridcolor(Callable&& c);
 
     // Sets the width (in px) of the grid lines.
@@ -9296,7 +9712,9 @@ class Layout::Scene::Zaxis {
 
     // Sets the axis line color.
     Layout::Scene::Zaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -9340,7 +9758,14 @@ class Layout::Scene::Zaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears. Leaving either or both elements `null` impacts the default `autorange`.
     Layout::Scene::Zaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Zaxis& range(const std::vector<std::string>& f);
+    Layout::Scene::Zaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Zaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Zaxis& range(Callable&& c);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
@@ -9400,7 +9825,9 @@ class Layout::Scene::Zaxis {
 
     // Sets the color of the spikes.
     Layout::Scene::Zaxis& spikecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& spikecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& spikecolor(Callable&& c);
 
     // Sets whether or not spikes extending from the projection data points to this axis' wall boundaries are shown on
@@ -9432,7 +9859,9 @@ class Layout::Scene::Zaxis {
 
     // Sets the tick color.
     Layout::Scene::Zaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -9535,7 +9964,9 @@ class Layout::Scene::Zaxis {
 
     // Sets the line color of the zero line.
     Layout::Scene::Zaxis& zerolinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis& zerolinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis& zerolinecolor(Callable&& c);
 
     // Sets the width (in px) of the zero line.
@@ -9628,7 +10059,9 @@ class Layout::Scene::Zaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Scene::Zaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -9692,7 +10125,14 @@ class Layout::Scene::Zaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Scene::Zaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Scene::Zaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Scene::Zaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Scene::Zaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Scene::Zaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -9781,7 +10221,9 @@ class Layout::Scene::Zaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Scene::Zaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Scene::Zaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Scene::Zaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -9944,7 +10386,9 @@ class Layout::Selection::Line {
 
     // Sets the line color.
     Layout::Selection::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Selection::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Selection::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -10020,7 +10464,9 @@ class Layout::Shape {
 
     // Sets the color filling the shape's interior. Only applies to closed shapes.
     Layout::Shape& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Shape& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Shape& fillcolor(Callable&& c);
 
     // Determines which regions of complex paths constitute the interior. For more info please visit
@@ -10360,7 +10806,9 @@ class Layout::Shape::Label::Font {
     static std::string to_string(Variant e);
 
     Layout::Shape::Label::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Shape::Label::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Shape::Label::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -10470,7 +10918,9 @@ class Layout::Shape::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Layout::Shape::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Shape::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Shape::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -10533,7 +10983,9 @@ class Layout::Shape::Line {
 
     // Sets the line color.
     Layout::Shape::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Shape::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Shape::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -10594,17 +11046,23 @@ class Layout::Slider {
 
     // Sets the background color of the slider grip while dragging.
     Layout::Slider& activebgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Slider& activebgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Slider& activebgcolor(Callable&& c);
 
     // Sets the background color of the slider.
     Layout::Slider& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Slider& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Slider& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the slider.
     Layout::Slider& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Slider& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Slider& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the slider.
@@ -10666,7 +11124,9 @@ class Layout::Slider {
 
     // Sets the color of the border enclosing the slider.
     Layout::Slider& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Slider& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Slider& tickcolor(Callable&& c);
 
     // Sets the length in pixels of step tick marks
@@ -10793,7 +11253,9 @@ class Layout::Slider::Currentvalue::Font {
     static std::string to_string(Variant e);
 
     Layout::Slider::Currentvalue::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Slider::Currentvalue::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Slider::Currentvalue::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -10880,7 +11342,9 @@ class Layout::Slider::Font {
     static std::string to_string(Variant e);
 
     Layout::Slider::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Slider::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Slider::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -10983,7 +11447,14 @@ class Layout::Slider::Step {
 
     // Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     Layout::Slider::Step& args(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Slider::Step& args(const std::vector<std::string>& f);
+    Layout::Slider::Step& args(const std::vector<std::vector<std::string>>& f);
+    Layout::Slider::Step& args(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Slider::Step& args(Callable&& c);
 
     // When true, the API method is executed. When false, all other behaviors are the same and command execution is
@@ -11108,7 +11579,9 @@ class Layout::Smith {
 
     // Set the background color of the subplot
     Layout::Smith& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith& bgcolor(Callable&& c);
 
     Layout::Smith& domain(Domain f);
@@ -11145,12 +11618,26 @@ class Layout::Smith::Domain {
 
     // Sets the horizontal domain of this smith subplot (in plot fraction).
     Layout::Smith::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Smith::Domain& x(const std::vector<std::string>& f);
+    Layout::Smith::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Smith::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Smith::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this smith subplot (in plot fraction).
     Layout::Smith::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Smith::Domain& y(const std::vector<std::string>& f);
+    Layout::Smith::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Smith::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Smith::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -11198,12 +11685,16 @@ class Layout::Smith::Imaginaryaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Smith::Imaginaryaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Imaginaryaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Imaginaryaxis& color(Callable&& c);
 
     // Sets the color of the grid lines.
     Layout::Smith::Imaginaryaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Imaginaryaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Imaginaryaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -11245,7 +11736,9 @@ class Layout::Smith::Imaginaryaxis {
 
     // Sets the axis line color.
     Layout::Smith::Imaginaryaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Imaginaryaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Imaginaryaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -11279,7 +11772,9 @@ class Layout::Smith::Imaginaryaxis {
 
     // Sets the tick color.
     Layout::Smith::Imaginaryaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Imaginaryaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Imaginaryaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -11376,7 +11871,9 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Smith::Imaginaryaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Imaginaryaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Imaginaryaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -11478,12 +11975,16 @@ class Layout::Smith::Realaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Smith::Realaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Realaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Realaxis& color(Callable&& c);
 
     // Sets the color of the grid lines.
     Layout::Smith::Realaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Realaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Realaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -11525,7 +12026,9 @@ class Layout::Smith::Realaxis {
 
     // Sets the axis line color.
     Layout::Smith::Realaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Realaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Realaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -11569,7 +12072,9 @@ class Layout::Smith::Realaxis {
 
     // Sets the tick color.
     Layout::Smith::Realaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Realaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Realaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -11665,7 +12170,9 @@ class Layout::Smith::Realaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Smith::Realaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Smith::Realaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Smith::Realaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -11741,7 +12248,9 @@ class Layout::Ternary {
 
     // Set the background color of the subplot
     Layout::Ternary& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary& bgcolor(Callable&& c);
 
     Layout::Ternary& caxis(Caxis f);
@@ -11835,7 +12344,9 @@ class Layout::Ternary::Aaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Ternary::Aaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Aaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Aaxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -11863,7 +12374,9 @@ class Layout::Ternary::Aaxis {
 
     // Sets the color of the grid lines.
     Layout::Ternary::Aaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Aaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Aaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -11905,7 +12418,9 @@ class Layout::Ternary::Aaxis {
 
     // Sets the axis line color.
     Layout::Ternary::Aaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Aaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Aaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -11982,7 +12497,9 @@ class Layout::Ternary::Aaxis {
 
     // Sets the tick color.
     Layout::Ternary::Aaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Aaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Aaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -12117,7 +12634,9 @@ class Layout::Ternary::Aaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Ternary::Aaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Aaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Aaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -12181,7 +12700,14 @@ class Layout::Ternary::Aaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Ternary::Aaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Ternary::Aaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Ternary::Aaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Ternary::Aaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Ternary::Aaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -12270,7 +12796,9 @@ class Layout::Ternary::Aaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Ternary::Aaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Aaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Aaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -12392,7 +12920,9 @@ class Layout::Ternary::Baxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Ternary::Baxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Baxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Baxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -12420,7 +12950,9 @@ class Layout::Ternary::Baxis {
 
     // Sets the color of the grid lines.
     Layout::Ternary::Baxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Baxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Baxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -12462,7 +12994,9 @@ class Layout::Ternary::Baxis {
 
     // Sets the axis line color.
     Layout::Ternary::Baxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Baxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Baxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -12539,7 +13073,9 @@ class Layout::Ternary::Baxis {
 
     // Sets the tick color.
     Layout::Ternary::Baxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Baxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Baxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -12674,7 +13210,9 @@ class Layout::Ternary::Baxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Ternary::Baxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Baxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Baxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -12738,7 +13276,14 @@ class Layout::Ternary::Baxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Ternary::Baxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Ternary::Baxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Ternary::Baxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Ternary::Baxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Ternary::Baxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -12827,7 +13372,9 @@ class Layout::Ternary::Baxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Ternary::Baxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Baxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Baxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -12949,7 +13496,9 @@ class Layout::Ternary::Caxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Ternary::Caxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Caxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Caxis& color(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -12977,7 +13526,9 @@ class Layout::Ternary::Caxis {
 
     // Sets the color of the grid lines.
     Layout::Ternary::Caxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Caxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Caxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -13019,7 +13570,9 @@ class Layout::Ternary::Caxis {
 
     // Sets the axis line color.
     Layout::Ternary::Caxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Caxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Caxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -13096,7 +13649,9 @@ class Layout::Ternary::Caxis {
 
     // Sets the tick color.
     Layout::Ternary::Caxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Caxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Caxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -13231,7 +13786,9 @@ class Layout::Ternary::Caxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Ternary::Caxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Caxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Caxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -13295,7 +13852,14 @@ class Layout::Ternary::Caxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Ternary::Caxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Ternary::Caxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Ternary::Caxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Ternary::Caxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Ternary::Caxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -13384,7 +13948,9 @@ class Layout::Ternary::Caxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Ternary::Caxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Ternary::Caxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Ternary::Caxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -13457,12 +14023,26 @@ class Layout::Ternary::Domain {
 
     // Sets the horizontal domain of this ternary subplot (in plot fraction).
     Layout::Ternary::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Ternary::Domain& x(const std::vector<std::string>& f);
+    Layout::Ternary::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Layout::Ternary::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Ternary::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this ternary subplot (in plot fraction).
     Layout::Ternary::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Ternary::Domain& y(const std::vector<std::string>& f);
+    Layout::Ternary::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Layout::Ternary::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Ternary::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -13613,7 +14193,9 @@ class Layout::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -13757,7 +14339,9 @@ class Layout::Title::Subtitle::Font {
     static std::string to_string(Variant e);
 
     Layout::Title::Subtitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Title::Subtitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Title::Subtitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -13961,12 +14545,16 @@ class Layout::Updatemenu {
 
     // Sets the background color of the update menu buttons.
     Layout::Updatemenu& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Updatemenu& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Updatemenu& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the update menu.
     Layout::Updatemenu& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Updatemenu& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Updatemenu& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the update menu.
@@ -14067,13 +14655,27 @@ class Layout::Updatemenu::Button {
 
     // Sets the arguments values to be passed to the Plotly method set in `method` on click.
     Layout::Updatemenu::Button& args(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Updatemenu::Button& args(const std::vector<std::string>& f);
+    Layout::Updatemenu::Button& args(const std::vector<std::vector<std::string>>& f);
+    Layout::Updatemenu::Button& args(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Updatemenu::Button& args(Callable&& c);
 
     // Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking
     // this button while in the active state. Use this to create toggle buttons.
     Layout::Updatemenu::Button& args2(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Updatemenu::Button& args2(const std::vector<std::string>& f);
+    Layout::Updatemenu::Button& args2(const std::vector<std::vector<std::string>>& f);
+    Layout::Updatemenu::Button& args2(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Updatemenu::Button& args2(Callable&& c);
 
     // When true, the API method is executed. When false, all other behaviors are the same and command execution is
@@ -14153,7 +14755,9 @@ class Layout::Updatemenu::Font {
     static std::string to_string(Variant e);
 
     Layout::Updatemenu::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Updatemenu::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Updatemenu::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -14488,7 +15092,14 @@ class Layout::Xaxis {
     // When `tickangle` is set to *auto*, it will be set to the first angle in this array that is large enough to
     // prevent label overlap.
     Layout::Xaxis& autotickangles(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis& autotickangles(const std::vector<std::string>& f);
+    Layout::Xaxis& autotickangles(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis& autotickangles(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis& autotickangles(Callable&& c);
 
     // Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric
@@ -14530,7 +15141,9 @@ class Layout::Xaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Xaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& color(Callable&& c);
 
     // If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other
@@ -14545,7 +15158,9 @@ class Layout::Xaxis {
 
     // Sets the color of the dividers Only has an effect on *multicategory* axes.
     Layout::Xaxis& dividercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& dividercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& dividercolor(Callable&& c);
 
     // Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
@@ -14555,7 +15170,14 @@ class Layout::Xaxis {
 
     // Sets the domain of this axis (in plot fraction).
     Layout::Xaxis& domain(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis& domain(const std::vector<std::string>& f);
+    Layout::Xaxis& domain(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis& domain(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis& domain(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -14588,7 +15210,9 @@ class Layout::Xaxis {
 
     // Sets the color of the grid lines.
     Layout::Xaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -14615,7 +15239,14 @@ class Layout::Xaxis {
     // anchored axis has *inside*. Not implemented for axes with `type` *log*. This would be ignored when `range` is
     // provided.
     Layout::Xaxis& insiderange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis& insiderange(const std::vector<std::string>& f);
+    Layout::Xaxis& insiderange(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis& insiderange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis& insiderange(Callable&& c);
 
     // Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA
@@ -14637,7 +15268,9 @@ class Layout::Xaxis {
 
     // Sets the axis line color.
     Layout::Xaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -14706,7 +15339,14 @@ class Layout::Xaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears. Leaving either or both elements `null` impacts the default `autorange`.
     Layout::Xaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis& range(const std::vector<std::string>& f);
+    Layout::Xaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis& range(Callable&& c);
 
     Layout::Xaxis& rangebreaks(Rangebreak f);
@@ -14803,7 +15443,9 @@ class Layout::Xaxis {
 
     // Sets the spike color. If undefined, will use the series color
     Layout::Xaxis& spikecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& spikecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& spikecolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -14848,7 +15490,9 @@ class Layout::Xaxis {
 
     // Sets the tick color.
     Layout::Xaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -15021,7 +15665,9 @@ class Layout::Xaxis {
 
     // Sets the line color of the zero line.
     Layout::Xaxis& zerolinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis& zerolinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis& zerolinecolor(Callable&& c);
 
     // Sets the width (in px) of the zero line.
@@ -15121,7 +15767,9 @@ class Layout::Xaxis::Minor {
 
     // Sets the color of the grid lines.
     Layout::Xaxis::Minor& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Minor& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Minor& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -15158,7 +15806,9 @@ class Layout::Xaxis::Minor {
 
     // Sets the tick color.
     Layout::Xaxis::Minor& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Minor& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Minor& tickcolor(Callable&& c);
 
     // Sets the tick length (in px).
@@ -15214,7 +15864,14 @@ class Layout::Xaxis::Rangebreak {
 
     // Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
     Layout::Xaxis::Rangebreak& bounds(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis::Rangebreak& bounds(const std::vector<std::string>& f);
+    Layout::Xaxis::Rangebreak& bounds(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis::Rangebreak& bounds(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis::Rangebreak& bounds(Callable&& c);
 
     // Sets the size of each `values` item. The default is one day in milliseconds.
@@ -15256,7 +15913,14 @@ class Layout::Xaxis::Rangebreak {
     // Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the
     // size of the values along the axis.
     Layout::Xaxis::Rangebreak& values(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis::Rangebreak& values(const std::vector<std::string>& f);
+    Layout::Xaxis::Rangebreak& values(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis::Rangebreak& values(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis::Rangebreak& values(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -15291,17 +15955,23 @@ class Layout::Xaxis::Rangeselector {
 
     // Sets the background color of the active range selector button.
     Layout::Xaxis::Rangeselector& activecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Rangeselector& activecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeselector& activecolor(Callable&& c);
 
     // Sets the background color of the range selector buttons.
     Layout::Xaxis::Rangeselector& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Rangeselector& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeselector& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the range selector.
     Layout::Xaxis::Rangeselector& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Rangeselector& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeselector& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the range selector.
@@ -15452,7 +16122,9 @@ class Layout::Xaxis::Rangeselector::Font {
     static std::string to_string(Variant e);
 
     Layout::Xaxis::Rangeselector::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Rangeselector::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeselector::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -15523,12 +16195,16 @@ class Layout::Xaxis::Rangeslider {
 
     // Sets the background color of the range slider.
     Layout::Xaxis::Rangeslider& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Rangeslider& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeslider& bgcolor(Callable&& c);
 
     // Sets the border color of the range slider.
     Layout::Xaxis::Rangeslider& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Rangeslider& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Rangeslider& bordercolor(Callable&& c);
 
     // Sets the border width of the range slider.
@@ -15542,7 +16218,14 @@ class Layout::Xaxis::Rangeslider {
     // `type` is *category*, it should be numbers, using the scale where each category is assigned a serial number from
     // zero in the order it appears.
     Layout::Xaxis::Rangeslider& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis::Rangeslider& range(const std::vector<std::string>& f);
+    Layout::Xaxis::Rangeslider& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis::Rangeslider& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis::Rangeslider& range(Callable&& c);
 
     // The height of the range slider as a fraction of the total plot area height.
@@ -15560,6 +16243,8 @@ class Layout::Xaxis::Rangeslider {
     Layout::Xaxis::Rangeslider& yaxis(int index, Yaxis f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Yaxis&>>>
     Layout::Xaxis::Rangeslider& yaxis(Callable&& c);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Yaxis&>>>
+    Layout::Xaxis::Rangeslider& yaxis(int index, Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -15580,7 +16265,14 @@ class Layout::Xaxis::Rangeslider::Yaxis {
 
     // Sets the range of this axis for the rangeslider.
     Layout::Xaxis::Rangeslider::Yaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis::Rangeslider::Yaxis& range(const std::vector<std::string>& f);
+    Layout::Xaxis::Rangeslider::Yaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis::Rangeslider::Yaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis::Rangeslider::Yaxis& range(Callable&& c);
 
     // Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when
@@ -15625,7 +16317,9 @@ class Layout::Xaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Xaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -15689,7 +16383,14 @@ class Layout::Xaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Xaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Xaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Xaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Xaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Xaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -15787,7 +16488,9 @@ class Layout::Xaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Xaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Xaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Xaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -16096,7 +16799,14 @@ class Layout::Yaxis {
     // When `tickangle` is set to *auto*, it will be set to the first angle in this array that is large enough to
     // prevent label overlap.
     Layout::Yaxis& autotickangles(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis& autotickangles(const std::vector<std::string>& f);
+    Layout::Yaxis& autotickangles(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis& autotickangles(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis& autotickangles(Callable&& c);
 
     // Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric
@@ -16138,7 +16848,9 @@ class Layout::Yaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Layout::Yaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& color(Callable&& c);
 
     // If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other
@@ -16153,7 +16865,9 @@ class Layout::Yaxis {
 
     // Sets the color of the dividers Only has an effect on *multicategory* axes.
     Layout::Yaxis& dividercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& dividercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& dividercolor(Callable&& c);
 
     // Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
@@ -16163,7 +16877,14 @@ class Layout::Yaxis {
 
     // Sets the domain of this axis (in plot fraction).
     Layout::Yaxis& domain(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis& domain(const std::vector<std::string>& f);
+    Layout::Yaxis& domain(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis& domain(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis& domain(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
@@ -16196,7 +16917,9 @@ class Layout::Yaxis {
 
     // Sets the color of the grid lines.
     Layout::Yaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -16223,7 +16946,14 @@ class Layout::Yaxis {
     // anchored axis has *inside*. Not implemented for axes with `type` *log*. This would be ignored when `range` is
     // provided.
     Layout::Yaxis& insiderange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis& insiderange(const std::vector<std::string>& f);
+    Layout::Yaxis& insiderange(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis& insiderange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis& insiderange(Callable&& c);
 
     // Replacement text for specific tick or hover labels. For example using {US: 'USA', CA: 'Canada'} changes US to USA
@@ -16245,7 +16975,9 @@ class Layout::Yaxis {
 
     // Sets the axis line color.
     Layout::Yaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -16314,7 +17046,14 @@ class Layout::Yaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears. Leaving either or both elements `null` impacts the default `autorange`.
     Layout::Yaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis& range(const std::vector<std::string>& f);
+    Layout::Yaxis& range(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis& range(Callable&& c);
 
     Layout::Yaxis& rangebreaks(Rangebreak f);
@@ -16411,7 +17150,9 @@ class Layout::Yaxis {
 
     // Sets the spike color. If undefined, will use the series color
     Layout::Yaxis& spikecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& spikecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& spikecolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -16456,7 +17197,9 @@ class Layout::Yaxis {
 
     // Sets the tick color.
     Layout::Yaxis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& tickcolor(Callable&& c);
 
     // Sets the tick font.
@@ -16629,7 +17372,9 @@ class Layout::Yaxis {
 
     // Sets the line color of the zero line.
     Layout::Yaxis& zerolinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis& zerolinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis& zerolinecolor(Callable&& c);
 
     // Sets the width (in px) of the zero line.
@@ -16729,7 +17474,9 @@ class Layout::Yaxis::Minor {
 
     // Sets the color of the grid lines.
     Layout::Yaxis::Minor& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis::Minor& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis::Minor& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -16766,7 +17513,9 @@ class Layout::Yaxis::Minor {
 
     // Sets the tick color.
     Layout::Yaxis::Minor& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis::Minor& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis::Minor& tickcolor(Callable&& c);
 
     // Sets the tick length (in px).
@@ -16822,7 +17571,14 @@ class Layout::Yaxis::Rangebreak {
 
     // Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
     Layout::Yaxis::Rangebreak& bounds(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis::Rangebreak& bounds(const std::vector<std::string>& f);
+    Layout::Yaxis::Rangebreak& bounds(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis::Rangebreak& bounds(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis::Rangebreak& bounds(Callable&& c);
 
     // Sets the size of each `values` item. The default is one day in milliseconds.
@@ -16864,7 +17620,14 @@ class Layout::Yaxis::Rangebreak {
     // Sets the coordinate values corresponding to the rangebreaks. An alternative to `bounds`. Use `dvalue` to set the
     // size of the values along the axis.
     Layout::Yaxis::Rangebreak& values(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis::Rangebreak& values(const std::vector<std::string>& f);
+    Layout::Yaxis::Rangebreak& values(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis::Rangebreak& values(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis::Rangebreak& values(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -16903,7 +17666,9 @@ class Layout::Yaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Layout::Yaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -16967,7 +17732,14 @@ class Layout::Yaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Layout::Yaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Layout::Yaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Layout::Yaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Layout::Yaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Layout::Yaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -17065,7 +17837,9 @@ class Layout::Yaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Layout::Yaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Layout::Yaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Layout::Yaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

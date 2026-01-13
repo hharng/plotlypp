@@ -161,7 +161,9 @@ class Mesh3D : public Trace {
 
     // Sets the color of the whole mesh
     Mesh3D& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D& color(Callable&& c);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
@@ -720,12 +722,16 @@ class Mesh3D::Colorbar {
 
     // Sets the color of padded area.
     Mesh3D::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Mesh3D::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -794,7 +800,9 @@ class Mesh3D::Colorbar {
 
     // Sets the axis line color.
     Mesh3D::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -854,7 +862,9 @@ class Mesh3D::Colorbar {
 
     // Sets the tick color.
     Mesh3D::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1036,7 +1046,9 @@ class Mesh3D::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Mesh3D::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1100,7 +1112,14 @@ class Mesh3D::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Mesh3D::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Mesh3D::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Mesh3D::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Mesh3D::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Mesh3D::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1200,7 +1219,9 @@ class Mesh3D::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Mesh3D::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1263,7 +1284,9 @@ class Mesh3D::Contour {
 
     // Sets the color of the contour lines.
     Mesh3D::Contour& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Contour& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Contour& color(Callable&& c);
 
     // Sets whether or not dynamic contours are shown on hover
@@ -1309,9 +1332,12 @@ class Mesh3D::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Mesh3D::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Hoverlabel& bgcolor(Callable&& c);
     Mesh3D::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Mesh3D::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Mesh3D::Hoverlabel& bgcolorsrc(std::string f);
@@ -1320,9 +1346,12 @@ class Mesh3D::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Mesh3D::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Hoverlabel& bordercolor(Callable&& c);
     Mesh3D::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Mesh3D::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Mesh3D::Hoverlabel& bordercolorsrc(std::string f);
@@ -1384,9 +1413,12 @@ class Mesh3D::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Mesh3D::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Hoverlabel::Font& color(Callable&& c);
     Mesh3D::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Mesh3D::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Mesh3D::Hoverlabel::Font& colorsrc(std::string f);
@@ -1548,7 +1580,9 @@ class Mesh3D::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Mesh3D::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Mesh3D::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Mesh3D::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

@@ -291,7 +291,14 @@ class Image : public Trace {
     // For the `rgba256` colormodel, it is [255, 255, 255, 255]. For the `hsl` colormodel, it is [360, 100, 100]. For
     // the `hsla` colormodel, it is [360, 100, 100, 1].
     Image& zmax(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Image& zmax(const std::vector<std::string>& f);
+    Image& zmax(const std::vector<std::vector<std::string>>& f);
+    Image& zmax(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Image& zmax(Callable&& c);
 
     // Array defining the lower bound for each color component. Note that the default value will depend on the
@@ -299,7 +306,14 @@ class Image : public Trace {
     // `rgba256` colormodel, it is [0, 0, 0, 0]. For the `hsl` colormodel, it is [0, 0, 0]. For the `hsla` colormodel,
     // it is [0, 0, 0, 0].
     Image& zmin(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Image& zmin(const std::vector<std::string>& f);
+    Image& zmin(const std::vector<std::vector<std::string>>& f);
+    Image& zmin(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Image& zmin(Callable&& c);
 
     // Sets the layer on which this trace is displayed, relative to other SVG traces on the same subplot. SVG traces
@@ -348,9 +362,12 @@ class Image::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Image::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Image::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Image::Hoverlabel& bgcolor(Callable&& c);
     Image::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Image::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Image::Hoverlabel& bgcolorsrc(std::string f);
@@ -359,9 +376,12 @@ class Image::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Image::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Image::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Image::Hoverlabel& bordercolor(Callable&& c);
     Image::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Image::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Image::Hoverlabel& bordercolorsrc(std::string f);
@@ -423,9 +443,12 @@ class Image::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Image::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Image::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Image::Hoverlabel::Font& color(Callable&& c);
     Image::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Image::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Image::Hoverlabel::Font& colorsrc(std::string f);
@@ -587,7 +610,9 @@ class Image::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Image::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Image::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Image::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

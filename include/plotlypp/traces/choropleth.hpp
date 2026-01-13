@@ -493,12 +493,16 @@ class Choropleth::Colorbar {
 
     // Sets the color of padded area.
     Choropleth::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Choropleth::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -567,7 +571,9 @@ class Choropleth::Colorbar {
 
     // Sets the axis line color.
     Choropleth::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -627,7 +633,9 @@ class Choropleth::Colorbar {
 
     // Sets the tick color.
     Choropleth::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -809,7 +817,9 @@ class Choropleth::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Choropleth::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -873,7 +883,14 @@ class Choropleth::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Choropleth::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Choropleth::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Choropleth::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Choropleth::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Choropleth::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -973,7 +990,9 @@ class Choropleth::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Choropleth::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1057,9 +1076,12 @@ class Choropleth::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Choropleth::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Hoverlabel& bgcolor(Callable&& c);
     Choropleth::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Choropleth::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Choropleth::Hoverlabel& bgcolorsrc(std::string f);
@@ -1068,9 +1090,12 @@ class Choropleth::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Choropleth::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Hoverlabel& bordercolor(Callable&& c);
     Choropleth::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Choropleth::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Choropleth::Hoverlabel& bordercolorsrc(std::string f);
@@ -1132,9 +1157,12 @@ class Choropleth::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Choropleth::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Hoverlabel::Font& color(Callable&& c);
     Choropleth::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Choropleth::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Choropleth::Hoverlabel::Font& colorsrc(std::string f);
@@ -1296,7 +1324,9 @@ class Choropleth::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Choropleth::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1388,9 +1418,12 @@ class Choropleth::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Choropleth::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Choropleth::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Choropleth::Marker::Line& color(Callable&& c);
     Choropleth::Marker::Line& color(const std::vector<std::string>& f);
+    Choropleth::Marker::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Choropleth::Marker::Line& colorsrc(std::string f);

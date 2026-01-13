@@ -569,12 +569,16 @@ class Streamtube::Colorbar {
 
     // Sets the color of padded area.
     Streamtube::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Streamtube::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -643,7 +647,9 @@ class Streamtube::Colorbar {
 
     // Sets the axis line color.
     Streamtube::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -703,7 +709,9 @@ class Streamtube::Colorbar {
 
     // Sets the tick color.
     Streamtube::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -885,7 +893,9 @@ class Streamtube::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Streamtube::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -949,7 +959,14 @@ class Streamtube::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Streamtube::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Streamtube::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Streamtube::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Streamtube::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Streamtube::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1049,7 +1066,9 @@ class Streamtube::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Streamtube::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1133,9 +1152,12 @@ class Streamtube::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Streamtube::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Hoverlabel& bgcolor(Callable&& c);
     Streamtube::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Streamtube::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Streamtube::Hoverlabel& bgcolorsrc(std::string f);
@@ -1144,9 +1166,12 @@ class Streamtube::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Streamtube::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Hoverlabel& bordercolor(Callable&& c);
     Streamtube::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Streamtube::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Streamtube::Hoverlabel& bordercolorsrc(std::string f);
@@ -1208,9 +1233,12 @@ class Streamtube::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Streamtube::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Hoverlabel::Font& color(Callable&& c);
     Streamtube::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Streamtube::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Streamtube::Hoverlabel::Font& colorsrc(std::string f);
@@ -1372,7 +1400,9 @@ class Streamtube::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Streamtube::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Streamtube::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Streamtube::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

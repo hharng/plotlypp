@@ -183,7 +183,9 @@ class Contour : public Trace {
     // Sets the fill color if `contours.type` is *constraint*. Defaults to a half-transparent variant of the line color,
     // marker color, or marker line color, whichever is available.
     Contour& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour& fillcolor(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
@@ -713,12 +715,16 @@ class Contour::Colorbar {
 
     // Sets the color of padded area.
     Contour::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Contour::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -787,7 +793,9 @@ class Contour::Colorbar {
 
     // Sets the axis line color.
     Contour::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -847,7 +855,9 @@ class Contour::Colorbar {
 
     // Sets the tick color.
     Contour::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1029,7 +1039,9 @@ class Contour::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Contour::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1093,7 +1105,14 @@ class Contour::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Contour::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Contour::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Contour::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Contour::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Contour::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1193,7 +1212,9 @@ class Contour::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Contour::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1391,7 +1412,9 @@ class Contour::Contours::Labelfont {
     static std::string to_string(Variant e);
 
     Contour::Contours::Labelfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Contours::Labelfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Contours::Labelfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1475,9 +1498,12 @@ class Contour::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Contour::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Hoverlabel& bgcolor(Callable&& c);
     Contour::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Contour::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Contour::Hoverlabel& bgcolorsrc(std::string f);
@@ -1486,9 +1512,12 @@ class Contour::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Contour::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Hoverlabel& bordercolor(Callable&& c);
     Contour::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Contour::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Contour::Hoverlabel& bordercolorsrc(std::string f);
@@ -1550,9 +1579,12 @@ class Contour::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Contour::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Hoverlabel::Font& color(Callable&& c);
     Contour::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Contour::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Contour::Hoverlabel::Font& colorsrc(std::string f);
@@ -1714,7 +1746,9 @@ class Contour::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Contour::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1777,7 +1811,9 @@ class Contour::Line {
 
     // Sets the color of the contour level. Has no effect if `contours.coloring` is set to *lines*.
     Contour::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -1855,7 +1891,9 @@ class Contour::Textfont {
     static std::string to_string(Variant e);
 
     Contour::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Contour::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Contour::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

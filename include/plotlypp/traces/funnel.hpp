@@ -535,7 +535,9 @@ class Funnel::Connector {
 
     // Sets the fill color.
     Funnel::Connector& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Connector& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Connector& fillcolor(Callable&& c);
 
     Funnel::Connector& line(Line f);
@@ -559,7 +561,9 @@ class Funnel::Connector::Line {
 
     // Sets the line color.
     Funnel::Connector::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Connector::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Connector::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -606,9 +610,12 @@ class Funnel::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Funnel::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Hoverlabel& bgcolor(Callable&& c);
     Funnel::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Funnel::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Funnel::Hoverlabel& bgcolorsrc(std::string f);
@@ -617,9 +624,12 @@ class Funnel::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Funnel::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Hoverlabel& bordercolor(Callable&& c);
     Funnel::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Funnel::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Funnel::Hoverlabel& bordercolorsrc(std::string f);
@@ -681,9 +691,12 @@ class Funnel::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Funnel::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Hoverlabel::Font& color(Callable&& c);
     Funnel::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Funnel::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnel::Hoverlabel::Font& colorsrc(std::string f);
@@ -822,9 +835,12 @@ class Funnel::Insidetextfont {
     static std::string to_string(Variant e);
 
     Funnel::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Insidetextfont& color(Callable&& c);
     Funnel::Insidetextfont& color(const std::vector<std::string>& f);
+    Funnel::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnel::Insidetextfont& colorsrc(std::string f);
@@ -986,7 +1002,9 @@ class Funnel::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Funnel::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1087,9 +1105,12 @@ class Funnel::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Funnel::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker& color(Callable&& c);
     Funnel::Marker& color(const std::vector<std::string>& f);
+    Funnel::Marker& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -1277,12 +1298,16 @@ class Funnel::Marker::Colorbar {
 
     // Sets the color of padded area.
     Funnel::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Funnel::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1351,7 +1376,9 @@ class Funnel::Marker::Colorbar {
 
     // Sets the axis line color.
     Funnel::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1411,7 +1438,9 @@ class Funnel::Marker::Colorbar {
 
     // Sets the tick color.
     Funnel::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1593,7 +1622,9 @@ class Funnel::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Funnel::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1657,7 +1688,14 @@ class Funnel::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Funnel::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Funnel::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Funnel::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Funnel::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Funnel::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1757,7 +1795,9 @@ class Funnel::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Funnel::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1859,9 +1899,12 @@ class Funnel::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Funnel::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Marker::Line& color(Callable&& c);
     Funnel::Marker::Line& color(const std::vector<std::string>& f);
+    Funnel::Marker::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -1943,9 +1986,12 @@ class Funnel::Outsidetextfont {
     static std::string to_string(Variant e);
 
     Funnel::Outsidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Outsidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Outsidetextfont& color(Callable&& c);
     Funnel::Outsidetextfont& color(const std::vector<std::string>& f);
+    Funnel::Outsidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnel::Outsidetextfont& colorsrc(std::string f);
@@ -2106,9 +2152,12 @@ class Funnel::Textfont {
     static std::string to_string(Variant e);
 
     Funnel::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnel::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnel::Textfont& color(Callable&& c);
     Funnel::Textfont& color(const std::vector<std::string>& f);
+    Funnel::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnel::Textfont& colorsrc(std::string f);

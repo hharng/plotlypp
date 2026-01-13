@@ -266,7 +266,9 @@ class Indicator::Delta::Decreasing {
 
     // Sets the color for increasing value.
     Indicator::Delta::Decreasing& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Delta::Decreasing& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Delta::Decreasing& color(Callable&& c);
 
     // Sets the symbol to display for increasing value
@@ -310,7 +312,9 @@ class Indicator::Delta::Font {
     static std::string to_string(Variant e);
 
     Indicator::Delta::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Delta::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Delta::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -373,7 +377,9 @@ class Indicator::Delta::Increasing {
 
     // Sets the color for increasing value.
     Indicator::Delta::Increasing& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Delta::Increasing& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Delta::Increasing& color(Callable&& c);
 
     // Sets the symbol to display for increasing value
@@ -403,12 +409,26 @@ class Indicator::Domain {
 
     // Sets the horizontal domain of this indicator trace (in plot fraction).
     Indicator::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Indicator::Domain& x(const std::vector<std::string>& f);
+    Indicator::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Indicator::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Indicator::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this indicator trace (in plot fraction).
     Indicator::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Indicator::Domain& y(const std::vector<std::string>& f);
+    Indicator::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Indicator::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Indicator::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -445,12 +465,16 @@ class Indicator::Gauge {
 
     // Sets the gauge background color.
     Indicator::Gauge& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge& bgcolor(Callable&& c);
 
     // Sets the color of the border enclosing the gauge.
     Indicator::Gauge& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge& bordercolor(Callable&& c);
 
     // Sets the width (in px) of the border enclosing the gauge.
@@ -578,7 +602,14 @@ class Indicator::Gauge::Axis {
 
     // Sets the range of this axis.
     Indicator::Gauge::Axis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Indicator::Gauge::Axis& range(const std::vector<std::string>& f);
+    Indicator::Gauge::Axis& range(const std::vector<std::vector<std::string>>& f);
+    Indicator::Gauge::Axis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Indicator::Gauge::Axis& range(Callable&& c);
 
     // If "true", even 4-digit integers are separated
@@ -623,7 +654,9 @@ class Indicator::Gauge::Axis {
 
     // Sets the tick color.
     Indicator::Gauge::Axis& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Axis& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Axis& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -754,7 +787,9 @@ class Indicator::Gauge::Axis::Tickfont {
     static std::string to_string(Variant e);
 
     Indicator::Gauge::Axis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Axis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Axis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -818,7 +853,14 @@ class Indicator::Gauge::Axis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Indicator::Gauge::Axis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Indicator::Gauge::Axis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Indicator::Gauge::Axis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Indicator::Gauge::Axis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Indicator::Gauge::Axis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -863,7 +905,9 @@ class Indicator::Gauge::Bar {
 
     // Sets the background color of the arc.
     Indicator::Gauge::Bar& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Bar& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Bar& color(Callable&& c);
 
     Indicator::Gauge::Bar& line(Line f);
@@ -887,7 +931,9 @@ class Indicator::Gauge::Bar::Line {
 
     // Sets the color of the line enclosing each sector.
     Indicator::Gauge::Bar::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Bar::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Bar::Line& color(Callable&& c);
 
     // Sets the width (in px) of the line enclosing each sector.
@@ -909,7 +955,9 @@ class Indicator::Gauge::Step {
 
     // Sets the background color of the arc.
     Indicator::Gauge::Step& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Step& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Step& color(Callable&& c);
 
     Indicator::Gauge::Step& line(Line f);
@@ -926,7 +974,14 @@ class Indicator::Gauge::Step {
 
     // Sets the range of this axis.
     Indicator::Gauge::Step& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Indicator::Gauge::Step& range(const std::vector<std::string>& f);
+    Indicator::Gauge::Step& range(const std::vector<std::vector<std::string>>& f);
+    Indicator::Gauge::Step& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Indicator::Gauge::Step& range(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
@@ -955,7 +1010,9 @@ class Indicator::Gauge::Step::Line {
 
     // Sets the color of the line enclosing each sector.
     Indicator::Gauge::Step::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Step::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Step::Line& color(Callable&& c);
 
     // Sets the width (in px) of the line enclosing each sector.
@@ -1001,7 +1058,9 @@ class Indicator::Gauge::Threshold::Line {
 
     // Sets the color of the threshold line.
     Indicator::Gauge::Threshold::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Gauge::Threshold::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Gauge::Threshold::Line& color(Callable&& c);
 
     // Sets the width (in px) of the threshold line.
@@ -1068,7 +1127,9 @@ class Indicator::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Indicator::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1189,7 +1250,9 @@ class Indicator::Number::Font {
     static std::string to_string(Variant e);
 
     Indicator::Number::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Number::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Number::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1332,7 +1395,9 @@ class Indicator::Title::Font {
     static std::string to_string(Variant e);
 
     Indicator::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Indicator::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Indicator::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

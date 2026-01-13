@@ -415,12 +415,26 @@ class Icicle::Domain {
 
     // Sets the horizontal domain of this icicle trace (in plot fraction).
     Icicle::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Icicle::Domain& x(const std::vector<std::string>& f);
+    Icicle::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Icicle::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Icicle::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this icicle trace (in plot fraction).
     Icicle::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Icicle::Domain& y(const std::vector<std::string>& f);
+    Icicle::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Icicle::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Icicle::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -456,9 +470,12 @@ class Icicle::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Icicle::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Hoverlabel& bgcolor(Callable&& c);
     Icicle::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Icicle::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Icicle::Hoverlabel& bgcolorsrc(std::string f);
@@ -467,9 +484,12 @@ class Icicle::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Icicle::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Hoverlabel& bordercolor(Callable&& c);
     Icicle::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Icicle::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Icicle::Hoverlabel& bordercolorsrc(std::string f);
@@ -531,9 +551,12 @@ class Icicle::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Icicle::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Hoverlabel::Font& color(Callable&& c);
     Icicle::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Icicle::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Icicle::Hoverlabel::Font& colorsrc(std::string f);
@@ -672,9 +695,12 @@ class Icicle::Insidetextfont {
     static std::string to_string(Variant e);
 
     Icicle::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Insidetextfont& color(Callable&& c);
     Icicle::Insidetextfont& color(const std::vector<std::string>& f);
+    Icicle::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Icicle::Insidetextfont& colorsrc(std::string f);
@@ -851,7 +877,9 @@ class Icicle::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Icicle::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1140,12 +1168,16 @@ class Icicle::Marker::Colorbar {
 
     // Sets the color of padded area.
     Icicle::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Icicle::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1214,7 +1246,9 @@ class Icicle::Marker::Colorbar {
 
     // Sets the axis line color.
     Icicle::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1274,7 +1308,9 @@ class Icicle::Marker::Colorbar {
 
     // Sets the tick color.
     Icicle::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1456,7 +1492,9 @@ class Icicle::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Icicle::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1520,7 +1558,14 @@ class Icicle::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Icicle::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Icicle::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Icicle::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Icicle::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Icicle::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1620,7 +1665,9 @@ class Icicle::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Icicle::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1683,9 +1730,12 @@ class Icicle::Marker::Line {
 
     // Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
     Icicle::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Line& color(Callable&& c);
     Icicle::Marker::Line& color(const std::vector<std::string>& f);
+    Icicle::Marker::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Icicle::Marker::Line& colorsrc(std::string f);
@@ -1723,9 +1773,12 @@ class Icicle::Marker::Pattern {
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
     Icicle::Marker::Pattern& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Pattern& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Pattern& bgcolor(Callable&& c);
     Icicle::Marker::Pattern& bgcolor(const std::vector<std::string>& f);
+    Icicle::Marker::Pattern& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Icicle::Marker::Pattern& bgcolorsrc(std::string f);
@@ -1735,9 +1788,12 @@ class Icicle::Marker::Pattern {
     // When there is no colorscale sets the color of foreground pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *replace*. Otherwise, defaults to dark grey or white to increase contrast with the `bgcolor`.
     Icicle::Marker::Pattern& fgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Marker::Pattern& fgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Marker::Pattern& fgcolor(Callable&& c);
     Icicle::Marker::Pattern& fgcolor(const std::vector<std::string>& f);
+    Icicle::Marker::Pattern& fgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `fgcolor`.
     Icicle::Marker::Pattern& fgcolorsrc(std::string f);
@@ -1828,9 +1884,12 @@ class Icicle::Outsidetextfont {
     static std::string to_string(Variant e);
 
     Icicle::Outsidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Outsidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Outsidetextfont& color(Callable&& c);
     Icicle::Outsidetextfont& color(const std::vector<std::string>& f);
+    Icicle::Outsidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Icicle::Outsidetextfont& colorsrc(std::string f);
@@ -2021,9 +2080,12 @@ class Icicle::Pathbar::Textfont {
     static std::string to_string(Variant e);
 
     Icicle::Pathbar::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Pathbar::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Pathbar::Textfont& color(Callable&& c);
     Icicle::Pathbar::Textfont& color(const std::vector<std::string>& f);
+    Icicle::Pathbar::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Icicle::Pathbar::Textfont& colorsrc(std::string f);
@@ -2139,7 +2201,9 @@ class Icicle::Root {
     // sets the color of the root node for a sunburst/treemap/icicle trace. this has no effect when a colorscale is used
     // to set the markers.
     Icicle::Root& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Root& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Root& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2200,9 +2264,12 @@ class Icicle::Textfont {
     static std::string to_string(Variant e);
 
     Icicle::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Icicle::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Icicle::Textfont& color(Callable&& c);
     Icicle::Textfont& color(const std::vector<std::string>& f);
+    Icicle::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Icicle::Textfont& colorsrc(std::string f);

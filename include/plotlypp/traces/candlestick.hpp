@@ -394,7 +394,9 @@ class Candlestick::Decreasing {
     // Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line
     // color, whichever is available.
     Candlestick::Decreasing& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Decreasing& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Decreasing& fillcolor(Callable&& c);
 
     Candlestick::Decreasing& line(Line f);
@@ -413,7 +415,9 @@ class Candlestick::Decreasing::Line {
 
     // Sets the color of line bounding the box(es).
     Candlestick::Decreasing::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Decreasing::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Decreasing::Line& color(Callable&& c);
 
     // Sets the width (in px) of line bounding the box(es).
@@ -454,9 +458,12 @@ class Candlestick::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Candlestick::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Hoverlabel& bgcolor(Callable&& c);
     Candlestick::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Candlestick::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Candlestick::Hoverlabel& bgcolorsrc(std::string f);
@@ -465,9 +472,12 @@ class Candlestick::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Candlestick::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Hoverlabel& bordercolor(Callable&& c);
     Candlestick::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Candlestick::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Candlestick::Hoverlabel& bordercolorsrc(std::string f);
@@ -534,9 +544,12 @@ class Candlestick::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Candlestick::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Hoverlabel::Font& color(Callable&& c);
     Candlestick::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Candlestick::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Candlestick::Hoverlabel::Font& colorsrc(std::string f);
@@ -654,7 +667,9 @@ class Candlestick::Increasing {
     // Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line
     // color, whichever is available.
     Candlestick::Increasing& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Increasing& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Increasing& fillcolor(Callable&& c);
 
     Candlestick::Increasing& line(Line f);
@@ -673,7 +688,9 @@ class Candlestick::Increasing::Line {
 
     // Sets the color of line bounding the box(es).
     Candlestick::Increasing::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Increasing::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Increasing::Line& color(Callable&& c);
 
     // Sets the width (in px) of line bounding the box(es).
@@ -740,7 +757,9 @@ class Candlestick::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Candlestick::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Candlestick::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Candlestick::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

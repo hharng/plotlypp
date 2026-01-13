@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Image::to_string(Colormodel e) {
+inline std::string Image::to_string(Colormodel e) {
     switch(e) {
         case Colormodel::Rgb: return "rgb";
         case Colormodel::Rgba: return "rgba";
@@ -21,7 +21,7 @@ std::string Image::to_string(Colormodel e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Image::to_string(Visible e) {
+inline std::string Image::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -30,7 +30,7 @@ std::string Image::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Image::to_string(Zsmooth e) {
+inline std::string Image::to_string(Zsmooth e) {
     switch(e) {
         case Zsmooth::Fast: return "fast";
         case Zsmooth::False: return "False";
@@ -39,440 +39,464 @@ std::string Image::to_string(Zsmooth e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Image& Image::colormodel(enum Colormodel f) {
+inline Image& Image::colormodel(enum Colormodel f) {
     json["colormodel"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Image& Image::customdata(Range&& f) {
+inline Image& Image::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::customdata(Callable&& c) {
+inline Image& Image::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Image& Image::customdatasrc(std::string f) {
+inline Image& Image::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::customdatasrc(Callable&& c) {
+inline Image& Image::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Image& Image::dx(double f) {
+inline Image& Image::dx(double f) {
     json["dx"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::dx(Callable&& c) {
+inline Image& Image::dx(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dx(std::move(f));
 }
 
-Image& Image::dy(double f) {
+inline Image& Image::dy(double f) {
     json["dy"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::dy(Callable&& c) {
+inline Image& Image::dy(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dy(std::move(f));
 }
 
-Image& Image::hoverinfo(std::string f) {
+inline Image& Image::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::hoverinfo(Callable&& c) {
+inline Image& Image::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Image& Image::hoverinfo(const std::vector<std::string>& f) {
+inline Image& Image::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Image& Image::hoverinfosrc(std::string f) {
+inline Image& Image::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::hoverinfosrc(Callable&& c) {
+inline Image& Image::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Image& Image::hoverlabel(Hoverlabel f) {
+inline Image& Image::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::hoverlabel(Callable&& c) {
+inline Image& Image::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Image& Image::hovertemplate(std::string f) {
+inline Image& Image::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::hovertemplate(Callable&& c) {
+inline Image& Image::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Image& Image::hovertemplate(const std::vector<std::string>& f) {
+inline Image& Image::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Image& Image::hovertemplatesrc(std::string f) {
+inline Image& Image::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::hovertemplatesrc(Callable&& c) {
+inline Image& Image::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
 template <typename Range, typename>
-Image& Image::hovertext(Range&& f) {
+inline Image& Image::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::hovertext(Callable&& c) {
+inline Image& Image::hovertext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
 
-Image& Image::hovertextsrc(std::string f) {
+inline Image& Image::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::hovertextsrc(Callable&& c) {
+inline Image& Image::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Image& Image::ids(Range&& f) {
+inline Image& Image::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::ids(Callable&& c) {
+inline Image& Image::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Image& Image::idssrc(std::string f) {
+inline Image& Image::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::idssrc(Callable&& c) {
+inline Image& Image::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Image& Image::legend(std::string f) {
+inline Image& Image::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::legend(Callable&& c) {
+inline Image& Image::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Image& Image::legendgrouptitle(Legendgrouptitle f) {
+inline Image& Image::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::legendgrouptitle(Callable&& c) {
+inline Image& Image::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Image& Image::legendrank(double f) {
+inline Image& Image::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::legendrank(Callable&& c) {
+inline Image& Image::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Image& Image::legendwidth(double f) {
+inline Image& Image::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::legendwidth(Callable&& c) {
+inline Image& Image::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
 template <typename T>
-Image& Image::meta(T f) {
+inline Image& Image::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::meta(Callable&& c) {
+inline Image& Image::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Image& Image::meta(const std::vector<T>& f) {
+inline Image& Image::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Image& Image::metasrc(std::string f) {
+inline Image& Image::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::metasrc(Callable&& c) {
+inline Image& Image::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Image& Image::name(std::string f) {
+inline Image& Image::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::name(Callable&& c) {
+inline Image& Image::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Image& Image::opacity(double f) {
+inline Image& Image::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::opacity(Callable&& c) {
+inline Image& Image::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Image& Image::source(std::string f) {
+inline Image& Image::source(std::string f) {
     json["source"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::source(Callable&& c) {
+inline Image& Image::source(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return source(std::move(f));
 }
 
-Image& Image::stream(Stream f) {
+inline Image& Image::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::stream(Callable&& c) {
+inline Image& Image::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
 template <typename Range, typename>
-Image& Image::text(Range&& f) {
+inline Image& Image::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::text(Callable&& c) {
+inline Image& Image::text(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Image& Image::textsrc(std::string f) {
+inline Image& Image::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::textsrc(Callable&& c) {
+inline Image& Image::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Image& Image::uid(std::string f) {
+inline Image& Image::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::uid(Callable&& c) {
+inline Image& Image::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Image& Image::uirevision(T f) {
+inline Image& Image::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::uirevision(Callable&& c) {
+inline Image& Image::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Image& Image::visible(enum Visible f) {
+inline Image& Image::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Image& Image::x0(T f) {
+inline Image& Image::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::x0(Callable&& c) {
+inline Image& Image::x0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x0(std::move(f));
 }
 
-Image& Image::xaxis(std::string f) {
+inline Image& Image::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::xaxis(Callable&& c) {
+inline Image& Image::xaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xaxis(std::move(f));
 }
 
 template <typename T>
-Image& Image::y0(T f) {
+inline Image& Image::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::y0(Callable&& c) {
+inline Image& Image::y0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y0(std::move(f));
 }
 
-Image& Image::yaxis(std::string f) {
+inline Image& Image::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::yaxis(Callable&& c) {
+inline Image& Image::yaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yaxis(std::move(f));
 }
 
 template <typename Range, typename>
-Image& Image::z(Range&& f) {
+inline Image& Image::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Image& Image::z(Callable&& c) {
+inline Image& Image::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Image& Image::zmax(const std::vector<double>& f) {
+inline Image& Image::zmax(const std::vector<double>& f) {
+    json["zmax"] = f;
+    return *this;
+}
+inline Image& Image::zmax(const std::vector<std::string>& f) {
+    json["zmax"] = f;
+    return *this;
+}
+inline Image& Image::zmax(const std::vector<std::vector<std::string>>& f) {
+    json["zmax"] = f;
+    return *this;
+}
+inline Image& Image::zmax(const std::vector<std::vector<double>>& f) {
     json["zmax"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::zmax(Callable&& c) {
+inline Image& Image::zmax(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return zmax(std::move(f));
 }
 
-Image& Image::zmin(const std::vector<double>& f) {
+inline Image& Image::zmin(const std::vector<double>& f) {
+    json["zmin"] = f;
+    return *this;
+}
+inline Image& Image::zmin(const std::vector<std::string>& f) {
+    json["zmin"] = f;
+    return *this;
+}
+inline Image& Image::zmin(const std::vector<std::vector<std::string>>& f) {
+    json["zmin"] = f;
+    return *this;
+}
+inline Image& Image::zmin(const std::vector<std::vector<double>>& f) {
     json["zmin"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::zmin(Callable&& c) {
+inline Image& Image::zmin(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return zmin(std::move(f));
 }
 
-Image& Image::zorder(int f) {
+inline Image& Image::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::zorder(Callable&& c) {
+inline Image& Image::zorder(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return zorder(std::move(f));
 }
 
-Image& Image::zsmooth(enum Zsmooth f) {
+inline Image& Image::zsmooth(enum Zsmooth f) {
     json["zsmooth"] = to_string(f);
     return *this;
 }
 
-Image& Image::zsrc(std::string f) {
+inline Image& Image::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image& Image::zsrc(Callable&& c) {
+inline Image& Image::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Image::Hoverlabel::to_string(Align e) {
+inline std::string Image::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -482,118 +506,134 @@ std::string Image::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Image::Hoverlabel& Image::Hoverlabel::align(enum Align f) {
+inline Image::Hoverlabel& Image::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Image::Hoverlabel& Image::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Image::Hoverlabel& Image::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Image::Hoverlabel& Image::Hoverlabel::alignsrc(std::string f) {
+inline Image::Hoverlabel& Image::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::alignsrc(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Image::Hoverlabel& Image::Hoverlabel::bgcolor(std::string f) {
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::bgcolor(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Image::Hoverlabel& Image::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Image::Hoverlabel& Image::Hoverlabel::bgcolorsrc(std::string f) {
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Image::Hoverlabel& Image::Hoverlabel::bordercolor(std::string f) {
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::bordercolor(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Image::Hoverlabel& Image::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Image::Hoverlabel& Image::Hoverlabel::bordercolorsrc(std::string f) {
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Image::Hoverlabel& Image::Hoverlabel::font(Font f) {
+inline Image::Hoverlabel& Image::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::font(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Image::Hoverlabel& Image::Hoverlabel::namelength(int f) {
+inline Image::Hoverlabel& Image::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::namelength(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Image::Hoverlabel& Image::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Image::Hoverlabel& Image::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Image::Hoverlabel& Image::Hoverlabel::namelengthsrc(std::string f) {
+inline Image::Hoverlabel& Image::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel& Image::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Image::Hoverlabel& Image::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Image::Hoverlabel::Font::to_string(Style e) {
+inline std::string Image::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -601,7 +641,7 @@ std::string Image::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Image::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Image::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -611,7 +651,7 @@ std::string Image::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Image::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Image::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -624,252 +664,260 @@ std::string Image::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::colorsrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::family(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::family(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::familysrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadow(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadow(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::size(double f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::size(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::sizesrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::style(enum Style f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::stylesrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::variant(enum Variant f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::variantsrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::weight(int f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::weight(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::weightsrc(std::string f) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Hoverlabel::Font& Image::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Image::Legendgrouptitle& Image::Legendgrouptitle::font(Font f) {
+inline Image::Legendgrouptitle& Image::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle& Image::Legendgrouptitle::font(Callable&& c) {
+inline Image::Legendgrouptitle& Image::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Image::Legendgrouptitle& Image::Legendgrouptitle::text(std::string f) {
+inline Image::Legendgrouptitle& Image::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle& Image::Legendgrouptitle::text(Callable&& c) {
+inline Image::Legendgrouptitle& Image::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Image::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Image::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -877,7 +925,7 @@ std::string Image::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Image::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Image::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -887,7 +935,7 @@ std::string Image::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Image::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Image::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -900,105 +948,109 @@ std::string Image::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::color(std::string f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::color(Callable&& c) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::family(std::string f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::family(Callable&& c) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::shadow(std::string f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::size(double f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::size(Callable&& c) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::style(enum Style f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::weight(int f) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Image::Stream& Image::Stream::maxpoints(double f) {
+inline Image::Stream& Image::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Stream& Image::Stream::maxpoints(Callable&& c) {
+inline Image::Stream& Image::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Image::Stream& Image::Stream::token(std::string f) {
+inline Image::Stream& Image::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Image::Stream& Image::Stream::token(Callable&& c) {
+inline Image::Stream& Image::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));

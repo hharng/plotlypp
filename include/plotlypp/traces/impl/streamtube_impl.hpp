@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Streamtube::to_string(Visible e) {
+inline std::string Streamtube::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -20,677 +20,677 @@ std::string Streamtube::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube& Streamtube::autocolorscale(bool f) {
+inline Streamtube& Streamtube::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::autocolorscale(Callable&& c) {
+inline Streamtube& Streamtube::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Streamtube& Streamtube::cauto(bool f) {
+inline Streamtube& Streamtube::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::cauto(Callable&& c) {
+inline Streamtube& Streamtube::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Streamtube& Streamtube::cmax(double f) {
+inline Streamtube& Streamtube::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::cmax(Callable&& c) {
+inline Streamtube& Streamtube::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Streamtube& Streamtube::cmid(double f) {
+inline Streamtube& Streamtube::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::cmid(Callable&& c) {
+inline Streamtube& Streamtube::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Streamtube& Streamtube::cmin(double f) {
+inline Streamtube& Streamtube::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::cmin(Callable&& c) {
+inline Streamtube& Streamtube::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Streamtube& Streamtube::coloraxis(std::string f) {
+inline Streamtube& Streamtube::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::coloraxis(Callable&& c) {
+inline Streamtube& Streamtube::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Streamtube& Streamtube::colorbar(Colorbar f) {
+inline Streamtube& Streamtube::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::colorbar(Callable&& c) {
+inline Streamtube& Streamtube::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Streamtube& Streamtube::colorscale(std::string f) {
+inline Streamtube& Streamtube::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Streamtube& Streamtube::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Streamtube& Streamtube::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::colorscale(Callable&& c) {
+inline Streamtube& Streamtube::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::customdata(Range&& f) {
+inline Streamtube& Streamtube::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::customdata(Callable&& c) {
+inline Streamtube& Streamtube::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Streamtube& Streamtube::customdatasrc(std::string f) {
+inline Streamtube& Streamtube::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::customdatasrc(Callable&& c) {
+inline Streamtube& Streamtube::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Streamtube& Streamtube::hoverinfo(std::string f) {
+inline Streamtube& Streamtube::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::hoverinfo(Callable&& c) {
+inline Streamtube& Streamtube::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Streamtube& Streamtube::hoverinfo(const std::vector<std::string>& f) {
+inline Streamtube& Streamtube::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Streamtube& Streamtube::hoverinfosrc(std::string f) {
+inline Streamtube& Streamtube::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::hoverinfosrc(Callable&& c) {
+inline Streamtube& Streamtube::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Streamtube& Streamtube::hoverlabel(Hoverlabel f) {
+inline Streamtube& Streamtube::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::hoverlabel(Callable&& c) {
+inline Streamtube& Streamtube::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Streamtube& Streamtube::hovertemplate(std::string f) {
+inline Streamtube& Streamtube::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::hovertemplate(Callable&& c) {
+inline Streamtube& Streamtube::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Streamtube& Streamtube::hovertemplate(const std::vector<std::string>& f) {
+inline Streamtube& Streamtube::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Streamtube& Streamtube::hovertemplatesrc(std::string f) {
+inline Streamtube& Streamtube::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::hovertemplatesrc(Callable&& c) {
+inline Streamtube& Streamtube::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Streamtube& Streamtube::hovertext(std::string f) {
+inline Streamtube& Streamtube::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::hovertext(Callable&& c) {
+inline Streamtube& Streamtube::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::ids(Range&& f) {
+inline Streamtube& Streamtube::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::ids(Callable&& c) {
+inline Streamtube& Streamtube::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Streamtube& Streamtube::idssrc(std::string f) {
+inline Streamtube& Streamtube::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::idssrc(Callable&& c) {
+inline Streamtube& Streamtube::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Streamtube& Streamtube::legend(std::string f) {
+inline Streamtube& Streamtube::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::legend(Callable&& c) {
+inline Streamtube& Streamtube::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Streamtube& Streamtube::legendgroup(std::string f) {
+inline Streamtube& Streamtube::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::legendgroup(Callable&& c) {
+inline Streamtube& Streamtube::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Streamtube& Streamtube::legendgrouptitle(Legendgrouptitle f) {
+inline Streamtube& Streamtube::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::legendgrouptitle(Callable&& c) {
+inline Streamtube& Streamtube::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Streamtube& Streamtube::legendrank(double f) {
+inline Streamtube& Streamtube::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::legendrank(Callable&& c) {
+inline Streamtube& Streamtube::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Streamtube& Streamtube::legendwidth(double f) {
+inline Streamtube& Streamtube::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::legendwidth(Callable&& c) {
+inline Streamtube& Streamtube::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Streamtube& Streamtube::lighting(Lighting f) {
+inline Streamtube& Streamtube::lighting(Lighting f) {
     json["lighting"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::lighting(Callable&& c) {
+inline Streamtube& Streamtube::lighting(Callable&& c) {
     Lighting f{};
     std::forward<Callable>(c)(f);
     return lighting(std::move(f));
 }
 
-Streamtube& Streamtube::lightposition(Lightposition f) {
+inline Streamtube& Streamtube::lightposition(Lightposition f) {
     json["lightposition"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::lightposition(Callable&& c) {
+inline Streamtube& Streamtube::lightposition(Callable&& c) {
     Lightposition f{};
     std::forward<Callable>(c)(f);
     return lightposition(std::move(f));
 }
 
-Streamtube& Streamtube::maxdisplayed(int f) {
+inline Streamtube& Streamtube::maxdisplayed(int f) {
     json["maxdisplayed"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::maxdisplayed(Callable&& c) {
+inline Streamtube& Streamtube::maxdisplayed(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return maxdisplayed(std::move(f));
 }
 
 template <typename T>
-Streamtube& Streamtube::meta(T f) {
+inline Streamtube& Streamtube::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::meta(Callable&& c) {
+inline Streamtube& Streamtube::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Streamtube& Streamtube::meta(const std::vector<T>& f) {
+inline Streamtube& Streamtube::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Streamtube& Streamtube::metasrc(std::string f) {
+inline Streamtube& Streamtube::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::metasrc(Callable&& c) {
+inline Streamtube& Streamtube::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Streamtube& Streamtube::name(std::string f) {
+inline Streamtube& Streamtube::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::name(Callable&& c) {
+inline Streamtube& Streamtube::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Streamtube& Streamtube::opacity(double f) {
+inline Streamtube& Streamtube::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::opacity(Callable&& c) {
+inline Streamtube& Streamtube::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Streamtube& Streamtube::reversescale(bool f) {
+inline Streamtube& Streamtube::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::reversescale(Callable&& c) {
+inline Streamtube& Streamtube::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Streamtube& Streamtube::scene(std::string f) {
+inline Streamtube& Streamtube::scene(std::string f) {
     json["scene"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::scene(Callable&& c) {
+inline Streamtube& Streamtube::scene(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return scene(std::move(f));
 }
 
-Streamtube& Streamtube::showlegend(bool f) {
+inline Streamtube& Streamtube::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::showlegend(Callable&& c) {
+inline Streamtube& Streamtube::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Streamtube& Streamtube::showscale(bool f) {
+inline Streamtube& Streamtube::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::showscale(Callable&& c) {
+inline Streamtube& Streamtube::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Streamtube& Streamtube::sizeref(double f) {
+inline Streamtube& Streamtube::sizeref(double f) {
     json["sizeref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::sizeref(Callable&& c) {
+inline Streamtube& Streamtube::sizeref(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return sizeref(std::move(f));
 }
 
-Streamtube& Streamtube::starts(Starts f) {
+inline Streamtube& Streamtube::starts(Starts f) {
     json["starts"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::starts(Callable&& c) {
+inline Streamtube& Streamtube::starts(Callable&& c) {
     Starts f{};
     std::forward<Callable>(c)(f);
     return starts(std::move(f));
 }
 
-Streamtube& Streamtube::stream(Stream f) {
+inline Streamtube& Streamtube::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::stream(Callable&& c) {
+inline Streamtube& Streamtube::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Streamtube& Streamtube::text(std::string f) {
+inline Streamtube& Streamtube::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::text(Callable&& c) {
+inline Streamtube& Streamtube::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::u(Range&& f) {
+inline Streamtube& Streamtube::u(Range&& f) {
     json["u"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::u(Callable&& c) {
+inline Streamtube& Streamtube::u(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return u(std::move(f));
 }
 
-Streamtube& Streamtube::uhoverformat(std::string f) {
+inline Streamtube& Streamtube::uhoverformat(std::string f) {
     json["uhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::uhoverformat(Callable&& c) {
+inline Streamtube& Streamtube::uhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uhoverformat(std::move(f));
 }
 
-Streamtube& Streamtube::uid(std::string f) {
+inline Streamtube& Streamtube::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::uid(Callable&& c) {
+inline Streamtube& Streamtube::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Streamtube& Streamtube::uirevision(T f) {
+inline Streamtube& Streamtube::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::uirevision(Callable&& c) {
+inline Streamtube& Streamtube::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Streamtube& Streamtube::usrc(std::string f) {
+inline Streamtube& Streamtube::usrc(std::string f) {
     json["usrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::usrc(Callable&& c) {
+inline Streamtube& Streamtube::usrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return usrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::v(Range&& f) {
+inline Streamtube& Streamtube::v(Range&& f) {
     json["v"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::v(Callable&& c) {
+inline Streamtube& Streamtube::v(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return v(std::move(f));
 }
 
-Streamtube& Streamtube::vhoverformat(std::string f) {
+inline Streamtube& Streamtube::vhoverformat(std::string f) {
     json["vhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::vhoverformat(Callable&& c) {
+inline Streamtube& Streamtube::vhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return vhoverformat(std::move(f));
 }
 
-Streamtube& Streamtube::visible(enum Visible f) {
+inline Streamtube& Streamtube::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
-Streamtube& Streamtube::vsrc(std::string f) {
+inline Streamtube& Streamtube::vsrc(std::string f) {
     json["vsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::vsrc(Callable&& c) {
+inline Streamtube& Streamtube::vsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return vsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::w(Range&& f) {
+inline Streamtube& Streamtube::w(Range&& f) {
     json["w"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::w(Callable&& c) {
+inline Streamtube& Streamtube::w(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return w(std::move(f));
 }
 
-Streamtube& Streamtube::whoverformat(std::string f) {
+inline Streamtube& Streamtube::whoverformat(std::string f) {
     json["whoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::whoverformat(Callable&& c) {
+inline Streamtube& Streamtube::whoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return whoverformat(std::move(f));
 }
 
-Streamtube& Streamtube::wsrc(std::string f) {
+inline Streamtube& Streamtube::wsrc(std::string f) {
     json["wsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::wsrc(Callable&& c) {
+inline Streamtube& Streamtube::wsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return wsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::x(Range&& f) {
+inline Streamtube& Streamtube::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::x(Callable&& c) {
+inline Streamtube& Streamtube::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Streamtube& Streamtube::xhoverformat(std::string f) {
+inline Streamtube& Streamtube::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::xhoverformat(Callable&& c) {
+inline Streamtube& Streamtube::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
-Streamtube& Streamtube::xsrc(std::string f) {
+inline Streamtube& Streamtube::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::xsrc(Callable&& c) {
+inline Streamtube& Streamtube::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::y(Range&& f) {
+inline Streamtube& Streamtube::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::y(Callable&& c) {
+inline Streamtube& Streamtube::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Streamtube& Streamtube::yhoverformat(std::string f) {
+inline Streamtube& Streamtube::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::yhoverformat(Callable&& c) {
+inline Streamtube& Streamtube::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
-Streamtube& Streamtube::ysrc(std::string f) {
+inline Streamtube& Streamtube::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::ysrc(Callable&& c) {
+inline Streamtube& Streamtube::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube& Streamtube::z(Range&& f) {
+inline Streamtube& Streamtube::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube& Streamtube::z(Callable&& c) {
+inline Streamtube& Streamtube::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Streamtube& Streamtube::zhoverformat(std::string f) {
+inline Streamtube& Streamtube::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::zhoverformat(Callable&& c) {
+inline Streamtube& Streamtube::zhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zhoverformat(std::move(f));
 }
 
-Streamtube& Streamtube::zsrc(std::string f) {
+inline Streamtube& Streamtube::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube& Streamtube::zsrc(Callable&& c) {
+inline Streamtube& Streamtube::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Streamtube::Colorbar::to_string(Exponentformat e) {
+inline std::string Streamtube::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -701,7 +701,7 @@ std::string Streamtube::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Lenmode e) {
+inline std::string Streamtube::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -709,7 +709,7 @@ std::string Streamtube::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Orientation e) {
+inline std::string Streamtube::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -717,7 +717,7 @@ std::string Streamtube::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Showexponent e) {
+inline std::string Streamtube::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -727,7 +727,7 @@ std::string Streamtube::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Showtickprefix e) {
+inline std::string Streamtube::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -737,7 +737,7 @@ std::string Streamtube::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Showticksuffix e) {
+inline std::string Streamtube::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -747,7 +747,7 @@ std::string Streamtube::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Thicknessmode e) {
+inline std::string Streamtube::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -755,7 +755,7 @@ std::string Streamtube::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Streamtube::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -764,7 +764,7 @@ std::string Streamtube::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Streamtube::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -780,7 +780,7 @@ std::string Streamtube::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Tickmode e) {
+inline std::string Streamtube::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -789,7 +789,7 @@ std::string Streamtube::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Ticks e) {
+inline std::string Streamtube::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -798,7 +798,7 @@ std::string Streamtube::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Xanchor e) {
+inline std::string Streamtube::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -807,7 +807,7 @@ std::string Streamtube::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Xref e) {
+inline std::string Streamtube::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -815,7 +815,7 @@ std::string Streamtube::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Yanchor e) {
+inline std::string Streamtube::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -824,7 +824,7 @@ std::string Streamtube::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::to_string(Yref e) {
+inline std::string Streamtube::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -833,456 +833,472 @@ std::string Streamtube::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::bgcolor(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Colorbar& Streamtube::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::bgcolor(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::bordercolor(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Colorbar& Streamtube::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::bordercolor(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::borderwidth(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::borderwidth(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Streamtube::Colorbar& Streamtube::Colorbar::dtick(T f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::dtick(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::exponentformat(enum Exponentformat f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Streamtube::Colorbar& Streamtube::Colorbar::labelalias(T f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::labelalias(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::len(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::len(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::lenmode(enum Lenmode f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::minexponent(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::minexponent(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::nticks(int f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::nticks(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::orientation(enum Orientation f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::outlinecolor(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Colorbar& Streamtube::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::outlinecolor(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::outlinewidth(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::outlinewidth(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::separatethousands(bool f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::separatethousands(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::showexponent(enum Showexponent f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::showticklabels(bool f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::showticklabels(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::thickness(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::thickness(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Streamtube::Colorbar& Streamtube::Colorbar::tick0(T f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tick0(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickangle(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickangle(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickcolor(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickcolor(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickfont(Tickfont f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickfont(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickformat(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickformat(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Tickformatstop f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticklabelstep(int f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticklabelstep(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticklen(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticklen(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickmode(enum Tickmode f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickprefix(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickprefix(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticks(enum Ticks f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticksuffix(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticksuffix(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticktext(Range&& f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticktext(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ticktextsrc(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ticktextsrc(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickvals(Range&& f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickvals(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickvalssrc(std::string f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickvalssrc(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::tickwidth(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::tickwidth(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::title(Title f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::title(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::x(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::x(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::xanchor(enum Xanchor f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::xpad(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::xpad(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::xref(enum Xref f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::y(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::y(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::yanchor(enum Yanchor f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::ypad(double f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar& Streamtube::Colorbar::ypad(Callable&& c) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Streamtube::Colorbar& Streamtube::Colorbar::yref(enum Yref f) {
+inline Streamtube::Colorbar& Streamtube::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Streamtube::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Streamtube::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1290,7 +1306,7 @@ std::string Streamtube::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Streamtube::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1300,7 +1316,7 @@ std::string Streamtube::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Streamtube::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1313,144 +1329,160 @@ std::string Streamtube::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::color(std::string f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::color(Callable&& c) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::family(std::string f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::family(Callable&& c) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(std::string f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::shadow(std::string f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::size(double f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::size(Callable&& c) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::style(enum Style f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::variant(enum Variant f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::weight(int f) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::weight(Callable&& c) {
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::enabled(bool f) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::name(std::string f) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::value(std::string f) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Streamtube::Colorbar::Tickformatstop& Streamtube::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Streamtube::Colorbar::Title::to_string(Side e) {
+inline std::string Streamtube::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1460,34 +1492,34 @@ std::string Streamtube::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::font(Font f) {
+inline Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::font(Callable&& c) {
+inline Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::side(enum Side f) {
+inline Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::text(std::string f) {
+inline Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::text(Callable&& c) {
+inline Streamtube::Colorbar::Title& Streamtube::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Streamtube::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Streamtube::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1495,7 +1527,7 @@ std::string Streamtube::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Streamtube::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1505,7 +1537,7 @@ std::string Streamtube::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Streamtube::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1518,88 +1550,92 @@ std::string Streamtube::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::color(std::string f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::color(Callable&& c) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::family(std::string f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::family(Callable&& c) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(std::string f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::shadow(std::string f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::size(double f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::size(Callable&& c) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::style(enum Style f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::variant(enum Variant f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::weight(int f) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::weight(Callable&& c) {
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Streamtube::Hoverlabel::to_string(Align e) {
+inline std::string Streamtube::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -1609,118 +1645,134 @@ std::string Streamtube::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::align(enum Align f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::alignsrc(std::string f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::alignsrc(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(std::string f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolorsrc(std::string f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(std::string f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolorsrc(std::string f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::font(Font f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::font(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelength(int f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelength(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelengthsrc(std::string f) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Streamtube::Hoverlabel& Streamtube::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Streamtube::Hoverlabel::Font::to_string(Style e) {
+inline std::string Streamtube::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1728,7 +1780,7 @@ std::string Streamtube::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Streamtube::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1738,7 +1790,7 @@ std::string Streamtube::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Streamtube::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1751,252 +1803,260 @@ std::string Streamtube::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::colorsrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::family(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::family(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::familysrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadow(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadow(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::size(double f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::size(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::sizesrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::style(enum Style f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::stylesrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variant(enum Variant f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variantsrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weight(int f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weight(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weightsrc(std::string f) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::font(Font f) {
+inline Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::font(Callable&& c) {
+inline Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::text(std::string f) {
+inline Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::text(Callable&& c) {
+inline Streamtube::Legendgrouptitle& Streamtube::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Streamtube::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Streamtube::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2004,7 +2064,7 @@ std::string Streamtube::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Streamtube::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2014,7 +2074,7 @@ std::string Streamtube::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Streamtube::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Streamtube::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2027,194 +2087,198 @@ std::string Streamtube::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::color(std::string f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::color(Callable&& c) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::family(std::string f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::family(Callable&& c) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::shadow(std::string f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::size(double f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::size(Callable&& c) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::style(enum Style f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::weight(int f) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Streamtube::Lighting& Streamtube::Lighting::ambient(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::ambient(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::ambient(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ambient(std::move(f));
 }
 
-Streamtube::Lighting& Streamtube::Lighting::diffuse(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::diffuse(double f) {
     json["diffuse"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::diffuse(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::diffuse(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return diffuse(std::move(f));
 }
 
-Streamtube::Lighting& Streamtube::Lighting::facenormalsepsilon(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::facenormalsepsilon(double f) {
     json["facenormalsepsilon"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::facenormalsepsilon(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::facenormalsepsilon(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return facenormalsepsilon(std::move(f));
 }
 
-Streamtube::Lighting& Streamtube::Lighting::fresnel(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::fresnel(double f) {
     json["fresnel"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::fresnel(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::fresnel(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return fresnel(std::move(f));
 }
 
-Streamtube::Lighting& Streamtube::Lighting::roughness(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::roughness(double f) {
     json["roughness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::roughness(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::roughness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return roughness(std::move(f));
 }
 
-Streamtube::Lighting& Streamtube::Lighting::specular(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::specular(double f) {
     json["specular"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::specular(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::specular(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return specular(std::move(f));
 }
 
-Streamtube::Lighting& Streamtube::Lighting::vertexnormalsepsilon(double f) {
+inline Streamtube::Lighting& Streamtube::Lighting::vertexnormalsepsilon(double f) {
     json["vertexnormalsepsilon"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lighting& Streamtube::Lighting::vertexnormalsepsilon(Callable&& c) {
+inline Streamtube::Lighting& Streamtube::Lighting::vertexnormalsepsilon(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return vertexnormalsepsilon(std::move(f));
 }
 
 
-Streamtube::Lightposition& Streamtube::Lightposition::x(double f) {
+inline Streamtube::Lightposition& Streamtube::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lightposition& Streamtube::Lightposition::x(Callable&& c) {
+inline Streamtube::Lightposition& Streamtube::Lightposition::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Streamtube::Lightposition& Streamtube::Lightposition::y(double f) {
+inline Streamtube::Lightposition& Streamtube::Lightposition::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lightposition& Streamtube::Lightposition::y(Callable&& c) {
+inline Streamtube::Lightposition& Streamtube::Lightposition::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Streamtube::Lightposition& Streamtube::Lightposition::z(double f) {
+inline Streamtube::Lightposition& Streamtube::Lightposition::z(double f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Lightposition& Streamtube::Lightposition::z(Callable&& c) {
+inline Streamtube::Lightposition& Streamtube::Lightposition::z(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
@@ -2222,92 +2286,92 @@ Streamtube::Lightposition& Streamtube::Lightposition::z(Callable&& c) {
 
 
 template <typename Range, typename>
-Streamtube::Starts& Streamtube::Starts::x(Range&& f) {
+inline Streamtube::Starts& Streamtube::Starts::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Starts& Streamtube::Starts::x(Callable&& c) {
+inline Streamtube::Starts& Streamtube::Starts::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Streamtube::Starts& Streamtube::Starts::xsrc(std::string f) {
+inline Streamtube::Starts& Streamtube::Starts::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Starts& Streamtube::Starts::xsrc(Callable&& c) {
+inline Streamtube::Starts& Streamtube::Starts::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube::Starts& Streamtube::Starts::y(Range&& f) {
+inline Streamtube::Starts& Streamtube::Starts::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Starts& Streamtube::Starts::y(Callable&& c) {
+inline Streamtube::Starts& Streamtube::Starts::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Streamtube::Starts& Streamtube::Starts::ysrc(std::string f) {
+inline Streamtube::Starts& Streamtube::Starts::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Starts& Streamtube::Starts::ysrc(Callable&& c) {
+inline Streamtube::Starts& Streamtube::Starts::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
-Streamtube::Starts& Streamtube::Starts::z(Range&& f) {
+inline Streamtube::Starts& Streamtube::Starts::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Streamtube::Starts& Streamtube::Starts::z(Callable&& c) {
+inline Streamtube::Starts& Streamtube::Starts::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Streamtube::Starts& Streamtube::Starts::zsrc(std::string f) {
+inline Streamtube::Starts& Streamtube::Starts::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Starts& Streamtube::Starts::zsrc(Callable&& c) {
+inline Streamtube::Starts& Streamtube::Starts::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
 
-Streamtube::Stream& Streamtube::Stream::maxpoints(double f) {
+inline Streamtube::Stream& Streamtube::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Stream& Streamtube::Stream::maxpoints(Callable&& c) {
+inline Streamtube::Stream& Streamtube::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Streamtube::Stream& Streamtube::Stream::token(std::string f) {
+inline Streamtube::Stream& Streamtube::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Streamtube::Stream& Streamtube::Stream::token(Callable&& c) {
+inline Streamtube::Stream& Streamtube::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));

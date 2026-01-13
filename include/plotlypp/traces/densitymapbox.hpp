@@ -486,12 +486,16 @@ class Densitymapbox::Colorbar {
 
     // Sets the color of padded area.
     Densitymapbox::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Densitymapbox::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -560,7 +564,9 @@ class Densitymapbox::Colorbar {
 
     // Sets the axis line color.
     Densitymapbox::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -620,7 +626,9 @@ class Densitymapbox::Colorbar {
 
     // Sets the tick color.
     Densitymapbox::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -802,7 +810,9 @@ class Densitymapbox::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Densitymapbox::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -866,7 +876,14 @@ class Densitymapbox::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Densitymapbox::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Densitymapbox::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Densitymapbox::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Densitymapbox::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Densitymapbox::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -966,7 +983,9 @@ class Densitymapbox::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Densitymapbox::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1050,9 +1069,12 @@ class Densitymapbox::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Densitymapbox::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Hoverlabel& bgcolor(Callable&& c);
     Densitymapbox::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Densitymapbox::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Densitymapbox::Hoverlabel& bgcolorsrc(std::string f);
@@ -1061,9 +1083,12 @@ class Densitymapbox::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Densitymapbox::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Hoverlabel& bordercolor(Callable&& c);
     Densitymapbox::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Densitymapbox::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Densitymapbox::Hoverlabel& bordercolorsrc(std::string f);
@@ -1125,9 +1150,12 @@ class Densitymapbox::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Densitymapbox::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Hoverlabel::Font& color(Callable&& c);
     Densitymapbox::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Densitymapbox::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Densitymapbox::Hoverlabel::Font& colorsrc(std::string f);
@@ -1289,7 +1317,9 @@ class Densitymapbox::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Densitymapbox::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Densitymapbox::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Densitymapbox::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

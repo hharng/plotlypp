@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Waterfall::to_string(Constraintext e) {
+inline std::string Waterfall::to_string(Constraintext e) {
     switch(e) {
         case Constraintext::Inside: return "inside";
         case Constraintext::Outside: return "outside";
@@ -20,7 +20,7 @@ std::string Waterfall::to_string(Constraintext e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::to_string(Insidetextanchor e) {
+inline std::string Waterfall::to_string(Insidetextanchor e) {
     switch(e) {
         case Insidetextanchor::End: return "end";
         case Insidetextanchor::Middle: return "middle";
@@ -29,7 +29,7 @@ std::string Waterfall::to_string(Insidetextanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::to_string(Orientation e) {
+inline std::string Waterfall::to_string(Orientation e) {
     switch(e) {
         case Orientation::V: return "v";
         case Orientation::H: return "h";
@@ -37,7 +37,7 @@ std::string Waterfall::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::to_string(Textposition e) {
+inline std::string Waterfall::to_string(Textposition e) {
     switch(e) {
         case Textposition::Inside: return "inside";
         case Textposition::Outside: return "outside";
@@ -47,7 +47,7 @@ std::string Waterfall::to_string(Textposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::to_string(Visible e) {
+inline std::string Waterfall::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -56,7 +56,7 @@ std::string Waterfall::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::to_string(Xperiodalignment e) {
+inline std::string Waterfall::to_string(Xperiodalignment e) {
     switch(e) {
         case Xperiodalignment::Start: return "start";
         case Xperiodalignment::Middle: return "middle";
@@ -65,7 +65,7 @@ std::string Waterfall::to_string(Xperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::to_string(Yperiodalignment e) {
+inline std::string Waterfall::to_string(Yperiodalignment e) {
     switch(e) {
         case Yperiodalignment::Start: return "start";
         case Yperiodalignment::Middle: return "middle";
@@ -75,821 +75,821 @@ std::string Waterfall::to_string(Yperiodalignment e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall& Waterfall::alignmentgroup(std::string f) {
+inline Waterfall& Waterfall::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::alignmentgroup(Callable&& c) {
+inline Waterfall& Waterfall::alignmentgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignmentgroup(std::move(f));
 }
 
-Waterfall& Waterfall::base(double f) {
+inline Waterfall& Waterfall::base(double f) {
     json["base"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::base(Callable&& c) {
+inline Waterfall& Waterfall::base(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return base(std::move(f));
 }
 
-Waterfall& Waterfall::cliponaxis(bool f) {
+inline Waterfall& Waterfall::cliponaxis(bool f) {
     json["cliponaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::cliponaxis(Callable&& c) {
+inline Waterfall& Waterfall::cliponaxis(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cliponaxis(std::move(f));
 }
 
-Waterfall& Waterfall::connector(Connector f) {
+inline Waterfall& Waterfall::connector(Connector f) {
     json["connector"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::connector(Callable&& c) {
+inline Waterfall& Waterfall::connector(Callable&& c) {
     Connector f{};
     std::forward<Callable>(c)(f);
     return connector(std::move(f));
 }
 
-Waterfall& Waterfall::constraintext(enum Constraintext f) {
+inline Waterfall& Waterfall::constraintext(enum Constraintext f) {
     json["constraintext"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Waterfall& Waterfall::customdata(Range&& f) {
+inline Waterfall& Waterfall::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::customdata(Callable&& c) {
+inline Waterfall& Waterfall::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Waterfall& Waterfall::customdatasrc(std::string f) {
+inline Waterfall& Waterfall::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::customdatasrc(Callable&& c) {
+inline Waterfall& Waterfall::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Waterfall& Waterfall::decreasing(Decreasing f) {
+inline Waterfall& Waterfall::decreasing(Decreasing f) {
     json["decreasing"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::decreasing(Callable&& c) {
+inline Waterfall& Waterfall::decreasing(Callable&& c) {
     Decreasing f{};
     std::forward<Callable>(c)(f);
     return decreasing(std::move(f));
 }
 
-Waterfall& Waterfall::dx(double f) {
+inline Waterfall& Waterfall::dx(double f) {
     json["dx"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::dx(Callable&& c) {
+inline Waterfall& Waterfall::dx(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dx(std::move(f));
 }
 
-Waterfall& Waterfall::dy(double f) {
+inline Waterfall& Waterfall::dy(double f) {
     json["dy"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::dy(Callable&& c) {
+inline Waterfall& Waterfall::dy(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dy(std::move(f));
 }
 
-Waterfall& Waterfall::hoverinfo(std::string f) {
+inline Waterfall& Waterfall::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hoverinfo(Callable&& c) {
+inline Waterfall& Waterfall::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Waterfall& Waterfall::hoverinfo(const std::vector<std::string>& f) {
+inline Waterfall& Waterfall::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::hoverinfosrc(std::string f) {
+inline Waterfall& Waterfall::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hoverinfosrc(Callable&& c) {
+inline Waterfall& Waterfall::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Waterfall& Waterfall::hoverlabel(Hoverlabel f) {
+inline Waterfall& Waterfall::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hoverlabel(Callable&& c) {
+inline Waterfall& Waterfall::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Waterfall& Waterfall::hovertemplate(std::string f) {
+inline Waterfall& Waterfall::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hovertemplate(Callable&& c) {
+inline Waterfall& Waterfall::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Waterfall& Waterfall::hovertemplate(const std::vector<std::string>& f) {
+inline Waterfall& Waterfall::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::hovertemplatesrc(std::string f) {
+inline Waterfall& Waterfall::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hovertemplatesrc(Callable&& c) {
+inline Waterfall& Waterfall::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Waterfall& Waterfall::hovertext(std::string f) {
+inline Waterfall& Waterfall::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hovertext(Callable&& c) {
+inline Waterfall& Waterfall::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
-Waterfall& Waterfall::hovertext(const std::vector<std::string>& f) {
+inline Waterfall& Waterfall::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::hovertextsrc(std::string f) {
+inline Waterfall& Waterfall::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::hovertextsrc(Callable&& c) {
+inline Waterfall& Waterfall::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Waterfall& Waterfall::ids(Range&& f) {
+inline Waterfall& Waterfall::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::ids(Callable&& c) {
+inline Waterfall& Waterfall::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Waterfall& Waterfall::idssrc(std::string f) {
+inline Waterfall& Waterfall::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::idssrc(Callable&& c) {
+inline Waterfall& Waterfall::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Waterfall& Waterfall::increasing(Increasing f) {
+inline Waterfall& Waterfall::increasing(Increasing f) {
     json["increasing"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::increasing(Callable&& c) {
+inline Waterfall& Waterfall::increasing(Callable&& c) {
     Increasing f{};
     std::forward<Callable>(c)(f);
     return increasing(std::move(f));
 }
 
-Waterfall& Waterfall::insidetextanchor(enum Insidetextanchor f) {
+inline Waterfall& Waterfall::insidetextanchor(enum Insidetextanchor f) {
     json["insidetextanchor"] = to_string(f);
     return *this;
 }
 
-Waterfall& Waterfall::insidetextfont(Insidetextfont f) {
+inline Waterfall& Waterfall::insidetextfont(Insidetextfont f) {
     json["insidetextfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::insidetextfont(Callable&& c) {
+inline Waterfall& Waterfall::insidetextfont(Callable&& c) {
     Insidetextfont f{};
     std::forward<Callable>(c)(f);
     return insidetextfont(std::move(f));
 }
 
-Waterfall& Waterfall::legend(std::string f) {
+inline Waterfall& Waterfall::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::legend(Callable&& c) {
+inline Waterfall& Waterfall::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Waterfall& Waterfall::legendgroup(std::string f) {
+inline Waterfall& Waterfall::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::legendgroup(Callable&& c) {
+inline Waterfall& Waterfall::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Waterfall& Waterfall::legendgrouptitle(Legendgrouptitle f) {
+inline Waterfall& Waterfall::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::legendgrouptitle(Callable&& c) {
+inline Waterfall& Waterfall::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Waterfall& Waterfall::legendrank(double f) {
+inline Waterfall& Waterfall::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::legendrank(Callable&& c) {
+inline Waterfall& Waterfall::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Waterfall& Waterfall::legendwidth(double f) {
+inline Waterfall& Waterfall::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::legendwidth(Callable&& c) {
+inline Waterfall& Waterfall::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
 template <typename Range, typename>
-Waterfall& Waterfall::measure(Range&& f) {
+inline Waterfall& Waterfall::measure(Range&& f) {
     json["measure"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::measure(Callable&& c) {
+inline Waterfall& Waterfall::measure(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return measure(std::move(f));
 }
 
-Waterfall& Waterfall::measuresrc(std::string f) {
+inline Waterfall& Waterfall::measuresrc(std::string f) {
     json["measuresrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::measuresrc(Callable&& c) {
+inline Waterfall& Waterfall::measuresrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return measuresrc(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::meta(T f) {
+inline Waterfall& Waterfall::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::meta(Callable&& c) {
+inline Waterfall& Waterfall::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Waterfall& Waterfall::meta(const std::vector<T>& f) {
+inline Waterfall& Waterfall::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::metasrc(std::string f) {
+inline Waterfall& Waterfall::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::metasrc(Callable&& c) {
+inline Waterfall& Waterfall::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Waterfall& Waterfall::name(std::string f) {
+inline Waterfall& Waterfall::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::name(Callable&& c) {
+inline Waterfall& Waterfall::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Waterfall& Waterfall::offset(double f) {
+inline Waterfall& Waterfall::offset(double f) {
     json["offset"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::offset(Callable&& c) {
+inline Waterfall& Waterfall::offset(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return offset(std::move(f));
 }
-Waterfall& Waterfall::offset(const std::vector<double>& f) {
+inline Waterfall& Waterfall::offset(const std::vector<double>& f) {
     json["offset"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::offsetgroup(std::string f) {
+inline Waterfall& Waterfall::offsetgroup(std::string f) {
     json["offsetgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::offsetgroup(Callable&& c) {
+inline Waterfall& Waterfall::offsetgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return offsetgroup(std::move(f));
 }
 
-Waterfall& Waterfall::offsetsrc(std::string f) {
+inline Waterfall& Waterfall::offsetsrc(std::string f) {
     json["offsetsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::offsetsrc(Callable&& c) {
+inline Waterfall& Waterfall::offsetsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return offsetsrc(std::move(f));
 }
 
-Waterfall& Waterfall::opacity(double f) {
+inline Waterfall& Waterfall::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::opacity(Callable&& c) {
+inline Waterfall& Waterfall::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Waterfall& Waterfall::orientation(enum Orientation f) {
+inline Waterfall& Waterfall::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Waterfall& Waterfall::outsidetextfont(Outsidetextfont f) {
+inline Waterfall& Waterfall::outsidetextfont(Outsidetextfont f) {
     json["outsidetextfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::outsidetextfont(Callable&& c) {
+inline Waterfall& Waterfall::outsidetextfont(Callable&& c) {
     Outsidetextfont f{};
     std::forward<Callable>(c)(f);
     return outsidetextfont(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::selectedpoints(T f) {
+inline Waterfall& Waterfall::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::selectedpoints(Callable&& c) {
+inline Waterfall& Waterfall::selectedpoints(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return selectedpoints(std::move(f));
 }
 
-Waterfall& Waterfall::showlegend(bool f) {
+inline Waterfall& Waterfall::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::showlegend(Callable&& c) {
+inline Waterfall& Waterfall::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Waterfall& Waterfall::stream(Stream f) {
+inline Waterfall& Waterfall::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::stream(Callable&& c) {
+inline Waterfall& Waterfall::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Waterfall& Waterfall::text(std::string f) {
+inline Waterfall& Waterfall::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::text(Callable&& c) {
+inline Waterfall& Waterfall::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
-Waterfall& Waterfall::text(const std::vector<std::string>& f) {
+inline Waterfall& Waterfall::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::textangle(double f) {
+inline Waterfall& Waterfall::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::textangle(Callable&& c) {
+inline Waterfall& Waterfall::textangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return textangle(std::move(f));
 }
 
-Waterfall& Waterfall::textfont(Textfont f) {
+inline Waterfall& Waterfall::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::textfont(Callable&& c) {
+inline Waterfall& Waterfall::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Waterfall& Waterfall::textinfo(std::string f) {
+inline Waterfall& Waterfall::textinfo(std::string f) {
     json["textinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::textinfo(Callable&& c) {
+inline Waterfall& Waterfall::textinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textinfo(std::move(f));
 }
 
-Waterfall& Waterfall::textposition(enum Textposition f) {
+inline Waterfall& Waterfall::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
-Waterfall& Waterfall::textposition(const std::vector<enum Textposition>& f) {
+inline Waterfall& Waterfall::textposition(const std::vector<enum Textposition>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textposition"] = std::move(stringified);
     return *this;
 }
 
-Waterfall& Waterfall::textpositionsrc(std::string f) {
+inline Waterfall& Waterfall::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::textpositionsrc(Callable&& c) {
+inline Waterfall& Waterfall::textpositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textpositionsrc(std::move(f));
 }
 
-Waterfall& Waterfall::textsrc(std::string f) {
+inline Waterfall& Waterfall::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::textsrc(Callable&& c) {
+inline Waterfall& Waterfall::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Waterfall& Waterfall::texttemplate(std::string f) {
+inline Waterfall& Waterfall::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::texttemplate(Callable&& c) {
+inline Waterfall& Waterfall::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
-Waterfall& Waterfall::texttemplate(const std::vector<std::string>& f) {
+inline Waterfall& Waterfall::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::texttemplatesrc(std::string f) {
+inline Waterfall& Waterfall::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::texttemplatesrc(Callable&& c) {
+inline Waterfall& Waterfall::texttemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplatesrc(std::move(f));
 }
 
-Waterfall& Waterfall::totals(Totals f) {
+inline Waterfall& Waterfall::totals(Totals f) {
     json["totals"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::totals(Callable&& c) {
+inline Waterfall& Waterfall::totals(Callable&& c) {
     Totals f{};
     std::forward<Callable>(c)(f);
     return totals(std::move(f));
 }
 
-Waterfall& Waterfall::uid(std::string f) {
+inline Waterfall& Waterfall::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::uid(Callable&& c) {
+inline Waterfall& Waterfall::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::uirevision(T f) {
+inline Waterfall& Waterfall::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::uirevision(Callable&& c) {
+inline Waterfall& Waterfall::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Waterfall& Waterfall::visible(enum Visible f) {
+inline Waterfall& Waterfall::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
-Waterfall& Waterfall::width(double f) {
+inline Waterfall& Waterfall::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::width(Callable&& c) {
+inline Waterfall& Waterfall::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
-Waterfall& Waterfall::width(const std::vector<double>& f) {
+inline Waterfall& Waterfall::width(const std::vector<double>& f) {
     json["width"] = f;
     return *this;
 }
 
-Waterfall& Waterfall::widthsrc(std::string f) {
+inline Waterfall& Waterfall::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::widthsrc(Callable&& c) {
+inline Waterfall& Waterfall::widthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return widthsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Waterfall& Waterfall::x(Range&& f) {
+inline Waterfall& Waterfall::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::x(Callable&& c) {
+inline Waterfall& Waterfall::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::x0(T f) {
+inline Waterfall& Waterfall::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::x0(Callable&& c) {
+inline Waterfall& Waterfall::x0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x0(std::move(f));
 }
 
-Waterfall& Waterfall::xaxis(std::string f) {
+inline Waterfall& Waterfall::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::xaxis(Callable&& c) {
+inline Waterfall& Waterfall::xaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xaxis(std::move(f));
 }
 
-Waterfall& Waterfall::xhoverformat(std::string f) {
+inline Waterfall& Waterfall::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::xhoverformat(Callable&& c) {
+inline Waterfall& Waterfall::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::xperiod(T f) {
+inline Waterfall& Waterfall::xperiod(T f) {
     json["xperiod"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::xperiod(Callable&& c) {
+inline Waterfall& Waterfall::xperiod(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return xperiod(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::xperiod0(T f) {
+inline Waterfall& Waterfall::xperiod0(T f) {
     json["xperiod0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::xperiod0(Callable&& c) {
+inline Waterfall& Waterfall::xperiod0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return xperiod0(std::move(f));
 }
 
-Waterfall& Waterfall::xperiodalignment(enum Xperiodalignment f) {
+inline Waterfall& Waterfall::xperiodalignment(enum Xperiodalignment f) {
     json["xperiodalignment"] = to_string(f);
     return *this;
 }
 
-Waterfall& Waterfall::xsrc(std::string f) {
+inline Waterfall& Waterfall::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::xsrc(Callable&& c) {
+inline Waterfall& Waterfall::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Waterfall& Waterfall::y(Range&& f) {
+inline Waterfall& Waterfall::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::y(Callable&& c) {
+inline Waterfall& Waterfall::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::y0(T f) {
+inline Waterfall& Waterfall::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::y0(Callable&& c) {
+inline Waterfall& Waterfall::y0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y0(std::move(f));
 }
 
-Waterfall& Waterfall::yaxis(std::string f) {
+inline Waterfall& Waterfall::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::yaxis(Callable&& c) {
+inline Waterfall& Waterfall::yaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yaxis(std::move(f));
 }
 
-Waterfall& Waterfall::yhoverformat(std::string f) {
+inline Waterfall& Waterfall::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::yhoverformat(Callable&& c) {
+inline Waterfall& Waterfall::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::yperiod(T f) {
+inline Waterfall& Waterfall::yperiod(T f) {
     json["yperiod"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::yperiod(Callable&& c) {
+inline Waterfall& Waterfall::yperiod(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return yperiod(std::move(f));
 }
 
 template <typename T>
-Waterfall& Waterfall::yperiod0(T f) {
+inline Waterfall& Waterfall::yperiod0(T f) {
     json["yperiod0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Waterfall& Waterfall::yperiod0(Callable&& c) {
+inline Waterfall& Waterfall::yperiod0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return yperiod0(std::move(f));
 }
 
-Waterfall& Waterfall::yperiodalignment(enum Yperiodalignment f) {
+inline Waterfall& Waterfall::yperiodalignment(enum Yperiodalignment f) {
     json["yperiodalignment"] = to_string(f);
     return *this;
 }
 
-Waterfall& Waterfall::ysrc(std::string f) {
+inline Waterfall& Waterfall::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::ysrc(Callable&& c) {
+inline Waterfall& Waterfall::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
-Waterfall& Waterfall::zorder(int f) {
+inline Waterfall& Waterfall::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall& Waterfall::zorder(Callable&& c) {
+inline Waterfall& Waterfall::zorder(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return zorder(std::move(f));
 }
 
-std::string Waterfall::Connector::to_string(Mode e) {
+inline std::string Waterfall::Connector::to_string(Mode e) {
     switch(e) {
         case Mode::Spanning: return "spanning";
         case Mode::Between: return "between";
@@ -898,126 +898,138 @@ std::string Waterfall::Connector::to_string(Mode e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Connector& Waterfall::Connector::line(Line f) {
+inline Waterfall::Connector& Waterfall::Connector::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Connector& Waterfall::Connector::line(Callable&& c) {
+inline Waterfall::Connector& Waterfall::Connector::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Waterfall::Connector& Waterfall::Connector::mode(enum Mode f) {
+inline Waterfall::Connector& Waterfall::Connector::mode(enum Mode f) {
     json["mode"] = to_string(f);
     return *this;
 }
 
-Waterfall::Connector& Waterfall::Connector::visible(bool f) {
+inline Waterfall::Connector& Waterfall::Connector::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Connector& Waterfall::Connector::visible(Callable&& c) {
+inline Waterfall::Connector& Waterfall::Connector::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
 
-Waterfall::Connector::Line& Waterfall::Connector::Line::color(std::string f) {
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Connector::Line& Waterfall::Connector::Line::color(Callable&& c) {
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Connector::Line& Waterfall::Connector::Line::dash(std::string f) {
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Connector::Line& Waterfall::Connector::Line::dash(Callable&& c) {
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::dash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return dash(std::move(f));
 }
 
-Waterfall::Connector::Line& Waterfall::Connector::Line::width(double f) {
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Connector::Line& Waterfall::Connector::Line::width(Callable&& c) {
+inline Waterfall::Connector::Line& Waterfall::Connector::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 
-Waterfall::Decreasing& Waterfall::Decreasing::marker(Marker f) {
+inline Waterfall::Decreasing& Waterfall::Decreasing::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Decreasing& Waterfall::Decreasing::marker(Callable&& c) {
+inline Waterfall::Decreasing& Waterfall::Decreasing::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
 
-Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::color(std::string f) {
+inline Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::color(Callable&& c) {
+inline Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::line(Line f) {
+inline Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::line(Callable&& c) {
+inline Waterfall::Decreasing::Marker& Waterfall::Decreasing::Marker::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
 
-Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::color(std::string f) {
+inline Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::color(Callable&& c) {
+inline Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::width(double f) {
+inline Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::width(Callable&& c) {
+inline Waterfall::Decreasing::Marker::Line& Waterfall::Decreasing::Marker::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Waterfall::Hoverlabel::to_string(Align e) {
+inline std::string Waterfall::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -1027,118 +1039,134 @@ std::string Waterfall::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::align(enum Align f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::alignsrc(std::string f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::alignsrc(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(std::string f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolorsrc(std::string f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(std::string f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolorsrc(std::string f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::font(Font f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::font(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelength(int f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelength(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelengthsrc(std::string f) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Waterfall::Hoverlabel& Waterfall::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Waterfall::Hoverlabel::Font::to_string(Style e) {
+inline std::string Waterfall::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1146,7 +1174,7 @@ std::string Waterfall::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Waterfall::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1156,7 +1184,7 @@ std::string Waterfall::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Waterfall::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1169,287 +1197,303 @@ std::string Waterfall::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::colorsrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::family(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::family(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::familysrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadow(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadow(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::size(double f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::size(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::sizesrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::style(enum Style f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::stylesrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variant(enum Variant f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variantsrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weight(int f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weight(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weightsrc(std::string f) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Waterfall::Increasing& Waterfall::Increasing::marker(Marker f) {
+inline Waterfall::Increasing& Waterfall::Increasing::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Increasing& Waterfall::Increasing::marker(Callable&& c) {
+inline Waterfall::Increasing& Waterfall::Increasing::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
 
-Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::color(std::string f) {
+inline Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::color(Callable&& c) {
+inline Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::line(Line f) {
+inline Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::line(Callable&& c) {
+inline Waterfall::Increasing::Marker& Waterfall::Increasing::Marker::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
 
-Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::color(std::string f) {
+inline Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::color(Callable&& c) {
+inline Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::width(double f) {
+inline Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::width(Callable&& c) {
+inline Waterfall::Increasing::Marker::Line& Waterfall::Increasing::Marker::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Waterfall::Insidetextfont::to_string(Style e) {
+inline std::string Waterfall::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1457,7 +1501,7 @@ std::string Waterfall::Insidetextfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Insidetextfont::to_string(Textcase e) {
+inline std::string Waterfall::Insidetextfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1467,7 +1511,7 @@ std::string Waterfall::Insidetextfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Insidetextfont::to_string(Variant e) {
+inline std::string Waterfall::Insidetextfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1480,252 +1524,260 @@ std::string Waterfall::Insidetextfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(const std::vector<std::string>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::colorsrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::colorsrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::family(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::family(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::family(const std::vector<std::string>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::familysrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::familysrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(const std::vector<std::string>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::linepositionsrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::linepositionsrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadow(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadow(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadow(const std::vector<std::string>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadowsrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadowsrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::size(double f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::size(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::size(const std::vector<double>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::sizesrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::sizesrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::style(enum Style f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::style(const std::vector<enum Style>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::stylesrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::stylesrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcase(enum Textcase f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcasesrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcasesrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::variant(enum Variant f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::variant(const std::vector<enum Variant>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::variantsrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::variantsrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::weight(int f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::weight(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::weight(const std::vector<int>& f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::weightsrc(std::string f) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Insidetextfont& Waterfall::Insidetextfont::weightsrc(Callable&& c) {
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::font(Font f) {
+inline Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::font(Callable&& c) {
+inline Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::text(std::string f) {
+inline Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::text(Callable&& c) {
+inline Waterfall::Legendgrouptitle& Waterfall::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Waterfall::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Waterfall::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1733,7 +1785,7 @@ std::string Waterfall::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Waterfall::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1743,7 +1795,7 @@ std::string Waterfall::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Waterfall::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1756,88 +1808,92 @@ std::string Waterfall::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::color(std::string f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::color(Callable&& c) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::family(std::string f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::family(Callable&& c) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::shadow(std::string f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::size(double f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::size(Callable&& c) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::style(enum Style f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::weight(int f) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Waterfall::Outsidetextfont::to_string(Style e) {
+inline std::string Waterfall::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1845,7 +1901,7 @@ std::string Waterfall::Outsidetextfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Outsidetextfont::to_string(Textcase e) {
+inline std::string Waterfall::Outsidetextfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1855,7 +1911,7 @@ std::string Waterfall::Outsidetextfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Outsidetextfont::to_string(Variant e) {
+inline std::string Waterfall::Outsidetextfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1868,252 +1924,260 @@ std::string Waterfall::Outsidetextfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(const std::vector<std::string>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::colorsrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::colorsrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::family(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::family(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::family(const std::vector<std::string>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::familysrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::familysrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::linepositionsrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::linepositionsrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadow(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadow(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadow(const std::vector<std::string>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadowsrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadowsrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::size(double f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::size(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::size(const std::vector<double>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::sizesrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::sizesrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::style(enum Style f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::style(const std::vector<enum Style>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::stylesrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::stylesrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcase(enum Textcase f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcasesrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcasesrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variant(enum Variant f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variantsrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variantsrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weight(int f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weight(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weight(const std::vector<int>& f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weightsrc(std::string f) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weightsrc(Callable&& c) {
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Waterfall::Stream& Waterfall::Stream::maxpoints(double f) {
+inline Waterfall::Stream& Waterfall::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Stream& Waterfall::Stream::maxpoints(Callable&& c) {
+inline Waterfall::Stream& Waterfall::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Waterfall::Stream& Waterfall::Stream::token(std::string f) {
+inline Waterfall::Stream& Waterfall::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Stream& Waterfall::Stream::token(Callable&& c) {
+inline Waterfall::Stream& Waterfall::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Waterfall::Textfont::to_string(Style e) {
+inline std::string Waterfall::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2121,7 +2185,7 @@ std::string Waterfall::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Textfont::to_string(Textcase e) {
+inline std::string Waterfall::Textfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2131,7 +2195,7 @@ std::string Waterfall::Textfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Waterfall::Textfont::to_string(Variant e) {
+inline std::string Waterfall::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2144,281 +2208,297 @@ std::string Waterfall::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Waterfall::Textfont& Waterfall::Textfont::color(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Textfont& Waterfall::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::color(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Waterfall::Textfont& Waterfall::Textfont::color(const std::vector<std::string>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Waterfall::Textfont& Waterfall::Textfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::colorsrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::colorsrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::family(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::family(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Waterfall::Textfont& Waterfall::Textfont::family(const std::vector<std::string>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::familysrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::familysrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::lineposition(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::lineposition(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Waterfall::Textfont& Waterfall::Textfont::lineposition(const std::vector<std::string>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::linepositionsrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::linepositionsrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::shadow(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::shadow(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Waterfall::Textfont& Waterfall::Textfont::shadow(const std::vector<std::string>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::shadowsrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::shadowsrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::size(double f) {
+inline Waterfall::Textfont& Waterfall::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::size(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Waterfall::Textfont& Waterfall::Textfont::size(const std::vector<double>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::sizesrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::sizesrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::style(enum Style f) {
+inline Waterfall::Textfont& Waterfall::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Waterfall::Textfont& Waterfall::Textfont::style(const std::vector<enum Style>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::stylesrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::stylesrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::textcase(enum Textcase f) {
+inline Waterfall::Textfont& Waterfall::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Waterfall::Textfont& Waterfall::Textfont::textcase(const std::vector<enum Textcase>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::textcasesrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::textcasesrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::variant(enum Variant f) {
+inline Waterfall::Textfont& Waterfall::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Waterfall::Textfont& Waterfall::Textfont::variant(const std::vector<enum Variant>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::variantsrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::variantsrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Waterfall::Textfont& Waterfall::Textfont::weight(int f) {
+inline Waterfall::Textfont& Waterfall::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::weight(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Waterfall::Textfont& Waterfall::Textfont::weight(const std::vector<int>& f) {
+inline Waterfall::Textfont& Waterfall::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Waterfall::Textfont& Waterfall::Textfont::weightsrc(std::string f) {
+inline Waterfall::Textfont& Waterfall::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Textfont& Waterfall::Textfont::weightsrc(Callable&& c) {
+inline Waterfall::Textfont& Waterfall::Textfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Waterfall::Totals& Waterfall::Totals::marker(Marker f) {
+inline Waterfall::Totals& Waterfall::Totals::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Totals& Waterfall::Totals::marker(Callable&& c) {
+inline Waterfall::Totals& Waterfall::Totals::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
 
-Waterfall::Totals::Marker& Waterfall::Totals::Marker::color(std::string f) {
+inline Waterfall::Totals::Marker& Waterfall::Totals::Marker::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Totals::Marker& Waterfall::Totals::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Totals::Marker& Waterfall::Totals::Marker::color(Callable&& c) {
+inline Waterfall::Totals::Marker& Waterfall::Totals::Marker::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Totals::Marker& Waterfall::Totals::Marker::line(Line f) {
+inline Waterfall::Totals::Marker& Waterfall::Totals::Marker::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Totals::Marker& Waterfall::Totals::Marker::line(Callable&& c) {
+inline Waterfall::Totals::Marker& Waterfall::Totals::Marker::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
 
-Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::color(std::string f) {
+inline Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::color(Callable&& c) {
+inline Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::width(double f) {
+inline Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::width(Callable&& c) {
+inline Waterfall::Totals::Marker::Line& Waterfall::Totals::Marker::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));

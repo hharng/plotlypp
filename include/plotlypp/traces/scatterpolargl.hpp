@@ -122,7 +122,9 @@ class Scatterpolargl : public Trace {
     // Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line
     // color, whichever is available.
     Scatterpolargl& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl& fillcolor(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
@@ -444,9 +446,12 @@ class Scatterpolargl::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Scatterpolargl::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Hoverlabel& bgcolor(Callable&& c);
     Scatterpolargl::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Scatterpolargl::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Scatterpolargl::Hoverlabel& bgcolorsrc(std::string f);
@@ -455,9 +460,12 @@ class Scatterpolargl::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Scatterpolargl::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Hoverlabel& bordercolor(Callable&& c);
     Scatterpolargl::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Scatterpolargl::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Scatterpolargl::Hoverlabel& bordercolorsrc(std::string f);
@@ -519,9 +527,12 @@ class Scatterpolargl::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Scatterpolargl::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Hoverlabel::Font& color(Callable&& c);
     Scatterpolargl::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Scatterpolargl::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatterpolargl::Hoverlabel::Font& colorsrc(std::string f);
@@ -683,7 +694,9 @@ class Scatterpolargl::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Scatterpolargl::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -756,7 +769,9 @@ class Scatterpolargl::Line {
 
     // Sets the line color.
     Scatterpolargl::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Line& color(Callable&& c);
 
     // Sets the style of the lines.
@@ -1163,9 +1178,12 @@ class Scatterpolargl::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Scatterpolargl::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker& color(Callable&& c);
     Scatterpolargl::Marker& color(const std::vector<std::string>& f);
+    Scatterpolargl::Marker& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -1393,12 +1411,16 @@ class Scatterpolargl::Marker::Colorbar {
 
     // Sets the color of padded area.
     Scatterpolargl::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Scatterpolargl::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1467,7 +1489,9 @@ class Scatterpolargl::Marker::Colorbar {
 
     // Sets the axis line color.
     Scatterpolargl::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1527,7 +1551,9 @@ class Scatterpolargl::Marker::Colorbar {
 
     // Sets the tick color.
     Scatterpolargl::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1709,7 +1735,9 @@ class Scatterpolargl::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Scatterpolargl::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1773,7 +1801,14 @@ class Scatterpolargl::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Scatterpolargl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Scatterpolargl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Scatterpolargl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Scatterpolargl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Scatterpolargl::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1873,7 +1908,9 @@ class Scatterpolargl::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Scatterpolargl::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1975,9 +2012,12 @@ class Scatterpolargl::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Scatterpolargl::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Marker::Line& color(Callable&& c);
     Scatterpolargl::Marker::Line& color(const std::vector<std::string>& f);
+    Scatterpolargl::Marker::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -2056,7 +2096,9 @@ class Scatterpolargl::Selected::Marker {
 
     // Sets the marker color of selected points.
     Scatterpolargl::Selected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Selected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
@@ -2081,7 +2123,9 @@ class Scatterpolargl::Selected::Textfont {
 
     // Sets the text font color of selected points.
     Scatterpolargl::Selected::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Selected::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Selected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2136,9 +2180,12 @@ class Scatterpolargl::Textfont {
     static std::string to_string(Weight e);
 
     Scatterpolargl::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Textfont& color(Callable&& c);
     Scatterpolargl::Textfont& color(const std::vector<std::string>& f);
+    Scatterpolargl::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatterpolargl::Textfont& colorsrc(std::string f);
@@ -2235,7 +2282,9 @@ class Scatterpolargl::Unselected::Marker {
 
     // Sets the marker color of unselected points, applied only when a selection exists.
     Scatterpolargl::Unselected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Unselected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.
@@ -2260,7 +2309,9 @@ class Scatterpolargl::Unselected::Textfont {
 
     // Sets the text font color of unselected points, applied only when a selection exists.
     Scatterpolargl::Unselected::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterpolargl::Unselected::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterpolargl::Unselected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!

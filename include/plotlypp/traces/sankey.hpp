@@ -244,12 +244,26 @@ class Sankey::Domain {
 
     // Sets the horizontal domain of this sankey trace (in plot fraction).
     Sankey::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Sankey::Domain& x(const std::vector<std::string>& f);
+    Sankey::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Sankey::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Sankey::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this sankey trace (in plot fraction).
     Sankey::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Sankey::Domain& y(const std::vector<std::string>& f);
+    Sankey::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Sankey::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Sankey::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -285,9 +299,12 @@ class Sankey::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Sankey::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Hoverlabel& bgcolor(Callable&& c);
     Sankey::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Sankey::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Sankey::Hoverlabel& bgcolorsrc(std::string f);
@@ -296,9 +313,12 @@ class Sankey::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Sankey::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Hoverlabel& bordercolor(Callable&& c);
     Sankey::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Sankey::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Sankey::Hoverlabel& bordercolorsrc(std::string f);
@@ -360,9 +380,12 @@ class Sankey::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Sankey::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Hoverlabel::Font& color(Callable&& c);
     Sankey::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Sankey::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Hoverlabel::Font& colorsrc(std::string f);
@@ -524,7 +547,9 @@ class Sankey::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Sankey::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -605,9 +630,12 @@ class Sankey::Link {
     // Sets the `link` color. It can be a single value, or an array for specifying color for each `link`. If
     // `link.color` is omitted, then by default, a translucent grey link will be used.
     Sankey::Link& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Link& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Link& color(Callable&& c);
     Sankey::Link& color(const std::vector<std::string>& f);
+    Sankey::Link& color(const std::vector<double>& f);
 
     Sankey::Link& colorscales(Concentrationscales f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Concentrationscales&>>>
@@ -635,9 +663,12 @@ class Sankey::Link {
     // Sets the `link` hover color. It can be a single value, or an array for specifying hover colors for each `link`.
     // If `link.hovercolor` is omitted, then by default, links will become slightly more opaque when hovered over.
     Sankey::Link& hovercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Link& hovercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Link& hovercolor(Callable&& c);
     Sankey::Link& hovercolor(const std::vector<std::string>& f);
+    Sankey::Link& hovercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovercolor`.
     Sankey::Link& hovercolorsrc(std::string f);
@@ -821,9 +852,12 @@ class Sankey::Link::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Sankey::Link::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Link::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Link::Hoverlabel& bgcolor(Callable&& c);
     Sankey::Link::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Sankey::Link::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Sankey::Link::Hoverlabel& bgcolorsrc(std::string f);
@@ -832,9 +866,12 @@ class Sankey::Link::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Sankey::Link::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Link::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Link::Hoverlabel& bordercolor(Callable&& c);
     Sankey::Link::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Sankey::Link::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Sankey::Link::Hoverlabel& bordercolorsrc(std::string f);
@@ -896,9 +933,12 @@ class Sankey::Link::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Sankey::Link::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Link::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Link::Hoverlabel::Font& color(Callable&& c);
     Sankey::Link::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Sankey::Link::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Link::Hoverlabel::Font& colorsrc(std::string f);
@@ -1013,9 +1053,12 @@ class Sankey::Link::Line {
 
     // Sets the color of the `line` around each `link`.
     Sankey::Link::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Link::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Link::Line& color(Callable&& c);
     Sankey::Link::Line& color(const std::vector<std::string>& f);
+    Sankey::Link::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Link::Line& colorsrc(std::string f);
@@ -1070,9 +1113,12 @@ class Sankey::Node {
     // `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of
     // colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
     Sankey::Node& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Node& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Node& color(Callable&& c);
     Sankey::Node& color(const std::vector<std::string>& f);
+    Sankey::Node& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Node& colorsrc(std::string f);
@@ -1095,7 +1141,14 @@ class Sankey::Node {
     // Groups of nodes. Each group is defined by an array with the indices of the nodes it contains. Multiple groups can
     // be specified.
     Sankey::Node& groups(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Sankey::Node& groups(const std::vector<std::string>& f);
+    Sankey::Node& groups(const std::vector<std::vector<std::string>>& f);
+    Sankey::Node& groups(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Sankey::Node& groups(Callable&& c);
 
     // Determines which trace information appear when hovering nodes. If `none` or `skip` are set, no information is
@@ -1217,9 +1270,12 @@ class Sankey::Node::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Sankey::Node::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Node::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Node::Hoverlabel& bgcolor(Callable&& c);
     Sankey::Node::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Sankey::Node::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Sankey::Node::Hoverlabel& bgcolorsrc(std::string f);
@@ -1228,9 +1284,12 @@ class Sankey::Node::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Sankey::Node::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Node::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Node::Hoverlabel& bordercolor(Callable&& c);
     Sankey::Node::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Sankey::Node::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Sankey::Node::Hoverlabel& bordercolorsrc(std::string f);
@@ -1292,9 +1351,12 @@ class Sankey::Node::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Sankey::Node::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Node::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Node::Hoverlabel::Font& color(Callable&& c);
     Sankey::Node::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Sankey::Node::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Node::Hoverlabel::Font& colorsrc(std::string f);
@@ -1409,9 +1471,12 @@ class Sankey::Node::Line {
 
     // Sets the color of the `line` around each `node`.
     Sankey::Node::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Node::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Node::Line& color(Callable&& c);
     Sankey::Node::Line& color(const std::vector<std::string>& f);
+    Sankey::Node::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sankey::Node::Line& colorsrc(std::string f);
@@ -1487,7 +1552,9 @@ class Sankey::Textfont {
     static std::string to_string(Variant e);
 
     Sankey::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sankey::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sankey::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

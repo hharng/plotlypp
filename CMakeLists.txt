@@ -3,7 +3,7 @@
 # Official repository: https://github.com/jimmyorourke/plotlypp
 
 cmake_minimum_required(VERSION 3.13)
-project(plotlypp)
+project(plotlypp LANGUAGES CXX)
 
 set(MAIN_PROJECT OFF)
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)

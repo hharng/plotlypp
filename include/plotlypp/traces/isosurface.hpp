@@ -663,12 +663,16 @@ class Isosurface::Colorbar {
 
     // Sets the color of padded area.
     Isosurface::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Isosurface::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -737,7 +741,9 @@ class Isosurface::Colorbar {
 
     // Sets the axis line color.
     Isosurface::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -797,7 +803,9 @@ class Isosurface::Colorbar {
 
     // Sets the tick color.
     Isosurface::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -979,7 +987,9 @@ class Isosurface::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Isosurface::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1043,7 +1053,14 @@ class Isosurface::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Isosurface::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1143,7 +1160,9 @@ class Isosurface::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Isosurface::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1206,7 +1225,9 @@ class Isosurface::Contour {
 
     // Sets the color of the contour lines.
     Isosurface::Contour& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Contour& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Contour& color(Callable&& c);
 
     // Sets whether or not dynamic contours are shown on hover
@@ -1252,9 +1273,12 @@ class Isosurface::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Isosurface::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Hoverlabel& bgcolor(Callable&& c);
     Isosurface::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Isosurface::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Isosurface::Hoverlabel& bgcolorsrc(std::string f);
@@ -1263,9 +1287,12 @@ class Isosurface::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Isosurface::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Hoverlabel& bordercolor(Callable&& c);
     Isosurface::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Isosurface::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Isosurface::Hoverlabel& bordercolorsrc(std::string f);
@@ -1327,9 +1354,12 @@ class Isosurface::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Isosurface::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Hoverlabel::Font& color(Callable&& c);
     Isosurface::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Isosurface::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Isosurface::Hoverlabel::Font& colorsrc(std::string f);
@@ -1491,7 +1521,9 @@ class Isosurface::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Isosurface::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Isosurface::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Isosurface::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

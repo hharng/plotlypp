@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Scatter3D::to_string(Surfaceaxis e) {
+inline std::string Scatter3D::to_string(Surfaceaxis e) {
     switch(e) {
         case Surfaceaxis::Num_1: return "1";
         case Surfaceaxis::Num_0: return "0";
@@ -19,7 +19,7 @@ std::string Scatter3D::to_string(Surfaceaxis e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::to_string(Textposition e) {
+inline std::string Scatter3D::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
         case Textposition::TopCenter: return "top center";
@@ -34,7 +34,7 @@ std::string Scatter3D::to_string(Textposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::to_string(Visible e) {
+inline std::string Scatter3D::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -43,7 +43,7 @@ std::string Scatter3D::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::to_string(Xcalendar e) {
+inline std::string Scatter3D::to_string(Xcalendar e) {
     switch(e) {
         case Xcalendar::Chinese: return "chinese";
         case Xcalendar::Coptic: return "coptic";
@@ -65,7 +65,7 @@ std::string Scatter3D::to_string(Xcalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::to_string(Ycalendar e) {
+inline std::string Scatter3D::to_string(Ycalendar e) {
     switch(e) {
         case Ycalendar::Chinese: return "chinese";
         case Ycalendar::Coptic: return "coptic";
@@ -87,7 +87,7 @@ std::string Scatter3D::to_string(Ycalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::to_string(Zcalendar e) {
+inline std::string Scatter3D::to_string(Zcalendar e) {
     switch(e) {
         case Zcalendar::Chinese: return "chinese";
         case Zcalendar::Coptic: return "coptic";
@@ -110,614 +110,618 @@ std::string Scatter3D::to_string(Zcalendar e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D& Scatter3D::connectgaps(bool f) {
+inline Scatter3D& Scatter3D::connectgaps(bool f) {
     json["connectgaps"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::connectgaps(Callable&& c) {
+inline Scatter3D& Scatter3D::connectgaps(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return connectgaps(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D& Scatter3D::customdata(Range&& f) {
+inline Scatter3D& Scatter3D::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::customdata(Callable&& c) {
+inline Scatter3D& Scatter3D::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Scatter3D& Scatter3D::customdatasrc(std::string f) {
+inline Scatter3D& Scatter3D::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::customdatasrc(Callable&& c) {
+inline Scatter3D& Scatter3D::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::error_x(Error_X f) {
+inline Scatter3D& Scatter3D::error_x(Error_X f) {
     json["error_x"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::error_x(Callable&& c) {
+inline Scatter3D& Scatter3D::error_x(Callable&& c) {
     Error_X f{};
     std::forward<Callable>(c)(f);
     return error_x(std::move(f));
 }
 
-Scatter3D& Scatter3D::error_y(Error_Y f) {
+inline Scatter3D& Scatter3D::error_y(Error_Y f) {
     json["error_y"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::error_y(Callable&& c) {
+inline Scatter3D& Scatter3D::error_y(Callable&& c) {
     Error_Y f{};
     std::forward<Callable>(c)(f);
     return error_y(std::move(f));
 }
 
-Scatter3D& Scatter3D::error_z(Error_Z f) {
+inline Scatter3D& Scatter3D::error_z(Error_Z f) {
     json["error_z"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::error_z(Callable&& c) {
+inline Scatter3D& Scatter3D::error_z(Callable&& c) {
     Error_Z f{};
     std::forward<Callable>(c)(f);
     return error_z(std::move(f));
 }
 
-Scatter3D& Scatter3D::hoverinfo(std::string f) {
+inline Scatter3D& Scatter3D::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hoverinfo(Callable&& c) {
+inline Scatter3D& Scatter3D::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Scatter3D& Scatter3D::hoverinfo(const std::vector<std::string>& f) {
+inline Scatter3D& Scatter3D::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Scatter3D& Scatter3D::hoverinfosrc(std::string f) {
+inline Scatter3D& Scatter3D::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hoverinfosrc(Callable&& c) {
+inline Scatter3D& Scatter3D::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::hoverlabel(Hoverlabel f) {
+inline Scatter3D& Scatter3D::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hoverlabel(Callable&& c) {
+inline Scatter3D& Scatter3D::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Scatter3D& Scatter3D::hovertemplate(std::string f) {
+inline Scatter3D& Scatter3D::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hovertemplate(Callable&& c) {
+inline Scatter3D& Scatter3D::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Scatter3D& Scatter3D::hovertemplate(const std::vector<std::string>& f) {
+inline Scatter3D& Scatter3D::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Scatter3D& Scatter3D::hovertemplatesrc(std::string f) {
+inline Scatter3D& Scatter3D::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hovertemplatesrc(Callable&& c) {
+inline Scatter3D& Scatter3D::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::hovertext(std::string f) {
+inline Scatter3D& Scatter3D::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hovertext(Callable&& c) {
+inline Scatter3D& Scatter3D::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
-Scatter3D& Scatter3D::hovertext(const std::vector<std::string>& f) {
+inline Scatter3D& Scatter3D::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
 }
 
-Scatter3D& Scatter3D::hovertextsrc(std::string f) {
+inline Scatter3D& Scatter3D::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::hovertextsrc(Callable&& c) {
+inline Scatter3D& Scatter3D::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D& Scatter3D::ids(Range&& f) {
+inline Scatter3D& Scatter3D::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::ids(Callable&& c) {
+inline Scatter3D& Scatter3D::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Scatter3D& Scatter3D::idssrc(std::string f) {
+inline Scatter3D& Scatter3D::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::idssrc(Callable&& c) {
+inline Scatter3D& Scatter3D::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::legend(std::string f) {
+inline Scatter3D& Scatter3D::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::legend(Callable&& c) {
+inline Scatter3D& Scatter3D::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Scatter3D& Scatter3D::legendgroup(std::string f) {
+inline Scatter3D& Scatter3D::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::legendgroup(Callable&& c) {
+inline Scatter3D& Scatter3D::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Scatter3D& Scatter3D::legendgrouptitle(Legendgrouptitle f) {
+inline Scatter3D& Scatter3D::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::legendgrouptitle(Callable&& c) {
+inline Scatter3D& Scatter3D::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Scatter3D& Scatter3D::legendrank(double f) {
+inline Scatter3D& Scatter3D::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::legendrank(Callable&& c) {
+inline Scatter3D& Scatter3D::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Scatter3D& Scatter3D::legendwidth(double f) {
+inline Scatter3D& Scatter3D::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::legendwidth(Callable&& c) {
+inline Scatter3D& Scatter3D::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Scatter3D& Scatter3D::line(Line f) {
+inline Scatter3D& Scatter3D::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::line(Callable&& c) {
+inline Scatter3D& Scatter3D::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Scatter3D& Scatter3D::marker(Marker f) {
+inline Scatter3D& Scatter3D::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::marker(Callable&& c) {
+inline Scatter3D& Scatter3D::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
 template <typename T>
-Scatter3D& Scatter3D::meta(T f) {
+inline Scatter3D& Scatter3D::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::meta(Callable&& c) {
+inline Scatter3D& Scatter3D::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Scatter3D& Scatter3D::meta(const std::vector<T>& f) {
+inline Scatter3D& Scatter3D::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Scatter3D& Scatter3D::metasrc(std::string f) {
+inline Scatter3D& Scatter3D::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::metasrc(Callable&& c) {
+inline Scatter3D& Scatter3D::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::mode(std::string f) {
+inline Scatter3D& Scatter3D::mode(std::string f) {
     json["mode"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::mode(Callable&& c) {
+inline Scatter3D& Scatter3D::mode(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return mode(std::move(f));
 }
 
-Scatter3D& Scatter3D::name(std::string f) {
+inline Scatter3D& Scatter3D::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::name(Callable&& c) {
+inline Scatter3D& Scatter3D::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D& Scatter3D::opacity(double f) {
+inline Scatter3D& Scatter3D::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::opacity(Callable&& c) {
+inline Scatter3D& Scatter3D::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Scatter3D& Scatter3D::projection(Projection f) {
+inline Scatter3D& Scatter3D::projection(Projection f) {
     json["projection"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::projection(Callable&& c) {
+inline Scatter3D& Scatter3D::projection(Callable&& c) {
     Projection f{};
     std::forward<Callable>(c)(f);
     return projection(std::move(f));
 }
 
-Scatter3D& Scatter3D::scene(std::string f) {
+inline Scatter3D& Scatter3D::scene(std::string f) {
     json["scene"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::scene(Callable&& c) {
+inline Scatter3D& Scatter3D::scene(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return scene(std::move(f));
 }
 
-Scatter3D& Scatter3D::showlegend(bool f) {
+inline Scatter3D& Scatter3D::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::showlegend(Callable&& c) {
+inline Scatter3D& Scatter3D::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Scatter3D& Scatter3D::stream(Stream f) {
+inline Scatter3D& Scatter3D::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::stream(Callable&& c) {
+inline Scatter3D& Scatter3D::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Scatter3D& Scatter3D::surfaceaxis(enum Surfaceaxis f) {
+inline Scatter3D& Scatter3D::surfaceaxis(enum Surfaceaxis f) {
     json["surfaceaxis"] = to_string(f);
     return *this;
 }
 
-Scatter3D& Scatter3D::surfacecolor(std::string f) {
+inline Scatter3D& Scatter3D::surfacecolor(std::string f) {
+    json["surfacecolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D& Scatter3D::surfacecolor(double f) {
     json["surfacecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::surfacecolor(Callable&& c) {
+inline Scatter3D& Scatter3D::surfacecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return surfacecolor(std::move(f));
 }
 
-Scatter3D& Scatter3D::text(std::string f) {
+inline Scatter3D& Scatter3D::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::text(Callable&& c) {
+inline Scatter3D& Scatter3D::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
-Scatter3D& Scatter3D::text(const std::vector<std::string>& f) {
+inline Scatter3D& Scatter3D::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
 }
 
-Scatter3D& Scatter3D::textfont(Textfont f) {
+inline Scatter3D& Scatter3D::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::textfont(Callable&& c) {
+inline Scatter3D& Scatter3D::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Scatter3D& Scatter3D::textposition(enum Textposition f) {
+inline Scatter3D& Scatter3D::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
-Scatter3D& Scatter3D::textposition(const std::vector<enum Textposition>& f) {
+inline Scatter3D& Scatter3D::textposition(const std::vector<enum Textposition>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textposition"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D& Scatter3D::textpositionsrc(std::string f) {
+inline Scatter3D& Scatter3D::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::textpositionsrc(Callable&& c) {
+inline Scatter3D& Scatter3D::textpositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textpositionsrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::textsrc(std::string f) {
+inline Scatter3D& Scatter3D::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::textsrc(Callable&& c) {
+inline Scatter3D& Scatter3D::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::texttemplate(std::string f) {
+inline Scatter3D& Scatter3D::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::texttemplate(Callable&& c) {
+inline Scatter3D& Scatter3D::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
-Scatter3D& Scatter3D::texttemplate(const std::vector<std::string>& f) {
+inline Scatter3D& Scatter3D::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
     return *this;
 }
 
-Scatter3D& Scatter3D::texttemplatesrc(std::string f) {
+inline Scatter3D& Scatter3D::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::texttemplatesrc(Callable&& c) {
+inline Scatter3D& Scatter3D::texttemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplatesrc(std::move(f));
 }
 
-Scatter3D& Scatter3D::uid(std::string f) {
+inline Scatter3D& Scatter3D::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::uid(Callable&& c) {
+inline Scatter3D& Scatter3D::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Scatter3D& Scatter3D::uirevision(T f) {
+inline Scatter3D& Scatter3D::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::uirevision(Callable&& c) {
+inline Scatter3D& Scatter3D::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Scatter3D& Scatter3D::visible(enum Visible f) {
+inline Scatter3D& Scatter3D::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Scatter3D& Scatter3D::x(Range&& f) {
+inline Scatter3D& Scatter3D::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::x(Callable&& c) {
+inline Scatter3D& Scatter3D::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Scatter3D& Scatter3D::xcalendar(enum Xcalendar f) {
+inline Scatter3D& Scatter3D::xcalendar(enum Xcalendar f) {
     json["xcalendar"] = to_string(f);
     return *this;
 }
 
-Scatter3D& Scatter3D::xhoverformat(std::string f) {
+inline Scatter3D& Scatter3D::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::xhoverformat(Callable&& c) {
+inline Scatter3D& Scatter3D::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
-Scatter3D& Scatter3D::xsrc(std::string f) {
+inline Scatter3D& Scatter3D::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::xsrc(Callable&& c) {
+inline Scatter3D& Scatter3D::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D& Scatter3D::y(Range&& f) {
+inline Scatter3D& Scatter3D::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::y(Callable&& c) {
+inline Scatter3D& Scatter3D::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Scatter3D& Scatter3D::ycalendar(enum Ycalendar f) {
+inline Scatter3D& Scatter3D::ycalendar(enum Ycalendar f) {
     json["ycalendar"] = to_string(f);
     return *this;
 }
 
-Scatter3D& Scatter3D::yhoverformat(std::string f) {
+inline Scatter3D& Scatter3D::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::yhoverformat(Callable&& c) {
+inline Scatter3D& Scatter3D::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
-Scatter3D& Scatter3D::ysrc(std::string f) {
+inline Scatter3D& Scatter3D::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::ysrc(Callable&& c) {
+inline Scatter3D& Scatter3D::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D& Scatter3D::z(Range&& f) {
+inline Scatter3D& Scatter3D::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D& Scatter3D::z(Callable&& c) {
+inline Scatter3D& Scatter3D::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Scatter3D& Scatter3D::zcalendar(enum Zcalendar f) {
+inline Scatter3D& Scatter3D::zcalendar(enum Zcalendar f) {
     json["zcalendar"] = to_string(f);
     return *this;
 }
 
-Scatter3D& Scatter3D::zhoverformat(std::string f) {
+inline Scatter3D& Scatter3D::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::zhoverformat(Callable&& c) {
+inline Scatter3D& Scatter3D::zhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zhoverformat(std::move(f));
 }
 
-Scatter3D& Scatter3D::zsrc(std::string f) {
+inline Scatter3D& Scatter3D::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D& Scatter3D::zsrc(Callable&& c) {
+inline Scatter3D& Scatter3D::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Scatter3D::Error_X::to_string(Type e) {
+inline std::string Scatter3D::Error_X::to_string(Type e) {
     switch(e) {
         case Type::Percent: return "percent";
         case Type::Constant: return "constant";
@@ -729,167 +733,171 @@ std::string Scatter3D::Error_X::to_string(Type e) {
 }
 
 template <typename Range, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::array(Range&& f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::array(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::array(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return array(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::arrayminus(Range&& f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::arrayminus(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::arrayminus(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return arrayminus(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::arrayminussrc(std::string f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::arrayminussrc(std::string f) {
     json["arrayminussrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::arrayminussrc(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::arrayminussrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrayminussrc(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::arraysrc(std::string f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::arraysrc(std::string f) {
     json["arraysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::arraysrc(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::arraysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arraysrc(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::color(std::string f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Error_X& Scatter3D::Error_X::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::color(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::copy_zstyle(bool f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::copy_zstyle(bool f) {
     json["copy_zstyle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::copy_zstyle(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::copy_zstyle(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return copy_zstyle(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::symmetric(bool f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::symmetric(bool f) {
     json["symmetric"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::symmetric(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::symmetric(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return symmetric(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::thickness(double f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::thickness(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::traceref(int f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::traceref(int f) {
     json["traceref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::traceref(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::traceref(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return traceref(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::tracerefminus(int f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::tracerefminus(int f) {
     json["tracerefminus"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::tracerefminus(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::tracerefminus(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return tracerefminus(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::type(enum Type f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::value(double f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::value(double f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::value(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::value(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::valueminus(double f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::valueminus(double f) {
     json["valueminus"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::valueminus(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::valueminus(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return valueminus(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::visible(bool f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::visible(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Scatter3D::Error_X& Scatter3D::Error_X::width(double f) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_X& Scatter3D::Error_X::width(Callable&& c) {
+inline Scatter3D::Error_X& Scatter3D::Error_X::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Scatter3D::Error_Y::to_string(Type e) {
+inline std::string Scatter3D::Error_Y::to_string(Type e) {
     switch(e) {
         case Type::Percent: return "percent";
         case Type::Constant: return "constant";
@@ -901,167 +909,171 @@ std::string Scatter3D::Error_Y::to_string(Type e) {
 }
 
 template <typename Range, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::array(Range&& f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::array(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::array(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return array(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminus(Range&& f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminus(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminus(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return arrayminus(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminussrc(std::string f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminussrc(std::string f) {
     json["arrayminussrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminussrc(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::arrayminussrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrayminussrc(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::arraysrc(std::string f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::arraysrc(std::string f) {
     json["arraysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::arraysrc(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::arraysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arraysrc(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::color(std::string f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::color(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::copy_zstyle(bool f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::copy_zstyle(bool f) {
     json["copy_zstyle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::copy_zstyle(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::copy_zstyle(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return copy_zstyle(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::symmetric(bool f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::symmetric(bool f) {
     json["symmetric"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::symmetric(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::symmetric(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return symmetric(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::thickness(double f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::thickness(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::traceref(int f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::traceref(int f) {
     json["traceref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::traceref(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::traceref(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return traceref(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::tracerefminus(int f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::tracerefminus(int f) {
     json["tracerefminus"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::tracerefminus(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::tracerefminus(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return tracerefminus(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::type(enum Type f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::value(double f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::value(double f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::value(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::value(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::valueminus(double f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::valueminus(double f) {
     json["valueminus"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::valueminus(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::valueminus(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return valueminus(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::visible(bool f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::visible(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Scatter3D::Error_Y& Scatter3D::Error_Y::width(double f) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Y& Scatter3D::Error_Y::width(Callable&& c) {
+inline Scatter3D::Error_Y& Scatter3D::Error_Y::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Scatter3D::Error_Z::to_string(Type e) {
+inline std::string Scatter3D::Error_Z::to_string(Type e) {
     switch(e) {
         case Type::Percent: return "percent";
         case Type::Constant: return "constant";
@@ -1073,156 +1085,160 @@ std::string Scatter3D::Error_Z::to_string(Type e) {
 }
 
 template <typename Range, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::array(Range&& f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::array(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::array(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return array(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminus(Range&& f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminus(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminus(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return arrayminus(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminussrc(std::string f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminussrc(std::string f) {
     json["arrayminussrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminussrc(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::arrayminussrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arrayminussrc(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::arraysrc(std::string f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::arraysrc(std::string f) {
     json["arraysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::arraysrc(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::arraysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return arraysrc(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::color(std::string f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::color(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::symmetric(bool f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::symmetric(bool f) {
     json["symmetric"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::symmetric(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::symmetric(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return symmetric(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::thickness(double f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::thickness(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::traceref(int f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::traceref(int f) {
     json["traceref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::traceref(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::traceref(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return traceref(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::tracerefminus(int f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::tracerefminus(int f) {
     json["tracerefminus"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::tracerefminus(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::tracerefminus(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return tracerefminus(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::type(enum Type f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::value(double f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::value(double f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::value(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::value(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::valueminus(double f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::valueminus(double f) {
     json["valueminus"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::valueminus(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::valueminus(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return valueminus(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::visible(bool f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::visible(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-Scatter3D::Error_Z& Scatter3D::Error_Z::width(double f) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Error_Z& Scatter3D::Error_Z::width(Callable&& c) {
+inline Scatter3D::Error_Z& Scatter3D::Error_Z::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Scatter3D::Hoverlabel::to_string(Align e) {
+inline std::string Scatter3D::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -1232,118 +1248,134 @@ std::string Scatter3D::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::align(enum Align f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::alignsrc(std::string f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::alignsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(std::string f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolorsrc(std::string f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(std::string f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolorsrc(std::string f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::font(Font f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::font(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelength(int f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelength(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelengthsrc(std::string f) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel& Scatter3D::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Scatter3D::Hoverlabel::Font::to_string(Style e) {
+inline std::string Scatter3D::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1351,7 +1383,7 @@ std::string Scatter3D::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Scatter3D::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1361,7 +1393,7 @@ std::string Scatter3D::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Scatter3D::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1374,252 +1406,260 @@ std::string Scatter3D::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::colorsrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::family(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::family(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::familysrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::lineposition(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadow(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadow(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::size(double f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::size(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::sizesrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::style(enum Style f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::stylesrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variant(enum Variant f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variantsrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weight(int f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weight(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weightsrc(std::string f) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Scatter3D::Hoverlabel::Font& Scatter3D::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::font(Font f) {
+inline Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::font(Callable&& c) {
+inline Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::text(std::string f) {
+inline Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::text(Callable&& c) {
+inline Scatter3D::Legendgrouptitle& Scatter3D::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Scatter3D::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Scatter3D::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1627,7 +1667,7 @@ std::string Scatter3D::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Scatter3D::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1637,7 +1677,7 @@ std::string Scatter3D::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Scatter3D::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1650,88 +1690,92 @@ std::string Scatter3D::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::color(std::string f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::color(Callable&& c) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::family(std::string f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::family(Callable&& c) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::shadow(std::string f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::size(double f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::size(Callable&& c) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::style(enum Style f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::weight(int f) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Scatter3D::Legendgrouptitle::Font& Scatter3D::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Scatter3D::Line::to_string(Dash e) {
+inline std::string Scatter3D::Line::to_string(Dash e) {
     switch(e) {
         case Dash::Dash: return "dash";
         case Dash::Dashdot: return "dashdot";
@@ -1744,163 +1788,171 @@ std::string Scatter3D::Line::to_string(Dash e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Line& Scatter3D::Line::autocolorscale(bool f) {
+inline Scatter3D::Line& Scatter3D::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::autocolorscale(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::cauto(bool f) {
+inline Scatter3D::Line& Scatter3D::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::cauto(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::cmax(double f) {
+inline Scatter3D::Line& Scatter3D::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::cmax(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::cmid(double f) {
+inline Scatter3D::Line& Scatter3D::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::cmid(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::cmin(double f) {
+inline Scatter3D::Line& Scatter3D::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::cmin(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::color(std::string f) {
+inline Scatter3D::Line& Scatter3D::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line& Scatter3D::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::color(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Scatter3D::Line& Scatter3D::Line::color(const std::vector<std::string>& f) {
+inline Scatter3D::Line& Scatter3D::Line::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Scatter3D::Line& Scatter3D::Line::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Scatter3D::Line& Scatter3D::Line::coloraxis(std::string f) {
+inline Scatter3D::Line& Scatter3D::Line::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::coloraxis(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::colorbar(Colorbar f) {
+inline Scatter3D::Line& Scatter3D::Line::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::colorbar(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::colorscale(std::string f) {
+inline Scatter3D::Line& Scatter3D::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Scatter3D::Line& Scatter3D::Line::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Scatter3D::Line& Scatter3D::Line::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::colorscale(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::colorsrc(std::string f) {
+inline Scatter3D::Line& Scatter3D::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::colorsrc(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::dash(enum Dash f) {
+inline Scatter3D::Line& Scatter3D::Line::dash(enum Dash f) {
     json["dash"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line& Scatter3D::Line::reversescale(bool f) {
+inline Scatter3D::Line& Scatter3D::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::reversescale(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::showscale(bool f) {
+inline Scatter3D::Line& Scatter3D::Line::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::showscale(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Scatter3D::Line& Scatter3D::Line::width(double f) {
+inline Scatter3D::Line& Scatter3D::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line& Scatter3D::Line::width(Callable&& c) {
+inline Scatter3D::Line& Scatter3D::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Scatter3D::Line::Colorbar::to_string(Exponentformat e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -1911,7 +1963,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Lenmode e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -1919,7 +1971,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Orientation e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -1927,7 +1979,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Showexponent e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -1937,7 +1989,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Showtickprefix e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -1947,7 +1999,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Showticksuffix e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -1957,7 +2009,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Thicknessmode e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -1965,7 +2017,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -1974,7 +2026,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -1990,7 +2042,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Tickmode e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -1999,7 +2051,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Ticks e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -2008,7 +2060,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Xanchor e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -2017,7 +2069,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Xref e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -2025,7 +2077,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Yanchor e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -2034,7 +2086,7 @@ std::string Scatter3D::Line::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::to_string(Yref e) {
+inline std::string Scatter3D::Line::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -2043,456 +2095,472 @@ std::string Scatter3D::Line::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bgcolor(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bgcolor(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bordercolor(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bordercolor(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::borderwidth(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::borderwidth(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::dtick(T f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::dtick(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::exponentformat(enum Exponentformat f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::labelalias(T f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::labelalias(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::len(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::len(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::lenmode(enum Lenmode f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::minexponent(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::minexponent(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::nticks(int f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::nticks(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::orientation(enum Orientation f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinecolor(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinecolor(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinewidth(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinewidth(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::separatethousands(bool f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::separatethousands(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showexponent(enum Showexponent f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showticklabels(bool f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showticklabels(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::thickness(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::thickness(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tick0(T f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tick0(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickangle(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickangle(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickcolor(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickcolor(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickfont(Tickfont f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickfont(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformat(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformat(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Tickformatstop f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabelstep(int f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabelstep(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklen(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklen(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickmode(enum Tickmode f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickprefix(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickprefix(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticks(enum Ticks f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticksuffix(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticksuffix(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktext(Range&& f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktext(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktextsrc(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktextsrc(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvals(Range&& f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvals(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvalssrc(std::string f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvalssrc(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickwidth(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickwidth(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::title(Title f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::title(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::x(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::x(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xanchor(enum Xanchor f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xpad(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xpad(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xref(enum Xref f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::y(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::y(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::yanchor(enum Yanchor f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ypad(double f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ypad(Callable&& c) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::yref(enum Yref f) {
+inline Scatter3D::Line::Colorbar& Scatter3D::Line::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2500,7 +2568,7 @@ std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2510,7 +2578,7 @@ std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2523,144 +2591,160 @@ std::string Scatter3D::Line::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::color(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::color(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::family(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::family(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::lineposition(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::shadow(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::size(double f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::size(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::style(enum Style f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::variant(enum Variant f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::weight(int f) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::weight(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickfont& Scatter3D::Line::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::enabled(bool f) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::name(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::value(std::string f) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Tickformatstop& Scatter3D::Line::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Scatter3D::Line::Colorbar::Title::to_string(Side e) {
+inline std::string Scatter3D::Line::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -2670,34 +2754,34 @@ std::string Scatter3D::Line::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::font(Font f) {
+inline Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::font(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::side(enum Side f) {
+inline Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::text(std::string f) {
+inline Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::text(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title& Scatter3D::Line::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2705,7 +2789,7 @@ std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2715,7 +2799,7 @@ std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2728,88 +2812,92 @@ std::string Scatter3D::Line::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::color(std::string f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::color(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::family(std::string f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::family(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::lineposition(std::string f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::shadow(std::string f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::size(double f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::size(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::style(enum Style f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::variant(enum Variant f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::weight(int f) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::weight(Callable&& c) {
+inline Scatter3D::Line::Colorbar::Title::Font& Scatter3D::Line::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Scatter3D::Marker::to_string(Sizemode e) {
+inline std::string Scatter3D::Marker::to_string(Sizemode e) {
     switch(e) {
         case Sizemode::Diameter: return "diameter";
         case Sizemode::Area: return "area";
@@ -2817,7 +2905,7 @@ std::string Scatter3D::Marker::to_string(Sizemode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::to_string(Symbol e) {
+inline std::string Scatter3D::Marker::to_string(Symbol e) {
     switch(e) {
         case Symbol::Circle: return "circle";
         case Symbol::CircleOpen: return "circle-open";
@@ -2832,244 +2920,252 @@ std::string Scatter3D::Marker::to_string(Symbol e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Marker& Scatter3D::Marker::autocolorscale(bool f) {
+inline Scatter3D::Marker& Scatter3D::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::autocolorscale(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::cauto(bool f) {
+inline Scatter3D::Marker& Scatter3D::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::cauto(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::cmax(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::cmax(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::cmid(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::cmid(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::cmin(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::cmin(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::color(std::string f) {
+inline Scatter3D::Marker& Scatter3D::Marker::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker& Scatter3D::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::color(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Scatter3D::Marker& Scatter3D::Marker::color(const std::vector<std::string>& f) {
+inline Scatter3D::Marker& Scatter3D::Marker::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Scatter3D::Marker& Scatter3D::Marker::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Scatter3D::Marker& Scatter3D::Marker::coloraxis(std::string f) {
+inline Scatter3D::Marker& Scatter3D::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::coloraxis(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::colorbar(Colorbar f) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::colorbar(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::colorscale(std::string f) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Scatter3D::Marker& Scatter3D::Marker::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::colorscale(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::colorsrc(std::string f) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::colorsrc(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::line(Line f) {
+inline Scatter3D::Marker& Scatter3D::Marker::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::line(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::opacity(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::opacity(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::reversescale(bool f) {
+inline Scatter3D::Marker& Scatter3D::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::reversescale(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::showscale(bool f) {
+inline Scatter3D::Marker& Scatter3D::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::showscale(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::size(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::size(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Scatter3D::Marker& Scatter3D::Marker::size(const std::vector<double>& f) {
+inline Scatter3D::Marker& Scatter3D::Marker::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Scatter3D::Marker& Scatter3D::Marker::sizemin(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizemin(double f) {
     json["sizemin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::sizemin(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizemin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return sizemin(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::sizemode(enum Sizemode f) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizemode(enum Sizemode f) {
     json["sizemode"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker& Scatter3D::Marker::sizeref(double f) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizeref(double f) {
     json["sizeref"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::sizeref(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizeref(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return sizeref(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::sizesrc(std::string f) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::sizesrc(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Scatter3D::Marker& Scatter3D::Marker::symbol(enum Symbol f) {
+inline Scatter3D::Marker& Scatter3D::Marker::symbol(enum Symbol f) {
     json["symbol"] = to_string(f);
     return *this;
 }
-Scatter3D::Marker& Scatter3D::Marker::symbol(const std::vector<enum Symbol>& f) {
+inline Scatter3D::Marker& Scatter3D::Marker::symbol(const std::vector<enum Symbol>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["symbol"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Marker& Scatter3D::Marker::symbolsrc(std::string f) {
+inline Scatter3D::Marker& Scatter3D::Marker::symbolsrc(std::string f) {
     json["symbolsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker& Scatter3D::Marker::symbolsrc(Callable&& c) {
+inline Scatter3D::Marker& Scatter3D::Marker::symbolsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return symbolsrc(std::move(f));
 }
 
-std::string Scatter3D::Marker::Colorbar::to_string(Exponentformat e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -3080,7 +3176,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Lenmode e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -3088,7 +3184,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Orientation e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -3096,7 +3192,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Showexponent e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -3106,7 +3202,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Showtickprefix e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -3116,7 +3212,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Showticksuffix e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -3126,7 +3222,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Thicknessmode e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -3134,7 +3230,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -3143,7 +3239,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -3159,7 +3255,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Tickmode e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -3168,7 +3264,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Ticks e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -3177,7 +3273,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Xanchor e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -3186,7 +3282,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Xref e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -3194,7 +3290,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Yanchor e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -3203,7 +3299,7 @@ std::string Scatter3D::Marker::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::to_string(Yref e) {
+inline std::string Scatter3D::Marker::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -3212,456 +3308,472 @@ std::string Scatter3D::Marker::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bgcolor(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bgcolor(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bordercolor(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bordercolor(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::borderwidth(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::borderwidth(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::dtick(T f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::dtick(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::exponentformat(enum Exponentformat f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::labelalias(T f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::labelalias(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::len(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::len(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::lenmode(enum Lenmode f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::minexponent(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::minexponent(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::nticks(int f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::nticks(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::orientation(enum Orientation f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinecolor(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinecolor(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinewidth(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinewidth(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::separatethousands(bool f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::separatethousands(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showexponent(enum Showexponent f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showticklabels(bool f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showticklabels(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::thickness(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::thickness(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tick0(T f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tick0(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickangle(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickangle(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickcolor(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickcolor(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickfont(Tickfont f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickfont(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformat(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformat(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Tickformatstop f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabelstep(int f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabelstep(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklen(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklen(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickmode(enum Tickmode f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickprefix(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickprefix(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticks(enum Ticks f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticksuffix(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticksuffix(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktext(Range&& f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktext(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktextsrc(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktextsrc(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvals(Range&& f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvals(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvalssrc(std::string f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvalssrc(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickwidth(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickwidth(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::title(Title f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::title(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::x(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::x(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xanchor(enum Xanchor f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xpad(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xpad(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xref(enum Xref f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::y(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::y(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::yanchor(enum Yanchor f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ypad(double f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ypad(Callable&& c) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::yref(enum Yref f) {
+inline Scatter3D::Marker::Colorbar& Scatter3D::Marker::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -3669,7 +3781,7 @@ std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -3679,7 +3791,7 @@ std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -3692,144 +3804,160 @@ std::string Scatter3D::Marker::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::color(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::color(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::family(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::family(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::lineposition(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::shadow(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::size(double f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::size(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::style(enum Style f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::variant(enum Variant f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::weight(int f) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::weight(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickfont& Scatter3D::Marker::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::enabled(bool f) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::name(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::value(std::string f) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Tickformatstop& Scatter3D::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Scatter3D::Marker::Colorbar::Title::to_string(Side e) {
+inline std::string Scatter3D::Marker::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -3839,34 +3967,34 @@ std::string Scatter3D::Marker::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::font(Font f) {
+inline Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::font(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::side(enum Side f) {
+inline Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::text(std::string f) {
+inline Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::text(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title& Scatter3D::Marker::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -3874,7 +4002,7 @@ std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -3884,7 +4012,7 @@ std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -3897,377 +4025,389 @@ std::string Scatter3D::Marker::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::color(std::string f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::color(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::family(std::string f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::family(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::lineposition(std::string f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::shadow(std::string f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::size(double f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::size(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::style(enum Style f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::variant(enum Variant f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::weight(int f) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::weight(Callable&& c) {
+inline Scatter3D::Marker::Colorbar::Title::Font& Scatter3D::Marker::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::autocolorscale(bool f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::autocolorscale(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cauto(bool f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cauto(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmax(double f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmax(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmid(double f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmid(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmin(double f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmin(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(std::string f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(const std::vector<std::string>& f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::coloraxis(std::string f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::coloraxis(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorscale(std::string f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorscale(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorsrc(std::string f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorsrc(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::reversescale(bool f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::reversescale(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::width(double f) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Marker::Line& Scatter3D::Marker::Line::width(Callable&& c) {
+inline Scatter3D::Marker::Line& Scatter3D::Marker::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 
-Scatter3D::Projection& Scatter3D::Projection::x(X f) {
+inline Scatter3D::Projection& Scatter3D::Projection::x(X f) {
     json["x"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection& Scatter3D::Projection::x(Callable&& c) {
+inline Scatter3D::Projection& Scatter3D::Projection::x(Callable&& c) {
     X f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Scatter3D::Projection& Scatter3D::Projection::y(Y f) {
+inline Scatter3D::Projection& Scatter3D::Projection::y(Y f) {
     json["y"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection& Scatter3D::Projection::y(Callable&& c) {
+inline Scatter3D::Projection& Scatter3D::Projection::y(Callable&& c) {
     Y f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Scatter3D::Projection& Scatter3D::Projection::z(Z f) {
+inline Scatter3D::Projection& Scatter3D::Projection::z(Z f) {
     json["z"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection& Scatter3D::Projection::z(Callable&& c) {
+inline Scatter3D::Projection& Scatter3D::Projection::z(Callable&& c) {
     Z f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
 
-Scatter3D::Projection::X& Scatter3D::Projection::X::opacity(double f) {
+inline Scatter3D::Projection::X& Scatter3D::Projection::X::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::X& Scatter3D::Projection::X::opacity(Callable&& c) {
+inline Scatter3D::Projection::X& Scatter3D::Projection::X::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Scatter3D::Projection::X& Scatter3D::Projection::X::scale(double f) {
+inline Scatter3D::Projection::X& Scatter3D::Projection::X::scale(double f) {
     json["scale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::X& Scatter3D::Projection::X::scale(Callable&& c) {
+inline Scatter3D::Projection::X& Scatter3D::Projection::X::scale(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return scale(std::move(f));
 }
 
-Scatter3D::Projection::X& Scatter3D::Projection::X::show(bool f) {
+inline Scatter3D::Projection::X& Scatter3D::Projection::X::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::X& Scatter3D::Projection::X::show(Callable&& c) {
+inline Scatter3D::Projection::X& Scatter3D::Projection::X::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
 
-Scatter3D::Projection::Y& Scatter3D::Projection::Y::opacity(double f) {
+inline Scatter3D::Projection::Y& Scatter3D::Projection::Y::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::Y& Scatter3D::Projection::Y::opacity(Callable&& c) {
+inline Scatter3D::Projection::Y& Scatter3D::Projection::Y::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Scatter3D::Projection::Y& Scatter3D::Projection::Y::scale(double f) {
+inline Scatter3D::Projection::Y& Scatter3D::Projection::Y::scale(double f) {
     json["scale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::Y& Scatter3D::Projection::Y::scale(Callable&& c) {
+inline Scatter3D::Projection::Y& Scatter3D::Projection::Y::scale(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return scale(std::move(f));
 }
 
-Scatter3D::Projection::Y& Scatter3D::Projection::Y::show(bool f) {
+inline Scatter3D::Projection::Y& Scatter3D::Projection::Y::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::Y& Scatter3D::Projection::Y::show(Callable&& c) {
+inline Scatter3D::Projection::Y& Scatter3D::Projection::Y::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
 
-Scatter3D::Projection::Z& Scatter3D::Projection::Z::opacity(double f) {
+inline Scatter3D::Projection::Z& Scatter3D::Projection::Z::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::Z& Scatter3D::Projection::Z::opacity(Callable&& c) {
+inline Scatter3D::Projection::Z& Scatter3D::Projection::Z::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Scatter3D::Projection::Z& Scatter3D::Projection::Z::scale(double f) {
+inline Scatter3D::Projection::Z& Scatter3D::Projection::Z::scale(double f) {
     json["scale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::Z& Scatter3D::Projection::Z::scale(Callable&& c) {
+inline Scatter3D::Projection::Z& Scatter3D::Projection::Z::scale(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return scale(std::move(f));
 }
 
-Scatter3D::Projection::Z& Scatter3D::Projection::Z::show(bool f) {
+inline Scatter3D::Projection::Z& Scatter3D::Projection::Z::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Projection::Z& Scatter3D::Projection::Z::show(Callable&& c) {
+inline Scatter3D::Projection::Z& Scatter3D::Projection::Z::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
 
-Scatter3D::Stream& Scatter3D::Stream::maxpoints(double f) {
+inline Scatter3D::Stream& Scatter3D::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Stream& Scatter3D::Stream::maxpoints(Callable&& c) {
+inline Scatter3D::Stream& Scatter3D::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Scatter3D::Stream& Scatter3D::Stream::token(std::string f) {
+inline Scatter3D::Stream& Scatter3D::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Stream& Scatter3D::Stream::token(Callable&& c) {
+inline Scatter3D::Stream& Scatter3D::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Scatter3D::Textfont::to_string(Style e) {
+inline std::string Scatter3D::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -4275,7 +4415,7 @@ std::string Scatter3D::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Scatter3D::Textfont::to_string(Variant e) {
+inline std::string Scatter3D::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -4284,149 +4424,157 @@ std::string Scatter3D::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::color(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Scatter3D::Textfont& Scatter3D::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::color(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Scatter3D::Textfont& Scatter3D::Textfont::color(const std::vector<std::string>& f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Scatter3D::Textfont& Scatter3D::Textfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::colorsrc(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::colorsrc(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::family(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::family(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Scatter3D::Textfont& Scatter3D::Textfont::family(const std::vector<std::string>& f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::familysrc(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::familysrc(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::size(double f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::size(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Scatter3D::Textfont& Scatter3D::Textfont::size(const std::vector<double>& f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::sizesrc(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::sizesrc(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::style(enum Style f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Scatter3D::Textfont& Scatter3D::Textfont::style(const std::vector<enum Style>& f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::stylesrc(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::stylesrc(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::variant(enum Variant f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Scatter3D::Textfont& Scatter3D::Textfont::variant(const std::vector<enum Variant>& f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::variantsrc(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::variantsrc(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::weight(int f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::weight(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Scatter3D::Textfont& Scatter3D::Textfont::weight(const std::vector<int>& f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Scatter3D::Textfont& Scatter3D::Textfont::weightsrc(std::string f) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Scatter3D::Textfont& Scatter3D::Textfont::weightsrc(Callable&& c) {
+inline Scatter3D::Textfont& Scatter3D::Textfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));

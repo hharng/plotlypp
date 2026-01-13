@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Histogram2D::to_string(Histfunc e) {
+inline std::string Histogram2D::to_string(Histfunc e) {
     switch(e) {
         case Histfunc::Count: return "count";
         case Histfunc::Sum: return "sum";
@@ -21,7 +21,7 @@ std::string Histogram2D::to_string(Histfunc e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::to_string(Histnorm e) {
+inline std::string Histogram2D::to_string(Histnorm e) {
     switch(e) {
         case Histnorm::Empty: return "";
         case Histnorm::Percent: return "percent";
@@ -32,7 +32,7 @@ std::string Histogram2D::to_string(Histnorm e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::to_string(Visible e) {
+inline std::string Histogram2D::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -41,7 +41,7 @@ std::string Histogram2D::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::to_string(Xcalendar e) {
+inline std::string Histogram2D::to_string(Xcalendar e) {
     switch(e) {
         case Xcalendar::Chinese: return "chinese";
         case Xcalendar::Coptic: return "coptic";
@@ -63,7 +63,7 @@ std::string Histogram2D::to_string(Xcalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::to_string(Ycalendar e) {
+inline std::string Histogram2D::to_string(Ycalendar e) {
     switch(e) {
         case Ycalendar::Chinese: return "chinese";
         case Ycalendar::Coptic: return "coptic";
@@ -85,7 +85,7 @@ std::string Histogram2D::to_string(Ycalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::to_string(Zsmooth e) {
+inline std::string Histogram2D::to_string(Zsmooth e) {
     switch(e) {
         case Zsmooth::Fast: return "fast";
         case Zsmooth::Best: return "best";
@@ -95,688 +95,688 @@ std::string Histogram2D::to_string(Zsmooth e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D& Histogram2D::autobinx(bool f) {
+inline Histogram2D& Histogram2D::autobinx(bool f) {
     json["autobinx"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::autobinx(Callable&& c) {
+inline Histogram2D& Histogram2D::autobinx(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autobinx(std::move(f));
 }
 
-Histogram2D& Histogram2D::autobiny(bool f) {
+inline Histogram2D& Histogram2D::autobiny(bool f) {
     json["autobiny"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::autobiny(Callable&& c) {
+inline Histogram2D& Histogram2D::autobiny(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autobiny(std::move(f));
 }
 
-Histogram2D& Histogram2D::autocolorscale(bool f) {
+inline Histogram2D& Histogram2D::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::autocolorscale(Callable&& c) {
+inline Histogram2D& Histogram2D::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Histogram2D& Histogram2D::bingroup(std::string f) {
+inline Histogram2D& Histogram2D::bingroup(std::string f) {
     json["bingroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::bingroup(Callable&& c) {
+inline Histogram2D& Histogram2D::bingroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bingroup(std::move(f));
 }
 
-Histogram2D& Histogram2D::coloraxis(std::string f) {
+inline Histogram2D& Histogram2D::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::coloraxis(Callable&& c) {
+inline Histogram2D& Histogram2D::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Histogram2D& Histogram2D::colorbar(Colorbar f) {
+inline Histogram2D& Histogram2D::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::colorbar(Callable&& c) {
+inline Histogram2D& Histogram2D::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Histogram2D& Histogram2D::colorscale(std::string f) {
+inline Histogram2D& Histogram2D::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Histogram2D& Histogram2D::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Histogram2D& Histogram2D::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::colorscale(Callable&& c) {
+inline Histogram2D& Histogram2D::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
 template <typename Range, typename>
-Histogram2D& Histogram2D::customdata(Range&& f) {
+inline Histogram2D& Histogram2D::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::customdata(Callable&& c) {
+inline Histogram2D& Histogram2D::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Histogram2D& Histogram2D::customdatasrc(std::string f) {
+inline Histogram2D& Histogram2D::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::customdatasrc(Callable&& c) {
+inline Histogram2D& Histogram2D::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Histogram2D& Histogram2D::histfunc(enum Histfunc f) {
+inline Histogram2D& Histogram2D::histfunc(enum Histfunc f) {
     json["histfunc"] = to_string(f);
     return *this;
 }
 
-Histogram2D& Histogram2D::histnorm(enum Histnorm f) {
+inline Histogram2D& Histogram2D::histnorm(enum Histnorm f) {
     json["histnorm"] = to_string(f);
     return *this;
 }
 
-Histogram2D& Histogram2D::hoverinfo(std::string f) {
+inline Histogram2D& Histogram2D::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::hoverinfo(Callable&& c) {
+inline Histogram2D& Histogram2D::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Histogram2D& Histogram2D::hoverinfo(const std::vector<std::string>& f) {
+inline Histogram2D& Histogram2D::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Histogram2D& Histogram2D::hoverinfosrc(std::string f) {
+inline Histogram2D& Histogram2D::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::hoverinfosrc(Callable&& c) {
+inline Histogram2D& Histogram2D::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Histogram2D& Histogram2D::hoverlabel(Hoverlabel f) {
+inline Histogram2D& Histogram2D::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::hoverlabel(Callable&& c) {
+inline Histogram2D& Histogram2D::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Histogram2D& Histogram2D::hovertemplate(std::string f) {
+inline Histogram2D& Histogram2D::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::hovertemplate(Callable&& c) {
+inline Histogram2D& Histogram2D::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Histogram2D& Histogram2D::hovertemplate(const std::vector<std::string>& f) {
+inline Histogram2D& Histogram2D::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Histogram2D& Histogram2D::hovertemplatesrc(std::string f) {
+inline Histogram2D& Histogram2D::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::hovertemplatesrc(Callable&& c) {
+inline Histogram2D& Histogram2D::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
 template <typename Range, typename>
-Histogram2D& Histogram2D::ids(Range&& f) {
+inline Histogram2D& Histogram2D::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::ids(Callable&& c) {
+inline Histogram2D& Histogram2D::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Histogram2D& Histogram2D::idssrc(std::string f) {
+inline Histogram2D& Histogram2D::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::idssrc(Callable&& c) {
+inline Histogram2D& Histogram2D::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Histogram2D& Histogram2D::legend(std::string f) {
+inline Histogram2D& Histogram2D::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::legend(Callable&& c) {
+inline Histogram2D& Histogram2D::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Histogram2D& Histogram2D::legendgroup(std::string f) {
+inline Histogram2D& Histogram2D::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::legendgroup(Callable&& c) {
+inline Histogram2D& Histogram2D::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Histogram2D& Histogram2D::legendgrouptitle(Legendgrouptitle f) {
+inline Histogram2D& Histogram2D::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::legendgrouptitle(Callable&& c) {
+inline Histogram2D& Histogram2D::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Histogram2D& Histogram2D::legendrank(double f) {
+inline Histogram2D& Histogram2D::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::legendrank(Callable&& c) {
+inline Histogram2D& Histogram2D::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Histogram2D& Histogram2D::legendwidth(double f) {
+inline Histogram2D& Histogram2D::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::legendwidth(Callable&& c) {
+inline Histogram2D& Histogram2D::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Histogram2D& Histogram2D::marker(Marker f) {
+inline Histogram2D& Histogram2D::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::marker(Callable&& c) {
+inline Histogram2D& Histogram2D::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
 template <typename T>
-Histogram2D& Histogram2D::meta(T f) {
+inline Histogram2D& Histogram2D::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::meta(Callable&& c) {
+inline Histogram2D& Histogram2D::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Histogram2D& Histogram2D::meta(const std::vector<T>& f) {
+inline Histogram2D& Histogram2D::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Histogram2D& Histogram2D::metasrc(std::string f) {
+inline Histogram2D& Histogram2D::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::metasrc(Callable&& c) {
+inline Histogram2D& Histogram2D::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Histogram2D& Histogram2D::name(std::string f) {
+inline Histogram2D& Histogram2D::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::name(Callable&& c) {
+inline Histogram2D& Histogram2D::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Histogram2D& Histogram2D::nbinsx(int f) {
+inline Histogram2D& Histogram2D::nbinsx(int f) {
     json["nbinsx"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::nbinsx(Callable&& c) {
+inline Histogram2D& Histogram2D::nbinsx(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nbinsx(std::move(f));
 }
 
-Histogram2D& Histogram2D::nbinsy(int f) {
+inline Histogram2D& Histogram2D::nbinsy(int f) {
     json["nbinsy"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::nbinsy(Callable&& c) {
+inline Histogram2D& Histogram2D::nbinsy(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nbinsy(std::move(f));
 }
 
-Histogram2D& Histogram2D::opacity(double f) {
+inline Histogram2D& Histogram2D::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::opacity(Callable&& c) {
+inline Histogram2D& Histogram2D::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Histogram2D& Histogram2D::reversescale(bool f) {
+inline Histogram2D& Histogram2D::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::reversescale(Callable&& c) {
+inline Histogram2D& Histogram2D::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Histogram2D& Histogram2D::showlegend(bool f) {
+inline Histogram2D& Histogram2D::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::showlegend(Callable&& c) {
+inline Histogram2D& Histogram2D::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Histogram2D& Histogram2D::showscale(bool f) {
+inline Histogram2D& Histogram2D::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::showscale(Callable&& c) {
+inline Histogram2D& Histogram2D::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Histogram2D& Histogram2D::stream(Stream f) {
+inline Histogram2D& Histogram2D::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::stream(Callable&& c) {
+inline Histogram2D& Histogram2D::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Histogram2D& Histogram2D::textfont(Textfont f) {
+inline Histogram2D& Histogram2D::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::textfont(Callable&& c) {
+inline Histogram2D& Histogram2D::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Histogram2D& Histogram2D::texttemplate(std::string f) {
+inline Histogram2D& Histogram2D::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::texttemplate(Callable&& c) {
+inline Histogram2D& Histogram2D::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
 
-Histogram2D& Histogram2D::uid(std::string f) {
+inline Histogram2D& Histogram2D::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::uid(Callable&& c) {
+inline Histogram2D& Histogram2D::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Histogram2D& Histogram2D::uirevision(T f) {
+inline Histogram2D& Histogram2D::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::uirevision(Callable&& c) {
+inline Histogram2D& Histogram2D::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Histogram2D& Histogram2D::visible(enum Visible f) {
+inline Histogram2D& Histogram2D::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Histogram2D& Histogram2D::x(Range&& f) {
+inline Histogram2D& Histogram2D::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::x(Callable&& c) {
+inline Histogram2D& Histogram2D::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Histogram2D& Histogram2D::xaxis(std::string f) {
+inline Histogram2D& Histogram2D::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::xaxis(Callable&& c) {
+inline Histogram2D& Histogram2D::xaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xaxis(std::move(f));
 }
 
-Histogram2D& Histogram2D::xbingroup(std::string f) {
+inline Histogram2D& Histogram2D::xbingroup(std::string f) {
     json["xbingroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::xbingroup(Callable&& c) {
+inline Histogram2D& Histogram2D::xbingroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xbingroup(std::move(f));
 }
 
-Histogram2D& Histogram2D::xbins(Xbins f) {
+inline Histogram2D& Histogram2D::xbins(Xbins f) {
     json["xbins"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::xbins(Callable&& c) {
+inline Histogram2D& Histogram2D::xbins(Callable&& c) {
     Xbins f{};
     std::forward<Callable>(c)(f);
     return xbins(std::move(f));
 }
 
-Histogram2D& Histogram2D::xcalendar(enum Xcalendar f) {
+inline Histogram2D& Histogram2D::xcalendar(enum Xcalendar f) {
     json["xcalendar"] = to_string(f);
     return *this;
 }
 
-Histogram2D& Histogram2D::xgap(double f) {
+inline Histogram2D& Histogram2D::xgap(double f) {
     json["xgap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::xgap(Callable&& c) {
+inline Histogram2D& Histogram2D::xgap(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xgap(std::move(f));
 }
 
-Histogram2D& Histogram2D::xhoverformat(std::string f) {
+inline Histogram2D& Histogram2D::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::xhoverformat(Callable&& c) {
+inline Histogram2D& Histogram2D::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
-Histogram2D& Histogram2D::xsrc(std::string f) {
+inline Histogram2D& Histogram2D::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::xsrc(Callable&& c) {
+inline Histogram2D& Histogram2D::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Histogram2D& Histogram2D::y(Range&& f) {
+inline Histogram2D& Histogram2D::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::y(Callable&& c) {
+inline Histogram2D& Histogram2D::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Histogram2D& Histogram2D::yaxis(std::string f) {
+inline Histogram2D& Histogram2D::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::yaxis(Callable&& c) {
+inline Histogram2D& Histogram2D::yaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yaxis(std::move(f));
 }
 
-Histogram2D& Histogram2D::ybingroup(std::string f) {
+inline Histogram2D& Histogram2D::ybingroup(std::string f) {
     json["ybingroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::ybingroup(Callable&& c) {
+inline Histogram2D& Histogram2D::ybingroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ybingroup(std::move(f));
 }
 
-Histogram2D& Histogram2D::ybins(Ybins f) {
+inline Histogram2D& Histogram2D::ybins(Ybins f) {
     json["ybins"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::ybins(Callable&& c) {
+inline Histogram2D& Histogram2D::ybins(Callable&& c) {
     Ybins f{};
     std::forward<Callable>(c)(f);
     return ybins(std::move(f));
 }
 
-Histogram2D& Histogram2D::ycalendar(enum Ycalendar f) {
+inline Histogram2D& Histogram2D::ycalendar(enum Ycalendar f) {
     json["ycalendar"] = to_string(f);
     return *this;
 }
 
-Histogram2D& Histogram2D::ygap(double f) {
+inline Histogram2D& Histogram2D::ygap(double f) {
     json["ygap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::ygap(Callable&& c) {
+inline Histogram2D& Histogram2D::ygap(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ygap(std::move(f));
 }
 
-Histogram2D& Histogram2D::yhoverformat(std::string f) {
+inline Histogram2D& Histogram2D::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::yhoverformat(Callable&& c) {
+inline Histogram2D& Histogram2D::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
-Histogram2D& Histogram2D::ysrc(std::string f) {
+inline Histogram2D& Histogram2D::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::ysrc(Callable&& c) {
+inline Histogram2D& Histogram2D::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
-Histogram2D& Histogram2D::z(Range&& f) {
+inline Histogram2D& Histogram2D::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D& Histogram2D::z(Callable&& c) {
+inline Histogram2D& Histogram2D::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Histogram2D& Histogram2D::zauto(bool f) {
+inline Histogram2D& Histogram2D::zauto(bool f) {
     json["zauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::zauto(Callable&& c) {
+inline Histogram2D& Histogram2D::zauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return zauto(std::move(f));
 }
 
-Histogram2D& Histogram2D::zhoverformat(std::string f) {
+inline Histogram2D& Histogram2D::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::zhoverformat(Callable&& c) {
+inline Histogram2D& Histogram2D::zhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zhoverformat(std::move(f));
 }
 
-Histogram2D& Histogram2D::zmax(double f) {
+inline Histogram2D& Histogram2D::zmax(double f) {
     json["zmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::zmax(Callable&& c) {
+inline Histogram2D& Histogram2D::zmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmax(std::move(f));
 }
 
-Histogram2D& Histogram2D::zmid(double f) {
+inline Histogram2D& Histogram2D::zmid(double f) {
     json["zmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::zmid(Callable&& c) {
+inline Histogram2D& Histogram2D::zmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmid(std::move(f));
 }
 
-Histogram2D& Histogram2D::zmin(double f) {
+inline Histogram2D& Histogram2D::zmin(double f) {
     json["zmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::zmin(Callable&& c) {
+inline Histogram2D& Histogram2D::zmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmin(std::move(f));
 }
 
-Histogram2D& Histogram2D::zsmooth(enum Zsmooth f) {
+inline Histogram2D& Histogram2D::zsmooth(enum Zsmooth f) {
     json["zsmooth"] = to_string(f);
     return *this;
 }
 
-Histogram2D& Histogram2D::zsrc(std::string f) {
+inline Histogram2D& Histogram2D::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D& Histogram2D::zsrc(Callable&& c) {
+inline Histogram2D& Histogram2D::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Histogram2D::Colorbar::to_string(Exponentformat e) {
+inline std::string Histogram2D::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -787,7 +787,7 @@ std::string Histogram2D::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Lenmode e) {
+inline std::string Histogram2D::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -795,7 +795,7 @@ std::string Histogram2D::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Orientation e) {
+inline std::string Histogram2D::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -803,7 +803,7 @@ std::string Histogram2D::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Showexponent e) {
+inline std::string Histogram2D::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -813,7 +813,7 @@ std::string Histogram2D::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Showtickprefix e) {
+inline std::string Histogram2D::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -823,7 +823,7 @@ std::string Histogram2D::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Showticksuffix e) {
+inline std::string Histogram2D::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -833,7 +833,7 @@ std::string Histogram2D::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Thicknessmode e) {
+inline std::string Histogram2D::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -841,7 +841,7 @@ std::string Histogram2D::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Histogram2D::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -850,7 +850,7 @@ std::string Histogram2D::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Histogram2D::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -866,7 +866,7 @@ std::string Histogram2D::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Tickmode e) {
+inline std::string Histogram2D::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -875,7 +875,7 @@ std::string Histogram2D::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Ticks e) {
+inline std::string Histogram2D::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -884,7 +884,7 @@ std::string Histogram2D::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Xanchor e) {
+inline std::string Histogram2D::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -893,7 +893,7 @@ std::string Histogram2D::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Xref e) {
+inline std::string Histogram2D::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -901,7 +901,7 @@ std::string Histogram2D::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Yanchor e) {
+inline std::string Histogram2D::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -910,7 +910,7 @@ std::string Histogram2D::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::to_string(Yref e) {
+inline std::string Histogram2D::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -919,456 +919,472 @@ std::string Histogram2D::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::bgcolor(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::bgcolor(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::bordercolor(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::bordercolor(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::borderwidth(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::borderwidth(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Histogram2D::Colorbar& Histogram2D::Colorbar::dtick(T f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::dtick(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::exponentformat(enum Exponentformat f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Histogram2D::Colorbar& Histogram2D::Colorbar::labelalias(T f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::labelalias(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::len(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::len(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::lenmode(enum Lenmode f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::minexponent(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::minexponent(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::nticks(int f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::nticks(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::orientation(enum Orientation f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::outlinecolor(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::outlinecolor(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::outlinewidth(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::outlinewidth(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::separatethousands(bool f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::separatethousands(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::showexponent(enum Showexponent f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::showticklabels(bool f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::showticklabels(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::thickness(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::thickness(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tick0(T f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tick0(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickangle(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickangle(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickcolor(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickcolor(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickfont(Tickfont f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickfont(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickformat(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickformat(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickformatstops(Tickformatstop f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickformatstops(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabelstep(int f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabelstep(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticklen(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticklen(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickmode(enum Tickmode f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickprefix(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickprefix(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticks(enum Ticks f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticksuffix(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticksuffix(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticktext(Range&& f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticktext(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticktextsrc(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ticktextsrc(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickvals(Range&& f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickvals(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickvalssrc(std::string f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickvalssrc(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickwidth(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::tickwidth(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::title(Title f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::title(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::x(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::x(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::xanchor(enum Xanchor f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::xpad(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::xpad(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::xref(enum Xref f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::y(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::y(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::yanchor(enum Yanchor f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::ypad(double f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar& Histogram2D::Colorbar::ypad(Callable&& c) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Histogram2D::Colorbar& Histogram2D::Colorbar::yref(enum Yref f) {
+inline Histogram2D::Colorbar& Histogram2D::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Histogram2D::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Histogram2D::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1376,7 +1392,7 @@ std::string Histogram2D::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Histogram2D::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1386,7 +1402,7 @@ std::string Histogram2D::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Histogram2D::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1399,144 +1415,160 @@ std::string Histogram2D::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::color(std::string f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::color(Callable&& c) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::family(std::string f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::family(Callable&& c) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::lineposition(std::string f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::shadow(std::string f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::size(double f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::size(Callable&& c) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::style(enum Style f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::variant(enum Variant f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::weight(int f) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::weight(Callable&& c) {
+inline Histogram2D::Colorbar::Tickfont& Histogram2D::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::enabled(bool f) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::name(std::string f) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::value(std::string f) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Histogram2D::Colorbar::Tickformatstop& Histogram2D::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Histogram2D::Colorbar::Title::to_string(Side e) {
+inline std::string Histogram2D::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1546,34 +1578,34 @@ std::string Histogram2D::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::font(Font f) {
+inline Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::font(Callable&& c) {
+inline Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::side(enum Side f) {
+inline Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::text(std::string f) {
+inline Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::text(Callable&& c) {
+inline Histogram2D::Colorbar::Title& Histogram2D::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Histogram2D::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Histogram2D::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1581,7 +1613,7 @@ std::string Histogram2D::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Histogram2D::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1591,7 +1623,7 @@ std::string Histogram2D::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Histogram2D::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1604,88 +1636,92 @@ std::string Histogram2D::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::color(std::string f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::color(Callable&& c) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::family(std::string f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::family(Callable&& c) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::lineposition(std::string f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::shadow(std::string f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::size(double f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::size(Callable&& c) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::style(enum Style f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::variant(enum Variant f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::weight(int f) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::weight(Callable&& c) {
+inline Histogram2D::Colorbar::Title::Font& Histogram2D::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Histogram2D::Hoverlabel::to_string(Align e) {
+inline std::string Histogram2D::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -1695,118 +1731,134 @@ std::string Histogram2D::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::align(enum Align f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::alignsrc(std::string f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::alignsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(std::string f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolorsrc(std::string f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(std::string f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolorsrc(std::string f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::font(Font f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::font(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelength(int f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelength(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelengthsrc(std::string f) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel& Histogram2D::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Histogram2D::Hoverlabel::Font::to_string(Style e) {
+inline std::string Histogram2D::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1814,7 +1866,7 @@ std::string Histogram2D::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Histogram2D::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1824,7 +1876,7 @@ std::string Histogram2D::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Histogram2D::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1837,252 +1889,260 @@ std::string Histogram2D::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::colorsrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::family(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::family(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::familysrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::lineposition(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadow(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadow(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::size(double f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::size(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::sizesrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::style(enum Style f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::stylesrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variant(enum Variant f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variantsrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weight(int f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weight(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weightsrc(std::string f) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Histogram2D::Hoverlabel::Font& Histogram2D::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::font(Font f) {
+inline Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::font(Callable&& c) {
+inline Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::text(std::string f) {
+inline Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::text(Callable&& c) {
+inline Histogram2D::Legendgrouptitle& Histogram2D::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Histogram2D::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Histogram2D::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2090,7 +2150,7 @@ std::string Histogram2D::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Histogram2D::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2100,7 +2160,7 @@ std::string Histogram2D::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Histogram2D::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2113,82 +2173,86 @@ std::string Histogram2D::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::color(std::string f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::color(Callable&& c) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::family(std::string f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::family(Callable&& c) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::shadow(std::string f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::size(double f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::size(Callable&& c) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::style(enum Style f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::weight(int f) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -2196,52 +2260,52 @@ Histogram2D::Legendgrouptitle::Font& Histogram2D::Legendgrouptitle::Font::weight
 
 
 template <typename Range, typename>
-Histogram2D::Marker& Histogram2D::Marker::color(Range&& f) {
+inline Histogram2D::Marker& Histogram2D::Marker::color(Range&& f) {
     json["color"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Marker& Histogram2D::Marker::color(Callable&& c) {
+inline Histogram2D::Marker& Histogram2D::Marker::color(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Histogram2D::Marker& Histogram2D::Marker::colorsrc(std::string f) {
+inline Histogram2D::Marker& Histogram2D::Marker::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Marker& Histogram2D::Marker::colorsrc(Callable&& c) {
+inline Histogram2D::Marker& Histogram2D::Marker::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
 
-Histogram2D::Stream& Histogram2D::Stream::maxpoints(double f) {
+inline Histogram2D::Stream& Histogram2D::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Stream& Histogram2D::Stream::maxpoints(Callable&& c) {
+inline Histogram2D::Stream& Histogram2D::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Histogram2D::Stream& Histogram2D::Stream::token(std::string f) {
+inline Histogram2D::Stream& Histogram2D::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Stream& Histogram2D::Stream::token(Callable&& c) {
+inline Histogram2D::Stream& Histogram2D::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Histogram2D::Textfont::to_string(Style e) {
+inline std::string Histogram2D::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2249,7 +2313,7 @@ std::string Histogram2D::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Textfont::to_string(Textcase e) {
+inline std::string Histogram2D::Textfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2259,7 +2323,7 @@ std::string Histogram2D::Textfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Histogram2D::Textfont::to_string(Variant e) {
+inline std::string Histogram2D::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2272,82 +2336,86 @@ std::string Histogram2D::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::color(std::string f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Histogram2D::Textfont& Histogram2D::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Textfont& Histogram2D::Textfont::color(Callable&& c) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::family(std::string f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Textfont& Histogram2D::Textfont::family(Callable&& c) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::lineposition(std::string f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Textfont& Histogram2D::Textfont::lineposition(Callable&& c) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::shadow(std::string f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Textfont& Histogram2D::Textfont::shadow(Callable&& c) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::size(double f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Textfont& Histogram2D::Textfont::size(Callable&& c) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::style(enum Style f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::textcase(enum Textcase f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::variant(enum Variant f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Histogram2D::Textfont& Histogram2D::Textfont::weight(int f) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Histogram2D::Textfont& Histogram2D::Textfont::weight(Callable&& c) {
+inline Histogram2D::Textfont& Histogram2D::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
@@ -2355,36 +2423,36 @@ Histogram2D::Textfont& Histogram2D::Textfont::weight(Callable&& c) {
 
 
 template <typename T>
-Histogram2D::Xbins& Histogram2D::Xbins::end(T f) {
+inline Histogram2D::Xbins& Histogram2D::Xbins::end(T f) {
     json["end"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Xbins& Histogram2D::Xbins::end(Callable&& c) {
+inline Histogram2D::Xbins& Histogram2D::Xbins::end(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return end(std::move(f));
 }
 
 template <typename T>
-Histogram2D::Xbins& Histogram2D::Xbins::size(T f) {
+inline Histogram2D::Xbins& Histogram2D::Xbins::size(T f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Xbins& Histogram2D::Xbins::size(Callable&& c) {
+inline Histogram2D::Xbins& Histogram2D::Xbins::size(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
 template <typename T>
-Histogram2D::Xbins& Histogram2D::Xbins::start(T f) {
+inline Histogram2D::Xbins& Histogram2D::Xbins::start(T f) {
     json["start"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Xbins& Histogram2D::Xbins::start(Callable&& c) {
+inline Histogram2D::Xbins& Histogram2D::Xbins::start(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return start(std::move(f));
@@ -2392,36 +2460,36 @@ Histogram2D::Xbins& Histogram2D::Xbins::start(Callable&& c) {
 
 
 template <typename T>
-Histogram2D::Ybins& Histogram2D::Ybins::end(T f) {
+inline Histogram2D::Ybins& Histogram2D::Ybins::end(T f) {
     json["end"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Ybins& Histogram2D::Ybins::end(Callable&& c) {
+inline Histogram2D::Ybins& Histogram2D::Ybins::end(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return end(std::move(f));
 }
 
 template <typename T>
-Histogram2D::Ybins& Histogram2D::Ybins::size(T f) {
+inline Histogram2D::Ybins& Histogram2D::Ybins::size(T f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Ybins& Histogram2D::Ybins::size(Callable&& c) {
+inline Histogram2D::Ybins& Histogram2D::Ybins::size(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
 template <typename T>
-Histogram2D::Ybins& Histogram2D::Ybins::start(T f) {
+inline Histogram2D::Ybins& Histogram2D::Ybins::start(T f) {
     json["start"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Histogram2D::Ybins& Histogram2D::Ybins::start(Callable&& c) {
+inline Histogram2D::Ybins& Histogram2D::Ybins::start(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return start(std::move(f));

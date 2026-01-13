@@ -145,7 +145,9 @@ class Scatterternary : public Trace {
     // Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line
     // color, whichever is available.
     Scatterternary& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary& fillcolor(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
@@ -439,9 +441,12 @@ class Scatterternary::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Scatterternary::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Hoverlabel& bgcolor(Callable&& c);
     Scatterternary::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Scatterternary::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Scatterternary::Hoverlabel& bgcolorsrc(std::string f);
@@ -450,9 +455,12 @@ class Scatterternary::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Scatterternary::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Hoverlabel& bordercolor(Callable&& c);
     Scatterternary::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Scatterternary::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Scatterternary::Hoverlabel& bordercolorsrc(std::string f);
@@ -514,9 +522,12 @@ class Scatterternary::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Scatterternary::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Hoverlabel::Font& color(Callable&& c);
     Scatterternary::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Scatterternary::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatterternary::Hoverlabel::Font& colorsrc(std::string f);
@@ -678,7 +689,9 @@ class Scatterternary::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Scatterternary::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -760,7 +773,9 @@ class Scatterternary::Line {
 
     // Sets the line color.
     Scatterternary::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -1192,9 +1207,12 @@ class Scatterternary::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Scatterternary::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker& color(Callable&& c);
     Scatterternary::Marker& color(const std::vector<std::string>& f);
+    Scatterternary::Marker& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -1443,12 +1461,16 @@ class Scatterternary::Marker::Colorbar {
 
     // Sets the color of padded area.
     Scatterternary::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Scatterternary::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1517,7 +1539,9 @@ class Scatterternary::Marker::Colorbar {
 
     // Sets the axis line color.
     Scatterternary::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1577,7 +1601,9 @@ class Scatterternary::Marker::Colorbar {
 
     // Sets the tick color.
     Scatterternary::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1759,7 +1785,9 @@ class Scatterternary::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Scatterternary::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1823,7 +1851,14 @@ class Scatterternary::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Scatterternary::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Scatterternary::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Scatterternary::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Scatterternary::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Scatterternary::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1923,7 +1958,9 @@ class Scatterternary::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Scatterternary::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1995,9 +2032,12 @@ class Scatterternary::Marker::Gradient {
     // Sets the final color of the gradient fill: the center color for radial, the right for horizontal, or the bottom
     // for vertical.
     Scatterternary::Marker::Gradient& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Gradient& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Gradient& color(Callable&& c);
     Scatterternary::Marker::Gradient& color(const std::vector<std::string>& f);
+    Scatterternary::Marker::Gradient& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatterternary::Marker::Gradient& colorsrc(std::string f);
@@ -2065,9 +2105,12 @@ class Scatterternary::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Scatterternary::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Marker::Line& color(Callable&& c);
     Scatterternary::Marker::Line& color(const std::vector<std::string>& f);
+    Scatterternary::Marker::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -2146,7 +2189,9 @@ class Scatterternary::Selected::Marker {
 
     // Sets the marker color of selected points.
     Scatterternary::Selected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Selected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
@@ -2171,7 +2216,9 @@ class Scatterternary::Selected::Textfont {
 
     // Sets the text font color of selected points.
     Scatterternary::Selected::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Selected::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Selected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2232,9 +2279,12 @@ class Scatterternary::Textfont {
     static std::string to_string(Variant e);
 
     Scatterternary::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Textfont& color(Callable&& c);
     Scatterternary::Textfont& color(const std::vector<std::string>& f);
+    Scatterternary::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatterternary::Textfont& colorsrc(std::string f);
@@ -2370,7 +2420,9 @@ class Scatterternary::Unselected::Marker {
 
     // Sets the marker color of unselected points, applied only when a selection exists.
     Scatterternary::Unselected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Unselected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.
@@ -2395,7 +2447,9 @@ class Scatterternary::Unselected::Textfont {
 
     // Sets the text font color of unselected points, applied only when a selection exists.
     Scatterternary::Unselected::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatterternary::Unselected::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatterternary::Unselected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!

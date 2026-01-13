@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Surface::to_string(Visible e) {
+inline std::string Surface::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -19,7 +19,7 @@ std::string Surface::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::to_string(Xcalendar e) {
+inline std::string Surface::to_string(Xcalendar e) {
     switch(e) {
         case Xcalendar::Chinese: return "chinese";
         case Xcalendar::Coptic: return "coptic";
@@ -41,7 +41,7 @@ std::string Surface::to_string(Xcalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::to_string(Ycalendar e) {
+inline std::string Surface::to_string(Ycalendar e) {
     switch(e) {
         case Ycalendar::Chinese: return "chinese";
         case Ycalendar::Coptic: return "coptic";
@@ -63,7 +63,7 @@ std::string Surface::to_string(Ycalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::to_string(Zcalendar e) {
+inline std::string Surface::to_string(Zcalendar e) {
     switch(e) {
         case Zcalendar::Chinese: return "chinese";
         case Zcalendar::Coptic: return "coptic";
@@ -86,655 +86,655 @@ std::string Surface::to_string(Zcalendar e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface& Surface::autocolorscale(bool f) {
+inline Surface& Surface::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::autocolorscale(Callable&& c) {
+inline Surface& Surface::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Surface& Surface::cauto(bool f) {
+inline Surface& Surface::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::cauto(Callable&& c) {
+inline Surface& Surface::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Surface& Surface::cmax(double f) {
+inline Surface& Surface::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::cmax(Callable&& c) {
+inline Surface& Surface::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Surface& Surface::cmid(double f) {
+inline Surface& Surface::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::cmid(Callable&& c) {
+inline Surface& Surface::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Surface& Surface::cmin(double f) {
+inline Surface& Surface::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::cmin(Callable&& c) {
+inline Surface& Surface::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Surface& Surface::coloraxis(std::string f) {
+inline Surface& Surface::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::coloraxis(Callable&& c) {
+inline Surface& Surface::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Surface& Surface::colorbar(Colorbar f) {
+inline Surface& Surface::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::colorbar(Callable&& c) {
+inline Surface& Surface::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Surface& Surface::colorscale(std::string f) {
+inline Surface& Surface::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Surface& Surface::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Surface& Surface::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::colorscale(Callable&& c) {
+inline Surface& Surface::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Surface& Surface::connectgaps(bool f) {
+inline Surface& Surface::connectgaps(bool f) {
     json["connectgaps"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::connectgaps(Callable&& c) {
+inline Surface& Surface::connectgaps(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return connectgaps(std::move(f));
 }
 
-Surface& Surface::contours(Contours f) {
+inline Surface& Surface::contours(Contours f) {
     json["contours"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::contours(Callable&& c) {
+inline Surface& Surface::contours(Callable&& c) {
     Contours f{};
     std::forward<Callable>(c)(f);
     return contours(std::move(f));
 }
 
 template <typename Range, typename>
-Surface& Surface::customdata(Range&& f) {
+inline Surface& Surface::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::customdata(Callable&& c) {
+inline Surface& Surface::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Surface& Surface::customdatasrc(std::string f) {
+inline Surface& Surface::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::customdatasrc(Callable&& c) {
+inline Surface& Surface::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Surface& Surface::hidesurface(bool f) {
+inline Surface& Surface::hidesurface(bool f) {
     json["hidesurface"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hidesurface(Callable&& c) {
+inline Surface& Surface::hidesurface(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return hidesurface(std::move(f));
 }
 
-Surface& Surface::hoverinfo(std::string f) {
+inline Surface& Surface::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hoverinfo(Callable&& c) {
+inline Surface& Surface::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Surface& Surface::hoverinfo(const std::vector<std::string>& f) {
+inline Surface& Surface::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Surface& Surface::hoverinfosrc(std::string f) {
+inline Surface& Surface::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hoverinfosrc(Callable&& c) {
+inline Surface& Surface::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Surface& Surface::hoverlabel(Hoverlabel f) {
+inline Surface& Surface::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hoverlabel(Callable&& c) {
+inline Surface& Surface::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Surface& Surface::hovertemplate(std::string f) {
+inline Surface& Surface::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hovertemplate(Callable&& c) {
+inline Surface& Surface::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Surface& Surface::hovertemplate(const std::vector<std::string>& f) {
+inline Surface& Surface::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Surface& Surface::hovertemplatesrc(std::string f) {
+inline Surface& Surface::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hovertemplatesrc(Callable&& c) {
+inline Surface& Surface::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Surface& Surface::hovertext(std::string f) {
+inline Surface& Surface::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hovertext(Callable&& c) {
+inline Surface& Surface::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
-Surface& Surface::hovertext(const std::vector<std::string>& f) {
+inline Surface& Surface::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
 }
 
-Surface& Surface::hovertextsrc(std::string f) {
+inline Surface& Surface::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::hovertextsrc(Callable&& c) {
+inline Surface& Surface::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Surface& Surface::ids(Range&& f) {
+inline Surface& Surface::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::ids(Callable&& c) {
+inline Surface& Surface::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Surface& Surface::idssrc(std::string f) {
+inline Surface& Surface::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::idssrc(Callable&& c) {
+inline Surface& Surface::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Surface& Surface::legend(std::string f) {
+inline Surface& Surface::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::legend(Callable&& c) {
+inline Surface& Surface::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Surface& Surface::legendgroup(std::string f) {
+inline Surface& Surface::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::legendgroup(Callable&& c) {
+inline Surface& Surface::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Surface& Surface::legendgrouptitle(Legendgrouptitle f) {
+inline Surface& Surface::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::legendgrouptitle(Callable&& c) {
+inline Surface& Surface::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Surface& Surface::legendrank(double f) {
+inline Surface& Surface::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::legendrank(Callable&& c) {
+inline Surface& Surface::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Surface& Surface::legendwidth(double f) {
+inline Surface& Surface::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::legendwidth(Callable&& c) {
+inline Surface& Surface::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Surface& Surface::lighting(Lighting f) {
+inline Surface& Surface::lighting(Lighting f) {
     json["lighting"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::lighting(Callable&& c) {
+inline Surface& Surface::lighting(Callable&& c) {
     Lighting f{};
     std::forward<Callable>(c)(f);
     return lighting(std::move(f));
 }
 
-Surface& Surface::lightposition(Lightposition f) {
+inline Surface& Surface::lightposition(Lightposition f) {
     json["lightposition"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::lightposition(Callable&& c) {
+inline Surface& Surface::lightposition(Callable&& c) {
     Lightposition f{};
     std::forward<Callable>(c)(f);
     return lightposition(std::move(f));
 }
 
 template <typename T>
-Surface& Surface::meta(T f) {
+inline Surface& Surface::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::meta(Callable&& c) {
+inline Surface& Surface::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Surface& Surface::meta(const std::vector<T>& f) {
+inline Surface& Surface::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Surface& Surface::metasrc(std::string f) {
+inline Surface& Surface::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::metasrc(Callable&& c) {
+inline Surface& Surface::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Surface& Surface::name(std::string f) {
+inline Surface& Surface::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::name(Callable&& c) {
+inline Surface& Surface::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Surface& Surface::opacity(double f) {
+inline Surface& Surface::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::opacity(Callable&& c) {
+inline Surface& Surface::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
 template <typename T>
-Surface& Surface::opacityscale(T f) {
+inline Surface& Surface::opacityscale(T f) {
     json["opacityscale"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::opacityscale(Callable&& c) {
+inline Surface& Surface::opacityscale(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return opacityscale(std::move(f));
 }
 
-Surface& Surface::reversescale(bool f) {
+inline Surface& Surface::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::reversescale(Callable&& c) {
+inline Surface& Surface::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Surface& Surface::scene(std::string f) {
+inline Surface& Surface::scene(std::string f) {
     json["scene"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::scene(Callable&& c) {
+inline Surface& Surface::scene(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return scene(std::move(f));
 }
 
-Surface& Surface::showlegend(bool f) {
+inline Surface& Surface::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::showlegend(Callable&& c) {
+inline Surface& Surface::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Surface& Surface::showscale(bool f) {
+inline Surface& Surface::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::showscale(Callable&& c) {
+inline Surface& Surface::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Surface& Surface::stream(Stream f) {
+inline Surface& Surface::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::stream(Callable&& c) {
+inline Surface& Surface::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
 template <typename Range, typename>
-Surface& Surface::surfacecolor(Range&& f) {
+inline Surface& Surface::surfacecolor(Range&& f) {
     json["surfacecolor"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::surfacecolor(Callable&& c) {
+inline Surface& Surface::surfacecolor(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return surfacecolor(std::move(f));
 }
 
-Surface& Surface::surfacecolorsrc(std::string f) {
+inline Surface& Surface::surfacecolorsrc(std::string f) {
     json["surfacecolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::surfacecolorsrc(Callable&& c) {
+inline Surface& Surface::surfacecolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return surfacecolorsrc(std::move(f));
 }
 
-Surface& Surface::text(std::string f) {
+inline Surface& Surface::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::text(Callable&& c) {
+inline Surface& Surface::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
-Surface& Surface::text(const std::vector<std::string>& f) {
+inline Surface& Surface::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
 }
 
-Surface& Surface::textsrc(std::string f) {
+inline Surface& Surface::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::textsrc(Callable&& c) {
+inline Surface& Surface::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Surface& Surface::uid(std::string f) {
+inline Surface& Surface::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::uid(Callable&& c) {
+inline Surface& Surface::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Surface& Surface::uirevision(T f) {
+inline Surface& Surface::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::uirevision(Callable&& c) {
+inline Surface& Surface::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Surface& Surface::visible(enum Visible f) {
+inline Surface& Surface::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Surface& Surface::x(Range&& f) {
+inline Surface& Surface::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::x(Callable&& c) {
+inline Surface& Surface::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface& Surface::xcalendar(enum Xcalendar f) {
+inline Surface& Surface::xcalendar(enum Xcalendar f) {
     json["xcalendar"] = to_string(f);
     return *this;
 }
 
-Surface& Surface::xhoverformat(std::string f) {
+inline Surface& Surface::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::xhoverformat(Callable&& c) {
+inline Surface& Surface::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
-Surface& Surface::xsrc(std::string f) {
+inline Surface& Surface::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::xsrc(Callable&& c) {
+inline Surface& Surface::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Surface& Surface::y(Range&& f) {
+inline Surface& Surface::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::y(Callable&& c) {
+inline Surface& Surface::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface& Surface::ycalendar(enum Ycalendar f) {
+inline Surface& Surface::ycalendar(enum Ycalendar f) {
     json["ycalendar"] = to_string(f);
     return *this;
 }
 
-Surface& Surface::yhoverformat(std::string f) {
+inline Surface& Surface::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::yhoverformat(Callable&& c) {
+inline Surface& Surface::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
-Surface& Surface::ysrc(std::string f) {
+inline Surface& Surface::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::ysrc(Callable&& c) {
+inline Surface& Surface::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
-Surface& Surface::z(Range&& f) {
+inline Surface& Surface::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface& Surface::z(Callable&& c) {
+inline Surface& Surface::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Surface& Surface::zcalendar(enum Zcalendar f) {
+inline Surface& Surface::zcalendar(enum Zcalendar f) {
     json["zcalendar"] = to_string(f);
     return *this;
 }
 
-Surface& Surface::zhoverformat(std::string f) {
+inline Surface& Surface::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::zhoverformat(Callable&& c) {
+inline Surface& Surface::zhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zhoverformat(std::move(f));
 }
 
-Surface& Surface::zsrc(std::string f) {
+inline Surface& Surface::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface& Surface::zsrc(Callable&& c) {
+inline Surface& Surface::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Surface::Colorbar::to_string(Exponentformat e) {
+inline std::string Surface::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -745,7 +745,7 @@ std::string Surface::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Lenmode e) {
+inline std::string Surface::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -753,7 +753,7 @@ std::string Surface::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Orientation e) {
+inline std::string Surface::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -761,7 +761,7 @@ std::string Surface::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Showexponent e) {
+inline std::string Surface::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -771,7 +771,7 @@ std::string Surface::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Showtickprefix e) {
+inline std::string Surface::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -781,7 +781,7 @@ std::string Surface::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Showticksuffix e) {
+inline std::string Surface::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -791,7 +791,7 @@ std::string Surface::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Thicknessmode e) {
+inline std::string Surface::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -799,7 +799,7 @@ std::string Surface::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Surface::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -808,7 +808,7 @@ std::string Surface::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Surface::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -824,7 +824,7 @@ std::string Surface::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Tickmode e) {
+inline std::string Surface::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -833,7 +833,7 @@ std::string Surface::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Ticks e) {
+inline std::string Surface::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -842,7 +842,7 @@ std::string Surface::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Xanchor e) {
+inline std::string Surface::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -851,7 +851,7 @@ std::string Surface::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Xref e) {
+inline std::string Surface::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -859,7 +859,7 @@ std::string Surface::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Yanchor e) {
+inline std::string Surface::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -868,7 +868,7 @@ std::string Surface::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::to_string(Yref e) {
+inline std::string Surface::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -877,456 +877,472 @@ std::string Surface::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Colorbar& Surface::Colorbar::bgcolor(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Colorbar& Surface::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::bgcolor(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::bordercolor(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Colorbar& Surface::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::bordercolor(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::borderwidth(double f) {
+inline Surface::Colorbar& Surface::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::borderwidth(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Surface::Colorbar& Surface::Colorbar::dtick(T f) {
+inline Surface::Colorbar& Surface::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::dtick(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::exponentformat(enum Exponentformat f) {
+inline Surface::Colorbar& Surface::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Surface::Colorbar& Surface::Colorbar::labelalias(T f) {
+inline Surface::Colorbar& Surface::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::labelalias(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::len(double f) {
+inline Surface::Colorbar& Surface::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::len(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::lenmode(enum Lenmode f) {
+inline Surface::Colorbar& Surface::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::minexponent(double f) {
+inline Surface::Colorbar& Surface::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::minexponent(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::nticks(int f) {
+inline Surface::Colorbar& Surface::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::nticks(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::orientation(enum Orientation f) {
+inline Surface::Colorbar& Surface::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::outlinecolor(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Colorbar& Surface::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::outlinecolor(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::outlinewidth(double f) {
+inline Surface::Colorbar& Surface::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::outlinewidth(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::separatethousands(bool f) {
+inline Surface::Colorbar& Surface::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::separatethousands(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::showexponent(enum Showexponent f) {
+inline Surface::Colorbar& Surface::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::showticklabels(bool f) {
+inline Surface::Colorbar& Surface::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::showticklabels(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Surface::Colorbar& Surface::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Surface::Colorbar& Surface::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::thickness(double f) {
+inline Surface::Colorbar& Surface::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::thickness(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Surface::Colorbar& Surface::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Surface::Colorbar& Surface::Colorbar::tick0(T f) {
+inline Surface::Colorbar& Surface::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tick0(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickangle(double f) {
+inline Surface::Colorbar& Surface::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickangle(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickcolor(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Colorbar& Surface::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickcolor(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickfont(Tickfont f) {
+inline Surface::Colorbar& Surface::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickfont(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickformat(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickformat(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickformatstops(Tickformatstop f) {
+inline Surface::Colorbar& Surface::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickformatstops(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Surface::Colorbar& Surface::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Surface::Colorbar& Surface::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Surface::Colorbar& Surface::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Surface::Colorbar& Surface::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::ticklabelstep(int f) {
+inline Surface::Colorbar& Surface::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::ticklabelstep(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::ticklen(double f) {
+inline Surface::Colorbar& Surface::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::ticklen(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickmode(enum Tickmode f) {
+inline Surface::Colorbar& Surface::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::tickprefix(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickprefix(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::ticks(enum Ticks f) {
+inline Surface::Colorbar& Surface::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::ticksuffix(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::ticksuffix(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Surface::Colorbar& Surface::Colorbar::ticktext(Range&& f) {
+inline Surface::Colorbar& Surface::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::ticktext(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::ticktextsrc(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::ticktextsrc(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Surface::Colorbar& Surface::Colorbar::tickvals(Range&& f) {
+inline Surface::Colorbar& Surface::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickvals(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickvalssrc(std::string f) {
+inline Surface::Colorbar& Surface::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickvalssrc(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::tickwidth(double f) {
+inline Surface::Colorbar& Surface::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::tickwidth(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::title(Title f) {
+inline Surface::Colorbar& Surface::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::title(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::x(double f) {
+inline Surface::Colorbar& Surface::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::x(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::xanchor(enum Xanchor f) {
+inline Surface::Colorbar& Surface::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::xpad(double f) {
+inline Surface::Colorbar& Surface::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::xpad(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::xref(enum Xref f) {
+inline Surface::Colorbar& Surface::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::y(double f) {
+inline Surface::Colorbar& Surface::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::y(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::yanchor(enum Yanchor f) {
+inline Surface::Colorbar& Surface::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar& Surface::Colorbar::ypad(double f) {
+inline Surface::Colorbar& Surface::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar& Surface::Colorbar::ypad(Callable&& c) {
+inline Surface::Colorbar& Surface::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Surface::Colorbar& Surface::Colorbar::yref(enum Yref f) {
+inline Surface::Colorbar& Surface::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Surface::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Surface::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1334,7 +1350,7 @@ std::string Surface::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Surface::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1344,7 +1360,7 @@ std::string Surface::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Surface::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1357,144 +1373,160 @@ std::string Surface::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::color(std::string f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::color(Callable&& c) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::family(std::string f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::family(Callable&& c) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(std::string f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::shadow(std::string f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::size(double f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::size(Callable&& c) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::style(enum Style f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::variant(enum Variant f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::weight(int f) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::weight(Callable&& c) {
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::enabled(bool f) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::name(std::string f) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::value(std::string f) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Surface::Colorbar::Tickformatstop& Surface::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Surface::Colorbar::Title::to_string(Side e) {
+inline std::string Surface::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1504,34 +1536,34 @@ std::string Surface::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Colorbar::Title& Surface::Colorbar::Title::font(Font f) {
+inline Surface::Colorbar::Title& Surface::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title& Surface::Colorbar::Title::font(Callable&& c) {
+inline Surface::Colorbar::Title& Surface::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Surface::Colorbar::Title& Surface::Colorbar::Title::side(enum Side f) {
+inline Surface::Colorbar::Title& Surface::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Title& Surface::Colorbar::Title::text(std::string f) {
+inline Surface::Colorbar::Title& Surface::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title& Surface::Colorbar::Title::text(Callable&& c) {
+inline Surface::Colorbar::Title& Surface::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Surface::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Surface::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1539,7 +1571,7 @@ std::string Surface::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Surface::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1549,7 +1581,7 @@ std::string Surface::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Surface::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1562,590 +1594,618 @@ std::string Surface::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::color(std::string f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::color(Callable&& c) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::family(std::string f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::family(Callable&& c) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(std::string f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::shadow(std::string f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::size(double f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::size(Callable&& c) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::style(enum Style f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::variant(enum Variant f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::weight(int f) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::weight(Callable&& c) {
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Surface::Contours& Surface::Contours::x(X f) {
+inline Surface::Contours& Surface::Contours::x(X f) {
     json["x"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours& Surface::Contours::x(Callable&& c) {
+inline Surface::Contours& Surface::Contours::x(Callable&& c) {
     X f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface::Contours& Surface::Contours::y(Y f) {
+inline Surface::Contours& Surface::Contours::y(Y f) {
     json["y"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours& Surface::Contours::y(Callable&& c) {
+inline Surface::Contours& Surface::Contours::y(Callable&& c) {
     Y f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface::Contours& Surface::Contours::z(Z f) {
+inline Surface::Contours& Surface::Contours::z(Z f) {
     json["z"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours& Surface::Contours::z(Callable&& c) {
+inline Surface::Contours& Surface::Contours::z(Callable&& c) {
     Z f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
 
-Surface::Contours::X& Surface::Contours::X::color(std::string f) {
+inline Surface::Contours::X& Surface::Contours::X::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Contours::X& Surface::Contours::X::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::color(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::end(double f) {
+inline Surface::Contours::X& Surface::Contours::X::end(double f) {
     json["end"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::end(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::end(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return end(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::highlight(bool f) {
+inline Surface::Contours::X& Surface::Contours::X::highlight(bool f) {
     json["highlight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::highlight(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::highlight(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return highlight(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::highlightcolor(std::string f) {
+inline Surface::Contours::X& Surface::Contours::X::highlightcolor(std::string f) {
+    json["highlightcolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Contours::X& Surface::Contours::X::highlightcolor(double f) {
     json["highlightcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::highlightcolor(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::highlightcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return highlightcolor(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::highlightwidth(double f) {
+inline Surface::Contours::X& Surface::Contours::X::highlightwidth(double f) {
     json["highlightwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::highlightwidth(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::highlightwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return highlightwidth(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::project(Project f) {
+inline Surface::Contours::X& Surface::Contours::X::project(Project f) {
     json["project"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::project(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::project(Callable&& c) {
     Project f{};
     std::forward<Callable>(c)(f);
     return project(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::show(bool f) {
+inline Surface::Contours::X& Surface::Contours::X::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::show(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::size(double f) {
+inline Surface::Contours::X& Surface::Contours::X::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::size(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::start(double f) {
+inline Surface::Contours::X& Surface::Contours::X::start(double f) {
     json["start"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::start(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::start(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return start(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::usecolormap(bool f) {
+inline Surface::Contours::X& Surface::Contours::X::usecolormap(bool f) {
     json["usecolormap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::usecolormap(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::usecolormap(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return usecolormap(std::move(f));
 }
 
-Surface::Contours::X& Surface::Contours::X::width(double f) {
+inline Surface::Contours::X& Surface::Contours::X::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X& Surface::Contours::X::width(Callable&& c) {
+inline Surface::Contours::X& Surface::Contours::X::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 
-Surface::Contours::X::Project& Surface::Contours::X::Project::x(bool f) {
+inline Surface::Contours::X::Project& Surface::Contours::X::Project::x(bool f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X::Project& Surface::Contours::X::Project::x(Callable&& c) {
+inline Surface::Contours::X::Project& Surface::Contours::X::Project::x(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface::Contours::X::Project& Surface::Contours::X::Project::y(bool f) {
+inline Surface::Contours::X::Project& Surface::Contours::X::Project::y(bool f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X::Project& Surface::Contours::X::Project::y(Callable&& c) {
+inline Surface::Contours::X::Project& Surface::Contours::X::Project::y(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface::Contours::X::Project& Surface::Contours::X::Project::z(bool f) {
+inline Surface::Contours::X::Project& Surface::Contours::X::Project::z(bool f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::X::Project& Surface::Contours::X::Project::z(Callable&& c) {
+inline Surface::Contours::X::Project& Surface::Contours::X::Project::z(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
 
-Surface::Contours::Y& Surface::Contours::Y::color(std::string f) {
+inline Surface::Contours::Y& Surface::Contours::Y::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Contours::Y& Surface::Contours::Y::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::color(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::end(double f) {
+inline Surface::Contours::Y& Surface::Contours::Y::end(double f) {
     json["end"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::end(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::end(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return end(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::highlight(bool f) {
+inline Surface::Contours::Y& Surface::Contours::Y::highlight(bool f) {
     json["highlight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::highlight(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::highlight(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return highlight(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::highlightcolor(std::string f) {
+inline Surface::Contours::Y& Surface::Contours::Y::highlightcolor(std::string f) {
+    json["highlightcolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Contours::Y& Surface::Contours::Y::highlightcolor(double f) {
     json["highlightcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::highlightcolor(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::highlightcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return highlightcolor(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::highlightwidth(double f) {
+inline Surface::Contours::Y& Surface::Contours::Y::highlightwidth(double f) {
     json["highlightwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::highlightwidth(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::highlightwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return highlightwidth(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::project(Project f) {
+inline Surface::Contours::Y& Surface::Contours::Y::project(Project f) {
     json["project"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::project(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::project(Callable&& c) {
     Project f{};
     std::forward<Callable>(c)(f);
     return project(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::show(bool f) {
+inline Surface::Contours::Y& Surface::Contours::Y::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::show(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::size(double f) {
+inline Surface::Contours::Y& Surface::Contours::Y::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::size(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::start(double f) {
+inline Surface::Contours::Y& Surface::Contours::Y::start(double f) {
     json["start"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::start(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::start(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return start(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::usecolormap(bool f) {
+inline Surface::Contours::Y& Surface::Contours::Y::usecolormap(bool f) {
     json["usecolormap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::usecolormap(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::usecolormap(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return usecolormap(std::move(f));
 }
 
-Surface::Contours::Y& Surface::Contours::Y::width(double f) {
+inline Surface::Contours::Y& Surface::Contours::Y::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y& Surface::Contours::Y::width(Callable&& c) {
+inline Surface::Contours::Y& Surface::Contours::Y::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 
-Surface::Contours::Y::Project& Surface::Contours::Y::Project::x(bool f) {
+inline Surface::Contours::Y::Project& Surface::Contours::Y::Project::x(bool f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y::Project& Surface::Contours::Y::Project::x(Callable&& c) {
+inline Surface::Contours::Y::Project& Surface::Contours::Y::Project::x(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface::Contours::Y::Project& Surface::Contours::Y::Project::y(bool f) {
+inline Surface::Contours::Y::Project& Surface::Contours::Y::Project::y(bool f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y::Project& Surface::Contours::Y::Project::y(Callable&& c) {
+inline Surface::Contours::Y::Project& Surface::Contours::Y::Project::y(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface::Contours::Y::Project& Surface::Contours::Y::Project::z(bool f) {
+inline Surface::Contours::Y::Project& Surface::Contours::Y::Project::z(bool f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Y::Project& Surface::Contours::Y::Project::z(Callable&& c) {
+inline Surface::Contours::Y::Project& Surface::Contours::Y::Project::z(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
 
-Surface::Contours::Z& Surface::Contours::Z::color(std::string f) {
+inline Surface::Contours::Z& Surface::Contours::Z::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Contours::Z& Surface::Contours::Z::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::color(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::end(double f) {
+inline Surface::Contours::Z& Surface::Contours::Z::end(double f) {
     json["end"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::end(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::end(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return end(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::highlight(bool f) {
+inline Surface::Contours::Z& Surface::Contours::Z::highlight(bool f) {
     json["highlight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::highlight(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::highlight(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return highlight(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::highlightcolor(std::string f) {
+inline Surface::Contours::Z& Surface::Contours::Z::highlightcolor(std::string f) {
+    json["highlightcolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Contours::Z& Surface::Contours::Z::highlightcolor(double f) {
     json["highlightcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::highlightcolor(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::highlightcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return highlightcolor(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::highlightwidth(double f) {
+inline Surface::Contours::Z& Surface::Contours::Z::highlightwidth(double f) {
     json["highlightwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::highlightwidth(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::highlightwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return highlightwidth(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::project(Project f) {
+inline Surface::Contours::Z& Surface::Contours::Z::project(Project f) {
     json["project"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::project(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::project(Callable&& c) {
     Project f{};
     std::forward<Callable>(c)(f);
     return project(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::show(bool f) {
+inline Surface::Contours::Z& Surface::Contours::Z::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::show(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::size(double f) {
+inline Surface::Contours::Z& Surface::Contours::Z::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::size(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::start(double f) {
+inline Surface::Contours::Z& Surface::Contours::Z::start(double f) {
     json["start"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::start(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::start(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return start(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::usecolormap(bool f) {
+inline Surface::Contours::Z& Surface::Contours::Z::usecolormap(bool f) {
     json["usecolormap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::usecolormap(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::usecolormap(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return usecolormap(std::move(f));
 }
 
-Surface::Contours::Z& Surface::Contours::Z::width(double f) {
+inline Surface::Contours::Z& Surface::Contours::Z::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z& Surface::Contours::Z::width(Callable&& c) {
+inline Surface::Contours::Z& Surface::Contours::Z::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 
-Surface::Contours::Z::Project& Surface::Contours::Z::Project::x(bool f) {
+inline Surface::Contours::Z::Project& Surface::Contours::Z::Project::x(bool f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z::Project& Surface::Contours::Z::Project::x(Callable&& c) {
+inline Surface::Contours::Z::Project& Surface::Contours::Z::Project::x(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface::Contours::Z::Project& Surface::Contours::Z::Project::y(bool f) {
+inline Surface::Contours::Z::Project& Surface::Contours::Z::Project::y(bool f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z::Project& Surface::Contours::Z::Project::y(Callable&& c) {
+inline Surface::Contours::Z::Project& Surface::Contours::Z::Project::y(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface::Contours::Z::Project& Surface::Contours::Z::Project::z(bool f) {
+inline Surface::Contours::Z::Project& Surface::Contours::Z::Project::z(bool f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Contours::Z::Project& Surface::Contours::Z::Project::z(Callable&& c) {
+inline Surface::Contours::Z::Project& Surface::Contours::Z::Project::z(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-std::string Surface::Hoverlabel::to_string(Align e) {
+inline std::string Surface::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -2155,118 +2215,134 @@ std::string Surface::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::align(enum Align f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Surface::Hoverlabel& Surface::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::alignsrc(std::string f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::alignsrc(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(std::string f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::bgcolorsrc(std::string f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(std::string f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::bordercolorsrc(std::string f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::font(Font f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::font(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::namelength(int f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::namelength(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Surface::Hoverlabel& Surface::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Surface::Hoverlabel& Surface::Hoverlabel::namelengthsrc(std::string f) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel& Surface::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Surface::Hoverlabel& Surface::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Surface::Hoverlabel::Font::to_string(Style e) {
+inline std::string Surface::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2274,7 +2350,7 @@ std::string Surface::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Surface::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2284,7 +2360,7 @@ std::string Surface::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Surface::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2297,252 +2373,260 @@ std::string Surface::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::colorsrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::family(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::family(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::familysrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadow(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadow(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::size(double f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::size(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::sizesrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::style(enum Style f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::stylesrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variant(enum Variant f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variantsrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weight(int f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weight(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weightsrc(std::string f) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Surface::Legendgrouptitle& Surface::Legendgrouptitle::font(Font f) {
+inline Surface::Legendgrouptitle& Surface::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle& Surface::Legendgrouptitle::font(Callable&& c) {
+inline Surface::Legendgrouptitle& Surface::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Surface::Legendgrouptitle& Surface::Legendgrouptitle::text(std::string f) {
+inline Surface::Legendgrouptitle& Surface::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle& Surface::Legendgrouptitle::text(Callable&& c) {
+inline Surface::Legendgrouptitle& Surface::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Surface::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Surface::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2550,7 +2634,7 @@ std::string Surface::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Surface::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2560,7 +2644,7 @@ std::string Surface::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Surface::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Surface::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2573,195 +2657,199 @@ std::string Surface::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::color(std::string f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::color(Callable&& c) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::family(std::string f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::family(Callable&& c) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::shadow(std::string f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::size(double f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::size(Callable&& c) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::style(enum Style f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::weight(int f) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Surface::Lighting& Surface::Lighting::ambient(double f) {
+inline Surface::Lighting& Surface::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lighting& Surface::Lighting::ambient(Callable&& c) {
+inline Surface::Lighting& Surface::Lighting::ambient(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ambient(std::move(f));
 }
 
-Surface::Lighting& Surface::Lighting::diffuse(double f) {
+inline Surface::Lighting& Surface::Lighting::diffuse(double f) {
     json["diffuse"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lighting& Surface::Lighting::diffuse(Callable&& c) {
+inline Surface::Lighting& Surface::Lighting::diffuse(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return diffuse(std::move(f));
 }
 
-Surface::Lighting& Surface::Lighting::fresnel(double f) {
+inline Surface::Lighting& Surface::Lighting::fresnel(double f) {
     json["fresnel"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lighting& Surface::Lighting::fresnel(Callable&& c) {
+inline Surface::Lighting& Surface::Lighting::fresnel(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return fresnel(std::move(f));
 }
 
-Surface::Lighting& Surface::Lighting::roughness(double f) {
+inline Surface::Lighting& Surface::Lighting::roughness(double f) {
     json["roughness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lighting& Surface::Lighting::roughness(Callable&& c) {
+inline Surface::Lighting& Surface::Lighting::roughness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return roughness(std::move(f));
 }
 
-Surface::Lighting& Surface::Lighting::specular(double f) {
+inline Surface::Lighting& Surface::Lighting::specular(double f) {
     json["specular"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lighting& Surface::Lighting::specular(Callable&& c) {
+inline Surface::Lighting& Surface::Lighting::specular(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return specular(std::move(f));
 }
 
 
-Surface::Lightposition& Surface::Lightposition::x(double f) {
+inline Surface::Lightposition& Surface::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lightposition& Surface::Lightposition::x(Callable&& c) {
+inline Surface::Lightposition& Surface::Lightposition::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Surface::Lightposition& Surface::Lightposition::y(double f) {
+inline Surface::Lightposition& Surface::Lightposition::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lightposition& Surface::Lightposition::y(Callable&& c) {
+inline Surface::Lightposition& Surface::Lightposition::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Surface::Lightposition& Surface::Lightposition::z(double f) {
+inline Surface::Lightposition& Surface::Lightposition::z(double f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Lightposition& Surface::Lightposition::z(Callable&& c) {
+inline Surface::Lightposition& Surface::Lightposition::z(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
 
-Surface::Stream& Surface::Stream::maxpoints(double f) {
+inline Surface::Stream& Surface::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Stream& Surface::Stream::maxpoints(Callable&& c) {
+inline Surface::Stream& Surface::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Surface::Stream& Surface::Stream::token(std::string f) {
+inline Surface::Stream& Surface::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Surface::Stream& Surface::Stream::token(Callable&& c) {
+inline Surface::Stream& Surface::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));

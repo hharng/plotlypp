@@ -31,19 +31,20 @@ VALTYPE_MAP = {
     "any": ["T"], # can usualle be dbl?
     "data_array": ["std::vector<T>"], # with constraint
     #"info_array": ["std::vector<std::string>"],#'std::vector<T>',
-    "info_array": ["std::vector<double>"],#'std::vector<T>',
+    # Prefer overloads to templates in order to support initializer lists. Same is true of std::variant.
+    "info_array": ["std::vector<double>", "std::vector<std::string>", "std::vector<std::vector<std::string>>", "std::vector<std::vector<double>>"],
     "enumerated": ["ENUM"], # also need to json
     # Colors can be strings or numbers. The template for proper handling of std::string, const char*,
     # or double gets complicated, as does a vector of std::variant, so just use overloads instead.
     #'color': ["std::string", "double"], # also need to json
-    "color": ["std::string"], # also need to json
+    "color": ["std::string", "double"], # also need to json
     "flaglist": ["std::string"], # also need to json, basically enum
     #     "description": "A Plotly colorscale either picked by a name: (any of Greys, YlGnBu, Greens, YlOrRd, Bluered, RdBu, Reds, Blues, Picnic, Rainbow, Portland, Jet, Hot, Blackbody, Earth, Electric, Viridis, Cividis ) or customized as an {array} of 2-element {arrays} where the first element is the normalized color level value (starting at *0* and ending at *1*), and the second item is a valid color string.",
     "colorscale": ["std::string", "std::vector<std::pair<double, std::string>>"], # also need to json, basically enum --- could be smarter
     # Not really, but it's useful to add here
     "object": ["OBJECT"],
     # Maybe?
-    "colorlist": ["std::vector<std::string>"]
+    "colorlist": ["std::vector<std::string>", "std::vector<double>"]
 }
 
 
@@ -92,7 +93,7 @@ def emit_array_field_setter_decl(class_object, field, output_val_type, writer):
 def emit_array_field_setter(class_object, field, output_val_type, writer):
     if output_val_type == 'T':
         writer.write("template <typename T>")
-    writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<{output_val_type}>& f) {{")
+    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<{output_val_type}>& f) {{")
     with IndentBlock(writer):
         if field.is_object:
             writer.write("std::vector<Json> jsonified(f.size());")
@@ -114,6 +115,16 @@ def emit_lambda_setter_decl(class_object, field, output_val_types, writer):
     else:
         writer.write(f"template <typename Callable, typename=std::enable_if_t<{enable_if_cond}>>")
     writer.write(f"{class_object.name.title()}& {field.name}(Callable&& c);")
+    if field.is_subplot_object:
+         # Add an index-first overload. Putting the index last we could default it and not need an overload but that
+        # makes it less readable and less consistent with plotly.js.
+        if "T" in output_val_types:
+            writer.write(f"template <typename T, typename Callable, typename=std::enable_if_t<{enable_if_cond}>>")
+        elif field.json_val_type == 'data_array':
+            writer.write(f"template <typename T, typename Callable, typename=std::enable_if_t<is_data_array_element_v<T> && ({enable_if_cond})>>")
+        else:
+            writer.write(f"template <typename Callable, typename=std::enable_if_t<{enable_if_cond}>>")
+        writer.write(f"{class_object.name.title()}& {field.name}(int index, Callable&& c);")
 
 
 def emit_field_setter_decl(class_object, field, output_val_type, writer):
@@ -158,13 +169,13 @@ def emit_field_setter(class_object, field, output_val_type, writer):
 
     if field.json_val_type == 'data_array':
         writer.write("template <typename Range, typename>")
-        writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(Range&& f) {{")
+        writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(Range&& f) {{")
     else:
         write_template_signature()
         if vec_type:
-            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(const {output_val_type}& f) {{")
+            writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(const {output_val_type}& f) {{")
         else:
-            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}({output_val_type} f) {{")
+            writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}({output_val_type} f) {{")
     with IndentBlock(writer):
         if field.is_object:
             writer.write(f"json[\"{field.name}\"] = std::move(f.json);")
@@ -178,13 +189,13 @@ def emit_field_setter(class_object, field, output_val_type, writer):
         # makes it less readable and less consistent with plotly.js.
         if field.json_val_type == 'data_array':
             writer.write("template <typename Range, typename>")
-            writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, Range&& f) {{")
+            writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, Range&& f) {{")
         else:
             write_template_signature()
             if vec_type:
-                writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, const {output_val_type}& f) {{")
+                writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, const {output_val_type}& f) {{")
             else:
-                writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, {output_val_type} f) {{")
+                writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, {output_val_type} f) {{")
         with IndentBlock(writer):
             if field.is_object:
                 writer.write(f"json[\"{field.name}\" + std::to_string(index)] = std::move(f.json);")
@@ -198,12 +209,23 @@ def emit_lambda_setter(class_object, field, output_val_types, writer):
         writer.write("template <typename T, typename Callable, typename>")
     else:
         writer.write("template <typename Callable, typename>")
-    writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(Callable&& c) {{")
+    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(Callable&& c) {{")
     with IndentBlock(writer):
         writer.write(f"{output_val_types[0]} f{{}};")
         writer.write("std::forward<Callable>(c)(f);")
         writer.write(f"return {field.name}(std::move(f));")
     writer.write("}")
+    if field.is_subplot_object:
+        if "T" in output_val_types or field.json_val_type == 'data_array':
+            writer.write("template <typename T, typename Callable, typename>")
+        else:
+            writer.write("template <typename Callable, typename>")
+        writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, Callable&& c) {{")
+        with IndentBlock(writer):
+            writer.write(f"{output_val_types[0]} f{{}};")
+            writer.write("std::forward<Callable>(c)(f);")
+            writer.write(f"return {field.name}(index, std::move(f));")
+        writer.write("}")
 
 
 
@@ -214,7 +236,7 @@ def emit_enum_field_setter_decl(class_object, field, writer):
 
 def emit_enum_field_setter(class_object, field, writer):
     # To help compiler ambiguity, add enum keyword.
-    writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(enum {field.name.title()} f) {{")
+    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(enum {field.name.title()} f) {{")
     with IndentBlock(writer):
         writer.write(f"json[\"{field.name}\"] = to_string(f);")
         writer.write("return *this;")
@@ -226,7 +248,7 @@ def emit_enum_array_field_setter_decl(class_object, field, writer):
 
 
 def emit_enum_array_field_setter(class_object, field, writer):
-    writer.write(f"{class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<enum {field.name.title()}>& f) {{")
+    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<enum {field.name.title()}>& f) {{")
     with IndentBlock(writer):
         writer.write("std::vector<std::string> stringified(f.size());")
         writer.write("std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});")
@@ -249,7 +271,7 @@ def emit_enum_to_string_decl(enum, writer):
 
 
 def emit_enum_to_string(class_object, enum, writer):
-    writer.write(f"std::string {class_object.name.title()}::to_string({enum.name.title()} e) {{")
+    writer.write(f"inline std::string {class_object.name.title()}::to_string({enum.name.title()} e) {{")
     with IndentBlock(writer):
         writer.write("switch(e) {")
         with IndentBlock(writer):

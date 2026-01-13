@@ -271,7 +271,14 @@ class Splom : public Trace {
     // N xaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and
     // `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     Splom& xaxes(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Splom& xaxes(const std::vector<std::string>& f);
+    Splom& xaxes(const std::vector<std::vector<std::string>>& f);
+    Splom& xaxes(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Splom& xaxes(Callable&& c);
 
     // Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in
@@ -288,7 +295,14 @@ class Splom : public Trace {
     // N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and
     // `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     Splom& yaxes(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Splom& yaxes(const std::vector<std::string>& f);
+    Splom& yaxes(const std::vector<std::vector<std::string>>& f);
+    Splom& yaxes(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Splom& yaxes(Callable&& c);
 
     // Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in
@@ -431,9 +445,12 @@ class Splom::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Splom::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Hoverlabel& bgcolor(Callable&& c);
     Splom::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Splom::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Splom::Hoverlabel& bgcolorsrc(std::string f);
@@ -442,9 +459,12 @@ class Splom::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Splom::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Hoverlabel& bordercolor(Callable&& c);
     Splom::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Splom::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Splom::Hoverlabel& bordercolorsrc(std::string f);
@@ -506,9 +526,12 @@ class Splom::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Splom::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Hoverlabel::Font& color(Callable&& c);
     Splom::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Splom::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Splom::Hoverlabel::Font& colorsrc(std::string f);
@@ -670,7 +693,9 @@ class Splom::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Splom::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1116,9 +1141,12 @@ class Splom::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Splom::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker& color(Callable&& c);
     Splom::Marker& color(const std::vector<std::string>& f);
+    Splom::Marker& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -1346,12 +1374,16 @@ class Splom::Marker::Colorbar {
 
     // Sets the color of padded area.
     Splom::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Splom::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1420,7 +1452,9 @@ class Splom::Marker::Colorbar {
 
     // Sets the axis line color.
     Splom::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1480,7 +1514,9 @@ class Splom::Marker::Colorbar {
 
     // Sets the tick color.
     Splom::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1662,7 +1698,9 @@ class Splom::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Splom::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1726,7 +1764,14 @@ class Splom::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Splom::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1826,7 +1871,9 @@ class Splom::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Splom::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1928,9 +1975,12 @@ class Splom::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Splom::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Marker::Line& color(Callable&& c);
     Splom::Marker::Line& color(const std::vector<std::string>& f);
+    Splom::Marker::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -2004,7 +2054,9 @@ class Splom::Selected::Marker {
 
     // Sets the marker color of selected points.
     Splom::Selected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Selected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
@@ -2067,7 +2119,9 @@ class Splom::Unselected::Marker {
 
     // Sets the marker color of unselected points, applied only when a selection exists.
     Splom::Unselected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Splom::Unselected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Splom::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.

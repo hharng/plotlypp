@@ -310,9 +310,12 @@ class Table::Cells::Fill {
 
     // Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
     Table::Cells::Fill& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Cells::Fill& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Cells::Fill& color(Callable&& c);
     Table::Cells::Fill& color(const std::vector<std::string>& f);
+    Table::Cells::Fill& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Cells::Fill& colorsrc(std::string f);
@@ -354,9 +357,12 @@ class Table::Cells::Font {
     static std::string to_string(Variant e);
 
     Table::Cells::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Cells::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Cells::Font& color(Callable&& c);
     Table::Cells::Font& color(const std::vector<std::string>& f);
+    Table::Cells::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Cells::Font& colorsrc(std::string f);
@@ -470,9 +476,12 @@ class Table::Cells::Line {
     : json(parse(std::move(jsonStr))) {}
 
     Table::Cells::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Cells::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Cells::Line& color(Callable&& c);
     Table::Cells::Line& color(const std::vector<std::string>& f);
+    Table::Cells::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Cells::Line& colorsrc(std::string f);
@@ -511,12 +520,26 @@ class Table::Domain {
 
     // Sets the horizontal domain of this table trace (in plot fraction).
     Table::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Table::Domain& x(const std::vector<std::string>& f);
+    Table::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Table::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Table::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this table trace (in plot fraction).
     Table::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Table::Domain& y(const std::vector<std::string>& f);
+    Table::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Table::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Table::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -631,9 +654,12 @@ class Table::Header::Fill {
 
     // Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
     Table::Header::Fill& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Header::Fill& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Header::Fill& color(Callable&& c);
     Table::Header::Fill& color(const std::vector<std::string>& f);
+    Table::Header::Fill& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Header::Fill& colorsrc(std::string f);
@@ -675,9 +701,12 @@ class Table::Header::Font {
     static std::string to_string(Variant e);
 
     Table::Header::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Header::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Header::Font& color(Callable&& c);
     Table::Header::Font& color(const std::vector<std::string>& f);
+    Table::Header::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Header::Font& colorsrc(std::string f);
@@ -791,9 +820,12 @@ class Table::Header::Line {
     : json(parse(std::move(jsonStr))) {}
 
     Table::Header::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Header::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Header::Line& color(Callable&& c);
     Table::Header::Line& color(const std::vector<std::string>& f);
+    Table::Header::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Header::Line& colorsrc(std::string f);
@@ -843,9 +875,12 @@ class Table::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Table::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Hoverlabel& bgcolor(Callable&& c);
     Table::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Table::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Table::Hoverlabel& bgcolorsrc(std::string f);
@@ -854,9 +889,12 @@ class Table::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Table::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Hoverlabel& bordercolor(Callable&& c);
     Table::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Table::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Table::Hoverlabel& bordercolorsrc(std::string f);
@@ -918,9 +956,12 @@ class Table::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Table::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Hoverlabel::Font& color(Callable&& c);
     Table::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Table::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Table::Hoverlabel::Font& colorsrc(std::string f);
@@ -1082,7 +1123,9 @@ class Table::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Table::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Table::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Table::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

@@ -329,7 +329,9 @@ class Scatter3D : public Trace {
 
     // Sets the surface fill color.
     Scatter3D& surfacecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D& surfacecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D& surfacecolor(Callable&& c);
 
     // Sets text elements associated with each (x,y,z) triplet. If a single string, the same string appears over all the
@@ -527,7 +529,9 @@ class Scatter3D::Error_X {
 
     // Sets the stroke color of the error bars.
     Scatter3D::Error_X& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Error_X& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Error_X& color(Callable&& c);
 
     Scatter3D::Error_X& copy_zstyle(bool f);
@@ -629,7 +633,9 @@ class Scatter3D::Error_Y {
 
     // Sets the stroke color of the error bars.
     Scatter3D::Error_Y& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Error_Y& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Error_Y& color(Callable&& c);
 
     Scatter3D::Error_Y& copy_zstyle(bool f);
@@ -731,7 +737,9 @@ class Scatter3D::Error_Z {
 
     // Sets the stroke color of the error bars.
     Scatter3D::Error_Z& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Error_Z& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Error_Z& color(Callable&& c);
 
     // Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars,
@@ -815,9 +823,12 @@ class Scatter3D::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Scatter3D::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Hoverlabel& bgcolor(Callable&& c);
     Scatter3D::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Scatter3D::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Scatter3D::Hoverlabel& bgcolorsrc(std::string f);
@@ -826,9 +837,12 @@ class Scatter3D::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Scatter3D::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Hoverlabel& bordercolor(Callable&& c);
     Scatter3D::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Scatter3D::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Scatter3D::Hoverlabel& bordercolorsrc(std::string f);
@@ -890,9 +904,12 @@ class Scatter3D::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Scatter3D::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Hoverlabel::Font& color(Callable&& c);
     Scatter3D::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Scatter3D::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatter3D::Hoverlabel::Font& colorsrc(std::string f);
@@ -1054,7 +1071,9 @@ class Scatter3D::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Scatter3D::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1164,9 +1183,12 @@ class Scatter3D::Line {
     // Sets the line color. It accepts either a specific color or an array of numbers that are mapped to the colorscale
     // relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if set.
     Scatter3D::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line& color(Callable&& c);
     Scatter3D::Line& color(const std::vector<std::string>& f);
+    Scatter3D::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -1347,12 +1369,16 @@ class Scatter3D::Line::Colorbar {
 
     // Sets the color of padded area.
     Scatter3D::Line::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Scatter3D::Line::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1421,7 +1447,9 @@ class Scatter3D::Line::Colorbar {
 
     // Sets the axis line color.
     Scatter3D::Line::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1481,7 +1509,9 @@ class Scatter3D::Line::Colorbar {
 
     // Sets the tick color.
     Scatter3D::Line::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1663,7 +1693,9 @@ class Scatter3D::Line::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Scatter3D::Line::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1727,7 +1759,14 @@ class Scatter3D::Line::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Scatter3D::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Scatter3D::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Scatter3D::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Scatter3D::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Scatter3D::Line::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1827,7 +1866,9 @@ class Scatter3D::Line::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Scatter3D::Line::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Line::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Line::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1946,9 +1987,12 @@ class Scatter3D::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Scatter3D::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker& color(Callable&& c);
     Scatter3D::Marker& color(const std::vector<std::string>& f);
+    Scatter3D::Marker& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -2170,12 +2214,16 @@ class Scatter3D::Marker::Colorbar {
 
     // Sets the color of padded area.
     Scatter3D::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Scatter3D::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -2244,7 +2292,9 @@ class Scatter3D::Marker::Colorbar {
 
     // Sets the axis line color.
     Scatter3D::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -2304,7 +2354,9 @@ class Scatter3D::Marker::Colorbar {
 
     // Sets the tick color.
     Scatter3D::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -2486,7 +2538,9 @@ class Scatter3D::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Scatter3D::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -2550,7 +2604,14 @@ class Scatter3D::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Scatter3D::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Scatter3D::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Scatter3D::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Scatter3D::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Scatter3D::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -2650,7 +2711,9 @@ class Scatter3D::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Scatter3D::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -2752,9 +2815,12 @@ class Scatter3D::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Scatter3D::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Marker::Line& color(Callable&& c);
     Scatter3D::Marker::Line& color(const std::vector<std::string>& f);
+    Scatter3D::Marker::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -2941,9 +3007,12 @@ class Scatter3D::Textfont {
     static std::string to_string(Variant e);
 
     Scatter3D::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Scatter3D::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Scatter3D::Textfont& color(Callable&& c);
     Scatter3D::Textfont& color(const std::vector<std::string>& f);
+    Scatter3D::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scatter3D::Textfont& colorsrc(std::string f);

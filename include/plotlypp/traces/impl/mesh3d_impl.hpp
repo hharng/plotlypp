@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Mesh3D::to_string(Delaunayaxis e) {
+inline std::string Mesh3D::to_string(Delaunayaxis e) {
     switch(e) {
         case Delaunayaxis::X: return "x";
         case Delaunayaxis::Y: return "y";
@@ -19,7 +19,7 @@ std::string Mesh3D::to_string(Delaunayaxis e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::to_string(Intensitymode e) {
+inline std::string Mesh3D::to_string(Intensitymode e) {
     switch(e) {
         case Intensitymode::Vertex: return "vertex";
         case Intensitymode::Cell: return "cell";
@@ -27,7 +27,7 @@ std::string Mesh3D::to_string(Intensitymode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::to_string(Visible e) {
+inline std::string Mesh3D::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -36,7 +36,7 @@ std::string Mesh3D::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::to_string(Xcalendar e) {
+inline std::string Mesh3D::to_string(Xcalendar e) {
     switch(e) {
         case Xcalendar::Chinese: return "chinese";
         case Xcalendar::Coptic: return "coptic";
@@ -58,7 +58,7 @@ std::string Mesh3D::to_string(Xcalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::to_string(Ycalendar e) {
+inline std::string Mesh3D::to_string(Ycalendar e) {
     switch(e) {
         case Ycalendar::Chinese: return "chinese";
         case Ycalendar::Coptic: return "coptic";
@@ -80,7 +80,7 @@ std::string Mesh3D::to_string(Ycalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::to_string(Zcalendar e) {
+inline std::string Mesh3D::to_string(Zcalendar e) {
     switch(e) {
         case Zcalendar::Chinese: return "chinese";
         case Zcalendar::Coptic: return "coptic";
@@ -103,779 +103,783 @@ std::string Mesh3D::to_string(Zcalendar e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D& Mesh3D::alphahull(double f) {
+inline Mesh3D& Mesh3D::alphahull(double f) {
     json["alphahull"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::alphahull(Callable&& c) {
+inline Mesh3D& Mesh3D::alphahull(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return alphahull(std::move(f));
 }
 
-Mesh3D& Mesh3D::autocolorscale(bool f) {
+inline Mesh3D& Mesh3D::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::autocolorscale(Callable&& c) {
+inline Mesh3D& Mesh3D::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Mesh3D& Mesh3D::cauto(bool f) {
+inline Mesh3D& Mesh3D::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::cauto(Callable&& c) {
+inline Mesh3D& Mesh3D::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Mesh3D& Mesh3D::cmax(double f) {
+inline Mesh3D& Mesh3D::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::cmax(Callable&& c) {
+inline Mesh3D& Mesh3D::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Mesh3D& Mesh3D::cmid(double f) {
+inline Mesh3D& Mesh3D::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::cmid(Callable&& c) {
+inline Mesh3D& Mesh3D::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Mesh3D& Mesh3D::cmin(double f) {
+inline Mesh3D& Mesh3D::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::cmin(Callable&& c) {
+inline Mesh3D& Mesh3D::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Mesh3D& Mesh3D::color(std::string f) {
+inline Mesh3D& Mesh3D::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Mesh3D& Mesh3D::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::color(Callable&& c) {
+inline Mesh3D& Mesh3D::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Mesh3D& Mesh3D::coloraxis(std::string f) {
+inline Mesh3D& Mesh3D::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::coloraxis(Callable&& c) {
+inline Mesh3D& Mesh3D::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Mesh3D& Mesh3D::colorbar(Colorbar f) {
+inline Mesh3D& Mesh3D::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::colorbar(Callable&& c) {
+inline Mesh3D& Mesh3D::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Mesh3D& Mesh3D::colorscale(std::string f) {
+inline Mesh3D& Mesh3D::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Mesh3D& Mesh3D::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Mesh3D& Mesh3D::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::colorscale(Callable&& c) {
+inline Mesh3D& Mesh3D::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Mesh3D& Mesh3D::contour(Contour f) {
+inline Mesh3D& Mesh3D::contour(Contour f) {
     json["contour"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::contour(Callable&& c) {
+inline Mesh3D& Mesh3D::contour(Callable&& c) {
     Contour f{};
     std::forward<Callable>(c)(f);
     return contour(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::customdata(Range&& f) {
+inline Mesh3D& Mesh3D::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::customdata(Callable&& c) {
+inline Mesh3D& Mesh3D::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Mesh3D& Mesh3D::customdatasrc(std::string f) {
+inline Mesh3D& Mesh3D::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::customdatasrc(Callable&& c) {
+inline Mesh3D& Mesh3D::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::delaunayaxis(enum Delaunayaxis f) {
+inline Mesh3D& Mesh3D::delaunayaxis(enum Delaunayaxis f) {
     json["delaunayaxis"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::facecolor(Range&& f) {
+inline Mesh3D& Mesh3D::facecolor(Range&& f) {
     json["facecolor"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::facecolor(Callable&& c) {
+inline Mesh3D& Mesh3D::facecolor(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return facecolor(std::move(f));
 }
 
-Mesh3D& Mesh3D::facecolorsrc(std::string f) {
+inline Mesh3D& Mesh3D::facecolorsrc(std::string f) {
     json["facecolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::facecolorsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::facecolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return facecolorsrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::flatshading(bool f) {
+inline Mesh3D& Mesh3D::flatshading(bool f) {
     json["flatshading"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::flatshading(Callable&& c) {
+inline Mesh3D& Mesh3D::flatshading(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return flatshading(std::move(f));
 }
 
-Mesh3D& Mesh3D::hoverinfo(std::string f) {
+inline Mesh3D& Mesh3D::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hoverinfo(Callable&& c) {
+inline Mesh3D& Mesh3D::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Mesh3D& Mesh3D::hoverinfo(const std::vector<std::string>& f) {
+inline Mesh3D& Mesh3D::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Mesh3D& Mesh3D::hoverinfosrc(std::string f) {
+inline Mesh3D& Mesh3D::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hoverinfosrc(Callable&& c) {
+inline Mesh3D& Mesh3D::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::hoverlabel(Hoverlabel f) {
+inline Mesh3D& Mesh3D::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hoverlabel(Callable&& c) {
+inline Mesh3D& Mesh3D::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Mesh3D& Mesh3D::hovertemplate(std::string f) {
+inline Mesh3D& Mesh3D::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hovertemplate(Callable&& c) {
+inline Mesh3D& Mesh3D::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Mesh3D& Mesh3D::hovertemplate(const std::vector<std::string>& f) {
+inline Mesh3D& Mesh3D::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Mesh3D& Mesh3D::hovertemplatesrc(std::string f) {
+inline Mesh3D& Mesh3D::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hovertemplatesrc(Callable&& c) {
+inline Mesh3D& Mesh3D::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::hovertext(std::string f) {
+inline Mesh3D& Mesh3D::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hovertext(Callable&& c) {
+inline Mesh3D& Mesh3D::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
-Mesh3D& Mesh3D::hovertext(const std::vector<std::string>& f) {
+inline Mesh3D& Mesh3D::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
 }
 
-Mesh3D& Mesh3D::hovertextsrc(std::string f) {
+inline Mesh3D& Mesh3D::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::hovertextsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::i(Range&& f) {
+inline Mesh3D& Mesh3D::i(Range&& f) {
     json["i"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::i(Callable&& c) {
+inline Mesh3D& Mesh3D::i(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return i(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::ids(Range&& f) {
+inline Mesh3D& Mesh3D::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::ids(Callable&& c) {
+inline Mesh3D& Mesh3D::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Mesh3D& Mesh3D::idssrc(std::string f) {
+inline Mesh3D& Mesh3D::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::idssrc(Callable&& c) {
+inline Mesh3D& Mesh3D::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::intensity(Range&& f) {
+inline Mesh3D& Mesh3D::intensity(Range&& f) {
     json["intensity"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::intensity(Callable&& c) {
+inline Mesh3D& Mesh3D::intensity(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return intensity(std::move(f));
 }
 
-Mesh3D& Mesh3D::intensitymode(enum Intensitymode f) {
+inline Mesh3D& Mesh3D::intensitymode(enum Intensitymode f) {
     json["intensitymode"] = to_string(f);
     return *this;
 }
 
-Mesh3D& Mesh3D::intensitysrc(std::string f) {
+inline Mesh3D& Mesh3D::intensitysrc(std::string f) {
     json["intensitysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::intensitysrc(Callable&& c) {
+inline Mesh3D& Mesh3D::intensitysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return intensitysrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::isrc(std::string f) {
+inline Mesh3D& Mesh3D::isrc(std::string f) {
     json["isrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::isrc(Callable&& c) {
+inline Mesh3D& Mesh3D::isrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return isrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::j(Range&& f) {
+inline Mesh3D& Mesh3D::j(Range&& f) {
     json["j"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::j(Callable&& c) {
+inline Mesh3D& Mesh3D::j(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return j(std::move(f));
 }
 
-Mesh3D& Mesh3D::jsrc(std::string f) {
+inline Mesh3D& Mesh3D::jsrc(std::string f) {
     json["jsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::jsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::jsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return jsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::k(Range&& f) {
+inline Mesh3D& Mesh3D::k(Range&& f) {
     json["k"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::k(Callable&& c) {
+inline Mesh3D& Mesh3D::k(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return k(std::move(f));
 }
 
-Mesh3D& Mesh3D::ksrc(std::string f) {
+inline Mesh3D& Mesh3D::ksrc(std::string f) {
     json["ksrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::ksrc(Callable&& c) {
+inline Mesh3D& Mesh3D::ksrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ksrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::legend(std::string f) {
+inline Mesh3D& Mesh3D::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::legend(Callable&& c) {
+inline Mesh3D& Mesh3D::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Mesh3D& Mesh3D::legendgroup(std::string f) {
+inline Mesh3D& Mesh3D::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::legendgroup(Callable&& c) {
+inline Mesh3D& Mesh3D::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Mesh3D& Mesh3D::legendgrouptitle(Legendgrouptitle f) {
+inline Mesh3D& Mesh3D::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::legendgrouptitle(Callable&& c) {
+inline Mesh3D& Mesh3D::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Mesh3D& Mesh3D::legendrank(double f) {
+inline Mesh3D& Mesh3D::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::legendrank(Callable&& c) {
+inline Mesh3D& Mesh3D::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Mesh3D& Mesh3D::legendwidth(double f) {
+inline Mesh3D& Mesh3D::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::legendwidth(Callable&& c) {
+inline Mesh3D& Mesh3D::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Mesh3D& Mesh3D::lighting(Lighting f) {
+inline Mesh3D& Mesh3D::lighting(Lighting f) {
     json["lighting"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::lighting(Callable&& c) {
+inline Mesh3D& Mesh3D::lighting(Callable&& c) {
     Lighting f{};
     std::forward<Callable>(c)(f);
     return lighting(std::move(f));
 }
 
-Mesh3D& Mesh3D::lightposition(Lightposition f) {
+inline Mesh3D& Mesh3D::lightposition(Lightposition f) {
     json["lightposition"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::lightposition(Callable&& c) {
+inline Mesh3D& Mesh3D::lightposition(Callable&& c) {
     Lightposition f{};
     std::forward<Callable>(c)(f);
     return lightposition(std::move(f));
 }
 
 template <typename T>
-Mesh3D& Mesh3D::meta(T f) {
+inline Mesh3D& Mesh3D::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::meta(Callable&& c) {
+inline Mesh3D& Mesh3D::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Mesh3D& Mesh3D::meta(const std::vector<T>& f) {
+inline Mesh3D& Mesh3D::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Mesh3D& Mesh3D::metasrc(std::string f) {
+inline Mesh3D& Mesh3D::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::metasrc(Callable&& c) {
+inline Mesh3D& Mesh3D::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::name(std::string f) {
+inline Mesh3D& Mesh3D::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::name(Callable&& c) {
+inline Mesh3D& Mesh3D::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Mesh3D& Mesh3D::opacity(double f) {
+inline Mesh3D& Mesh3D::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::opacity(Callable&& c) {
+inline Mesh3D& Mesh3D::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Mesh3D& Mesh3D::reversescale(bool f) {
+inline Mesh3D& Mesh3D::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::reversescale(Callable&& c) {
+inline Mesh3D& Mesh3D::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Mesh3D& Mesh3D::scene(std::string f) {
+inline Mesh3D& Mesh3D::scene(std::string f) {
     json["scene"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::scene(Callable&& c) {
+inline Mesh3D& Mesh3D::scene(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return scene(std::move(f));
 }
 
-Mesh3D& Mesh3D::showlegend(bool f) {
+inline Mesh3D& Mesh3D::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::showlegend(Callable&& c) {
+inline Mesh3D& Mesh3D::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Mesh3D& Mesh3D::showscale(bool f) {
+inline Mesh3D& Mesh3D::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::showscale(Callable&& c) {
+inline Mesh3D& Mesh3D::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Mesh3D& Mesh3D::stream(Stream f) {
+inline Mesh3D& Mesh3D::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::stream(Callable&& c) {
+inline Mesh3D& Mesh3D::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Mesh3D& Mesh3D::text(std::string f) {
+inline Mesh3D& Mesh3D::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::text(Callable&& c) {
+inline Mesh3D& Mesh3D::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
-Mesh3D& Mesh3D::text(const std::vector<std::string>& f) {
+inline Mesh3D& Mesh3D::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
 }
 
-Mesh3D& Mesh3D::textsrc(std::string f) {
+inline Mesh3D& Mesh3D::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::textsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::uid(std::string f) {
+inline Mesh3D& Mesh3D::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::uid(Callable&& c) {
+inline Mesh3D& Mesh3D::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Mesh3D& Mesh3D::uirevision(T f) {
+inline Mesh3D& Mesh3D::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::uirevision(Callable&& c) {
+inline Mesh3D& Mesh3D::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::vertexcolor(Range&& f) {
+inline Mesh3D& Mesh3D::vertexcolor(Range&& f) {
     json["vertexcolor"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::vertexcolor(Callable&& c) {
+inline Mesh3D& Mesh3D::vertexcolor(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return vertexcolor(std::move(f));
 }
 
-Mesh3D& Mesh3D::vertexcolorsrc(std::string f) {
+inline Mesh3D& Mesh3D::vertexcolorsrc(std::string f) {
     json["vertexcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::vertexcolorsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::vertexcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return vertexcolorsrc(std::move(f));
 }
 
-Mesh3D& Mesh3D::visible(enum Visible f) {
+inline Mesh3D& Mesh3D::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::x(Range&& f) {
+inline Mesh3D& Mesh3D::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::x(Callable&& c) {
+inline Mesh3D& Mesh3D::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Mesh3D& Mesh3D::xcalendar(enum Xcalendar f) {
+inline Mesh3D& Mesh3D::xcalendar(enum Xcalendar f) {
     json["xcalendar"] = to_string(f);
     return *this;
 }
 
-Mesh3D& Mesh3D::xhoverformat(std::string f) {
+inline Mesh3D& Mesh3D::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::xhoverformat(Callable&& c) {
+inline Mesh3D& Mesh3D::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
-Mesh3D& Mesh3D::xsrc(std::string f) {
+inline Mesh3D& Mesh3D::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::xsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::y(Range&& f) {
+inline Mesh3D& Mesh3D::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::y(Callable&& c) {
+inline Mesh3D& Mesh3D::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Mesh3D& Mesh3D::ycalendar(enum Ycalendar f) {
+inline Mesh3D& Mesh3D::ycalendar(enum Ycalendar f) {
     json["ycalendar"] = to_string(f);
     return *this;
 }
 
-Mesh3D& Mesh3D::yhoverformat(std::string f) {
+inline Mesh3D& Mesh3D::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::yhoverformat(Callable&& c) {
+inline Mesh3D& Mesh3D::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
-Mesh3D& Mesh3D::ysrc(std::string f) {
+inline Mesh3D& Mesh3D::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::ysrc(Callable&& c) {
+inline Mesh3D& Mesh3D::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D& Mesh3D::z(Range&& f) {
+inline Mesh3D& Mesh3D::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D& Mesh3D::z(Callable&& c) {
+inline Mesh3D& Mesh3D::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Mesh3D& Mesh3D::zcalendar(enum Zcalendar f) {
+inline Mesh3D& Mesh3D::zcalendar(enum Zcalendar f) {
     json["zcalendar"] = to_string(f);
     return *this;
 }
 
-Mesh3D& Mesh3D::zhoverformat(std::string f) {
+inline Mesh3D& Mesh3D::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::zhoverformat(Callable&& c) {
+inline Mesh3D& Mesh3D::zhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zhoverformat(std::move(f));
 }
 
-Mesh3D& Mesh3D::zsrc(std::string f) {
+inline Mesh3D& Mesh3D::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D& Mesh3D::zsrc(Callable&& c) {
+inline Mesh3D& Mesh3D::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Mesh3D::Colorbar::to_string(Exponentformat e) {
+inline std::string Mesh3D::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -886,7 +890,7 @@ std::string Mesh3D::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Lenmode e) {
+inline std::string Mesh3D::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -894,7 +898,7 @@ std::string Mesh3D::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Orientation e) {
+inline std::string Mesh3D::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -902,7 +906,7 @@ std::string Mesh3D::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Showexponent e) {
+inline std::string Mesh3D::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -912,7 +916,7 @@ std::string Mesh3D::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Showtickprefix e) {
+inline std::string Mesh3D::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -922,7 +926,7 @@ std::string Mesh3D::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Showticksuffix e) {
+inline std::string Mesh3D::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -932,7 +936,7 @@ std::string Mesh3D::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Thicknessmode e) {
+inline std::string Mesh3D::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -940,7 +944,7 @@ std::string Mesh3D::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Mesh3D::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -949,7 +953,7 @@ std::string Mesh3D::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Mesh3D::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -965,7 +969,7 @@ std::string Mesh3D::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Tickmode e) {
+inline std::string Mesh3D::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -974,7 +978,7 @@ std::string Mesh3D::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Ticks e) {
+inline std::string Mesh3D::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -983,7 +987,7 @@ std::string Mesh3D::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Xanchor e) {
+inline std::string Mesh3D::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -992,7 +996,7 @@ std::string Mesh3D::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Xref e) {
+inline std::string Mesh3D::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -1000,7 +1004,7 @@ std::string Mesh3D::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Yanchor e) {
+inline std::string Mesh3D::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -1009,7 +1013,7 @@ std::string Mesh3D::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::to_string(Yref e) {
+inline std::string Mesh3D::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -1018,456 +1022,472 @@ std::string Mesh3D::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::bgcolor(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::bgcolor(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::bordercolor(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::bordercolor(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::borderwidth(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::borderwidth(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Mesh3D::Colorbar& Mesh3D::Colorbar::dtick(T f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::dtick(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::exponentformat(enum Exponentformat f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Mesh3D::Colorbar& Mesh3D::Colorbar::labelalias(T f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::labelalias(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::len(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::len(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::lenmode(enum Lenmode f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::minexponent(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::minexponent(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::nticks(int f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::nticks(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::orientation(enum Orientation f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::outlinecolor(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::outlinecolor(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::outlinewidth(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::outlinewidth(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::separatethousands(bool f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::separatethousands(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::showexponent(enum Showexponent f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::showticklabels(bool f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::showticklabels(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::thickness(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::thickness(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tick0(T f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tick0(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickangle(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickangle(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickcolor(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickcolor(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickfont(Tickfont f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickfont(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickformat(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickformat(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickformatstops(Tickformatstop f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickformatstops(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabelstep(int f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabelstep(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticklen(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticklen(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickmode(enum Tickmode f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickprefix(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickprefix(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticks(enum Ticks f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticksuffix(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticksuffix(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticktext(Range&& f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticktext(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticktextsrc(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ticktextsrc(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickvals(Range&& f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickvals(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickvalssrc(std::string f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickvalssrc(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickwidth(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::tickwidth(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::title(Title f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::title(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::x(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::x(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::xanchor(enum Xanchor f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::xpad(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::xpad(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::xref(enum Xref f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::y(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::y(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::yanchor(enum Yanchor f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::ypad(double f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar& Mesh3D::Colorbar::ypad(Callable&& c) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Mesh3D::Colorbar& Mesh3D::Colorbar::yref(enum Yref f) {
+inline Mesh3D::Colorbar& Mesh3D::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Mesh3D::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Mesh3D::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1475,7 +1495,7 @@ std::string Mesh3D::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Mesh3D::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1485,7 +1505,7 @@ std::string Mesh3D::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Mesh3D::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1498,144 +1518,160 @@ std::string Mesh3D::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::color(std::string f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::color(Callable&& c) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::family(std::string f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::family(Callable&& c) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(std::string f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::shadow(std::string f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::size(double f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::size(Callable&& c) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::style(enum Style f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::variant(enum Variant f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::weight(int f) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::weight(Callable&& c) {
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::enabled(bool f) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::name(std::string f) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::value(std::string f) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Mesh3D::Colorbar::Tickformatstop& Mesh3D::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Mesh3D::Colorbar::Title::to_string(Side e) {
+inline std::string Mesh3D::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1645,34 +1681,34 @@ std::string Mesh3D::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::font(Font f) {
+inline Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::font(Callable&& c) {
+inline Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::side(enum Side f) {
+inline Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::text(std::string f) {
+inline Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::text(Callable&& c) {
+inline Mesh3D::Colorbar::Title& Mesh3D::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Mesh3D::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Mesh3D::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1680,7 +1716,7 @@ std::string Mesh3D::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Mesh3D::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1690,7 +1726,7 @@ std::string Mesh3D::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Mesh3D::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1703,122 +1739,130 @@ std::string Mesh3D::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::color(std::string f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::color(Callable&& c) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::family(std::string f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::family(Callable&& c) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(std::string f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::shadow(std::string f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::size(double f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::size(Callable&& c) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::style(enum Style f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::variant(enum Variant f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::weight(int f) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::weight(Callable&& c) {
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Mesh3D::Contour& Mesh3D::Contour::color(std::string f) {
+inline Mesh3D::Contour& Mesh3D::Contour::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Contour& Mesh3D::Contour::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Contour& Mesh3D::Contour::color(Callable&& c) {
+inline Mesh3D::Contour& Mesh3D::Contour::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Mesh3D::Contour& Mesh3D::Contour::show(bool f) {
+inline Mesh3D::Contour& Mesh3D::Contour::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Contour& Mesh3D::Contour::show(Callable&& c) {
+inline Mesh3D::Contour& Mesh3D::Contour::show(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return show(std::move(f));
 }
 
-Mesh3D::Contour& Mesh3D::Contour::width(double f) {
+inline Mesh3D::Contour& Mesh3D::Contour::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Contour& Mesh3D::Contour::width(Callable&& c) {
+inline Mesh3D::Contour& Mesh3D::Contour::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
-std::string Mesh3D::Hoverlabel::to_string(Align e) {
+inline std::string Mesh3D::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -1828,118 +1872,134 @@ std::string Mesh3D::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::align(enum Align f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::alignsrc(std::string f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::alignsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(std::string f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolorsrc(std::string f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(std::string f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolorsrc(std::string f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::font(Font f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::font(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelength(int f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelength(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelengthsrc(std::string f) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel& Mesh3D::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Mesh3D::Hoverlabel::Font::to_string(Style e) {
+inline std::string Mesh3D::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1947,7 +2007,7 @@ std::string Mesh3D::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Mesh3D::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1957,7 +2017,7 @@ std::string Mesh3D::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Mesh3D::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1970,252 +2030,260 @@ std::string Mesh3D::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::colorsrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::family(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::family(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::familysrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadow(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadow(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::size(double f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::size(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::sizesrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::style(enum Style f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::stylesrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variant(enum Variant f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variantsrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weight(int f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weight(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weightsrc(std::string f) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::font(Font f) {
+inline Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::font(Callable&& c) {
+inline Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::text(std::string f) {
+inline Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::text(Callable&& c) {
+inline Mesh3D::Legendgrouptitle& Mesh3D::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Mesh3D::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Mesh3D::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2223,7 +2291,7 @@ std::string Mesh3D::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Mesh3D::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2233,7 +2301,7 @@ std::string Mesh3D::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Mesh3D::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Mesh3D::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2246,217 +2314,221 @@ std::string Mesh3D::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::color(std::string f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::color(Callable&& c) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::family(std::string f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::family(Callable&& c) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::shadow(std::string f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::size(double f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::size(Callable&& c) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::style(enum Style f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::weight(int f) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Mesh3D::Lighting& Mesh3D::Lighting::ambient(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::ambient(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::ambient(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ambient(std::move(f));
 }
 
-Mesh3D::Lighting& Mesh3D::Lighting::diffuse(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::diffuse(double f) {
     json["diffuse"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::diffuse(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::diffuse(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return diffuse(std::move(f));
 }
 
-Mesh3D::Lighting& Mesh3D::Lighting::facenormalsepsilon(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::facenormalsepsilon(double f) {
     json["facenormalsepsilon"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::facenormalsepsilon(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::facenormalsepsilon(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return facenormalsepsilon(std::move(f));
 }
 
-Mesh3D::Lighting& Mesh3D::Lighting::fresnel(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::fresnel(double f) {
     json["fresnel"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::fresnel(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::fresnel(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return fresnel(std::move(f));
 }
 
-Mesh3D::Lighting& Mesh3D::Lighting::roughness(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::roughness(double f) {
     json["roughness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::roughness(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::roughness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return roughness(std::move(f));
 }
 
-Mesh3D::Lighting& Mesh3D::Lighting::specular(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::specular(double f) {
     json["specular"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::specular(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::specular(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return specular(std::move(f));
 }
 
-Mesh3D::Lighting& Mesh3D::Lighting::vertexnormalsepsilon(double f) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::vertexnormalsepsilon(double f) {
     json["vertexnormalsepsilon"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lighting& Mesh3D::Lighting::vertexnormalsepsilon(Callable&& c) {
+inline Mesh3D::Lighting& Mesh3D::Lighting::vertexnormalsepsilon(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return vertexnormalsepsilon(std::move(f));
 }
 
 
-Mesh3D::Lightposition& Mesh3D::Lightposition::x(double f) {
+inline Mesh3D::Lightposition& Mesh3D::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lightposition& Mesh3D::Lightposition::x(Callable&& c) {
+inline Mesh3D::Lightposition& Mesh3D::Lightposition::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Mesh3D::Lightposition& Mesh3D::Lightposition::y(double f) {
+inline Mesh3D::Lightposition& Mesh3D::Lightposition::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lightposition& Mesh3D::Lightposition::y(Callable&& c) {
+inline Mesh3D::Lightposition& Mesh3D::Lightposition::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Mesh3D::Lightposition& Mesh3D::Lightposition::z(double f) {
+inline Mesh3D::Lightposition& Mesh3D::Lightposition::z(double f) {
     json["z"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Lightposition& Mesh3D::Lightposition::z(Callable&& c) {
+inline Mesh3D::Lightposition& Mesh3D::Lightposition::z(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
 
-Mesh3D::Stream& Mesh3D::Stream::maxpoints(double f) {
+inline Mesh3D::Stream& Mesh3D::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Stream& Mesh3D::Stream::maxpoints(Callable&& c) {
+inline Mesh3D::Stream& Mesh3D::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Mesh3D::Stream& Mesh3D::Stream::token(std::string f) {
+inline Mesh3D::Stream& Mesh3D::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Mesh3D::Stream& Mesh3D::Stream::token(Callable&& c) {
+inline Mesh3D::Stream& Mesh3D::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));

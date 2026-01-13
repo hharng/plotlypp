@@ -653,12 +653,16 @@ class Histogram2D::Colorbar {
 
     // Sets the color of padded area.
     Histogram2D::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Histogram2D::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -727,7 +731,9 @@ class Histogram2D::Colorbar {
 
     // Sets the axis line color.
     Histogram2D::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -787,7 +793,9 @@ class Histogram2D::Colorbar {
 
     // Sets the tick color.
     Histogram2D::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -969,7 +977,9 @@ class Histogram2D::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Histogram2D::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1033,7 +1043,14 @@ class Histogram2D::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Histogram2D::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Histogram2D::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Histogram2D::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Histogram2D::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Histogram2D::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1133,7 +1150,9 @@ class Histogram2D::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Histogram2D::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1217,9 +1236,12 @@ class Histogram2D::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Histogram2D::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Hoverlabel& bgcolor(Callable&& c);
     Histogram2D::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Histogram2D::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Histogram2D::Hoverlabel& bgcolorsrc(std::string f);
@@ -1228,9 +1250,12 @@ class Histogram2D::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Histogram2D::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Hoverlabel& bordercolor(Callable&& c);
     Histogram2D::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Histogram2D::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Histogram2D::Hoverlabel& bordercolorsrc(std::string f);
@@ -1292,9 +1317,12 @@ class Histogram2D::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Histogram2D::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Hoverlabel::Font& color(Callable&& c);
     Histogram2D::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Histogram2D::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Histogram2D::Hoverlabel::Font& colorsrc(std::string f);
@@ -1456,7 +1484,9 @@ class Histogram2D::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Histogram2D::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1588,7 +1618,9 @@ class Histogram2D::Textfont {
     static std::string to_string(Variant e);
 
     Histogram2D::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Histogram2D::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Histogram2D::Textfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

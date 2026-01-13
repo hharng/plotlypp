@@ -615,12 +615,16 @@ class Surface::Colorbar {
 
     // Sets the color of padded area.
     Surface::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Surface::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -689,7 +693,9 @@ class Surface::Colorbar {
 
     // Sets the axis line color.
     Surface::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -749,7 +755,9 @@ class Surface::Colorbar {
 
     // Sets the tick color.
     Surface::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -931,7 +939,9 @@ class Surface::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Surface::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -995,7 +1005,14 @@ class Surface::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Surface::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Surface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Surface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Surface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Surface::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1095,7 +1112,9 @@ class Surface::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Surface::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1186,7 +1205,9 @@ class Surface::Contours::X {
 
     // Sets the color of the contour lines.
     Surface::Contours::X& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Contours::X& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Contours::X& color(Callable&& c);
 
     // Sets the end contour level value. Must be more than `contours.start`
@@ -1201,7 +1222,9 @@ class Surface::Contours::X {
 
     // Sets the color of the highlighted contour lines.
     Surface::Contours::X& highlightcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Contours::X& highlightcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Contours::X& highlightcolor(Callable&& c);
 
     // Sets the width of the highlighted contour lines.
@@ -1283,7 +1306,9 @@ class Surface::Contours::Y {
 
     // Sets the color of the contour lines.
     Surface::Contours::Y& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Contours::Y& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Contours::Y& color(Callable&& c);
 
     // Sets the end contour level value. Must be more than `contours.start`
@@ -1298,7 +1323,9 @@ class Surface::Contours::Y {
 
     // Sets the color of the highlighted contour lines.
     Surface::Contours::Y& highlightcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Contours::Y& highlightcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Contours::Y& highlightcolor(Callable&& c);
 
     // Sets the width of the highlighted contour lines.
@@ -1380,7 +1407,9 @@ class Surface::Contours::Z {
 
     // Sets the color of the contour lines.
     Surface::Contours::Z& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Contours::Z& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Contours::Z& color(Callable&& c);
 
     // Sets the end contour level value. Must be more than `contours.start`
@@ -1395,7 +1424,9 @@ class Surface::Contours::Z {
 
     // Sets the color of the highlighted contour lines.
     Surface::Contours::Z& highlightcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Contours::Z& highlightcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Contours::Z& highlightcolor(Callable&& c);
 
     // Sets the width of the highlighted contour lines.
@@ -1496,9 +1527,12 @@ class Surface::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Surface::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Hoverlabel& bgcolor(Callable&& c);
     Surface::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Surface::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Surface::Hoverlabel& bgcolorsrc(std::string f);
@@ -1507,9 +1541,12 @@ class Surface::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Surface::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Hoverlabel& bordercolor(Callable&& c);
     Surface::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Surface::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Surface::Hoverlabel& bordercolorsrc(std::string f);
@@ -1571,9 +1608,12 @@ class Surface::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Surface::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Hoverlabel::Font& color(Callable&& c);
     Surface::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Surface::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Surface::Hoverlabel::Font& colorsrc(std::string f);
@@ -1735,7 +1775,9 @@ class Surface::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Surface::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Surface::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Surface::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

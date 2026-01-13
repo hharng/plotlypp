@@ -604,7 +604,9 @@ class Waterfall::Connector::Line {
 
     // Sets the line color.
     Waterfall::Connector::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Connector::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Connector::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -648,7 +650,9 @@ class Waterfall::Decreasing::Marker {
 
     // Sets the marker color of all decreasing values.
     Waterfall::Decreasing::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Decreasing::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Decreasing::Marker& color(Callable&& c);
 
     Waterfall::Decreasing::Marker& line(Line f);
@@ -667,7 +671,9 @@ class Waterfall::Decreasing::Marker::Line {
 
     // Sets the line color of all decreasing values.
     Waterfall::Decreasing::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Decreasing::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Decreasing::Marker::Line& color(Callable&& c);
 
     // Sets the line width of all decreasing values.
@@ -708,9 +714,12 @@ class Waterfall::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Waterfall::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Hoverlabel& bgcolor(Callable&& c);
     Waterfall::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Waterfall::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Waterfall::Hoverlabel& bgcolorsrc(std::string f);
@@ -719,9 +728,12 @@ class Waterfall::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Waterfall::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Hoverlabel& bordercolor(Callable&& c);
     Waterfall::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Waterfall::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Waterfall::Hoverlabel& bordercolorsrc(std::string f);
@@ -783,9 +795,12 @@ class Waterfall::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Waterfall::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Hoverlabel::Font& color(Callable&& c);
     Waterfall::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Waterfall::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Waterfall::Hoverlabel::Font& colorsrc(std::string f);
@@ -918,7 +933,9 @@ class Waterfall::Increasing::Marker {
 
     // Sets the marker color of all increasing values.
     Waterfall::Increasing::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Increasing::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Increasing::Marker& color(Callable&& c);
 
     Waterfall::Increasing::Marker& line(Line f);
@@ -937,7 +954,9 @@ class Waterfall::Increasing::Marker::Line {
 
     // Sets the line color of all increasing values.
     Waterfall::Increasing::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Increasing::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Increasing::Marker::Line& color(Callable&& c);
 
     // Sets the line width of all increasing values.
@@ -981,9 +1000,12 @@ class Waterfall::Insidetextfont {
     static std::string to_string(Variant e);
 
     Waterfall::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Insidetextfont& color(Callable&& c);
     Waterfall::Insidetextfont& color(const std::vector<std::string>& f);
+    Waterfall::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Waterfall::Insidetextfont& colorsrc(std::string f);
@@ -1145,7 +1167,9 @@ class Waterfall::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Waterfall::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1232,9 +1256,12 @@ class Waterfall::Outsidetextfont {
     static std::string to_string(Variant e);
 
     Waterfall::Outsidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Outsidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Outsidetextfont& color(Callable&& c);
     Waterfall::Outsidetextfont& color(const std::vector<std::string>& f);
+    Waterfall::Outsidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Waterfall::Outsidetextfont& colorsrc(std::string f);
@@ -1395,9 +1422,12 @@ class Waterfall::Textfont {
     static std::string to_string(Variant e);
 
     Waterfall::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Textfont& color(Callable&& c);
     Waterfall::Textfont& color(const std::vector<std::string>& f);
+    Waterfall::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Waterfall::Textfont& colorsrc(std::string f);
@@ -1530,7 +1560,9 @@ class Waterfall::Totals::Marker {
 
     // Sets the marker color of all intermediate sums and total values.
     Waterfall::Totals::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Totals::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Totals::Marker& color(Callable&& c);
 
     Waterfall::Totals::Marker& line(Line f);
@@ -1549,7 +1581,9 @@ class Waterfall::Totals::Marker::Line {
 
     // Sets the line color of all intermediate sums and total values.
     Waterfall::Totals::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Waterfall::Totals::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Waterfall::Totals::Marker::Line& color(Callable&& c);
 
     // Sets the line width of all intermediate sums and total values.

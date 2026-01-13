@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Icicle::to_string(Branchvalues e) {
+inline std::string Icicle::to_string(Branchvalues e) {
     switch(e) {
         case Branchvalues::Remainder: return "remainder";
         case Branchvalues::Total: return "total";
@@ -18,7 +18,7 @@ std::string Icicle::to_string(Branchvalues e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::to_string(Textposition e) {
+inline std::string Icicle::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
         case Textposition::TopCenter: return "top center";
@@ -33,7 +33,7 @@ std::string Icicle::to_string(Textposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::to_string(Visible e) {
+inline std::string Icicle::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -43,603 +43,627 @@ std::string Icicle::to_string(Visible e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle& Icicle::branchvalues(enum Branchvalues f) {
+inline Icicle& Icicle::branchvalues(enum Branchvalues f) {
     json["branchvalues"] = to_string(f);
     return *this;
 }
 
-Icicle& Icicle::count(std::string f) {
+inline Icicle& Icicle::count(std::string f) {
     json["count"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::count(Callable&& c) {
+inline Icicle& Icicle::count(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return count(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle& Icicle::customdata(Range&& f) {
+inline Icicle& Icicle::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::customdata(Callable&& c) {
+inline Icicle& Icicle::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Icicle& Icicle::customdatasrc(std::string f) {
+inline Icicle& Icicle::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::customdatasrc(Callable&& c) {
+inline Icicle& Icicle::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Icicle& Icicle::domain(Domain f) {
+inline Icicle& Icicle::domain(Domain f) {
     json["domain"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::domain(Callable&& c) {
+inline Icicle& Icicle::domain(Callable&& c) {
     Domain f{};
     std::forward<Callable>(c)(f);
     return domain(std::move(f));
 }
 
-Icicle& Icicle::hoverinfo(std::string f) {
+inline Icicle& Icicle::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hoverinfo(Callable&& c) {
+inline Icicle& Icicle::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Icicle& Icicle::hoverinfo(const std::vector<std::string>& f) {
+inline Icicle& Icicle::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Icicle& Icicle::hoverinfosrc(std::string f) {
+inline Icicle& Icicle::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hoverinfosrc(Callable&& c) {
+inline Icicle& Icicle::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Icicle& Icicle::hoverlabel(Hoverlabel f) {
+inline Icicle& Icicle::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hoverlabel(Callable&& c) {
+inline Icicle& Icicle::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Icicle& Icicle::hovertemplate(std::string f) {
+inline Icicle& Icicle::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hovertemplate(Callable&& c) {
+inline Icicle& Icicle::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Icicle& Icicle::hovertemplate(const std::vector<std::string>& f) {
+inline Icicle& Icicle::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Icicle& Icicle::hovertemplatesrc(std::string f) {
+inline Icicle& Icicle::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hovertemplatesrc(Callable&& c) {
+inline Icicle& Icicle::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
-Icicle& Icicle::hovertext(std::string f) {
+inline Icicle& Icicle::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hovertext(Callable&& c) {
+inline Icicle& Icicle::hovertext(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
-Icicle& Icicle::hovertext(const std::vector<std::string>& f) {
+inline Icicle& Icicle::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
 }
 
-Icicle& Icicle::hovertextsrc(std::string f) {
+inline Icicle& Icicle::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::hovertextsrc(Callable&& c) {
+inline Icicle& Icicle::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle& Icicle::ids(Range&& f) {
+inline Icicle& Icicle::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::ids(Callable&& c) {
+inline Icicle& Icicle::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Icicle& Icicle::idssrc(std::string f) {
+inline Icicle& Icicle::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::idssrc(Callable&& c) {
+inline Icicle& Icicle::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Icicle& Icicle::insidetextfont(Insidetextfont f) {
+inline Icicle& Icicle::insidetextfont(Insidetextfont f) {
     json["insidetextfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::insidetextfont(Callable&& c) {
+inline Icicle& Icicle::insidetextfont(Callable&& c) {
     Insidetextfont f{};
     std::forward<Callable>(c)(f);
     return insidetextfont(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle& Icicle::labels(Range&& f) {
+inline Icicle& Icicle::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::labels(Callable&& c) {
+inline Icicle& Icicle::labels(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return labels(std::move(f));
 }
 
-Icicle& Icicle::labelssrc(std::string f) {
+inline Icicle& Icicle::labelssrc(std::string f) {
     json["labelssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::labelssrc(Callable&& c) {
+inline Icicle& Icicle::labelssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelssrc(std::move(f));
 }
 
-Icicle& Icicle::leaf(Leaf f) {
+inline Icicle& Icicle::leaf(Leaf f) {
     json["leaf"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::leaf(Callable&& c) {
+inline Icicle& Icicle::leaf(Callable&& c) {
     Leaf f{};
     std::forward<Callable>(c)(f);
     return leaf(std::move(f));
 }
 
-Icicle& Icicle::legend(std::string f) {
+inline Icicle& Icicle::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::legend(Callable&& c) {
+inline Icicle& Icicle::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Icicle& Icicle::legendgrouptitle(Legendgrouptitle f) {
+inline Icicle& Icicle::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::legendgrouptitle(Callable&& c) {
+inline Icicle& Icicle::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Icicle& Icicle::legendrank(double f) {
+inline Icicle& Icicle::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::legendrank(Callable&& c) {
+inline Icicle& Icicle::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Icicle& Icicle::legendwidth(double f) {
+inline Icicle& Icicle::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::legendwidth(Callable&& c) {
+inline Icicle& Icicle::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
 template <typename T>
-Icicle& Icicle::level(T f) {
+inline Icicle& Icicle::level(T f) {
     json["level"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::level(Callable&& c) {
+inline Icicle& Icicle::level(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return level(std::move(f));
 }
 
-Icicle& Icicle::marker(Marker f) {
+inline Icicle& Icicle::marker(Marker f) {
     json["marker"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::marker(Callable&& c) {
+inline Icicle& Icicle::marker(Callable&& c) {
     Marker f{};
     std::forward<Callable>(c)(f);
     return marker(std::move(f));
 }
 
-Icicle& Icicle::maxdepth(int f) {
+inline Icicle& Icicle::maxdepth(int f) {
     json["maxdepth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::maxdepth(Callable&& c) {
+inline Icicle& Icicle::maxdepth(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return maxdepth(std::move(f));
 }
 
 template <typename T>
-Icicle& Icicle::meta(T f) {
+inline Icicle& Icicle::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::meta(Callable&& c) {
+inline Icicle& Icicle::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Icicle& Icicle::meta(const std::vector<T>& f) {
+inline Icicle& Icicle::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Icicle& Icicle::metasrc(std::string f) {
+inline Icicle& Icicle::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::metasrc(Callable&& c) {
+inline Icicle& Icicle::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Icicle& Icicle::name(std::string f) {
+inline Icicle& Icicle::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::name(Callable&& c) {
+inline Icicle& Icicle::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Icicle& Icicle::opacity(double f) {
+inline Icicle& Icicle::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::opacity(Callable&& c) {
+inline Icicle& Icicle::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Icicle& Icicle::outsidetextfont(Outsidetextfont f) {
+inline Icicle& Icicle::outsidetextfont(Outsidetextfont f) {
     json["outsidetextfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::outsidetextfont(Callable&& c) {
+inline Icicle& Icicle::outsidetextfont(Callable&& c) {
     Outsidetextfont f{};
     std::forward<Callable>(c)(f);
     return outsidetextfont(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle& Icicle::parents(Range&& f) {
+inline Icicle& Icicle::parents(Range&& f) {
     json["parents"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::parents(Callable&& c) {
+inline Icicle& Icicle::parents(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return parents(std::move(f));
 }
 
-Icicle& Icicle::parentssrc(std::string f) {
+inline Icicle& Icicle::parentssrc(std::string f) {
     json["parentssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::parentssrc(Callable&& c) {
+inline Icicle& Icicle::parentssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return parentssrc(std::move(f));
 }
 
-Icicle& Icicle::pathbar(Pathbar f) {
+inline Icicle& Icicle::pathbar(Pathbar f) {
     json["pathbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::pathbar(Callable&& c) {
+inline Icicle& Icicle::pathbar(Callable&& c) {
     Pathbar f{};
     std::forward<Callable>(c)(f);
     return pathbar(std::move(f));
 }
 
-Icicle& Icicle::root(Root f) {
+inline Icicle& Icicle::root(Root f) {
     json["root"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::root(Callable&& c) {
+inline Icicle& Icicle::root(Callable&& c) {
     Root f{};
     std::forward<Callable>(c)(f);
     return root(std::move(f));
 }
 
-Icicle& Icicle::sort(bool f) {
+inline Icicle& Icicle::sort(bool f) {
     json["sort"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::sort(Callable&& c) {
+inline Icicle& Icicle::sort(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return sort(std::move(f));
 }
 
-Icicle& Icicle::stream(Stream f) {
+inline Icicle& Icicle::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::stream(Callable&& c) {
+inline Icicle& Icicle::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle& Icicle::text(Range&& f) {
+inline Icicle& Icicle::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::text(Callable&& c) {
+inline Icicle& Icicle::text(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Icicle& Icicle::textfont(Textfont f) {
+inline Icicle& Icicle::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::textfont(Callable&& c) {
+inline Icicle& Icicle::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Icicle& Icicle::textinfo(std::string f) {
+inline Icicle& Icicle::textinfo(std::string f) {
     json["textinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::textinfo(Callable&& c) {
+inline Icicle& Icicle::textinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textinfo(std::move(f));
 }
 
-Icicle& Icicle::textposition(enum Textposition f) {
+inline Icicle& Icicle::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
     return *this;
 }
 
-Icicle& Icicle::textsrc(std::string f) {
+inline Icicle& Icicle::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::textsrc(Callable&& c) {
+inline Icicle& Icicle::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Icicle& Icicle::texttemplate(std::string f) {
+inline Icicle& Icicle::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::texttemplate(Callable&& c) {
+inline Icicle& Icicle::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
-Icicle& Icicle::texttemplate(const std::vector<std::string>& f) {
+inline Icicle& Icicle::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
     return *this;
 }
 
-Icicle& Icicle::texttemplatesrc(std::string f) {
+inline Icicle& Icicle::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::texttemplatesrc(Callable&& c) {
+inline Icicle& Icicle::texttemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplatesrc(std::move(f));
 }
 
-Icicle& Icicle::tiling(Tiling f) {
+inline Icicle& Icicle::tiling(Tiling f) {
     json["tiling"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::tiling(Callable&& c) {
+inline Icicle& Icicle::tiling(Callable&& c) {
     Tiling f{};
     std::forward<Callable>(c)(f);
     return tiling(std::move(f));
 }
 
-Icicle& Icicle::uid(std::string f) {
+inline Icicle& Icicle::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::uid(Callable&& c) {
+inline Icicle& Icicle::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Icicle& Icicle::uirevision(T f) {
+inline Icicle& Icicle::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::uirevision(Callable&& c) {
+inline Icicle& Icicle::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle& Icicle::values(Range&& f) {
+inline Icicle& Icicle::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle& Icicle::values(Callable&& c) {
+inline Icicle& Icicle::values(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
 }
 
-Icicle& Icicle::valuessrc(std::string f) {
+inline Icicle& Icicle::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle& Icicle::valuessrc(Callable&& c) {
+inline Icicle& Icicle::valuessrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return valuessrc(std::move(f));
 }
 
-Icicle& Icicle::visible(enum Visible f) {
+inline Icicle& Icicle::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 
-Icicle::Domain& Icicle::Domain::column(int f) {
+inline Icicle::Domain& Icicle::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Domain& Icicle::Domain::column(Callable&& c) {
+inline Icicle::Domain& Icicle::Domain::column(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return column(std::move(f));
 }
 
-Icicle::Domain& Icicle::Domain::row(int f) {
+inline Icicle::Domain& Icicle::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Domain& Icicle::Domain::row(Callable&& c) {
+inline Icicle::Domain& Icicle::Domain::row(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return row(std::move(f));
 }
 
-Icicle::Domain& Icicle::Domain::x(const std::vector<double>& f) {
+inline Icicle::Domain& Icicle::Domain::x(const std::vector<double>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Icicle::Domain& Icicle::Domain::x(const std::vector<std::string>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Icicle::Domain& Icicle::Domain::x(const std::vector<std::vector<std::string>>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Icicle::Domain& Icicle::Domain::x(const std::vector<std::vector<double>>& f) {
     json["x"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Domain& Icicle::Domain::x(Callable&& c) {
+inline Icicle::Domain& Icicle::Domain::x(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Icicle::Domain& Icicle::Domain::y(const std::vector<double>& f) {
+inline Icicle::Domain& Icicle::Domain::y(const std::vector<double>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Icicle::Domain& Icicle::Domain::y(const std::vector<std::string>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Icicle::Domain& Icicle::Domain::y(const std::vector<std::vector<std::string>>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Icicle::Domain& Icicle::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Domain& Icicle::Domain::y(Callable&& c) {
+inline Icicle::Domain& Icicle::Domain::y(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-std::string Icicle::Hoverlabel::to_string(Align e) {
+inline std::string Icicle::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -649,118 +673,134 @@ std::string Icicle::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::align(enum Align f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Icicle::Hoverlabel& Icicle::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::alignsrc(std::string f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::alignsrc(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(std::string f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolorsrc(std::string f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(std::string f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolorsrc(std::string f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::font(Font f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::font(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::namelength(int f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::namelength(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Icicle::Hoverlabel& Icicle::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel& Icicle::Hoverlabel::namelengthsrc(std::string f) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel& Icicle::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Icicle::Hoverlabel& Icicle::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Icicle::Hoverlabel::Font::to_string(Style e) {
+inline std::string Icicle::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -768,7 +808,7 @@ std::string Icicle::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Icicle::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -778,7 +818,7 @@ std::string Icicle::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Icicle::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -791,229 +831,237 @@ std::string Icicle::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::colorsrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::family(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::family(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::familysrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::lineposition(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadow(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadow(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::size(double f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::size(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::sizesrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::style(enum Style f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::stylesrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variant(enum Variant f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variantsrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weight(int f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weight(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weightsrc(std::string f) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
-std::string Icicle::Insidetextfont::to_string(Style e) {
+inline std::string Icicle::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1021,7 +1069,7 @@ std::string Icicle::Insidetextfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Insidetextfont::to_string(Textcase e) {
+inline std::string Icicle::Insidetextfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1031,7 +1079,7 @@ std::string Icicle::Insidetextfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Insidetextfont::to_string(Variant e) {
+inline std::string Icicle::Insidetextfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1044,264 +1092,272 @@ std::string Icicle::Insidetextfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::color(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::color(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::color(const std::vector<std::string>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::colorsrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::colorsrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::family(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::family(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::family(const std::vector<std::string>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::familysrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::familysrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::lineposition(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::lineposition(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::lineposition(const std::vector<std::string>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::linepositionsrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::linepositionsrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::shadow(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::shadow(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::shadow(const std::vector<std::string>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::shadowsrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::shadowsrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::size(double f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::size(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::size(const std::vector<double>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::sizesrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::sizesrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::style(enum Style f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::style(const std::vector<enum Style>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::stylesrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::stylesrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::textcase(enum Textcase f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::textcasesrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::textcasesrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::variant(enum Variant f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::variant(const std::vector<enum Variant>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::variantsrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::variantsrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::weight(int f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::weight(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Icicle::Insidetextfont& Icicle::Insidetextfont::weight(const std::vector<int>& f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Icicle::Insidetextfont& Icicle::Insidetextfont::weightsrc(std::string f) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Insidetextfont& Icicle::Insidetextfont::weightsrc(Callable&& c) {
+inline Icicle::Insidetextfont& Icicle::Insidetextfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Icicle::Leaf& Icicle::Leaf::opacity(double f) {
+inline Icicle::Leaf& Icicle::Leaf::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Leaf& Icicle::Leaf::opacity(Callable&& c) {
+inline Icicle::Leaf& Icicle::Leaf::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
 
-Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::font(Font f) {
+inline Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::font(Callable&& c) {
+inline Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::text(std::string f) {
+inline Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::text(Callable&& c) {
+inline Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Icicle::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Icicle::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1309,7 +1365,7 @@ std::string Icicle::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Icicle::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1319,7 +1375,7 @@ std::string Icicle::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Icicle::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1332,248 +1388,252 @@ std::string Icicle::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::color(std::string f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::color(Callable&& c) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::family(std::string f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::family(Callable&& c) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::shadow(std::string f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::size(double f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::size(Callable&& c) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::style(enum Style f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::weight(int f) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Icicle::Marker& Icicle::Marker::autocolorscale(bool f) {
+inline Icicle::Marker& Icicle::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::autocolorscale(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::cauto(bool f) {
+inline Icicle::Marker& Icicle::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::cauto(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::cmax(double f) {
+inline Icicle::Marker& Icicle::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::cmax(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::cmid(double f) {
+inline Icicle::Marker& Icicle::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::cmid(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::cmin(double f) {
+inline Icicle::Marker& Icicle::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::cmin(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::coloraxis(std::string f) {
+inline Icicle::Marker& Icicle::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::coloraxis(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::colorbar(Colorbar f) {
+inline Icicle::Marker& Icicle::Marker::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::colorbar(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle::Marker& Icicle::Marker::colors(Range&& f) {
+inline Icicle::Marker& Icicle::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle::Marker& Icicle::Marker::colors(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::colors(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return colors(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::colorscale(std::string f) {
+inline Icicle::Marker& Icicle::Marker::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Icicle::Marker& Icicle::Marker::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Icicle::Marker& Icicle::Marker::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::colorscale(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::colorssrc(std::string f) {
+inline Icicle::Marker& Icicle::Marker::colorssrc(std::string f) {
     json["colorssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::colorssrc(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::colorssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorssrc(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::line(Line f) {
+inline Icicle::Marker& Icicle::Marker::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::line(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::pattern(Pattern f) {
+inline Icicle::Marker& Icicle::Marker::pattern(Pattern f) {
     json["pattern"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::pattern(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::pattern(Callable&& c) {
     Pattern f{};
     std::forward<Callable>(c)(f);
     return pattern(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::reversescale(bool f) {
+inline Icicle::Marker& Icicle::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::reversescale(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Icicle::Marker& Icicle::Marker::showscale(bool f) {
+inline Icicle::Marker& Icicle::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker& Icicle::Marker::showscale(Callable&& c) {
+inline Icicle::Marker& Icicle::Marker::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-std::string Icicle::Marker::Colorbar::to_string(Exponentformat e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -1584,7 +1644,7 @@ std::string Icicle::Marker::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Lenmode e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -1592,7 +1652,7 @@ std::string Icicle::Marker::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Orientation e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -1600,7 +1660,7 @@ std::string Icicle::Marker::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Showexponent e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -1610,7 +1670,7 @@ std::string Icicle::Marker::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Showtickprefix e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -1620,7 +1680,7 @@ std::string Icicle::Marker::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Showticksuffix e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -1630,7 +1690,7 @@ std::string Icicle::Marker::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Thicknessmode e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -1638,7 +1698,7 @@ std::string Icicle::Marker::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -1647,7 +1707,7 @@ std::string Icicle::Marker::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -1663,7 +1723,7 @@ std::string Icicle::Marker::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Tickmode e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -1672,7 +1732,7 @@ std::string Icicle::Marker::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Ticks e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -1681,7 +1741,7 @@ std::string Icicle::Marker::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Xanchor e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -1690,7 +1750,7 @@ std::string Icicle::Marker::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Xref e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -1698,7 +1758,7 @@ std::string Icicle::Marker::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Yanchor e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -1707,7 +1767,7 @@ std::string Icicle::Marker::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::to_string(Yref e) {
+inline std::string Icicle::Marker::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -1716,456 +1776,472 @@ std::string Icicle::Marker::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bgcolor(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bgcolor(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bordercolor(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bordercolor(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::borderwidth(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::borderwidth(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::dtick(T f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::dtick(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::exponentformat(enum Exponentformat f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::labelalias(T f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::labelalias(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::len(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::len(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::lenmode(enum Lenmode f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::minexponent(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::minexponent(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::nticks(int f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::nticks(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::orientation(enum Orientation f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinecolor(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinecolor(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinewidth(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinewidth(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::separatethousands(bool f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::separatethousands(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showexponent(enum Showexponent f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showticklabels(bool f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showticklabels(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::thickness(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::thickness(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tick0(T f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tick0(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickangle(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickangle(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickcolor(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickcolor(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickfont(Tickfont f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickfont(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformat(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformat(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformatstops(Tickformatstop f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformatstops(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabelstep(int f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabelstep(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklen(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklen(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickmode(enum Tickmode f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickprefix(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickprefix(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticks(enum Ticks f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticksuffix(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticksuffix(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktext(Range&& f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktext(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktextsrc(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktextsrc(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvals(Range&& f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvals(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvalssrc(std::string f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvalssrc(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickwidth(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickwidth(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::title(Title f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::title(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::x(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::x(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xanchor(enum Xanchor f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xpad(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xpad(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xref(enum Xref f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::y(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::y(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::yanchor(enum Yanchor f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ypad(double f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ypad(Callable&& c) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::yref(enum Yref f) {
+inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Icicle::Marker::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2173,7 +2249,7 @@ std::string Icicle::Marker::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2183,7 +2259,7 @@ std::string Icicle::Marker::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2196,144 +2272,160 @@ std::string Icicle::Marker::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::color(std::string f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::color(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::family(std::string f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::family(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::lineposition(std::string f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::shadow(std::string f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::size(double f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::size(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::style(enum Style f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::variant(enum Variant f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::weight(int f) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::weight(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::enabled(bool f) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::name(std::string f) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::value(std::string f) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Icicle::Marker::Colorbar::Tickformatstop& Icicle::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Icicle::Marker::Colorbar::Title::to_string(Side e) {
+inline std::string Icicle::Marker::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -2343,34 +2435,34 @@ std::string Icicle::Marker::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::font(Font f) {
+inline Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::font(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::side(enum Side f) {
+inline Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::text(std::string f) {
+inline Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::text(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Icicle::Marker::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2378,7 +2470,7 @@ std::string Icicle::Marker::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2388,7 +2480,7 @@ std::string Icicle::Marker::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Marker::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2401,141 +2493,153 @@ std::string Icicle::Marker::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::color(std::string f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::color(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::family(std::string f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::family(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::lineposition(std::string f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::shadow(std::string f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::size(double f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::size(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::style(enum Style f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::variant(enum Variant f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::weight(int f) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::weight(Callable&& c) {
+inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Icicle::Marker::Line& Icicle::Marker::Line::color(std::string f) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Line& Icicle::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Line& Icicle::Marker::Line::color(Callable&& c) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Icicle::Marker::Line& Icicle::Marker::Line::color(const std::vector<std::string>& f) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Icicle::Marker::Line& Icicle::Marker::Line::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Icicle::Marker::Line& Icicle::Marker::Line::colorsrc(std::string f) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Line& Icicle::Marker::Line::colorsrc(Callable&& c) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Icicle::Marker::Line& Icicle::Marker::Line::width(double f) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Line& Icicle::Marker::Line::width(Callable&& c) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
-Icicle::Marker::Line& Icicle::Marker::Line::width(const std::vector<double>& f) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
     return *this;
 }
 
-Icicle::Marker::Line& Icicle::Marker::Line::widthsrc(std::string f) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Line& Icicle::Marker::Line::widthsrc(Callable&& c) {
+inline Icicle::Marker::Line& Icicle::Marker::Line::widthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return widthsrc(std::move(f));
 }
 
-std::string Icicle::Marker::Pattern::to_string(Fillmode e) {
+inline std::string Icicle::Marker::Pattern::to_string(Fillmode e) {
     switch(e) {
         case Fillmode::Replace: return "replace";
         case Fillmode::Overlay: return "overlay";
@@ -2544,153 +2648,169 @@ std::string Icicle::Marker::Pattern::to_string(Fillmode e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolorsrc(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolorsrc(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(std::string f) {
+    json["fgcolor"] = std::move(f);
+    return *this;
+}
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(double f) {
     json["fgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return fgcolor(std::move(f));
 }
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
+    json["fgcolor"] = f;
+    return *this;
+}
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolor(const std::vector<double>& f) {
     json["fgcolor"] = f;
     return *this;
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolorsrc(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolorsrc(std::string f) {
     json["fgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolorsrc(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return fgcolorsrc(std::move(f));
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgopacity(double f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgopacity(double f) {
     json["fgopacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgopacity(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fgopacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return fgopacity(std::move(f));
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::fillmode(enum Fillmode f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::fillmode(enum Fillmode f) {
     json["fillmode"] = to_string(f);
     return *this;
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::shape(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::shape(std::string f) {
     json["shape"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::shape(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::shape(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shape(std::move(f));
 }
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::shape(const std::vector<std::string>& f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::shape(const std::vector<std::string>& f) {
     json["shape"] = f;
     return *this;
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::shapesrc(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::shapesrc(std::string f) {
     json["shapesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::shapesrc(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::shapesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shapesrc(std::move(f));
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::size(double f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::size(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::size(const std::vector<double>& f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::sizesrc(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::sizesrc(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::solidity(double f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::solidity(double f) {
     json["solidity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::solidity(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::solidity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return solidity(std::move(f));
 }
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::solidity(const std::vector<double>& f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::solidity(const std::vector<double>& f) {
     json["solidity"] = f;
     return *this;
 }
 
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::soliditysrc(std::string f) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::soliditysrc(std::string f) {
     json["soliditysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Marker::Pattern& Icicle::Marker::Pattern::soliditysrc(Callable&& c) {
+inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::soliditysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return soliditysrc(std::move(f));
 }
 
-std::string Icicle::Outsidetextfont::to_string(Style e) {
+inline std::string Icicle::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2698,7 +2818,7 @@ std::string Icicle::Outsidetextfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Outsidetextfont::to_string(Textcase e) {
+inline std::string Icicle::Outsidetextfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2708,7 +2828,7 @@ std::string Icicle::Outsidetextfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Outsidetextfont::to_string(Variant e) {
+inline std::string Icicle::Outsidetextfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2721,229 +2841,237 @@ std::string Icicle::Outsidetextfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(const std::vector<std::string>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::colorsrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::colorsrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::family(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::family(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::family(const std::vector<std::string>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::familysrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::familysrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::lineposition(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::lineposition(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::linepositionsrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::linepositionsrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadow(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadow(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadow(const std::vector<std::string>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadowsrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadowsrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::size(double f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::size(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::size(const std::vector<double>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::sizesrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::sizesrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::style(enum Style f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::style(const std::vector<enum Style>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::stylesrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::stylesrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcase(enum Textcase f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcasesrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcasesrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::variant(enum Variant f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::variantsrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::variantsrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::weight(int f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::weight(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::weight(const std::vector<int>& f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::weightsrc(std::string f) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Outsidetextfont& Icicle::Outsidetextfont::weightsrc(Callable&& c) {
+inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
-std::string Icicle::Pathbar::to_string(Edgeshape e) {
+inline std::string Icicle::Pathbar::to_string(Edgeshape e) {
     switch(e) {
         case Edgeshape::Gt: return ">";
         case Edgeshape::Lt: return "<";
@@ -2954,7 +3082,7 @@ std::string Icicle::Pathbar::to_string(Edgeshape e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Pathbar::to_string(Side e) {
+inline std::string Icicle::Pathbar::to_string(Side e) {
     switch(e) {
         case Side::Top: return "top";
         case Side::Bottom: return "bottom";
@@ -2963,50 +3091,50 @@ std::string Icicle::Pathbar::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Pathbar& Icicle::Pathbar::edgeshape(enum Edgeshape f) {
+inline Icicle::Pathbar& Icicle::Pathbar::edgeshape(enum Edgeshape f) {
     json["edgeshape"] = to_string(f);
     return *this;
 }
 
-Icicle::Pathbar& Icicle::Pathbar::side(enum Side f) {
+inline Icicle::Pathbar& Icicle::Pathbar::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Icicle::Pathbar& Icicle::Pathbar::textfont(Textfont f) {
+inline Icicle::Pathbar& Icicle::Pathbar::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar& Icicle::Pathbar::textfont(Callable&& c) {
+inline Icicle::Pathbar& Icicle::Pathbar::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Icicle::Pathbar& Icicle::Pathbar::thickness(double f) {
+inline Icicle::Pathbar& Icicle::Pathbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar& Icicle::Pathbar::thickness(Callable&& c) {
+inline Icicle::Pathbar& Icicle::Pathbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Icicle::Pathbar& Icicle::Pathbar::visible(bool f) {
+inline Icicle::Pathbar& Icicle::Pathbar::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar& Icicle::Pathbar::visible(Callable&& c) {
+inline Icicle::Pathbar& Icicle::Pathbar::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
-std::string Icicle::Pathbar::Textfont::to_string(Style e) {
+inline std::string Icicle::Pathbar::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -3014,7 +3142,7 @@ std::string Icicle::Pathbar::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Pathbar::Textfont::to_string(Textcase e) {
+inline std::string Icicle::Pathbar::Textfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -3024,7 +3152,7 @@ std::string Icicle::Pathbar::Textfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Pathbar::Textfont::to_string(Variant e) {
+inline std::string Icicle::Pathbar::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -3037,264 +3165,276 @@ std::string Icicle::Pathbar::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(const std::vector<std::string>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::colorsrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::colorsrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::family(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::family(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::family(const std::vector<std::string>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::familysrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::familysrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::lineposition(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::lineposition(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::lineposition(const std::vector<std::string>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::linepositionsrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::linepositionsrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadow(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadow(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadow(const std::vector<std::string>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadowsrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadowsrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::size(double f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::size(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::size(const std::vector<double>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::sizesrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::sizesrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::style(enum Style f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::style(const std::vector<enum Style>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::stylesrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::stylesrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcase(enum Textcase f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcase(const std::vector<enum Textcase>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcasesrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcasesrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variant(enum Variant f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variant(const std::vector<enum Variant>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variantsrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variantsrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weight(int f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weight(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weight(const std::vector<int>& f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weightsrc(std::string f) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weightsrc(Callable&& c) {
+inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Icicle::Root& Icicle::Root::color(std::string f) {
+inline Icicle::Root& Icicle::Root::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Root& Icicle::Root::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Root& Icicle::Root::color(Callable&& c) {
+inline Icicle::Root& Icicle::Root::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
 
-Icicle::Stream& Icicle::Stream::maxpoints(double f) {
+inline Icicle::Stream& Icicle::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Stream& Icicle::Stream::maxpoints(Callable&& c) {
+inline Icicle::Stream& Icicle::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Icicle::Stream& Icicle::Stream::token(std::string f) {
+inline Icicle::Stream& Icicle::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Stream& Icicle::Stream::token(Callable&& c) {
+inline Icicle::Stream& Icicle::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Icicle::Textfont::to_string(Style e) {
+inline std::string Icicle::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -3302,7 +3442,7 @@ std::string Icicle::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Textfont::to_string(Textcase e) {
+inline std::string Icicle::Textfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -3312,7 +3452,7 @@ std::string Icicle::Textfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Icicle::Textfont::to_string(Variant e) {
+inline std::string Icicle::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -3325,229 +3465,237 @@ std::string Icicle::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Textfont& Icicle::Textfont::color(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Icicle::Textfont& Icicle::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::color(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Icicle::Textfont& Icicle::Textfont::color(const std::vector<std::string>& f) {
+inline Icicle::Textfont& Icicle::Textfont::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Icicle::Textfont& Icicle::Textfont::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::colorsrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::colorsrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::family(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::family(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Icicle::Textfont& Icicle::Textfont::family(const std::vector<std::string>& f) {
+inline Icicle::Textfont& Icicle::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::familysrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::familysrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::lineposition(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::lineposition(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Icicle::Textfont& Icicle::Textfont::lineposition(const std::vector<std::string>& f) {
+inline Icicle::Textfont& Icicle::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::linepositionsrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::linepositionsrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::shadow(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::shadow(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Icicle::Textfont& Icicle::Textfont::shadow(const std::vector<std::string>& f) {
+inline Icicle::Textfont& Icicle::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::shadowsrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::shadowsrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::size(double f) {
+inline Icicle::Textfont& Icicle::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::size(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Icicle::Textfont& Icicle::Textfont::size(const std::vector<double>& f) {
+inline Icicle::Textfont& Icicle::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::sizesrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::sizesrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::style(enum Style f) {
+inline Icicle::Textfont& Icicle::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Icicle::Textfont& Icicle::Textfont::style(const std::vector<enum Style>& f) {
+inline Icicle::Textfont& Icicle::Textfont::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::stylesrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::stylesrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::textcase(enum Textcase f) {
+inline Icicle::Textfont& Icicle::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Icicle::Textfont& Icicle::Textfont::textcase(const std::vector<enum Textcase>& f) {
+inline Icicle::Textfont& Icicle::Textfont::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::textcasesrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::textcasesrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::variant(enum Variant f) {
+inline Icicle::Textfont& Icicle::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Icicle::Textfont& Icicle::Textfont::variant(const std::vector<enum Variant>& f) {
+inline Icicle::Textfont& Icicle::Textfont::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::variantsrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::variantsrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Icicle::Textfont& Icicle::Textfont::weight(int f) {
+inline Icicle::Textfont& Icicle::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::weight(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Icicle::Textfont& Icicle::Textfont::weight(const std::vector<int>& f) {
+inline Icicle::Textfont& Icicle::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Icicle::Textfont& Icicle::Textfont::weightsrc(std::string f) {
+inline Icicle::Textfont& Icicle::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Textfont& Icicle::Textfont::weightsrc(Callable&& c) {
+inline Icicle::Textfont& Icicle::Textfont::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
-std::string Icicle::Tiling::to_string(Orientation e) {
+inline std::string Icicle::Tiling::to_string(Orientation e) {
     switch(e) {
         case Orientation::V: return "v";
         case Orientation::H: return "h";
@@ -3556,28 +3704,28 @@ std::string Icicle::Tiling::to_string(Orientation e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Icicle::Tiling& Icicle::Tiling::flip(std::string f) {
+inline Icicle::Tiling& Icicle::Tiling::flip(std::string f) {
     json["flip"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Tiling& Icicle::Tiling::flip(Callable&& c) {
+inline Icicle::Tiling& Icicle::Tiling::flip(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return flip(std::move(f));
 }
 
-Icicle::Tiling& Icicle::Tiling::orientation(enum Orientation f) {
+inline Icicle::Tiling& Icicle::Tiling::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Icicle::Tiling& Icicle::Tiling::pad(double f) {
+inline Icicle::Tiling& Icicle::Tiling::pad(double f) {
     json["pad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Icicle::Tiling& Icicle::Tiling::pad(Callable&& c) {
+inline Icicle::Tiling& Icicle::Tiling::pad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return pad(std::move(f));

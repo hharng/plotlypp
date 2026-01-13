@@ -410,12 +410,26 @@ class Treemap::Domain {
 
     // Sets the horizontal domain of this treemap trace (in plot fraction).
     Treemap::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Treemap::Domain& x(const std::vector<std::string>& f);
+    Treemap::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Treemap::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Treemap::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this treemap trace (in plot fraction).
     Treemap::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Treemap::Domain& y(const std::vector<std::string>& f);
+    Treemap::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Treemap::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Treemap::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -451,9 +465,12 @@ class Treemap::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Treemap::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Hoverlabel& bgcolor(Callable&& c);
     Treemap::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Treemap::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Treemap::Hoverlabel& bgcolorsrc(std::string f);
@@ -462,9 +479,12 @@ class Treemap::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Treemap::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Hoverlabel& bordercolor(Callable&& c);
     Treemap::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Treemap::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Treemap::Hoverlabel& bordercolorsrc(std::string f);
@@ -526,9 +546,12 @@ class Treemap::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Treemap::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Hoverlabel::Font& color(Callable&& c);
     Treemap::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Treemap::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Treemap::Hoverlabel::Font& colorsrc(std::string f);
@@ -667,9 +690,12 @@ class Treemap::Insidetextfont {
     static std::string to_string(Variant e);
 
     Treemap::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Insidetextfont& color(Callable&& c);
     Treemap::Insidetextfont& color(const std::vector<std::string>& f);
+    Treemap::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Treemap::Insidetextfont& colorsrc(std::string f);
@@ -831,7 +857,9 @@ class Treemap::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Treemap::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1143,12 +1171,16 @@ class Treemap::Marker::Colorbar {
 
     // Sets the color of padded area.
     Treemap::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Treemap::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1217,7 +1249,9 @@ class Treemap::Marker::Colorbar {
 
     // Sets the axis line color.
     Treemap::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1277,7 +1311,9 @@ class Treemap::Marker::Colorbar {
 
     // Sets the tick color.
     Treemap::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1459,7 +1495,9 @@ class Treemap::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Treemap::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1523,7 +1561,14 @@ class Treemap::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Treemap::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Treemap::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Treemap::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Treemap::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Treemap::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1623,7 +1668,9 @@ class Treemap::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Treemap::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1686,9 +1733,12 @@ class Treemap::Marker::Line {
 
     // Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
     Treemap::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Line& color(Callable&& c);
     Treemap::Marker::Line& color(const std::vector<std::string>& f);
+    Treemap::Marker::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Treemap::Marker::Line& colorsrc(std::string f);
@@ -1756,9 +1806,12 @@ class Treemap::Marker::Pattern {
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
     Treemap::Marker::Pattern& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Pattern& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Pattern& bgcolor(Callable&& c);
     Treemap::Marker::Pattern& bgcolor(const std::vector<std::string>& f);
+    Treemap::Marker::Pattern& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Treemap::Marker::Pattern& bgcolorsrc(std::string f);
@@ -1768,9 +1821,12 @@ class Treemap::Marker::Pattern {
     // When there is no colorscale sets the color of foreground pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *replace*. Otherwise, defaults to dark grey or white to increase contrast with the `bgcolor`.
     Treemap::Marker::Pattern& fgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Marker::Pattern& fgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Marker::Pattern& fgcolor(Callable&& c);
     Treemap::Marker::Pattern& fgcolor(const std::vector<std::string>& f);
+    Treemap::Marker::Pattern& fgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `fgcolor`.
     Treemap::Marker::Pattern& fgcolorsrc(std::string f);
@@ -1861,9 +1917,12 @@ class Treemap::Outsidetextfont {
     static std::string to_string(Variant e);
 
     Treemap::Outsidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Outsidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Outsidetextfont& color(Callable&& c);
     Treemap::Outsidetextfont& color(const std::vector<std::string>& f);
+    Treemap::Outsidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Treemap::Outsidetextfont& colorsrc(std::string f);
@@ -2054,9 +2113,12 @@ class Treemap::Pathbar::Textfont {
     static std::string to_string(Variant e);
 
     Treemap::Pathbar::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Pathbar::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Pathbar::Textfont& color(Callable&& c);
     Treemap::Pathbar::Textfont& color(const std::vector<std::string>& f);
+    Treemap::Pathbar::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Treemap::Pathbar::Textfont& colorsrc(std::string f);
@@ -2172,7 +2234,9 @@ class Treemap::Root {
     // sets the color of the root node for a sunburst/treemap/icicle trace. this has no effect when a colorscale is used
     // to set the markers.
     Treemap::Root& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Root& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Root& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2233,9 +2297,12 @@ class Treemap::Textfont {
     static std::string to_string(Variant e);
 
     Treemap::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Treemap::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Treemap::Textfont& color(Callable&& c);
     Treemap::Textfont& color(const std::vector<std::string>& f);
+    Treemap::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Treemap::Textfont& colorsrc(std::string f);

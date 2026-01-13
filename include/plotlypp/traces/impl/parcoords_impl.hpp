@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Parcoords::to_string(Labelside e) {
+inline std::string Parcoords::to_string(Labelside e) {
     switch(e) {
         case Labelside::Top: return "top";
         case Labelside::Bottom: return "bottom";
@@ -18,7 +18,7 @@ std::string Parcoords::to_string(Labelside e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::to_string(Visible e) {
+inline std::string Parcoords::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -29,476 +29,524 @@ std::string Parcoords::to_string(Visible e) {
 }
 
 template <typename Range, typename>
-Parcoords& Parcoords::customdata(Range&& f) {
+inline Parcoords& Parcoords::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords& Parcoords::customdata(Callable&& c) {
+inline Parcoords& Parcoords::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Parcoords& Parcoords::customdatasrc(std::string f) {
+inline Parcoords& Parcoords::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::customdatasrc(Callable&& c) {
+inline Parcoords& Parcoords::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Parcoords& Parcoords::dimensions(Dimension f) {
+inline Parcoords& Parcoords::dimensions(Dimension f) {
     json["dimensions"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::dimensions(Callable&& c) {
+inline Parcoords& Parcoords::dimensions(Callable&& c) {
     Dimension f{};
     std::forward<Callable>(c)(f);
     return dimensions(std::move(f));
 }
-Parcoords& Parcoords::dimensions(const std::vector<Dimension>& f) {
+inline Parcoords& Parcoords::dimensions(const std::vector<Dimension>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["dimensions"] = std::move(jsonified);
     return *this;
 }
 
-Parcoords& Parcoords::domain(Domain f) {
+inline Parcoords& Parcoords::domain(Domain f) {
     json["domain"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::domain(Callable&& c) {
+inline Parcoords& Parcoords::domain(Callable&& c) {
     Domain f{};
     std::forward<Callable>(c)(f);
     return domain(std::move(f));
 }
 
 template <typename Range, typename>
-Parcoords& Parcoords::ids(Range&& f) {
+inline Parcoords& Parcoords::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords& Parcoords::ids(Callable&& c) {
+inline Parcoords& Parcoords::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Parcoords& Parcoords::idssrc(std::string f) {
+inline Parcoords& Parcoords::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::idssrc(Callable&& c) {
+inline Parcoords& Parcoords::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Parcoords& Parcoords::labelangle(double f) {
+inline Parcoords& Parcoords::labelangle(double f) {
     json["labelangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::labelangle(Callable&& c) {
+inline Parcoords& Parcoords::labelangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return labelangle(std::move(f));
 }
 
-Parcoords& Parcoords::labelfont(Labelfont f) {
+inline Parcoords& Parcoords::labelfont(Labelfont f) {
     json["labelfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::labelfont(Callable&& c) {
+inline Parcoords& Parcoords::labelfont(Callable&& c) {
     Labelfont f{};
     std::forward<Callable>(c)(f);
     return labelfont(std::move(f));
 }
 
-Parcoords& Parcoords::labelside(enum Labelside f) {
+inline Parcoords& Parcoords::labelside(enum Labelside f) {
     json["labelside"] = to_string(f);
     return *this;
 }
 
-Parcoords& Parcoords::legend(std::string f) {
+inline Parcoords& Parcoords::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::legend(Callable&& c) {
+inline Parcoords& Parcoords::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Parcoords& Parcoords::legendgrouptitle(Legendgrouptitle f) {
+inline Parcoords& Parcoords::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::legendgrouptitle(Callable&& c) {
+inline Parcoords& Parcoords::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Parcoords& Parcoords::legendrank(double f) {
+inline Parcoords& Parcoords::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::legendrank(Callable&& c) {
+inline Parcoords& Parcoords::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Parcoords& Parcoords::legendwidth(double f) {
+inline Parcoords& Parcoords::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::legendwidth(Callable&& c) {
+inline Parcoords& Parcoords::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Parcoords& Parcoords::line(Line f) {
+inline Parcoords& Parcoords::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::line(Callable&& c) {
+inline Parcoords& Parcoords::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
 template <typename T>
-Parcoords& Parcoords::meta(T f) {
+inline Parcoords& Parcoords::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords& Parcoords::meta(Callable&& c) {
+inline Parcoords& Parcoords::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Parcoords& Parcoords::meta(const std::vector<T>& f) {
+inline Parcoords& Parcoords::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Parcoords& Parcoords::metasrc(std::string f) {
+inline Parcoords& Parcoords::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::metasrc(Callable&& c) {
+inline Parcoords& Parcoords::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Parcoords& Parcoords::name(std::string f) {
+inline Parcoords& Parcoords::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::name(Callable&& c) {
+inline Parcoords& Parcoords::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Parcoords& Parcoords::rangefont(Rangefont f) {
+inline Parcoords& Parcoords::rangefont(Rangefont f) {
     json["rangefont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::rangefont(Callable&& c) {
+inline Parcoords& Parcoords::rangefont(Callable&& c) {
     Rangefont f{};
     std::forward<Callable>(c)(f);
     return rangefont(std::move(f));
 }
 
-Parcoords& Parcoords::stream(Stream f) {
+inline Parcoords& Parcoords::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::stream(Callable&& c) {
+inline Parcoords& Parcoords::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Parcoords& Parcoords::tickfont(Tickfont f) {
+inline Parcoords& Parcoords::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::tickfont(Callable&& c) {
+inline Parcoords& Parcoords::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Parcoords& Parcoords::uid(std::string f) {
+inline Parcoords& Parcoords::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::uid(Callable&& c) {
+inline Parcoords& Parcoords::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Parcoords& Parcoords::uirevision(T f) {
+inline Parcoords& Parcoords::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords& Parcoords::uirevision(Callable&& c) {
+inline Parcoords& Parcoords::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Parcoords& Parcoords::unselected(Unselected f) {
+inline Parcoords& Parcoords::unselected(Unselected f) {
     json["unselected"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords& Parcoords::unselected(Callable&& c) {
+inline Parcoords& Parcoords::unselected(Callable&& c) {
     Unselected f{};
     std::forward<Callable>(c)(f);
     return unselected(std::move(f));
 }
 
-Parcoords& Parcoords::visible(enum Visible f) {
+inline Parcoords& Parcoords::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 
-Parcoords::Dimension& Parcoords::Dimension::constraintrange(const std::vector<double>& f) {
+inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(const std::vector<double>& f) {
+    json["constraintrange"] = f;
+    return *this;
+}
+inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(const std::vector<std::string>& f) {
+    json["constraintrange"] = f;
+    return *this;
+}
+inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(const std::vector<std::vector<std::string>>& f) {
+    json["constraintrange"] = f;
+    return *this;
+}
+inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(const std::vector<std::vector<double>>& f) {
     json["constraintrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::constraintrange(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return constraintrange(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::label(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::label(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::label(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return label(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::multiselect(bool f) {
+inline Parcoords::Dimension& Parcoords::Dimension::multiselect(bool f) {
     json["multiselect"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::multiselect(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::multiselect(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return multiselect(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::name(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::name(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<double>& f) {
+inline Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<double>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<std::string>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<std::vector<std::string>>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<std::vector<double>>& f) {
     json["range"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::range(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::range(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return range(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::templateitemname(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::templateitemname(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::tickformat(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::tickformat(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
 template <typename Range, typename>
-Parcoords::Dimension& Parcoords::Dimension::ticktext(Range&& f) {
+inline Parcoords::Dimension& Parcoords::Dimension::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::ticktext(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Parcoords::Dimension& Parcoords::Dimension::tickvals(Range&& f) {
+inline Parcoords::Dimension& Parcoords::Dimension::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::tickvals(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
 template <typename Range, typename>
-Parcoords::Dimension& Parcoords::Dimension::values(Range&& f) {
+inline Parcoords::Dimension& Parcoords::Dimension::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::values(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::values(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return values(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::valuessrc(std::string f) {
+inline Parcoords::Dimension& Parcoords::Dimension::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::valuessrc(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::valuessrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return valuessrc(std::move(f));
 }
 
-Parcoords::Dimension& Parcoords::Dimension::visible(bool f) {
+inline Parcoords::Dimension& Parcoords::Dimension::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Dimension& Parcoords::Dimension::visible(Callable&& c) {
+inline Parcoords::Dimension& Parcoords::Dimension::visible(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return visible(std::move(f));
 }
 
 
-Parcoords::Domain& Parcoords::Domain::column(int f) {
+inline Parcoords::Domain& Parcoords::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Domain& Parcoords::Domain::column(Callable&& c) {
+inline Parcoords::Domain& Parcoords::Domain::column(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return column(std::move(f));
 }
 
-Parcoords::Domain& Parcoords::Domain::row(int f) {
+inline Parcoords::Domain& Parcoords::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Domain& Parcoords::Domain::row(Callable&& c) {
+inline Parcoords::Domain& Parcoords::Domain::row(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return row(std::move(f));
 }
 
-Parcoords::Domain& Parcoords::Domain::x(const std::vector<double>& f) {
+inline Parcoords::Domain& Parcoords::Domain::x(const std::vector<double>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Parcoords::Domain& Parcoords::Domain::x(const std::vector<std::string>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Parcoords::Domain& Parcoords::Domain::x(const std::vector<std::vector<std::string>>& f) {
+    json["x"] = f;
+    return *this;
+}
+inline Parcoords::Domain& Parcoords::Domain::x(const std::vector<std::vector<double>>& f) {
     json["x"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Domain& Parcoords::Domain::x(Callable&& c) {
+inline Parcoords::Domain& Parcoords::Domain::x(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Parcoords::Domain& Parcoords::Domain::y(const std::vector<double>& f) {
+inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<double>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<std::string>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<std::vector<std::string>>& f) {
+    json["y"] = f;
+    return *this;
+}
+inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Domain& Parcoords::Domain::y(Callable&& c) {
+inline Parcoords::Domain& Parcoords::Domain::y(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-std::string Parcoords::Labelfont::to_string(Style e) {
+inline std::string Parcoords::Labelfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -506,7 +554,7 @@ std::string Parcoords::Labelfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Labelfont::to_string(Textcase e) {
+inline std::string Parcoords::Labelfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -516,7 +564,7 @@ std::string Parcoords::Labelfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Labelfont::to_string(Variant e) {
+inline std::string Parcoords::Labelfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -529,111 +577,115 @@ std::string Parcoords::Labelfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::color(std::string f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Labelfont& Parcoords::Labelfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Labelfont& Parcoords::Labelfont::color(Callable&& c) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::family(std::string f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Labelfont& Parcoords::Labelfont::family(Callable&& c) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::lineposition(std::string f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Labelfont& Parcoords::Labelfont::lineposition(Callable&& c) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::shadow(std::string f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Labelfont& Parcoords::Labelfont::shadow(Callable&& c) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::size(double f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Labelfont& Parcoords::Labelfont::size(Callable&& c) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::style(enum Style f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::textcase(enum Textcase f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::variant(enum Variant f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Parcoords::Labelfont& Parcoords::Labelfont::weight(int f) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Labelfont& Parcoords::Labelfont::weight(Callable&& c) {
+inline Parcoords::Labelfont& Parcoords::Labelfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::font(Font f) {
+inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::font(Callable&& c) {
+inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::text(std::string f) {
+inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::text(Callable&& c) {
+inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Parcoords::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Parcoords::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -641,7 +693,7 @@ std::string Parcoords::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Parcoords::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -651,7 +703,7 @@ std::string Parcoords::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Parcoords::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -664,229 +716,241 @@ std::string Parcoords::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(std::string f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(Callable&& c) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::family(std::string f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::family(Callable&& c) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::shadow(std::string f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::size(double f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::size(Callable&& c) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::style(enum Style f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::weight(int f) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Parcoords::Line& Parcoords::Line::autocolorscale(bool f) {
+inline Parcoords::Line& Parcoords::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::autocolorscale(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::cauto(bool f) {
+inline Parcoords::Line& Parcoords::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::cauto(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::cauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return cauto(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::cmax(double f) {
+inline Parcoords::Line& Parcoords::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::cmax(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::cmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmax(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::cmid(double f) {
+inline Parcoords::Line& Parcoords::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::cmid(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::cmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmid(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::cmin(double f) {
+inline Parcoords::Line& Parcoords::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::cmin(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::cmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cmin(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::color(std::string f) {
+inline Parcoords::Line& Parcoords::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line& Parcoords::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::color(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Parcoords::Line& Parcoords::Line::color(const std::vector<std::string>& f) {
+inline Parcoords::Line& Parcoords::Line::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Parcoords::Line& Parcoords::Line::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Parcoords::Line& Parcoords::Line::coloraxis(std::string f) {
+inline Parcoords::Line& Parcoords::Line::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::coloraxis(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::colorbar(Colorbar f) {
+inline Parcoords::Line& Parcoords::Line::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::colorbar(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::colorscale(std::string f) {
+inline Parcoords::Line& Parcoords::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Parcoords::Line& Parcoords::Line::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Parcoords::Line& Parcoords::Line::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::colorscale(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::colorsrc(std::string f) {
+inline Parcoords::Line& Parcoords::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::colorsrc(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::reversescale(bool f) {
+inline Parcoords::Line& Parcoords::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::reversescale(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Parcoords::Line& Parcoords::Line::showscale(bool f) {
+inline Parcoords::Line& Parcoords::Line::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line& Parcoords::Line::showscale(Callable&& c) {
+inline Parcoords::Line& Parcoords::Line::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-std::string Parcoords::Line::Colorbar::to_string(Exponentformat e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -897,7 +961,7 @@ std::string Parcoords::Line::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Lenmode e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -905,7 +969,7 @@ std::string Parcoords::Line::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Orientation e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -913,7 +977,7 @@ std::string Parcoords::Line::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Showexponent e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -923,7 +987,7 @@ std::string Parcoords::Line::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Showtickprefix e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -933,7 +997,7 @@ std::string Parcoords::Line::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Showticksuffix e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -943,7 +1007,7 @@ std::string Parcoords::Line::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Thicknessmode e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -951,7 +1015,7 @@ std::string Parcoords::Line::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -960,7 +1024,7 @@ std::string Parcoords::Line::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -976,7 +1040,7 @@ std::string Parcoords::Line::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Tickmode e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -985,7 +1049,7 @@ std::string Parcoords::Line::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Ticks e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -994,7 +1058,7 @@ std::string Parcoords::Line::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Xanchor e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -1003,7 +1067,7 @@ std::string Parcoords::Line::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Xref e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -1011,7 +1075,7 @@ std::string Parcoords::Line::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Yanchor e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -1020,7 +1084,7 @@ std::string Parcoords::Line::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::to_string(Yref e) {
+inline std::string Parcoords::Line::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -1029,456 +1093,472 @@ std::string Parcoords::Line::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::borderwidth(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::borderwidth(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::dtick(T f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::dtick(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::exponentformat(enum Exponentformat f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::labelalias(T f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::labelalias(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::len(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::len(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::lenmode(enum Lenmode f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::minexponent(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::minexponent(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::nticks(int f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::nticks(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::orientation(enum Orientation f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinewidth(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinewidth(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::separatethousands(bool f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::separatethousands(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showexponent(enum Showexponent f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticklabels(bool f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticklabels(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thickness(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thickness(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tick0(T f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tick0(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickangle(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickangle(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickfont(Tickfont f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickfont(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformat(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformat(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(Tickformatstop f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelstep(int f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelstep(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklen(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklen(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickmode(enum Tickmode f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickprefix(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickprefix(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticks(enum Ticks f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Range&& f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Range&& f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvalssrc(std::string f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvalssrc(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickwidth(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickwidth(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::title(Title f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::title(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::x(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::x(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xanchor(enum Xanchor f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xpad(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xpad(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xref(enum Xref f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::y(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::y(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yanchor(enum Yanchor f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ypad(double f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ypad(Callable&& c) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yref(enum Yref f) {
+inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Parcoords::Line::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Parcoords::Line::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1486,7 +1566,7 @@ std::string Parcoords::Line::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Parcoords::Line::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1496,7 +1576,7 @@ std::string Parcoords::Line::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Parcoords::Line::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1509,144 +1589,160 @@ std::string Parcoords::Line::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(std::string f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::family(std::string f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::family(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(std::string f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::shadow(std::string f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::size(double f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::size(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::style(enum Style f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::variant(enum Variant f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::weight(int f) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::weight(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::enabled(bool f) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::name(std::string f) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::value(std::string f) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Parcoords::Line::Colorbar::Title::to_string(Side e) {
+inline std::string Parcoords::Line::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1656,34 +1752,34 @@ std::string Parcoords::Line::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::font(Font f) {
+inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::font(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::side(enum Side f) {
+inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::text(std::string f) {
+inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::text(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Parcoords::Line::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1691,7 +1787,7 @@ std::string Parcoords::Line::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1701,7 +1797,7 @@ std::string Parcoords::Line::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Line::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1714,88 +1810,92 @@ std::string Parcoords::Line::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(std::string f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::family(std::string f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::family(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(std::string f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::shadow(std::string f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::size(double f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::size(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::style(enum Style f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::variant(enum Variant f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::weight(int f) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::weight(Callable&& c) {
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Parcoords::Rangefont::to_string(Style e) {
+inline std::string Parcoords::Rangefont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1803,7 +1903,7 @@ std::string Parcoords::Rangefont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Rangefont::to_string(Textcase e) {
+inline std::string Parcoords::Rangefont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1813,7 +1913,7 @@ std::string Parcoords::Rangefont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Rangefont::to_string(Variant e) {
+inline std::string Parcoords::Rangefont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1826,111 +1926,115 @@ std::string Parcoords::Rangefont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::color(std::string f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Rangefont& Parcoords::Rangefont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Rangefont& Parcoords::Rangefont::color(Callable&& c) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::family(std::string f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Rangefont& Parcoords::Rangefont::family(Callable&& c) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::lineposition(std::string f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Rangefont& Parcoords::Rangefont::lineposition(Callable&& c) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::shadow(std::string f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Rangefont& Parcoords::Rangefont::shadow(Callable&& c) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::size(double f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Rangefont& Parcoords::Rangefont::size(Callable&& c) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::style(enum Style f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::textcase(enum Textcase f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::variant(enum Variant f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Parcoords::Rangefont& Parcoords::Rangefont::weight(int f) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Rangefont& Parcoords::Rangefont::weight(Callable&& c) {
+inline Parcoords::Rangefont& Parcoords::Rangefont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Parcoords::Stream& Parcoords::Stream::maxpoints(double f) {
+inline Parcoords::Stream& Parcoords::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Stream& Parcoords::Stream::maxpoints(Callable&& c) {
+inline Parcoords::Stream& Parcoords::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Parcoords::Stream& Parcoords::Stream::token(std::string f) {
+inline Parcoords::Stream& Parcoords::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Stream& Parcoords::Stream::token(Callable&& c) {
+inline Parcoords::Stream& Parcoords::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Parcoords::Tickfont::to_string(Style e) {
+inline std::string Parcoords::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1938,7 +2042,7 @@ std::string Parcoords::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Tickfont::to_string(Textcase e) {
+inline std::string Parcoords::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1948,7 +2052,7 @@ std::string Parcoords::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Parcoords::Tickfont::to_string(Variant e) {
+inline std::string Parcoords::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1961,117 +2065,125 @@ std::string Parcoords::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::color(std::string f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Tickfont& Parcoords::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Tickfont& Parcoords::Tickfont::color(Callable&& c) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::family(std::string f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Tickfont& Parcoords::Tickfont::family(Callable&& c) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::lineposition(std::string f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Tickfont& Parcoords::Tickfont::lineposition(Callable&& c) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::shadow(std::string f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Tickfont& Parcoords::Tickfont::shadow(Callable&& c) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::size(double f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Tickfont& Parcoords::Tickfont::size(Callable&& c) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::style(enum Style f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::textcase(enum Textcase f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::variant(enum Variant f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Parcoords::Tickfont& Parcoords::Tickfont::weight(int f) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Tickfont& Parcoords::Tickfont::weight(Callable&& c) {
+inline Parcoords::Tickfont& Parcoords::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Parcoords::Unselected& Parcoords::Unselected::line(Line f) {
+inline Parcoords::Unselected& Parcoords::Unselected::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Unselected& Parcoords::Unselected::line(Callable&& c) {
+inline Parcoords::Unselected& Parcoords::Unselected::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
 
-Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(std::string f) {
+inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(Callable&& c) {
+inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Parcoords::Unselected::Line& Parcoords::Unselected::Line::opacity(double f) {
+inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Parcoords::Unselected::Line& Parcoords::Unselected::Line::opacity(Callable&& c) {
+inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));

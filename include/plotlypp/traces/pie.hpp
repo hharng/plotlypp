@@ -429,12 +429,26 @@ class Pie::Domain {
 
     // Sets the horizontal domain of this pie trace (in plot fraction).
     Pie::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Pie::Domain& x(const std::vector<std::string>& f);
+    Pie::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Pie::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Pie::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this pie trace (in plot fraction).
     Pie::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Pie::Domain& y(const std::vector<std::string>& f);
+    Pie::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Pie::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Pie::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -470,9 +484,12 @@ class Pie::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Pie::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Hoverlabel& bgcolor(Callable&& c);
     Pie::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Pie::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Pie::Hoverlabel& bgcolorsrc(std::string f);
@@ -481,9 +498,12 @@ class Pie::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Pie::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Hoverlabel& bordercolor(Callable&& c);
     Pie::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Pie::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Pie::Hoverlabel& bordercolorsrc(std::string f);
@@ -545,9 +565,12 @@ class Pie::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Pie::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Hoverlabel::Font& color(Callable&& c);
     Pie::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Pie::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Pie::Hoverlabel::Font& colorsrc(std::string f);
@@ -686,9 +709,12 @@ class Pie::Insidetextfont {
     static std::string to_string(Variant e);
 
     Pie::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Insidetextfont& color(Callable&& c);
     Pie::Insidetextfont& color(const std::vector<std::string>& f);
+    Pie::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Pie::Insidetextfont& colorsrc(std::string f);
@@ -850,7 +876,9 @@ class Pie::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Pie::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -949,9 +977,12 @@ class Pie::Marker::Line {
 
     // Sets the color of the line enclosing each sector.
     Pie::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Marker::Line& color(Callable&& c);
     Pie::Marker::Line& color(const std::vector<std::string>& f);
+    Pie::Marker::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Pie::Marker::Line& colorsrc(std::string f);
@@ -989,9 +1020,12 @@ class Pie::Marker::Pattern {
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
     Pie::Marker::Pattern& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Marker::Pattern& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Marker::Pattern& bgcolor(Callable&& c);
     Pie::Marker::Pattern& bgcolor(const std::vector<std::string>& f);
+    Pie::Marker::Pattern& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Pie::Marker::Pattern& bgcolorsrc(std::string f);
@@ -1001,9 +1035,12 @@ class Pie::Marker::Pattern {
     // When there is no colorscale sets the color of foreground pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *replace*. Otherwise, defaults to dark grey or white to increase contrast with the `bgcolor`.
     Pie::Marker::Pattern& fgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Marker::Pattern& fgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Marker::Pattern& fgcolor(Callable&& c);
     Pie::Marker::Pattern& fgcolor(const std::vector<std::string>& f);
+    Pie::Marker::Pattern& fgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `fgcolor`.
     Pie::Marker::Pattern& fgcolorsrc(std::string f);
@@ -1092,9 +1129,12 @@ class Pie::Outsidetextfont {
     static std::string to_string(Variant e);
 
     Pie::Outsidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Outsidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Outsidetextfont& color(Callable&& c);
     Pie::Outsidetextfont& color(const std::vector<std::string>& f);
+    Pie::Outsidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Pie::Outsidetextfont& colorsrc(std::string f);
@@ -1255,9 +1295,12 @@ class Pie::Textfont {
     static std::string to_string(Variant e);
 
     Pie::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Textfont& color(Callable&& c);
     Pie::Textfont& color(const std::vector<std::string>& f);
+    Pie::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Pie::Textfont& colorsrc(std::string f);
@@ -1433,9 +1476,12 @@ class Pie::Title::Font {
     static std::string to_string(Variant e);
 
     Pie::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Pie::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Pie::Title::Font& color(Callable&& c);
     Pie::Title::Font& color(const std::vector<std::string>& f);
+    Pie::Title::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Pie::Title::Font& colorsrc(std::string f);

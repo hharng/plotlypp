@@ -175,7 +175,9 @@ class Box : public Trace {
     // Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line
     // color, whichever is available.
     Box& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box& fillcolor(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
@@ -729,9 +731,12 @@ class Box::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Box::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Hoverlabel& bgcolor(Callable&& c);
     Box::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Box::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Box::Hoverlabel& bgcolorsrc(std::string f);
@@ -740,9 +745,12 @@ class Box::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Box::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Hoverlabel& bordercolor(Callable&& c);
     Box::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Box::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Box::Hoverlabel& bordercolorsrc(std::string f);
@@ -804,9 +812,12 @@ class Box::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Box::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Hoverlabel::Font& color(Callable&& c);
     Box::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Box::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Box::Hoverlabel::Font& colorsrc(std::string f);
@@ -968,7 +979,9 @@ class Box::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Box::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1031,7 +1044,9 @@ class Box::Line {
 
     // Sets the color of line bounding the box(es).
     Box::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Line& color(Callable&& c);
 
     // Sets the width (in px) of line bounding the box(es).
@@ -1387,7 +1402,9 @@ class Box::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Box::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Marker& color(Callable&& c);
 
     Box::Marker& line(Line f);
@@ -1401,7 +1418,9 @@ class Box::Marker {
 
     // Sets the color of the outlier sample points.
     Box::Marker& outliercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Marker& outliercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Marker& outliercolor(Callable&& c);
 
     // Sets the marker size (in px).
@@ -1429,12 +1448,16 @@ class Box::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Box::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Marker::Line& color(Callable&& c);
 
     // Sets the border line color of the outlier sample points. Defaults to marker.color
     Box::Marker::Line& outliercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Marker::Line& outliercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Marker::Line& outliercolor(Callable&& c);
 
     // Sets the border line width (in px) of the outlier sample points.
@@ -1475,7 +1498,9 @@ class Box::Selected::Marker {
 
     // Sets the marker color of selected points.
     Box::Selected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Selected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
@@ -1538,7 +1563,9 @@ class Box::Unselected::Marker {
 
     // Sets the marker color of unselected points, applied only when a selection exists.
     Box::Unselected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Box::Unselected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Box::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.

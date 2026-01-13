@@ -406,7 +406,9 @@ class Ohlc::Decreasing::Line {
 
     // Sets the line color.
     Ohlc::Decreasing::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Ohlc::Decreasing::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Ohlc::Decreasing::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -453,9 +455,12 @@ class Ohlc::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Ohlc::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Ohlc::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Ohlc::Hoverlabel& bgcolor(Callable&& c);
     Ohlc::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Ohlc::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Ohlc::Hoverlabel& bgcolorsrc(std::string f);
@@ -464,9 +469,12 @@ class Ohlc::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Ohlc::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Ohlc::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Ohlc::Hoverlabel& bordercolor(Callable&& c);
     Ohlc::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Ohlc::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Ohlc::Hoverlabel& bordercolorsrc(std::string f);
@@ -533,9 +541,12 @@ class Ohlc::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Ohlc::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Ohlc::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Ohlc::Hoverlabel::Font& color(Callable&& c);
     Ohlc::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Ohlc::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Ohlc::Hoverlabel::Font& colorsrc(std::string f);
@@ -666,7 +677,9 @@ class Ohlc::Increasing::Line {
 
     // Sets the line color.
     Ohlc::Increasing::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Ohlc::Increasing::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Ohlc::Increasing::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -739,7 +752,9 @@ class Ohlc::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Ohlc::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Ohlc::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Ohlc::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to

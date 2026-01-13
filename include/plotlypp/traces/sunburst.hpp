@@ -409,12 +409,26 @@ class Sunburst::Domain {
 
     // Sets the horizontal domain of this sunburst trace (in plot fraction).
     Sunburst::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Sunburst::Domain& x(const std::vector<std::string>& f);
+    Sunburst::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Sunburst::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Sunburst::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this sunburst trace (in plot fraction).
     Sunburst::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Sunburst::Domain& y(const std::vector<std::string>& f);
+    Sunburst::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Sunburst::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Sunburst::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -450,9 +464,12 @@ class Sunburst::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Sunburst::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Hoverlabel& bgcolor(Callable&& c);
     Sunburst::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Sunburst::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Sunburst::Hoverlabel& bgcolorsrc(std::string f);
@@ -461,9 +478,12 @@ class Sunburst::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Sunburst::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Hoverlabel& bordercolor(Callable&& c);
     Sunburst::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Sunburst::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Sunburst::Hoverlabel& bordercolorsrc(std::string f);
@@ -525,9 +545,12 @@ class Sunburst::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Sunburst::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Hoverlabel::Font& color(Callable&& c);
     Sunburst::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Sunburst::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sunburst::Hoverlabel::Font& colorsrc(std::string f);
@@ -666,9 +689,12 @@ class Sunburst::Insidetextfont {
     static std::string to_string(Variant e);
 
     Sunburst::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Insidetextfont& color(Callable&& c);
     Sunburst::Insidetextfont& color(const std::vector<std::string>& f);
+    Sunburst::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sunburst::Insidetextfont& colorsrc(std::string f);
@@ -845,7 +871,9 @@ class Sunburst::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Sunburst::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1134,12 +1162,16 @@ class Sunburst::Marker::Colorbar {
 
     // Sets the color of padded area.
     Sunburst::Marker::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Sunburst::Marker::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -1208,7 +1240,9 @@ class Sunburst::Marker::Colorbar {
 
     // Sets the axis line color.
     Sunburst::Marker::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1268,7 +1302,9 @@ class Sunburst::Marker::Colorbar {
 
     // Sets the tick color.
     Sunburst::Marker::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1450,7 +1486,9 @@ class Sunburst::Marker::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Sunburst::Marker::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1514,7 +1552,14 @@ class Sunburst::Marker::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Sunburst::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Sunburst::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Sunburst::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Sunburst::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Sunburst::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1614,7 +1659,9 @@ class Sunburst::Marker::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Sunburst::Marker::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1677,9 +1724,12 @@ class Sunburst::Marker::Line {
 
     // Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
     Sunburst::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Line& color(Callable&& c);
     Sunburst::Marker::Line& color(const std::vector<std::string>& f);
+    Sunburst::Marker::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sunburst::Marker::Line& colorsrc(std::string f);
@@ -1717,9 +1767,12 @@ class Sunburst::Marker::Pattern {
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
     Sunburst::Marker::Pattern& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Pattern& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Pattern& bgcolor(Callable&& c);
     Sunburst::Marker::Pattern& bgcolor(const std::vector<std::string>& f);
+    Sunburst::Marker::Pattern& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Sunburst::Marker::Pattern& bgcolorsrc(std::string f);
@@ -1729,9 +1782,12 @@ class Sunburst::Marker::Pattern {
     // When there is no colorscale sets the color of foreground pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *replace*. Otherwise, defaults to dark grey or white to increase contrast with the `bgcolor`.
     Sunburst::Marker::Pattern& fgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Marker::Pattern& fgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Marker::Pattern& fgcolor(Callable&& c);
     Sunburst::Marker::Pattern& fgcolor(const std::vector<std::string>& f);
+    Sunburst::Marker::Pattern& fgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `fgcolor`.
     Sunburst::Marker::Pattern& fgcolorsrc(std::string f);
@@ -1822,9 +1878,12 @@ class Sunburst::Outsidetextfont {
     static std::string to_string(Variant e);
 
     Sunburst::Outsidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Outsidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Outsidetextfont& color(Callable&& c);
     Sunburst::Outsidetextfont& color(const std::vector<std::string>& f);
+    Sunburst::Outsidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sunburst::Outsidetextfont& colorsrc(std::string f);
@@ -1940,7 +1999,9 @@ class Sunburst::Root {
     // sets the color of the root node for a sunburst/treemap/icicle trace. this has no effect when a colorscale is used
     // to set the markers.
     Sunburst::Root& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Root& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Root& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -2001,9 +2062,12 @@ class Sunburst::Textfont {
     static std::string to_string(Variant e);
 
     Sunburst::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Sunburst::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Sunburst::Textfont& color(Callable&& c);
     Sunburst::Textfont& color(const std::vector<std::string>& f);
+    Sunburst::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Sunburst::Textfont& colorsrc(std::string f);

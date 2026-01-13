@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Contourcarpet::to_string(Atype e) {
+inline std::string Contourcarpet::to_string(Atype e) {
     switch(e) {
         case Atype::Array: return "array";
         case Atype::Scaled: return "scaled";
@@ -18,7 +18,7 @@ std::string Contourcarpet::to_string(Atype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::to_string(Btype e) {
+inline std::string Contourcarpet::to_string(Btype e) {
     switch(e) {
         case Btype::Array: return "array";
         case Btype::Scaled: return "scaled";
@@ -26,7 +26,7 @@ std::string Contourcarpet::to_string(Btype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::to_string(Visible e) {
+inline std::string Contourcarpet::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -37,602 +37,606 @@ std::string Contourcarpet::to_string(Visible e) {
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::a(Range&& f) {
+inline Contourcarpet& Contourcarpet::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::a(Callable&& c) {
+inline Contourcarpet& Contourcarpet::a(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return a(std::move(f));
 }
 
 template <typename T>
-Contourcarpet& Contourcarpet::a0(T f) {
+inline Contourcarpet& Contourcarpet::a0(T f) {
     json["a0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::a0(Callable&& c) {
+inline Contourcarpet& Contourcarpet::a0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return a0(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::asrc(std::string f) {
+inline Contourcarpet& Contourcarpet::asrc(std::string f) {
     json["asrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::asrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::asrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return asrc(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::atype(enum Atype f) {
+inline Contourcarpet& Contourcarpet::atype(enum Atype f) {
     json["atype"] = to_string(f);
     return *this;
 }
 
-Contourcarpet& Contourcarpet::autocolorscale(bool f) {
+inline Contourcarpet& Contourcarpet::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::autocolorscale(Callable&& c) {
+inline Contourcarpet& Contourcarpet::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::autocontour(bool f) {
+inline Contourcarpet& Contourcarpet::autocontour(bool f) {
     json["autocontour"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::autocontour(Callable&& c) {
+inline Contourcarpet& Contourcarpet::autocontour(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocontour(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::b(Range&& f) {
+inline Contourcarpet& Contourcarpet::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::b(Callable&& c) {
+inline Contourcarpet& Contourcarpet::b(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return b(std::move(f));
 }
 
 template <typename T>
-Contourcarpet& Contourcarpet::b0(T f) {
+inline Contourcarpet& Contourcarpet::b0(T f) {
     json["b0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::b0(Callable&& c) {
+inline Contourcarpet& Contourcarpet::b0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return b0(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::bsrc(std::string f) {
+inline Contourcarpet& Contourcarpet::bsrc(std::string f) {
     json["bsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::bsrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::bsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bsrc(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::btype(enum Btype f) {
+inline Contourcarpet& Contourcarpet::btype(enum Btype f) {
     json["btype"] = to_string(f);
     return *this;
 }
 
-Contourcarpet& Contourcarpet::carpet(std::string f) {
+inline Contourcarpet& Contourcarpet::carpet(std::string f) {
     json["carpet"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::carpet(Callable&& c) {
+inline Contourcarpet& Contourcarpet::carpet(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return carpet(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::coloraxis(std::string f) {
+inline Contourcarpet& Contourcarpet::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::coloraxis(Callable&& c) {
+inline Contourcarpet& Contourcarpet::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::colorbar(Colorbar f) {
+inline Contourcarpet& Contourcarpet::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::colorbar(Callable&& c) {
+inline Contourcarpet& Contourcarpet::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::colorscale(std::string f) {
+inline Contourcarpet& Contourcarpet::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Contourcarpet& Contourcarpet::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Contourcarpet& Contourcarpet::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::colorscale(Callable&& c) {
+inline Contourcarpet& Contourcarpet::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::contours(Contours f) {
+inline Contourcarpet& Contourcarpet::contours(Contours f) {
     json["contours"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::contours(Callable&& c) {
+inline Contourcarpet& Contourcarpet::contours(Callable&& c) {
     Contours f{};
     std::forward<Callable>(c)(f);
     return contours(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::customdata(Range&& f) {
+inline Contourcarpet& Contourcarpet::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::customdata(Callable&& c) {
+inline Contourcarpet& Contourcarpet::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::customdatasrc(std::string f) {
+inline Contourcarpet& Contourcarpet::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::customdatasrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::da(double f) {
+inline Contourcarpet& Contourcarpet::da(double f) {
     json["da"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::da(Callable&& c) {
+inline Contourcarpet& Contourcarpet::da(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return da(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::db(double f) {
+inline Contourcarpet& Contourcarpet::db(double f) {
     json["db"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::db(Callable&& c) {
+inline Contourcarpet& Contourcarpet::db(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return db(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::fillcolor(std::string f) {
+inline Contourcarpet& Contourcarpet::fillcolor(std::string f) {
+    json["fillcolor"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet& Contourcarpet::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::fillcolor(Callable&& c) {
+inline Contourcarpet& Contourcarpet::fillcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return fillcolor(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::hovertext(Range&& f) {
+inline Contourcarpet& Contourcarpet::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::hovertext(Callable&& c) {
+inline Contourcarpet& Contourcarpet::hovertext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::hovertextsrc(std::string f) {
+inline Contourcarpet& Contourcarpet::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::hovertextsrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::ids(Range&& f) {
+inline Contourcarpet& Contourcarpet::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::ids(Callable&& c) {
+inline Contourcarpet& Contourcarpet::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::idssrc(std::string f) {
+inline Contourcarpet& Contourcarpet::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::idssrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::legend(std::string f) {
+inline Contourcarpet& Contourcarpet::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::legend(Callable&& c) {
+inline Contourcarpet& Contourcarpet::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::legendgroup(std::string f) {
+inline Contourcarpet& Contourcarpet::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::legendgroup(Callable&& c) {
+inline Contourcarpet& Contourcarpet::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::legendgrouptitle(Legendgrouptitle f) {
+inline Contourcarpet& Contourcarpet::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::legendgrouptitle(Callable&& c) {
+inline Contourcarpet& Contourcarpet::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::legendrank(double f) {
+inline Contourcarpet& Contourcarpet::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::legendrank(Callable&& c) {
+inline Contourcarpet& Contourcarpet::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::legendwidth(double f) {
+inline Contourcarpet& Contourcarpet::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::legendwidth(Callable&& c) {
+inline Contourcarpet& Contourcarpet::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::line(Line f) {
+inline Contourcarpet& Contourcarpet::line(Line f) {
     json["line"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::line(Callable&& c) {
+inline Contourcarpet& Contourcarpet::line(Callable&& c) {
     Line f{};
     std::forward<Callable>(c)(f);
     return line(std::move(f));
 }
 
 template <typename T>
-Contourcarpet& Contourcarpet::meta(T f) {
+inline Contourcarpet& Contourcarpet::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::meta(Callable&& c) {
+inline Contourcarpet& Contourcarpet::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Contourcarpet& Contourcarpet::meta(const std::vector<T>& f) {
+inline Contourcarpet& Contourcarpet::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Contourcarpet& Contourcarpet::metasrc(std::string f) {
+inline Contourcarpet& Contourcarpet::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::metasrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::name(std::string f) {
+inline Contourcarpet& Contourcarpet::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::name(Callable&& c) {
+inline Contourcarpet& Contourcarpet::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::ncontours(int f) {
+inline Contourcarpet& Contourcarpet::ncontours(int f) {
     json["ncontours"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::ncontours(Callable&& c) {
+inline Contourcarpet& Contourcarpet::ncontours(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ncontours(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::opacity(double f) {
+inline Contourcarpet& Contourcarpet::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::opacity(Callable&& c) {
+inline Contourcarpet& Contourcarpet::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::reversescale(bool f) {
+inline Contourcarpet& Contourcarpet::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::reversescale(Callable&& c) {
+inline Contourcarpet& Contourcarpet::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::showlegend(bool f) {
+inline Contourcarpet& Contourcarpet::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::showlegend(Callable&& c) {
+inline Contourcarpet& Contourcarpet::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::showscale(bool f) {
+inline Contourcarpet& Contourcarpet::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::showscale(Callable&& c) {
+inline Contourcarpet& Contourcarpet::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::stream(Stream f) {
+inline Contourcarpet& Contourcarpet::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::stream(Callable&& c) {
+inline Contourcarpet& Contourcarpet::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::text(Range&& f) {
+inline Contourcarpet& Contourcarpet::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::text(Callable&& c) {
+inline Contourcarpet& Contourcarpet::text(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::textsrc(std::string f) {
+inline Contourcarpet& Contourcarpet::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::textsrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::transpose(bool f) {
+inline Contourcarpet& Contourcarpet::transpose(bool f) {
     json["transpose"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::transpose(Callable&& c) {
+inline Contourcarpet& Contourcarpet::transpose(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return transpose(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::uid(std::string f) {
+inline Contourcarpet& Contourcarpet::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::uid(Callable&& c) {
+inline Contourcarpet& Contourcarpet::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Contourcarpet& Contourcarpet::uirevision(T f) {
+inline Contourcarpet& Contourcarpet::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::uirevision(Callable&& c) {
+inline Contourcarpet& Contourcarpet::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::visible(enum Visible f) {
+inline Contourcarpet& Contourcarpet::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
-Contourcarpet& Contourcarpet::xaxis(std::string f) {
+inline Contourcarpet& Contourcarpet::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::xaxis(Callable&& c) {
+inline Contourcarpet& Contourcarpet::xaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xaxis(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::yaxis(std::string f) {
+inline Contourcarpet& Contourcarpet::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::yaxis(Callable&& c) {
+inline Contourcarpet& Contourcarpet::yaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yaxis(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet& Contourcarpet::z(Range&& f) {
+inline Contourcarpet& Contourcarpet::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet& Contourcarpet::z(Callable&& c) {
+inline Contourcarpet& Contourcarpet::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::zauto(bool f) {
+inline Contourcarpet& Contourcarpet::zauto(bool f) {
     json["zauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::zauto(Callable&& c) {
+inline Contourcarpet& Contourcarpet::zauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return zauto(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::zmax(double f) {
+inline Contourcarpet& Contourcarpet::zmax(double f) {
     json["zmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::zmax(Callable&& c) {
+inline Contourcarpet& Contourcarpet::zmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmax(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::zmid(double f) {
+inline Contourcarpet& Contourcarpet::zmid(double f) {
     json["zmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::zmid(Callable&& c) {
+inline Contourcarpet& Contourcarpet::zmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmid(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::zmin(double f) {
+inline Contourcarpet& Contourcarpet::zmin(double f) {
     json["zmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::zmin(Callable&& c) {
+inline Contourcarpet& Contourcarpet::zmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmin(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::zorder(int f) {
+inline Contourcarpet& Contourcarpet::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::zorder(Callable&& c) {
+inline Contourcarpet& Contourcarpet::zorder(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return zorder(std::move(f));
 }
 
-Contourcarpet& Contourcarpet::zsrc(std::string f) {
+inline Contourcarpet& Contourcarpet::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet& Contourcarpet::zsrc(Callable&& c) {
+inline Contourcarpet& Contourcarpet::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Contourcarpet::Colorbar::to_string(Exponentformat e) {
+inline std::string Contourcarpet::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -643,7 +647,7 @@ std::string Contourcarpet::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Lenmode e) {
+inline std::string Contourcarpet::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -651,7 +655,7 @@ std::string Contourcarpet::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Orientation e) {
+inline std::string Contourcarpet::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -659,7 +663,7 @@ std::string Contourcarpet::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Showexponent e) {
+inline std::string Contourcarpet::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -669,7 +673,7 @@ std::string Contourcarpet::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Showtickprefix e) {
+inline std::string Contourcarpet::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -679,7 +683,7 @@ std::string Contourcarpet::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Showticksuffix e) {
+inline std::string Contourcarpet::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -689,7 +693,7 @@ std::string Contourcarpet::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Thicknessmode e) {
+inline std::string Contourcarpet::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -697,7 +701,7 @@ std::string Contourcarpet::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Contourcarpet::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -706,7 +710,7 @@ std::string Contourcarpet::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Contourcarpet::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -722,7 +726,7 @@ std::string Contourcarpet::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Tickmode e) {
+inline std::string Contourcarpet::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -731,7 +735,7 @@ std::string Contourcarpet::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Ticks e) {
+inline std::string Contourcarpet::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -740,7 +744,7 @@ std::string Contourcarpet::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Xanchor e) {
+inline std::string Contourcarpet::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -749,7 +753,7 @@ std::string Contourcarpet::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Xref e) {
+inline std::string Contourcarpet::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -757,7 +761,7 @@ std::string Contourcarpet::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Yanchor e) {
+inline std::string Contourcarpet::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -766,7 +770,7 @@ std::string Contourcarpet::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::to_string(Yref e) {
+inline std::string Contourcarpet::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -775,456 +779,472 @@ std::string Contourcarpet::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::bgcolor(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::bgcolor(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::bordercolor(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::bordercolor(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::borderwidth(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::borderwidth(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::dtick(T f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::dtick(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::exponentformat(enum Exponentformat f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::labelalias(T f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::labelalias(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::len(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::len(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::lenmode(enum Lenmode f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::minexponent(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::minexponent(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::nticks(int f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::nticks(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::orientation(enum Orientation f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinecolor(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinecolor(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinewidth(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinewidth(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::separatethousands(bool f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::separatethousands(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::showexponent(enum Showexponent f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::showticklabels(bool f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::showticklabels(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::thickness(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::thickness(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tick0(T f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tick0(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickangle(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickangle(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickcolor(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickcolor(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickfont(Tickfont f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickfont(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformat(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformat(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformatstops(Tickformatstop f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformatstops(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabelstep(int f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabelstep(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklen(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklen(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickmode(enum Tickmode f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickprefix(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickprefix(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticks(enum Ticks f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticksuffix(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticksuffix(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktext(Range&& f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktext(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktextsrc(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktextsrc(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvals(Range&& f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvals(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvalssrc(std::string f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvalssrc(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickwidth(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickwidth(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::title(Title f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::title(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::x(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::x(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::xanchor(enum Xanchor f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::xpad(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::xpad(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::xref(enum Xref f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::y(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::y(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::yanchor(enum Yanchor f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ypad(double f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::ypad(Callable&& c) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Contourcarpet::Colorbar& Contourcarpet::Colorbar::yref(enum Yref f) {
+inline Contourcarpet::Colorbar& Contourcarpet::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Contourcarpet::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Contourcarpet::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1232,7 +1252,7 @@ std::string Contourcarpet::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Contourcarpet::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1242,7 +1262,7 @@ std::string Contourcarpet::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Contourcarpet::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1255,144 +1275,160 @@ std::string Contourcarpet::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::color(std::string f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::color(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::family(std::string f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::family(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(std::string f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::shadow(std::string f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::size(double f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::size(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::style(enum Style f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::variant(enum Variant f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::weight(int f) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::weight(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::enabled(bool f) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::name(std::string f) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::value(std::string f) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Contourcarpet::Colorbar::Tickformatstop& Contourcarpet::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Contourcarpet::Colorbar::Title::to_string(Side e) {
+inline std::string Contourcarpet::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1402,34 +1438,34 @@ std::string Contourcarpet::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::font(Font f) {
+inline Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::font(Callable&& c) {
+inline Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::side(enum Side f) {
+inline Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::text(std::string f) {
+inline Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::text(Callable&& c) {
+inline Contourcarpet::Colorbar::Title& Contourcarpet::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Contourcarpet::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Contourcarpet::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1437,7 +1473,7 @@ std::string Contourcarpet::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Contourcarpet::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1447,7 +1483,7 @@ std::string Contourcarpet::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Contourcarpet::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1460,88 +1496,92 @@ std::string Contourcarpet::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::color(std::string f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::color(Callable&& c) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::family(std::string f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::family(Callable&& c) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(std::string f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::shadow(std::string f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::size(double f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::size(Callable&& c) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::style(enum Style f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::variant(enum Variant f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::weight(int f) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::weight(Callable&& c) {
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Contourcarpet::Contours::to_string(Coloring e) {
+inline std::string Contourcarpet::Contours::to_string(Coloring e) {
     switch(e) {
         case Coloring::Fill: return "fill";
         case Coloring::Lines: return "lines";
@@ -1550,7 +1590,7 @@ std::string Contourcarpet::Contours::to_string(Coloring e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Contours::to_string(Type e) {
+inline std::string Contourcarpet::Contours::to_string(Type e) {
     switch(e) {
         case Type::Levels: return "levels";
         case Type::Constraint: return "constraint";
@@ -1559,129 +1599,129 @@ std::string Contourcarpet::Contours::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::coloring(enum Coloring f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::coloring(enum Coloring f) {
     json["coloring"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::end(double f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::end(double f) {
     json["end"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::end(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::end(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return end(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::impliedEdits(Impliededits f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::impliedEdits(Impliededits f) {
     json["impliedEdits"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::impliedEdits(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::impliedEdits(Callable&& c) {
     Impliededits f{};
     std::forward<Callable>(c)(f);
     return impliedEdits(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::labelfont(Labelfont f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::labelfont(Labelfont f) {
     json["labelfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::labelfont(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::labelfont(Callable&& c) {
     Labelfont f{};
     std::forward<Callable>(c)(f);
     return labelfont(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::labelformat(std::string f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::labelformat(std::string f) {
     json["labelformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::labelformat(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::labelformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelformat(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::operation(std::string f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::operation(std::string f) {
     json["operation"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::operation(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::operation(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return operation(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::showlabels(bool f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::showlabels(bool f) {
     json["showlabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::showlabels(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::showlabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlabels(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::showlines(bool f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::showlines(bool f) {
     json["showlines"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::showlines(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::showlines(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlines(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::size(double f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::size(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::start(double f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::start(double f) {
     json["start"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::start(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::start(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return start(std::move(f));
 }
 
-Contourcarpet::Contours& Contourcarpet::Contours::type(enum Type f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Contourcarpet::Contours& Contourcarpet::Contours::value(T f) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::value(T f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Contourcarpet::Contours& Contourcarpet::Contours::value(Callable&& c) {
+inline Contourcarpet::Contours& Contourcarpet::Contours::value(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 
-std::string Contourcarpet::Contours::Labelfont::to_string(Style e) {
+inline std::string Contourcarpet::Contours::Labelfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1689,7 +1729,7 @@ std::string Contourcarpet::Contours::Labelfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Contours::Labelfont::to_string(Textcase e) {
+inline std::string Contourcarpet::Contours::Labelfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1699,7 +1739,7 @@ std::string Contourcarpet::Contours::Labelfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Contours::Labelfont::to_string(Variant e) {
+inline std::string Contourcarpet::Contours::Labelfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1712,111 +1752,115 @@ std::string Contourcarpet::Contours::Labelfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::color(std::string f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::color(Callable&& c) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::family(std::string f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::family(Callable&& c) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(std::string f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(Callable&& c) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::shadow(std::string f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::shadow(Callable&& c) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::size(double f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::size(Callable&& c) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::style(enum Style f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::textcase(enum Textcase f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::variant(enum Variant f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::weight(int f) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::weight(Callable&& c) {
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::font(Font f) {
+inline Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::font(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::text(std::string f) {
+inline Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::text(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle& Contourcarpet::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Contourcarpet::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Contourcarpet::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1824,7 +1868,7 @@ std::string Contourcarpet::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Contourcarpet::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1834,7 +1878,7 @@ std::string Contourcarpet::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Contourcarpet::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Contourcarpet::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1847,150 +1891,158 @@ std::string Contourcarpet::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::color(std::string f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::color(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::family(std::string f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::family(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::shadow(std::string f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::size(double f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::size(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::style(enum Style f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::weight(int f) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Contourcarpet::Line& Contourcarpet::Line::color(std::string f) {
+inline Contourcarpet::Line& Contourcarpet::Line::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Contourcarpet::Line& Contourcarpet::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Line& Contourcarpet::Line::color(Callable&& c) {
+inline Contourcarpet::Line& Contourcarpet::Line::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Contourcarpet::Line& Contourcarpet::Line::dash(std::string f) {
+inline Contourcarpet::Line& Contourcarpet::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Line& Contourcarpet::Line::dash(Callable&& c) {
+inline Contourcarpet::Line& Contourcarpet::Line::dash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return dash(std::move(f));
 }
 
-Contourcarpet::Line& Contourcarpet::Line::smoothing(double f) {
+inline Contourcarpet::Line& Contourcarpet::Line::smoothing(double f) {
     json["smoothing"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Line& Contourcarpet::Line::smoothing(Callable&& c) {
+inline Contourcarpet::Line& Contourcarpet::Line::smoothing(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return smoothing(std::move(f));
 }
 
-Contourcarpet::Line& Contourcarpet::Line::width(double f) {
+inline Contourcarpet::Line& Contourcarpet::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Line& Contourcarpet::Line::width(Callable&& c) {
+inline Contourcarpet::Line& Contourcarpet::Line::width(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return width(std::move(f));
 }
 
 
-Contourcarpet::Stream& Contourcarpet::Stream::maxpoints(double f) {
+inline Contourcarpet::Stream& Contourcarpet::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Stream& Contourcarpet::Stream::maxpoints(Callable&& c) {
+inline Contourcarpet::Stream& Contourcarpet::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Contourcarpet::Stream& Contourcarpet::Stream::token(std::string f) {
+inline Contourcarpet::Stream& Contourcarpet::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Contourcarpet::Stream& Contourcarpet::Stream::token(Callable&& c) {
+inline Contourcarpet::Stream& Contourcarpet::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));

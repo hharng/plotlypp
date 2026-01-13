@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Carpet::to_string(Visible e) {
+inline std::string Carpet::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -21,420 +21,424 @@ std::string Carpet::to_string(Visible e) {
 }
 
 template <typename Range, typename>
-Carpet& Carpet::a(Range&& f) {
+inline Carpet& Carpet::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::a(Callable&& c) {
+inline Carpet& Carpet::a(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return a(std::move(f));
 }
 
-Carpet& Carpet::a0(double f) {
+inline Carpet& Carpet::a0(double f) {
     json["a0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::a0(Callable&& c) {
+inline Carpet& Carpet::a0(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return a0(std::move(f));
 }
 
-Carpet& Carpet::aaxis(Aaxis f) {
+inline Carpet& Carpet::aaxis(Aaxis f) {
     json["aaxis"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::aaxis(Callable&& c) {
+inline Carpet& Carpet::aaxis(Callable&& c) {
     Aaxis f{};
     std::forward<Callable>(c)(f);
     return aaxis(std::move(f));
 }
 
-Carpet& Carpet::asrc(std::string f) {
+inline Carpet& Carpet::asrc(std::string f) {
     json["asrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::asrc(Callable&& c) {
+inline Carpet& Carpet::asrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return asrc(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet& Carpet::b(Range&& f) {
+inline Carpet& Carpet::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::b(Callable&& c) {
+inline Carpet& Carpet::b(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return b(std::move(f));
 }
 
-Carpet& Carpet::b0(double f) {
+inline Carpet& Carpet::b0(double f) {
     json["b0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::b0(Callable&& c) {
+inline Carpet& Carpet::b0(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return b0(std::move(f));
 }
 
-Carpet& Carpet::baxis(Baxis f) {
+inline Carpet& Carpet::baxis(Baxis f) {
     json["baxis"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::baxis(Callable&& c) {
+inline Carpet& Carpet::baxis(Callable&& c) {
     Baxis f{};
     std::forward<Callable>(c)(f);
     return baxis(std::move(f));
 }
 
-Carpet& Carpet::bsrc(std::string f) {
+inline Carpet& Carpet::bsrc(std::string f) {
     json["bsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::bsrc(Callable&& c) {
+inline Carpet& Carpet::bsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bsrc(std::move(f));
 }
 
-Carpet& Carpet::carpet(std::string f) {
+inline Carpet& Carpet::carpet(std::string f) {
     json["carpet"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::carpet(Callable&& c) {
+inline Carpet& Carpet::carpet(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return carpet(std::move(f));
 }
 
-Carpet& Carpet::cheaterslope(double f) {
+inline Carpet& Carpet::cheaterslope(double f) {
     json["cheaterslope"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::cheaterslope(Callable&& c) {
+inline Carpet& Carpet::cheaterslope(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return cheaterslope(std::move(f));
 }
 
-Carpet& Carpet::color(std::string f) {
+inline Carpet& Carpet::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet& Carpet::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::color(Callable&& c) {
+inline Carpet& Carpet::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet& Carpet::customdata(Range&& f) {
+inline Carpet& Carpet::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::customdata(Callable&& c) {
+inline Carpet& Carpet::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Carpet& Carpet::customdatasrc(std::string f) {
+inline Carpet& Carpet::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::customdatasrc(Callable&& c) {
+inline Carpet& Carpet::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Carpet& Carpet::da(double f) {
+inline Carpet& Carpet::da(double f) {
     json["da"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::da(Callable&& c) {
+inline Carpet& Carpet::da(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return da(std::move(f));
 }
 
-Carpet& Carpet::db(double f) {
+inline Carpet& Carpet::db(double f) {
     json["db"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::db(Callable&& c) {
+inline Carpet& Carpet::db(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return db(std::move(f));
 }
 
-Carpet& Carpet::font(Font f) {
+inline Carpet& Carpet::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::font(Callable&& c) {
+inline Carpet& Carpet::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet& Carpet::ids(Range&& f) {
+inline Carpet& Carpet::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::ids(Callable&& c) {
+inline Carpet& Carpet::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Carpet& Carpet::idssrc(std::string f) {
+inline Carpet& Carpet::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::idssrc(Callable&& c) {
+inline Carpet& Carpet::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Carpet& Carpet::legend(std::string f) {
+inline Carpet& Carpet::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::legend(Callable&& c) {
+inline Carpet& Carpet::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Carpet& Carpet::legendgrouptitle(Legendgrouptitle f) {
+inline Carpet& Carpet::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::legendgrouptitle(Callable&& c) {
+inline Carpet& Carpet::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Carpet& Carpet::legendrank(double f) {
+inline Carpet& Carpet::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::legendrank(Callable&& c) {
+inline Carpet& Carpet::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Carpet& Carpet::legendwidth(double f) {
+inline Carpet& Carpet::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::legendwidth(Callable&& c) {
+inline Carpet& Carpet::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
 template <typename T>
-Carpet& Carpet::meta(T f) {
+inline Carpet& Carpet::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::meta(Callable&& c) {
+inline Carpet& Carpet::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Carpet& Carpet::meta(const std::vector<T>& f) {
+inline Carpet& Carpet::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Carpet& Carpet::metasrc(std::string f) {
+inline Carpet& Carpet::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::metasrc(Callable&& c) {
+inline Carpet& Carpet::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Carpet& Carpet::name(std::string f) {
+inline Carpet& Carpet::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::name(Callable&& c) {
+inline Carpet& Carpet::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Carpet& Carpet::opacity(double f) {
+inline Carpet& Carpet::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::opacity(Callable&& c) {
+inline Carpet& Carpet::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Carpet& Carpet::stream(Stream f) {
+inline Carpet& Carpet::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::stream(Callable&& c) {
+inline Carpet& Carpet::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
-Carpet& Carpet::uid(std::string f) {
+inline Carpet& Carpet::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::uid(Callable&& c) {
+inline Carpet& Carpet::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Carpet& Carpet::uirevision(T f) {
+inline Carpet& Carpet::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::uirevision(Callable&& c) {
+inline Carpet& Carpet::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Carpet& Carpet::visible(enum Visible f) {
+inline Carpet& Carpet::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Carpet& Carpet::x(Range&& f) {
+inline Carpet& Carpet::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::x(Callable&& c) {
+inline Carpet& Carpet::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Carpet& Carpet::xaxis(std::string f) {
+inline Carpet& Carpet::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::xaxis(Callable&& c) {
+inline Carpet& Carpet::xaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xaxis(std::move(f));
 }
 
-Carpet& Carpet::xsrc(std::string f) {
+inline Carpet& Carpet::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::xsrc(Callable&& c) {
+inline Carpet& Carpet::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet& Carpet::y(Range&& f) {
+inline Carpet& Carpet::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet& Carpet::y(Callable&& c) {
+inline Carpet& Carpet::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Carpet& Carpet::yaxis(std::string f) {
+inline Carpet& Carpet::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::yaxis(Callable&& c) {
+inline Carpet& Carpet::yaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yaxis(std::move(f));
 }
 
-Carpet& Carpet::ysrc(std::string f) {
+inline Carpet& Carpet::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::ysrc(Callable&& c) {
+inline Carpet& Carpet::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
-Carpet& Carpet::zorder(int f) {
+inline Carpet& Carpet::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet& Carpet::zorder(Callable&& c) {
+inline Carpet& Carpet::zorder(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return zorder(std::move(f));
 }
 
-std::string Carpet::Aaxis::to_string(Autorange e) {
+inline std::string Carpet::Aaxis::to_string(Autorange e) {
     switch(e) {
         case Autorange::True: return "True";
         case Autorange::False: return "False";
@@ -443,7 +447,7 @@ std::string Carpet::Aaxis::to_string(Autorange e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Autotypenumbers e) {
+inline std::string Carpet::Aaxis::to_string(Autotypenumbers e) {
     switch(e) {
         case Autotypenumbers::ConvertTypes: return "convert types";
         case Autotypenumbers::Strict: return "strict";
@@ -451,7 +455,7 @@ std::string Carpet::Aaxis::to_string(Autotypenumbers e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Categoryorder e) {
+inline std::string Carpet::Aaxis::to_string(Categoryorder e) {
     switch(e) {
         case Categoryorder::Trace: return "trace";
         case Categoryorder::CategoryAscending: return "category ascending";
@@ -461,7 +465,7 @@ std::string Carpet::Aaxis::to_string(Categoryorder e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Cheatertype e) {
+inline std::string Carpet::Aaxis::to_string(Cheatertype e) {
     switch(e) {
         case Cheatertype::Index: return "index";
         case Cheatertype::Value: return "value";
@@ -469,7 +473,7 @@ std::string Carpet::Aaxis::to_string(Cheatertype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Exponentformat e) {
+inline std::string Carpet::Aaxis::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -480,7 +484,7 @@ std::string Carpet::Aaxis::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Rangemode e) {
+inline std::string Carpet::Aaxis::to_string(Rangemode e) {
     switch(e) {
         case Rangemode::Normal: return "normal";
         case Rangemode::Tozero: return "tozero";
@@ -489,7 +493,7 @@ std::string Carpet::Aaxis::to_string(Rangemode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Showexponent e) {
+inline std::string Carpet::Aaxis::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -499,7 +503,7 @@ std::string Carpet::Aaxis::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Showticklabels e) {
+inline std::string Carpet::Aaxis::to_string(Showticklabels e) {
     switch(e) {
         case Showticklabels::Start: return "start";
         case Showticklabels::End: return "end";
@@ -509,7 +513,7 @@ std::string Carpet::Aaxis::to_string(Showticklabels e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Showtickprefix e) {
+inline std::string Carpet::Aaxis::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -519,7 +523,7 @@ std::string Carpet::Aaxis::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Showticksuffix e) {
+inline std::string Carpet::Aaxis::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -529,7 +533,7 @@ std::string Carpet::Aaxis::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Tickmode e) {
+inline std::string Carpet::Aaxis::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Linear: return "linear";
         case Tickmode::Array: return "array";
@@ -537,7 +541,7 @@ std::string Carpet::Aaxis::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::to_string(Type e) {
+inline std::string Carpet::Aaxis::to_string(Type e) {
     switch(e) {
         case Type::Hyphen: return "-";
         case Type::Linear: return "linear";
@@ -548,572 +552,608 @@ std::string Carpet::Aaxis::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Aaxis& Carpet::Aaxis::arraydtick(int f) {
+inline Carpet::Aaxis& Carpet::Aaxis::arraydtick(int f) {
     json["arraydtick"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::arraydtick(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::arraydtick(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return arraydtick(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::arraytick0(int f) {
+inline Carpet::Aaxis& Carpet::Aaxis::arraytick0(int f) {
     json["arraytick0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::arraytick0(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::arraytick0(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return arraytick0(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::autorange(enum Autorange f) {
+inline Carpet::Aaxis& Carpet::Aaxis::autorange(enum Autorange f) {
     json["autorange"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::autotypenumbers(enum Autotypenumbers f) {
+inline Carpet::Aaxis& Carpet::Aaxis::autotypenumbers(enum Autotypenumbers f) {
     json["autotypenumbers"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Carpet::Aaxis& Carpet::Aaxis::categoryarray(Range&& f) {
+inline Carpet::Aaxis& Carpet::Aaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::categoryarray(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::categoryarray(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return categoryarray(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::categoryarraysrc(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::categoryarraysrc(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::categoryarraysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return categoryarraysrc(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::categoryorder(enum Categoryorder f) {
+inline Carpet::Aaxis& Carpet::Aaxis::categoryorder(enum Categoryorder f) {
     json["categoryorder"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::cheatertype(enum Cheatertype f) {
+inline Carpet::Aaxis& Carpet::Aaxis::cheatertype(enum Cheatertype f) {
     json["cheatertype"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::color(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::color(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::dtick(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::dtick(double f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::dtick(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::dtick(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::endline(bool f) {
+inline Carpet::Aaxis& Carpet::Aaxis::endline(bool f) {
     json["endline"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::endline(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::endline(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return endline(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::endlinecolor(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::endlinecolor(std::string f) {
+    json["endlinecolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::endlinecolor(double f) {
     json["endlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::endlinecolor(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::endlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return endlinecolor(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::endlinewidth(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::endlinewidth(double f) {
     json["endlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::endlinewidth(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::endlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return endlinewidth(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::exponentformat(enum Exponentformat f) {
+inline Carpet::Aaxis& Carpet::Aaxis::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::fixedrange(bool f) {
+inline Carpet::Aaxis& Carpet::Aaxis::fixedrange(bool f) {
     json["fixedrange"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::fixedrange(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::fixedrange(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return fixedrange(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::gridcolor(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::gridcolor(std::string f) {
+    json["gridcolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::gridcolor(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::gridcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return gridcolor(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::griddash(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::griddash(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::griddash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return griddash(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::gridwidth(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::gridwidth(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::gridwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return gridwidth(std::move(f));
 }
 
 template <typename T>
-Carpet::Aaxis& Carpet::Aaxis::labelalias(T f) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::labelalias(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::labelpadding(int f) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelpadding(int f) {
     json["labelpadding"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::labelpadding(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelpadding(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return labelpadding(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::labelprefix(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelprefix(std::string f) {
     json["labelprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::labelprefix(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelprefix(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::labelsuffix(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelsuffix(std::string f) {
     json["labelsuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::labelsuffix(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::labelsuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelsuffix(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::linecolor(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::linecolor(std::string f) {
+    json["linecolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::linecolor(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::linecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linecolor(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::linewidth(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::linewidth(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::linewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return linewidth(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::minexponent(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::minexponent(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::minorgridcolor(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridcolor(std::string f) {
+    json["minorgridcolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridcolor(double f) {
     json["minorgridcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::minorgridcolor(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return minorgridcolor(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::minorgridcount(int f) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridcount(int f) {
     json["minorgridcount"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::minorgridcount(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridcount(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return minorgridcount(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::minorgriddash(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgriddash(std::string f) {
     json["minorgriddash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::minorgriddash(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgriddash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return minorgriddash(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::minorgridwidth(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridwidth(double f) {
     json["minorgridwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::minorgridwidth(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::minorgridwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minorgridwidth(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::nticks(int f) {
+inline Carpet::Aaxis& Carpet::Aaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::nticks(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::range(const std::vector<double>& f) {
+inline Carpet::Aaxis& Carpet::Aaxis::range(const std::vector<double>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::range(const std::vector<std::string>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::range(const std::vector<std::vector<std::string>>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::range(const std::vector<std::vector<double>>& f) {
     json["range"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::range(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::range(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return range(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::rangemode(enum Rangemode f) {
+inline Carpet::Aaxis& Carpet::Aaxis::rangemode(enum Rangemode f) {
     json["rangemode"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::separatethousands(bool f) {
+inline Carpet::Aaxis& Carpet::Aaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::separatethousands(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::showexponent(enum Showexponent f) {
+inline Carpet::Aaxis& Carpet::Aaxis::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::showgrid(bool f) {
+inline Carpet::Aaxis& Carpet::Aaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::showgrid(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::showgrid(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showgrid(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::showline(bool f) {
+inline Carpet::Aaxis& Carpet::Aaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::showline(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::showline(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showline(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::showticklabels(enum Showticklabels f) {
+inline Carpet::Aaxis& Carpet::Aaxis::showticklabels(enum Showticklabels f) {
     json["showticklabels"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::showtickprefix(enum Showtickprefix f) {
+inline Carpet::Aaxis& Carpet::Aaxis::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::showticksuffix(enum Showticksuffix f) {
+inline Carpet::Aaxis& Carpet::Aaxis::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::smoothing(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::smoothing(double f) {
     json["smoothing"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::smoothing(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::smoothing(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return smoothing(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::startline(bool f) {
+inline Carpet::Aaxis& Carpet::Aaxis::startline(bool f) {
     json["startline"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::startline(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::startline(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return startline(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::startlinecolor(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::startlinecolor(std::string f) {
+    json["startlinecolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis& Carpet::Aaxis::startlinecolor(double f) {
     json["startlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::startlinecolor(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::startlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return startlinecolor(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::startlinewidth(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::startlinewidth(double f) {
     json["startlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::startlinewidth(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::startlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return startlinewidth(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tick0(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tick0(double f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tick0(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tick0(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickangle(double f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickangle(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickfont(Tickfont f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickfont(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickformat(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickformat(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Tickformatstop f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Carpet::Aaxis& Carpet::Aaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickmode(enum Tickmode f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickprefix(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickprefix(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::ticksuffix(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::ticksuffix(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet::Aaxis& Carpet::Aaxis::ticktext(Range&& f) {
+inline Carpet::Aaxis& Carpet::Aaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::ticktext(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::ticktextsrc(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::ticktextsrc(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickvals(Range&& f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickvals(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::tickvalssrc(std::string f) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::tickvalssrc(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::title(Title f) {
+inline Carpet::Aaxis& Carpet::Aaxis::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis& Carpet::Aaxis::title(Callable&& c) {
+inline Carpet::Aaxis& Carpet::Aaxis::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Carpet::Aaxis& Carpet::Aaxis::type(enum Type f) {
+inline Carpet::Aaxis& Carpet::Aaxis::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-std::string Carpet::Aaxis::Tickfont::to_string(Style e) {
+inline std::string Carpet::Aaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1121,7 +1161,7 @@ std::string Carpet::Aaxis::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::Tickfont::to_string(Textcase e) {
+inline std::string Carpet::Aaxis::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1131,7 +1171,7 @@ std::string Carpet::Aaxis::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::Tickfont::to_string(Variant e) {
+inline std::string Carpet::Aaxis::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1144,178 +1184,194 @@ std::string Carpet::Aaxis::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(std::string f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(Callable&& c) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::family(std::string f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::family(Callable&& c) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::lineposition(std::string f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::lineposition(Callable&& c) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::shadow(std::string f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::shadow(Callable&& c) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::size(double f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::size(Callable&& c) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::style(enum Style f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::textcase(enum Textcase f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::variant(enum Variant f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::weight(int f) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::weight(Callable&& c) {
+inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(Callable&& c) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::enabled(bool f) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::enabled(Callable&& c) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::name(std::string f) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::name(Callable&& c) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::templateitemname(std::string f) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::templateitemname(Callable&& c) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::value(std::string f) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::value(Callable&& c) {
+inline Carpet::Aaxis::Tickformatstop& Carpet::Aaxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 
-Carpet::Aaxis::Title& Carpet::Aaxis::Title::font(Font f) {
+inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title& Carpet::Aaxis::Title::font(Callable&& c) {
+inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Carpet::Aaxis::Title& Carpet::Aaxis::Title::offset(double f) {
+inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::offset(double f) {
     json["offset"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title& Carpet::Aaxis::Title::offset(Callable&& c) {
+inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::offset(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return offset(std::move(f));
 }
 
-Carpet::Aaxis::Title& Carpet::Aaxis::Title::text(std::string f) {
+inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title& Carpet::Aaxis::Title::text(Callable&& c) {
+inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Carpet::Aaxis::Title::Font::to_string(Style e) {
+inline std::string Carpet::Aaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1323,7 +1379,7 @@ std::string Carpet::Aaxis::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::Title::Font::to_string(Textcase e) {
+inline std::string Carpet::Aaxis::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1333,7 +1389,7 @@ std::string Carpet::Aaxis::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Aaxis::Title::Font::to_string(Variant e) {
+inline std::string Carpet::Aaxis::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1346,88 +1402,92 @@ std::string Carpet::Aaxis::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(std::string f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(Callable&& c) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::family(std::string f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::family(Callable&& c) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::lineposition(std::string f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::lineposition(Callable&& c) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::shadow(std::string f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::shadow(Callable&& c) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::size(double f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::size(Callable&& c) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::style(enum Style f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::textcase(enum Textcase f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::variant(enum Variant f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::weight(int f) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::weight(Callable&& c) {
+inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Carpet::Baxis::to_string(Autorange e) {
+inline std::string Carpet::Baxis::to_string(Autorange e) {
     switch(e) {
         case Autorange::True: return "True";
         case Autorange::False: return "False";
@@ -1436,7 +1496,7 @@ std::string Carpet::Baxis::to_string(Autorange e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Autotypenumbers e) {
+inline std::string Carpet::Baxis::to_string(Autotypenumbers e) {
     switch(e) {
         case Autotypenumbers::ConvertTypes: return "convert types";
         case Autotypenumbers::Strict: return "strict";
@@ -1444,7 +1504,7 @@ std::string Carpet::Baxis::to_string(Autotypenumbers e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Categoryorder e) {
+inline std::string Carpet::Baxis::to_string(Categoryorder e) {
     switch(e) {
         case Categoryorder::Trace: return "trace";
         case Categoryorder::CategoryAscending: return "category ascending";
@@ -1454,7 +1514,7 @@ std::string Carpet::Baxis::to_string(Categoryorder e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Cheatertype e) {
+inline std::string Carpet::Baxis::to_string(Cheatertype e) {
     switch(e) {
         case Cheatertype::Index: return "index";
         case Cheatertype::Value: return "value";
@@ -1462,7 +1522,7 @@ std::string Carpet::Baxis::to_string(Cheatertype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Exponentformat e) {
+inline std::string Carpet::Baxis::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -1473,7 +1533,7 @@ std::string Carpet::Baxis::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Rangemode e) {
+inline std::string Carpet::Baxis::to_string(Rangemode e) {
     switch(e) {
         case Rangemode::Normal: return "normal";
         case Rangemode::Tozero: return "tozero";
@@ -1482,7 +1542,7 @@ std::string Carpet::Baxis::to_string(Rangemode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Showexponent e) {
+inline std::string Carpet::Baxis::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -1492,7 +1552,7 @@ std::string Carpet::Baxis::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Showticklabels e) {
+inline std::string Carpet::Baxis::to_string(Showticklabels e) {
     switch(e) {
         case Showticklabels::Start: return "start";
         case Showticklabels::End: return "end";
@@ -1502,7 +1562,7 @@ std::string Carpet::Baxis::to_string(Showticklabels e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Showtickprefix e) {
+inline std::string Carpet::Baxis::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -1512,7 +1572,7 @@ std::string Carpet::Baxis::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Showticksuffix e) {
+inline std::string Carpet::Baxis::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -1522,7 +1582,7 @@ std::string Carpet::Baxis::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Tickmode e) {
+inline std::string Carpet::Baxis::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Linear: return "linear";
         case Tickmode::Array: return "array";
@@ -1530,7 +1590,7 @@ std::string Carpet::Baxis::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::to_string(Type e) {
+inline std::string Carpet::Baxis::to_string(Type e) {
     switch(e) {
         case Type::Hyphen: return "-";
         case Type::Linear: return "linear";
@@ -1541,572 +1601,608 @@ std::string Carpet::Baxis::to_string(Type e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Baxis& Carpet::Baxis::arraydtick(int f) {
+inline Carpet::Baxis& Carpet::Baxis::arraydtick(int f) {
     json["arraydtick"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::arraydtick(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::arraydtick(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return arraydtick(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::arraytick0(int f) {
+inline Carpet::Baxis& Carpet::Baxis::arraytick0(int f) {
     json["arraytick0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::arraytick0(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::arraytick0(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return arraytick0(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::autorange(enum Autorange f) {
+inline Carpet::Baxis& Carpet::Baxis::autorange(enum Autorange f) {
     json["autorange"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::autotypenumbers(enum Autotypenumbers f) {
+inline Carpet::Baxis& Carpet::Baxis::autotypenumbers(enum Autotypenumbers f) {
     json["autotypenumbers"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Carpet::Baxis& Carpet::Baxis::categoryarray(Range&& f) {
+inline Carpet::Baxis& Carpet::Baxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::categoryarray(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::categoryarray(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return categoryarray(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::categoryarraysrc(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::categoryarraysrc(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::categoryarraysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return categoryarraysrc(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::categoryorder(enum Categoryorder f) {
+inline Carpet::Baxis& Carpet::Baxis::categoryorder(enum Categoryorder f) {
     json["categoryorder"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::cheatertype(enum Cheatertype f) {
+inline Carpet::Baxis& Carpet::Baxis::cheatertype(enum Cheatertype f) {
     json["cheatertype"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::color(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::color(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::dtick(double f) {
+inline Carpet::Baxis& Carpet::Baxis::dtick(double f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::dtick(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::dtick(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::endline(bool f) {
+inline Carpet::Baxis& Carpet::Baxis::endline(bool f) {
     json["endline"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::endline(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::endline(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return endline(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::endlinecolor(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::endlinecolor(std::string f) {
+    json["endlinecolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::endlinecolor(double f) {
     json["endlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::endlinecolor(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::endlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return endlinecolor(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::endlinewidth(double f) {
+inline Carpet::Baxis& Carpet::Baxis::endlinewidth(double f) {
     json["endlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::endlinewidth(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::endlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return endlinewidth(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::exponentformat(enum Exponentformat f) {
+inline Carpet::Baxis& Carpet::Baxis::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::fixedrange(bool f) {
+inline Carpet::Baxis& Carpet::Baxis::fixedrange(bool f) {
     json["fixedrange"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::fixedrange(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::fixedrange(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return fixedrange(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::gridcolor(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::gridcolor(std::string f) {
+    json["gridcolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::gridcolor(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::gridcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return gridcolor(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::griddash(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::griddash(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::griddash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return griddash(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::gridwidth(double f) {
+inline Carpet::Baxis& Carpet::Baxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::gridwidth(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::gridwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return gridwidth(std::move(f));
 }
 
 template <typename T>
-Carpet::Baxis& Carpet::Baxis::labelalias(T f) {
+inline Carpet::Baxis& Carpet::Baxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::labelalias(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::labelpadding(int f) {
+inline Carpet::Baxis& Carpet::Baxis::labelpadding(int f) {
     json["labelpadding"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::labelpadding(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::labelpadding(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return labelpadding(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::labelprefix(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::labelprefix(std::string f) {
     json["labelprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::labelprefix(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::labelprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelprefix(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::labelsuffix(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::labelsuffix(std::string f) {
     json["labelsuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::labelsuffix(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::labelsuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return labelsuffix(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::linecolor(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::linecolor(std::string f) {
+    json["linecolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::linecolor(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::linecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linecolor(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::linewidth(double f) {
+inline Carpet::Baxis& Carpet::Baxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::linewidth(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::linewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return linewidth(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::minexponent(double f) {
+inline Carpet::Baxis& Carpet::Baxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::minexponent(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::minorgridcolor(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::minorgridcolor(std::string f) {
+    json["minorgridcolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::minorgridcolor(double f) {
     json["minorgridcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::minorgridcolor(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::minorgridcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return minorgridcolor(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::minorgridcount(int f) {
+inline Carpet::Baxis& Carpet::Baxis::minorgridcount(int f) {
     json["minorgridcount"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::minorgridcount(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::minorgridcount(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return minorgridcount(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::minorgriddash(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::minorgriddash(std::string f) {
     json["minorgriddash"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::minorgriddash(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::minorgriddash(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return minorgriddash(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::minorgridwidth(double f) {
+inline Carpet::Baxis& Carpet::Baxis::minorgridwidth(double f) {
     json["minorgridwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::minorgridwidth(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::minorgridwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minorgridwidth(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::nticks(int f) {
+inline Carpet::Baxis& Carpet::Baxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::nticks(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::range(const std::vector<double>& f) {
+inline Carpet::Baxis& Carpet::Baxis::range(const std::vector<double>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::range(const std::vector<std::string>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::range(const std::vector<std::vector<std::string>>& f) {
+    json["range"] = f;
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::range(const std::vector<std::vector<double>>& f) {
     json["range"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::range(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::range(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return range(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::rangemode(enum Rangemode f) {
+inline Carpet::Baxis& Carpet::Baxis::rangemode(enum Rangemode f) {
     json["rangemode"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::separatethousands(bool f) {
+inline Carpet::Baxis& Carpet::Baxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::separatethousands(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::showexponent(enum Showexponent f) {
+inline Carpet::Baxis& Carpet::Baxis::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::showgrid(bool f) {
+inline Carpet::Baxis& Carpet::Baxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::showgrid(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::showgrid(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showgrid(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::showline(bool f) {
+inline Carpet::Baxis& Carpet::Baxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::showline(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::showline(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showline(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::showticklabels(enum Showticklabels f) {
+inline Carpet::Baxis& Carpet::Baxis::showticklabels(enum Showticklabels f) {
     json["showticklabels"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::showtickprefix(enum Showtickprefix f) {
+inline Carpet::Baxis& Carpet::Baxis::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::showticksuffix(enum Showticksuffix f) {
+inline Carpet::Baxis& Carpet::Baxis::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::smoothing(double f) {
+inline Carpet::Baxis& Carpet::Baxis::smoothing(double f) {
     json["smoothing"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::smoothing(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::smoothing(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return smoothing(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::startline(bool f) {
+inline Carpet::Baxis& Carpet::Baxis::startline(bool f) {
     json["startline"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::startline(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::startline(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return startline(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::startlinecolor(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::startlinecolor(std::string f) {
+    json["startlinecolor"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis& Carpet::Baxis::startlinecolor(double f) {
     json["startlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::startlinecolor(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::startlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return startlinecolor(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::startlinewidth(double f) {
+inline Carpet::Baxis& Carpet::Baxis::startlinewidth(double f) {
     json["startlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::startlinewidth(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::startlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return startlinewidth(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tick0(double f) {
+inline Carpet::Baxis& Carpet::Baxis::tick0(double f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tick0(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tick0(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tickangle(double f) {
+inline Carpet::Baxis& Carpet::Baxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickangle(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tickfont(Tickfont f) {
+inline Carpet::Baxis& Carpet::Baxis::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickfont(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tickformat(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickformat(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tickformatstops(Tickformatstop f) {
+inline Carpet::Baxis& Carpet::Baxis::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickformatstops(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Carpet::Baxis& Carpet::Baxis::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Carpet::Baxis& Carpet::Baxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::tickmode(enum Tickmode f) {
+inline Carpet::Baxis& Carpet::Baxis::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis& Carpet::Baxis::tickprefix(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickprefix(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::ticksuffix(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::ticksuffix(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet::Baxis& Carpet::Baxis::ticktext(Range&& f) {
+inline Carpet::Baxis& Carpet::Baxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::ticktext(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::ticktextsrc(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::ticktextsrc(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Carpet::Baxis& Carpet::Baxis::tickvals(Range&& f) {
+inline Carpet::Baxis& Carpet::Baxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickvals(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::tickvalssrc(std::string f) {
+inline Carpet::Baxis& Carpet::Baxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::tickvalssrc(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::title(Title f) {
+inline Carpet::Baxis& Carpet::Baxis::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis& Carpet::Baxis::title(Callable&& c) {
+inline Carpet::Baxis& Carpet::Baxis::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Carpet::Baxis& Carpet::Baxis::type(enum Type f) {
+inline Carpet::Baxis& Carpet::Baxis::type(enum Type f) {
     json["type"] = to_string(f);
     return *this;
 }
 
-std::string Carpet::Baxis::Tickfont::to_string(Style e) {
+inline std::string Carpet::Baxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2114,7 +2210,7 @@ std::string Carpet::Baxis::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::Tickfont::to_string(Textcase e) {
+inline std::string Carpet::Baxis::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2124,7 +2220,7 @@ std::string Carpet::Baxis::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::Tickfont::to_string(Variant e) {
+inline std::string Carpet::Baxis::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2137,178 +2233,194 @@ std::string Carpet::Baxis::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(std::string f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(Callable&& c) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::family(std::string f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::family(Callable&& c) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::lineposition(std::string f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::lineposition(Callable&& c) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::shadow(std::string f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::shadow(Callable&& c) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::size(double f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::size(Callable&& c) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::style(enum Style f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::textcase(enum Textcase f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::variant(enum Variant f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::weight(int f) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::weight(Callable&& c) {
+inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(Callable&& c) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::enabled(bool f) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::enabled(Callable&& c) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::name(std::string f) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::name(Callable&& c) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::templateitemname(std::string f) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::templateitemname(Callable&& c) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::value(std::string f) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::value(Callable&& c) {
+inline Carpet::Baxis::Tickformatstop& Carpet::Baxis::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
 
-Carpet::Baxis::Title& Carpet::Baxis::Title::font(Font f) {
+inline Carpet::Baxis::Title& Carpet::Baxis::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title& Carpet::Baxis::Title::font(Callable&& c) {
+inline Carpet::Baxis::Title& Carpet::Baxis::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Carpet::Baxis::Title& Carpet::Baxis::Title::offset(double f) {
+inline Carpet::Baxis::Title& Carpet::Baxis::Title::offset(double f) {
     json["offset"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title& Carpet::Baxis::Title::offset(Callable&& c) {
+inline Carpet::Baxis::Title& Carpet::Baxis::Title::offset(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return offset(std::move(f));
 }
 
-Carpet::Baxis::Title& Carpet::Baxis::Title::text(std::string f) {
+inline Carpet::Baxis::Title& Carpet::Baxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title& Carpet::Baxis::Title::text(Callable&& c) {
+inline Carpet::Baxis::Title& Carpet::Baxis::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Carpet::Baxis::Title::Font::to_string(Style e) {
+inline std::string Carpet::Baxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2316,7 +2428,7 @@ std::string Carpet::Baxis::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::Title::Font::to_string(Textcase e) {
+inline std::string Carpet::Baxis::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2326,7 +2438,7 @@ std::string Carpet::Baxis::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Baxis::Title::Font::to_string(Variant e) {
+inline std::string Carpet::Baxis::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2339,88 +2451,92 @@ std::string Carpet::Baxis::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(std::string f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(Callable&& c) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::family(std::string f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::family(Callable&& c) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::lineposition(std::string f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::lineposition(Callable&& c) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::shadow(std::string f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::shadow(Callable&& c) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::size(double f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::size(Callable&& c) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::style(enum Style f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::textcase(enum Textcase f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::variant(enum Variant f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::weight(int f) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::weight(Callable&& c) {
+inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Carpet::Font::to_string(Style e) {
+inline std::string Carpet::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2428,7 +2544,7 @@ std::string Carpet::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Font::to_string(Textcase e) {
+inline std::string Carpet::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2438,7 +2554,7 @@ std::string Carpet::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Font::to_string(Variant e) {
+inline std::string Carpet::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2451,111 +2567,115 @@ std::string Carpet::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Font& Carpet::Font::color(std::string f) {
+inline Carpet::Font& Carpet::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Font& Carpet::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Font& Carpet::Font::color(Callable&& c) {
+inline Carpet::Font& Carpet::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Font& Carpet::Font::family(std::string f) {
+inline Carpet::Font& Carpet::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Font& Carpet::Font::family(Callable&& c) {
+inline Carpet::Font& Carpet::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Carpet::Font& Carpet::Font::lineposition(std::string f) {
+inline Carpet::Font& Carpet::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Font& Carpet::Font::lineposition(Callable&& c) {
+inline Carpet::Font& Carpet::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Carpet::Font& Carpet::Font::shadow(std::string f) {
+inline Carpet::Font& Carpet::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Font& Carpet::Font::shadow(Callable&& c) {
+inline Carpet::Font& Carpet::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Carpet::Font& Carpet::Font::size(double f) {
+inline Carpet::Font& Carpet::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Font& Carpet::Font::size(Callable&& c) {
+inline Carpet::Font& Carpet::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Carpet::Font& Carpet::Font::style(enum Style f) {
+inline Carpet::Font& Carpet::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Carpet::Font& Carpet::Font::textcase(enum Textcase f) {
+inline Carpet::Font& Carpet::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Carpet::Font& Carpet::Font::variant(enum Variant f) {
+inline Carpet::Font& Carpet::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Carpet::Font& Carpet::Font::weight(int f) {
+inline Carpet::Font& Carpet::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Font& Carpet::Font::weight(Callable&& c) {
+inline Carpet::Font& Carpet::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::font(Font f) {
+inline Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::font(Callable&& c) {
+inline Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::text(std::string f) {
+inline Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::text(Callable&& c) {
+inline Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Carpet::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Carpet::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2563,7 +2683,7 @@ std::string Carpet::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Carpet::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2573,7 +2693,7 @@ std::string Carpet::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Carpet::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Carpet::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2586,105 +2706,109 @@ std::string Carpet::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(std::string f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(Callable&& c) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::family(std::string f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::family(Callable&& c) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::shadow(std::string f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::size(double f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::size(Callable&& c) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::style(enum Style f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::weight(int f) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Carpet::Stream& Carpet::Stream::maxpoints(double f) {
+inline Carpet::Stream& Carpet::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Stream& Carpet::Stream::maxpoints(Callable&& c) {
+inline Carpet::Stream& Carpet::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Carpet::Stream& Carpet::Stream::token(std::string f) {
+inline Carpet::Stream& Carpet::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Carpet::Stream& Carpet::Stream::token(Callable&& c) {
+inline Carpet::Stream& Carpet::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));

@@ -118,7 +118,9 @@ class Violin : public Trace {
     // Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line
     // color, whichever is available.
     Violin& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin& fillcolor(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
@@ -348,7 +350,14 @@ class Violin : public Trace {
     // Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode`
     // is set to *manual*.
     Violin& span(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Violin& span(const std::vector<std::string>& f);
+    Violin& span(const std::vector<std::vector<std::string>>& f);
+    Violin& span(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Violin& span(Callable&& c);
 
     // Sets the method by which the span in data space where the density function will be computed. *soft* means the
@@ -498,7 +507,9 @@ class Violin::Box {
 
     // Sets the inner box plot fill color.
     Violin::Box& fillcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Box& fillcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Box& fillcolor(Callable&& c);
 
     Violin::Box& line(Line f);
@@ -528,7 +539,9 @@ class Violin::Box::Line {
 
     // Sets the inner box plot bounding line color.
     Violin::Box::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Box::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Box::Line& color(Callable&& c);
 
     // Sets the inner box plot bounding line width.
@@ -569,9 +582,12 @@ class Violin::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Violin::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Hoverlabel& bgcolor(Callable&& c);
     Violin::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Violin::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Violin::Hoverlabel& bgcolorsrc(std::string f);
@@ -580,9 +596,12 @@ class Violin::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Violin::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Hoverlabel& bordercolor(Callable&& c);
     Violin::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Violin::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Violin::Hoverlabel& bordercolorsrc(std::string f);
@@ -644,9 +663,12 @@ class Violin::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Violin::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Hoverlabel::Font& color(Callable&& c);
     Violin::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Violin::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Violin::Hoverlabel::Font& colorsrc(std::string f);
@@ -808,7 +830,9 @@ class Violin::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Violin::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -871,7 +895,9 @@ class Violin::Line {
 
     // Sets the color of line bounding the violin(s).
     Violin::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Line& color(Callable&& c);
 
     // Sets the width (in px) of line bounding the violin(s).
@@ -1227,7 +1253,9 @@ class Violin::Marker {
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Violin::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Marker& color(Callable&& c);
 
     Violin::Marker& line(Line f);
@@ -1241,7 +1269,9 @@ class Violin::Marker {
 
     // Sets the color of the outlier sample points.
     Violin::Marker& outliercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Marker& outliercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Marker& outliercolor(Callable&& c);
 
     // Sets the marker size (in px).
@@ -1269,12 +1299,16 @@ class Violin::Marker::Line {
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Violin::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Marker::Line& color(Callable&& c);
 
     // Sets the border line color of the outlier sample points. Defaults to marker.color
     Violin::Marker::Line& outliercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Marker::Line& outliercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Marker::Line& outliercolor(Callable&& c);
 
     // Sets the border line width (in px) of the outlier sample points.
@@ -1299,7 +1333,9 @@ class Violin::Meanline {
 
     // Sets the mean line color.
     Violin::Meanline& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Meanline& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Meanline& color(Callable&& c);
 
     // Determines if a line corresponding to the sample's mean is shown inside the violins. If `box.visible` is turned
@@ -1342,7 +1378,9 @@ class Violin::Selected::Marker {
 
     // Sets the marker color of selected points.
     Violin::Selected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Selected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
@@ -1405,7 +1443,9 @@ class Violin::Unselected::Marker {
 
     // Sets the marker color of unselected points, applied only when a selection exists.
     Violin::Unselected::Marker& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Violin::Unselected::Marker& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Violin::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.

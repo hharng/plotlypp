@@ -10,7 +10,7 @@
 
 namespace plotlypp {
 
-std::string Heatmap::to_string(Visible e) {
+inline std::string Heatmap::to_string(Visible e) {
     switch(e) {
         case Visible::True: return "True";
         case Visible::False: return "False";
@@ -19,7 +19,7 @@ std::string Heatmap::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Xcalendar e) {
+inline std::string Heatmap::to_string(Xcalendar e) {
     switch(e) {
         case Xcalendar::Chinese: return "chinese";
         case Xcalendar::Coptic: return "coptic";
@@ -41,7 +41,7 @@ std::string Heatmap::to_string(Xcalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Xperiodalignment e) {
+inline std::string Heatmap::to_string(Xperiodalignment e) {
     switch(e) {
         case Xperiodalignment::Start: return "start";
         case Xperiodalignment::Middle: return "middle";
@@ -50,7 +50,7 @@ std::string Heatmap::to_string(Xperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Xtype e) {
+inline std::string Heatmap::to_string(Xtype e) {
     switch(e) {
         case Xtype::Array: return "array";
         case Xtype::Scaled: return "scaled";
@@ -58,7 +58,7 @@ std::string Heatmap::to_string(Xtype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Ycalendar e) {
+inline std::string Heatmap::to_string(Ycalendar e) {
     switch(e) {
         case Ycalendar::Chinese: return "chinese";
         case Ycalendar::Coptic: return "coptic";
@@ -80,7 +80,7 @@ std::string Heatmap::to_string(Ycalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Yperiodalignment e) {
+inline std::string Heatmap::to_string(Yperiodalignment e) {
     switch(e) {
         case Yperiodalignment::Start: return "start";
         case Yperiodalignment::Middle: return "middle";
@@ -89,7 +89,7 @@ std::string Heatmap::to_string(Yperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Ytype e) {
+inline std::string Heatmap::to_string(Ytype e) {
     switch(e) {
         case Ytype::Array: return "array";
         case Ytype::Scaled: return "scaled";
@@ -97,7 +97,7 @@ std::string Heatmap::to_string(Ytype e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::to_string(Zsmooth e) {
+inline std::string Heatmap::to_string(Zsmooth e) {
     switch(e) {
         case Zsmooth::Fast: return "fast";
         case Zsmooth::Best: return "best";
@@ -107,772 +107,772 @@ std::string Heatmap::to_string(Zsmooth e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap& Heatmap::autocolorscale(bool f) {
+inline Heatmap& Heatmap::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::autocolorscale(Callable&& c) {
+inline Heatmap& Heatmap::autocolorscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return autocolorscale(std::move(f));
 }
 
-Heatmap& Heatmap::coloraxis(std::string f) {
+inline Heatmap& Heatmap::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::coloraxis(Callable&& c) {
+inline Heatmap& Heatmap::coloraxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return coloraxis(std::move(f));
 }
 
-Heatmap& Heatmap::colorbar(Colorbar f) {
+inline Heatmap& Heatmap::colorbar(Colorbar f) {
     json["colorbar"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::colorbar(Callable&& c) {
+inline Heatmap& Heatmap::colorbar(Callable&& c) {
     Colorbar f{};
     std::forward<Callable>(c)(f);
     return colorbar(std::move(f));
 }
 
-Heatmap& Heatmap::colorscale(std::string f) {
+inline Heatmap& Heatmap::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
     return *this;
 }
-Heatmap& Heatmap::colorscale(const std::vector<std::pair<double, std::string>>& f) {
+inline Heatmap& Heatmap::colorscale(const std::vector<std::pair<double, std::string>>& f) {
     json["colorscale"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::colorscale(Callable&& c) {
+inline Heatmap& Heatmap::colorscale(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorscale(std::move(f));
 }
 
-Heatmap& Heatmap::connectgaps(bool f) {
+inline Heatmap& Heatmap::connectgaps(bool f) {
     json["connectgaps"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::connectgaps(Callable&& c) {
+inline Heatmap& Heatmap::connectgaps(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return connectgaps(std::move(f));
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::customdata(Range&& f) {
+inline Heatmap& Heatmap::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::customdata(Callable&& c) {
+inline Heatmap& Heatmap::customdata(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return customdata(std::move(f));
 }
 
-Heatmap& Heatmap::customdatasrc(std::string f) {
+inline Heatmap& Heatmap::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::customdatasrc(Callable&& c) {
+inline Heatmap& Heatmap::customdatasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return customdatasrc(std::move(f));
 }
 
-Heatmap& Heatmap::dx(double f) {
+inline Heatmap& Heatmap::dx(double f) {
     json["dx"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::dx(Callable&& c) {
+inline Heatmap& Heatmap::dx(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dx(std::move(f));
 }
 
-Heatmap& Heatmap::dy(double f) {
+inline Heatmap& Heatmap::dy(double f) {
     json["dy"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::dy(Callable&& c) {
+inline Heatmap& Heatmap::dy(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return dy(std::move(f));
 }
 
-Heatmap& Heatmap::hoverinfo(std::string f) {
+inline Heatmap& Heatmap::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hoverinfo(Callable&& c) {
+inline Heatmap& Heatmap::hoverinfo(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfo(std::move(f));
 }
-Heatmap& Heatmap::hoverinfo(const std::vector<std::string>& f) {
+inline Heatmap& Heatmap::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
 }
 
-Heatmap& Heatmap::hoverinfosrc(std::string f) {
+inline Heatmap& Heatmap::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hoverinfosrc(Callable&& c) {
+inline Heatmap& Heatmap::hoverinfosrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hoverinfosrc(std::move(f));
 }
 
-Heatmap& Heatmap::hoverlabel(Hoverlabel f) {
+inline Heatmap& Heatmap::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hoverlabel(Callable&& c) {
+inline Heatmap& Heatmap::hoverlabel(Callable&& c) {
     Hoverlabel f{};
     std::forward<Callable>(c)(f);
     return hoverlabel(std::move(f));
 }
 
-Heatmap& Heatmap::hoverongaps(bool f) {
+inline Heatmap& Heatmap::hoverongaps(bool f) {
     json["hoverongaps"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hoverongaps(Callable&& c) {
+inline Heatmap& Heatmap::hoverongaps(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return hoverongaps(std::move(f));
 }
 
-Heatmap& Heatmap::hovertemplate(std::string f) {
+inline Heatmap& Heatmap::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hovertemplate(Callable&& c) {
+inline Heatmap& Heatmap::hovertemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplate(std::move(f));
 }
-Heatmap& Heatmap::hovertemplate(const std::vector<std::string>& f) {
+inline Heatmap& Heatmap::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
 }
 
-Heatmap& Heatmap::hovertemplatesrc(std::string f) {
+inline Heatmap& Heatmap::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hovertemplatesrc(Callable&& c) {
+inline Heatmap& Heatmap::hovertemplatesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertemplatesrc(std::move(f));
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::hovertext(Range&& f) {
+inline Heatmap& Heatmap::hovertext(Range&& f) {
     json["hovertext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::hovertext(Callable&& c) {
+inline Heatmap& Heatmap::hovertext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return hovertext(std::move(f));
 }
 
-Heatmap& Heatmap::hovertextsrc(std::string f) {
+inline Heatmap& Heatmap::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::hovertextsrc(Callable&& c) {
+inline Heatmap& Heatmap::hovertextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return hovertextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::ids(Range&& f) {
+inline Heatmap& Heatmap::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::ids(Callable&& c) {
+inline Heatmap& Heatmap::ids(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ids(std::move(f));
 }
 
-Heatmap& Heatmap::idssrc(std::string f) {
+inline Heatmap& Heatmap::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::idssrc(Callable&& c) {
+inline Heatmap& Heatmap::idssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return idssrc(std::move(f));
 }
 
-Heatmap& Heatmap::legend(std::string f) {
+inline Heatmap& Heatmap::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::legend(Callable&& c) {
+inline Heatmap& Heatmap::legend(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legend(std::move(f));
 }
 
-Heatmap& Heatmap::legendgroup(std::string f) {
+inline Heatmap& Heatmap::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::legendgroup(Callable&& c) {
+inline Heatmap& Heatmap::legendgroup(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return legendgroup(std::move(f));
 }
 
-Heatmap& Heatmap::legendgrouptitle(Legendgrouptitle f) {
+inline Heatmap& Heatmap::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::legendgrouptitle(Callable&& c) {
+inline Heatmap& Heatmap::legendgrouptitle(Callable&& c) {
     Legendgrouptitle f{};
     std::forward<Callable>(c)(f);
     return legendgrouptitle(std::move(f));
 }
 
-Heatmap& Heatmap::legendrank(double f) {
+inline Heatmap& Heatmap::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::legendrank(Callable&& c) {
+inline Heatmap& Heatmap::legendrank(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendrank(std::move(f));
 }
 
-Heatmap& Heatmap::legendwidth(double f) {
+inline Heatmap& Heatmap::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::legendwidth(Callable&& c) {
+inline Heatmap& Heatmap::legendwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return legendwidth(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::meta(T f) {
+inline Heatmap& Heatmap::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::meta(Callable&& c) {
+inline Heatmap& Heatmap::meta(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return meta(std::move(f));
 }
 template <typename T>
-Heatmap& Heatmap::meta(const std::vector<T>& f) {
+inline Heatmap& Heatmap::meta(const std::vector<T>& f) {
     json["meta"] = f;
     return *this;
 }
 
-Heatmap& Heatmap::metasrc(std::string f) {
+inline Heatmap& Heatmap::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::metasrc(Callable&& c) {
+inline Heatmap& Heatmap::metasrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return metasrc(std::move(f));
 }
 
-Heatmap& Heatmap::name(std::string f) {
+inline Heatmap& Heatmap::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::name(Callable&& c) {
+inline Heatmap& Heatmap::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Heatmap& Heatmap::opacity(double f) {
+inline Heatmap& Heatmap::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::opacity(Callable&& c) {
+inline Heatmap& Heatmap::opacity(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return opacity(std::move(f));
 }
 
-Heatmap& Heatmap::reversescale(bool f) {
+inline Heatmap& Heatmap::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::reversescale(Callable&& c) {
+inline Heatmap& Heatmap::reversescale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return reversescale(std::move(f));
 }
 
-Heatmap& Heatmap::showlegend(bool f) {
+inline Heatmap& Heatmap::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::showlegend(Callable&& c) {
+inline Heatmap& Heatmap::showlegend(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showlegend(std::move(f));
 }
 
-Heatmap& Heatmap::showscale(bool f) {
+inline Heatmap& Heatmap::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::showscale(Callable&& c) {
+inline Heatmap& Heatmap::showscale(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showscale(std::move(f));
 }
 
-Heatmap& Heatmap::stream(Stream f) {
+inline Heatmap& Heatmap::stream(Stream f) {
     json["stream"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::stream(Callable&& c) {
+inline Heatmap& Heatmap::stream(Callable&& c) {
     Stream f{};
     std::forward<Callable>(c)(f);
     return stream(std::move(f));
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::text(Range&& f) {
+inline Heatmap& Heatmap::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::text(Callable&& c) {
+inline Heatmap& Heatmap::text(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-Heatmap& Heatmap::textfont(Textfont f) {
+inline Heatmap& Heatmap::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::textfont(Callable&& c) {
+inline Heatmap& Heatmap::textfont(Callable&& c) {
     Textfont f{};
     std::forward<Callable>(c)(f);
     return textfont(std::move(f));
 }
 
-Heatmap& Heatmap::textsrc(std::string f) {
+inline Heatmap& Heatmap::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::textsrc(Callable&& c) {
+inline Heatmap& Heatmap::textsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textsrc(std::move(f));
 }
 
-Heatmap& Heatmap::texttemplate(std::string f) {
+inline Heatmap& Heatmap::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::texttemplate(Callable&& c) {
+inline Heatmap& Heatmap::texttemplate(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return texttemplate(std::move(f));
 }
 
-Heatmap& Heatmap::transpose(bool f) {
+inline Heatmap& Heatmap::transpose(bool f) {
     json["transpose"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::transpose(Callable&& c) {
+inline Heatmap& Heatmap::transpose(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return transpose(std::move(f));
 }
 
-Heatmap& Heatmap::uid(std::string f) {
+inline Heatmap& Heatmap::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::uid(Callable&& c) {
+inline Heatmap& Heatmap::uid(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return uid(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::uirevision(T f) {
+inline Heatmap& Heatmap::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::uirevision(Callable&& c) {
+inline Heatmap& Heatmap::uirevision(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return uirevision(std::move(f));
 }
 
-Heatmap& Heatmap::visible(enum Visible f) {
+inline Heatmap& Heatmap::visible(enum Visible f) {
     json["visible"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::x(Range&& f) {
+inline Heatmap& Heatmap::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::x(Callable&& c) {
+inline Heatmap& Heatmap::x(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::x0(T f) {
+inline Heatmap& Heatmap::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::x0(Callable&& c) {
+inline Heatmap& Heatmap::x0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return x0(std::move(f));
 }
 
-Heatmap& Heatmap::xaxis(std::string f) {
+inline Heatmap& Heatmap::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::xaxis(Callable&& c) {
+inline Heatmap& Heatmap::xaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xaxis(std::move(f));
 }
 
-Heatmap& Heatmap::xcalendar(enum Xcalendar f) {
+inline Heatmap& Heatmap::xcalendar(enum Xcalendar f) {
     json["xcalendar"] = to_string(f);
     return *this;
 }
 
-Heatmap& Heatmap::xgap(double f) {
+inline Heatmap& Heatmap::xgap(double f) {
     json["xgap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::xgap(Callable&& c) {
+inline Heatmap& Heatmap::xgap(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xgap(std::move(f));
 }
 
-Heatmap& Heatmap::xhoverformat(std::string f) {
+inline Heatmap& Heatmap::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::xhoverformat(Callable&& c) {
+inline Heatmap& Heatmap::xhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xhoverformat(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::xperiod(T f) {
+inline Heatmap& Heatmap::xperiod(T f) {
     json["xperiod"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::xperiod(Callable&& c) {
+inline Heatmap& Heatmap::xperiod(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return xperiod(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::xperiod0(T f) {
+inline Heatmap& Heatmap::xperiod0(T f) {
     json["xperiod0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::xperiod0(Callable&& c) {
+inline Heatmap& Heatmap::xperiod0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return xperiod0(std::move(f));
 }
 
-Heatmap& Heatmap::xperiodalignment(enum Xperiodalignment f) {
+inline Heatmap& Heatmap::xperiodalignment(enum Xperiodalignment f) {
     json["xperiodalignment"] = to_string(f);
     return *this;
 }
 
-Heatmap& Heatmap::xsrc(std::string f) {
+inline Heatmap& Heatmap::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::xsrc(Callable&& c) {
+inline Heatmap& Heatmap::xsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return xsrc(std::move(f));
 }
 
-Heatmap& Heatmap::xtype(enum Xtype f) {
+inline Heatmap& Heatmap::xtype(enum Xtype f) {
     json["xtype"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::y(Range&& f) {
+inline Heatmap& Heatmap::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::y(Callable&& c) {
+inline Heatmap& Heatmap::y(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::y0(T f) {
+inline Heatmap& Heatmap::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::y0(Callable&& c) {
+inline Heatmap& Heatmap::y0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return y0(std::move(f));
 }
 
-Heatmap& Heatmap::yaxis(std::string f) {
+inline Heatmap& Heatmap::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::yaxis(Callable&& c) {
+inline Heatmap& Heatmap::yaxis(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yaxis(std::move(f));
 }
 
-Heatmap& Heatmap::ycalendar(enum Ycalendar f) {
+inline Heatmap& Heatmap::ycalendar(enum Ycalendar f) {
     json["ycalendar"] = to_string(f);
     return *this;
 }
 
-Heatmap& Heatmap::ygap(double f) {
+inline Heatmap& Heatmap::ygap(double f) {
     json["ygap"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::ygap(Callable&& c) {
+inline Heatmap& Heatmap::ygap(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ygap(std::move(f));
 }
 
-Heatmap& Heatmap::yhoverformat(std::string f) {
+inline Heatmap& Heatmap::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::yhoverformat(Callable&& c) {
+inline Heatmap& Heatmap::yhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return yhoverformat(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::yperiod(T f) {
+inline Heatmap& Heatmap::yperiod(T f) {
     json["yperiod"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::yperiod(Callable&& c) {
+inline Heatmap& Heatmap::yperiod(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return yperiod(std::move(f));
 }
 
 template <typename T>
-Heatmap& Heatmap::yperiod0(T f) {
+inline Heatmap& Heatmap::yperiod0(T f) {
     json["yperiod0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::yperiod0(Callable&& c) {
+inline Heatmap& Heatmap::yperiod0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return yperiod0(std::move(f));
 }
 
-Heatmap& Heatmap::yperiodalignment(enum Yperiodalignment f) {
+inline Heatmap& Heatmap::yperiodalignment(enum Yperiodalignment f) {
     json["yperiodalignment"] = to_string(f);
     return *this;
 }
 
-Heatmap& Heatmap::ysrc(std::string f) {
+inline Heatmap& Heatmap::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::ysrc(Callable&& c) {
+inline Heatmap& Heatmap::ysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ysrc(std::move(f));
 }
 
-Heatmap& Heatmap::ytype(enum Ytype f) {
+inline Heatmap& Heatmap::ytype(enum Ytype f) {
     json["ytype"] = to_string(f);
     return *this;
 }
 
 template <typename Range, typename>
-Heatmap& Heatmap::z(Range&& f) {
+inline Heatmap& Heatmap::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap& Heatmap::z(Callable&& c) {
+inline Heatmap& Heatmap::z(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return z(std::move(f));
 }
 
-Heatmap& Heatmap::zauto(bool f) {
+inline Heatmap& Heatmap::zauto(bool f) {
     json["zauto"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zauto(Callable&& c) {
+inline Heatmap& Heatmap::zauto(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return zauto(std::move(f));
 }
 
-Heatmap& Heatmap::zhoverformat(std::string f) {
+inline Heatmap& Heatmap::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zhoverformat(Callable&& c) {
+inline Heatmap& Heatmap::zhoverformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zhoverformat(std::move(f));
 }
 
-Heatmap& Heatmap::zmax(double f) {
+inline Heatmap& Heatmap::zmax(double f) {
     json["zmax"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zmax(Callable&& c) {
+inline Heatmap& Heatmap::zmax(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmax(std::move(f));
 }
 
-Heatmap& Heatmap::zmid(double f) {
+inline Heatmap& Heatmap::zmid(double f) {
     json["zmid"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zmid(Callable&& c) {
+inline Heatmap& Heatmap::zmid(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmid(std::move(f));
 }
 
-Heatmap& Heatmap::zmin(double f) {
+inline Heatmap& Heatmap::zmin(double f) {
     json["zmin"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zmin(Callable&& c) {
+inline Heatmap& Heatmap::zmin(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return zmin(std::move(f));
 }
 
-Heatmap& Heatmap::zorder(int f) {
+inline Heatmap& Heatmap::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zorder(Callable&& c) {
+inline Heatmap& Heatmap::zorder(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return zorder(std::move(f));
 }
 
-Heatmap& Heatmap::zsmooth(enum Zsmooth f) {
+inline Heatmap& Heatmap::zsmooth(enum Zsmooth f) {
     json["zsmooth"] = to_string(f);
     return *this;
 }
 
-Heatmap& Heatmap::zsrc(std::string f) {
+inline Heatmap& Heatmap::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap& Heatmap::zsrc(Callable&& c) {
+inline Heatmap& Heatmap::zsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return zsrc(std::move(f));
 }
 
-std::string Heatmap::Colorbar::to_string(Exponentformat e) {
+inline std::string Heatmap::Colorbar::to_string(Exponentformat e) {
     switch(e) {
         case Exponentformat::None: return "none";
         case Exponentformat::E: return "E";
@@ -883,7 +883,7 @@ std::string Heatmap::Colorbar::to_string(Exponentformat e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Lenmode e) {
+inline std::string Heatmap::Colorbar::to_string(Lenmode e) {
     switch(e) {
         case Lenmode::Fraction: return "fraction";
         case Lenmode::Pixels: return "pixels";
@@ -891,7 +891,7 @@ std::string Heatmap::Colorbar::to_string(Lenmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Orientation e) {
+inline std::string Heatmap::Colorbar::to_string(Orientation e) {
     switch(e) {
         case Orientation::H: return "h";
         case Orientation::V: return "v";
@@ -899,7 +899,7 @@ std::string Heatmap::Colorbar::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Showexponent e) {
+inline std::string Heatmap::Colorbar::to_string(Showexponent e) {
     switch(e) {
         case Showexponent::All: return "all";
         case Showexponent::First: return "first";
@@ -909,7 +909,7 @@ std::string Heatmap::Colorbar::to_string(Showexponent e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Showtickprefix e) {
+inline std::string Heatmap::Colorbar::to_string(Showtickprefix e) {
     switch(e) {
         case Showtickprefix::All: return "all";
         case Showtickprefix::First: return "first";
@@ -919,7 +919,7 @@ std::string Heatmap::Colorbar::to_string(Showtickprefix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Showticksuffix e) {
+inline std::string Heatmap::Colorbar::to_string(Showticksuffix e) {
     switch(e) {
         case Showticksuffix::All: return "all";
         case Showticksuffix::First: return "first";
@@ -929,7 +929,7 @@ std::string Heatmap::Colorbar::to_string(Showticksuffix e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Thicknessmode e) {
+inline std::string Heatmap::Colorbar::to_string(Thicknessmode e) {
     switch(e) {
         case Thicknessmode::Fraction: return "fraction";
         case Thicknessmode::Pixels: return "pixels";
@@ -937,7 +937,7 @@ std::string Heatmap::Colorbar::to_string(Thicknessmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Ticklabeloverflow e) {
+inline std::string Heatmap::Colorbar::to_string(Ticklabeloverflow e) {
     switch(e) {
         case Ticklabeloverflow::Allow: return "allow";
         case Ticklabeloverflow::HidePastDiv: return "hide past div";
@@ -946,7 +946,7 @@ std::string Heatmap::Colorbar::to_string(Ticklabeloverflow e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Ticklabelposition e) {
+inline std::string Heatmap::Colorbar::to_string(Ticklabelposition e) {
     switch(e) {
         case Ticklabelposition::Outside: return "outside";
         case Ticklabelposition::Inside: return "inside";
@@ -962,7 +962,7 @@ std::string Heatmap::Colorbar::to_string(Ticklabelposition e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Tickmode e) {
+inline std::string Heatmap::Colorbar::to_string(Tickmode e) {
     switch(e) {
         case Tickmode::Auto: return "auto";
         case Tickmode::Linear: return "linear";
@@ -971,7 +971,7 @@ std::string Heatmap::Colorbar::to_string(Tickmode e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Ticks e) {
+inline std::string Heatmap::Colorbar::to_string(Ticks e) {
     switch(e) {
         case Ticks::Outside: return "outside";
         case Ticks::Inside: return "inside";
@@ -980,7 +980,7 @@ std::string Heatmap::Colorbar::to_string(Ticks e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Xanchor e) {
+inline std::string Heatmap::Colorbar::to_string(Xanchor e) {
     switch(e) {
         case Xanchor::Left: return "left";
         case Xanchor::Center: return "center";
@@ -989,7 +989,7 @@ std::string Heatmap::Colorbar::to_string(Xanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Xref e) {
+inline std::string Heatmap::Colorbar::to_string(Xref e) {
     switch(e) {
         case Xref::Container: return "container";
         case Xref::Paper: return "paper";
@@ -997,7 +997,7 @@ std::string Heatmap::Colorbar::to_string(Xref e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Yanchor e) {
+inline std::string Heatmap::Colorbar::to_string(Yanchor e) {
     switch(e) {
         case Yanchor::Top: return "top";
         case Yanchor::Middle: return "middle";
@@ -1006,7 +1006,7 @@ std::string Heatmap::Colorbar::to_string(Yanchor e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::to_string(Yref e) {
+inline std::string Heatmap::Colorbar::to_string(Yref e) {
     switch(e) {
         case Yref::Container: return "container";
         case Yref::Paper: return "paper";
@@ -1015,456 +1015,472 @@ std::string Heatmap::Colorbar::to_string(Yref e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::bgcolor(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Colorbar& Heatmap::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::bgcolor(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::bordercolor(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Colorbar& Heatmap::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::bordercolor(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::borderwidth(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::borderwidth(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::borderwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return borderwidth(std::move(f));
 }
 
 template <typename T>
-Heatmap::Colorbar& Heatmap::Colorbar::dtick(T f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::dtick(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::dtick(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return dtick(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::exponentformat(enum Exponentformat f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::exponentformat(enum Exponentformat f) {
     json["exponentformat"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Heatmap::Colorbar& Heatmap::Colorbar::labelalias(T f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::labelalias(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::labelalias(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return labelalias(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::len(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::len(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::len(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return len(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::lenmode(enum Lenmode f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::minexponent(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::minexponent(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::minexponent(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return minexponent(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::nticks(int f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::nticks(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::nticks(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return nticks(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::orientation(enum Orientation f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::orientation(enum Orientation f) {
     json["orientation"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::outlinecolor(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::outlinecolor(std::string f) {
+    json["outlinecolor"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Colorbar& Heatmap::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::outlinecolor(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::outlinecolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return outlinecolor(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::outlinewidth(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::outlinewidth(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::outlinewidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return outlinewidth(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::separatethousands(bool f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::separatethousands(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::separatethousands(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return separatethousands(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::showexponent(enum Showexponent f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::showexponent(enum Showexponent f) {
     json["showexponent"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::showticklabels(bool f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::showticklabels(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::showticklabels(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return showticklabels(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::showtickprefix(enum Showtickprefix f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::showtickprefix(enum Showtickprefix f) {
     json["showtickprefix"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::showticksuffix(enum Showticksuffix f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::showticksuffix(enum Showticksuffix f) {
     json["showticksuffix"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::thickness(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::thickness(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::thickness(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return thickness(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::thicknessmode(enum Thicknessmode f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
     return *this;
 }
 
 template <typename T>
-Heatmap::Colorbar& Heatmap::Colorbar::tick0(T f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tick0(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tick0(Callable&& c) {
     T f{};
     std::forward<Callable>(c)(f);
     return tick0(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickangle(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickangle(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickangle(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickangle(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickcolor(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickcolor(std::string f) {
+    json["tickcolor"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickcolor(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickcolor(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickfont(Tickfont f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickfont(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickfont(Callable&& c) {
     Tickfont f{};
     std::forward<Callable>(c)(f);
     return tickfont(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickformat(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickformat(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickformat(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickformat(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickformatstops(Tickformatstop f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickformatstops(Tickformatstop f) {
     json["tickformatstops"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickformatstops(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickformatstops(Callable&& c) {
     Tickformatstop f{};
     std::forward<Callable>(c)(f);
     return tickformatstops(std::move(f));
 }
-Heatmap::Colorbar& Heatmap::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
     json["tickformatstops"] = std::move(jsonified);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
     json["ticklabeloverflow"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticklabelposition(enum Ticklabelposition f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticklabelposition(enum Ticklabelposition f) {
     json["ticklabelposition"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticklabelstep(int f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticklabelstep(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticklabelstep(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return ticklabelstep(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticklen(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticklen(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticklen(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ticklen(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickmode(enum Tickmode f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickprefix(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickprefix(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickprefix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickprefix(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticks(enum Ticks f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticksuffix(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticksuffix(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticksuffix(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticksuffix(std::move(f));
 }
 
 template <typename Range, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticktext(Range&& f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticktext(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticktext(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return ticktext(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ticktextsrc(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ticktextsrc(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ticktextsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickvals(Range&& f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
 template <typename T, typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickvals(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickvals(Callable&& c) {
     std::vector<T> f{};
     std::forward<Callable>(c)(f);
     return tickvals(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickvalssrc(std::string f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickvalssrc(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickvalssrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return tickvalssrc(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::tickwidth(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::tickwidth(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::tickwidth(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return tickwidth(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::title(Title f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::title(Title f) {
     json["title"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::title(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::title(Callable&& c) {
     Title f{};
     std::forward<Callable>(c)(f);
     return title(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::x(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::x(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::x(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return x(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::xanchor(enum Xanchor f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::xpad(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::xpad(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::xpad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return xpad(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::xref(enum Xref f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::xref(enum Xref f) {
     json["xref"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::y(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::y(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::y(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return y(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::yanchor(enum Yanchor f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::ypad(double f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar& Heatmap::Colorbar::ypad(Callable&& c) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::ypad(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return ypad(std::move(f));
 }
 
-Heatmap::Colorbar& Heatmap::Colorbar::yref(enum Yref f) {
+inline Heatmap::Colorbar& Heatmap::Colorbar::yref(enum Yref f) {
     json["yref"] = to_string(f);
     return *this;
 }
 
-std::string Heatmap::Colorbar::Tickfont::to_string(Style e) {
+inline std::string Heatmap::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1472,7 +1488,7 @@ std::string Heatmap::Colorbar::Tickfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::Tickfont::to_string(Textcase e) {
+inline std::string Heatmap::Colorbar::Tickfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1482,7 +1498,7 @@ std::string Heatmap::Colorbar::Tickfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::Tickfont::to_string(Variant e) {
+inline std::string Heatmap::Colorbar::Tickfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1495,144 +1511,160 @@ std::string Heatmap::Colorbar::Tickfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::color(std::string f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::color(Callable&& c) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::family(std::string f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::family(Callable&& c) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(std::string f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(Callable&& c) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::shadow(std::string f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::shadow(Callable&& c) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::size(double f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::size(Callable&& c) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::style(enum Style f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::textcase(enum Textcase f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::variant(enum Variant f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::weight(int f) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::weight(Callable&& c) {
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(const std::vector<std::string>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<std::string>>& f) {
+    json["dtickrange"] = f;
+    return *this;
+}
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(const std::vector<std::vector<double>>& f) {
     json["dtickrange"] = f;
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
     std::vector<double> f{};
     std::forward<Callable>(c)(f);
     return dtickrange(std::move(f));
 }
 
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::enabled(bool f) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::enabled(Callable&& c) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::enabled(Callable&& c) {
     bool f{};
     std::forward<Callable>(c)(f);
     return enabled(std::move(f));
 }
 
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::name(std::string f) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::name(Callable&& c) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::name(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return name(std::move(f));
 }
 
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::templateitemname(std::string f) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return templateitemname(std::move(f));
 }
 
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::value(std::string f) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::value(Callable&& c) {
+inline Heatmap::Colorbar::Tickformatstop& Heatmap::Colorbar::Tickformatstop::value(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return value(std::move(f));
 }
 
-std::string Heatmap::Colorbar::Title::to_string(Side e) {
+inline std::string Heatmap::Colorbar::Title::to_string(Side e) {
     switch(e) {
         case Side::Right: return "right";
         case Side::Top: return "top";
@@ -1642,34 +1674,34 @@ std::string Heatmap::Colorbar::Title::to_string(Side e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::font(Font f) {
+inline Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::font(Callable&& c) {
+inline Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::side(enum Side f) {
+inline Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::side(enum Side f) {
     json["side"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::text(std::string f) {
+inline Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::text(Callable&& c) {
+inline Heatmap::Colorbar::Title& Heatmap::Colorbar::Title::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Heatmap::Colorbar::Title::Font::to_string(Style e) {
+inline std::string Heatmap::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1677,7 +1709,7 @@ std::string Heatmap::Colorbar::Title::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::Title::Font::to_string(Textcase e) {
+inline std::string Heatmap::Colorbar::Title::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1687,7 +1719,7 @@ std::string Heatmap::Colorbar::Title::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Colorbar::Title::Font::to_string(Variant e) {
+inline std::string Heatmap::Colorbar::Title::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1700,88 +1732,92 @@ std::string Heatmap::Colorbar::Title::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::color(std::string f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::color(Callable&& c) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::family(std::string f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::family(Callable&& c) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(std::string f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(Callable&& c) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::shadow(std::string f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::shadow(Callable&& c) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::size(double f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::size(Callable&& c) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::style(enum Style f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::textcase(enum Textcase f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::variant(enum Variant f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::weight(int f) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::weight(Callable&& c) {
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
-std::string Heatmap::Hoverlabel::to_string(Align e) {
+inline std::string Heatmap::Hoverlabel::to_string(Align e) {
     switch(e) {
         case Align::Left: return "left";
         case Align::Right: return "right";
@@ -1791,118 +1827,134 @@ std::string Heatmap::Hoverlabel::to_string(Align e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::align(enum Align f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::align(enum Align f) {
     json["align"] = to_string(f);
     return *this;
 }
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::align(const std::vector<enum Align>& f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::align(const std::vector<enum Align>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["align"] = std::move(stringified);
     return *this;
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::alignsrc(std::string f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::alignsrc(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::alignsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return alignsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(std::string f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(std::string f) {
+    json["bgcolor"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolor(std::move(f));
 }
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
+    json["bgcolor"] = f;
+    return *this;
+}
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolor(const std::vector<double>& f) {
     json["bgcolor"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolorsrc(std::string f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolorsrc(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bgcolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bgcolorsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(std::string f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(std::string f) {
+    json["bordercolor"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolor(std::move(f));
 }
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
+    json["bordercolor"] = f;
+    return *this;
+}
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolor(const std::vector<double>& f) {
     json["bordercolor"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolorsrc(std::string f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolorsrc(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::bordercolorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return bordercolorsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::font(Font f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::font(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelength(int f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelength(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelength(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return namelength(std::move(f));
 }
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelength(const std::vector<int>& f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelengthsrc(std::string f) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelengthsrc(Callable&& c) {
+inline Heatmap::Hoverlabel& Heatmap::Hoverlabel::namelengthsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return namelengthsrc(std::move(f));
 }
 
-std::string Heatmap::Hoverlabel::Font::to_string(Style e) {
+inline std::string Heatmap::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -1910,7 +1962,7 @@ std::string Heatmap::Hoverlabel::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Hoverlabel::Font::to_string(Textcase e) {
+inline std::string Heatmap::Hoverlabel::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -1920,7 +1972,7 @@ std::string Heatmap::Hoverlabel::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Hoverlabel::Font::to_string(Variant e) {
+inline std::string Heatmap::Hoverlabel::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -1933,252 +1985,260 @@ std::string Heatmap::Hoverlabel::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(const std::vector<std::string>& f) {
+    json["color"] = f;
+    return *this;
+}
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(const std::vector<double>& f) {
     json["color"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::colorsrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::colorsrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::colorsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return colorsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::family(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::family(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::family(const std::vector<std::string>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::familysrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::familysrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::familysrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return familysrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::linepositionsrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::linepositionsrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::linepositionsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return linepositionsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadow(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadow(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadowsrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadowsrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::shadowsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadowsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::size(double f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::size(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::size(const std::vector<double>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::sizesrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::sizesrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::sizesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return sizesrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::style(enum Style f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["style"] = std::move(stringified);
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::stylesrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::stylesrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::stylesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return stylesrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcase(enum Textcase f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["textcase"] = std::move(stringified);
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcasesrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcasesrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::textcasesrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return textcasesrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variant(enum Variant f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
     std::vector<std::string> stringified(f.size());
     std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
     json["variant"] = std::move(stringified);
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variantsrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variantsrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::variantsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return variantsrc(std::move(f));
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weight(int f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weight(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weight(const std::vector<int>& f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
     return *this;
 }
 
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weightsrc(std::string f) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weightsrc(Callable&& c) {
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::weightsrc(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return weightsrc(std::move(f));
 }
 
 
-Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::font(Font f) {
+inline Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::font(Font f) {
     json["font"] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::font(Callable&& c) {
+inline Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::font(Callable&& c) {
     Font f{};
     std::forward<Callable>(c)(f);
     return font(std::move(f));
 }
 
-Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::text(std::string f) {
+inline Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::text(Callable&& c) {
+inline Heatmap::Legendgrouptitle& Heatmap::Legendgrouptitle::text(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return text(std::move(f));
 }
 
-std::string Heatmap::Legendgrouptitle::Font::to_string(Style e) {
+inline std::string Heatmap::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2186,7 +2246,7 @@ std::string Heatmap::Legendgrouptitle::Font::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Legendgrouptitle::Font::to_string(Textcase e) {
+inline std::string Heatmap::Legendgrouptitle::Font::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2196,7 +2256,7 @@ std::string Heatmap::Legendgrouptitle::Font::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Legendgrouptitle::Font::to_string(Variant e) {
+inline std::string Heatmap::Legendgrouptitle::Font::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2209,111 +2269,115 @@ std::string Heatmap::Legendgrouptitle::Font::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::color(std::string f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::color(Callable&& c) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::family(std::string f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::family(Callable&& c) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(std::string f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(Callable&& c) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::shadow(std::string f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::shadow(Callable&& c) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::size(double f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::size(Callable&& c) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::style(enum Style f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::textcase(enum Textcase f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::variant(enum Variant f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::weight(int f) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::weight(Callable&& c) {
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));
 }
 
 
-Heatmap::Stream& Heatmap::Stream::maxpoints(double f) {
+inline Heatmap::Stream& Heatmap::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Stream& Heatmap::Stream::maxpoints(Callable&& c) {
+inline Heatmap::Stream& Heatmap::Stream::maxpoints(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return maxpoints(std::move(f));
 }
 
-Heatmap::Stream& Heatmap::Stream::token(std::string f) {
+inline Heatmap::Stream& Heatmap::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Stream& Heatmap::Stream::token(Callable&& c) {
+inline Heatmap::Stream& Heatmap::Stream::token(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return token(std::move(f));
 }
 
-std::string Heatmap::Textfont::to_string(Style e) {
+inline std::string Heatmap::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
         case Style::Italic: return "italic";
@@ -2321,7 +2385,7 @@ std::string Heatmap::Textfont::to_string(Style e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Textfont::to_string(Textcase e) {
+inline std::string Heatmap::Textfont::to_string(Textcase e) {
     switch(e) {
         case Textcase::Normal: return "normal";
         case Textcase::WordCaps: return "word caps";
@@ -2331,7 +2395,7 @@ std::string Heatmap::Textfont::to_string(Textcase e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-std::string Heatmap::Textfont::to_string(Variant e) {
+inline std::string Heatmap::Textfont::to_string(Variant e) {
     switch(e) {
         case Variant::Normal: return "normal";
         case Variant::SmallCaps: return "small-caps";
@@ -2344,82 +2408,86 @@ std::string Heatmap::Textfont::to_string(Variant e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-Heatmap::Textfont& Heatmap::Textfont::color(std::string f) {
+inline Heatmap::Textfont& Heatmap::Textfont::color(std::string f) {
+    json["color"] = std::move(f);
+    return *this;
+}
+inline Heatmap::Textfont& Heatmap::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Textfont& Heatmap::Textfont::color(Callable&& c) {
+inline Heatmap::Textfont& Heatmap::Textfont::color(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return color(std::move(f));
 }
 
-Heatmap::Textfont& Heatmap::Textfont::family(std::string f) {
+inline Heatmap::Textfont& Heatmap::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Textfont& Heatmap::Textfont::family(Callable&& c) {
+inline Heatmap::Textfont& Heatmap::Textfont::family(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return family(std::move(f));
 }
 
-Heatmap::Textfont& Heatmap::Textfont::lineposition(std::string f) {
+inline Heatmap::Textfont& Heatmap::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Textfont& Heatmap::Textfont::lineposition(Callable&& c) {
+inline Heatmap::Textfont& Heatmap::Textfont::lineposition(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return lineposition(std::move(f));
 }
 
-Heatmap::Textfont& Heatmap::Textfont::shadow(std::string f) {
+inline Heatmap::Textfont& Heatmap::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Textfont& Heatmap::Textfont::shadow(Callable&& c) {
+inline Heatmap::Textfont& Heatmap::Textfont::shadow(Callable&& c) {
     std::string f{};
     std::forward<Callable>(c)(f);
     return shadow(std::move(f));
 }
 
-Heatmap::Textfont& Heatmap::Textfont::size(double f) {
+inline Heatmap::Textfont& Heatmap::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Textfont& Heatmap::Textfont::size(Callable&& c) {
+inline Heatmap::Textfont& Heatmap::Textfont::size(Callable&& c) {
     double f{};
     std::forward<Callable>(c)(f);
     return size(std::move(f));
 }
 
-Heatmap::Textfont& Heatmap::Textfont::style(enum Style f) {
+inline Heatmap::Textfont& Heatmap::Textfont::style(enum Style f) {
     json["style"] = to_string(f);
     return *this;
 }
 
-Heatmap::Textfont& Heatmap::Textfont::textcase(enum Textcase f) {
+inline Heatmap::Textfont& Heatmap::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
     return *this;
 }
 
-Heatmap::Textfont& Heatmap::Textfont::variant(enum Variant f) {
+inline Heatmap::Textfont& Heatmap::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
     return *this;
 }
 
-Heatmap::Textfont& Heatmap::Textfont::weight(int f) {
+inline Heatmap::Textfont& Heatmap::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
 template <typename Callable, typename>
-Heatmap::Textfont& Heatmap::Textfont::weight(Callable&& c) {
+inline Heatmap::Textfont& Heatmap::Textfont::weight(Callable&& c) {
     int f{};
     std::forward<Callable>(c)(f);
     return weight(std::move(f));

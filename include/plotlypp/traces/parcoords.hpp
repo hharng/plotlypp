@@ -212,7 +212,14 @@ class Parcoords::Dimension {
     // with `fromValue <= toValue`, or if `multiselect` is not disabled, you may give an array of arrays, where each
     // inner array is `[fromValue, toValue]`.
     Parcoords::Dimension& constraintrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Parcoords::Dimension& constraintrange(const std::vector<std::string>& f);
+    Parcoords::Dimension& constraintrange(const std::vector<std::vector<std::string>>& f);
+    Parcoords::Dimension& constraintrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Parcoords::Dimension& constraintrange(Callable&& c);
 
     // The shown name of the dimension.
@@ -236,7 +243,14 @@ class Parcoords::Dimension {
     // The domain range that represents the full, shown axis extent. Defaults to the `values` extent. Must be an array
     // of `[fromValue, toValue]` with finite numbers as elements.
     Parcoords::Dimension& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Parcoords::Dimension& range(const std::vector<std::string>& f);
+    Parcoords::Dimension& range(const std::vector<std::vector<std::string>>& f);
+    Parcoords::Dimension& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Parcoords::Dimension& range(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
@@ -325,12 +339,26 @@ class Parcoords::Domain {
 
     // Sets the horizontal domain of this parcoords trace (in plot fraction).
     Parcoords::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Parcoords::Domain& x(const std::vector<std::string>& f);
+    Parcoords::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Parcoords::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Parcoords::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this parcoords trace (in plot fraction).
     Parcoords::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Parcoords::Domain& y(const std::vector<std::string>& f);
+    Parcoords::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Parcoords::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Parcoords::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -369,7 +397,9 @@ class Parcoords::Labelfont {
     static std::string to_string(Variant e);
 
     Parcoords::Labelfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Labelfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Labelfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -479,7 +509,9 @@ class Parcoords::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Parcoords::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -579,9 +611,12 @@ class Parcoords::Line {
     // Sets the line color. It accepts either a specific color or an array of numbers that are mapped to the colorscale
     // relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if set.
     Parcoords::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line& color(Callable&& c);
     Parcoords::Line& color(const std::vector<std::string>& f);
+    Parcoords::Line& color(const std::vector<double>& f);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
@@ -753,12 +788,16 @@ class Parcoords::Line::Colorbar {
 
     // Sets the color of padded area.
     Parcoords::Line::Colorbar& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line::Colorbar& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Parcoords::Line::Colorbar& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line::Colorbar& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
@@ -827,7 +866,9 @@ class Parcoords::Line::Colorbar {
 
     // Sets the axis line color.
     Parcoords::Line::Colorbar& outlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line::Colorbar& outlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -887,7 +928,9 @@ class Parcoords::Line::Colorbar {
 
     // Sets the tick color.
     Parcoords::Line::Colorbar& tickcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line::Colorbar& tickcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
@@ -1069,7 +1112,9 @@ class Parcoords::Line::Colorbar::Tickfont {
     static std::string to_string(Variant e);
 
     Parcoords::Line::Colorbar::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line::Colorbar::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1133,7 +1178,14 @@ class Parcoords::Line::Colorbar::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Parcoords::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Parcoords::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Parcoords::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Parcoords::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Parcoords::Line::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1233,7 +1285,9 @@ class Parcoords::Line::Colorbar::Title::Font {
     static std::string to_string(Variant e);
 
     Parcoords::Line::Colorbar::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Line::Colorbar::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Line::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1320,7 +1374,9 @@ class Parcoords::Rangefont {
     static std::string to_string(Variant e);
 
     Parcoords::Rangefont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Rangefont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Rangefont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1429,7 +1485,9 @@ class Parcoords::Tickfont {
     static std::string to_string(Variant e);
 
     Parcoords::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1508,7 +1566,9 @@ class Parcoords::Unselected::Line {
 
     // Sets the base color of unselected lines. in connection with `unselected.line.opacity`.
     Parcoords::Unselected::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Parcoords::Unselected::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Parcoords::Unselected::Line& color(Callable&& c);
 
     // Sets the opacity of unselected lines. The default *auto* decreases the opacity smoothly as the number of lines

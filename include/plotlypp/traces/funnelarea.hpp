@@ -372,12 +372,26 @@ class Funnelarea::Domain {
 
     // Sets the horizontal domain of this funnelarea trace (in plot fraction).
     Funnelarea::Domain& x(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Funnelarea::Domain& x(const std::vector<std::string>& f);
+    Funnelarea::Domain& x(const std::vector<std::vector<std::string>>& f);
+    Funnelarea::Domain& x(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Funnelarea::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this funnelarea trace (in plot fraction).
     Funnelarea::Domain& y(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Funnelarea::Domain& y(const std::vector<std::string>& f);
+    Funnelarea::Domain& y(const std::vector<std::vector<std::string>>& f);
+    Funnelarea::Domain& y(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Funnelarea::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
@@ -413,9 +427,12 @@ class Funnelarea::Hoverlabel {
 
     // Sets the background color of the hover labels for this trace
     Funnelarea::Hoverlabel& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Hoverlabel& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Hoverlabel& bgcolor(Callable&& c);
     Funnelarea::Hoverlabel& bgcolor(const std::vector<std::string>& f);
+    Funnelarea::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Funnelarea::Hoverlabel& bgcolorsrc(std::string f);
@@ -424,9 +441,12 @@ class Funnelarea::Hoverlabel {
 
     // Sets the border color of the hover labels for this trace.
     Funnelarea::Hoverlabel& bordercolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Hoverlabel& bordercolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Hoverlabel& bordercolor(Callable&& c);
     Funnelarea::Hoverlabel& bordercolor(const std::vector<std::string>& f);
+    Funnelarea::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Funnelarea::Hoverlabel& bordercolorsrc(std::string f);
@@ -488,9 +508,12 @@ class Funnelarea::Hoverlabel::Font {
     static std::string to_string(Variant e);
 
     Funnelarea::Hoverlabel::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Hoverlabel::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Hoverlabel::Font& color(Callable&& c);
     Funnelarea::Hoverlabel::Font& color(const std::vector<std::string>& f);
+    Funnelarea::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnelarea::Hoverlabel::Font& colorsrc(std::string f);
@@ -629,9 +652,12 @@ class Funnelarea::Insidetextfont {
     static std::string to_string(Variant e);
 
     Funnelarea::Insidetextfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Insidetextfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Insidetextfont& color(Callable&& c);
     Funnelarea::Insidetextfont& color(const std::vector<std::string>& f);
+    Funnelarea::Insidetextfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnelarea::Insidetextfont& colorsrc(std::string f);
@@ -793,7 +819,9 @@ class Funnelarea::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Funnelarea::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -892,9 +920,12 @@ class Funnelarea::Marker::Line {
 
     // Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
     Funnelarea::Marker::Line& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Marker::Line& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Marker::Line& color(Callable&& c);
     Funnelarea::Marker::Line& color(const std::vector<std::string>& f);
+    Funnelarea::Marker::Line& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnelarea::Marker::Line& colorsrc(std::string f);
@@ -932,9 +963,12 @@ class Funnelarea::Marker::Pattern {
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
     Funnelarea::Marker::Pattern& bgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Marker::Pattern& bgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Marker::Pattern& bgcolor(Callable&& c);
     Funnelarea::Marker::Pattern& bgcolor(const std::vector<std::string>& f);
+    Funnelarea::Marker::Pattern& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Funnelarea::Marker::Pattern& bgcolorsrc(std::string f);
@@ -944,9 +978,12 @@ class Funnelarea::Marker::Pattern {
     // When there is no colorscale sets the color of foreground pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *replace*. Otherwise, defaults to dark grey or white to increase contrast with the `bgcolor`.
     Funnelarea::Marker::Pattern& fgcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Marker::Pattern& fgcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Marker::Pattern& fgcolor(Callable&& c);
     Funnelarea::Marker::Pattern& fgcolor(const std::vector<std::string>& f);
+    Funnelarea::Marker::Pattern& fgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `fgcolor`.
     Funnelarea::Marker::Pattern& fgcolorsrc(std::string f);
@@ -1057,9 +1094,12 @@ class Funnelarea::Textfont {
     static std::string to_string(Variant e);
 
     Funnelarea::Textfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Textfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Textfont& color(Callable&& c);
     Funnelarea::Textfont& color(const std::vector<std::string>& f);
+    Funnelarea::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnelarea::Textfont& colorsrc(std::string f);
@@ -1232,9 +1272,12 @@ class Funnelarea::Title::Font {
     static std::string to_string(Variant e);
 
     Funnelarea::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Funnelarea::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Funnelarea::Title::Font& color(Callable&& c);
     Funnelarea::Title::Font& color(const std::vector<std::string>& f);
+    Funnelarea::Title::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Funnelarea::Title::Font& colorsrc(std::string f);

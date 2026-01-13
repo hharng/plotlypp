@@ -101,7 +101,9 @@ class Carpet : public Trace {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Carpet& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet& color(Callable&& c);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
@@ -424,7 +426,9 @@ class Carpet::Aaxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Carpet::Aaxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis& color(Callable&& c);
 
     // The stride between grid lines along the axis
@@ -440,7 +444,9 @@ class Carpet::Aaxis {
 
     // Sets the line color of the end line.
     Carpet::Aaxis& endlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis& endlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis& endlinecolor(Callable&& c);
 
     // Sets the width (in px) of the end line.
@@ -461,7 +467,9 @@ class Carpet::Aaxis {
 
     // Sets the axis line color.
     Carpet::Aaxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -502,7 +510,9 @@ class Carpet::Aaxis {
 
     // Sets the axis line color.
     Carpet::Aaxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -517,7 +527,9 @@ class Carpet::Aaxis {
 
     // Sets the color of the grid lines.
     Carpet::Aaxis& minorgridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis& minorgridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis& minorgridcolor(Callable&& c);
 
     // Sets the number of minor grid ticks per major grid tick
@@ -548,7 +560,14 @@ class Carpet::Aaxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears.
     Carpet::Aaxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Carpet::Aaxis& range(const std::vector<std::string>& f);
+    Carpet::Aaxis& range(const std::vector<std::vector<std::string>>& f);
+    Carpet::Aaxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Carpet::Aaxis& range(Callable&& c);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
@@ -601,7 +620,9 @@ class Carpet::Aaxis {
 
     // Sets the line color of the start line.
     Carpet::Aaxis& startlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis& startlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis& startlinecolor(Callable&& c);
 
     // Sets the width (in px) of the start line.
@@ -726,7 +747,9 @@ class Carpet::Aaxis::Tickfont {
     static std::string to_string(Variant e);
 
     Carpet::Aaxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -790,7 +813,14 @@ class Carpet::Aaxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Carpet::Aaxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Carpet::Aaxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Carpet::Aaxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Carpet::Aaxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Carpet::Aaxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -884,7 +914,9 @@ class Carpet::Aaxis::Title::Font {
     static std::string to_string(Variant e);
 
     Carpet::Aaxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Aaxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Aaxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1090,7 +1122,9 @@ class Carpet::Baxis {
     // Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color
     // is lightened by blending this with the plot background Individual pieces can override this.
     Carpet::Baxis& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis& color(Callable&& c);
 
     // The stride between grid lines along the axis
@@ -1106,7 +1140,9 @@ class Carpet::Baxis {
 
     // Sets the line color of the end line.
     Carpet::Baxis& endlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis& endlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis& endlinecolor(Callable&& c);
 
     // Sets the width (in px) of the end line.
@@ -1127,7 +1163,9 @@ class Carpet::Baxis {
 
     // Sets the axis line color.
     Carpet::Baxis& gridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis& gridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis& gridcolor(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
@@ -1168,7 +1206,9 @@ class Carpet::Baxis {
 
     // Sets the axis line color.
     Carpet::Baxis& linecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis& linecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis& linecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
@@ -1183,7 +1223,9 @@ class Carpet::Baxis {
 
     // Sets the color of the grid lines.
     Carpet::Baxis& minorgridcolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis& minorgridcolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis& minorgridcolor(Callable&& c);
 
     // Sets the number of minor grid ticks per major grid tick
@@ -1214,7 +1256,14 @@ class Carpet::Baxis {
     // the axis `type` is *category*, it should be numbers, using the scale where each category is assigned a serial
     // number from zero in the order it appears.
     Carpet::Baxis& range(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Carpet::Baxis& range(const std::vector<std::string>& f);
+    Carpet::Baxis& range(const std::vector<std::vector<std::string>>& f);
+    Carpet::Baxis& range(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Carpet::Baxis& range(Callable&& c);
 
     // If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends
@@ -1267,7 +1316,9 @@ class Carpet::Baxis {
 
     // Sets the line color of the start line.
     Carpet::Baxis& startlinecolor(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis& startlinecolor(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis& startlinecolor(Callable&& c);
 
     // Sets the width (in px) of the start line.
@@ -1392,7 +1443,9 @@ class Carpet::Baxis::Tickfont {
     static std::string to_string(Variant e);
 
     Carpet::Baxis::Tickfont& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis::Tickfont& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1456,7 +1509,14 @@ class Carpet::Baxis::Tickformatstop {
     // range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit
     // *min* or *max* value by passing *null*
     Carpet::Baxis::Tickformatstop& dtickrange(const std::vector<double>& f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&>>>
+    Carpet::Baxis::Tickformatstop& dtickrange(const std::vector<std::string>& f);
+    Carpet::Baxis::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
+    Carpet::Baxis::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
+    template <typename Callable,
+              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
+                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
     Carpet::Baxis::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
@@ -1550,7 +1610,9 @@ class Carpet::Baxis::Title::Font {
     static std::string to_string(Variant e);
 
     Carpet::Baxis::Title::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Baxis::Title::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Baxis::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1637,7 +1699,9 @@ class Carpet::Font {
     static std::string to_string(Variant e);
 
     Carpet::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
@@ -1747,7 +1811,9 @@ class Carpet::Legendgrouptitle::Font {
     static std::string to_string(Variant e);
 
     Carpet::Legendgrouptitle::Font& color(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
+    Carpet::Legendgrouptitle::Font& color(double f);
+    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
+                                                             std::is_invocable_v<Callable, double&>>>
     Carpet::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
