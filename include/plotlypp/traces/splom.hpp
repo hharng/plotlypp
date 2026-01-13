@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,21 @@ class Splom : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Diagonal;
     class Dimension;
@@ -62,8 +78,8 @@ class Splom : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Splom& hoverinfo(std::string f);
-    Splom& hoverinfo(const std::vector<std::string>& f);
+    Splom& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Splom& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Splom& hoverinfosrc(std::string f);
@@ -416,6 +432,17 @@ class Splom::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Splom::Hoverlabel::Font& color(std::string f);
     Splom::Hoverlabel::Font& color(double f);
     Splom::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -442,8 +469,8 @@ class Splom::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Splom::Hoverlabel::Font& lineposition(std::string f);
-    Splom::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Splom::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Splom::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Splom::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -550,6 +577,17 @@ class Splom::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Splom::Legendgrouptitle::Font& color(std::string f);
     Splom::Legendgrouptitle::Font& color(double f);
 
@@ -567,7 +605,8 @@ class Splom::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Splom::Legendgrouptitle::Font& lineposition(std::string f);
+    Splom::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Splom::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1428,6 +1467,17 @@ class Splom::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Splom::Marker::Colorbar::Tickfont& color(std::string f);
     Splom::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1445,7 +1495,8 @@ class Splom::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Splom::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Splom::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Splom::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1572,6 +1623,17 @@ class Splom::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Splom::Marker::Colorbar::Title::Font& color(std::string f);
     Splom::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1589,7 +1651,8 @@ class Splom::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Splom::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Splom::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Splom::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

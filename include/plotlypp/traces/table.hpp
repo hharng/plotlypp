@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,21 @@ class Table : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Cells;
     class Domain;
@@ -82,8 +98,8 @@ class Table : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Table& hoverinfo(std::string f);
-    Table& hoverinfo(const std::vector<std::string>& f);
+    Table& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Table& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Table& hoverinfosrc(std::string f);
@@ -285,6 +301,17 @@ class Table::Cells::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Table::Cells::Font& color(std::string f);
     Table::Cells::Font& color(double f);
     Table::Cells::Font& color(const std::vector<std::string>& f);
@@ -311,8 +338,8 @@ class Table::Cells::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Table::Cells::Font& lineposition(std::string f);
-    Table::Cells::Font& lineposition(const std::vector<std::string>& f);
+    Table::Cells::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Table::Cells::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Table::Cells::Font& linepositionsrc(std::string f);
@@ -544,6 +571,17 @@ class Table::Header::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Table::Header::Font& color(std::string f);
     Table::Header::Font& color(double f);
     Table::Header::Font& color(const std::vector<std::string>& f);
@@ -570,8 +608,8 @@ class Table::Header::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Table::Header::Font& lineposition(std::string f);
-    Table::Header::Font& lineposition(const std::vector<std::string>& f);
+    Table::Header::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Table::Header::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Table::Header::Font& linepositionsrc(std::string f);
@@ -743,6 +781,17 @@ class Table::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Table::Hoverlabel::Font& color(std::string f);
     Table::Hoverlabel::Font& color(double f);
     Table::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -769,8 +818,8 @@ class Table::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Table::Hoverlabel::Font& lineposition(std::string f);
-    Table::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Table::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Table::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Table::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -877,6 +926,17 @@ class Table::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Table::Legendgrouptitle::Font& color(std::string f);
     Table::Legendgrouptitle::Font& color(double f);
 
@@ -894,7 +954,8 @@ class Table::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Table::Legendgrouptitle::Font& lineposition(std::string f);
+    Table::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Table::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Parcoords::to_string(Labelside e) {
@@ -380,6 +382,20 @@ inline std::string Parcoords::Labelfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Parcoords::Labelfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Parcoords::Labelfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Parcoords::Labelfont& Parcoords::Labelfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -395,8 +411,12 @@ inline Parcoords::Labelfont& Parcoords::Labelfont::family(std::string f) {
     return *this;
 }
 
-inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -477,6 +497,20 @@ inline std::string Parcoords::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Parcoords::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Parcoords::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -492,8 +526,12 @@ inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::fam
     return *this;
 }
 
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1058,6 +1096,20 @@ inline std::string Parcoords::Line::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Parcoords::Line::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Parcoords::Line::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1073,8 +1125,12 @@ inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont:
     return *this;
 }
 
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1207,6 +1263,20 @@ inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(Variant e) 
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1222,8 +1292,12 @@ inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title:
     return *this;
 }
 
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1287,6 +1361,20 @@ inline std::string Parcoords::Rangefont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Parcoords::Rangefont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Parcoords::Rangefont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Parcoords::Rangefont& Parcoords::Rangefont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1302,8 +1390,12 @@ inline Parcoords::Rangefont& Parcoords::Rangefont::family(std::string f) {
     return *this;
 }
 
-inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1378,6 +1470,20 @@ inline std::string Parcoords::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Parcoords::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Parcoords::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Parcoords::Tickfont& Parcoords::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1393,8 +1499,12 @@ inline Parcoords::Tickfont& Parcoords::Tickfont::family(std::string f) {
     return *this;
 }
 
-inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

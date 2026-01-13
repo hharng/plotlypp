@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Scattergeo::to_string(Fill e) {
@@ -51,6 +53,38 @@ inline std::string Scattergeo::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Scattergeo::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Lon: return "lon";
+        case Hoverinfo::Lat: return "lat";
+        case Hoverinfo::Location: return "location";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Scattergeo::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Scattergeo::to_string(Mode e) {
+    switch(e) {
+        case Mode::Lines: return "lines";
+        case Mode::Markers: return "markers";
+        case Mode::Text: return "text";
+    }
+    throw std::invalid_argument{"Unknown flag value for mode."};
+}
+inline std::string Scattergeo::to_string(ModeExtra e) {
+    switch(e) {
+        case ModeExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for mode."};
 }
 
 inline Scattergeo& Scattergeo::connectgaps(bool f) {
@@ -99,12 +133,12 @@ inline Scattergeo& Scattergeo::geojson(T f) {
     return *this;
 }
 
-inline Scattergeo& Scattergeo::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Scattergeo& Scattergeo::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Scattergeo& Scattergeo::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Scattergeo& Scattergeo::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -270,8 +304,12 @@ inline Scattergeo& Scattergeo::metasrc(std::string f) {
     return *this;
 }
 
-inline Scattergeo& Scattergeo::mode(std::string f) {
-    json["mode"] = std::move(f);
+inline Scattergeo& Scattergeo::mode(std::initializer_list<Mode> flags) {
+    json["mode"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scattergeo& Scattergeo::mode(ModeExtra extra) {
+    json["mode"] = to_string(extra);
     return *this;
 }
 
@@ -525,6 +563,20 @@ inline std::string Scattergeo::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scattergeo::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergeo::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -562,12 +614,12 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::familysrc(std
     return *this;
 }
 
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -713,6 +765,20 @@ inline std::string Scattergeo::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scattergeo::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergeo::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -728,8 +794,12 @@ inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::f
     return *this;
 }
 
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1775,6 +1845,20 @@ inline std::string Scattergeo::Marker::Colorbar::Tickfont::to_string(Variant e) 
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scattergeo::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergeo::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1790,8 +1874,12 @@ inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tic
     return *this;
 }
 
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1924,6 +2012,20 @@ inline std::string Scattergeo::Marker::Colorbar::Title::Font::to_string(Variant 
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scattergeo::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergeo::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1939,8 +2041,12 @@ inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::
     return *this;
 }
 
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -2198,6 +2304,20 @@ inline std::string Scattergeo::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scattergeo::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergeo::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -2235,12 +2355,12 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

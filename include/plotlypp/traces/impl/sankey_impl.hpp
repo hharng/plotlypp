@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Sankey::to_string(Arrangement e) {
@@ -37,6 +39,19 @@ inline std::string Sankey::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sankey::to_string(Hoverinfo e) {
+    switch(e) {
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Sankey::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 
 inline Sankey& Sankey::arrangement(enum Arrangement f) {
     json["arrangement"] = to_string(f);
@@ -65,8 +80,12 @@ inline Sankey& Sankey::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-inline Sankey& Sankey::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Sankey& Sankey::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sankey& Sankey::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -390,6 +409,20 @@ inline std::string Sankey::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sankey::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sankey::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -427,12 +460,12 @@ inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::familysrc(std::string
     return *this;
 }
 
-inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -578,6 +611,20 @@ inline std::string Sankey::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sankey::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sankey::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -593,8 +640,12 @@ inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::family(st
     return *this;
 }
 
-inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -950,6 +1001,20 @@ inline std::string Sankey::Link::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sankey::Link::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sankey::Link::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -987,12 +1052,12 @@ inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::familysrc
     return *this;
 }
 
-inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1412,6 +1477,20 @@ inline std::string Sankey::Node::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sankey::Node::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sankey::Node::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1449,12 +1528,12 @@ inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::familysrc
     return *this;
 }
 
-inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1631,6 +1710,20 @@ inline std::string Sankey::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sankey::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sankey::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sankey::Textfont& Sankey::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1646,8 +1739,12 @@ inline Sankey::Textfont& Sankey::Textfont::family(std::string f) {
     return *this;
 }
 
-inline Sankey::Textfont& Sankey::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sankey::Textfont& Sankey::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sankey::Textfont& Sankey::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -53,6 +54,47 @@ class Icicle : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Count {
+        Branches,
+        Leaves,
+    };
+    enum class CountExtra {};
+    static std::string to_string(Count e);
+    static std::string to_string(CountExtra e);
+
+    enum class Hoverinfo {
+        Label,
+        Text,
+        Value,
+        Name,
+        CurrentPath,
+        PercentRoot,
+        PercentEntry,
+        PercentParent,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Value,
+        CurrentPath,
+        PercentRoot,
+        PercentEntry,
+        PercentParent,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
+
     class Domain;
     class Hoverlabel;
     // Sets the font used for `textinfo` lying inside the sector.
@@ -81,7 +123,8 @@ class Icicle : public Trace {
     // *branches*, otherwise 0.
     // - Default: leaves
     // - Flags: ['branches', 'leaves']
-    Icicle& count(std::string f);
+    Icicle& count(std::initializer_list<Count> flags);
+    Icicle& count(CountExtra extra);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
@@ -100,8 +143,8 @@ class Icicle : public Trace {
     // - Default: label+text+value+name
     // - Flags: ['label', 'text', 'value', 'name', 'current path', 'percent root', 'percent entry', 'percent parent']
     // - Extras ['all', 'none', 'skip']
-    Icicle& hoverinfo(std::string f);
-    Icicle& hoverinfo(const std::vector<std::string>& f);
+    Icicle& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Icicle& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Icicle& hoverinfosrc(std::string f);
@@ -260,7 +303,8 @@ class Icicle : public Trace {
     // Determines which trace information appear on the graph.
     // - Flags: ['label', 'text', 'value', 'current path', 'percent root', 'percent entry', 'percent parent']
     // - Extras ['none']
-    Icicle& textinfo(std::string f);
+    Icicle& textinfo(std::initializer_list<Textinfo> flags);
+    Icicle& textinfo(TextinfoExtra extra);
 
     // Sets the positions of the `text` elements.
     // - Default: top left
@@ -438,6 +482,17 @@ class Icicle::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Hoverlabel::Font& color(std::string f);
     Icicle::Hoverlabel::Font& color(double f);
     Icicle::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -464,8 +519,8 @@ class Icicle::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Hoverlabel::Font& lineposition(std::string f);
-    Icicle::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Icicle::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Icicle::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -551,6 +606,17 @@ class Icicle::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Insidetextfont& color(std::string f);
     Icicle::Insidetextfont& color(double f);
     Icicle::Insidetextfont& color(const std::vector<std::string>& f);
@@ -577,8 +643,8 @@ class Icicle::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Insidetextfont& lineposition(std::string f);
-    Icicle::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Icicle::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Icicle::Insidetextfont& linepositionsrc(std::string f);
@@ -698,6 +764,17 @@ class Icicle::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Legendgrouptitle::Font& color(std::string f);
     Icicle::Legendgrouptitle::Font& color(double f);
 
@@ -715,7 +792,8 @@ class Icicle::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Legendgrouptitle::Font& lineposition(std::string f);
+    Icicle::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1203,6 +1281,17 @@ class Icicle::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Marker::Colorbar::Tickfont& color(std::string f);
     Icicle::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1220,7 +1309,8 @@ class Icicle::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Icicle::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1347,6 +1437,17 @@ class Icicle::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Marker::Colorbar::Title::Font& color(std::string f);
     Icicle::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1364,7 +1465,8 @@ class Icicle::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Icicle::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1520,6 +1622,17 @@ class Icicle::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Outsidetextfont& color(std::string f);
     Icicle::Outsidetextfont& color(double f);
     Icicle::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -1546,8 +1659,8 @@ class Icicle::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Outsidetextfont& lineposition(std::string f);
-    Icicle::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Icicle::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Icicle::Outsidetextfont& linepositionsrc(std::string f);
@@ -1681,6 +1794,17 @@ class Icicle::Pathbar::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Pathbar::Textfont& color(std::string f);
     Icicle::Pathbar::Textfont& color(double f);
     Icicle::Pathbar::Textfont& color(const std::vector<std::string>& f);
@@ -1707,8 +1831,8 @@ class Icicle::Pathbar::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Pathbar::Textfont& lineposition(std::string f);
-    Icicle::Pathbar::Textfont& lineposition(const std::vector<std::string>& f);
+    Icicle::Pathbar::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Pathbar::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Icicle::Pathbar::Textfont& linepositionsrc(std::string f);
@@ -1827,6 +1951,17 @@ class Icicle::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Icicle::Textfont& color(std::string f);
     Icicle::Textfont& color(double f);
     Icicle::Textfont& color(const std::vector<std::string>& f);
@@ -1853,8 +1988,8 @@ class Icicle::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Icicle::Textfont& lineposition(std::string f);
-    Icicle::Textfont& lineposition(const std::vector<std::string>& f);
+    Icicle::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Icicle::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Icicle::Textfont& linepositionsrc(std::string f);
@@ -1921,10 +2056,19 @@ class Icicle::Tiling {
     };
     static std::string to_string(Orientation e);
 
+    enum class Flip {
+        X,
+        Y,
+    };
+    enum class FlipExtra {};
+    static std::string to_string(Flip e);
+    static std::string to_string(FlipExtra e);
+
     // Determines if the positions obtained from solver are flipped on each axis.
     // - Default:
     // - Flags: ['x', 'y']
-    Icicle::Tiling& flip(std::string f);
+    Icicle::Tiling& flip(std::initializer_list<Flip> flags);
+    Icicle::Tiling& flip(FlipExtra extra);
 
     // When set in conjunction with `tiling.flip`, determines on which side the root nodes are drawn in the chart. If
     // `tiling.orientation` is *v* and `tiling.flip` is **, the root nodes appear at the top. If `tiling.orientation` is

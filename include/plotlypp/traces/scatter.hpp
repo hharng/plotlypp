@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -131,6 +132,40 @@ class Scatter : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Points,
+        Fills,
+    };
+    enum class HoveronExtra {};
+    static std::string to_string(Hoveron e);
+    static std::string to_string(HoveronExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     class Error_X;
     class Error_Y;
     // Sets a fill gradient. If not specified, the fillcolor is used instead.
@@ -222,8 +257,8 @@ class Scatter : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scatter& hoverinfo(std::string f);
-    Scatter& hoverinfo(const std::vector<std::string>& f);
+    Scatter& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scatter& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scatter& hoverinfosrc(std::string f);
@@ -236,7 +271,8 @@ class Scatter : public Trace {
     // the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is
     // *points*.
     // - Flags: ['points', 'fills']
-    Scatter& hoveron(std::string f);
+    Scatter& hoveron(std::initializer_list<Hoveron> flags);
+    Scatter& hoveron(HoveronExtra extra);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -323,7 +359,8 @@ class Scatter : public Trace {
     // points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scatter& mode(std::string f);
+    Scatter& mode(std::initializer_list<Mode> flags);
+    Scatter& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scatter& name(std::string f);
@@ -870,6 +907,17 @@ class Scatter::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter::Hoverlabel::Font& color(std::string f);
     Scatter::Hoverlabel::Font& color(double f);
     Scatter::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -896,8 +944,8 @@ class Scatter::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter::Hoverlabel::Font& lineposition(std::string f);
-    Scatter::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scatter::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scatter::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1004,6 +1052,17 @@ class Scatter::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter::Legendgrouptitle::Font& color(std::string f);
     Scatter::Legendgrouptitle::Font& color(double f);
 
@@ -1021,7 +1080,8 @@ class Scatter::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter::Legendgrouptitle::Font& lineposition(std::string f);
+    Scatter::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1962,6 +2022,17 @@ class Scatter::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter::Marker::Colorbar::Tickfont& color(std::string f);
     Scatter::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1979,7 +2050,8 @@ class Scatter::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scatter::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2106,6 +2178,17 @@ class Scatter::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter::Marker::Colorbar::Title::Font& color(std::string f);
     Scatter::Marker::Colorbar::Title::Font& color(double f);
 
@@ -2123,7 +2206,8 @@ class Scatter::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scatter::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2366,6 +2450,17 @@ class Scatter::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter::Textfont& color(std::string f);
     Scatter::Textfont& color(double f);
     Scatter::Textfont& color(const std::vector<std::string>& f);
@@ -2392,8 +2487,8 @@ class Scatter::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter::Textfont& lineposition(std::string f);
-    Scatter::Textfont& lineposition(const std::vector<std::string>& f);
+    Scatter::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scatter::Textfont& linepositionsrc(std::string f);

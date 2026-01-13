@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -56,6 +57,33 @@ class Pie : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {
+        Label,
+        Text,
+        Value,
+        Percent,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Value,
+        Percent,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
+
     class Domain;
     class Hoverlabel;
     // Sets the font used for `textinfo` lying inside the sector.
@@ -99,8 +127,8 @@ class Pie : public Trace {
     // - Default: all
     // - Flags: ['label', 'text', 'value', 'percent', 'name']
     // - Extras ['all', 'none', 'skip']
-    Pie& hoverinfo(std::string f);
-    Pie& hoverinfo(const std::vector<std::string>& f);
+    Pie& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Pie& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Pie& hoverinfosrc(std::string f);
@@ -262,7 +290,8 @@ class Pie : public Trace {
     // Determines which trace information appear on the graph.
     // - Flags: ['label', 'text', 'value', 'percent']
     // - Extras ['none']
-    Pie& textinfo(std::string f);
+    Pie& textinfo(std::initializer_list<Textinfo> flags);
+    Pie& textinfo(TextinfoExtra extra);
 
     // Specifies the location of the `textinfo`.
     // - Default: auto
@@ -442,6 +471,17 @@ class Pie::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Pie::Hoverlabel::Font& color(std::string f);
     Pie::Hoverlabel::Font& color(double f);
     Pie::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -468,8 +508,8 @@ class Pie::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Pie::Hoverlabel::Font& lineposition(std::string f);
-    Pie::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Pie::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Pie::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Pie::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -555,6 +595,17 @@ class Pie::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Pie::Insidetextfont& color(std::string f);
     Pie::Insidetextfont& color(double f);
     Pie::Insidetextfont& color(const std::vector<std::string>& f);
@@ -581,8 +632,8 @@ class Pie::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Pie::Insidetextfont& lineposition(std::string f);
-    Pie::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Pie::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Pie::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Pie::Insidetextfont& linepositionsrc(std::string f);
@@ -689,6 +740,17 @@ class Pie::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Pie::Legendgrouptitle::Font& color(std::string f);
     Pie::Legendgrouptitle::Font& color(double f);
 
@@ -706,7 +768,8 @@ class Pie::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Pie::Legendgrouptitle::Font& lineposition(std::string f);
+    Pie::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Pie::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -890,6 +953,17 @@ class Pie::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Pie::Outsidetextfont& color(std::string f);
     Pie::Outsidetextfont& color(double f);
     Pie::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -916,8 +990,8 @@ class Pie::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Pie::Outsidetextfont& lineposition(std::string f);
-    Pie::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Pie::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Pie::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Pie::Outsidetextfont& linepositionsrc(std::string f);
@@ -1021,6 +1095,17 @@ class Pie::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Pie::Textfont& color(std::string f);
     Pie::Textfont& color(double f);
     Pie::Textfont& color(const std::vector<std::string>& f);
@@ -1047,8 +1132,8 @@ class Pie::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Pie::Textfont& lineposition(std::string f);
-    Pie::Textfont& lineposition(const std::vector<std::string>& f);
+    Pie::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Pie::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Pie::Textfont& linepositionsrc(std::string f);
@@ -1169,6 +1254,17 @@ class Pie::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Pie::Title::Font& color(std::string f);
     Pie::Title::Font& color(double f);
     Pie::Title::Font& color(const std::vector<std::string>& f);
@@ -1195,8 +1291,8 @@ class Pie::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Pie::Title::Font& lineposition(std::string f);
-    Pie::Title::Font& lineposition(const std::vector<std::string>& f);
+    Pie::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Pie::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Pie::Title::Font& linepositionsrc(std::string f);

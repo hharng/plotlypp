@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -49,6 +50,22 @@ class Image : public Trace {
     };
     static std::string to_string(Zsmooth e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Color,
+        Name,
+        Text,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Hoverlabel;
     class Legendgrouptitle;
     class Stream;
@@ -76,8 +93,8 @@ class Image : public Trace {
     // - Default: x+y+z+text+name
     // - Flags: ['x', 'y', 'z', 'color', 'name', 'text']
     // - Extras ['all', 'none', 'skip']
-    Image& hoverinfo(std::string f);
-    Image& hoverinfo(const std::vector<std::string>& f);
+    Image& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Image& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Image& hoverinfosrc(std::string f);
@@ -342,6 +359,17 @@ class Image::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Image::Hoverlabel::Font& color(std::string f);
     Image::Hoverlabel::Font& color(double f);
     Image::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -368,8 +396,8 @@ class Image::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Image::Hoverlabel::Font& lineposition(std::string f);
-    Image::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Image::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Image::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Image::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -476,6 +504,17 @@ class Image::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Image::Legendgrouptitle::Font& color(std::string f);
     Image::Legendgrouptitle::Font& color(double f);
 
@@ -493,7 +532,8 @@ class Image::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Image::Legendgrouptitle::Font& lineposition(std::string f);
+    Image::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Image::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

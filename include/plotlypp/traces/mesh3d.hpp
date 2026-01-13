@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -107,6 +108,21 @@ class Mesh3D : public Trace {
     };
     static std::string to_string(Zcalendar e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Colorbar;
     class Contour;
     class Hoverlabel;
@@ -202,8 +218,8 @@ class Mesh3D : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Mesh3D& hoverinfo(std::string f);
-    Mesh3D& hoverinfo(const std::vector<std::string>& f);
+    Mesh3D& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Mesh3D& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Mesh3D& hoverinfosrc(std::string f);
@@ -835,6 +851,17 @@ class Mesh3D::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Mesh3D::Colorbar::Tickfont& color(std::string f);
     Mesh3D::Colorbar::Tickfont& color(double f);
 
@@ -852,7 +879,8 @@ class Mesh3D::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Mesh3D::Colorbar::Tickfont& lineposition(std::string f);
+    Mesh3D::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Mesh3D::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -979,6 +1007,17 @@ class Mesh3D::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Mesh3D::Colorbar::Title::Font& color(std::string f);
     Mesh3D::Colorbar::Title::Font& color(double f);
 
@@ -996,7 +1035,8 @@ class Mesh3D::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Mesh3D::Colorbar::Title::Font& lineposition(std::string f);
+    Mesh3D::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Mesh3D::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1137,6 +1177,17 @@ class Mesh3D::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Mesh3D::Hoverlabel::Font& color(std::string f);
     Mesh3D::Hoverlabel::Font& color(double f);
     Mesh3D::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1163,8 +1214,8 @@ class Mesh3D::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Mesh3D::Hoverlabel::Font& lineposition(std::string f);
-    Mesh3D::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Mesh3D::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Mesh3D::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Mesh3D::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1271,6 +1322,17 @@ class Mesh3D::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Mesh3D::Legendgrouptitle::Font& color(std::string f);
     Mesh3D::Legendgrouptitle::Font& color(double f);
 
@@ -1288,7 +1350,8 @@ class Mesh3D::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Mesh3D::Legendgrouptitle::Font& lineposition(std::string f);
+    Mesh3D::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Mesh3D::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

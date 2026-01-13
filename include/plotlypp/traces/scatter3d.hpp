@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -114,6 +115,32 @@ class Scatter3D : public Trace {
     };
     static std::string to_string(Zcalendar e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     class Error_X;
     class Error_Y;
     class Error_Z;
@@ -154,8 +181,8 @@ class Scatter3D : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scatter3D& hoverinfo(std::string f);
-    Scatter3D& hoverinfo(const std::vector<std::string>& f);
+    Scatter3D& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scatter3D& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scatter3D& hoverinfosrc(std::string f);
@@ -250,7 +277,8 @@ class Scatter3D : public Trace {
     // - Default: lines+markers
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scatter3D& mode(std::string f);
+    Scatter3D& mode(std::initializer_list<Mode> flags);
+    Scatter3D& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scatter3D& name(std::string f);
@@ -701,6 +729,17 @@ class Scatter3D::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter3D::Hoverlabel::Font& color(std::string f);
     Scatter3D::Hoverlabel::Font& color(double f);
     Scatter3D::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -727,8 +766,8 @@ class Scatter3D::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter3D::Hoverlabel::Font& lineposition(std::string f);
-    Scatter3D::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scatter3D::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter3D::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scatter3D::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -835,6 +874,17 @@ class Scatter3D::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter3D::Legendgrouptitle::Font& color(std::string f);
     Scatter3D::Legendgrouptitle::Font& color(double f);
 
@@ -852,7 +902,8 @@ class Scatter3D::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter3D::Legendgrouptitle::Font& lineposition(std::string f);
+    Scatter3D::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter3D::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1346,6 +1397,17 @@ class Scatter3D::Line::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter3D::Line::Colorbar::Tickfont& color(std::string f);
     Scatter3D::Line::Colorbar::Tickfont& color(double f);
 
@@ -1363,7 +1425,8 @@ class Scatter3D::Line::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter3D::Line::Colorbar::Tickfont& lineposition(std::string f);
+    Scatter3D::Line::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter3D::Line::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1490,6 +1553,17 @@ class Scatter3D::Line::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter3D::Line::Colorbar::Title::Font& color(std::string f);
     Scatter3D::Line::Colorbar::Title::Font& color(double f);
 
@@ -1507,7 +1581,8 @@ class Scatter3D::Line::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter3D::Line::Colorbar::Title::Font& lineposition(std::string f);
+    Scatter3D::Line::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter3D::Line::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2041,6 +2116,17 @@ class Scatter3D::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter3D::Marker::Colorbar::Tickfont& color(std::string f);
     Scatter3D::Marker::Colorbar::Tickfont& color(double f);
 
@@ -2058,7 +2144,8 @@ class Scatter3D::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter3D::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scatter3D::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter3D::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2185,6 +2272,17 @@ class Scatter3D::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatter3D::Marker::Colorbar::Title::Font& color(std::string f);
     Scatter3D::Marker::Colorbar::Title::Font& color(double f);
 
@@ -2202,7 +2300,8 @@ class Scatter3D::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatter3D::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scatter3D::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatter3D::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

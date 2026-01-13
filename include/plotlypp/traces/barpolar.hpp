@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -40,6 +41,20 @@ class Barpolar : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        R,
+        Theta,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -78,8 +93,8 @@ class Barpolar : public Trace {
     // - Default: all
     // - Flags: ['r', 'theta', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Barpolar& hoverinfo(std::string f);
-    Barpolar& hoverinfo(const std::vector<std::string>& f);
+    Barpolar& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Barpolar& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Barpolar& hoverinfosrc(std::string f);
@@ -357,6 +372,17 @@ class Barpolar::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Barpolar::Hoverlabel::Font& color(std::string f);
     Barpolar::Hoverlabel::Font& color(double f);
     Barpolar::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -383,8 +409,8 @@ class Barpolar::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Barpolar::Hoverlabel::Font& lineposition(std::string f);
-    Barpolar::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Barpolar::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Barpolar::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Barpolar::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -491,6 +517,17 @@ class Barpolar::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Barpolar::Legendgrouptitle::Font& color(std::string f);
     Barpolar::Legendgrouptitle::Font& color(double f);
 
@@ -508,7 +545,8 @@ class Barpolar::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Barpolar::Legendgrouptitle::Font& lineposition(std::string f);
+    Barpolar::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Barpolar::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1005,6 +1043,17 @@ class Barpolar::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Barpolar::Marker::Colorbar::Tickfont& color(std::string f);
     Barpolar::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1022,7 +1071,8 @@ class Barpolar::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Barpolar::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Barpolar::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Barpolar::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1149,6 +1199,17 @@ class Barpolar::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Barpolar::Marker::Colorbar::Title::Font& color(std::string f);
     Barpolar::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1166,7 +1227,8 @@ class Barpolar::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Barpolar::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Barpolar::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Barpolar::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

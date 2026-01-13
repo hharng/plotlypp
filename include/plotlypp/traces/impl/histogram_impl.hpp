@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Histogram::to_string(Constraintext e) {
@@ -122,6 +124,24 @@ inline std::string Histogram::to_string(Ycalendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Histogram::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 
 inline Histogram& Histogram::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
@@ -207,12 +227,12 @@ inline Histogram& Histogram::histnorm(enum Histnorm f) {
     return *this;
 }
 
-inline Histogram& Histogram::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Histogram& Histogram::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Histogram& Histogram::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Histogram& Histogram::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -902,6 +922,20 @@ inline std::string Histogram::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -939,12 +973,12 @@ inline Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::familysrc(std::
     return *this;
 }
 
-inline Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Histogram::Hoverlabel::Font& Histogram::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1073,6 +1107,20 @@ inline std::string Histogram::Insidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Insidetextfont& Histogram::Insidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1088,8 +1136,12 @@ inline Histogram::Insidetextfont& Histogram::Insidetextfont::family(std::string 
     return *this;
 }
 
-inline Histogram::Insidetextfont& Histogram::Insidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Insidetextfont& Histogram::Insidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Histogram::Insidetextfont& Histogram::Insidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1170,6 +1222,20 @@ inline std::string Histogram::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Legendgrouptitle::Font& Histogram::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1185,8 +1251,12 @@ inline Histogram::Legendgrouptitle::Font& Histogram::Legendgrouptitle::Font::fam
     return *this;
 }
 
-inline Histogram::Legendgrouptitle::Font& Histogram::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Legendgrouptitle::Font& Histogram::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Histogram::Legendgrouptitle::Font& Histogram::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1793,6 +1863,20 @@ inline std::string Histogram::Marker::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Marker::Colorbar::Tickfont& Histogram::Marker::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1808,8 +1892,12 @@ inline Histogram::Marker::Colorbar::Tickfont& Histogram::Marker::Colorbar::Tickf
     return *this;
 }
 
-inline Histogram::Marker::Colorbar::Tickfont& Histogram::Marker::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Marker::Colorbar::Tickfont& Histogram::Marker::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Histogram::Marker::Colorbar::Tickfont& Histogram::Marker::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1942,6 +2030,20 @@ inline std::string Histogram::Marker::Colorbar::Title::Font::to_string(Variant e
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Marker::Colorbar::Title::Font& Histogram::Marker::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1957,8 +2059,12 @@ inline Histogram::Marker::Colorbar::Title::Font& Histogram::Marker::Colorbar::Ti
     return *this;
 }
 
-inline Histogram::Marker::Colorbar::Title::Font& Histogram::Marker::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Marker::Colorbar::Title::Font& Histogram::Marker::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Histogram::Marker::Colorbar::Title::Font& Histogram::Marker::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -2208,6 +2314,20 @@ inline std::string Histogram::Outsidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Outsidetextfont& Histogram::Outsidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -2223,8 +2343,12 @@ inline Histogram::Outsidetextfont& Histogram::Outsidetextfont::family(std::strin
     return *this;
 }
 
-inline Histogram::Outsidetextfont& Histogram::Outsidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Outsidetextfont& Histogram::Outsidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Histogram::Outsidetextfont& Histogram::Outsidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -2347,6 +2471,20 @@ inline std::string Histogram::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Histogram::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Histogram::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Histogram::Textfont& Histogram::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -2362,8 +2500,12 @@ inline Histogram::Textfont& Histogram::Textfont::family(std::string f) {
     return *this;
 }
 
-inline Histogram::Textfont& Histogram::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Histogram::Textfont& Histogram::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Histogram::Textfont& Histogram::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

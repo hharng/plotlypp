@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -52,6 +53,31 @@ class Scattermapbox : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        Lon,
+        Lat,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
 
     class Cluster;
     class Hoverlabel;
@@ -100,8 +126,8 @@ class Scattermapbox : public Trace {
     // - Default: all
     // - Flags: ['lon', 'lat', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scattermapbox& hoverinfo(std::string f);
-    Scattermapbox& hoverinfo(const std::vector<std::string>& f);
+    Scattermapbox& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scattermapbox& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattermapbox& hoverinfosrc(std::string f);
@@ -209,7 +235,8 @@ class Scattermapbox : public Trace {
     // - Default: markers
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scattermapbox& mode(std::string f);
+    Scattermapbox& mode(std::initializer_list<Mode> flags);
+    Scattermapbox& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattermapbox& name(std::string f);
@@ -440,6 +467,17 @@ class Scattermapbox::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermapbox::Hoverlabel::Font& color(std::string f);
     Scattermapbox::Hoverlabel::Font& color(double f);
     Scattermapbox::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -466,8 +504,8 @@ class Scattermapbox::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermapbox::Hoverlabel::Font& lineposition(std::string f);
-    Scattermapbox::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scattermapbox::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermapbox::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattermapbox::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -574,6 +612,17 @@ class Scattermapbox::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermapbox::Legendgrouptitle::Font& color(std::string f);
     Scattermapbox::Legendgrouptitle::Font& color(double f);
 
@@ -591,7 +640,8 @@ class Scattermapbox::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermapbox::Legendgrouptitle::Font& lineposition(std::string f);
+    Scattermapbox::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermapbox::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1138,6 +1188,17 @@ class Scattermapbox::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermapbox::Marker::Colorbar::Tickfont& color(std::string f);
     Scattermapbox::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1155,7 +1216,8 @@ class Scattermapbox::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermapbox::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scattermapbox::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermapbox::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1282,6 +1344,17 @@ class Scattermapbox::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermapbox::Marker::Colorbar::Title::Font& color(std::string f);
     Scattermapbox::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1299,7 +1372,8 @@ class Scattermapbox::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermapbox::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scattermapbox::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermapbox::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

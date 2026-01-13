@@ -18,7 +18,7 @@ Figure linesOnMaps() {
     auto trace = Scattergeo()
                      .lat(std::vector{40.7127, 51.5072})
                      .lon(std::vector{-74.0059, 0.1275})
-                     .mode("lines")
+                     .mode({Scattergeo::Mode::Lines})
                      .line(Scattergeo::Line().width(2).color("blue"));
     return Figure()
         .addTrace(std::move(trace))
@@ -80,7 +80,7 @@ Figure outlineMapLocations() {
 
 Figure scatterTileMaps() {
     auto trace = Scattermap()
-                     .mode("markers+text+lines")
+                     .mode({Scattermap::Mode::Markers, Scattermap::Mode::Text, Scattermap::Mode::Lines})
                      .lon(std::vector{-75, -80, -50})
                      .lat(std::vector{45, 20, -20})
                      .marker(Scattermap::Marker().size(20).symbol(std::vector<std::string>{"bus", "harbor", "airport"}))

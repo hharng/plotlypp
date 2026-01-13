@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Image::to_string(Colormodel e) {
@@ -38,6 +40,25 @@ inline std::string Image::to_string(Zsmooth e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Image::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Color: return "color";
+        case Hoverinfo::Name: return "name";
+        case Hoverinfo::Text: return "text";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Image::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 
 inline Image& Image::colormodel(enum Colormodel f) {
     json["colormodel"] = to_string(f);
@@ -65,12 +86,12 @@ inline Image& Image::dy(double f) {
     return *this;
 }
 
-inline Image& Image::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Image& Image::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Image& Image::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Image& Image::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -423,6 +444,20 @@ inline std::string Image::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Image::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Image::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -460,12 +495,12 @@ inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::familysrc(std::string f
     return *this;
 }
 
-inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Image::Hoverlabel::Font& Image::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -611,6 +646,20 @@ inline std::string Image::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Image::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Image::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -626,8 +675,12 @@ inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::family(std:
     return *this;
 }
 
-inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Image::Legendgrouptitle::Font& Image::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

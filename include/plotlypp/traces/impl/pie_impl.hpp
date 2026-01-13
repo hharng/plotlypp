@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Pie::to_string(Direction e) {
@@ -46,6 +48,39 @@ inline std::string Pie::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Pie::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Label: return "label";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Value: return "value";
+        case Hoverinfo::Percent: return "percent";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Pie::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Pie::to_string(Textinfo e) {
+    switch(e) {
+        case Textinfo::Label: return "label";
+        case Textinfo::Text: return "text";
+        case Textinfo::Value: return "value";
+        case Textinfo::Percent: return "percent";
+    }
+    throw std::invalid_argument{"Unknown flag value for textinfo."};
+}
+inline std::string Pie::to_string(TextinfoExtra e) {
+    switch(e) {
+        case TextinfoExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
 
 inline Pie& Pie::automargin(bool f) {
@@ -90,12 +125,12 @@ inline Pie& Pie::hole(double f) {
     return *this;
 }
 
-inline Pie& Pie::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Pie& Pie::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Pie& Pie::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Pie& Pie::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -327,8 +362,12 @@ inline Pie& Pie::textfont(Callable&& c) {
     return textfont(std::move(f));
 }
 
-inline Pie& Pie::textinfo(std::string f) {
-    json["textinfo"] = std::move(f);
+inline Pie& Pie::textinfo(std::initializer_list<Textinfo> flags) {
+    json["textinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Pie& Pie::textinfo(TextinfoExtra extra) {
+    json["textinfo"] = to_string(extra);
     return *this;
 }
 
@@ -575,6 +614,20 @@ inline std::string Pie::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -612,12 +665,12 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(std::string f) {
     return *this;
 }
 
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -746,6 +799,20 @@ inline std::string Pie::Insidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -783,12 +850,12 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -934,6 +1001,20 @@ inline std::string Pie::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -949,8 +1030,12 @@ inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(std::str
     return *this;
 }
 
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1190,6 +1275,20 @@ inline std::string Pie::Outsidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1227,12 +1326,12 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1372,6 +1471,20 @@ inline std::string Pie::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Pie::Textfont& Pie::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1409,12 +1522,12 @@ inline Pie::Textfont& Pie::Textfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Pie::Textfont& Pie::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Pie::Textfont& Pie::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Pie::Textfont& Pie::Textfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Pie::Textfont& Pie::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1578,6 +1691,20 @@ inline std::string Pie::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Pie::Title::Font& Pie::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1615,12 +1742,12 @@ inline Pie::Title::Font& Pie::Title::Font::familysrc(std::string f) {
     return *this;
 }
 
-inline Pie::Title::Font& Pie::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Pie::Title::Font& Pie::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Pie::Title::Font& Pie::Title::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Pie::Title::Font& Pie::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

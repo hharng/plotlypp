@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Surface::to_string(Visible e) {
@@ -84,6 +86,24 @@ inline std::string Surface::to_string(Zcalendar e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Surface::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Surface::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 inline Surface& Surface::autocolorscale(bool f) {
@@ -168,12 +188,12 @@ inline Surface& Surface::hidesurface(bool f) {
     return *this;
 }
 
-inline Surface& Surface::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Surface& Surface::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Surface& Surface::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Surface& Surface::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -900,6 +920,20 @@ inline std::string Surface::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Surface::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Surface::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -915,8 +949,12 @@ inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::family(std::str
     return *this;
 }
 
-inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Surface::Colorbar::Tickfont& Surface::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1049,6 +1087,20 @@ inline std::string Surface::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Surface::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Surface::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1064,8 +1116,12 @@ inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::family(st
     return *this;
 }
 
-inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Surface::Colorbar::Title::Font& Surface::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1516,6 +1572,20 @@ inline std::string Surface::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Surface::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Surface::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1553,12 +1623,12 @@ inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::familysrc(std::stri
     return *this;
 }
 
-inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Surface::Hoverlabel::Font& Surface::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1704,6 +1774,20 @@ inline std::string Surface::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Surface::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Surface::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1719,8 +1803,12 @@ inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::family(
     return *this;
 }
 
-inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Surface::Legendgrouptitle::Font& Surface::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

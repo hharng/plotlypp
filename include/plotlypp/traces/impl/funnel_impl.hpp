@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Funnel::to_string(Constraintext e) {
@@ -74,6 +76,43 @@ inline std::string Funnel::to_string(Yperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Name: return "name";
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::PercentInitial: return "percent initial";
+        case Hoverinfo::PercentPrevious: return "percent previous";
+        case Hoverinfo::PercentTotal: return "percent total";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Funnel::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Funnel::to_string(Textinfo e) {
+    switch(e) {
+        case Textinfo::Label: return "label";
+        case Textinfo::Text: return "text";
+        case Textinfo::PercentInitial: return "percent initial";
+        case Textinfo::PercentPrevious: return "percent previous";
+        case Textinfo::PercentTotal: return "percent total";
+        case Textinfo::Value: return "value";
+    }
+    throw std::invalid_argument{"Unknown flag value for textinfo."};
+}
+inline std::string Funnel::to_string(TextinfoExtra e) {
+    switch(e) {
+        case TextinfoExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for textinfo."};
+}
 
 inline Funnel& Funnel::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
@@ -122,12 +161,12 @@ inline Funnel& Funnel::dy(double f) {
     return *this;
 }
 
-inline Funnel& Funnel::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Funnel& Funnel::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Funnel& Funnel::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Funnel& Funnel::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -343,8 +382,12 @@ inline Funnel& Funnel::textfont(Callable&& c) {
     return textfont(std::move(f));
 }
 
-inline Funnel& Funnel::textinfo(std::string f) {
-    json["textinfo"] = std::move(f);
+inline Funnel& Funnel::textinfo(std::initializer_list<Textinfo> flags) {
+    json["textinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Funnel& Funnel::textinfo(TextinfoExtra extra) {
+    json["textinfo"] = to_string(extra);
     return *this;
 }
 
@@ -668,6 +711,20 @@ inline std::string Funnel::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -705,12 +762,12 @@ inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::familysrc(std::string
     return *this;
 }
 
-inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -839,6 +896,20 @@ inline std::string Funnel::Insidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Insidetextfont& Funnel::Insidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -876,12 +947,12 @@ inline Funnel::Insidetextfont& Funnel::Insidetextfont::familysrc(std::string f) 
     return *this;
 }
 
-inline Funnel::Insidetextfont& Funnel::Insidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Insidetextfont& Funnel::Insidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Funnel::Insidetextfont& Funnel::Insidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Funnel::Insidetextfont& Funnel::Insidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1027,6 +1098,20 @@ inline std::string Funnel::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1042,8 +1127,12 @@ inline Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::family(st
     return *this;
 }
 
-inline Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1633,6 +1722,20 @@ inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1648,8 +1751,12 @@ inline Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::f
     return *this;
 }
 
-inline Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1782,6 +1889,20 @@ inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1797,8 +1918,12 @@ inline Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::F
     return *this;
 }
 
-inline Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1943,6 +2068,20 @@ inline std::string Funnel::Outsidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1980,12 +2119,12 @@ inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::familysrc(std::string f
     return *this;
 }
 
-inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -2125,6 +2264,20 @@ inline std::string Funnel::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Funnel::Textfont& Funnel::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -2162,12 +2315,12 @@ inline Funnel::Textfont& Funnel::Textfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Funnel::Textfont& Funnel::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Funnel::Textfont& Funnel::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Funnel::Textfont& Funnel::Textfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Funnel::Textfont& Funnel::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

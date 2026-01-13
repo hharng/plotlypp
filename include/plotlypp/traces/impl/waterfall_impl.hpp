@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Waterfall::to_string(Constraintext e) {
@@ -74,6 +76,42 @@ inline std::string Waterfall::to_string(Yperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Waterfall::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Name: return "name";
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Initial: return "initial";
+        case Hoverinfo::Delta: return "delta";
+        case Hoverinfo::Final: return "final";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Waterfall::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Waterfall::to_string(Textinfo e) {
+    switch(e) {
+        case Textinfo::Label: return "label";
+        case Textinfo::Text: return "text";
+        case Textinfo::Initial: return "initial";
+        case Textinfo::Delta: return "delta";
+        case Textinfo::Final: return "final";
+    }
+    throw std::invalid_argument{"Unknown flag value for textinfo."};
+}
+inline std::string Waterfall::to_string(TextinfoExtra e) {
+    switch(e) {
+        case TextinfoExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for textinfo."};
+}
 
 inline Waterfall& Waterfall::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
@@ -138,12 +176,12 @@ inline Waterfall& Waterfall::dy(double f) {
     return *this;
 }
 
-inline Waterfall& Waterfall::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Waterfall& Waterfall::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Waterfall& Waterfall::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Waterfall& Waterfall::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -379,8 +417,12 @@ inline Waterfall& Waterfall::textfont(Callable&& c) {
     return textfont(std::move(f));
 }
 
-inline Waterfall& Waterfall::textinfo(std::string f) {
-    json["textinfo"] = std::move(f);
+inline Waterfall& Waterfall::textinfo(std::initializer_list<Textinfo> flags) {
+    json["textinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Waterfall& Waterfall::textinfo(TextinfoExtra extra) {
+    json["textinfo"] = to_string(extra);
     return *this;
 }
 
@@ -776,6 +818,20 @@ inline std::string Waterfall::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Waterfall::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Waterfall::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -813,12 +869,12 @@ inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::familysrc(std::
     return *this;
 }
 
-inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Waterfall::Hoverlabel::Font& Waterfall::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -995,6 +1051,20 @@ inline std::string Waterfall::Insidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Waterfall::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Waterfall::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1032,12 +1102,12 @@ inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::familysrc(std::stri
     return *this;
 }
 
-inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Waterfall::Insidetextfont& Waterfall::Insidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1183,6 +1253,20 @@ inline std::string Waterfall::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Waterfall::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Waterfall::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1198,8 +1282,12 @@ inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::fam
     return *this;
 }
 
-inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Waterfall::Legendgrouptitle::Font& Waterfall::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1263,6 +1351,20 @@ inline std::string Waterfall::Outsidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Waterfall::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Waterfall::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1300,12 +1402,12 @@ inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::familysrc(std::st
     return *this;
 }
 
-inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Waterfall::Outsidetextfont& Waterfall::Outsidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1445,6 +1547,20 @@ inline std::string Waterfall::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Waterfall::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Waterfall::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Waterfall::Textfont& Waterfall::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1482,12 +1598,12 @@ inline Waterfall::Textfont& Waterfall::Textfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Waterfall::Textfont& Waterfall::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Waterfall::Textfont& Waterfall::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Waterfall::Textfont& Waterfall::Textfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Waterfall::Textfont& Waterfall::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

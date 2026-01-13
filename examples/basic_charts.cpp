@@ -19,14 +19,15 @@ Figure lineAndScatterWithNamesAxesTitle() {
     auto scatter = Scatter()
                        .x(std::vector{1, 2, 3, 4})
                        .y(std::vector{10, 15, 13, 17})
-                       .mode("markers")
+                       .mode({Scatter::Mode::Markers})
                        .marker(Scatter::Marker().color("rgb(82, 64, 219)").size(12))
                        .name("Markers");
-    auto lines = Scatter().x(std::vector{2, 3, 4, 5}).y(std::vector{16, 5, 11, 9}).mode("lines").name("Lines");
+    auto lines =
+        Scatter().x(std::vector{2, 3, 4, 5}).y(std::vector{16, 5, 11, 9}).mode({Scatter::Mode::Lines}).name("Lines");
     auto scatter_and_lines = Scatter()
                                  .x(std::vector{1, 2, 3, 4})
                                  .y(std::vector{12, 9, 15, 12})
-                                 .mode("lines+markers")
+                                 .mode({Scatter::Mode::Lines, Scatter::Mode::Markers})
                                  .name("Lines & Markers");
 
     auto layout = Layout()
@@ -43,7 +44,7 @@ Figure scatterWithColorDimension() {
         .addTrace(Scatter()
                       .y(std::vector{5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
                                      5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5})
-                      .mode("markers")
+                      .mode({Scatter::Mode::Markers})
                       .marker(Scatter::Marker().size(40).color(std::vector<std::string>{
                           "0",  "1",  "2",  "3",  "4",  "5",  "6",  "7",  "8",  "9",  "10", "11", "12", "13",
                           "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
@@ -56,17 +57,17 @@ Figure groupedScatter() {
                       .x(std::vector{"South Korea", "China", "Canada"})
                       .y(std::vector{24, 10, 9})
                       .name("Gold")
-                      .mode("markers");
+                      .mode({Scatter::Mode::Markers});
     auto trace2 = Scatter()
                       .x(std::vector{"South Korea", "China", "Canada"})
                       .y(std::vector{13, 15, 12})
                       .name("Silver")
-                      .mode("markers");
+                      .mode({Scatter::Mode::Markers});
     auto trace3 = Scatter()
                       .x(std::vector{"South Korea", "China", "Canada"})
                       .y(std::vector{11, 8, 12})
                       .name("Bronze")
-                      .mode("markers");
+                      .mode({Scatter::Mode::Markers});
 
     auto layout = Layout()
                       .scattermode(Layout::Scattermode::Group)
@@ -83,36 +84,39 @@ Figure lineDashes() {
     auto trace1 = Scatter()
                       .x(std::vector{1, 2, 3, 4, 5})
                       .y(std::vector{1, 3, 2, 3, 1})
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("Solid")
                       .line(Scatter::Line().dash("solid").width(4));
 
     auto trace2 = Scatter()
                       .x(std::vector{1, 2, 3, 4, 5})
                       .y(std::vector{6, 8, 7, 8, 6})
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("DashDot")
                       .line(Scatter::Line().dash("dashdot").width(4));
 
     auto trace3 = Scatter()
                       .x(std::vector{1, 2, 3, 4, 5})
                       .y(std::vector{11, 13, 12, 13, 11})
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("Solid")
                       .line(Scatter::Line().dash("solid").width(4));
 
     auto trace4 = Scatter()
                       .x(std::vector{1, 2, 3, 4, 5})
                       .y(std::vector{16, 18, 17, 18, 16})
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("Dot")
                       .line(Scatter::Line().dash("dot").width(4));
 
-    auto layout = Layout()
-                      .title([](auto& t) { t.text("Line Dash"); })
-                      .xaxis(Layout::Xaxis().range({0.75, 5.25}).autorange(Layout::Xaxis::Autorange::False))
-                      .yaxis(Layout::Yaxis().range({0., 18.5}).autorange(Layout::Yaxis::Autorange::False))
-                      .legend(Layout::Legend().y(0.5).traceorder("reversed").font([](auto& f) { f.size(16); }));
+    auto layout =
+        Layout()
+            .title([](auto& t) { t.text("Line Dash"); })
+            .xaxis(Layout::Xaxis().range({0.75, 5.25}).autorange(Layout::Xaxis::Autorange::False))
+            .yaxis(Layout::Yaxis().range({0., 18.5}).autorange(Layout::Yaxis::Autorange::False))
+            .legend(Layout::Legend().y(0.5).traceorder({Layout::Legend::Traceorder::Reversed}).font([](auto& f) {
+                f.size(16);
+            }));
 
     return Figure()
         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2), std::move(trace3), std::move(trace4)})
@@ -143,7 +147,7 @@ Figure donut() {
                                           "Rest of World"})
                       .domain(Pie::Domain().column(0))
                       .name("GHG Emissions")
-                      .hoverinfo("label+percent+name")
+                      .hoverinfo({Pie::Hoverinfo::Label, Pie::Hoverinfo::Percent, Pie::Hoverinfo::Name})
                       .hole(0.4);
     auto trace2 = Pie()
                       .values(std::vector{27, 11, 25, 8, 1, 3, 25})
@@ -153,7 +157,7 @@ Figure donut() {
                       .textposition(Pie::Textposition::Inside)
                       .domain(Pie::Domain().column(1))
                       .name("CO2 Emissions")
-                      .hoverinfo("label+percent+name")
+                      .hoverinfo({Pie::Hoverinfo::Label, Pie::Hoverinfo::Percent, Pie::Hoverinfo::Name})
                       .hole(0.4);
     return Figure()
         .addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)})
@@ -183,7 +187,7 @@ Figure bubbleWithMarkerSizeAndColor() {
     auto trace1 = Scatter()
                       .x(std::vector{1, 2, 3, 4})
                       .y(std::vector{10, 11, 12, 13})
-                      .mode("markers")
+                      .mode({Scatter::Mode::Markers})
                       .marker(Scatter::Marker()
                                   .color(std::vector<std::string>{"rgb(93, 164, 214)", "rgb(255, 144, 14)",
                                                                   "rgb(44, 160, 101)", "rgb(255, 65, 54)"})
@@ -207,7 +211,7 @@ Figure categoricalDotPlot() {
     auto trace1 = Scatter()
                       .x(voting_pop)
                       .y(country)
-                      .mode("markers")
+                      .mode({Scatter::Mode::Markers})
                       .name("Percent of estimated voting age population")
                       .marker(Scatter::Marker()
                                   .color("rgba(156, 165, 196, 0.95)")
@@ -217,7 +221,7 @@ Figure categoricalDotPlot() {
     auto trace2 = Scatter()
                       .x(reg_voters)
                       .y(country)
-                      .mode("markers")
+                      .mode({Scatter::Mode::Markers})
                       .name("Percent of estimated registered voters")
                       .marker(Scatter::Marker()
                                   .color("rgba(204, 204, 204, 0.95)")

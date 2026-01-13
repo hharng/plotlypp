@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -112,6 +113,32 @@ class Scattergl : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     class Error_X;
     class Error_Y;
     class Hoverlabel;
@@ -173,8 +200,8 @@ class Scattergl : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scattergl& hoverinfo(std::string f);
-    Scattergl& hoverinfo(const std::vector<std::string>& f);
+    Scattergl& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scattergl& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattergl& hoverinfosrc(std::string f);
@@ -266,7 +293,8 @@ class Scattergl : public Trace {
     // Determines the drawing mode for this scatter trace.
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scattergl& mode(std::string f);
+    Scattergl& mode(std::initializer_list<Mode> flags);
+    Scattergl& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattergl& name(std::string f);
@@ -672,6 +700,17 @@ class Scattergl::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergl::Hoverlabel::Font& color(std::string f);
     Scattergl::Hoverlabel::Font& color(double f);
     Scattergl::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -698,8 +737,8 @@ class Scattergl::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergl::Hoverlabel::Font& lineposition(std::string f);
-    Scattergl::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scattergl::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergl::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattergl::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -806,6 +845,17 @@ class Scattergl::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergl::Legendgrouptitle::Font& color(std::string f);
     Scattergl::Legendgrouptitle::Font& color(double f);
 
@@ -823,7 +873,8 @@ class Scattergl::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergl::Legendgrouptitle::Font& lineposition(std::string f);
+    Scattergl::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergl::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1728,6 +1779,17 @@ class Scattergl::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergl::Marker::Colorbar::Tickfont& color(std::string f);
     Scattergl::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1745,7 +1807,8 @@ class Scattergl::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergl::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scattergl::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergl::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1872,6 +1935,17 @@ class Scattergl::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergl::Marker::Colorbar::Title::Font& color(std::string f);
     Scattergl::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1889,7 +1963,8 @@ class Scattergl::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergl::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scattergl::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergl::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

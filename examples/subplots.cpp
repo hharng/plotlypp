@@ -158,13 +158,19 @@ Figure mixedSubplots() {
                       .marker([&](auto& m) {
                           m.size(2).color(rows.elev).colorscale("Reds").line([](auto& l) { l.color("transparent"); });
                       })
-                      .mode("markers")
+                      .mode({Scatter3D::Mode::Markers})
                       .text(rows.country)
-                      .hoverinfo("x+y+z+text")
+                      .hoverinfo({Scatter3D::Hoverinfo::X, Scatter3D::Hoverinfo::Y, Scatter3D::Hoverinfo::Z,
+                                  Scatter3D::Hoverinfo::Text})
                       .showlegend(false);
 
-    auto trace2 = Histogram().x(rows.elev).hoverinfo("x+y").showlegend(false).xaxis("x2").yaxis("y2").marker(
-        [](auto& m) { m.color("red"); });
+    auto trace2 = Histogram()
+                      .x(rows.elev)
+                      .hoverinfo({Histogram::Hoverinfo::X, Histogram::Hoverinfo::Y})
+                      .showlegend(false)
+                      .xaxis("x2")
+                      .yaxis("y2")
+                      .marker([](auto& m) { m.color("red"); });
 
     std::vector<std::string> elev_str(rows.elev.size());
     std::transform(rows.elev.begin(), rows.elev.end(), elev_str.begin(),
@@ -173,9 +179,9 @@ Figure mixedSubplots() {
                       .geo("geo3") // Link trace to subplot "geo3" layout
                       .lon(rows.lon)
                       .lat(rows.lat)
-                      .hoverinfo("text")
+                      .hoverinfo({Scattergeo::Hoverinfo::Text})
                       .text(elev_str)
-                      .mode("markers")
+                      .mode({Scattergeo::Mode::Markers})
                       .showlegend(false)
                       .marker([&](auto& m) {
                           m.size(4)

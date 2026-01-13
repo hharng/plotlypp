@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,20 @@ class Choroplethmap : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        Location,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Colorbar;
     class Hoverlabel;
@@ -93,8 +108,8 @@ class Choroplethmap : public Trace {
     // - Default: all
     // - Flags: ['location', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Choroplethmap& hoverinfo(std::string f);
-    Choroplethmap& hoverinfo(const std::vector<std::string>& f);
+    Choroplethmap& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Choroplethmap& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Choroplethmap& hoverinfosrc(std::string f);
@@ -647,6 +662,17 @@ class Choroplethmap::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Choroplethmap::Colorbar::Tickfont& color(std::string f);
     Choroplethmap::Colorbar::Tickfont& color(double f);
 
@@ -664,7 +690,8 @@ class Choroplethmap::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Choroplethmap::Colorbar::Tickfont& lineposition(std::string f);
+    Choroplethmap::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Choroplethmap::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -791,6 +818,17 @@ class Choroplethmap::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Choroplethmap::Colorbar::Title::Font& color(std::string f);
     Choroplethmap::Colorbar::Title::Font& color(double f);
 
@@ -808,7 +846,8 @@ class Choroplethmap::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Choroplethmap::Colorbar::Title::Font& lineposition(std::string f);
+    Choroplethmap::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Choroplethmap::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -929,6 +968,17 @@ class Choroplethmap::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Choroplethmap::Hoverlabel::Font& color(std::string f);
     Choroplethmap::Hoverlabel::Font& color(double f);
     Choroplethmap::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -955,8 +1005,8 @@ class Choroplethmap::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Choroplethmap::Hoverlabel::Font& lineposition(std::string f);
-    Choroplethmap::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Choroplethmap::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Choroplethmap::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Choroplethmap::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1063,6 +1113,17 @@ class Choroplethmap::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Choroplethmap::Legendgrouptitle::Font& color(std::string f);
     Choroplethmap::Legendgrouptitle::Font& color(double f);
 
@@ -1080,7 +1141,8 @@ class Choroplethmap::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Choroplethmap::Legendgrouptitle::Font& lineposition(std::string f);
+    Choroplethmap::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Choroplethmap::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

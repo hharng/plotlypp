@@ -18,7 +18,7 @@ Figure basicFunnel() {
         Funnel()
             .y(std::vector{"Website visit", "Downloads", "Potential customers", "Invoice sent", "Closed deals"})
             .x(std::vector{13873, 10533, 5443, 2703, 908})
-            .hoverinfo("x+percent previous+percent initial");
+            .hoverinfo({Funnel::Hoverinfo::X, Funnel::Hoverinfo::PercentPrevious, Funnel::Hoverinfo::PercentInitial});
     return Figure()
         .addTrace(std::move(trace))
         .setLayout(Layout().margin(Layout::Margin().l(150)).width(600).height(500));
@@ -27,7 +27,7 @@ Figure basicFunnel() {
 // https://plotly.com/javascript/indicator/
 Figure indicator() {
     auto trace1 = Indicator()
-                      .mode("number+delta")
+                      .mode({Indicator::Mode::Number, Indicator::Mode::Delta})
                       .value(492)
                       .delta(Indicator::Delta().reference(512).valueformat(".0f"))
                       .domain(Indicator::Domain().y(std::vector<double>{0, 1}).x(std::vector<double>{0.25, 0.75}))

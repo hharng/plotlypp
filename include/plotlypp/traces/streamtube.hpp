@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,26 @@ class Streamtube : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        U,
+        V,
+        W,
+        Norm,
+        Divergence,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Colorbar;
     class Hoverlabel;
@@ -94,8 +115,8 @@ class Streamtube : public Trace {
     // - Default: x+y+z+norm+text+name
     // - Flags: ['x', 'y', 'z', 'u', 'v', 'w', 'norm', 'divergence', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Streamtube& hoverinfo(std::string f);
-    Streamtube& hoverinfo(const std::vector<std::string>& f);
+    Streamtube& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Streamtube& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Streamtube& hoverinfosrc(std::string f);
@@ -701,6 +722,17 @@ class Streamtube::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Streamtube::Colorbar::Tickfont& color(std::string f);
     Streamtube::Colorbar::Tickfont& color(double f);
 
@@ -718,7 +750,8 @@ class Streamtube::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Streamtube::Colorbar::Tickfont& lineposition(std::string f);
+    Streamtube::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Streamtube::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -845,6 +878,17 @@ class Streamtube::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Streamtube::Colorbar::Title::Font& color(std::string f);
     Streamtube::Colorbar::Title::Font& color(double f);
 
@@ -862,7 +906,8 @@ class Streamtube::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Streamtube::Colorbar::Title::Font& lineposition(std::string f);
+    Streamtube::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Streamtube::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -983,6 +1028,17 @@ class Streamtube::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Streamtube::Hoverlabel::Font& color(std::string f);
     Streamtube::Hoverlabel::Font& color(double f);
     Streamtube::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1009,8 +1065,8 @@ class Streamtube::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Streamtube::Hoverlabel::Font& lineposition(std::string f);
-    Streamtube::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Streamtube::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Streamtube::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Streamtube::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1117,6 +1173,17 @@ class Streamtube::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Streamtube::Legendgrouptitle::Font& color(std::string f);
     Streamtube::Legendgrouptitle::Font& color(double f);
 
@@ -1134,7 +1201,8 @@ class Streamtube::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Streamtube::Legendgrouptitle::Font& lineposition(std::string f);
+    Streamtube::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Streamtube::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

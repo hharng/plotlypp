@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -39,6 +40,33 @@ class Funnelarea : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        Label,
+        Text,
+        Value,
+        Percent,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Value,
+        Percent,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
 
     class Domain;
     class Hoverlabel;
@@ -77,8 +105,8 @@ class Funnelarea : public Trace {
     // - Default: all
     // - Flags: ['label', 'text', 'value', 'percent', 'name']
     // - Extras ['all', 'none', 'skip']
-    Funnelarea& hoverinfo(std::string f);
-    Funnelarea& hoverinfo(const std::vector<std::string>& f);
+    Funnelarea& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Funnelarea& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Funnelarea& hoverinfosrc(std::string f);
@@ -213,7 +241,8 @@ class Funnelarea : public Trace {
     // Determines which trace information appear on the graph.
     // - Flags: ['label', 'text', 'value', 'percent']
     // - Extras ['none']
-    Funnelarea& textinfo(std::string f);
+    Funnelarea& textinfo(std::initializer_list<Textinfo> flags);
+    Funnelarea& textinfo(TextinfoExtra extra);
 
     // Specifies the location of the `textinfo`.
     // - Default: inside
@@ -393,6 +422,17 @@ class Funnelarea::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnelarea::Hoverlabel::Font& color(std::string f);
     Funnelarea::Hoverlabel::Font& color(double f);
     Funnelarea::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -419,8 +459,8 @@ class Funnelarea::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnelarea::Hoverlabel::Font& lineposition(std::string f);
-    Funnelarea::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Funnelarea::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Funnelarea::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnelarea::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -506,6 +546,17 @@ class Funnelarea::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnelarea::Insidetextfont& color(std::string f);
     Funnelarea::Insidetextfont& color(double f);
     Funnelarea::Insidetextfont& color(const std::vector<std::string>& f);
@@ -532,8 +583,8 @@ class Funnelarea::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnelarea::Insidetextfont& lineposition(std::string f);
-    Funnelarea::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Funnelarea::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Funnelarea::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnelarea::Insidetextfont& linepositionsrc(std::string f);
@@ -640,6 +691,17 @@ class Funnelarea::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnelarea::Legendgrouptitle::Font& color(std::string f);
     Funnelarea::Legendgrouptitle::Font& color(double f);
 
@@ -657,7 +719,8 @@ class Funnelarea::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnelarea::Legendgrouptitle::Font& lineposition(std::string f);
+    Funnelarea::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Funnelarea::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -859,6 +922,17 @@ class Funnelarea::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnelarea::Textfont& color(std::string f);
     Funnelarea::Textfont& color(double f);
     Funnelarea::Textfont& color(const std::vector<std::string>& f);
@@ -885,8 +959,8 @@ class Funnelarea::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnelarea::Textfont& lineposition(std::string f);
-    Funnelarea::Textfont& lineposition(const std::vector<std::string>& f);
+    Funnelarea::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Funnelarea::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnelarea::Textfont& linepositionsrc(std::string f);
@@ -1004,6 +1078,17 @@ class Funnelarea::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnelarea::Title::Font& color(std::string f);
     Funnelarea::Title::Font& color(double f);
     Funnelarea::Title::Font& color(const std::vector<std::string>& f);
@@ -1030,8 +1115,8 @@ class Funnelarea::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnelarea::Title::Font& lineposition(std::string f);
-    Funnelarea::Title::Font& lineposition(const std::vector<std::string>& f);
+    Funnelarea::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Funnelarea::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnelarea::Title::Font& linepositionsrc(std::string f);

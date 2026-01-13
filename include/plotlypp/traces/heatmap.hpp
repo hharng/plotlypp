@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -107,6 +108,21 @@ class Heatmap : public Trace {
     };
     static std::string to_string(Zsmooth e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Colorbar;
     class Hoverlabel;
     class Legendgrouptitle;
@@ -160,8 +176,8 @@ class Heatmap : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Heatmap& hoverinfo(std::string f);
-    Heatmap& hoverinfo(const std::vector<std::string>& f);
+    Heatmap& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Heatmap& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Heatmap& hoverinfosrc(std::string f);
@@ -825,6 +841,17 @@ class Heatmap::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Heatmap::Colorbar::Tickfont& color(std::string f);
     Heatmap::Colorbar::Tickfont& color(double f);
 
@@ -842,7 +869,8 @@ class Heatmap::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Heatmap::Colorbar::Tickfont& lineposition(std::string f);
+    Heatmap::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Heatmap::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -969,6 +997,17 @@ class Heatmap::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Heatmap::Colorbar::Title::Font& color(std::string f);
     Heatmap::Colorbar::Title::Font& color(double f);
 
@@ -986,7 +1025,8 @@ class Heatmap::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Heatmap::Colorbar::Title::Font& lineposition(std::string f);
+    Heatmap::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Heatmap::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1107,6 +1147,17 @@ class Heatmap::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Heatmap::Hoverlabel::Font& color(std::string f);
     Heatmap::Hoverlabel::Font& color(double f);
     Heatmap::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1133,8 +1184,8 @@ class Heatmap::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Heatmap::Hoverlabel::Font& lineposition(std::string f);
-    Heatmap::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Heatmap::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Heatmap::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Heatmap::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1241,6 +1292,17 @@ class Heatmap::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Heatmap::Legendgrouptitle::Font& color(std::string f);
     Heatmap::Legendgrouptitle::Font& color(double f);
 
@@ -1258,7 +1320,8 @@ class Heatmap::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Heatmap::Legendgrouptitle::Font& lineposition(std::string f);
+    Heatmap::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Heatmap::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1335,6 +1398,17 @@ class Heatmap::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Heatmap::Textfont& color(std::string f);
     Heatmap::Textfont& color(double f);
 
@@ -1352,7 +1426,8 @@ class Heatmap::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Heatmap::Textfont& lineposition(std::string f);
+    Heatmap::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Heatmap::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

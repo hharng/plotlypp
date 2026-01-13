@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Indicator::to_string(Align e) {
@@ -27,6 +29,19 @@ inline std::string Indicator::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Indicator::to_string(Mode e) {
+    switch(e) {
+        case Mode::Number: return "number";
+        case Mode::Delta: return "delta";
+        case Mode::Gauge: return "gauge";
+    }
+    throw std::invalid_argument{"Unknown flag value for mode."};
+}
+inline std::string Indicator::to_string(ModeExtra e) {
+    switch(e) {
+    }
+    throw std::invalid_argument{"Unknown extra value for mode."};
 }
 
 inline Indicator& Indicator::align(enum Align f) {
@@ -131,8 +146,12 @@ inline Indicator& Indicator::metasrc(std::string f) {
     return *this;
 }
 
-inline Indicator& Indicator::mode(std::string f) {
-    json["mode"] = std::move(f);
+inline Indicator& Indicator::mode(std::initializer_list<Mode> flags) {
+    json["mode"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Indicator& Indicator::mode(ModeExtra extra) {
+    json["mode"] = to_string(extra);
     return *this;
 }
 
@@ -314,6 +333,20 @@ inline std::string Indicator::Delta::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Indicator::Delta::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Delta::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Indicator::Delta::Font& Indicator::Delta::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -329,8 +362,12 @@ inline Indicator::Delta::Font& Indicator::Delta::Font::family(std::string f) {
     return *this;
 }
 
-inline Indicator::Delta::Font& Indicator::Delta::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Indicator::Delta::Font& Indicator::Delta::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Indicator::Delta::Font& Indicator::Delta::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -765,6 +802,20 @@ inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Gauge::Axis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -780,8 +831,12 @@ inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::famil
     return *this;
 }
 
-inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1046,6 +1101,20 @@ inline std::string Indicator::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Indicator::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1061,8 +1130,12 @@ inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::fam
     return *this;
 }
 
-inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1153,6 +1226,20 @@ inline std::string Indicator::Number::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Indicator::Number::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Number::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Indicator::Number::Font& Indicator::Number::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1168,8 +1255,12 @@ inline Indicator::Number::Font& Indicator::Number::Font::family(std::string f) {
     return *this;
 }
 
-inline Indicator::Number::Font& Indicator::Number::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Indicator::Number::Font& Indicator::Number::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Indicator::Number::Font& Indicator::Number::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1275,6 +1366,20 @@ inline std::string Indicator::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Indicator::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Indicator::Title::Font& Indicator::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1290,8 +1395,12 @@ inline Indicator::Title::Font& Indicator::Title::Font::family(std::string f) {
     return *this;
 }
 
-inline Indicator::Title::Font& Indicator::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Indicator::Title::Font& Indicator::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Indicator::Title::Font& Indicator::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

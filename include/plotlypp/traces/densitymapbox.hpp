@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,21 @@ class Densitymapbox : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        Lon,
+        Lat,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Colorbar;
     class Hoverlabel;
@@ -80,8 +96,8 @@ class Densitymapbox : public Trace {
     // - Default: all
     // - Flags: ['lon', 'lat', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Densitymapbox& hoverinfo(std::string f);
-    Densitymapbox& hoverinfo(const std::vector<std::string>& f);
+    Densitymapbox& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Densitymapbox& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Densitymapbox& hoverinfosrc(std::string f);
@@ -642,6 +658,17 @@ class Densitymapbox::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Densitymapbox::Colorbar::Tickfont& color(std::string f);
     Densitymapbox::Colorbar::Tickfont& color(double f);
 
@@ -659,7 +686,8 @@ class Densitymapbox::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Densitymapbox::Colorbar::Tickfont& lineposition(std::string f);
+    Densitymapbox::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Densitymapbox::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -786,6 +814,17 @@ class Densitymapbox::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Densitymapbox::Colorbar::Title::Font& color(std::string f);
     Densitymapbox::Colorbar::Title::Font& color(double f);
 
@@ -803,7 +842,8 @@ class Densitymapbox::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Densitymapbox::Colorbar::Title::Font& lineposition(std::string f);
+    Densitymapbox::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Densitymapbox::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -924,6 +964,17 @@ class Densitymapbox::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Densitymapbox::Hoverlabel::Font& color(std::string f);
     Densitymapbox::Hoverlabel::Font& color(double f);
     Densitymapbox::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -950,8 +1001,8 @@ class Densitymapbox::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Densitymapbox::Hoverlabel::Font& lineposition(std::string f);
-    Densitymapbox::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Densitymapbox::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Densitymapbox::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Densitymapbox::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1058,6 +1109,17 @@ class Densitymapbox::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Densitymapbox::Legendgrouptitle::Font& color(std::string f);
     Densitymapbox::Legendgrouptitle::Font& color(double f);
 
@@ -1075,7 +1137,8 @@ class Densitymapbox::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Densitymapbox::Legendgrouptitle::Font& lineposition(std::string f);
+    Densitymapbox::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Densitymapbox::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

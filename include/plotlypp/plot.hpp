@@ -7,8 +7,10 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <sstream>
 #include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
 
 #include <plotlypp/json.hpp>
 #include <plotlypp/layout/layout.hpp>

@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -305,6 +306,17 @@ class Parcoords::Labelfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcoords::Labelfont& color(std::string f);
     Parcoords::Labelfont& color(double f);
 
@@ -322,7 +334,8 @@ class Parcoords::Labelfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcoords::Labelfont& lineposition(std::string f);
+    Parcoords::Labelfont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcoords::Labelfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -402,6 +415,17 @@ class Parcoords::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcoords::Legendgrouptitle::Font& color(std::string f);
     Parcoords::Legendgrouptitle::Font& color(double f);
 
@@ -419,7 +443,8 @@ class Parcoords::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcoords::Legendgrouptitle::Font& lineposition(std::string f);
+    Parcoords::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Parcoords::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -896,6 +921,17 @@ class Parcoords::Line::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcoords::Line::Colorbar::Tickfont& color(std::string f);
     Parcoords::Line::Colorbar::Tickfont& color(double f);
 
@@ -913,7 +949,8 @@ class Parcoords::Line::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcoords::Line::Colorbar::Tickfont& lineposition(std::string f);
+    Parcoords::Line::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcoords::Line::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1040,6 +1077,17 @@ class Parcoords::Line::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcoords::Line::Colorbar::Title::Font& color(std::string f);
     Parcoords::Line::Colorbar::Title::Font& color(double f);
 
@@ -1057,7 +1105,8 @@ class Parcoords::Line::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcoords::Line::Colorbar::Title::Font& lineposition(std::string f);
+    Parcoords::Line::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Parcoords::Line::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1116,6 +1165,17 @@ class Parcoords::Rangefont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcoords::Rangefont& color(std::string f);
     Parcoords::Rangefont& color(double f);
 
@@ -1133,7 +1193,8 @@ class Parcoords::Rangefont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcoords::Rangefont& lineposition(std::string f);
+    Parcoords::Rangefont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcoords::Rangefont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1210,6 +1271,17 @@ class Parcoords::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcoords::Tickfont& color(std::string f);
     Parcoords::Tickfont& color(double f);
 
@@ -1227,7 +1299,8 @@ class Parcoords::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcoords::Tickfont& lineposition(std::string f);
+    Parcoords::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcoords::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

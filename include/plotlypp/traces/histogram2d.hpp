@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -99,6 +100,21 @@ class Histogram2D : public Trace {
     };
     static std::string to_string(Zsmooth e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Colorbar;
     class Hoverlabel;
     class Legendgrouptitle;
@@ -173,8 +189,8 @@ class Histogram2D : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Histogram2D& hoverinfo(std::string f);
-    Histogram2D& hoverinfo(const std::vector<std::string>& f);
+    Histogram2D& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Histogram2D& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Histogram2D& hoverinfosrc(std::string f);
@@ -795,6 +811,17 @@ class Histogram2D::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2D::Colorbar::Tickfont& color(std::string f);
     Histogram2D::Colorbar::Tickfont& color(double f);
 
@@ -812,7 +839,8 @@ class Histogram2D::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2D::Colorbar::Tickfont& lineposition(std::string f);
+    Histogram2D::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2D::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -939,6 +967,17 @@ class Histogram2D::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2D::Colorbar::Title::Font& color(std::string f);
     Histogram2D::Colorbar::Title::Font& color(double f);
 
@@ -956,7 +995,8 @@ class Histogram2D::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2D::Colorbar::Title::Font& lineposition(std::string f);
+    Histogram2D::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2D::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1077,6 +1117,17 @@ class Histogram2D::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2D::Hoverlabel::Font& color(std::string f);
     Histogram2D::Hoverlabel::Font& color(double f);
     Histogram2D::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1103,8 +1154,8 @@ class Histogram2D::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2D::Hoverlabel::Font& lineposition(std::string f);
-    Histogram2D::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Histogram2D::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2D::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Histogram2D::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1211,6 +1262,17 @@ class Histogram2D::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2D::Legendgrouptitle::Font& color(std::string f);
     Histogram2D::Legendgrouptitle::Font& color(double f);
 
@@ -1228,7 +1290,8 @@ class Histogram2D::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2D::Legendgrouptitle::Font& lineposition(std::string f);
+    Histogram2D::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2D::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1322,6 +1385,17 @@ class Histogram2D::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2D::Textfont& color(std::string f);
     Histogram2D::Textfont& color(double f);
 
@@ -1339,7 +1413,8 @@ class Histogram2D::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2D::Textfont& lineposition(std::string f);
+    Histogram2D::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2D::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

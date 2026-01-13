@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -91,6 +92,21 @@ class Histogram2Dcontour : public Trace {
         Ummalqura,
     };
     static std::string to_string(Ycalendar e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Colorbar;
     class Contours;
@@ -176,8 +192,8 @@ class Histogram2Dcontour : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Histogram2Dcontour& hoverinfo(std::string f);
-    Histogram2Dcontour& hoverinfo(const std::vector<std::string>& f);
+    Histogram2Dcontour& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Histogram2Dcontour& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Histogram2Dcontour& hoverinfosrc(std::string f);
@@ -797,6 +813,17 @@ class Histogram2Dcontour::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2Dcontour::Colorbar::Tickfont& color(std::string f);
     Histogram2Dcontour::Colorbar::Tickfont& color(double f);
 
@@ -814,7 +841,8 @@ class Histogram2Dcontour::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2Dcontour::Colorbar::Tickfont& lineposition(std::string f);
+    Histogram2Dcontour::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2Dcontour::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -941,6 +969,17 @@ class Histogram2Dcontour::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2Dcontour::Colorbar::Title::Font& color(std::string f);
     Histogram2Dcontour::Colorbar::Title::Font& color(double f);
 
@@ -958,7 +997,8 @@ class Histogram2Dcontour::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2Dcontour::Colorbar::Title::Font& lineposition(std::string f);
+    Histogram2Dcontour::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2Dcontour::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1112,6 +1152,17 @@ class Histogram2Dcontour::Contours::Labelfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2Dcontour::Contours::Labelfont& color(std::string f);
     Histogram2Dcontour::Contours::Labelfont& color(double f);
 
@@ -1129,7 +1180,8 @@ class Histogram2Dcontour::Contours::Labelfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2Dcontour::Contours::Labelfont& lineposition(std::string f);
+    Histogram2Dcontour::Contours::Labelfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2Dcontour::Contours::Labelfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1250,6 +1302,17 @@ class Histogram2Dcontour::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2Dcontour::Hoverlabel::Font& color(std::string f);
     Histogram2Dcontour::Hoverlabel::Font& color(double f);
     Histogram2Dcontour::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1276,8 +1339,8 @@ class Histogram2Dcontour::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2Dcontour::Hoverlabel::Font& lineposition(std::string f);
-    Histogram2Dcontour::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Histogram2Dcontour::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2Dcontour::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Histogram2Dcontour::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1384,6 +1447,17 @@ class Histogram2Dcontour::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2Dcontour::Legendgrouptitle::Font& color(std::string f);
     Histogram2Dcontour::Legendgrouptitle::Font& color(double f);
 
@@ -1401,7 +1475,8 @@ class Histogram2Dcontour::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2Dcontour::Legendgrouptitle::Font& lineposition(std::string f);
+    Histogram2Dcontour::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2Dcontour::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1519,6 +1594,17 @@ class Histogram2Dcontour::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram2Dcontour::Textfont& color(std::string f);
     Histogram2Dcontour::Textfont& color(double f);
 
@@ -1536,7 +1622,8 @@ class Histogram2Dcontour::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram2Dcontour::Textfont& lineposition(std::string f);
+    Histogram2Dcontour::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram2Dcontour::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

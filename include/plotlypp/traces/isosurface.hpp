@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,21 @@ class Isosurface : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Caps;
     class Colorbar;
@@ -110,8 +126,8 @@ class Isosurface : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Isosurface& hoverinfo(std::string f);
-    Isosurface& hoverinfo(const std::vector<std::string>& f);
+    Isosurface& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Isosurface& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Isosurface& hoverinfosrc(std::string f);
@@ -793,6 +809,17 @@ class Isosurface::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Isosurface::Colorbar::Tickfont& color(std::string f);
     Isosurface::Colorbar::Tickfont& color(double f);
 
@@ -810,7 +837,8 @@ class Isosurface::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Isosurface::Colorbar::Tickfont& lineposition(std::string f);
+    Isosurface::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Isosurface::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -937,6 +965,17 @@ class Isosurface::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Isosurface::Colorbar::Title::Font& color(std::string f);
     Isosurface::Colorbar::Title::Font& color(double f);
 
@@ -954,7 +993,8 @@ class Isosurface::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Isosurface::Colorbar::Title::Font& lineposition(std::string f);
+    Isosurface::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Isosurface::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1095,6 +1135,17 @@ class Isosurface::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Isosurface::Hoverlabel::Font& color(std::string f);
     Isosurface::Hoverlabel::Font& color(double f);
     Isosurface::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1121,8 +1172,8 @@ class Isosurface::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Isosurface::Hoverlabel::Font& lineposition(std::string f);
-    Isosurface::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Isosurface::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Isosurface::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Isosurface::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1229,6 +1280,17 @@ class Isosurface::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Isosurface::Legendgrouptitle::Font& color(std::string f);
     Isosurface::Legendgrouptitle::Font& color(double f);
 
@@ -1246,7 +1308,8 @@ class Isosurface::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Isosurface::Legendgrouptitle::Font& lineposition(std::string f);
+    Isosurface::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Isosurface::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1472,6 +1535,21 @@ class Isosurface::Surface {
     Surface(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Pattern {
+        A,
+        B,
+        C,
+        D,
+        E,
+    };
+    enum class PatternExtra {
+        All,
+        Odd,
+        Even,
+    };
+    static std::string to_string(Pattern e);
+    static std::string to_string(PatternExtra e);
+
     // Sets the number of iso-surfaces between minimum and maximum iso-values. By default this value is 2 meaning that
     // only minimum and maximum surfaces would be drawn.
     Isosurface::Surface& count(int f);
@@ -1488,7 +1566,8 @@ class Isosurface::Surface {
     // - Default: all
     // - Flags: ['A', 'B', 'C', 'D', 'E']
     // - Extras ['all', 'odd', 'even']
-    Isosurface::Surface& pattern(std::string f);
+    Isosurface::Surface& pattern(std::initializer_list<Pattern> flags);
+    Isosurface::Surface& pattern(PatternExtra extra);
 
     // Hides/displays surfaces between minimum and maximum iso-values.
     Isosurface::Surface& show(bool f);

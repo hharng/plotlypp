@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -48,6 +49,15 @@ class Sankey : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {};
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Domain;
     class Hoverlabel;
     class Legendgrouptitle;
@@ -84,7 +94,8 @@ class Sankey : public Trace {
     // - Default: all
     // - Flags: []
     // - Extras ['all', 'none', 'skip']
-    Sankey& hoverinfo(std::string f);
+    Sankey& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Sankey& hoverinfo(HoverinfoExtra extra);
 
     Sankey& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
@@ -311,6 +322,17 @@ class Sankey::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sankey::Hoverlabel::Font& color(std::string f);
     Sankey::Hoverlabel::Font& color(double f);
     Sankey::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -337,8 +359,8 @@ class Sankey::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sankey::Hoverlabel::Font& lineposition(std::string f);
-    Sankey::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Sankey::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sankey::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sankey::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -445,6 +467,17 @@ class Sankey::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sankey::Legendgrouptitle::Font& color(std::string f);
     Sankey::Legendgrouptitle::Font& color(double f);
 
@@ -462,7 +495,8 @@ class Sankey::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sankey::Legendgrouptitle::Font& lineposition(std::string f);
+    Sankey::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sankey::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -739,6 +773,17 @@ class Sankey::Link::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sankey::Link::Hoverlabel::Font& color(std::string f);
     Sankey::Link::Hoverlabel::Font& color(double f);
     Sankey::Link::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -765,8 +810,8 @@ class Sankey::Link::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sankey::Link::Hoverlabel::Font& lineposition(std::string f);
-    Sankey::Link::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Sankey::Link::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sankey::Link::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sankey::Link::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1058,6 +1103,17 @@ class Sankey::Node::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sankey::Node::Hoverlabel::Font& color(std::string f);
     Sankey::Node::Hoverlabel::Font& color(double f);
     Sankey::Node::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1084,8 +1140,8 @@ class Sankey::Node::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sankey::Node::Hoverlabel::Font& lineposition(std::string f);
-    Sankey::Node::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Sankey::Node::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sankey::Node::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sankey::Node::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1215,6 +1271,17 @@ class Sankey::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sankey::Textfont& color(std::string f);
     Sankey::Textfont& color(double f);
 
@@ -1232,7 +1299,8 @@ class Sankey::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sankey::Textfont& lineposition(std::string f);
+    Sankey::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Sankey::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

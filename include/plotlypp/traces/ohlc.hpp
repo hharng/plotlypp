@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -61,6 +62,21 @@ class Ohlc : public Trace {
     };
     static std::string to_string(Xperiodalignment e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Decreasing;
     class Hoverlabel;
     class Increasing;
@@ -99,8 +115,8 @@ class Ohlc : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Ohlc& hoverinfo(std::string f);
-    Ohlc& hoverinfo(const std::vector<std::string>& f);
+    Ohlc& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Ohlc& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Ohlc& hoverinfosrc(std::string f);
@@ -421,6 +437,17 @@ class Ohlc::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Ohlc::Hoverlabel::Font& color(std::string f);
     Ohlc::Hoverlabel::Font& color(double f);
     Ohlc::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -447,8 +474,8 @@ class Ohlc::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Ohlc::Hoverlabel::Font& lineposition(std::string f);
-    Ohlc::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Ohlc::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Ohlc::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Ohlc::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -592,6 +619,17 @@ class Ohlc::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Ohlc::Legendgrouptitle::Font& color(std::string f);
     Ohlc::Legendgrouptitle::Font& color(double f);
 
@@ -609,7 +647,8 @@ class Ohlc::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Ohlc::Legendgrouptitle::Font& lineposition(std::string f);
+    Ohlc::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Ohlc::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

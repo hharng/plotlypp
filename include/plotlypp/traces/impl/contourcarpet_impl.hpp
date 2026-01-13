@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Contourcarpet::to_string(Atype e) {
@@ -808,6 +810,20 @@ inline std::string Contourcarpet::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Contourcarpet::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Contourcarpet::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -823,8 +839,12 @@ inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::fam
     return *this;
 }
 
-inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Contourcarpet::Colorbar::Tickfont& Contourcarpet::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -957,6 +977,20 @@ inline std::string Contourcarpet::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Contourcarpet::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Contourcarpet::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -972,8 +1006,12 @@ inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Fon
     return *this;
 }
 
-inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Contourcarpet::Colorbar::Title::Font& Contourcarpet::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1129,6 +1167,20 @@ inline std::string Contourcarpet::Contours::Labelfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Contourcarpet::Contours::Labelfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Contourcarpet::Contours::Labelfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1144,8 +1196,12 @@ inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::f
     return *this;
 }
 
-inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Contourcarpet::Contours::Labelfont& Contourcarpet::Contours::Labelfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1226,6 +1282,20 @@ inline std::string Contourcarpet::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Contourcarpet::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Contourcarpet::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1241,8 +1311,12 @@ inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::F
     return *this;
 }
 
-inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Contourcarpet::Legendgrouptitle::Font& Contourcarpet::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

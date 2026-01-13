@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -77,6 +78,37 @@ class Funnel : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
+    enum class Hoverinfo {
+        Name,
+        X,
+        Y,
+        Text,
+        PercentInitial,
+        PercentPrevious,
+        PercentTotal,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        PercentInitial,
+        PercentPrevious,
+        PercentTotal,
+        Value,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
+
     class Connector;
     class Hoverlabel;
     // Sets the font used for `text` lying inside the bar.
@@ -124,8 +156,8 @@ class Funnel : public Trace {
     // - Default: all
     // - Flags: ['name', 'x', 'y', 'text', 'percent initial', 'percent previous', 'percent total']
     // - Extras ['all', 'none', 'skip']
-    Funnel& hoverinfo(std::string f);
-    Funnel& hoverinfo(const std::vector<std::string>& f);
+    Funnel& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Funnel& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Funnel& hoverinfosrc(std::string f);
@@ -277,7 +309,8 @@ class Funnel : public Trace {
     // totals are computed separately (per trace).
     // - Flags: ['label', 'text', 'percent initial', 'percent previous', 'percent total', 'value']
     // - Extras ['none']
-    Funnel& textinfo(std::string f);
+    Funnel& textinfo(std::initializer_list<Textinfo> flags);
+    Funnel& textinfo(TextinfoExtra extra);
 
     // Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled
     // if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another
@@ -552,6 +585,17 @@ class Funnel::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Hoverlabel::Font& color(std::string f);
     Funnel::Hoverlabel::Font& color(double f);
     Funnel::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -578,8 +622,8 @@ class Funnel::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Hoverlabel::Font& lineposition(std::string f);
-    Funnel::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Funnel::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnel::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -665,6 +709,17 @@ class Funnel::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Insidetextfont& color(std::string f);
     Funnel::Insidetextfont& color(double f);
     Funnel::Insidetextfont& color(const std::vector<std::string>& f);
@@ -691,8 +746,8 @@ class Funnel::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Insidetextfont& lineposition(std::string f);
-    Funnel::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Funnel::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnel::Insidetextfont& linepositionsrc(std::string f);
@@ -799,6 +854,17 @@ class Funnel::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Legendgrouptitle::Font& color(std::string f);
     Funnel::Legendgrouptitle::Font& color(double f);
 
@@ -816,7 +882,8 @@ class Funnel::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Legendgrouptitle::Font& lineposition(std::string f);
+    Funnel::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1306,6 +1373,17 @@ class Funnel::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Marker::Colorbar::Tickfont& color(std::string f);
     Funnel::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1323,7 +1401,8 @@ class Funnel::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Funnel::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1450,6 +1529,17 @@ class Funnel::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Marker::Colorbar::Title::Font& color(std::string f);
     Funnel::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1467,7 +1557,8 @@ class Funnel::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Funnel::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1601,6 +1692,17 @@ class Funnel::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Outsidetextfont& color(std::string f);
     Funnel::Outsidetextfont& color(double f);
     Funnel::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -1627,8 +1729,8 @@ class Funnel::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Outsidetextfont& lineposition(std::string f);
-    Funnel::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Funnel::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnel::Outsidetextfont& linepositionsrc(std::string f);
@@ -1732,6 +1834,17 @@ class Funnel::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Funnel::Textfont& color(std::string f);
     Funnel::Textfont& color(double f);
     Funnel::Textfont& color(const std::vector<std::string>& f);
@@ -1758,8 +1871,8 @@ class Funnel::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Funnel::Textfont& lineposition(std::string f);
-    Funnel::Textfont& lineposition(const std::vector<std::string>& f);
+    Funnel::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Funnel::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Funnel::Textfont& linepositionsrc(std::string f);

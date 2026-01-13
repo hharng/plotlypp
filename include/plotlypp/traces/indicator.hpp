@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -40,6 +41,15 @@ class Indicator : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Mode {
+        Number,
+        Delta,
+        Gauge,
+    };
+    enum class ModeExtra {};
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
 
     class Delta;
     class Domain;
@@ -119,7 +129,8 @@ class Indicator : public Trace {
     // displays the difference to a reference value in text. Finally, `gauge` displays the value graphically on an axis.
     // - Default: number
     // - Flags: ['number', 'delta', 'gauge']
-    Indicator& mode(std::string f);
+    Indicator& mode(std::initializer_list<Mode> flags);
+    Indicator& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Indicator& name(std::string f);
@@ -264,6 +275,17 @@ class Indicator::Delta::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Indicator::Delta::Font& color(std::string f);
     Indicator::Delta::Font& color(double f);
 
@@ -281,7 +303,8 @@ class Indicator::Delta::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Indicator::Delta::Font& lineposition(std::string f);
+    Indicator::Delta::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Indicator::Delta::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -640,6 +663,17 @@ class Indicator::Gauge::Axis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Indicator::Gauge::Axis::Tickfont& color(std::string f);
     Indicator::Gauge::Axis::Tickfont& color(double f);
 
@@ -657,7 +691,8 @@ class Indicator::Gauge::Axis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Indicator::Gauge::Axis::Tickfont& lineposition(std::string f);
+    Indicator::Gauge::Axis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Indicator::Gauge::Axis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -912,6 +947,17 @@ class Indicator::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Indicator::Legendgrouptitle::Font& color(std::string f);
     Indicator::Legendgrouptitle::Font& color(double f);
 
@@ -929,7 +975,8 @@ class Indicator::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Indicator::Legendgrouptitle::Font& lineposition(std::string f);
+    Indicator::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Indicator::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1016,6 +1063,17 @@ class Indicator::Number::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Indicator::Number::Font& color(std::string f);
     Indicator::Number::Font& color(double f);
 
@@ -1033,7 +1091,8 @@ class Indicator::Number::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Indicator::Number::Font& lineposition(std::string f);
+    Indicator::Number::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Indicator::Number::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1142,6 +1201,17 @@ class Indicator::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Indicator::Title::Font& color(std::string f);
     Indicator::Title::Font& color(double f);
 
@@ -1159,7 +1229,8 @@ class Indicator::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Indicator::Title::Font& lineposition(std::string f);
+    Indicator::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Indicator::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

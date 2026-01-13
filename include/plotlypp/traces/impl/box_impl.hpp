@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Box::to_string(Boxmean e) {
@@ -125,6 +127,36 @@ inline std::string Box::to_string(Yperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Box::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Box::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Box::to_string(Hoveron e) {
+    switch(e) {
+        case Hoveron::Boxes: return "boxes";
+        case Hoveron::Points: return "points";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoveron."};
+}
+inline std::string Box::to_string(HoveronExtra e) {
+    switch(e) {
+    }
+    throw std::invalid_argument{"Unknown extra value for hoveron."};
+}
 
 inline Box& Box::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
@@ -171,12 +203,12 @@ inline Box& Box::fillcolor(double f) {
     return *this;
 }
 
-inline Box& Box::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Box& Box::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Box& Box::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Box& Box::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -196,8 +228,12 @@ inline Box& Box::hoverlabel(Callable&& c) {
     return hoverlabel(std::move(f));
 }
 
-inline Box& Box::hoveron(std::string f) {
-    json["hoveron"] = std::move(f);
+inline Box& Box::hoveron(std::initializer_list<Hoveron> flags) {
+    json["hoveron"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Box& Box::hoveron(HoveronExtra extra) {
+    json["hoveron"] = to_string(extra);
     return *this;
 }
 
@@ -769,6 +805,20 @@ inline std::string Box::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Box::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Box::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -806,12 +856,12 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::familysrc(std::string f) {
     return *this;
 }
 
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -957,6 +1007,20 @@ inline std::string Box::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Box::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Box::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -972,8 +1036,12 @@ inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::family(std::str
     return *this;
 }
 
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

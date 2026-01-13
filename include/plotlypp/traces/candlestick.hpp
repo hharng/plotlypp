@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -61,6 +62,21 @@ class Candlestick : public Trace {
     };
     static std::string to_string(Xperiodalignment e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Decreasing;
     class Hoverlabel;
     class Increasing;
@@ -99,8 +115,8 @@ class Candlestick : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Candlestick& hoverinfo(std::string f);
-    Candlestick& hoverinfo(const std::vector<std::string>& f);
+    Candlestick& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Candlestick& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Candlestick& hoverinfosrc(std::string f);
@@ -423,6 +439,17 @@ class Candlestick::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Candlestick::Hoverlabel::Font& color(std::string f);
     Candlestick::Hoverlabel::Font& color(double f);
     Candlestick::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -449,8 +476,8 @@ class Candlestick::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Candlestick::Hoverlabel::Font& lineposition(std::string f);
-    Candlestick::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Candlestick::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Candlestick::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Candlestick::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -595,6 +622,17 @@ class Candlestick::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Candlestick::Legendgrouptitle::Font& color(std::string f);
     Candlestick::Legendgrouptitle::Font& color(double f);
 
@@ -612,7 +650,8 @@ class Candlestick::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Candlestick::Legendgrouptitle::Font& lineposition(std::string f);
+    Candlestick::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Candlestick::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

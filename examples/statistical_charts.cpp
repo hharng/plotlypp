@@ -108,19 +108,19 @@ Figure continuousFilledErrorBars() {
                       .x(std::vector<double>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
                       .y(std::vector<double>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
                       .line(Scatter::Line().color("rgb(0,100,80)"))
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("Fair");
     auto trace5 = Scatter()
                       .x(std::vector<double>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
                       .y(std::vector<double>{5, 2.5, 5, 7.5, 5, 2.5, 7.5, 4.5, 5.5, 5})
                       .line(Scatter::Line().color("rgb(0,176,246)"))
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("Premium");
     auto trace6 = Scatter()
                       .x(std::vector<double>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
                       .y(std::vector<double>{10, 8, 6, 4, 2, 0, 2, 4, 2, 0})
                       .line(Scatter::Line().color("rgb(231,107,243)"))
-                      .mode("lines")
+                      .mode({Scatter::Mode::Lines})
                       .name("Ideal");
 
     return Figure()

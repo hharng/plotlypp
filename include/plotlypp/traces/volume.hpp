@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -33,6 +34,21 @@ class Volume : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Caps;
     class Colorbar;
@@ -110,8 +126,8 @@ class Volume : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Volume& hoverinfo(std::string f);
-    Volume& hoverinfo(const std::vector<std::string>& f);
+    Volume& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Volume& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Volume& hoverinfosrc(std::string f);
@@ -801,6 +817,17 @@ class Volume::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Volume::Colorbar::Tickfont& color(std::string f);
     Volume::Colorbar::Tickfont& color(double f);
 
@@ -818,7 +845,8 @@ class Volume::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Volume::Colorbar::Tickfont& lineposition(std::string f);
+    Volume::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Volume::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -945,6 +973,17 @@ class Volume::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Volume::Colorbar::Title::Font& color(std::string f);
     Volume::Colorbar::Title::Font& color(double f);
 
@@ -962,7 +1001,8 @@ class Volume::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Volume::Colorbar::Title::Font& lineposition(std::string f);
+    Volume::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Volume::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1103,6 +1143,17 @@ class Volume::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Volume::Hoverlabel::Font& color(std::string f);
     Volume::Hoverlabel::Font& color(double f);
     Volume::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1129,8 +1180,8 @@ class Volume::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Volume::Hoverlabel::Font& lineposition(std::string f);
-    Volume::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Volume::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Volume::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Volume::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1237,6 +1288,17 @@ class Volume::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Volume::Legendgrouptitle::Font& color(std::string f);
     Volume::Legendgrouptitle::Font& color(double f);
 
@@ -1254,7 +1316,8 @@ class Volume::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Volume::Legendgrouptitle::Font& lineposition(std::string f);
+    Volume::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Volume::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1479,6 +1542,21 @@ class Volume::Surface {
     Surface(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Pattern {
+        A,
+        B,
+        C,
+        D,
+        E,
+    };
+    enum class PatternExtra {
+        All,
+        Odd,
+        Even,
+    };
+    static std::string to_string(Pattern e);
+    static std::string to_string(PatternExtra e);
+
     // Sets the number of iso-surfaces between minimum and maximum iso-values. By default this value is 2 meaning that
     // only minimum and maximum surfaces would be drawn.
     Volume::Surface& count(int f);
@@ -1495,7 +1573,8 @@ class Volume::Surface {
     // - Default: all
     // - Flags: ['A', 'B', 'C', 'D', 'E']
     // - Extras ['all', 'odd', 'even']
-    Volume::Surface& pattern(std::string f);
+    Volume::Surface& pattern(std::initializer_list<Pattern> flags);
+    Volume::Surface& pattern(PatternExtra extra);
 
     // Hides/displays surfaces between minimum and maximum iso-values.
     Volume::Surface& show(bool f);

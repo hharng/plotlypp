@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -65,6 +66,31 @@ class Scatterpolargl : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {
+        R,
+        Theta,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     class Hoverlabel;
     class Legendgrouptitle;
     class Line;
@@ -117,8 +143,8 @@ class Scatterpolargl : public Trace {
     // - Default: all
     // - Flags: ['r', 'theta', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scatterpolargl& hoverinfo(std::string f);
-    Scatterpolargl& hoverinfo(const std::vector<std::string>& f);
+    Scatterpolargl& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scatterpolargl& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scatterpolargl& hoverinfosrc(std::string f);
@@ -212,7 +238,8 @@ class Scatterpolargl : public Trace {
     // points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scatterpolargl& mode(std::string f);
+    Scatterpolargl& mode(std::initializer_list<Mode> flags);
+    Scatterpolargl& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scatterpolargl& name(std::string f);
@@ -423,6 +450,17 @@ class Scatterpolargl::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatterpolargl::Hoverlabel::Font& color(std::string f);
     Scatterpolargl::Hoverlabel::Font& color(double f);
     Scatterpolargl::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -449,8 +487,8 @@ class Scatterpolargl::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatterpolargl::Hoverlabel::Font& lineposition(std::string f);
-    Scatterpolargl::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scatterpolargl::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatterpolargl::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scatterpolargl::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -557,6 +595,17 @@ class Scatterpolargl::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatterpolargl::Legendgrouptitle::Font& color(std::string f);
     Scatterpolargl::Legendgrouptitle::Font& color(double f);
 
@@ -574,7 +623,8 @@ class Scatterpolargl::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatterpolargl::Legendgrouptitle::Font& lineposition(std::string f);
+    Scatterpolargl::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatterpolargl::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1466,6 +1516,17 @@ class Scatterpolargl::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatterpolargl::Marker::Colorbar::Tickfont& color(std::string f);
     Scatterpolargl::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1483,7 +1544,8 @@ class Scatterpolargl::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatterpolargl::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scatterpolargl::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scatterpolargl::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1610,6 +1672,17 @@ class Scatterpolargl::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scatterpolargl::Marker::Colorbar::Title::Font& color(std::string f);
     Scatterpolargl::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1627,7 +1700,8 @@ class Scatterpolargl::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scatterpolargl::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scatterpolargl::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scatterpolargl::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

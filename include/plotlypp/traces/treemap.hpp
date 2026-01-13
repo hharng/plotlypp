@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -53,6 +54,47 @@ class Treemap : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Count {
+        Branches,
+        Leaves,
+    };
+    enum class CountExtra {};
+    static std::string to_string(Count e);
+    static std::string to_string(CountExtra e);
+
+    enum class Hoverinfo {
+        Label,
+        Text,
+        Value,
+        Name,
+        CurrentPath,
+        PercentRoot,
+        PercentEntry,
+        PercentParent,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Value,
+        CurrentPath,
+        PercentRoot,
+        PercentEntry,
+        PercentParent,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
+
     class Domain;
     class Hoverlabel;
     // Sets the font used for `textinfo` lying inside the sector.
@@ -80,7 +122,8 @@ class Treemap : public Trace {
     // *branches*, otherwise 0.
     // - Default: leaves
     // - Flags: ['branches', 'leaves']
-    Treemap& count(std::string f);
+    Treemap& count(std::initializer_list<Count> flags);
+    Treemap& count(CountExtra extra);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
@@ -99,8 +142,8 @@ class Treemap : public Trace {
     // - Default: label+text+value+name
     // - Flags: ['label', 'text', 'value', 'name', 'current path', 'percent root', 'percent entry', 'percent parent']
     // - Extras ['all', 'none', 'skip']
-    Treemap& hoverinfo(std::string f);
-    Treemap& hoverinfo(const std::vector<std::string>& f);
+    Treemap& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Treemap& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Treemap& hoverinfosrc(std::string f);
@@ -255,7 +298,8 @@ class Treemap : public Trace {
     // Determines which trace information appear on the graph.
     // - Flags: ['label', 'text', 'value', 'current path', 'percent root', 'percent entry', 'percent parent']
     // - Extras ['none']
-    Treemap& textinfo(std::string f);
+    Treemap& textinfo(std::initializer_list<Textinfo> flags);
+    Treemap& textinfo(TextinfoExtra extra);
 
     // Sets the positions of the `text` elements.
     // - Default: top left
@@ -433,6 +477,17 @@ class Treemap::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Hoverlabel::Font& color(std::string f);
     Treemap::Hoverlabel::Font& color(double f);
     Treemap::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -459,8 +514,8 @@ class Treemap::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Hoverlabel::Font& lineposition(std::string f);
-    Treemap::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Treemap::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Treemap::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -546,6 +601,17 @@ class Treemap::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Insidetextfont& color(std::string f);
     Treemap::Insidetextfont& color(double f);
     Treemap::Insidetextfont& color(const std::vector<std::string>& f);
@@ -572,8 +638,8 @@ class Treemap::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Insidetextfont& lineposition(std::string f);
-    Treemap::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Treemap::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Treemap::Insidetextfont& linepositionsrc(std::string f);
@@ -680,6 +746,17 @@ class Treemap::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Legendgrouptitle::Font& color(std::string f);
     Treemap::Legendgrouptitle::Font& color(double f);
 
@@ -697,7 +774,8 @@ class Treemap::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Legendgrouptitle::Font& lineposition(std::string f);
+    Treemap::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1206,6 +1284,17 @@ class Treemap::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Marker::Colorbar::Tickfont& color(std::string f);
     Treemap::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1223,7 +1312,8 @@ class Treemap::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Treemap::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1350,6 +1440,17 @@ class Treemap::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Marker::Colorbar::Title::Font& color(std::string f);
     Treemap::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1367,7 +1468,8 @@ class Treemap::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Treemap::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1545,6 +1647,17 @@ class Treemap::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Outsidetextfont& color(std::string f);
     Treemap::Outsidetextfont& color(double f);
     Treemap::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -1571,8 +1684,8 @@ class Treemap::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Outsidetextfont& lineposition(std::string f);
-    Treemap::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Treemap::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Treemap::Outsidetextfont& linepositionsrc(std::string f);
@@ -1706,6 +1819,17 @@ class Treemap::Pathbar::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Pathbar::Textfont& color(std::string f);
     Treemap::Pathbar::Textfont& color(double f);
     Treemap::Pathbar::Textfont& color(const std::vector<std::string>& f);
@@ -1732,8 +1856,8 @@ class Treemap::Pathbar::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Pathbar::Textfont& lineposition(std::string f);
-    Treemap::Pathbar::Textfont& lineposition(const std::vector<std::string>& f);
+    Treemap::Pathbar::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Pathbar::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Treemap::Pathbar::Textfont& linepositionsrc(std::string f);
@@ -1852,6 +1976,17 @@ class Treemap::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Treemap::Textfont& color(std::string f);
     Treemap::Textfont& color(double f);
     Treemap::Textfont& color(const std::vector<std::string>& f);
@@ -1878,8 +2013,8 @@ class Treemap::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Treemap::Textfont& lineposition(std::string f);
-    Treemap::Textfont& lineposition(const std::vector<std::string>& f);
+    Treemap::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Treemap::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Treemap::Textfont& linepositionsrc(std::string f);
@@ -1950,10 +2085,19 @@ class Treemap::Tiling {
     };
     static std::string to_string(Packing e);
 
+    enum class Flip {
+        X,
+        Y,
+    };
+    enum class FlipExtra {};
+    static std::string to_string(Flip e);
+    static std::string to_string(FlipExtra e);
+
     // Determines if the positions obtained from solver are flipped on each axis.
     // - Default:
     // - Flags: ['x', 'y']
-    Treemap::Tiling& flip(std::string f);
+    Treemap::Tiling& flip(std::initializer_list<Flip> flags);
+    Treemap::Tiling& flip(FlipExtra extra);
 
     // Determines d3 treemap solver. For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
     // - Default: squarify

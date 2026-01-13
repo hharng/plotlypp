@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -61,6 +62,32 @@ class Scattergeo : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {
+        Lon,
+        Lat,
+        Location,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     class Hoverlabel;
     class Legendgrouptitle;
     class Line;
@@ -112,8 +139,8 @@ class Scattergeo : public Trace {
     // - Default: all
     // - Flags: ['lon', 'lat', 'location', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scattergeo& hoverinfo(std::string f);
-    Scattergeo& hoverinfo(const std::vector<std::string>& f);
+    Scattergeo& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scattergeo& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattergeo& hoverinfosrc(std::string f);
@@ -236,7 +263,8 @@ class Scattergeo : public Trace {
     // - Default: markers
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scattergeo& mode(std::string f);
+    Scattergeo& mode(std::initializer_list<Mode> flags);
+    Scattergeo& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattergeo& name(std::string f);
@@ -416,6 +444,17 @@ class Scattergeo::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergeo::Hoverlabel::Font& color(std::string f);
     Scattergeo::Hoverlabel::Font& color(double f);
     Scattergeo::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -442,8 +481,8 @@ class Scattergeo::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergeo::Hoverlabel::Font& lineposition(std::string f);
-    Scattergeo::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scattergeo::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergeo::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattergeo::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -550,6 +589,17 @@ class Scattergeo::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergeo::Legendgrouptitle::Font& color(std::string f);
     Scattergeo::Legendgrouptitle::Font& color(double f);
 
@@ -567,7 +617,8 @@ class Scattergeo::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergeo::Legendgrouptitle::Font& lineposition(std::string f);
+    Scattergeo::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergeo::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1475,6 +1526,17 @@ class Scattergeo::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergeo::Marker::Colorbar::Tickfont& color(std::string f);
     Scattergeo::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1492,7 +1554,8 @@ class Scattergeo::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergeo::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scattergeo::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergeo::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1619,6 +1682,17 @@ class Scattergeo::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergeo::Marker::Colorbar::Title::Font& color(std::string f);
     Scattergeo::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1636,7 +1710,8 @@ class Scattergeo::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergeo::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scattergeo::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergeo::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1879,6 +1954,17 @@ class Scattergeo::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattergeo::Textfont& color(std::string f);
     Scattergeo::Textfont& color(double f);
     Scattergeo::Textfont& color(const std::vector<std::string>& f);
@@ -1905,8 +1991,8 @@ class Scattergeo::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattergeo::Textfont& lineposition(std::string f);
-    Scattergeo::Textfont& lineposition(const std::vector<std::string>& f);
+    Scattergeo::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattergeo::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattergeo::Textfont& linepositionsrc(std::string f);

@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -75,6 +76,32 @@ class Violin : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Violins,
+        Points,
+        Kde,
+    };
+    enum class HoveronExtra {
+        All,
+    };
+    static std::string to_string(Hoveron e);
+    static std::string to_string(HoveronExtra e);
+
     class Box;
     class Hoverlabel;
     class Legendgrouptitle;
@@ -115,8 +142,8 @@ class Violin : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Violin& hoverinfo(std::string f);
-    Violin& hoverinfo(const std::vector<std::string>& f);
+    Violin& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Violin& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Violin& hoverinfosrc(std::string f);
@@ -130,7 +157,8 @@ class Violin : public Trace {
     // - Default: violins+points+kde
     // - Flags: ['violins', 'points', 'kde']
     // - Extras ['all']
-    Violin& hoveron(std::string f);
+    Violin& hoveron(std::initializer_list<Hoveron> flags);
+    Violin& hoveron(HoveronExtra extra);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -531,6 +559,17 @@ class Violin::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Violin::Hoverlabel::Font& color(std::string f);
     Violin::Hoverlabel::Font& color(double f);
     Violin::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -557,8 +596,8 @@ class Violin::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Violin::Hoverlabel::Font& lineposition(std::string f);
-    Violin::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Violin::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Violin::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Violin::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -665,6 +704,17 @@ class Violin::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Violin::Legendgrouptitle::Font& color(std::string f);
     Violin::Legendgrouptitle::Font& color(double f);
 
@@ -682,7 +732,8 @@ class Violin::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Violin::Legendgrouptitle::Font& lineposition(std::string f);
+    Violin::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Violin::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

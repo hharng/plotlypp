@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -54,6 +55,18 @@ class Parcats : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {
+        Count,
+        Probability,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Dimension;
     class Domain;
     // Sets the font for the `dimension` labels.
@@ -91,7 +104,8 @@ class Parcats : public Trace {
     // - Default: all
     // - Flags: ['count', 'probability']
     // - Extras ['all', 'none', 'skip']
-    Parcats& hoverinfo(std::string f);
+    Parcats& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Parcats& hoverinfo(HoverinfoExtra extra);
 
     // Sets the hover interaction mode for the parcats diagram. If `category`, hover interaction take place per
     // category. If `color`, hover interactions take place per color per category. If `dimension`, hover interactions
@@ -304,6 +318,17 @@ class Parcats::Labelfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcats::Labelfont& color(std::string f);
     Parcats::Labelfont& color(double f);
 
@@ -321,7 +346,8 @@ class Parcats::Labelfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcats::Labelfont& lineposition(std::string f);
+    Parcats::Labelfont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcats::Labelfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -401,6 +427,17 @@ class Parcats::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcats::Legendgrouptitle::Font& color(std::string f);
     Parcats::Legendgrouptitle::Font& color(double f);
 
@@ -418,7 +455,8 @@ class Parcats::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcats::Legendgrouptitle::Font& lineposition(std::string f);
+    Parcats::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Parcats::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -922,6 +960,17 @@ class Parcats::Line::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcats::Line::Colorbar::Tickfont& color(std::string f);
     Parcats::Line::Colorbar::Tickfont& color(double f);
 
@@ -939,7 +988,8 @@ class Parcats::Line::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcats::Line::Colorbar::Tickfont& lineposition(std::string f);
+    Parcats::Line::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcats::Line::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1066,6 +1116,17 @@ class Parcats::Line::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcats::Line::Colorbar::Title::Font& color(std::string f);
     Parcats::Line::Colorbar::Title::Font& color(double f);
 
@@ -1083,7 +1144,8 @@ class Parcats::Line::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcats::Line::Colorbar::Title::Font& lineposition(std::string f);
+    Parcats::Line::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Parcats::Line::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1160,6 +1222,17 @@ class Parcats::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Parcats::Tickfont& color(std::string f);
     Parcats::Tickfont& color(double f);
 
@@ -1177,7 +1250,8 @@ class Parcats::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Parcats::Tickfont& lineposition(std::string f);
+    Parcats::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Parcats::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Mesh3D::to_string(Delaunayaxis e) {
@@ -101,6 +103,24 @@ inline std::string Mesh3D::to_string(Zcalendar e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Mesh3D::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Mesh3D::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 inline Mesh3D& Mesh3D::alphahull(double f) {
@@ -210,12 +230,12 @@ inline Mesh3D& Mesh3D::flatshading(bool f) {
     return *this;
 }
 
-inline Mesh3D& Mesh3D::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Mesh3D& Mesh3D::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Mesh3D& Mesh3D::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Mesh3D& Mesh3D::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -985,6 +1005,20 @@ inline std::string Mesh3D::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Mesh3D::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Mesh3D::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1000,8 +1034,12 @@ inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::family(std::strin
     return *this;
 }
 
-inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Mesh3D::Colorbar::Tickfont& Mesh3D::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1134,6 +1172,20 @@ inline std::string Mesh3D::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Mesh3D::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Mesh3D::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1149,8 +1201,12 @@ inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::family(std:
     return *this;
 }
 
-inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Mesh3D::Colorbar::Title::Font& Mesh3D::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1329,6 +1385,20 @@ inline std::string Mesh3D::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Mesh3D::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Mesh3D::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1366,12 +1436,12 @@ inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::familysrc(std::string
     return *this;
 }
 
-inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Mesh3D::Hoverlabel::Font& Mesh3D::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1517,6 +1587,20 @@ inline std::string Mesh3D::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Mesh3D::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Mesh3D::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1532,8 +1616,12 @@ inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::family(st
     return *this;
 }
 
-inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Mesh3D::Legendgrouptitle::Font& Mesh3D::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

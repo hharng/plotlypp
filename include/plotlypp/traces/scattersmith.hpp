@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -54,6 +55,39 @@ class Scattersmith : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Hoverinfo {
+        Real,
+        Imag,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Points,
+        Fills,
+    };
+    enum class HoveronExtra {};
+    static std::string to_string(Hoveron e);
+    static std::string to_string(HoveronExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     class Hoverlabel;
     class Legendgrouptitle;
     class Line;
@@ -97,8 +131,8 @@ class Scattersmith : public Trace {
     // - Default: all
     // - Flags: ['real', 'imag', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scattersmith& hoverinfo(std::string f);
-    Scattersmith& hoverinfo(const std::vector<std::string>& f);
+    Scattersmith& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scattersmith& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattersmith& hoverinfosrc(std::string f);
@@ -111,7 +145,8 @@ class Scattersmith : public Trace {
     // the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is
     // *points*.
     // - Flags: ['points', 'fills']
-    Scattersmith& hoveron(std::string f);
+    Scattersmith& hoveron(std::initializer_list<Hoveron> flags);
+    Scattersmith& hoveron(HoveronExtra extra);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -206,7 +241,8 @@ class Scattersmith : public Trace {
     // points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scattersmith& mode(std::string f);
+    Scattersmith& mode(std::initializer_list<Mode> flags);
+    Scattersmith& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattersmith& name(std::string f);
@@ -397,6 +433,17 @@ class Scattersmith::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattersmith::Hoverlabel::Font& color(std::string f);
     Scattersmith::Hoverlabel::Font& color(double f);
     Scattersmith::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -423,8 +470,8 @@ class Scattersmith::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattersmith::Hoverlabel::Font& lineposition(std::string f);
-    Scattersmith::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scattersmith::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattersmith::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattersmith::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -531,6 +578,17 @@ class Scattersmith::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattersmith::Legendgrouptitle::Font& color(std::string f);
     Scattersmith::Legendgrouptitle::Font& color(double f);
 
@@ -548,7 +606,8 @@ class Scattersmith::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattersmith::Legendgrouptitle::Font& lineposition(std::string f);
+    Scattersmith::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattersmith::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1481,6 +1540,17 @@ class Scattersmith::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattersmith::Marker::Colorbar::Tickfont& color(std::string f);
     Scattersmith::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1498,7 +1568,8 @@ class Scattersmith::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattersmith::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scattersmith::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattersmith::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1625,6 +1696,17 @@ class Scattersmith::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattersmith::Marker::Colorbar::Title::Font& color(std::string f);
     Scattersmith::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1642,7 +1724,8 @@ class Scattersmith::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattersmith::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scattersmith::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattersmith::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1885,6 +1968,17 @@ class Scattersmith::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattersmith::Textfont& color(std::string f);
     Scattersmith::Textfont& color(double f);
     Scattersmith::Textfont& color(const std::vector<std::string>& f);
@@ -1911,8 +2005,8 @@ class Scattersmith::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattersmith::Textfont& lineposition(std::string f);
-    Scattersmith::Textfont& lineposition(const std::vector<std::string>& f);
+    Scattersmith::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattersmith::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattersmith::Textfont& linepositionsrc(std::string f);

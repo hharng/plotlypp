@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Sunburst::to_string(Branchvalues e) {
@@ -37,14 +39,69 @@ inline std::string Sunburst::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::to_string(Count e) {
+    switch(e) {
+        case Count::Branches: return "branches";
+        case Count::Leaves: return "leaves";
+    }
+    throw std::invalid_argument{"Unknown flag value for count."};
+}
+inline std::string Sunburst::to_string(CountExtra e) {
+    switch(e) {
+    }
+    throw std::invalid_argument{"Unknown extra value for count."};
+}
+inline std::string Sunburst::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Label: return "label";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Value: return "value";
+        case Hoverinfo::Name: return "name";
+        case Hoverinfo::CurrentPath: return "current path";
+        case Hoverinfo::PercentRoot: return "percent root";
+        case Hoverinfo::PercentEntry: return "percent entry";
+        case Hoverinfo::PercentParent: return "percent parent";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Sunburst::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Sunburst::to_string(Textinfo e) {
+    switch(e) {
+        case Textinfo::Label: return "label";
+        case Textinfo::Text: return "text";
+        case Textinfo::Value: return "value";
+        case Textinfo::CurrentPath: return "current path";
+        case Textinfo::PercentRoot: return "percent root";
+        case Textinfo::PercentEntry: return "percent entry";
+        case Textinfo::PercentParent: return "percent parent";
+    }
+    throw std::invalid_argument{"Unknown flag value for textinfo."};
+}
+inline std::string Sunburst::to_string(TextinfoExtra e) {
+    switch(e) {
+        case TextinfoExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for textinfo."};
+}
 
 inline Sunburst& Sunburst::branchvalues(enum Branchvalues f) {
     json["branchvalues"] = to_string(f);
     return *this;
 }
 
-inline Sunburst& Sunburst::count(std::string f) {
-    json["count"] = std::move(f);
+inline Sunburst& Sunburst::count(std::initializer_list<Count> flags) {
+    json["count"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sunburst& Sunburst::count(CountExtra extra) {
+    json["count"] = to_string(extra);
     return *this;
 }
 
@@ -70,12 +127,12 @@ inline Sunburst& Sunburst::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-inline Sunburst& Sunburst::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Sunburst& Sunburst::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sunburst& Sunburst::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Sunburst& Sunburst::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -317,8 +374,12 @@ inline Sunburst& Sunburst::textfont(Callable&& c) {
     return textfont(std::move(f));
 }
 
-inline Sunburst& Sunburst::textinfo(std::string f) {
-    json["textinfo"] = std::move(f);
+inline Sunburst& Sunburst::textinfo(std::initializer_list<Textinfo> flags) {
+    json["textinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sunburst& Sunburst::textinfo(TextinfoExtra extra) {
+    json["textinfo"] = to_string(extra);
     return *this;
 }
 
@@ -538,6 +599,20 @@ inline std::string Sunburst::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Hoverlabel::Font& Sunburst::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -575,12 +650,12 @@ inline Sunburst::Hoverlabel::Font& Sunburst::Hoverlabel::Font::familysrc(std::st
     return *this;
 }
 
-inline Sunburst::Hoverlabel::Font& Sunburst::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Hoverlabel::Font& Sunburst::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sunburst::Hoverlabel::Font& Sunburst::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sunburst::Hoverlabel::Font& Sunburst::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -709,6 +784,20 @@ inline std::string Sunburst::Insidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Insidetextfont& Sunburst::Insidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -746,12 +835,12 @@ inline Sunburst::Insidetextfont& Sunburst::Insidetextfont::familysrc(std::string
     return *this;
 }
 
-inline Sunburst::Insidetextfont& Sunburst::Insidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Insidetextfont& Sunburst::Insidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sunburst::Insidetextfont& Sunburst::Insidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sunburst::Insidetextfont& Sunburst::Insidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -903,6 +992,20 @@ inline std::string Sunburst::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Legendgrouptitle::Font& Sunburst::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -918,8 +1021,12 @@ inline Sunburst::Legendgrouptitle::Font& Sunburst::Legendgrouptitle::Font::famil
     return *this;
 }
 
-inline Sunburst::Legendgrouptitle::Font& Sunburst::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Legendgrouptitle::Font& Sunburst::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sunburst::Legendgrouptitle::Font& Sunburst::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1495,6 +1602,20 @@ inline std::string Sunburst::Marker::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Marker::Colorbar::Tickfont& Sunburst::Marker::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1510,8 +1631,12 @@ inline Sunburst::Marker::Colorbar::Tickfont& Sunburst::Marker::Colorbar::Tickfon
     return *this;
 }
 
-inline Sunburst::Marker::Colorbar::Tickfont& Sunburst::Marker::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Marker::Colorbar::Tickfont& Sunburst::Marker::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sunburst::Marker::Colorbar::Tickfont& Sunburst::Marker::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1644,6 +1769,20 @@ inline std::string Sunburst::Marker::Colorbar::Title::Font::to_string(Variant e)
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Marker::Colorbar::Title::Font& Sunburst::Marker::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1659,8 +1798,12 @@ inline Sunburst::Marker::Colorbar::Title::Font& Sunburst::Marker::Colorbar::Titl
     return *this;
 }
 
-inline Sunburst::Marker::Colorbar::Title::Font& Sunburst::Marker::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Marker::Colorbar::Title::Font& Sunburst::Marker::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Sunburst::Marker::Colorbar::Title::Font& Sunburst::Marker::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1866,6 +2009,20 @@ inline std::string Sunburst::Outsidetextfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Outsidetextfont& Sunburst::Outsidetextfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1903,12 +2060,12 @@ inline Sunburst::Outsidetextfont& Sunburst::Outsidetextfont::familysrc(std::stri
     return *this;
 }
 
-inline Sunburst::Outsidetextfont& Sunburst::Outsidetextfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Outsidetextfont& Sunburst::Outsidetextfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sunburst::Outsidetextfont& Sunburst::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sunburst::Outsidetextfont& Sunburst::Outsidetextfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -2058,6 +2215,20 @@ inline std::string Sunburst::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Sunburst::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Sunburst::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Sunburst::Textfont& Sunburst::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -2095,12 +2266,12 @@ inline Sunburst::Textfont& Sunburst::Textfont::familysrc(std::string f) {
     return *this;
 }
 
-inline Sunburst::Textfont& Sunburst::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Sunburst::Textfont& Sunburst::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Sunburst::Textfont& Sunburst::Textfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Sunburst::Textfont& Sunburst::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

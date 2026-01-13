@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -48,6 +49,25 @@ class Cone : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        U,
+        V,
+        W,
+        Norm,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
 
     class Colorbar;
     class Hoverlabel;
@@ -113,8 +133,8 @@ class Cone : public Trace {
     // - Default: x+y+z+norm+text+name
     // - Flags: ['x', 'y', 'z', 'u', 'v', 'w', 'norm', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Cone& hoverinfo(std::string f);
-    Cone& hoverinfo(const std::vector<std::string>& f);
+    Cone& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Cone& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Cone& hoverinfosrc(std::string f);
@@ -730,6 +750,17 @@ class Cone::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Cone::Colorbar::Tickfont& color(std::string f);
     Cone::Colorbar::Tickfont& color(double f);
 
@@ -747,7 +778,8 @@ class Cone::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Cone::Colorbar::Tickfont& lineposition(std::string f);
+    Cone::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Cone::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -874,6 +906,17 @@ class Cone::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Cone::Colorbar::Title::Font& color(std::string f);
     Cone::Colorbar::Title::Font& color(double f);
 
@@ -891,7 +934,8 @@ class Cone::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Cone::Colorbar::Title::Font& lineposition(std::string f);
+    Cone::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Cone::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1012,6 +1056,17 @@ class Cone::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Cone::Hoverlabel::Font& color(std::string f);
     Cone::Hoverlabel::Font& color(double f);
     Cone::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1038,8 +1093,8 @@ class Cone::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Cone::Hoverlabel::Font& lineposition(std::string f);
-    Cone::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Cone::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Cone::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Cone::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1146,6 +1201,17 @@ class Cone::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Cone::Legendgrouptitle::Font& color(std::string f);
     Cone::Legendgrouptitle::Font& color(double f);
 
@@ -1163,7 +1229,8 @@ class Cone::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Cone::Legendgrouptitle::Font& lineposition(std::string f);
+    Cone::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Cone::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

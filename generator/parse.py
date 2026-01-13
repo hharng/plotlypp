@@ -285,9 +285,65 @@ def emit_enum_to_string(class_object, enum, writer):
     writer.write("}")
 
 
+def emit_flaglist_definition(fl, writer):
+    writer.write("")
+    writer.write(f"enum class {fl.name.title()} {{")
+    with IndentBlock(writer):
+        for safe_val in fl.safe_flags:
+            writer.write(f"{safe_val},")
+    writer.write("};")
+    writer.write(f"enum class {fl.name.title()}Extra {{")
+    with IndentBlock(writer):
+        for safe_val in fl.safe_extras:
+            writer.write(f"{safe_val},")
+    writer.write("};")
+
+def emit_flaglist_to_string_decls(fl, writer):
+    writer.write(f"static std::string to_string({fl.name.title()} e);")
+    writer.write(f"static std::string to_string({fl.name.title()}Extra e);")
+
+def emit_flaglist_setter_decls(class_object, field, writer):
+    writer.write(f"{class_object.name.title()}& {field.name}(std::initializer_list<{field.name.title()}> flags);")
+    writer.write(f"{class_object.name.title()}& {field.name}({field.name.title()}Extra extra);")
+
+def emit_flaglist_to_string_impls(class_object, fl, writer):
+    writer.write(f"inline std::string {class_object.name.title()}::to_string({fl.name.title()} e) {{")
+    with IndentBlock(writer):
+        writer.write("switch(e) {")
+        with IndentBlock(writer):
+            for s, j in fl.safe_flags.items():
+                writer.write(f'case {fl.name.title()}::{s}: return "{j}";')
+        writer.write("}")
+        writer.write('throw std::invalid_argument{"Unknown flag value for ' + fl.name + '."};')
+    writer.write("}")
+    writer.write(f"inline std::string {class_object.name.title()}::to_string({fl.name.title()}Extra e) {{")
+    with IndentBlock(writer):
+        writer.write("switch(e) {")
+        with IndentBlock(writer):
+            for s, j in fl.safe_extras.items():
+                writer.write(f'case {fl.name.title()}Extra::{s}: return "{j}";')
+        writer.write("}")
+        writer.write('throw std::invalid_argument{"Unknown extra value for ' + fl.name + '."};')
+    writer.write("}")
+
+def emit_flaglist_setter_impls(class_object, field, writer):
+    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(std::initializer_list<{field.name.title()}> flags) {{")
+    with IndentBlock(writer):
+        writer.write(f"json[\"{field.name}\"] = detail::joinFlaglist(flags, [](auto f){{ return to_string(f); }});")
+        writer.write("return *this;")
+    writer.write("}")
+    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}({field.name.title()}Extra extra) {{")
+    with IndentBlock(writer):
+        writer.write(f"json[\"{field.name}\"] = to_string(extra);")
+        writer.write("return *this;")
+    writer.write("}")
+
+
 def emit_class_public_members(class_object, writer):
     for e in class_object.enums:
         emit_enum_to_string(class_object, e, writer)
+    for fl in class_object.flaglists:
+        emit_flaglist_to_string_impls(class_object, fl, writer)
 
     writer.write("")
 
@@ -296,6 +352,8 @@ def emit_class_public_members(class_object, writer):
             emit_enum_field_setter(class_object, field, writer)
             if field.array_ok:
                 emit_enum_array_field_setter(class_object, field, writer)
+        elif field.is_flaglist:
+            emit_flaglist_setter_impls(class_object, field, writer)
         else:
             if field.is_object:
                 object_type = field.object_type_name if field.object_type_name else field.name
@@ -319,6 +377,9 @@ def emit_class_public_members_decl(class_object, writer):
     for e in class_object.enums:
         emit_enum_definition(e, writer)
         emit_enum_to_string_decl(e, writer)
+    for fl in class_object.flaglists:
+        emit_flaglist_definition(fl, writer)
+        emit_flaglist_to_string_decls(fl, writer)
 
     writer.write("")
     for obj in class_object.objects:
@@ -336,6 +397,8 @@ def emit_class_public_members_decl(class_object, writer):
             emit_enum_field_setter_decl(class_object, field, writer)
             if field.array_ok:
                 emit_enum_array_field_setter_decl(class_object, field, writer)
+        elif field.is_flaglist:
+            emit_flaglist_setter_decls(class_object, field, writer)
         else:
             if field.is_object:
                 field_type = field.object_type_name if field.object_type_name else field.name
@@ -411,6 +474,7 @@ def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path):
 
     emit_preamble(writer)
 
+    writer.write("#include <initializer_list>")
     writer.write("#include <string>")
     writer.write("#include <vector>")
     writer.write("#include <type_traits>")
@@ -449,6 +513,8 @@ def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path):
 
     writer = Writer(out_dir / impl_subdir / f"{trace.name}_impl.hpp")
     emit_preamble(writer)
+    writer.write("#include <plotlypp/detail/flaglist_helpers.hpp>")
+    writer.write("")
     writer.write("namespace plotlypp {")
     writer.write("")
     emit_class_public_members(trace, writer)
@@ -466,7 +532,7 @@ class Object:
     description: str = ""
     fields: List["Field"] = dataclasses.field(default_factory=list)
     enums: List["StringEnum"] = dataclasses.field(default_factory=list)
-    flaglists: List[str] = dataclasses.field(default_factory=list)
+    flaglists: List["FlagList"] = dataclasses.field(default_factory=list)
     objects: List["Object"] = dataclasses.field(default_factory=list)
 
 @dataclasses.dataclass
@@ -477,9 +543,18 @@ class Field:
     json_val_type: Optional[str] = None
     array_ok: bool = False
     is_enum: bool = False
+    is_flaglist: bool = False
     is_object: bool = False
     is_subplot_object: bool = False
     object_type_name: Optional[str] = None
+
+@dataclasses.dataclass
+class FlagList:
+    """Represents a flaglist type with combinable flags and standalone extras."""
+    name: str = ""
+    safe_flags: Dict[str, str] = dataclasses.field(default_factory=dict)
+    safe_extras: Dict[str, str] = dataclasses.field(default_factory=dict)
+
 
 @dataclasses.dataclass
 class StringEnum:
@@ -603,6 +678,19 @@ def _parse_enumerated_attribute(parent: "Object", f: "Field", node: Dict[str, An
     parent.enums.append(e)
 
 
+def _parse_flaglist_attribute(parent: "Object", f: "Field", node: Dict[str, Any]):
+    """Parses a flaglist attribute, creating a FlagList object."""
+    f.is_flaglist = True
+    fl = FlagList(name=f.name)
+    for flag_val in node.get("flags", []):
+        safe_val, json_val = _clean_enum_value(flag_val)
+        fl.safe_flags[safe_val] = json_val
+    for extra_val in node.get("extras", []):
+        safe_val, json_val = _clean_enum_value(extra_val)
+        fl.safe_extras[safe_val] = json_val
+    parent.flaglists.append(fl)
+
+
 def parse_attributes(parent: Object, attributes_node: Dict[str, Any]):
     """Parses attributes from a schema node into Fields, Enums, or nested Objects."""
     for name, node in attributes_node.items():
@@ -659,8 +747,8 @@ def parse_attributes(parent: Object, attributes_node: Dict[str, Any]):
 
             if f.json_val_type == "enumerated":
                 _parse_enumerated_attribute(parent, f, node)
-
-            if f.json_val_type == "flaglist":
+            elif f.json_val_type == "flaglist":
+                _parse_flaglist_attribute(parent, f, node)
                 if "dflt" in node:
                     f.description += f"\nDefault: {node["dflt"]}"
                 f.description += f"\nFlags: {node["flags"]}"
@@ -739,6 +827,7 @@ def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
 
     emit_preamble(writer)
 
+    writer.write("#include <initializer_list>")
     writer.write("#include <string>")
     writer.write("#include <vector>")
     writer.write("")
@@ -763,6 +852,8 @@ def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
 
     writer = Writer(out_dir / impl_subdir / f"{layout.name}_impl.hpp")
     emit_preamble(writer)
+    writer.write("#include <plotlypp/detail/flaglist_helpers.hpp>")
+    writer.write("")
     writer.write("namespace plotlypp {")
     writer.write("")
     emit_class_public_members(layout, writer)

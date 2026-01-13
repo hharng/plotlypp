@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -48,6 +49,47 @@ class Sunburst : public Trace {
     };
     static std::string to_string(Visible e);
 
+    enum class Count {
+        Branches,
+        Leaves,
+    };
+    enum class CountExtra {};
+    static std::string to_string(Count e);
+    static std::string to_string(CountExtra e);
+
+    enum class Hoverinfo {
+        Label,
+        Text,
+        Value,
+        Name,
+        CurrentPath,
+        PercentRoot,
+        PercentEntry,
+        PercentParent,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Value,
+        CurrentPath,
+        PercentRoot,
+        PercentEntry,
+        PercentParent,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
+
     class Domain;
     class Hoverlabel;
     // Sets the font used for `textinfo` lying inside the sector.
@@ -74,7 +116,8 @@ class Sunburst : public Trace {
     // *branches*, otherwise 0.
     // - Default: leaves
     // - Flags: ['branches', 'leaves']
-    Sunburst& count(std::string f);
+    Sunburst& count(std::initializer_list<Count> flags);
+    Sunburst& count(CountExtra extra);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
@@ -93,8 +136,8 @@ class Sunburst : public Trace {
     // - Default: label+text+value+name
     // - Flags: ['label', 'text', 'value', 'name', 'current path', 'percent root', 'percent entry', 'percent parent']
     // - Extras ['all', 'none', 'skip']
-    Sunburst& hoverinfo(std::string f);
-    Sunburst& hoverinfo(const std::vector<std::string>& f);
+    Sunburst& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Sunburst& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Sunburst& hoverinfosrc(std::string f);
@@ -260,7 +303,8 @@ class Sunburst : public Trace {
     // Determines which trace information appear on the graph.
     // - Flags: ['label', 'text', 'value', 'current path', 'percent root', 'percent entry', 'percent parent']
     // - Extras ['none']
-    Sunburst& textinfo(std::string f);
+    Sunburst& textinfo(std::initializer_list<Textinfo> flags);
+    Sunburst& textinfo(TextinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `text`.
     Sunburst& textsrc(std::string f);
@@ -430,6 +474,17 @@ class Sunburst::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Hoverlabel::Font& color(std::string f);
     Sunburst::Hoverlabel::Font& color(double f);
     Sunburst::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -456,8 +511,8 @@ class Sunburst::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Hoverlabel::Font& lineposition(std::string f);
-    Sunburst::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Sunburst::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sunburst::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -543,6 +598,17 @@ class Sunburst::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Insidetextfont& color(std::string f);
     Sunburst::Insidetextfont& color(double f);
     Sunburst::Insidetextfont& color(const std::vector<std::string>& f);
@@ -569,8 +635,8 @@ class Sunburst::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Insidetextfont& lineposition(std::string f);
-    Sunburst::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Sunburst::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sunburst::Insidetextfont& linepositionsrc(std::string f);
@@ -690,6 +756,17 @@ class Sunburst::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Legendgrouptitle::Font& color(std::string f);
     Sunburst::Legendgrouptitle::Font& color(double f);
 
@@ -707,7 +784,8 @@ class Sunburst::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Legendgrouptitle::Font& lineposition(std::string f);
+    Sunburst::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1195,6 +1273,17 @@ class Sunburst::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Marker::Colorbar::Tickfont& color(std::string f);
     Sunburst::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1212,7 +1301,8 @@ class Sunburst::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Sunburst::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1339,6 +1429,17 @@ class Sunburst::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Marker::Colorbar::Title::Font& color(std::string f);
     Sunburst::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1356,7 +1457,8 @@ class Sunburst::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Sunburst::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1512,6 +1614,17 @@ class Sunburst::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Outsidetextfont& color(std::string f);
     Sunburst::Outsidetextfont& color(double f);
     Sunburst::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -1538,8 +1651,8 @@ class Sunburst::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Outsidetextfont& lineposition(std::string f);
-    Sunburst::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Sunburst::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sunburst::Outsidetextfont& linepositionsrc(std::string f);
@@ -1658,6 +1771,17 @@ class Sunburst::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Sunburst::Textfont& color(std::string f);
     Sunburst::Textfont& color(double f);
     Sunburst::Textfont& color(const std::vector<std::string>& f);
@@ -1684,8 +1808,8 @@ class Sunburst::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Sunburst::Textfont& lineposition(std::string f);
-    Sunburst::Textfont& lineposition(const std::vector<std::string>& f);
+    Sunburst::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Sunburst::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Sunburst::Textfont& linepositionsrc(std::string f);

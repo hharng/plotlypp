@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -52,6 +53,31 @@ class Scattermap : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
+
+    enum class Hoverinfo {
+        Lon,
+        Lat,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
 
     class Cluster;
     class Hoverlabel;
@@ -100,8 +126,8 @@ class Scattermap : public Trace {
     // - Default: all
     // - Flags: ['lon', 'lat', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Scattermap& hoverinfo(std::string f);
-    Scattermap& hoverinfo(const std::vector<std::string>& f);
+    Scattermap& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Scattermap& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattermap& hoverinfosrc(std::string f);
@@ -209,7 +235,8 @@ class Scattermap : public Trace {
     // - Default: markers
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
-    Scattermap& mode(std::string f);
+    Scattermap& mode(std::initializer_list<Mode> flags);
+    Scattermap& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattermap& name(std::string f);
@@ -438,6 +465,17 @@ class Scattermap::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermap::Hoverlabel::Font& color(std::string f);
     Scattermap::Hoverlabel::Font& color(double f);
     Scattermap::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -464,8 +502,8 @@ class Scattermap::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermap::Hoverlabel::Font& lineposition(std::string f);
-    Scattermap::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Scattermap::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermap::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattermap::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -572,6 +610,17 @@ class Scattermap::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermap::Legendgrouptitle::Font& color(std::string f);
     Scattermap::Legendgrouptitle::Font& color(double f);
 
@@ -589,7 +638,8 @@ class Scattermap::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermap::Legendgrouptitle::Font& lineposition(std::string f);
+    Scattermap::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermap::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1136,6 +1186,17 @@ class Scattermap::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermap::Marker::Colorbar::Tickfont& color(std::string f);
     Scattermap::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1153,7 +1214,8 @@ class Scattermap::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermap::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Scattermap::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermap::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1280,6 +1342,17 @@ class Scattermap::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Scattermap::Marker::Colorbar::Title::Font& color(std::string f);
     Scattermap::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1297,7 +1370,8 @@ class Scattermap::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Scattermap::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Scattermap::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Scattermap::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

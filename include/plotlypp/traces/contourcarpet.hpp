@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -660,6 +661,17 @@ class Contourcarpet::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contourcarpet::Colorbar::Tickfont& color(std::string f);
     Contourcarpet::Colorbar::Tickfont& color(double f);
 
@@ -677,7 +689,8 @@ class Contourcarpet::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contourcarpet::Colorbar::Tickfont& lineposition(std::string f);
+    Contourcarpet::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Contourcarpet::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -804,6 +817,17 @@ class Contourcarpet::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contourcarpet::Colorbar::Title::Font& color(std::string f);
     Contourcarpet::Colorbar::Title::Font& color(double f);
 
@@ -821,7 +845,8 @@ class Contourcarpet::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contourcarpet::Colorbar::Title::Font& lineposition(std::string f);
+    Contourcarpet::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Contourcarpet::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -973,6 +998,17 @@ class Contourcarpet::Contours::Labelfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contourcarpet::Contours::Labelfont& color(std::string f);
     Contourcarpet::Contours::Labelfont& color(double f);
 
@@ -990,7 +1026,8 @@ class Contourcarpet::Contours::Labelfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contourcarpet::Contours::Labelfont& lineposition(std::string f);
+    Contourcarpet::Contours::Labelfont& lineposition(std::initializer_list<Lineposition> flags);
+    Contourcarpet::Contours::Labelfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1070,6 +1107,17 @@ class Contourcarpet::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contourcarpet::Legendgrouptitle::Font& color(std::string f);
     Contourcarpet::Legendgrouptitle::Font& color(double f);
 
@@ -1087,7 +1135,8 @@ class Contourcarpet::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contourcarpet::Legendgrouptitle::Font& lineposition(std::string f);
+    Contourcarpet::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Contourcarpet::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

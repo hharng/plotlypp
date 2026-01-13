@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Heatmap::to_string(Visible e) {
@@ -106,6 +108,24 @@ inline std::string Heatmap::to_string(Zsmooth e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Heatmap::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Heatmap::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 
 inline Heatmap& Heatmap::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -163,12 +183,12 @@ inline Heatmap& Heatmap::dy(double f) {
     return *this;
 }
 
-inline Heatmap& Heatmap::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Heatmap& Heatmap::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Heatmap& Heatmap::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Heatmap& Heatmap::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -972,6 +992,20 @@ inline std::string Heatmap::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Heatmap::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Heatmap::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -987,8 +1021,12 @@ inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::family(std::str
     return *this;
 }
 
-inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Heatmap::Colorbar::Tickfont& Heatmap::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1121,6 +1159,20 @@ inline std::string Heatmap::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Heatmap::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Heatmap::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1136,8 +1188,12 @@ inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::family(st
     return *this;
 }
 
-inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Heatmap::Colorbar::Title::Font& Heatmap::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1296,6 +1352,20 @@ inline std::string Heatmap::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Heatmap::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Heatmap::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1333,12 +1403,12 @@ inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::familysrc(std::stri
     return *this;
 }
 
-inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Heatmap::Hoverlabel::Font& Heatmap::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1484,6 +1554,20 @@ inline std::string Heatmap::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Heatmap::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Heatmap::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1499,8 +1583,12 @@ inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::family(
     return *this;
 }
 
-inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Heatmap::Legendgrouptitle::Font& Heatmap::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1575,6 +1663,20 @@ inline std::string Heatmap::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Heatmap::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Heatmap::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Heatmap::Textfont& Heatmap::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1590,8 +1692,12 @@ inline Heatmap::Textfont& Heatmap::Textfont::family(std::string f) {
     return *this;
 }
 
-inline Heatmap::Textfont& Heatmap::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Heatmap::Textfont& Heatmap::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Heatmap::Textfont& Heatmap::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

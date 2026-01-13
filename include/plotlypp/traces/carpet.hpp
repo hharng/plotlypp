@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -568,6 +569,17 @@ class Carpet::Aaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Carpet::Aaxis::Tickfont& color(std::string f);
     Carpet::Aaxis::Tickfont& color(double f);
 
@@ -585,7 +597,8 @@ class Carpet::Aaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Carpet::Aaxis::Tickfont& lineposition(std::string f);
+    Carpet::Aaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Carpet::Aaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -704,6 +717,17 @@ class Carpet::Aaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Carpet::Aaxis::Title::Font& color(std::string f);
     Carpet::Aaxis::Title::Font& color(double f);
 
@@ -721,7 +745,8 @@ class Carpet::Aaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Carpet::Aaxis::Title::Font& lineposition(std::string f);
+    Carpet::Aaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Carpet::Aaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1117,6 +1142,17 @@ class Carpet::Baxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Carpet::Baxis::Tickfont& color(std::string f);
     Carpet::Baxis::Tickfont& color(double f);
 
@@ -1134,7 +1170,8 @@ class Carpet::Baxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Carpet::Baxis::Tickfont& lineposition(std::string f);
+    Carpet::Baxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Carpet::Baxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1253,6 +1290,17 @@ class Carpet::Baxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Carpet::Baxis::Title::Font& color(std::string f);
     Carpet::Baxis::Title::Font& color(double f);
 
@@ -1270,7 +1318,8 @@ class Carpet::Baxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Carpet::Baxis::Title::Font& lineposition(std::string f);
+    Carpet::Baxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Carpet::Baxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1329,6 +1378,17 @@ class Carpet::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Carpet::Font& color(std::string f);
     Carpet::Font& color(double f);
 
@@ -1346,7 +1406,8 @@ class Carpet::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Carpet::Font& lineposition(std::string f);
+    Carpet::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Carpet::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1426,6 +1487,17 @@ class Carpet::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Carpet::Legendgrouptitle::Font& color(std::string f);
     Carpet::Legendgrouptitle::Font& color(double f);
 
@@ -1443,7 +1515,8 @@ class Carpet::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Carpet::Legendgrouptitle::Font& lineposition(std::string f);
+    Carpet::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Carpet::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

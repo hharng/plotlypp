@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <vector>
 
@@ -135,6 +136,16 @@ class Layout {
     };
     static std::string to_string(Waterfallmode e);
 
+    enum class Clickmode {
+        Event,
+        Select,
+    };
+    enum class ClickmodeExtra {
+        None,
+    };
+    static std::string to_string(Clickmode e);
+    static std::string to_string(ClickmodeExtra e);
+
     class Activeselection;
     class Activeshape;
     class Annotation;
@@ -203,7 +214,8 @@ class Layout {
     // - Default: event
     // - Flags: ['event', 'select']
     // - Extras ['none']
-    Layout& clickmode(std::string f);
+    Layout& clickmode(std::initializer_list<Clickmode> flags);
+    Layout& clickmode(ClickmodeExtra extra);
 
     Layout& coloraxis(Coloraxis f);
     Layout& coloraxis(int index, Coloraxis f);
@@ -705,6 +717,16 @@ class Layout::Annotation {
     };
     static std::string to_string(Yanchor e);
 
+    enum class Arrowside {
+        End,
+        Start,
+    };
+    enum class ArrowsideExtra {
+        None,
+    };
+    static std::string to_string(Arrowside e);
+    static std::string to_string(ArrowsideExtra e);
+
     // Sets the annotation text font.
     class Font;
     class Hoverlabel;
@@ -725,7 +747,8 @@ class Layout::Annotation {
     // - Default: end
     // - Flags: ['end', 'start']
     // - Extras ['none']
-    Layout::Annotation& arrowside(std::string f);
+    Layout::Annotation& arrowside(std::initializer_list<Arrowside> flags);
+    Layout::Annotation& arrowside(ArrowsideExtra extra);
 
     // Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head
     // about 3x as wide as the line.
@@ -977,6 +1000,17 @@ class Layout::Annotation::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Annotation::Font& color(std::string f);
     Layout::Annotation::Font& color(double f);
 
@@ -994,7 +1028,8 @@ class Layout::Annotation::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Annotation::Font& lineposition(std::string f);
+    Layout::Annotation::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Annotation::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1084,6 +1119,17 @@ class Layout::Annotation::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Annotation::Hoverlabel::Font& color(std::string f);
     Layout::Annotation::Hoverlabel::Font& color(double f);
 
@@ -1101,7 +1147,8 @@ class Layout::Annotation::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Annotation::Hoverlabel::Font& lineposition(std::string f);
+    Layout::Annotation::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Annotation::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1560,6 +1607,17 @@ class Layout::Coloraxis::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Coloraxis::Colorbar::Tickfont& color(std::string f);
     Layout::Coloraxis::Colorbar::Tickfont& color(double f);
 
@@ -1577,7 +1635,8 @@ class Layout::Coloraxis::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Coloraxis::Colorbar::Tickfont& lineposition(std::string f);
+    Layout::Coloraxis::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Coloraxis::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1704,6 +1763,17 @@ class Layout::Coloraxis::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Coloraxis::Colorbar::Title::Font& color(std::string f);
     Layout::Coloraxis::Colorbar::Title::Font& color(double f);
 
@@ -1721,7 +1791,8 @@ class Layout::Coloraxis::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Coloraxis::Colorbar::Title::Font& lineposition(std::string f);
+    Layout::Coloraxis::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Coloraxis::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1804,6 +1875,17 @@ class Layout::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Font& color(std::string f);
     Layout::Font& color(double f);
 
@@ -1821,7 +1903,8 @@ class Layout::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Font& lineposition(std::string f);
+    Layout::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2491,6 +2574,17 @@ class Layout::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Hoverlabel::Font& color(std::string f);
     Layout::Hoverlabel::Font& color(double f);
 
@@ -2508,7 +2602,8 @@ class Layout::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Hoverlabel::Font& lineposition(std::string f);
+    Layout::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2567,6 +2662,17 @@ class Layout::Hoverlabel::Grouptitlefont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Hoverlabel::Grouptitlefont& color(std::string f);
     Layout::Hoverlabel::Grouptitlefont& color(double f);
 
@@ -2584,7 +2690,8 @@ class Layout::Hoverlabel::Grouptitlefont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Hoverlabel::Grouptitlefont& lineposition(std::string f);
+    Layout::Hoverlabel::Grouptitlefont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Hoverlabel::Grouptitlefont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -2806,6 +2913,16 @@ class Layout::Legend {
     };
     static std::string to_string(Yref e);
 
+    enum class Traceorder {
+        Reversed,
+        Grouped,
+    };
+    enum class TraceorderExtra {
+        Normal,
+    };
+    static std::string to_string(Traceorder e);
+    static std::string to_string(TraceorderExtra e);
+
     // Sets the font used to text the legend items.
     class Font;
     // Sets the font for group titles in legend. Defaults to `legend.font` with its size increased about 10%.
@@ -2887,7 +3004,8 @@ class Layout::Legend {
     // items are displayed in the opposite order as *grouped*.
     // - Flags: ['reversed', 'grouped']
     // - Extras ['normal']
-    Layout::Legend& traceorder(std::string f);
+    Layout::Legend& traceorder(std::initializer_list<Traceorder> flags);
+    Layout::Legend& traceorder(TraceorderExtra extra);
 
     // Controls persistence of legend-driven changes in trace and pie label visibility. Defaults to `layout.uirevision`.
     template <typename T>
@@ -2971,6 +3089,17 @@ class Layout::Legend::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Legend::Font& color(std::string f);
     Layout::Legend::Font& color(double f);
 
@@ -2988,7 +3117,8 @@ class Layout::Legend::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Legend::Font& lineposition(std::string f);
+    Layout::Legend::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Legend::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -3047,6 +3177,17 @@ class Layout::Legend::Grouptitlefont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Legend::Grouptitlefont& color(std::string f);
     Layout::Legend::Grouptitlefont& color(double f);
 
@@ -3064,7 +3205,8 @@ class Layout::Legend::Grouptitlefont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Legend::Grouptitlefont& lineposition(std::string f);
+    Layout::Legend::Grouptitlefont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Legend::Grouptitlefont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -3158,6 +3300,17 @@ class Layout::Legend::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Legend::Title::Font& color(std::string f);
     Layout::Legend::Title::Font& color(double f);
 
@@ -3175,7 +3328,8 @@ class Layout::Legend::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Legend::Title::Font& lineposition(std::string f);
+    Layout::Legend::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Legend::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -4356,6 +4510,17 @@ class Layout::Newshape::Label::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Newshape::Label::Font& color(std::string f);
     Layout::Newshape::Label::Font& color(double f);
 
@@ -4373,7 +4538,8 @@ class Layout::Newshape::Label::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Newshape::Label::Font& lineposition(std::string f);
+    Layout::Newshape::Label::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Newshape::Label::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -4453,6 +4619,17 @@ class Layout::Newshape::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Newshape::Legendgrouptitle::Font& color(std::string f);
     Layout::Newshape::Legendgrouptitle::Font& color(double f);
 
@@ -4470,7 +4647,8 @@ class Layout::Newshape::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Newshape::Legendgrouptitle::Font& lineposition(std::string f);
+    Layout::Newshape::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Newshape::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -4950,6 +5128,17 @@ class Layout::Polar::Angularaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Polar::Angularaxis::Tickfont& color(std::string f);
     Layout::Polar::Angularaxis::Tickfont& color(double f);
 
@@ -4967,7 +5156,8 @@ class Layout::Polar::Angularaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Polar::Angularaxis::Tickfont& lineposition(std::string f);
+    Layout::Polar::Angularaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Polar::Angularaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -5551,6 +5741,17 @@ class Layout::Polar::Radialaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Polar::Radialaxis::Tickfont& color(std::string f);
     Layout::Polar::Radialaxis::Tickfont& color(double f);
 
@@ -5568,7 +5769,8 @@ class Layout::Polar::Radialaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Polar::Radialaxis::Tickfont& lineposition(std::string f);
+    Layout::Polar::Radialaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Polar::Radialaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -5684,6 +5886,17 @@ class Layout::Polar::Radialaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Polar::Radialaxis::Title::Font& color(std::string f);
     Layout::Polar::Radialaxis::Title::Font& color(double f);
 
@@ -5701,7 +5914,8 @@ class Layout::Polar::Radialaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Polar::Radialaxis::Title::Font& lineposition(std::string f);
+    Layout::Polar::Radialaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Polar::Radialaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -5856,6 +6070,16 @@ class Layout::Scene::Annotation {
     };
     static std::string to_string(Yanchor e);
 
+    enum class Arrowside {
+        End,
+        Start,
+    };
+    enum class ArrowsideExtra {
+        None,
+    };
+    static std::string to_string(Arrowside e);
+    static std::string to_string(ArrowsideExtra e);
+
     // Sets the annotation text font.
     class Font;
     class Hoverlabel;
@@ -5876,7 +6100,8 @@ class Layout::Scene::Annotation {
     // - Default: end
     // - Flags: ['end', 'start']
     // - Extras ['none']
-    Layout::Scene::Annotation& arrowside(std::string f);
+    Layout::Scene::Annotation& arrowside(std::initializer_list<Arrowside> flags);
+    Layout::Scene::Annotation& arrowside(ArrowsideExtra extra);
 
     // Sets the size of the end annotation arrow head, relative to `arrowwidth`. A value of 1 (default) gives a head
     // about 3x as wide as the line.
@@ -6054,6 +6279,17 @@ class Layout::Scene::Annotation::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Annotation::Font& color(std::string f);
     Layout::Scene::Annotation::Font& color(double f);
 
@@ -6071,7 +6307,8 @@ class Layout::Scene::Annotation::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Annotation::Font& lineposition(std::string f);
+    Layout::Scene::Annotation::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Annotation::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -6161,6 +6398,17 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Annotation::Hoverlabel::Font& color(std::string f);
     Layout::Scene::Annotation::Hoverlabel::Font& color(double f);
 
@@ -6178,7 +6426,8 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Annotation::Hoverlabel::Font& lineposition(std::string f);
+    Layout::Scene::Annotation::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Annotation::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -6878,6 +7127,17 @@ class Layout::Scene::Xaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Xaxis::Tickfont& color(std::string f);
     Layout::Scene::Xaxis::Tickfont& color(double f);
 
@@ -6895,7 +7155,8 @@ class Layout::Scene::Xaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Xaxis::Tickfont& lineposition(std::string f);
+    Layout::Scene::Xaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Xaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -7011,6 +7272,17 @@ class Layout::Scene::Xaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Xaxis::Title::Font& color(std::string f);
     Layout::Scene::Xaxis::Title::Font& color(double f);
 
@@ -7028,7 +7300,8 @@ class Layout::Scene::Xaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Xaxis::Title::Font& lineposition(std::string f);
+    Layout::Scene::Xaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Xaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -7549,6 +7822,17 @@ class Layout::Scene::Yaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Yaxis::Tickfont& color(std::string f);
     Layout::Scene::Yaxis::Tickfont& color(double f);
 
@@ -7566,7 +7850,8 @@ class Layout::Scene::Yaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Yaxis::Tickfont& lineposition(std::string f);
+    Layout::Scene::Yaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Yaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -7682,6 +7967,17 @@ class Layout::Scene::Yaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Yaxis::Title::Font& color(std::string f);
     Layout::Scene::Yaxis::Title::Font& color(double f);
 
@@ -7699,7 +7995,8 @@ class Layout::Scene::Yaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Yaxis::Title::Font& lineposition(std::string f);
+    Layout::Scene::Yaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Yaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -8220,6 +8517,17 @@ class Layout::Scene::Zaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Zaxis::Tickfont& color(std::string f);
     Layout::Scene::Zaxis::Tickfont& color(double f);
 
@@ -8237,7 +8545,8 @@ class Layout::Scene::Zaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Zaxis::Tickfont& lineposition(std::string f);
+    Layout::Scene::Zaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Zaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -8353,6 +8662,17 @@ class Layout::Scene::Zaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Scene::Zaxis::Title::Font& color(std::string f);
     Layout::Scene::Zaxis::Title::Font& color(double f);
 
@@ -8370,7 +8690,8 @@ class Layout::Scene::Zaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Scene::Zaxis::Title::Font& lineposition(std::string f);
+    Layout::Scene::Zaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Scene::Zaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -8843,6 +9164,17 @@ class Layout::Shape::Label::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Shape::Label::Font& color(std::string f);
     Layout::Shape::Label::Font& color(double f);
 
@@ -8860,7 +9192,8 @@ class Layout::Shape::Label::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Shape::Label::Font& lineposition(std::string f);
+    Layout::Shape::Label::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Shape::Label::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -8940,6 +9273,17 @@ class Layout::Shape::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Shape::Legendgrouptitle::Font& color(std::string f);
     Layout::Shape::Legendgrouptitle::Font& color(double f);
 
@@ -8957,7 +9301,8 @@ class Layout::Shape::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Shape::Legendgrouptitle::Font& lineposition(std::string f);
+    Layout::Shape::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Shape::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -9210,6 +9555,17 @@ class Layout::Slider::Currentvalue::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Slider::Currentvalue::Font& color(std::string f);
     Layout::Slider::Currentvalue::Font& color(double f);
 
@@ -9227,7 +9583,8 @@ class Layout::Slider::Currentvalue::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Slider::Currentvalue::Font& lineposition(std::string f);
+    Layout::Slider::Currentvalue::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Slider::Currentvalue::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -9286,6 +9643,17 @@ class Layout::Slider::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Slider::Font& color(std::string f);
     Layout::Slider::Font& color(double f);
 
@@ -9303,7 +9671,8 @@ class Layout::Slider::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Slider::Font& lineposition(std::string f);
+    Layout::Slider::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Slider::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -9709,6 +10078,17 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Smith::Imaginaryaxis::Tickfont& color(std::string f);
     Layout::Smith::Imaginaryaxis::Tickfont& color(double f);
 
@@ -9726,7 +10106,8 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Smith::Imaginaryaxis::Tickfont& lineposition(std::string f);
+    Layout::Smith::Imaginaryaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Smith::Imaginaryaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -9947,6 +10328,17 @@ class Layout::Smith::Realaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Smith::Realaxis::Tickfont& color(std::string f);
     Layout::Smith::Realaxis::Tickfont& color(double f);
 
@@ -9964,7 +10356,8 @@ class Layout::Smith::Realaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Smith::Realaxis::Tickfont& lineposition(std::string f);
+    Layout::Smith::Realaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Smith::Realaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -10320,6 +10713,17 @@ class Layout::Ternary::Aaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Ternary::Aaxis::Tickfont& color(std::string f);
     Layout::Ternary::Aaxis::Tickfont& color(double f);
 
@@ -10337,7 +10741,8 @@ class Layout::Ternary::Aaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Ternary::Aaxis::Tickfont& lineposition(std::string f);
+    Layout::Ternary::Aaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Ternary::Aaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -10453,6 +10858,17 @@ class Layout::Ternary::Aaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Ternary::Aaxis::Title::Font& color(std::string f);
     Layout::Ternary::Aaxis::Title::Font& color(double f);
 
@@ -10470,7 +10886,8 @@ class Layout::Ternary::Aaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Ternary::Aaxis::Title::Font& lineposition(std::string f);
+    Layout::Ternary::Aaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Ternary::Aaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -10783,6 +11200,17 @@ class Layout::Ternary::Baxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Ternary::Baxis::Tickfont& color(std::string f);
     Layout::Ternary::Baxis::Tickfont& color(double f);
 
@@ -10800,7 +11228,8 @@ class Layout::Ternary::Baxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Ternary::Baxis::Tickfont& lineposition(std::string f);
+    Layout::Ternary::Baxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Ternary::Baxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -10916,6 +11345,17 @@ class Layout::Ternary::Baxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Ternary::Baxis::Title::Font& color(std::string f);
     Layout::Ternary::Baxis::Title::Font& color(double f);
 
@@ -10933,7 +11373,8 @@ class Layout::Ternary::Baxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Ternary::Baxis::Title::Font& lineposition(std::string f);
+    Layout::Ternary::Baxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Ternary::Baxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -11246,6 +11687,17 @@ class Layout::Ternary::Caxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Ternary::Caxis::Tickfont& color(std::string f);
     Layout::Ternary::Caxis::Tickfont& color(double f);
 
@@ -11263,7 +11715,8 @@ class Layout::Ternary::Caxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Ternary::Caxis::Tickfont& lineposition(std::string f);
+    Layout::Ternary::Caxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Ternary::Caxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -11379,6 +11832,17 @@ class Layout::Ternary::Caxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Ternary::Caxis::Title::Font& color(std::string f);
     Layout::Ternary::Caxis::Title::Font& color(double f);
 
@@ -11396,7 +11860,8 @@ class Layout::Ternary::Caxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Ternary::Caxis::Title::Font& lineposition(std::string f);
+    Layout::Ternary::Caxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Ternary::Caxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -11587,6 +12052,17 @@ class Layout::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Title::Font& color(std::string f);
     Layout::Title::Font& color(double f);
 
@@ -11604,7 +12080,8 @@ class Layout::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Title::Font& lineposition(std::string f);
+    Layout::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -11710,6 +12187,17 @@ class Layout::Title::Subtitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Title::Subtitle::Font& color(std::string f);
     Layout::Title::Subtitle::Font& color(double f);
 
@@ -11727,7 +12215,8 @@ class Layout::Title::Subtitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Title::Subtitle::Font& lineposition(std::string f);
+    Layout::Title::Subtitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Title::Subtitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -12062,6 +12551,17 @@ class Layout::Updatemenu::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Updatemenu::Font& color(std::string f);
     Layout::Updatemenu::Font& color(double f);
 
@@ -12079,7 +12579,8 @@ class Layout::Updatemenu::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Updatemenu::Font& lineposition(std::string f);
+    Layout::Updatemenu::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Updatemenu::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -12339,6 +12840,30 @@ class Layout::Xaxis {
     };
     static std::string to_string(Type e);
 
+    enum class Automargin {
+        Height,
+        Width,
+        Left,
+        Right,
+        Top,
+        Bottom,
+    };
+    enum class AutomarginExtra {
+        True,
+        False,
+    };
+    static std::string to_string(Automargin e);
+    static std::string to_string(AutomarginExtra e);
+
+    enum class Spikemode {
+        Toaxis,
+        Across,
+        Marker,
+    };
+    enum class SpikemodeExtra {};
+    static std::string to_string(Spikemode e);
+    static std::string to_string(SpikemodeExtra e);
+
     class Autorangeoptions;
     class Minor;
     class Rangebreak;
@@ -12357,7 +12882,8 @@ class Layout::Xaxis {
     // - Default: False
     // - Flags: ['height', 'width', 'left', 'right', 'top', 'bottom']
     // - Extras [True, False]
-    Layout::Xaxis& automargin(std::string f);
+    Layout::Xaxis& automargin(std::initializer_list<Automargin> flags);
+    Layout::Xaxis& automargin(AutomarginExtra extra);
 
     // Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for
     // more info. If `range` is provided and it has a value for both the lower and upper bound, `autorange` is set to
@@ -12646,7 +13172,8 @@ class Layout::Xaxis {
     // *marker*, then a marker dot is drawn on the axis the series is plotted on
     // - Default: toaxis
     // - Flags: ['toaxis', 'across', 'marker']
-    Layout::Xaxis& spikemode(std::string f);
+    Layout::Xaxis& spikemode(std::initializer_list<Spikemode> flags);
+    Layout::Xaxis& spikemode(SpikemodeExtra extra);
 
     // Determines whether spikelines are stuck to the cursor or to the closest datapoints.
     // - Default: hovered data
@@ -13161,6 +13688,17 @@ class Layout::Xaxis::Rangeselector::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Xaxis::Rangeselector::Font& color(std::string f);
     Layout::Xaxis::Rangeselector::Font& color(double f);
 
@@ -13178,7 +13716,8 @@ class Layout::Xaxis::Rangeselector::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Xaxis::Rangeselector::Font& lineposition(std::string f);
+    Layout::Xaxis::Rangeselector::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Xaxis::Rangeselector::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -13317,6 +13856,17 @@ class Layout::Xaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Xaxis::Tickfont& color(std::string f);
     Layout::Xaxis::Tickfont& color(double f);
 
@@ -13334,7 +13884,8 @@ class Layout::Xaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Xaxis::Tickfont& lineposition(std::string f);
+    Layout::Xaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Xaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -13457,6 +14008,17 @@ class Layout::Xaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Xaxis::Title::Font& color(std::string f);
     Layout::Xaxis::Title::Font& color(double f);
 
@@ -13474,7 +14036,8 @@ class Layout::Xaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Xaxis::Title::Font& lineposition(std::string f);
+    Layout::Xaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Xaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -13711,6 +14274,30 @@ class Layout::Yaxis {
     };
     static std::string to_string(Type e);
 
+    enum class Automargin {
+        Height,
+        Width,
+        Left,
+        Right,
+        Top,
+        Bottom,
+    };
+    enum class AutomarginExtra {
+        True,
+        False,
+    };
+    static std::string to_string(Automargin e);
+    static std::string to_string(AutomarginExtra e);
+
+    enum class Spikemode {
+        Toaxis,
+        Across,
+        Marker,
+    };
+    enum class SpikemodeExtra {};
+    static std::string to_string(Spikemode e);
+    static std::string to_string(SpikemodeExtra e);
+
     class Autorangeoptions;
     class Minor;
     class Rangebreak;
@@ -13727,7 +14314,8 @@ class Layout::Yaxis {
     // - Default: False
     // - Flags: ['height', 'width', 'left', 'right', 'top', 'bottom']
     // - Extras [True, False]
-    Layout::Yaxis& automargin(std::string f);
+    Layout::Yaxis& automargin(std::initializer_list<Automargin> flags);
+    Layout::Yaxis& automargin(AutomarginExtra extra);
 
     // Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for
     // more info. If `range` is provided and it has a value for both the lower and upper bound, `autorange` is set to
@@ -14019,7 +14607,8 @@ class Layout::Yaxis {
     // *marker*, then a marker dot is drawn on the axis the series is plotted on
     // - Default: toaxis
     // - Flags: ['toaxis', 'across', 'marker']
-    Layout::Yaxis& spikemode(std::string f);
+    Layout::Yaxis& spikemode(std::initializer_list<Spikemode> flags);
+    Layout::Yaxis& spikemode(SpikemodeExtra extra);
 
     // Determines whether spikelines are stuck to the cursor or to the closest datapoints.
     // - Default: hovered data
@@ -14401,6 +14990,17 @@ class Layout::Yaxis::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Yaxis::Tickfont& color(std::string f);
     Layout::Yaxis::Tickfont& color(double f);
 
@@ -14418,7 +15018,8 @@ class Layout::Yaxis::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Yaxis::Tickfont& lineposition(std::string f);
+    Layout::Yaxis::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Yaxis::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -14541,6 +15142,17 @@ class Layout::Yaxis::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Layout::Yaxis::Title::Font& color(std::string f);
     Layout::Yaxis::Title::Font& color(double f);
 
@@ -14558,7 +15170,8 @@ class Layout::Yaxis::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Layout::Yaxis::Title::Font& lineposition(std::string f);
+    Layout::Yaxis::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Layout::Yaxis::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

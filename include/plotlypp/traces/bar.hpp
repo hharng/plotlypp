@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -117,6 +118,21 @@ class Bar : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Error_X;
     class Error_Y;
     class Hoverlabel;
@@ -181,8 +197,8 @@ class Bar : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Bar& hoverinfo(std::string f);
-    Bar& hoverinfo(const std::vector<std::string>& f);
+    Bar& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Bar& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Bar& hoverinfosrc(std::string f);
@@ -720,6 +736,17 @@ class Bar::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Hoverlabel::Font& color(std::string f);
     Bar::Hoverlabel::Font& color(double f);
     Bar::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -746,8 +773,8 @@ class Bar::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Hoverlabel::Font& lineposition(std::string f);
-    Bar::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Bar::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Bar::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -833,6 +860,17 @@ class Bar::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Insidetextfont& color(std::string f);
     Bar::Insidetextfont& color(double f);
     Bar::Insidetextfont& color(const std::vector<std::string>& f);
@@ -859,8 +897,8 @@ class Bar::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Insidetextfont& lineposition(std::string f);
-    Bar::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Bar::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Bar::Insidetextfont& linepositionsrc(std::string f);
@@ -967,6 +1005,17 @@ class Bar::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Legendgrouptitle::Font& color(std::string f);
     Bar::Legendgrouptitle::Font& color(double f);
 
@@ -984,7 +1033,8 @@ class Bar::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Legendgrouptitle::Font& lineposition(std::string f);
+    Bar::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1487,6 +1537,17 @@ class Bar::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Marker::Colorbar::Tickfont& color(std::string f);
     Bar::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1504,7 +1565,8 @@ class Bar::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Bar::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1631,6 +1693,17 @@ class Bar::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Marker::Colorbar::Title::Font& color(std::string f);
     Bar::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1648,7 +1721,8 @@ class Bar::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Bar::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1851,6 +1925,17 @@ class Bar::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Outsidetextfont& color(std::string f);
     Bar::Outsidetextfont& color(double f);
     Bar::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -1877,8 +1962,8 @@ class Bar::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Outsidetextfont& lineposition(std::string f);
-    Bar::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Bar::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Bar::Outsidetextfont& linepositionsrc(std::string f);
@@ -2034,6 +2119,17 @@ class Bar::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Bar::Textfont& color(std::string f);
     Bar::Textfont& color(double f);
     Bar::Textfont& color(const std::vector<std::string>& f);
@@ -2060,8 +2156,8 @@ class Bar::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Bar::Textfont& lineposition(std::string f);
-    Bar::Textfont& lineposition(const std::vector<std::string>& f);
+    Bar::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Bar::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Bar::Textfont& linepositionsrc(std::string f);

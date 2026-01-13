@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Volume::to_string(Visible e) {
@@ -18,6 +20,24 @@ inline std::string Volume::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Volume::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Volume::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 inline Volume& Volume::autocolorscale(bool f) {
@@ -108,12 +128,12 @@ inline Volume& Volume::flatshading(bool f) {
     return *this;
 }
 
-inline Volume& Volume::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Volume& Volume::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Volume& Volume::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Volume& Volume::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -940,6 +960,20 @@ inline std::string Volume::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Volume::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Volume::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Volume::Colorbar::Tickfont& Volume::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -955,8 +989,12 @@ inline Volume::Colorbar::Tickfont& Volume::Colorbar::Tickfont::family(std::strin
     return *this;
 }
 
-inline Volume::Colorbar::Tickfont& Volume::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Volume::Colorbar::Tickfont& Volume::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Volume::Colorbar::Tickfont& Volume::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1089,6 +1127,20 @@ inline std::string Volume::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Volume::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Volume::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Volume::Colorbar::Title::Font& Volume::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1104,8 +1156,12 @@ inline Volume::Colorbar::Title::Font& Volume::Colorbar::Title::Font::family(std:
     return *this;
 }
 
-inline Volume::Colorbar::Title::Font& Volume::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Volume::Colorbar::Title::Font& Volume::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Volume::Colorbar::Title::Font& Volume::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1284,6 +1340,20 @@ inline std::string Volume::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Volume::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Volume::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Volume::Hoverlabel::Font& Volume::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1321,12 +1391,12 @@ inline Volume::Hoverlabel::Font& Volume::Hoverlabel::Font::familysrc(std::string
     return *this;
 }
 
-inline Volume::Hoverlabel::Font& Volume::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Volume::Hoverlabel::Font& Volume::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Volume::Hoverlabel::Font& Volume::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Volume::Hoverlabel::Font& Volume::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1472,6 +1542,20 @@ inline std::string Volume::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Volume::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Volume::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Volume::Legendgrouptitle::Font& Volume::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1487,8 +1571,12 @@ inline Volume::Legendgrouptitle::Font& Volume::Legendgrouptitle::Font::family(st
     return *this;
 }
 
-inline Volume::Legendgrouptitle::Font& Volume::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Volume::Legendgrouptitle::Font& Volume::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Volume::Legendgrouptitle::Font& Volume::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1696,6 +1784,24 @@ inline Volume::Stream& Volume::Stream::token(std::string f) {
     return *this;
 }
 
+inline std::string Volume::Surface::to_string(Pattern e) {
+    switch(e) {
+        case Pattern::A: return "A";
+        case Pattern::B: return "B";
+        case Pattern::C: return "C";
+        case Pattern::D: return "D";
+        case Pattern::E: return "E";
+    }
+    throw std::invalid_argument{"Unknown flag value for pattern."};
+}
+inline std::string Volume::Surface::to_string(PatternExtra e) {
+    switch(e) {
+        case PatternExtra::All: return "all";
+        case PatternExtra::Odd: return "odd";
+        case PatternExtra::Even: return "even";
+    }
+    throw std::invalid_argument{"Unknown extra value for pattern."};
+}
 
 inline Volume::Surface& Volume::Surface::count(int f) {
     json["count"] = std::move(f);
@@ -1707,8 +1813,12 @@ inline Volume::Surface& Volume::Surface::fill(double f) {
     return *this;
 }
 
-inline Volume::Surface& Volume::Surface::pattern(std::string f) {
-    json["pattern"] = std::move(f);
+inline Volume::Surface& Volume::Surface::pattern(std::initializer_list<Pattern> flags) {
+    json["pattern"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Volume::Surface& Volume::Surface::pattern(PatternExtra extra) {
+    json["pattern"] = to_string(extra);
     return *this;
 }
 

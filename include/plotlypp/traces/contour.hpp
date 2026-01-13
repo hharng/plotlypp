@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -100,6 +101,21 @@ class Contour : public Trace {
     };
     static std::string to_string(Ytype e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Colorbar;
     class Contours;
     class Hoverlabel;
@@ -168,8 +184,8 @@ class Contour : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Contour& hoverinfo(std::string f);
-    Contour& hoverinfo(const std::vector<std::string>& f);
+    Contour& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Contour& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Contour& hoverinfosrc(std::string f);
@@ -832,6 +848,17 @@ class Contour::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contour::Colorbar::Tickfont& color(std::string f);
     Contour::Colorbar::Tickfont& color(double f);
 
@@ -849,7 +876,8 @@ class Contour::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contour::Colorbar::Tickfont& lineposition(std::string f);
+    Contour::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Contour::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -976,6 +1004,17 @@ class Contour::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contour::Colorbar::Title::Font& color(std::string f);
     Contour::Colorbar::Title::Font& color(double f);
 
@@ -993,7 +1032,8 @@ class Contour::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contour::Colorbar::Title::Font& lineposition(std::string f);
+    Contour::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Contour::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1147,6 +1187,17 @@ class Contour::Contours::Labelfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contour::Contours::Labelfont& color(std::string f);
     Contour::Contours::Labelfont& color(double f);
 
@@ -1164,7 +1215,8 @@ class Contour::Contours::Labelfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contour::Contours::Labelfont& lineposition(std::string f);
+    Contour::Contours::Labelfont& lineposition(std::initializer_list<Lineposition> flags);
+    Contour::Contours::Labelfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1285,6 +1337,17 @@ class Contour::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contour::Hoverlabel::Font& color(std::string f);
     Contour::Hoverlabel::Font& color(double f);
     Contour::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1311,8 +1374,8 @@ class Contour::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contour::Hoverlabel::Font& lineposition(std::string f);
-    Contour::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Contour::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Contour::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Contour::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1419,6 +1482,17 @@ class Contour::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contour::Legendgrouptitle::Font& color(std::string f);
     Contour::Legendgrouptitle::Font& color(double f);
 
@@ -1436,7 +1510,8 @@ class Contour::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contour::Legendgrouptitle::Font& lineposition(std::string f);
+    Contour::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Contour::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1538,6 +1613,17 @@ class Contour::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Contour::Textfont& color(std::string f);
     Contour::Textfont& color(double f);
 
@@ -1555,7 +1641,8 @@ class Contour::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Contour::Textfont& lineposition(std::string f);
+    Contour::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Contour::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

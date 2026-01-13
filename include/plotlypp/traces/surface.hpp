@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -94,6 +95,21 @@ class Surface : public Trace {
     };
     static std::string to_string(Zcalendar e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Colorbar;
     class Contours;
     class Hoverlabel;
@@ -165,8 +181,8 @@ class Surface : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Surface& hoverinfo(std::string f);
-    Surface& hoverinfo(const std::vector<std::string>& f);
+    Surface& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Surface& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Surface& hoverinfosrc(std::string f);
@@ -759,6 +775,17 @@ class Surface::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Surface::Colorbar::Tickfont& color(std::string f);
     Surface::Colorbar::Tickfont& color(double f);
 
@@ -776,7 +803,8 @@ class Surface::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Surface::Colorbar::Tickfont& lineposition(std::string f);
+    Surface::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Surface::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -903,6 +931,17 @@ class Surface::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Surface::Colorbar::Title::Font& color(std::string f);
     Surface::Colorbar::Title::Font& color(double f);
 
@@ -920,7 +959,8 @@ class Surface::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Surface::Colorbar::Title::Font& lineposition(std::string f);
+    Surface::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Surface::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1286,6 +1326,17 @@ class Surface::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Surface::Hoverlabel::Font& color(std::string f);
     Surface::Hoverlabel::Font& color(double f);
     Surface::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -1312,8 +1363,8 @@ class Surface::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Surface::Hoverlabel::Font& lineposition(std::string f);
-    Surface::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Surface::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Surface::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Surface::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -1420,6 +1471,17 @@ class Surface::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Surface::Legendgrouptitle::Font& color(std::string f);
     Surface::Legendgrouptitle::Font& color(double f);
 
@@ -1437,7 +1499,8 @@ class Surface::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Surface::Legendgrouptitle::Font& lineposition(std::string f);
+    Surface::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Surface::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

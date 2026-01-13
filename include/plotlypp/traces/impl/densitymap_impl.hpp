@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Densitymap::to_string(Visible e) {
@@ -18,6 +20,24 @@ inline std::string Densitymap::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Densitymap::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Lon: return "lon";
+        case Hoverinfo::Lat: return "lat";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Densitymap::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 inline Densitymap& Densitymap::autocolorscale(bool f) {
@@ -66,12 +86,12 @@ inline Densitymap& Densitymap::customdatasrc(std::string f) {
     return *this;
 }
 
-inline Densitymap& Densitymap::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Densitymap& Densitymap::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Densitymap& Densitymap::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Densitymap& Densitymap::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -763,6 +783,20 @@ inline std::string Densitymap::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Densitymap::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Densitymap::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Densitymap::Colorbar::Tickfont& Densitymap::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -778,8 +812,12 @@ inline Densitymap::Colorbar::Tickfont& Densitymap::Colorbar::Tickfont::family(st
     return *this;
 }
 
-inline Densitymap::Colorbar::Tickfont& Densitymap::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Densitymap::Colorbar::Tickfont& Densitymap::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Densitymap::Colorbar::Tickfont& Densitymap::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -912,6 +950,20 @@ inline std::string Densitymap::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Densitymap::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Densitymap::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Densitymap::Colorbar::Title::Font& Densitymap::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -927,8 +979,12 @@ inline Densitymap::Colorbar::Title::Font& Densitymap::Colorbar::Title::Font::fam
     return *this;
 }
 
-inline Densitymap::Colorbar::Title::Font& Densitymap::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Densitymap::Colorbar::Title::Font& Densitymap::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Densitymap::Colorbar::Title::Font& Densitymap::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1087,6 +1143,20 @@ inline std::string Densitymap::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Densitymap::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Densitymap::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Densitymap::Hoverlabel::Font& Densitymap::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1124,12 +1194,12 @@ inline Densitymap::Hoverlabel::Font& Densitymap::Hoverlabel::Font::familysrc(std
     return *this;
 }
 
-inline Densitymap::Hoverlabel::Font& Densitymap::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Densitymap::Hoverlabel::Font& Densitymap::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Densitymap::Hoverlabel::Font& Densitymap::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Densitymap::Hoverlabel::Font& Densitymap::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1275,6 +1345,20 @@ inline std::string Densitymap::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Densitymap::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Densitymap::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Densitymap::Legendgrouptitle::Font& Densitymap::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1290,8 +1374,12 @@ inline Densitymap::Legendgrouptitle::Font& Densitymap::Legendgrouptitle::Font::f
     return *this;
 }
 
-inline Densitymap::Legendgrouptitle::Font& Densitymap::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Densitymap::Legendgrouptitle::Font& Densitymap::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Densitymap::Legendgrouptitle::Font& Densitymap::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

@@ -124,8 +124,13 @@ Figure gen3dLineSpiral() {
         z.push_back(i);
         c.push_back(std::to_string(i));
     }
-    return Figure().addTrace(Scatter3D().x(x).y(y).z(z).mode("lines").opacity(0.7).line(
-        Scatter3D::Line().width(10).color(std::move(c)).colorscale("Viridis")));
+    return Figure().addTrace(Scatter3D()
+                                 .x(x)
+                                 .y(y)
+                                 .z(z)
+                                 .mode({Scatter3D::Mode::Lines})
+                                 .opacity(0.7)
+                                 .line(Scatter3D::Line().width(10).color(std::move(c)).colorscale("Viridis")));
 }
 
 // https://plotly.com/python/3d-scatter-plots/
@@ -144,8 +149,12 @@ Figure gen3dScatterWithColorscalingAndMarkerStyling() {
     std::transform(t.begin(), t.end(), colors.begin(), [](auto e) { return std::to_string(e); });
 
     return Figure()
-        .addTrace(Scatter3D().x(x).y(y).z(t).mode("markers").marker(
-            Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)))
+        .addTrace(Scatter3D()
+                      .x(x)
+                      .y(y)
+                      .z(t)
+                      .mode({Scatter3D::Mode::Markers})
+                      .marker(Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)))
         .setLayout(Layout().margin(Layout::Margin().l(0).r(0).b(0).t(0)));
 }
 
@@ -254,7 +263,7 @@ plotlypp::Figure bubbleChartSizedByVariable() {
                       .y(density)
                       .z(gravity)
                       .text(std::move(planets))
-                      .mode("markers")
+                      .mode({Scatter3D::Mode::Markers})
                       .marker(Scatter3D::Marker()
                                   .sizemode(Scatter3D::Marker::Sizemode::Diameter)
                                   .sizeref(750)
@@ -281,44 +290,3 @@ plotlypp::Figure bubbleChartSizedByVariable() {
 }
 
 } // namespace plotlypp
-
-/*
-
-//
-https://plotly.com/python/3d-subplots/
-# Initialize figure with 4 3D subplots
-fig = make_subplots(
-    rows=2, cols=2,
-    specs=[[{'type': 'surface'}, {'type': 'surface'}],
-           [{'type': 'surface'}, {'type': 'surface'}]])
-
-# Generate data
-x = np.linspace(-5, 80, 10)
-y = np.linspace(-5, 60, 10)
-xGrid, yGrid = np.meshgrid(y, x)
-z = xGrid ** 3 + yGrid ** 3
-
-# adding surfaces to subplots.
-fig.add_trace(
-    go.Surface(x=x, y=y, z=z, colorscale='Viridis', showscale=False),
-    row=1, col=1)
-
-fig.add_trace(
-    go.Surface(x=x, y=y, z=z, colorscale='RdBu', showscale=False),
-    row=1, col=2)
-
-fig.add_trace(
-    go.Surface(x=x, y=y, z=z, colorscale='YlOrRd', showscale=False),
-    row=2, col=1)
-
-fig.add_trace(
-    go.Surface(x=x, y=y, z=z, colorscale='YlGnBu', showscale=False),
-    row=2, col=2)
-
-fig.update_layout(
-    title_text='3D subplots with different colorscales',
-    height=800,
-    width=800
-)
-
-*/

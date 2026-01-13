@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Streamtube::to_string(Visible e) {
@@ -18,6 +20,29 @@ inline std::string Streamtube::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Streamtube::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::U: return "u";
+        case Hoverinfo::V: return "v";
+        case Hoverinfo::W: return "w";
+        case Hoverinfo::Norm: return "norm";
+        case Hoverinfo::Divergence: return "divergence";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Streamtube::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 inline Streamtube& Streamtube::autocolorscale(bool f) {
@@ -81,12 +106,12 @@ inline Streamtube& Streamtube::customdatasrc(std::string f) {
     return *this;
 }
 
-inline Streamtube& Streamtube::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Streamtube& Streamtube::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Streamtube& Streamtube::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Streamtube& Streamtube::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -832,6 +857,20 @@ inline std::string Streamtube::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Streamtube::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Streamtube::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -847,8 +886,12 @@ inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::family(st
     return *this;
 }
 
-inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Streamtube::Colorbar::Tickfont& Streamtube::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -981,6 +1024,20 @@ inline std::string Streamtube::Colorbar::Title::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Streamtube::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Streamtube::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -996,8 +1053,12 @@ inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::fam
     return *this;
 }
 
-inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Streamtube::Colorbar::Title::Font& Streamtube::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1156,6 +1217,20 @@ inline std::string Streamtube::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Streamtube::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Streamtube::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1193,12 +1268,12 @@ inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::familysrc(std
     return *this;
 }
 
-inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Streamtube::Hoverlabel::Font& Streamtube::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1344,6 +1419,20 @@ inline std::string Streamtube::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Streamtube::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Streamtube::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1359,8 +1448,12 @@ inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::f
     return *this;
 }
 
-inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Streamtube::Legendgrouptitle::Font& Streamtube::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

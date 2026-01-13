@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -122,6 +123,29 @@ class Box : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Boxes,
+        Points,
+    };
+    enum class HoveronExtra {};
+    static std::string to_string(Hoveron e);
+    static std::string to_string(HoveronExtra e);
+
     class Hoverlabel;
     class Legendgrouptitle;
     class Line;
@@ -170,8 +194,8 @@ class Box : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Box& hoverinfo(std::string f);
-    Box& hoverinfo(const std::vector<std::string>& f);
+    Box& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Box& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Box& hoverinfosrc(std::string f);
@@ -183,7 +207,8 @@ class Box : public Trace {
     // Do the hover effects highlight individual boxes  or sample points or both?
     // - Default: boxes+points
     // - Flags: ['boxes', 'points']
-    Box& hoveron(std::string f);
+    Box& hoveron(std::initializer_list<Hoveron> flags);
+    Box& hoveron(HoveronExtra extra);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -632,6 +657,17 @@ class Box::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Box::Hoverlabel::Font& color(std::string f);
     Box::Hoverlabel::Font& color(double f);
     Box::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -658,8 +694,8 @@ class Box::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Box::Hoverlabel::Font& lineposition(std::string f);
-    Box::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Box::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Box::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Box::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -766,6 +802,17 @@ class Box::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Box::Legendgrouptitle::Font& color(std::string f);
     Box::Legendgrouptitle::Font& color(double f);
 
@@ -783,7 +830,8 @@ class Box::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Box::Legendgrouptitle::Font& lineposition(std::string f);
+    Box::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Box::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

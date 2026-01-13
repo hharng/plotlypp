@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Scatterpolar::to_string(Fill e) {
@@ -51,6 +53,49 @@ inline std::string Scatterpolar::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Scatterpolar::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::R: return "r";
+        case Hoverinfo::Theta: return "theta";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Scatterpolar::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Scatterpolar::to_string(Hoveron e) {
+    switch(e) {
+        case Hoveron::Points: return "points";
+        case Hoveron::Fills: return "fills";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoveron."};
+}
+inline std::string Scatterpolar::to_string(HoveronExtra e) {
+    switch(e) {
+    }
+    throw std::invalid_argument{"Unknown extra value for hoveron."};
+}
+inline std::string Scatterpolar::to_string(Mode e) {
+    switch(e) {
+        case Mode::Lines: return "lines";
+        case Mode::Markers: return "markers";
+        case Mode::Text: return "text";
+    }
+    throw std::invalid_argument{"Unknown flag value for mode."};
+}
+inline std::string Scatterpolar::to_string(ModeExtra e) {
+    switch(e) {
+        case ModeExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for mode."};
 }
 
 inline Scatterpolar& Scatterpolar::cliponaxis(bool f) {
@@ -98,12 +143,12 @@ inline Scatterpolar& Scatterpolar::fillcolor(double f) {
     return *this;
 }
 
-inline Scatterpolar& Scatterpolar::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Scatterpolar& Scatterpolar::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Scatterpolar& Scatterpolar::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Scatterpolar& Scatterpolar::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -123,8 +168,12 @@ inline Scatterpolar& Scatterpolar::hoverlabel(Callable&& c) {
     return hoverlabel(std::move(f));
 }
 
-inline Scatterpolar& Scatterpolar::hoveron(std::string f) {
-    json["hoveron"] = std::move(f);
+inline Scatterpolar& Scatterpolar::hoveron(std::initializer_list<Hoveron> flags) {
+    json["hoveron"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scatterpolar& Scatterpolar::hoveron(HoveronExtra extra) {
+    json["hoveron"] = to_string(extra);
     return *this;
 }
 
@@ -236,8 +285,12 @@ inline Scatterpolar& Scatterpolar::metasrc(std::string f) {
     return *this;
 }
 
-inline Scatterpolar& Scatterpolar::mode(std::string f) {
-    json["mode"] = std::move(f);
+inline Scatterpolar& Scatterpolar::mode(std::initializer_list<Mode> flags) {
+    json["mode"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scatterpolar& Scatterpolar::mode(ModeExtra extra) {
+    json["mode"] = to_string(extra);
     return *this;
 }
 
@@ -535,6 +588,20 @@ inline std::string Scatterpolar::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scatterpolar::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolar::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scatterpolar::Hoverlabel::Font& Scatterpolar::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -572,12 +639,12 @@ inline Scatterpolar::Hoverlabel::Font& Scatterpolar::Hoverlabel::Font::familysrc
     return *this;
 }
 
-inline Scatterpolar::Hoverlabel::Font& Scatterpolar::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scatterpolar::Hoverlabel::Font& Scatterpolar::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Scatterpolar::Hoverlabel::Font& Scatterpolar::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Scatterpolar::Hoverlabel::Font& Scatterpolar::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -723,6 +790,20 @@ inline std::string Scatterpolar::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scatterpolar::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolar::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scatterpolar::Legendgrouptitle::Font& Scatterpolar::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -738,8 +819,12 @@ inline Scatterpolar::Legendgrouptitle::Font& Scatterpolar::Legendgrouptitle::Fon
     return *this;
 }
 
-inline Scatterpolar::Legendgrouptitle::Font& Scatterpolar::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scatterpolar::Legendgrouptitle::Font& Scatterpolar::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scatterpolar::Legendgrouptitle::Font& Scatterpolar::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1821,6 +1906,20 @@ inline std::string Scatterpolar::Marker::Colorbar::Tickfont::to_string(Variant e
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scatterpolar::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolar::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scatterpolar::Marker::Colorbar::Tickfont& Scatterpolar::Marker::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1836,8 +1935,12 @@ inline Scatterpolar::Marker::Colorbar::Tickfont& Scatterpolar::Marker::Colorbar:
     return *this;
 }
 
-inline Scatterpolar::Marker::Colorbar::Tickfont& Scatterpolar::Marker::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scatterpolar::Marker::Colorbar::Tickfont& Scatterpolar::Marker::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scatterpolar::Marker::Colorbar::Tickfont& Scatterpolar::Marker::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1970,6 +2073,20 @@ inline std::string Scatterpolar::Marker::Colorbar::Title::Font::to_string(Varian
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scatterpolar::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolar::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scatterpolar::Marker::Colorbar::Title::Font& Scatterpolar::Marker::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1985,8 +2102,12 @@ inline Scatterpolar::Marker::Colorbar::Title::Font& Scatterpolar::Marker::Colorb
     return *this;
 }
 
-inline Scatterpolar::Marker::Colorbar::Title::Font& Scatterpolar::Marker::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scatterpolar::Marker::Colorbar::Title::Font& Scatterpolar::Marker::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Scatterpolar::Marker::Colorbar::Title::Font& Scatterpolar::Marker::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -2244,6 +2365,20 @@ inline std::string Scatterpolar::Textfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scatterpolar::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolar::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Scatterpolar::Textfont& Scatterpolar::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -2281,12 +2416,12 @@ inline Scatterpolar::Textfont& Scatterpolar::Textfont::familysrc(std::string f) 
     return *this;
 }
 
-inline Scatterpolar::Textfont& Scatterpolar::Textfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Scatterpolar::Textfont& Scatterpolar::Textfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Scatterpolar::Textfont& Scatterpolar::Textfont::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Scatterpolar::Textfont& Scatterpolar::Textfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -77,6 +78,36 @@ class Waterfall : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
+    enum class Hoverinfo {
+        Name,
+        X,
+        Y,
+        Text,
+        Initial,
+        Delta,
+        Final,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Initial,
+        Delta,
+        Final,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
+
     class Connector;
     class Decreasing;
     class Hoverlabel;
@@ -133,8 +164,8 @@ class Waterfall : public Trace {
     // - Default: all
     // - Flags: ['name', 'x', 'y', 'text', 'initial', 'delta', 'final']
     // - Extras ['all', 'none', 'skip']
-    Waterfall& hoverinfo(std::string f);
-    Waterfall& hoverinfo(const std::vector<std::string>& f);
+    Waterfall& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Waterfall& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Waterfall& hoverinfosrc(std::string f);
@@ -297,7 +328,8 @@ class Waterfall : public Trace {
     // computed separately (per trace).
     // - Flags: ['label', 'text', 'initial', 'delta', 'final']
     // - Extras ['none']
-    Waterfall& textinfo(std::string f);
+    Waterfall& textinfo(std::initializer_list<Textinfo> flags);
+    Waterfall& textinfo(TextinfoExtra extra);
 
     // Specifies the location of the `text`. *inside* positions `text` inside, next to the bar end (rotated and scaled
     // if needed). *outside* positions `text` outside, next to the bar end (scaled if needed), unless there is another
@@ -639,6 +671,17 @@ class Waterfall::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Waterfall::Hoverlabel::Font& color(std::string f);
     Waterfall::Hoverlabel::Font& color(double f);
     Waterfall::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -665,8 +708,8 @@ class Waterfall::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Waterfall::Hoverlabel::Font& lineposition(std::string f);
-    Waterfall::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Waterfall::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Waterfall::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Waterfall::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -805,6 +848,17 @@ class Waterfall::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Waterfall::Insidetextfont& color(std::string f);
     Waterfall::Insidetextfont& color(double f);
     Waterfall::Insidetextfont& color(const std::vector<std::string>& f);
@@ -831,8 +885,8 @@ class Waterfall::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Waterfall::Insidetextfont& lineposition(std::string f);
-    Waterfall::Insidetextfont& lineposition(const std::vector<std::string>& f);
+    Waterfall::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Waterfall::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Waterfall::Insidetextfont& linepositionsrc(std::string f);
@@ -939,6 +993,17 @@ class Waterfall::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Waterfall::Legendgrouptitle::Font& color(std::string f);
     Waterfall::Legendgrouptitle::Font& color(double f);
 
@@ -956,7 +1021,8 @@ class Waterfall::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Waterfall::Legendgrouptitle::Font& lineposition(std::string f);
+    Waterfall::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Waterfall::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1015,6 +1081,17 @@ class Waterfall::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Waterfall::Outsidetextfont& color(std::string f);
     Waterfall::Outsidetextfont& color(double f);
     Waterfall::Outsidetextfont& color(const std::vector<std::string>& f);
@@ -1041,8 +1118,8 @@ class Waterfall::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Waterfall::Outsidetextfont& lineposition(std::string f);
-    Waterfall::Outsidetextfont& lineposition(const std::vector<std::string>& f);
+    Waterfall::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Waterfall::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Waterfall::Outsidetextfont& linepositionsrc(std::string f);
@@ -1146,6 +1223,17 @@ class Waterfall::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Waterfall::Textfont& color(std::string f);
     Waterfall::Textfont& color(double f);
     Waterfall::Textfont& color(const std::vector<std::string>& f);
@@ -1172,8 +1260,8 @@ class Waterfall::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Waterfall::Textfont& lineposition(std::string f);
-    Waterfall::Textfont& lineposition(const std::vector<std::string>& f);
+    Waterfall::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Waterfall::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Waterfall::Textfont& linepositionsrc(std::string f);

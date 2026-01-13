@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Barpolar::to_string(Thetaunit e) {
@@ -27,6 +29,23 @@ inline std::string Barpolar::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Barpolar::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::R: return "r";
+        case Hoverinfo::Theta: return "theta";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Barpolar::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 template <typename T>
@@ -66,12 +85,12 @@ inline Barpolar& Barpolar::dtheta(double f) {
     return *this;
 }
 
-inline Barpolar& Barpolar::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Barpolar& Barpolar::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Barpolar& Barpolar::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Barpolar& Barpolar::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -469,6 +488,20 @@ inline std::string Barpolar::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Barpolar::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Barpolar::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -506,12 +539,12 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::familysrc(std::st
     return *this;
 }
 
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -657,6 +690,20 @@ inline std::string Barpolar::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Barpolar::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Barpolar::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -672,8 +719,12 @@ inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::famil
     return *this;
 }
 
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1274,6 +1325,20 @@ inline std::string Barpolar::Marker::Colorbar::Tickfont::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Barpolar::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Barpolar::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1289,8 +1354,12 @@ inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfon
     return *this;
 }
 
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -1423,6 +1492,20 @@ inline std::string Barpolar::Marker::Colorbar::Title::Font::to_string(Variant e)
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Barpolar::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Barpolar::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1438,8 +1521,12 @@ inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Titl
     return *this;
 }
 
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 

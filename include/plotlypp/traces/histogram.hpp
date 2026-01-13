@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <initializer_list>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -121,6 +122,21 @@ class Histogram : public Trace {
     };
     static std::string to_string(Ycalendar e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     class Cumulative;
     class Error_X;
     class Error_Y;
@@ -206,8 +222,8 @@ class Histogram : public Trace {
     // - Default: all
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
-    Histogram& hoverinfo(std::string f);
-    Histogram& hoverinfo(const std::vector<std::string>& f);
+    Histogram& hoverinfo(std::initializer_list<Hoverinfo> flags);
+    Histogram& hoverinfo(HoverinfoExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Histogram& hoverinfosrc(std::string f);
@@ -736,6 +752,17 @@ class Histogram::Hoverlabel::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Hoverlabel::Font& color(std::string f);
     Histogram::Hoverlabel::Font& color(double f);
     Histogram::Hoverlabel::Font& color(const std::vector<std::string>& f);
@@ -762,8 +789,8 @@ class Histogram::Hoverlabel::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Hoverlabel::Font& lineposition(std::string f);
-    Histogram::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
+    Histogram::Hoverlabel::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Hoverlabel::Font& lineposition(LinepositionExtra extra);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Histogram::Hoverlabel::Font& linepositionsrc(std::string f);
@@ -849,6 +876,17 @@ class Histogram::Insidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Insidetextfont& color(std::string f);
     Histogram::Insidetextfont& color(double f);
 
@@ -866,7 +904,8 @@ class Histogram::Insidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Insidetextfont& lineposition(std::string f);
+    Histogram::Insidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Insidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -946,6 +985,17 @@ class Histogram::Legendgrouptitle::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Legendgrouptitle::Font& color(std::string f);
     Histogram::Legendgrouptitle::Font& color(double f);
 
@@ -963,7 +1013,8 @@ class Histogram::Legendgrouptitle::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Legendgrouptitle::Font& lineposition(std::string f);
+    Histogram::Legendgrouptitle::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Legendgrouptitle::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1466,6 +1517,17 @@ class Histogram::Marker::Colorbar::Tickfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Marker::Colorbar::Tickfont& color(std::string f);
     Histogram::Marker::Colorbar::Tickfont& color(double f);
 
@@ -1483,7 +1545,8 @@ class Histogram::Marker::Colorbar::Tickfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Marker::Colorbar::Tickfont& lineposition(std::string f);
+    Histogram::Marker::Colorbar::Tickfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Marker::Colorbar::Tickfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1610,6 +1673,17 @@ class Histogram::Marker::Colorbar::Title::Font {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Marker::Colorbar::Title::Font& color(std::string f);
     Histogram::Marker::Colorbar::Title::Font& color(double f);
 
@@ -1627,7 +1701,8 @@ class Histogram::Marker::Colorbar::Title::Font {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Marker::Colorbar::Title::Font& lineposition(std::string f);
+    Histogram::Marker::Colorbar::Title::Font& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Marker::Colorbar::Title::Font& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1830,6 +1905,17 @@ class Histogram::Outsidetextfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Outsidetextfont& color(std::string f);
     Histogram::Outsidetextfont& color(double f);
 
@@ -1847,7 +1933,8 @@ class Histogram::Outsidetextfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Outsidetextfont& lineposition(std::string f);
+    Histogram::Outsidetextfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Outsidetextfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
@@ -1976,6 +2063,17 @@ class Histogram::Textfont {
     };
     static std::string to_string(Variant e);
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     Histogram::Textfont& color(std::string f);
     Histogram::Textfont& color(double f);
 
@@ -1993,7 +2091,8 @@ class Histogram::Textfont {
     // - Default: none
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
-    Histogram::Textfont& lineposition(std::string f);
+    Histogram::Textfont& lineposition(std::initializer_list<Lineposition> flags);
+    Histogram::Textfont& lineposition(LinepositionExtra extra);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.

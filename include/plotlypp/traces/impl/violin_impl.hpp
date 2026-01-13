@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <plotlypp/detail/flaglist_helpers.hpp>
+
 namespace plotlypp {
 
 inline std::string Violin::to_string(Orientation e) {
@@ -72,6 +74,38 @@ inline std::string Violin::to_string(Visible e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Violin::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Violin::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Violin::to_string(Hoveron e) {
+    switch(e) {
+        case Hoveron::Violins: return "violins";
+        case Hoveron::Points: return "points";
+        case Hoveron::Kde: return "kde";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoveron."};
+}
+inline std::string Violin::to_string(HoveronExtra e) {
+    switch(e) {
+        case HoveronExtra::All: return "all";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoveron."};
+}
 
 inline Violin& Violin::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
@@ -114,12 +148,12 @@ inline Violin& Violin::fillcolor(double f) {
     return *this;
 }
 
-inline Violin& Violin::hoverinfo(std::string f) {
-    json["hoverinfo"] = std::move(f);
+inline Violin& Violin::hoverinfo(std::initializer_list<Hoverinfo> flags) {
+    json["hoverinfo"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Violin& Violin::hoverinfo(const std::vector<std::string>& f) {
-    json["hoverinfo"] = f;
+inline Violin& Violin::hoverinfo(HoverinfoExtra extra) {
+    json["hoverinfo"] = to_string(extra);
     return *this;
 }
 
@@ -139,8 +173,12 @@ inline Violin& Violin::hoverlabel(Callable&& c) {
     return hoverlabel(std::move(f));
 }
 
-inline Violin& Violin::hoveron(std::string f) {
-    json["hoveron"] = std::move(f);
+inline Violin& Violin::hoveron(std::initializer_list<Hoveron> flags) {
+    json["hoveron"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Violin& Violin::hoveron(HoveronExtra extra) {
+    json["hoveron"] = to_string(extra);
     return *this;
 }
 
@@ -649,6 +687,20 @@ inline std::string Violin::Hoverlabel::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Violin::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Violin::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -686,12 +738,12 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::familysrc(std::string
     return *this;
 }
 
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
     return *this;
 }
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
-    json["lineposition"] = f;
+inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
@@ -837,6 +889,20 @@ inline std::string Violin::Legendgrouptitle::Font::to_string(Variant e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Violin::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Violin::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 
 inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -852,8 +918,12 @@ inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::family(st
     return *this;
 }
 
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::lineposition(std::string f) {
-    json["lineposition"] = std::move(f);
+inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::lineposition(std::initializer_list<Lineposition> flags) {
+    json["lineposition"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
+    return *this;
+}
+inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::lineposition(LinepositionExtra extra) {
+    json["lineposition"] = to_string(extra);
     return *this;
 }
 
