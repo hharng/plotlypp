@@ -5,6 +5,7 @@
 #include <vector>
 
 #include <plotlypp/plot.hpp>
+#include <plotlypp/trace.hpp>
 #include <plotlypp/traces/choropleth.hpp>
 #include <plotlypp/traces/densitymap.hpp>
 #include <plotlypp/traces/scattergeo.hpp>

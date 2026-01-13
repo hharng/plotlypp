@@ -1,11 +1,13 @@
 #include "statistical_charts.hpp"
 
+#include <algorithm>
 #include <random>
 #include <string>
 #include <utility>
 #include <vector>
 
 #include <plotlypp/plot.hpp>
+#include <plotlypp/trace.hpp>
 #include <plotlypp/traces/box.hpp>
 #include <plotlypp/traces/histogram.hpp>
 #include <plotlypp/traces/histogram2d.hpp>

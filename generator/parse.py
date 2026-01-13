@@ -476,6 +476,7 @@ def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path):
 
     writer.write("#include <initializer_list>")
     writer.write("#include <string>")
+    writer.write("#include <utility>")
     writer.write("#include <vector>")
     writer.write("#include <type_traits>")
     writer.write("")
@@ -829,6 +830,8 @@ def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
 
     writer.write("#include <initializer_list>")
     writer.write("#include <string>")
+    writer.write("#include <type_traits>")
+    writer.write("#include <utility>")
     writer.write("#include <vector>")
     writer.write("")
     writer.write("#include <plotlypp/json.hpp>")

@@ -4,7 +4,9 @@
 #include <utility>
 #include <vector>
 
+#include <plotlypp/layout/layout.hpp>
 #include <plotlypp/plot.hpp>
+#include <plotlypp/trace.hpp>
 #include <plotlypp/traces/carpet.hpp>
 #include <plotlypp/traces/contour.hpp>
 #include <plotlypp/traces/scattercarpet.hpp>

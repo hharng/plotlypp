@@ -5,6 +5,7 @@
 #include <vector>
 
 #include <plotlypp/plot.hpp>
+#include <plotlypp/trace.hpp>
 #include <plotlypp/traces/bar.hpp>
 #include <plotlypp/traces/pie.hpp>
 #include <plotlypp/traces/scatter.hpp>

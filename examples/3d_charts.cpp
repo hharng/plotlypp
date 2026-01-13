@@ -1,5 +1,6 @@
 #include "3d_charts.hpp"
 
+#include <algorithm>
 #include <cmath>
 #include <string>
 #include <utility>
@@ -7,6 +8,7 @@
 
 #include <math_utils.hpp>
 #include <plotlypp/plot.hpp>
+#include <plotlypp/trace.hpp>
 #include <plotlypp/traces/isosurface.hpp>
 #include <plotlypp/traces/mesh3d.hpp>
 #include <plotlypp/traces/scatter3d.hpp>

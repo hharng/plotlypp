@@ -1,11 +1,16 @@
 #include "subplots.hpp"
 
+#include <algorithm>
+#include <cmath>
+#include <cstddef>
 #include <random>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include <math_utils.hpp>
 #include <plotlypp/plot.hpp>
+#include <plotlypp/trace.hpp>
 #include <plotlypp/traces/histogram.hpp>
 #include <plotlypp/traces/scatter.hpp>
 #include <plotlypp/traces/scatter3d.hpp>
