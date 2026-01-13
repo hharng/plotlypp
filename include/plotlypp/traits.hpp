@@ -9,6 +9,12 @@
 #include <type_traits>
 #include <vector>
 
+// Feature-test macros were only introduced in C++20, se we can't use
+// `__cpp_lib_span`.
+#if __cplusplus >= 202002L
+#include <span>
+#endif
+
 namespace plotlypp {
 namespace detail {
 
@@ -26,9 +32,7 @@ struct range_element_type<std::vector<T, A>> {
     using type = T;
 };
 
-// Feature-test macros were only introduced in C++20, se we can't use `__cpp_lib_span`.
 #if __cplusplus >= 202002L
-#include <span>
 
 template <class T>
 struct is_span : std::false_type {};

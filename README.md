@@ -6,7 +6,7 @@ This makes Plotly++ extremely simple and lightweight for C++ applications; no gr
 
 The more than 40 chart types supported by Plotly.js are supported by Plotly++.
 
-Plotly++ is largely auto-generated from offical Plotly.js sources.
+Plotly++ is largely auto-generated from official Plotly.js sources.
 
 ## Examples
 
