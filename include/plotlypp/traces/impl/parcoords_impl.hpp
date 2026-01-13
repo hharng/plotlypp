@@ -33,34 +33,12 @@ inline Parcoords& Parcoords::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords& Parcoords::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Parcoords& Parcoords::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords& Parcoords::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
-}
 
-inline Parcoords& Parcoords::dimensions(Dimension f) {
-    json["dimensions"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Parcoords& Parcoords::dimensions(Callable&& c) {
-    Dimension f{};
-    std::forward<Callable>(c)(f);
-    return dimensions(std::move(f));
-}
 inline Parcoords& Parcoords::dimensions(const std::vector<Dimension>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -84,33 +62,15 @@ inline Parcoords& Parcoords::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords& Parcoords::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Parcoords& Parcoords::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords& Parcoords::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
-}
 
 inline Parcoords& Parcoords::labelangle(double f) {
     json["labelangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords& Parcoords::labelangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return labelangle(std::move(f));
 }
 
 inline Parcoords& Parcoords::labelfont(Labelfont f) {
@@ -133,12 +93,6 @@ inline Parcoords& Parcoords::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords& Parcoords::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Parcoords& Parcoords::legendgrouptitle(Legendgrouptitle f) {
     json["legendgrouptitle"] = std::move(f.json);
@@ -155,22 +109,10 @@ inline Parcoords& Parcoords::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords& Parcoords::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Parcoords& Parcoords::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords& Parcoords::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Parcoords& Parcoords::line(Line f) {
@@ -189,12 +131,6 @@ inline Parcoords& Parcoords::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords& Parcoords::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Parcoords& Parcoords::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -205,22 +141,10 @@ inline Parcoords& Parcoords::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords& Parcoords::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Parcoords& Parcoords::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords& Parcoords::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Parcoords& Parcoords::rangefont(Rangefont f) {
@@ -260,23 +184,11 @@ inline Parcoords& Parcoords::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords& Parcoords::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
-}
 
 template <typename T>
 inline Parcoords& Parcoords::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Parcoords& Parcoords::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Parcoords& Parcoords::unselected(Unselected f) {
@@ -312,44 +224,20 @@ inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(const std::ve
     json["constraintrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::constraintrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return constraintrange(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::label(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return label(std::move(f));
 }
 
 inline Parcoords::Dimension& Parcoords::Dimension::multiselect(bool f) {
     json["multiselect"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::multiselect(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return multiselect(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<double>& f) {
@@ -368,33 +256,15 @@ inline Parcoords::Dimension& Parcoords::Dimension::range(const std::vector<std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
 }
 
 template <typename Range, typename>
@@ -402,22 +272,10 @@ inline Parcoords::Dimension& Parcoords::Dimension::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -425,22 +283,10 @@ inline Parcoords::Dimension& Parcoords::Dimension::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -448,33 +294,15 @@ inline Parcoords::Dimension& Parcoords::Dimension::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::values(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return values(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::valuessrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return valuessrc(std::move(f));
-}
 
 inline Parcoords::Dimension& Parcoords::Dimension::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Dimension& Parcoords::Dimension::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 
@@ -482,22 +310,10 @@ inline Parcoords::Domain& Parcoords::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Domain& Parcoords::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Parcoords::Domain& Parcoords::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Domain& Parcoords::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Parcoords::Domain& Parcoords::Domain::x(const std::vector<double>& f) {
@@ -516,12 +332,6 @@ inline Parcoords::Domain& Parcoords::Domain::x(const std::vector<std::vector<dou
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Domain& Parcoords::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -538,12 +348,6 @@ inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<std::vector<std
 inline Parcoords::Domain& Parcoords::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Domain& Parcoords::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Parcoords::Labelfont::to_string(Style e) {
@@ -585,55 +389,25 @@ inline Parcoords::Labelfont& Parcoords::Labelfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Labelfont& Parcoords::Labelfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Labelfont& Parcoords::Labelfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Labelfont& Parcoords::Labelfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Labelfont& Parcoords::Labelfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Parcoords::Labelfont& Parcoords::Labelfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Labelfont& Parcoords::Labelfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Parcoords::Labelfont& Parcoords::Labelfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Labelfont& Parcoords::Labelfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Parcoords::Labelfont& Parcoords::Labelfont::style(enum Style f) {
@@ -655,12 +429,6 @@ inline Parcoords::Labelfont& Parcoords::Labelfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Labelfont& Parcoords::Labelfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::font(Font f) {
@@ -677,12 +445,6 @@ inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::font(Callable&&
 inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle& Parcoords::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Parcoords::Legendgrouptitle::Font::to_string(Style e) {
@@ -724,55 +486,25 @@ inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::style(enum Style f) {
@@ -794,67 +526,31 @@ inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::wei
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Legendgrouptitle::Font& Parcoords::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Parcoords::Line& Parcoords::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Parcoords::Line& Parcoords::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Parcoords::Line& Parcoords::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Parcoords::Line& Parcoords::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Parcoords::Line& Parcoords::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Parcoords::Line& Parcoords::Line::color(std::string f) {
@@ -864,12 +560,6 @@ inline Parcoords::Line& Parcoords::Line::color(std::string f) {
 inline Parcoords::Line& Parcoords::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Parcoords::Line& Parcoords::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -883,12 +573,6 @@ inline Parcoords::Line& Parcoords::Line::color(const std::vector<double>& f) {
 inline Parcoords::Line& Parcoords::Line::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Parcoords::Line& Parcoords::Line::colorbar(Colorbar f) {
@@ -910,44 +594,20 @@ inline Parcoords::Line& Parcoords::Line::colorscale(const std::vector<std::pair<
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Parcoords::Line& Parcoords::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Parcoords::Line& Parcoords::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Parcoords::Line& Parcoords::Line::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line& Parcoords::Line::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
 }
 
 inline std::string Parcoords::Line::Colorbar::to_string(Exponentformat e) {
@@ -1101,12 +761,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1116,34 +770,16 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(double 
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::exponentformat(enum Exponentformat f) {
@@ -1156,22 +792,10 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::lenmode(enum Lenmode f) {
@@ -1183,22 +807,10 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::minexponent(double 
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::orientation(enum Orientation f) {
@@ -1214,33 +826,15 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(double
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showexponent(enum Showexponent f) {
@@ -1251,12 +845,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showexponent(enum S
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -1273,12 +861,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thickness(double f)
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -1290,22 +872,10 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(std::string f) {
@@ -1315,12 +885,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(std::stri
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickfont(Tickfont f) {
@@ -1338,23 +902,7 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformat(std::str
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -1376,22 +924,10 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelstep(int f
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickmode(enum Tickmode f) {
@@ -1403,12 +939,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickprefix(std::str
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -1419,34 +949,16 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(std::str
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -1454,33 +966,15 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Range&& f)
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::title(Title f) {
@@ -1498,12 +992,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -1513,12 +1001,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xanchor(enum Xancho
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::xref(enum Xref f) {
@@ -1530,12 +1012,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -1545,12 +1021,6 @@ inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yanchor(enum Yancho
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar& Parcoords::Line::Colorbar::yref(enum Yref f) {
@@ -1597,55 +1067,25 @@ inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::style(enum Style f) {
@@ -1667,12 +1107,6 @@ inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont:
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickfont& Parcoords::Line::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -1691,55 +1125,25 @@ inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tic
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Tickformatstop& Parcoords::Line::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Parcoords::Line::Colorbar::Title::to_string(Side e) {
@@ -1771,12 +1175,6 @@ inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::side(
 inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title& Parcoords::Line::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Parcoords::Line::Colorbar::Title::Font::to_string(Style e) {
@@ -1818,55 +1216,25 @@ inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::style(enum Style f) {
@@ -1887,12 +1255,6 @@ inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title:
 inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Line::Colorbar::Title::Font& Parcoords::Line::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Parcoords::Rangefont::to_string(Style e) {
@@ -1934,55 +1296,25 @@ inline Parcoords::Rangefont& Parcoords::Rangefont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Rangefont& Parcoords::Rangefont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Rangefont& Parcoords::Rangefont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Rangefont& Parcoords::Rangefont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Rangefont& Parcoords::Rangefont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Parcoords::Rangefont& Parcoords::Rangefont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Rangefont& Parcoords::Rangefont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Parcoords::Rangefont& Parcoords::Rangefont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Rangefont& Parcoords::Rangefont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Parcoords::Rangefont& Parcoords::Rangefont::style(enum Style f) {
@@ -2004,34 +1336,16 @@ inline Parcoords::Rangefont& Parcoords::Rangefont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Rangefont& Parcoords::Rangefont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Parcoords::Stream& Parcoords::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Stream& Parcoords::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Parcoords::Stream& Parcoords::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Stream& Parcoords::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Parcoords::Tickfont::to_string(Style e) {
@@ -2073,55 +1387,25 @@ inline Parcoords::Tickfont& Parcoords::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Tickfont& Parcoords::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Tickfont& Parcoords::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Tickfont& Parcoords::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Tickfont& Parcoords::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Parcoords::Tickfont& Parcoords::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Tickfont& Parcoords::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Parcoords::Tickfont& Parcoords::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Tickfont& Parcoords::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Parcoords::Tickfont& Parcoords::Tickfont::style(enum Style f) {
@@ -2142,12 +1426,6 @@ inline Parcoords::Tickfont& Parcoords::Tickfont::variant(enum Variant f) {
 inline Parcoords::Tickfont& Parcoords::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Tickfont& Parcoords::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 
@@ -2171,22 +1449,10 @@ inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Parcoords::Unselected::Line& Parcoords::Unselected::Line::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 } // namespace plotlypp

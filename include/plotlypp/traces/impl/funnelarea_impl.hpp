@@ -32,22 +32,10 @@ inline Funnelarea& Funnelarea::aspectratio(double f) {
     json["aspectratio"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::aspectratio(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return aspectratio(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::baseratio(double f) {
     json["baseratio"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::baseratio(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return baseratio(std::move(f));
 }
 
 template <typename Range, typename>
@@ -55,33 +43,15 @@ inline Funnelarea& Funnelarea::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::dlabel(double f) {
     json["dlabel"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::dlabel(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dlabel(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::domain(Domain f) {
@@ -99,12 +69,6 @@ inline Funnelarea& Funnelarea::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
-}
 inline Funnelarea& Funnelarea::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
@@ -113,12 +77,6 @@ inline Funnelarea& Funnelarea::hoverinfo(const std::vector<std::string>& f) {
 inline Funnelarea& Funnelarea::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::hoverlabel(Hoverlabel f) {
@@ -136,12 +94,6 @@ inline Funnelarea& Funnelarea::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Funnelarea& Funnelarea::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -151,22 +103,10 @@ inline Funnelarea& Funnelarea::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Funnelarea& Funnelarea::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -177,34 +117,16 @@ inline Funnelarea& Funnelarea::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Funnelarea& Funnelarea::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::insidetextfont(Insidetextfont f) {
@@ -222,56 +144,26 @@ inline Funnelarea& Funnelarea::label0(double f) {
     json["label0"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::label0(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return label0(std::move(f));
-}
 
 template <typename Range, typename>
 inline Funnelarea& Funnelarea::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::labels(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return labels(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::labelssrc(std::string f) {
     json["labelssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::labelssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return labelssrc(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::legendgrouptitle(Legendgrouptitle f) {
@@ -289,22 +181,10 @@ inline Funnelarea& Funnelarea::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::marker(Marker f) {
@@ -323,12 +203,6 @@ inline Funnelarea& Funnelarea::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Funnelarea& Funnelarea::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -339,55 +213,25 @@ inline Funnelarea& Funnelarea::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::scalegroup(std::string f) {
     json["scalegroup"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::scalegroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scalegroup(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::stream(Stream f) {
@@ -406,12 +250,6 @@ inline Funnelarea& Funnelarea::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::text(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
@@ -427,12 +265,6 @@ inline Funnelarea& Funnelarea::textfont(Callable&& c) {
 inline Funnelarea& Funnelarea::textinfo(std::string f) {
     json["textinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::textinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textinfo(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::textposition(enum Textposition f) {
@@ -450,33 +282,15 @@ inline Funnelarea& Funnelarea::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::textpositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textpositionsrc(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 inline Funnelarea& Funnelarea::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
@@ -486,12 +300,6 @@ inline Funnelarea& Funnelarea::texttemplate(const std::vector<std::string>& f) {
 inline Funnelarea& Funnelarea::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::texttemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplatesrc(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::title(Title f) {
@@ -509,23 +317,11 @@ inline Funnelarea& Funnelarea::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
-}
 
 template <typename T>
 inline Funnelarea& Funnelarea::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 template <typename Range, typename>
@@ -533,22 +329,10 @@ inline Funnelarea& Funnelarea::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea& Funnelarea::values(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return values(std::move(f));
-}
 
 inline Funnelarea& Funnelarea::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea& Funnelarea::valuessrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return valuessrc(std::move(f));
 }
 
 inline Funnelarea& Funnelarea::visible(enum Visible f) {
@@ -561,22 +345,10 @@ inline Funnelarea::Domain& Funnelarea::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Domain& Funnelarea::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Funnelarea::Domain& Funnelarea::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Domain& Funnelarea::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Funnelarea::Domain& Funnelarea::Domain::x(const std::vector<double>& f) {
@@ -595,12 +367,6 @@ inline Funnelarea::Domain& Funnelarea::Domain::x(const std::vector<std::vector<d
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Domain& Funnelarea::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Funnelarea::Domain& Funnelarea::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -617,12 +383,6 @@ inline Funnelarea::Domain& Funnelarea::Domain::y(const std::vector<std::vector<s
 inline Funnelarea::Domain& Funnelarea::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Domain& Funnelarea::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Funnelarea::Hoverlabel::to_string(Align e) {
@@ -650,12 +410,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -664,12 +418,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolor(std::string f) {
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -684,12 +432,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolorsrc(std::string f)
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -698,12 +440,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolor(std::string f
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -717,12 +453,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolor(const std::ve
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::font(Font f) {
@@ -740,12 +470,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -754,12 +478,6 @@ inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::namelength(const std::vec
 inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel& Funnelarea::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Funnelarea::Hoverlabel::Font::to_string(Style e) {
@@ -801,12 +519,6 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -820,22 +532,10 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::colorsrc(std:
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -846,22 +546,10 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::familysrc(std
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -872,22 +560,10 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::linepositions
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -898,22 +574,10 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::shadowsrc(std
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -923,12 +587,6 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::size(const st
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::style(enum Style f) {
@@ -946,12 +604,6 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::stylesrc(std:
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -967,12 +619,6 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::textcase(cons
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::variant(enum Variant f) {
@@ -990,22 +636,10 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::variantsrc(st
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1015,12 +649,6 @@ inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::weight(const 
 inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Hoverlabel::Font& Funnelarea::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Funnelarea::Insidetextfont::to_string(Style e) {
@@ -1062,12 +690,6 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1081,22 +703,10 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::colorsrc(std::str
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1107,22 +717,10 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::familysrc(std::st
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1133,22 +731,10 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::linepositionsrc(s
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1159,22 +745,10 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::shadowsrc(std::st
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1184,12 +758,6 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::size(const std::v
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::style(enum Style f) {
@@ -1207,12 +775,6 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::stylesrc(std::str
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1228,12 +790,6 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::textcase(const st
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::variant(enum Variant f) {
@@ -1251,22 +807,10 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::variantsrc(std::s
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1276,12 +820,6 @@ inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::weight(const std:
 inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Insidetextfont& Funnelarea::Insidetextfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1299,12 +837,6 @@ inline Funnelarea::Legendgrouptitle& Funnelarea::Legendgrouptitle::font(Callable
 inline Funnelarea::Legendgrouptitle& Funnelarea::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle& Funnelarea::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Funnelarea::Legendgrouptitle::Font::to_string(Style e) {
@@ -1346,55 +878,25 @@ inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::c
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::style(enum Style f) {
@@ -1416,12 +918,6 @@ inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::w
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Legendgrouptitle::Font& Funnelarea::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 template <typename Range, typename>
@@ -1429,22 +925,10 @@ inline Funnelarea::Marker& Funnelarea::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Funnelarea::Marker& Funnelarea::Marker::colors(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return colors(std::move(f));
-}
 
 inline Funnelarea::Marker& Funnelarea::Marker::colorssrc(std::string f) {
     json["colorssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker& Funnelarea::Marker::colorssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorssrc(std::move(f));
 }
 
 inline Funnelarea::Marker& Funnelarea::Marker::line(Line f) {
@@ -1478,12 +962,6 @@ inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1497,22 +975,10 @@ inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::colorsrc(std::string 
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -1522,12 +988,6 @@ inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::width(const std::vect
 inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker::Line& Funnelarea::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 inline std::string Funnelarea::Marker::Pattern::to_string(Fillmode e) {
@@ -1547,12 +1007,6 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::bgcolor(double 
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
     return *this;
@@ -1566,12 +1020,6 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::bgcolorsrc(std:
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolor(std::string f) {
     json["fgcolor"] = std::move(f);
@@ -1580,12 +1028,6 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolor(std::st
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolor(double f) {
     json["fgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolor(std::move(f));
 }
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
     json["fgcolor"] = f;
@@ -1600,22 +1042,10 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolorsrc(std:
     json["fgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolorsrc(std::move(f));
-}
 
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgopacity(double f) {
     json["fgopacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fgopacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fgopacity(std::move(f));
 }
 
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::fillmode(enum Fillmode f) {
@@ -1627,12 +1057,6 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::shape(std::stri
     json["shape"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::shape(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shape(std::move(f));
-}
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::shape(const std::vector<std::string>& f) {
     json["shape"] = f;
     return *this;
@@ -1642,22 +1066,10 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::shapesrc(std::s
     json["shapesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::shapesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shapesrc(std::move(f));
-}
 
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1668,22 +1080,10 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::sizesrc(std::st
     json["sizesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
-}
 
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::solidity(double f) {
     json["solidity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::solidity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return solidity(std::move(f));
 }
 inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::solidity(const std::vector<double>& f) {
     json["solidity"] = f;
@@ -1694,34 +1094,16 @@ inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::soliditysrc(std
     json["soliditysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Marker::Pattern& Funnelarea::Marker::Pattern::soliditysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return soliditysrc(std::move(f));
-}
 
 
 inline Funnelarea::Stream& Funnelarea::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Stream& Funnelarea::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Funnelarea::Stream& Funnelarea::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Stream& Funnelarea::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Funnelarea::Textfont::to_string(Style e) {
@@ -1763,12 +1145,6 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Funnelarea::Textfont& Funnelarea::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1782,22 +1158,10 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Funnelarea::Textfont& Funnelarea::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1808,22 +1172,10 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Funnelarea::Textfont& Funnelarea::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1834,22 +1186,10 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::linepositionsrc(std::string f
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Funnelarea::Textfont& Funnelarea::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1860,22 +1200,10 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Funnelarea::Textfont& Funnelarea::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1885,12 +1213,6 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::size(const std::vector<double
 inline Funnelarea::Textfont& Funnelarea::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::style(enum Style f) {
@@ -1908,12 +1230,6 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1929,12 +1245,6 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::textcase(const std::vector<en
 inline Funnelarea::Textfont& Funnelarea::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::variant(enum Variant f) {
@@ -1952,22 +1262,10 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Funnelarea::Textfont& Funnelarea::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Funnelarea::Textfont& Funnelarea::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1977,12 +1275,6 @@ inline Funnelarea::Textfont& Funnelarea::Textfont::weight(const std::vector<int>
 inline Funnelarea::Textfont& Funnelarea::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Textfont& Funnelarea::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Funnelarea::Title::to_string(Position e) {
@@ -2014,12 +1306,6 @@ inline Funnelarea::Title& Funnelarea::Title::position(enum Position f) {
 inline Funnelarea::Title& Funnelarea::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title& Funnelarea::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Funnelarea::Title::Font::to_string(Style e) {
@@ -2061,12 +1347,6 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -2080,22 +1360,10 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::colorsrc(std::string f)
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -2106,22 +1374,10 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::familysrc(std::string f
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -2132,22 +1388,10 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::linepositionsrc(std::st
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -2158,22 +1402,10 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::shadowsrc(std::string f
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2183,12 +1415,6 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::size(const std::vector<
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::style(enum Style f) {
@@ -2206,12 +1432,6 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::stylesrc(std::string f)
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -2227,12 +1447,6 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::textcase(const std::vec
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::variant(enum Variant f) {
@@ -2250,22 +1464,10 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::variantsrc(std::string 
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -2275,12 +1477,6 @@ inline Funnelarea::Title::Font& Funnelarea::Title::Font::weight(const std::vecto
 inline Funnelarea::Title::Font& Funnelarea::Title::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Funnelarea::Title::Font& Funnelarea::Title::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 } // namespace plotlypp

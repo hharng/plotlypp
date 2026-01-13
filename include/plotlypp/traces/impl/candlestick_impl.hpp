@@ -56,22 +56,10 @@ inline Candlestick& Candlestick::close(Range&& f) {
     json["close"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::close(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return close(std::move(f));
-}
 
 inline Candlestick& Candlestick::closesrc(std::string f) {
     json["closesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::closesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return closesrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -79,22 +67,10 @@ inline Candlestick& Candlestick::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Candlestick& Candlestick::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Candlestick& Candlestick::decreasing(Decreasing f) {
@@ -113,33 +89,15 @@ inline Candlestick& Candlestick::high(Range&& f) {
     json["high"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::high(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return high(std::move(f));
-}
 
 inline Candlestick& Candlestick::highsrc(std::string f) {
     json["highsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::highsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return highsrc(std::move(f));
-}
 
 inline Candlestick& Candlestick::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Candlestick& Candlestick::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -149,12 +107,6 @@ inline Candlestick& Candlestick::hoverinfo(const std::vector<std::string>& f) {
 inline Candlestick& Candlestick::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Candlestick& Candlestick::hoverlabel(Hoverlabel f) {
@@ -172,12 +124,6 @@ inline Candlestick& Candlestick::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
-}
 inline Candlestick& Candlestick::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
     return *this;
@@ -187,34 +133,16 @@ inline Candlestick& Candlestick::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Candlestick& Candlestick::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Candlestick& Candlestick::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Candlestick& Candlestick::increasing(Increasing f) {
@@ -232,22 +160,10 @@ inline Candlestick& Candlestick::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Candlestick& Candlestick::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Candlestick& Candlestick::legendgrouptitle(Legendgrouptitle f) {
@@ -265,22 +181,10 @@ inline Candlestick& Candlestick::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Candlestick& Candlestick::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Candlestick& Candlestick::line(Line f) {
@@ -299,34 +203,16 @@ inline Candlestick& Candlestick::low(Range&& f) {
     json["low"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::low(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return low(std::move(f));
-}
 
 inline Candlestick& Candlestick::lowsrc(std::string f) {
     json["lowsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::lowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lowsrc(std::move(f));
 }
 
 template <typename T>
 inline Candlestick& Candlestick::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
 }
 template <typename T>
 inline Candlestick& Candlestick::meta(const std::vector<T>& f) {
@@ -338,33 +224,15 @@ inline Candlestick& Candlestick::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Candlestick& Candlestick::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Candlestick& Candlestick::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 template <typename Range, typename>
@@ -372,22 +240,10 @@ inline Candlestick& Candlestick::open(Range&& f) {
     json["open"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::open(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return open(std::move(f));
-}
 
 inline Candlestick& Candlestick::opensrc(std::string f) {
     json["opensrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::opensrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return opensrc(std::move(f));
 }
 
 template <typename T>
@@ -395,22 +251,10 @@ inline Candlestick& Candlestick::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Candlestick& Candlestick::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Candlestick& Candlestick::stream(Stream f) {
@@ -428,12 +272,6 @@ inline Candlestick& Candlestick::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 inline Candlestick& Candlestick::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
@@ -443,34 +281,16 @@ inline Candlestick& Candlestick::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Candlestick& Candlestick::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
 inline Candlestick& Candlestick::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Candlestick& Candlestick::visible(enum Visible f) {
@@ -482,34 +302,16 @@ inline Candlestick& Candlestick::whiskerwidth(double f) {
     json["whiskerwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::whiskerwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return whiskerwidth(std::move(f));
-}
 
 template <typename Range, typename>
 inline Candlestick& Candlestick::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::x(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Candlestick& Candlestick::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::xaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xaxis(std::move(f));
 }
 
 inline Candlestick& Candlestick::xcalendar(enum Xcalendar f) {
@@ -521,35 +323,17 @@ inline Candlestick& Candlestick::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::xhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xhoverformat(std::move(f));
-}
 
 template <typename T>
 inline Candlestick& Candlestick::xperiod(T f) {
     json["xperiod"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::xperiod(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xperiod(std::move(f));
-}
 
 template <typename T>
 inline Candlestick& Candlestick::xperiod0(T f) {
     json["xperiod0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Candlestick& Candlestick::xperiod0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xperiod0(std::move(f));
 }
 
 inline Candlestick& Candlestick::xperiodalignment(enum Xperiodalignment f) {
@@ -561,44 +345,20 @@ inline Candlestick& Candlestick::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::xsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xsrc(std::move(f));
-}
 
 inline Candlestick& Candlestick::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::yaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yaxis(std::move(f));
 }
 
 inline Candlestick& Candlestick::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick& Candlestick::yhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yhoverformat(std::move(f));
-}
 
 inline Candlestick& Candlestick::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick& Candlestick::zorder(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return zorder(std::move(f));
 }
 
 
@@ -609,12 +369,6 @@ inline Candlestick::Decreasing& Candlestick::Decreasing::fillcolor(std::string f
 inline Candlestick::Decreasing& Candlestick::Decreasing::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Decreasing& Candlestick::Decreasing::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
 }
 
 inline Candlestick::Decreasing& Candlestick::Decreasing::line(Line f) {
@@ -637,22 +391,10 @@ inline Candlestick::Decreasing::Line& Candlestick::Decreasing::Line::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Decreasing::Line& Candlestick::Decreasing::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Candlestick::Decreasing::Line& Candlestick::Decreasing::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Decreasing::Line& Candlestick::Decreasing::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Candlestick::Hoverlabel::to_string(Align e) {
@@ -680,12 +422,6 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::alignsrc(std::string f)
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -694,12 +430,6 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolor(std::string f) 
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -714,12 +444,6 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolorsrc(std::string 
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -728,12 +452,6 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolor(std::string
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -747,12 +465,6 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolor(const std::
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::font(Font f) {
@@ -770,12 +482,6 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -785,22 +491,10 @@ inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::namelengthsrc(std::stri
     json["namelengthsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::split(bool f) {
     json["split"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel& Candlestick::Hoverlabel::split(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return split(std::move(f));
 }
 
 inline std::string Candlestick::Hoverlabel::Font::to_string(Style e) {
@@ -842,12 +536,6 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -861,22 +549,10 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::colorsrc(st
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -887,22 +563,10 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::familysrc(s
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -913,22 +577,10 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::linepositio
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -939,22 +591,10 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::shadowsrc(s
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -964,12 +604,6 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::size(const 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::style(enum Style f) {
@@ -987,12 +621,6 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::stylesrc(st
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1008,12 +636,6 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::textcase(co
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::variant(enum Variant f) {
@@ -1031,22 +653,10 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::variantsrc(
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1057,12 +667,6 @@ inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::weightsrc(s
     json["weightsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Hoverlabel::Font& Candlestick::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
-}
 
 
 inline Candlestick::Increasing& Candlestick::Increasing::fillcolor(std::string f) {
@@ -1072,12 +676,6 @@ inline Candlestick::Increasing& Candlestick::Increasing::fillcolor(std::string f
 inline Candlestick::Increasing& Candlestick::Increasing::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Increasing& Candlestick::Increasing::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
 }
 
 inline Candlestick::Increasing& Candlestick::Increasing::line(Line f) {
@@ -1100,22 +698,10 @@ inline Candlestick::Increasing::Line& Candlestick::Increasing::Line::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Increasing::Line& Candlestick::Increasing::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Candlestick::Increasing::Line& Candlestick::Increasing::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Increasing::Line& Candlestick::Increasing::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 
@@ -1133,12 +719,6 @@ inline Candlestick::Legendgrouptitle& Candlestick::Legendgrouptitle::font(Callab
 inline Candlestick::Legendgrouptitle& Candlestick::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle& Candlestick::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Candlestick::Legendgrouptitle::Font::to_string(Style e) {
@@ -1180,55 +760,25 @@ inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::style(enum Style f) {
@@ -1250,23 +800,11 @@ inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font:
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Legendgrouptitle::Font& Candlestick::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Candlestick::Line& Candlestick::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Line& Candlestick::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 
@@ -1274,22 +812,10 @@ inline Candlestick::Stream& Candlestick::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Candlestick::Stream& Candlestick::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Candlestick::Stream& Candlestick::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Candlestick::Stream& Candlestick::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 } // namespace plotlypp

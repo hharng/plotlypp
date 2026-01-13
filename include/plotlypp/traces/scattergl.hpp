@@ -126,32 +126,20 @@ class Scattergl : public Trace {
 
     // Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
     Scattergl& connectgaps(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl& connectgaps(Callable&& c);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl& customdata(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl& customdata(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `customdata`.
     Scattergl& customdatasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& customdatasrc(Callable&& c);
 
     // Sets the x coordinate step. See `x0` for more info.
     Scattergl& dx(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl& dx(Callable&& c);
 
     // Sets the y coordinate step. See `y0` for more info.
     Scattergl& dy(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl& dy(Callable&& c);
 
     Scattergl& error_x(Error_X f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Error_X&>>>
@@ -179,9 +167,6 @@ class Scattergl : public Trace {
     // color, whichever is available.
     Scattergl& fillcolor(std::string f);
     Scattergl& fillcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl& fillcolor(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
     // hovering. But, if `none` is set, click and hover events are still fired.
@@ -189,14 +174,10 @@ class Scattergl : public Trace {
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
     Scattergl& hoverinfo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& hoverinfo(Callable&& c);
     Scattergl& hoverinfo(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattergl& hoverinfosrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& hoverinfosrc(Callable&& c);
 
     Scattergl& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
@@ -216,53 +197,35 @@ class Scattergl : public Trace {
     // displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     // completely, use an empty tag `<extra></extra>`.
     Scattergl& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& hovertemplate(Callable&& c);
     Scattergl& hovertemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertemplate`.
     Scattergl& hovertemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& hovertemplatesrc(Callable&& c);
 
     // Sets hover text elements associated with each (x,y) pair. If a single string, the same string appears over all
     // the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To
     // be seen, trace `hoverinfo` must contain a *text* flag.
     Scattergl& hovertext(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& hovertext(Callable&& c);
     Scattergl& hovertext(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertext`.
     Scattergl& hovertextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& hovertextsrc(Callable&& c);
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl& ids(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl& ids(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ids`.
     Scattergl& idssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& idssrc(Callable&& c);
 
     // Sets the reference to a legend to show this trace in. References to these legends are *legend*, *legend2*,
     // *legend3*, etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
     Scattergl& legend(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& legend(Callable&& c);
 
     // Sets the legend group for this trace. Traces and shapes part of the same legend group hide/show at the same time
     // when toggling legend items.
     Scattergl& legendgroup(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& legendgroup(Callable&& c);
 
     Scattergl& legendgrouptitle(Legendgrouptitle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legendgrouptitle&>>>
@@ -274,13 +237,9 @@ class Scattergl : public Trace {
     // after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e.
     // according to their order in data and layout.
     Scattergl& legendrank(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl& legendrank(Callable&& c);
 
     // Sets the width (in px or fraction) of the legend for this trace.
     Scattergl& legendwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl& legendwidth(Callable&& c);
 
     Scattergl& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
@@ -298,32 +257,22 @@ class Scattergl : public Trace {
     // trace index.
     template <typename T>
     Scattergl& meta(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& meta(Callable&& c);
     template <typename T>
     Scattergl& meta(const std::vector<T>& f);
 
     // Sets the source reference on Chart Studio Cloud for `meta`.
     Scattergl& metasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& metasrc(Callable&& c);
 
     // Determines the drawing mode for this scatter trace.
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
     Scattergl& mode(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& mode(Callable&& c);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattergl& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& name(Callable&& c);
 
     // Sets the opacity of the trace.
     Scattergl& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl& opacity(Callable&& c);
 
     Scattergl& selected(Selected f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Selected&>>>
@@ -334,13 +283,9 @@ class Scattergl : public Trace {
     // other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     template <typename T>
     Scattergl& selectedpoints(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& selectedpoints(Callable&& c);
 
     // Determines whether or not an item corresponding to this trace is shown in the legend.
     Scattergl& showlegend(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl& showlegend(Callable&& c);
 
     Scattergl& stream(Stream f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Stream&>>>
@@ -350,8 +295,6 @@ class Scattergl : public Trace {
     // points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. If trace
     // `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     Scattergl& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& text(Callable&& c);
     Scattergl& text(const std::vector<std::string>& f);
 
     // Sets the text font.
@@ -366,13 +309,9 @@ class Scattergl : public Trace {
 
     // Sets the source reference on Chart Studio Cloud for `textposition`.
     Scattergl& textpositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& textpositionsrc(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `text`.
     Scattergl& textsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& textsrc(Callable&& c);
 
     // Template string used for rendering the information text that appear on points. Note that this will override
     // `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using
@@ -382,20 +321,14 @@ class Scattergl : public Trace {
     // https://github.com/d3/d3-time-format/tree/v2.2.3#locale_format for details on the date formatting syntax. Every
     // attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.
     Scattergl& texttemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& texttemplate(Callable&& c);
     Scattergl& texttemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `texttemplate`.
     Scattergl& texttemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& texttemplatesrc(Callable&& c);
 
     // Assign an id to this trace, Use this to provide object constancy between traces during animations and
     // transitions.
     Scattergl& uid(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& uid(Callable&& c);
 
     // Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well
     // as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note
@@ -407,8 +340,6 @@ class Scattergl : public Trace {
     // still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     template <typename T>
     Scattergl& uirevision(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& uirevision(Callable&& c);
 
     Scattergl& unselected(Unselected f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Unselected&>>>
@@ -422,23 +353,15 @@ class Scattergl : public Trace {
     // Sets the x coordinates.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl& x(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl& x(Callable&& c);
 
     // Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and
     // `dx` the step.
     template <typename T>
     Scattergl& x0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& x0(Callable&& c);
 
     // Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x
     // coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     Scattergl& xaxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& xaxis(Callable&& c);
 
     // Sets the calendar system to use with `x` date data.
     // - Default: gregorian
@@ -451,24 +374,18 @@ class Scattergl : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `xaxis.hoverformat`.
     Scattergl& xhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& xhoverformat(Callable&& c);
 
     // Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x
     // axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must
     // be a positive integer.
     template <typename T>
     Scattergl& xperiod(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& xperiod(Callable&& c);
 
     // Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string
     // on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e.
     // 2000-01-02, otherwise it would be at 2000-01-01.
     template <typename T>
     Scattergl& xperiod0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& xperiod0(Callable&& c);
 
     // Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.
     // - Default: middle
@@ -476,29 +393,19 @@ class Scattergl : public Trace {
 
     // Sets the source reference on Chart Studio Cloud for `x`.
     Scattergl& xsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& xsrc(Callable&& c);
 
     // Sets the y coordinates.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl& y(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl& y(Callable&& c);
 
     // Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and
     // `dy` the step.
     template <typename T>
     Scattergl& y0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& y0(Callable&& c);
 
     // Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y
     // coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     Scattergl& yaxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& yaxis(Callable&& c);
 
     // Sets the calendar system to use with `y` date data.
     // - Default: gregorian
@@ -511,24 +418,18 @@ class Scattergl : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `yaxis.hoverformat`.
     Scattergl& yhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& yhoverformat(Callable&& c);
 
     // Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y
     // axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must
     // be a positive integer.
     template <typename T>
     Scattergl& yperiod(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& yperiod(Callable&& c);
 
     // Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string
     // on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e.
     // 2000-01-02, otherwise it would be at 2000-01-01.
     template <typename T>
     Scattergl& yperiod0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl& yperiod0(Callable&& c);
 
     // Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.
     // - Default: middle
@@ -536,8 +437,6 @@ class Scattergl : public Trace {
 
     // Sets the source reference on Chart Studio Cloud for `y`.
     Scattergl& ysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl& ysrc(Callable&& c);
 };
 
 class Scattergl::Error_X {
@@ -557,59 +456,34 @@ class Scattergl::Error_X {
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl::Error_X& array(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl::Error_X& array(Callable&& c);
 
     // Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal)
     // bars Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl::Error_X& arrayminus(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl::Error_X& arrayminus(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `arrayminus`.
     Scattergl::Error_X& arrayminussrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Error_X& arrayminussrc(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `array`.
     Scattergl::Error_X& arraysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Error_X& arraysrc(Callable&& c);
 
     // Sets the stroke color of the error bars.
     Scattergl::Error_X& color(std::string f);
     Scattergl::Error_X& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_X& color(Callable&& c);
 
     Scattergl::Error_X& copy_ystyle(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Error_X& copy_ystyle(Callable&& c);
 
     // Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars,
     // left/right for horizontal bars.
     Scattergl::Error_X& symmetric(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Error_X& symmetric(Callable&& c);
 
     // Sets the thickness (in px) of the error bars.
     Scattergl::Error_X& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_X& thickness(Callable&& c);
 
     Scattergl::Error_X& traceref(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Error_X& traceref(Callable&& c);
 
     Scattergl::Error_X& tracerefminus(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Error_X& tracerefminus(Callable&& c);
 
     // Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set
     // this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this
@@ -620,25 +494,17 @@ class Scattergl::Error_X {
     // Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to
     // *constant*) corresponding to the lengths of the error bars.
     Scattergl::Error_X& value(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_X& value(Callable&& c);
 
     // Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to
     // *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical
     // (horizontal) bars
     Scattergl::Error_X& valueminus(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_X& valueminus(Callable&& c);
 
     // Determines whether or not this set of error bars is visible.
     Scattergl::Error_X& visible(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Error_X& visible(Callable&& c);
 
     // Sets the width (in px) of the cross-bar at both ends of the error bars.
     Scattergl::Error_X& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_X& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -661,55 +527,32 @@ class Scattergl::Error_Y {
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl::Error_Y& array(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl::Error_Y& array(Callable&& c);
 
     // Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal)
     // bars Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl::Error_Y& arrayminus(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl::Error_Y& arrayminus(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `arrayminus`.
     Scattergl::Error_Y& arrayminussrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Error_Y& arrayminussrc(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `array`.
     Scattergl::Error_Y& arraysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Error_Y& arraysrc(Callable&& c);
 
     // Sets the stroke color of the error bars.
     Scattergl::Error_Y& color(std::string f);
     Scattergl::Error_Y& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_Y& color(Callable&& c);
 
     // Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars,
     // left/right for horizontal bars.
     Scattergl::Error_Y& symmetric(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Error_Y& symmetric(Callable&& c);
 
     // Sets the thickness (in px) of the error bars.
     Scattergl::Error_Y& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_Y& thickness(Callable&& c);
 
     Scattergl::Error_Y& traceref(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Error_Y& traceref(Callable&& c);
 
     Scattergl::Error_Y& tracerefminus(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Error_Y& tracerefminus(Callable&& c);
 
     // Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set
     // this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this
@@ -720,25 +563,17 @@ class Scattergl::Error_Y {
     // Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to
     // *constant*) corresponding to the lengths of the error bars.
     Scattergl::Error_Y& value(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_Y& value(Callable&& c);
 
     // Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to
     // *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical
     // (horizontal) bars
     Scattergl::Error_Y& valueminus(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_Y& valueminus(Callable&& c);
 
     // Determines whether or not this set of error bars is visible.
     Scattergl::Error_Y& visible(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Error_Y& visible(Callable&& c);
 
     // Sets the width (in px) of the cross-bar at both ends of the error bars.
     Scattergl::Error_Y& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Error_Y& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -768,36 +603,24 @@ class Scattergl::Hoverlabel {
 
     // Sets the source reference on Chart Studio Cloud for `align`.
     Scattergl::Hoverlabel& alignsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel& alignsrc(Callable&& c);
 
     // Sets the background color of the hover labels for this trace
     Scattergl::Hoverlabel& bgcolor(std::string f);
     Scattergl::Hoverlabel& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Hoverlabel& bgcolor(Callable&& c);
     Scattergl::Hoverlabel& bgcolor(const std::vector<std::string>& f);
     Scattergl::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Scattergl::Hoverlabel& bgcolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel& bgcolorsrc(Callable&& c);
 
     // Sets the border color of the hover labels for this trace.
     Scattergl::Hoverlabel& bordercolor(std::string f);
     Scattergl::Hoverlabel& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Hoverlabel& bordercolor(Callable&& c);
     Scattergl::Hoverlabel& bordercolor(const std::vector<std::string>& f);
     Scattergl::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Scattergl::Hoverlabel& bordercolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel& bordercolorsrc(Callable&& c);
 
     // Sets the font used in hover labels.
     Scattergl::Hoverlabel& font(Font f);
@@ -809,14 +632,10 @@ class Scattergl::Hoverlabel {
     // name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters
     // and add an ellipsis.
     Scattergl::Hoverlabel& namelength(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Hoverlabel& namelength(Callable&& c);
     Scattergl::Hoverlabel& namelength(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `namelength`.
     Scattergl::Hoverlabel& namelengthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel& namelengthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -855,16 +674,11 @@ class Scattergl::Hoverlabel::Font {
 
     Scattergl::Hoverlabel::Font& color(std::string f);
     Scattergl::Hoverlabel::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Hoverlabel::Font& color(Callable&& c);
     Scattergl::Hoverlabel::Font& color(const std::vector<std::string>& f);
     Scattergl::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergl::Hoverlabel::Font& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -874,14 +688,10 @@ class Scattergl::Hoverlabel::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergl::Hoverlabel::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& family(Callable&& c);
     Scattergl::Hoverlabel::Font& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Scattergl::Hoverlabel::Font& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& familysrc(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -889,36 +699,24 @@ class Scattergl::Hoverlabel::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergl::Hoverlabel::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& lineposition(Callable&& c);
     Scattergl::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattergl::Hoverlabel::Font& linepositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& linepositionsrc(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergl::Hoverlabel::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& shadow(Callable&& c);
     Scattergl::Hoverlabel::Font& shadow(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `shadow`.
     Scattergl::Hoverlabel::Font& shadowsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& shadowsrc(Callable&& c);
 
     Scattergl::Hoverlabel::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Hoverlabel::Font& size(Callable&& c);
     Scattergl::Hoverlabel::Font& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Scattergl::Hoverlabel::Font& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -927,8 +725,6 @@ class Scattergl::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Scattergl::Hoverlabel::Font& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& stylesrc(Callable&& c);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
@@ -938,8 +734,6 @@ class Scattergl::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `textcase`.
     Scattergl::Hoverlabel::Font& textcasesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& textcasesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -948,19 +742,13 @@ class Scattergl::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Scattergl::Hoverlabel::Font& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     Scattergl::Hoverlabel::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Hoverlabel::Font& weight(Callable&& c);
     Scattergl::Hoverlabel::Font& weight(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Scattergl::Hoverlabel::Font& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Hoverlabel::Font& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -982,8 +770,6 @@ class Scattergl::Legendgrouptitle {
 
     // Sets the title of the legend group.
     Scattergl::Legendgrouptitle& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1022,9 +808,6 @@ class Scattergl::Legendgrouptitle::Font {
 
     Scattergl::Legendgrouptitle::Font& color(std::string f);
     Scattergl::Legendgrouptitle::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1034,8 +817,6 @@ class Scattergl::Legendgrouptitle::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergl::Legendgrouptitle::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1043,18 +824,12 @@ class Scattergl::Legendgrouptitle::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergl::Legendgrouptitle::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergl::Legendgrouptitle::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Legendgrouptitle::Font& shadow(Callable&& c);
 
     Scattergl::Legendgrouptitle::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1071,8 +846,6 @@ class Scattergl::Legendgrouptitle::Font {
 
     // Sets the weight (or boldness) of the font.
     Scattergl::Legendgrouptitle::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1106,9 +879,6 @@ class Scattergl::Line {
     // Sets the line color.
     Scattergl::Line& color(std::string f);
     Scattergl::Line& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Line& color(Callable&& c);
 
     // Sets the style of the lines.
     // - Default: solid
@@ -1120,8 +890,6 @@ class Scattergl::Line {
 
     // Sets the line width (in px).
     Scattergl::Line& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1472,56 +1240,39 @@ class Scattergl::Marker {
 
     // Sets the marker angle in respect to `angleref`.
     Scattergl::Marker& angle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& angle(Callable&& c);
     Scattergl::Marker& angle(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `angle`.
     Scattergl::Marker& anglesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker& anglesrc(Callable&& c);
 
     // Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by
     // `marker.colorscale`. Has an effect only if in `marker.color` is set to a numerical array. In case `colorscale` is
     // unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
     // `color` array are all positive, all negative or mixed.
     Scattergl::Marker& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or
     // the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color` is set to a numerical
     // array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
     Scattergl::Marker& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `marker.color` is set to a numerical array.
     // Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.
     Scattergl::Marker& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this
     // point. Has an effect only if in `marker.color` is set to a numerical array. Value should have the same units as
     // in `marker.color`. Has no effect when `marker.cauto` is `false`.
     Scattergl::Marker& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `marker.color` is set to a numerical array.
     // Value should have the same units as in `marker.color` and if set, `marker.cmax` must be set as well.
     Scattergl::Marker& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& cmin(Callable&& c);
 
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Scattergl::Marker& color(std::string f);
     Scattergl::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& color(Callable&& c);
     Scattergl::Marker& color(const std::vector<std::string>& f);
     Scattergl::Marker& color(const std::vector<double>& f);
 
@@ -1529,8 +1280,6 @@ class Scattergl::Marker {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Scattergl::Marker& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker& coloraxis(Callable&& c);
 
     Scattergl::Marker& colorbar(Colorbar f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorbar&>>>
@@ -1544,15 +1293,9 @@ class Scattergl::Marker {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Scattergl::Marker& colorscale(std::string f);
     Scattergl::Marker& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Scattergl::Marker& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergl::Marker& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker& colorsrc(Callable&& c);
 
     Scattergl::Marker& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
@@ -1560,39 +1303,27 @@ class Scattergl::Marker {
 
     // Sets the marker opacity.
     Scattergl::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& opacity(Callable&& c);
     Scattergl::Marker& opacity(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `opacity`.
     Scattergl::Marker& opacitysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker& opacitysrc(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `marker.color` is set to a numerical array. If true,
     // `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first
     // color.
     Scattergl::Marker& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker& reversescale(Callable&& c);
 
     // Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color` is set
     // to a numerical array.
     Scattergl::Marker& showscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker& showscale(Callable&& c);
 
     // Sets the marker size (in px).
     Scattergl::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& size(Callable&& c);
     Scattergl::Marker& size(const std::vector<double>& f);
 
     // Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered
     // marker points.
     Scattergl::Marker& sizemin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& sizemin(Callable&& c);
 
     // Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is
     // converted to pixels.
@@ -1602,13 +1333,9 @@ class Scattergl::Marker {
     // Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the
     // rendered size of marker points. Use with `sizemin` and `sizemode`.
     Scattergl::Marker& sizeref(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker& sizeref(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Scattergl::Marker& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker& sizesrc(Callable&& c);
 
     // Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is
     // equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open*
@@ -1619,8 +1346,6 @@ class Scattergl::Marker {
 
     // Sets the source reference on Chart Studio Cloud for `symbol`.
     Scattergl::Marker& symbolsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker& symbolsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1752,21 +1477,13 @@ class Scattergl::Marker::Colorbar {
     // Sets the color of padded area.
     Scattergl::Marker::Colorbar& bgcolor(std::string f);
     Scattergl::Marker::Colorbar& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Scattergl::Marker::Colorbar& bordercolor(std::string f);
     Scattergl::Marker::Colorbar& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
     Scattergl::Marker::Colorbar& borderwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& borderwidth(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -1782,8 +1499,6 @@ class Scattergl::Marker::Colorbar {
     // set `dtick` to *M48*
     template <typename T>
     Scattergl::Marker::Colorbar& dtick(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl::Marker::Colorbar& dtick(Callable&& c);
 
     // Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*,
     // it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*,
@@ -1798,14 +1513,10 @@ class Scattergl::Marker::Colorbar {
     // values (if desired) can include html-like tags or MathJax.
     template <typename T>
     Scattergl::Marker::Colorbar& labelalias(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl::Marker::Colorbar& labelalias(Callable&& c);
 
     // Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is
     // this length minus the padding on both ends.
     Scattergl::Marker::Colorbar& len(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& len(Callable&& c);
 
     // Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of
     // plot *fraction* or in *pixels. Use `len` to set the value.
@@ -1814,14 +1525,10 @@ class Scattergl::Marker::Colorbar {
 
     // Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
     Scattergl::Marker::Colorbar& minexponent(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& minexponent(Callable&& c);
 
     // Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen
     // automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     Scattergl::Marker::Colorbar& nticks(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Marker::Colorbar& nticks(Callable&& c);
 
     // Sets the orientation of the colorbar.
     // - Default: v
@@ -1830,19 +1537,12 @@ class Scattergl::Marker::Colorbar {
     // Sets the axis line color.
     Scattergl::Marker::Colorbar& outlinecolor(std::string f);
     Scattergl::Marker::Colorbar& outlinecolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
     Scattergl::Marker::Colorbar& outlinewidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& outlinewidth(Callable&& c);
 
     // If "true", even 4-digit integers are separated
     Scattergl::Marker::Colorbar& separatethousands(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker::Colorbar& separatethousands(Callable&& c);
 
     // If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is
     // shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
@@ -1851,8 +1551,6 @@ class Scattergl::Marker::Colorbar {
 
     // Determines whether or not the tick labels are drawn.
     Scattergl::Marker::Colorbar& showticklabels(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker::Colorbar& showticklabels(Callable&& c);
 
     // If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a
     // prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
@@ -1865,8 +1563,6 @@ class Scattergl::Marker::Colorbar {
 
     // Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
     Scattergl::Marker::Colorbar& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& thickness(Callable&& c);
 
     // Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units
     // of plot *fraction* or in *pixels*. Use `thickness` to set the value.
@@ -1880,21 +1576,14 @@ class Scattergl::Marker::Colorbar {
     // serial number from zero in the order it appears.
     template <typename T>
     Scattergl::Marker::Colorbar& tick0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergl::Marker::Colorbar& tick0(Callable&& c);
 
     // Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the
     // tick labels vertically.
     Scattergl::Marker::Colorbar& tickangle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& tickangle(Callable&& c);
 
     // Sets the tick color.
     Scattergl::Marker::Colorbar& tickcolor(std::string f);
     Scattergl::Marker::Colorbar& tickcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
     Scattergl::Marker::Colorbar& tickfont(Tickfont f);
@@ -1907,12 +1596,7 @@ class Scattergl::Marker::Colorbar {
     // half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example,
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     Scattergl::Marker::Colorbar& tickformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar& tickformat(Callable&& c);
 
-    Scattergl::Marker::Colorbar& tickformatstops(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Scattergl::Marker::Colorbar& tickformatstops(Callable&& c);
     Scattergl::Marker::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
@@ -1929,13 +1613,9 @@ class Scattergl::Marker::Colorbar {
     // labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or
     // *multicategory*, or when `tickmode` is *array*.
     Scattergl::Marker::Colorbar& ticklabelstep(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Marker::Colorbar& ticklabelstep(Callable&& c);
 
     // Sets the tick length (in px).
     Scattergl::Marker::Colorbar& ticklen(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& ticklen(Callable&& c);
 
     // Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement
     // of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
@@ -1945,8 +1625,6 @@ class Scattergl::Marker::Colorbar {
 
     // Sets a tick label prefix.
     Scattergl::Marker::Colorbar& tickprefix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar& tickprefix(Callable&& c);
 
     // Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this
     // axis' are drawn outside (inside) the axis lines.
@@ -1955,41 +1633,25 @@ class Scattergl::Marker::Colorbar {
 
     // Sets a tick label suffix.
     Scattergl::Marker::Colorbar& ticksuffix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar& ticksuffix(Callable&& c);
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl::Marker::Colorbar& ticktext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl::Marker::Colorbar& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
     Scattergl::Marker::Colorbar& ticktextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar& ticktextsrc(Callable&& c);
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergl::Marker::Colorbar& tickvals(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergl::Marker::Colorbar& tickvals(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `tickvals`.
     Scattergl::Marker::Colorbar& tickvalssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar& tickvalssrc(Callable&& c);
 
     // Sets the tick width (in px).
     Scattergl::Marker::Colorbar& tickwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& tickwidth(Callable&& c);
 
     Scattergl::Marker::Colorbar& title(Title f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Title&>>>
@@ -2000,8 +1662,6 @@ class Scattergl::Marker::Colorbar {
     // when `orientation` is *v* and 0.5 when `orientation` is *h*. Must be between *0* and *1* if `xref` is *container*
     // and between *-2* and *3* if `xref` is *paper*.
     Scattergl::Marker::Colorbar& x(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& x(Callable&& c);
 
     // Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.
@@ -2009,8 +1669,6 @@ class Scattergl::Marker::Colorbar {
 
     // Sets the amount of padding (in px) along the x direction.
     Scattergl::Marker::Colorbar& xpad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& xpad(Callable&& c);
 
     // Sets the container `x` refers to. *container* spans the entire `width` of the plot. *paper* refers to the width
     // of the plotting area only.
@@ -2022,8 +1680,6 @@ class Scattergl::Marker::Colorbar {
     // when `orientation` is *v* and 1 when `orientation` is *h*. Must be between *0* and *1* if `yref` is *container*
     // and between *-2* and *3* if `yref` is *paper*.
     Scattergl::Marker::Colorbar& y(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& y(Callable&& c);
 
     // Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.
@@ -2031,8 +1687,6 @@ class Scattergl::Marker::Colorbar {
 
     // Sets the amount of padding (in px) along the y direction.
     Scattergl::Marker::Colorbar& ypad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar& ypad(Callable&& c);
 
     // Sets the container `y` refers to. *container* spans the entire `height` of the plot. *paper* refers to the height
     // of the plotting area only.
@@ -2076,9 +1730,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
 
     Scattergl::Marker::Colorbar::Tickfont& color(std::string f);
     Scattergl::Marker::Colorbar::Tickfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -2088,8 +1739,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergl::Marker::Colorbar::Tickfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Tickfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -2097,18 +1746,12 @@ class Scattergl::Marker::Colorbar::Tickfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergl::Marker::Colorbar::Tickfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Tickfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergl::Marker::Colorbar::Tickfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Tickfont& shadow(Callable&& c);
 
     Scattergl::Marker::Colorbar::Tickfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar::Tickfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -2125,8 +1768,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
 
     // Sets the weight (or boldness) of the font.
     Scattergl::Marker::Colorbar::Tickfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Marker::Colorbar::Tickfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2144,25 +1785,15 @@ class Scattergl::Marker::Colorbar::Tickformatstop {
     Scattergl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
     Scattergl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
     Scattergl::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Scattergl::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     Scattergl::Marker::Colorbar::Tickformatstop& enabled(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
     Scattergl::Marker::Colorbar::Tickformatstop& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
@@ -2170,13 +1801,9 @@ class Scattergl::Marker::Colorbar::Tickformatstop {
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
     Scattergl::Marker::Colorbar::Tickformatstop& templateitemname(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
     Scattergl::Marker::Colorbar::Tickformatstop& value(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2209,8 +1836,6 @@ class Scattergl::Marker::Colorbar::Title {
 
     // Sets the title of the color bar.
     Scattergl::Marker::Colorbar::Title& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Title& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2249,9 +1874,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
 
     Scattergl::Marker::Colorbar::Title::Font& color(std::string f);
     Scattergl::Marker::Colorbar::Title::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -2261,8 +1883,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergl::Marker::Colorbar::Title::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Title::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -2270,18 +1890,12 @@ class Scattergl::Marker::Colorbar::Title::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergl::Marker::Colorbar::Title::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Title::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergl::Marker::Colorbar::Title::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Colorbar::Title::Font& shadow(Callable&& c);
 
     Scattergl::Marker::Colorbar::Title::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Colorbar::Title::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -2298,8 +1912,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
 
     // Sets the weight (or boldness) of the font.
     Scattergl::Marker::Colorbar::Title::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergl::Marker::Colorbar::Title::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2316,46 +1928,33 @@ class Scattergl::Marker::Line {
     // `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
     // numbers in the `color` array are all positive, all negative or mixed.
     Scattergl::Marker::Line& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker::Line& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in
     // `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has an effect only if in
     // `marker.line.color` is set to a numerical array. Defaults to `false` when `marker.line.cmin` and
     // `marker.line.cmax` are set by the user.
     Scattergl::Marker::Line& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker::Line& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `marker.line.color` is set to a numerical
     // array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as
     // well.
     Scattergl::Marker::Line& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Line& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax` to be equidistant
     // to this point. Has an effect only if in `marker.line.color` is set to a numerical array. Value should have the
     // same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
     Scattergl::Marker::Line& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Line& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `marker.line.color` is set to a numerical
     // array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as
     // well.
     Scattergl::Marker::Line& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Line& cmin(Callable&& c);
 
     // Sets the marker.line color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Scattergl::Marker::Line& color(std::string f);
     Scattergl::Marker::Line& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Line& color(Callable&& c);
     Scattergl::Marker::Line& color(const std::vector<std::string>& f);
     Scattergl::Marker::Line& color(const std::vector<double>& f);
 
@@ -2363,8 +1962,6 @@ class Scattergl::Marker::Line {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Scattergl::Marker::Line& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Line& coloraxis(Callable&& c);
 
     // Sets the colorscale. Has an effect only if in `marker.line.color` is set to a numerical array. The colorscale
     // must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color
@@ -2375,33 +1972,21 @@ class Scattergl::Marker::Line {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Scattergl::Marker::Line& colorscale(std::string f);
     Scattergl::Marker::Line& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Scattergl::Marker::Line& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergl::Marker::Line& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Line& colorsrc(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `marker.line.color` is set to a numerical array. If
     // true, `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will correspond to
     // the first color.
     Scattergl::Marker::Line& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergl::Marker::Line& reversescale(Callable&& c);
 
     // Sets the width (in px) of the lines bounding the marker points.
     Scattergl::Marker::Line& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Marker::Line& width(Callable&& c);
     Scattergl::Marker::Line& width(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `width`.
     Scattergl::Marker::Line& widthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Marker::Line& widthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2437,19 +2022,12 @@ class Scattergl::Selected::Marker {
     // Sets the marker color of selected points.
     Scattergl::Selected::Marker& color(std::string f);
     Scattergl::Selected::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
     Scattergl::Selected::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Selected::Marker& opacity(Callable&& c);
 
     // Sets the marker size of selected points.
     Scattergl::Selected::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Selected::Marker& size(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2464,9 +2042,6 @@ class Scattergl::Selected::Textfont {
     // Sets the text font color of selected points.
     Scattergl::Selected::Textfont& color(std::string f);
     Scattergl::Selected::Textfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Selected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2481,14 +2056,10 @@ class Scattergl::Stream {
     // Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*,
     // only the newest 50 points will be displayed on the plot.
     Scattergl::Stream& maxpoints(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Stream& maxpoints(Callable&& c);
 
     // The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for
     // more details.
     Scattergl::Stream& token(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Stream& token(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2521,16 +2092,11 @@ class Scattergl::Textfont {
 
     Scattergl::Textfont& color(std::string f);
     Scattergl::Textfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Textfont& color(Callable&& c);
     Scattergl::Textfont& color(const std::vector<std::string>& f);
     Scattergl::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergl::Textfont& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -2540,24 +2106,16 @@ class Scattergl::Textfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergl::Textfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& family(Callable&& c);
     Scattergl::Textfont& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Scattergl::Textfont& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& familysrc(Callable&& c);
 
     Scattergl::Textfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Textfont& size(Callable&& c);
     Scattergl::Textfont& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Scattergl::Textfont& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -2566,8 +2124,6 @@ class Scattergl::Textfont {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Scattergl::Textfont& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& stylesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -2576,8 +2132,6 @@ class Scattergl::Textfont {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Scattergl::Textfont& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     // - Default: normal
@@ -2586,8 +2140,6 @@ class Scattergl::Textfont {
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Scattergl::Textfont& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergl::Textfont& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2623,19 +2175,12 @@ class Scattergl::Unselected::Marker {
     // Sets the marker color of unselected points, applied only when a selection exists.
     Scattergl::Unselected::Marker& color(std::string f);
     Scattergl::Unselected::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.
     Scattergl::Unselected::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Unselected::Marker& opacity(Callable&& c);
 
     // Sets the marker size of unselected points, applied only when a selection exists.
     Scattergl::Unselected::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergl::Unselected::Marker& size(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2650,9 +2195,6 @@ class Scattergl::Unselected::Textfont {
     // Sets the text font color of unselected points, applied only when a selection exists.
     Scattergl::Unselected::Textfont& color(std::string f);
     Scattergl::Unselected::Textfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergl::Unselected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

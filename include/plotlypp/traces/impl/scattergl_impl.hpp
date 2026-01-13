@@ -114,56 +114,26 @@ inline Scattergl& Scattergl::connectgaps(bool f) {
     json["connectgaps"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::connectgaps(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return connectgaps(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergl& Scattergl::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Scattergl& Scattergl::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Scattergl& Scattergl::dx(double f) {
     json["dx"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::dx(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dx(std::move(f));
-}
 
 inline Scattergl& Scattergl::dy(double f) {
     json["dy"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::dy(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dy(std::move(f));
 }
 
 inline Scattergl& Scattergl::error_x(Error_X f) {
@@ -201,22 +171,10 @@ inline Scattergl& Scattergl::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Scattergl& Scattergl::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Scattergl& Scattergl::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -226,12 +184,6 @@ inline Scattergl& Scattergl::hoverinfo(const std::vector<std::string>& f) {
 inline Scattergl& Scattergl::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Scattergl& Scattergl::hoverlabel(Hoverlabel f) {
@@ -249,12 +201,6 @@ inline Scattergl& Scattergl::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Scattergl& Scattergl::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -264,22 +210,10 @@ inline Scattergl& Scattergl::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Scattergl& Scattergl::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Scattergl& Scattergl::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -290,56 +224,26 @@ inline Scattergl& Scattergl::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergl& Scattergl::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Scattergl& Scattergl::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Scattergl& Scattergl::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Scattergl& Scattergl::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Scattergl& Scattergl::legendgrouptitle(Legendgrouptitle f) {
@@ -357,22 +261,10 @@ inline Scattergl& Scattergl::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Scattergl& Scattergl::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Scattergl& Scattergl::line(Line f) {
@@ -402,12 +294,6 @@ inline Scattergl& Scattergl::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Scattergl& Scattergl::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -418,44 +304,20 @@ inline Scattergl& Scattergl::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Scattergl& Scattergl::mode(std::string f) {
     json["mode"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::mode(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return mode(std::move(f));
 }
 
 inline Scattergl& Scattergl::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Scattergl& Scattergl::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Scattergl& Scattergl::selected(Selected f) {
@@ -474,22 +336,10 @@ inline Scattergl& Scattergl::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Scattergl& Scattergl::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Scattergl& Scattergl::stream(Stream f) {
@@ -506,12 +356,6 @@ inline Scattergl& Scattergl::stream(Callable&& c) {
 inline Scattergl& Scattergl::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 inline Scattergl& Scattergl::text(const std::vector<std::string>& f) {
     json["text"] = f;
@@ -544,33 +388,15 @@ inline Scattergl& Scattergl::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::textpositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textpositionsrc(std::move(f));
-}
 
 inline Scattergl& Scattergl::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Scattergl& Scattergl::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 inline Scattergl& Scattergl::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
@@ -581,34 +407,16 @@ inline Scattergl& Scattergl::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::texttemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplatesrc(std::move(f));
-}
 
 inline Scattergl& Scattergl::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
 inline Scattergl& Scattergl::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Scattergl& Scattergl::unselected(Unselected f) {
@@ -632,34 +440,16 @@ inline Scattergl& Scattergl::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::x(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 template <typename T>
 inline Scattergl& Scattergl::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::x0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x0(std::move(f));
-}
 
 inline Scattergl& Scattergl::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::xaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xaxis(std::move(f));
 }
 
 inline Scattergl& Scattergl::xcalendar(enum Xcalendar f) {
@@ -671,35 +461,17 @@ inline Scattergl& Scattergl::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::xhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xhoverformat(std::move(f));
-}
 
 template <typename T>
 inline Scattergl& Scattergl::xperiod(T f) {
     json["xperiod"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::xperiod(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xperiod(std::move(f));
-}
 
 template <typename T>
 inline Scattergl& Scattergl::xperiod0(T f) {
     json["xperiod0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::xperiod0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xperiod0(std::move(f));
 }
 
 inline Scattergl& Scattergl::xperiodalignment(enum Xperiodalignment f) {
@@ -711,23 +483,11 @@ inline Scattergl& Scattergl::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::xsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergl& Scattergl::y(Range&& f) {
     json["y"] = f;
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::y(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 template <typename T>
@@ -735,22 +495,10 @@ inline Scattergl& Scattergl::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::y0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y0(std::move(f));
-}
 
 inline Scattergl& Scattergl::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::yaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yaxis(std::move(f));
 }
 
 inline Scattergl& Scattergl::ycalendar(enum Ycalendar f) {
@@ -762,35 +510,17 @@ inline Scattergl& Scattergl::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl& Scattergl::yhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yhoverformat(std::move(f));
-}
 
 template <typename T>
 inline Scattergl& Scattergl::yperiod(T f) {
     json["yperiod"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::yperiod(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return yperiod(std::move(f));
-}
 
 template <typename T>
 inline Scattergl& Scattergl::yperiod0(T f) {
     json["yperiod0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergl& Scattergl::yperiod0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return yperiod0(std::move(f));
 }
 
 inline Scattergl& Scattergl::yperiodalignment(enum Yperiodalignment f) {
@@ -801,12 +531,6 @@ inline Scattergl& Scattergl::yperiodalignment(enum Yperiodalignment f) {
 inline Scattergl& Scattergl::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl& Scattergl::ysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ysrc(std::move(f));
 }
 
 inline std::string Scattergl::Error_X::to_string(Type e) {
@@ -825,45 +549,21 @@ inline Scattergl::Error_X& Scattergl::Error_X::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::array(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return array(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergl::Error_X& Scattergl::Error_X::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::arrayminus(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return arrayminus(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::arrayminussrc(std::string f) {
     json["arrayminussrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::arrayminussrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arrayminussrc(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::arraysrc(std::string f) {
     json["arraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::arraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arraysrc(std::move(f));
 }
 
 inline Scattergl::Error_X& Scattergl::Error_X::color(std::string f) {
@@ -874,66 +574,30 @@ inline Scattergl::Error_X& Scattergl::Error_X::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::copy_ystyle(bool f) {
     json["copy_ystyle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::copy_ystyle(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return copy_ystyle(std::move(f));
 }
 
 inline Scattergl::Error_X& Scattergl::Error_X::symmetric(bool f) {
     json["symmetric"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::symmetric(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return symmetric(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
 }
 
 inline Scattergl::Error_X& Scattergl::Error_X::traceref(int f) {
     json["traceref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::traceref(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return traceref(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::tracerefminus(int f) {
     json["tracerefminus"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::tracerefminus(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return tracerefminus(std::move(f));
 }
 
 inline Scattergl::Error_X& Scattergl::Error_X::type(enum Type f) {
@@ -945,44 +609,20 @@ inline Scattergl::Error_X& Scattergl::Error_X::value(double f) {
     json["value"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::value(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::valueminus(double f) {
     json["valueminus"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::valueminus(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return valueminus(std::move(f));
 }
 
 inline Scattergl::Error_X& Scattergl::Error_X::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Scattergl::Error_X& Scattergl::Error_X::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_X& Scattergl::Error_X::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Scattergl::Error_Y::to_string(Type e) {
@@ -1001,45 +641,21 @@ inline Scattergl::Error_Y& Scattergl::Error_Y::array(Range&& f) {
     json["array"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::array(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return array(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergl::Error_Y& Scattergl::Error_Y::arrayminus(Range&& f) {
     json["arrayminus"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::arrayminus(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return arrayminus(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::arrayminussrc(std::string f) {
     json["arrayminussrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::arrayminussrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arrayminussrc(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::arraysrc(std::string f) {
     json["arraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::arraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arraysrc(std::move(f));
 }
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::color(std::string f) {
@@ -1050,55 +666,25 @@ inline Scattergl::Error_Y& Scattergl::Error_Y::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::symmetric(bool f) {
     json["symmetric"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::symmetric(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return symmetric(std::move(f));
 }
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::traceref(int f) {
     json["traceref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::traceref(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return traceref(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::tracerefminus(int f) {
     json["tracerefminus"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::tracerefminus(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return tracerefminus(std::move(f));
 }
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::type(enum Type f) {
@@ -1110,44 +696,20 @@ inline Scattergl::Error_Y& Scattergl::Error_Y::value(double f) {
     json["value"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::value(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::valueminus(double f) {
     json["valueminus"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::valueminus(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return valueminus(std::move(f));
 }
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Scattergl::Error_Y& Scattergl::Error_Y::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Error_Y& Scattergl::Error_Y::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Scattergl::Hoverlabel::to_string(Align e) {
@@ -1175,12 +737,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1189,12 +745,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolor(std::string f) {
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -1209,12 +759,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1223,12 +767,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolor(std::string f) 
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -1242,12 +780,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolor(const std::vect
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::font(Font f) {
@@ -1265,12 +797,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -1279,12 +805,6 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelength(const std::vecto
 inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Scattergl::Hoverlabel::Font::to_string(Style e) {
@@ -1326,12 +846,6 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1345,22 +859,10 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::colorsrc(std::s
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1371,22 +873,10 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::familysrc(std::
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1397,22 +887,10 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::linepositionsrc
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1423,22 +901,10 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::shadowsrc(std::
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1448,12 +914,6 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::size(const std:
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::style(enum Style f) {
@@ -1471,12 +931,6 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::stylesrc(std::s
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1492,12 +946,6 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::textcase(const 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::variant(enum Variant f) {
@@ -1515,22 +963,10 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::variantsrc(std:
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1540,12 +976,6 @@ inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::weight(const st
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1563,12 +993,6 @@ inline Scattergl::Legendgrouptitle& Scattergl::Legendgrouptitle::font(Callable&&
 inline Scattergl::Legendgrouptitle& Scattergl::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle& Scattergl::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Scattergl::Legendgrouptitle::Font::to_string(Style e) {
@@ -1610,55 +1034,25 @@ inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::style(enum Style f) {
@@ -1679,12 +1073,6 @@ inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::var
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Scattergl::Line::to_string(Dash e) {
@@ -1719,12 +1107,6 @@ inline Scattergl::Line& Scattergl::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Line& Scattergl::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Line& Scattergl::Line::dash(enum Dash f) {
     json["dash"] = to_string(f);
@@ -1739,12 +1121,6 @@ inline Scattergl::Line& Scattergl::Line::shape(enum Shape f) {
 inline Scattergl::Line& Scattergl::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Line& Scattergl::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Scattergl::Marker::to_string(Sizemode e) {
@@ -2090,12 +1466,6 @@ inline Scattergl::Marker& Scattergl::Marker::angle(double f) {
     json["angle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::angle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return angle(std::move(f));
-}
 inline Scattergl::Marker& Scattergl::Marker::angle(const std::vector<double>& f) {
     json["angle"] = f;
     return *this;
@@ -2105,66 +1475,30 @@ inline Scattergl::Marker& Scattergl::Marker::anglesrc(std::string f) {
     json["anglesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::anglesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return anglesrc(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::color(std::string f) {
@@ -2174,12 +1508,6 @@ inline Scattergl::Marker& Scattergl::Marker::color(std::string f) {
 inline Scattergl::Marker& Scattergl::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Scattergl::Marker& Scattergl::Marker::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -2193,12 +1521,6 @@ inline Scattergl::Marker& Scattergl::Marker::color(const std::vector<double>& f)
 inline Scattergl::Marker& Scattergl::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::colorbar(Colorbar f) {
@@ -2220,22 +1542,10 @@ inline Scattergl::Marker& Scattergl::Marker::colorscale(const std::vector<std::p
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::line(Line f) {
@@ -2253,12 +1563,6 @@ inline Scattergl::Marker& Scattergl::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 inline Scattergl::Marker& Scattergl::Marker::opacity(const std::vector<double>& f) {
     json["opacity"] = f;
     return *this;
@@ -2268,44 +1572,20 @@ inline Scattergl::Marker& Scattergl::Marker::opacitysrc(std::string f) {
     json["opacitysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::opacitysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return opacitysrc(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattergl::Marker& Scattergl::Marker::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2315,12 +1595,6 @@ inline Scattergl::Marker& Scattergl::Marker::size(const std::vector<double>& f) 
 inline Scattergl::Marker& Scattergl::Marker::sizemin(double f) {
     json["sizemin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::sizemin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizemin(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::sizemode(enum Sizemode f) {
@@ -2332,22 +1606,10 @@ inline Scattergl::Marker& Scattergl::Marker::sizeref(double f) {
     json["sizeref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::sizeref(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizeref(std::move(f));
-}
 
 inline Scattergl::Marker& Scattergl::Marker::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattergl::Marker& Scattergl::Marker::symbol(enum Symbol f) {
@@ -2364,12 +1626,6 @@ inline Scattergl::Marker& Scattergl::Marker::symbol(const std::vector<enum Symbo
 inline Scattergl::Marker& Scattergl::Marker::symbolsrc(std::string f) {
     json["symbolsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker& Scattergl::Marker::symbolsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return symbolsrc(std::move(f));
 }
 
 inline std::string Scattergl::Marker::Colorbar::to_string(Exponentformat e) {
@@ -2523,12 +1779,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::bgcolor(double 
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -2538,34 +1788,16 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::bordercolor(dou
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::exponentformat(enum Exponentformat f) {
@@ -2578,22 +1810,10 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::labelalias(T f)
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::lenmode(enum Lenmode f) {
@@ -2605,22 +1825,10 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::minexponent(dou
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::orientation(enum Orientation f) {
@@ -2636,33 +1844,15 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::outlinecolor(do
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::showexponent(enum Showexponent f) {
@@ -2673,12 +1863,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::showexponent(en
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -2695,12 +1879,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::thickness(doubl
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -2712,22 +1890,10 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickcolor(std::string f) {
@@ -2737,12 +1903,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickcolor(std::
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickfont(Tickfont f) {
@@ -2760,23 +1920,7 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickformat(std:
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -2798,22 +1942,10 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticklabelstep(i
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickmode(enum Tickmode f) {
@@ -2825,12 +1957,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickprefix(std:
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -2841,34 +1967,16 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticksuffix(std:
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -2876,33 +1984,15 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickvals(Range&
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::title(Title f) {
@@ -2920,12 +2010,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -2935,12 +2019,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::xanchor(enum Xa
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::xref(enum Xref f) {
@@ -2952,12 +2030,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -2967,12 +2039,6 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::yanchor(enum Ya
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::yref(enum Yref f) {
@@ -3019,55 +2085,25 @@ inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickf
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::style(enum Style f) {
@@ -3089,12 +2125,6 @@ inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickf
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -3113,55 +2143,25 @@ inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar:
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Tickformatstop& Scattergl::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Scattergl::Marker::Colorbar::Title::to_string(Side e) {
@@ -3193,12 +2193,6 @@ inline Scattergl::Marker::Colorbar::Title& Scattergl::Marker::Colorbar::Title::s
 inline Scattergl::Marker::Colorbar::Title& Scattergl::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title& Scattergl::Marker::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(Style e) {
@@ -3240,55 +2234,25 @@ inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Ti
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::style(enum Style f) {
@@ -3310,67 +2274,31 @@ inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Ti
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::color(std::string f) {
@@ -3380,12 +2308,6 @@ inline Scattergl::Marker::Line& Scattergl::Marker::Line::color(std::string f) {
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -3400,12 +2322,6 @@ inline Scattergl::Marker::Line& Scattergl::Marker::Line::coloraxis(std::string f
     json["coloraxis"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
-}
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
@@ -3415,44 +2331,20 @@ inline Scattergl::Marker::Line& Scattergl::Marker::Line::colorscale(const std::v
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -3462,12 +2354,6 @@ inline Scattergl::Marker::Line& Scattergl::Marker::Line::width(const std::vector
 inline Scattergl::Marker::Line& Scattergl::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Marker::Line& Scattergl::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 
@@ -3502,33 +2388,15 @@ inline Scattergl::Selected::Marker& Scattergl::Selected::Marker::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Selected::Marker& Scattergl::Selected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Selected::Marker& Scattergl::Selected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Selected::Marker& Scattergl::Selected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Scattergl::Selected::Marker& Scattergl::Selected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Selected::Marker& Scattergl::Selected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -3540,34 +2408,16 @@ inline Scattergl::Selected::Textfont& Scattergl::Selected::Textfont::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Selected::Textfont& Scattergl::Selected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 
 inline Scattergl::Stream& Scattergl::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Stream& Scattergl::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Scattergl::Stream& Scattergl::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Stream& Scattergl::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Scattergl::Textfont::to_string(Style e) {
@@ -3603,12 +2453,6 @@ inline Scattergl::Textfont& Scattergl::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattergl::Textfont& Scattergl::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -3622,22 +2466,10 @@ inline Scattergl::Textfont& Scattergl::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Scattergl::Textfont& Scattergl::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Scattergl::Textfont& Scattergl::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -3648,22 +2480,10 @@ inline Scattergl::Textfont& Scattergl::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Scattergl::Textfont& Scattergl::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattergl::Textfont& Scattergl::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -3673,12 +2493,6 @@ inline Scattergl::Textfont& Scattergl::Textfont::size(const std::vector<double>&
 inline Scattergl::Textfont& Scattergl::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattergl::Textfont& Scattergl::Textfont::style(enum Style f) {
@@ -3696,12 +2510,6 @@ inline Scattergl::Textfont& Scattergl::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Scattergl::Textfont& Scattergl::Textfont::variant(enum Variant f) {
     json["variant"] = to_string(f);
@@ -3718,12 +2526,6 @@ inline Scattergl::Textfont& Scattergl::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Scattergl::Textfont& Scattergl::Textfont::weight(enum Weight f) {
     json["weight"] = to_string(f);
@@ -3739,12 +2541,6 @@ inline Scattergl::Textfont& Scattergl::Textfont::weight(const std::vector<enum W
 inline Scattergl::Textfont& Scattergl::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Textfont& Scattergl::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -3779,33 +2575,15 @@ inline Scattergl::Unselected::Marker& Scattergl::Unselected::Marker::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Unselected::Marker& Scattergl::Unselected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergl::Unselected::Marker& Scattergl::Unselected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergl::Unselected::Marker& Scattergl::Unselected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Scattergl::Unselected::Marker& Scattergl::Unselected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Unselected::Marker& Scattergl::Unselected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -3816,12 +2594,6 @@ inline Scattergl::Unselected::Textfont& Scattergl::Unselected::Textfont::color(s
 inline Scattergl::Unselected::Textfont& Scattergl::Unselected::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergl::Unselected::Textfont& Scattergl::Unselected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 } // namespace plotlypp

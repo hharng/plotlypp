@@ -49,22 +49,10 @@ inline Scattercarpet& Scattercarpet::a(Range&& f) {
     json["a"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::a(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return a(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::asrc(std::string f) {
     json["asrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::asrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return asrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -72,44 +60,20 @@ inline Scattercarpet& Scattercarpet::b(Range&& f) {
     json["b"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::b(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return b(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::bsrc(std::string f) {
     json["bsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::bsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bsrc(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::carpet(std::string f) {
     json["carpet"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::carpet(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return carpet(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::connectgaps(bool f) {
     json["connectgaps"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::connectgaps(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return connectgaps(std::move(f));
 }
 
 template <typename Range, typename>
@@ -117,22 +81,10 @@ inline Scattercarpet& Scattercarpet::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::fill(enum Fill f) {
@@ -148,22 +100,10 @@ inline Scattercarpet& Scattercarpet::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Scattercarpet& Scattercarpet::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -173,12 +113,6 @@ inline Scattercarpet& Scattercarpet::hoverinfo(const std::vector<std::string>& f
 inline Scattercarpet& Scattercarpet::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::hoverlabel(Hoverlabel f) {
@@ -196,22 +130,10 @@ inline Scattercarpet& Scattercarpet::hoveron(std::string f) {
     json["hoveron"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hoveron(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoveron(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
 }
 inline Scattercarpet& Scattercarpet::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
@@ -222,22 +144,10 @@ inline Scattercarpet& Scattercarpet::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Scattercarpet& Scattercarpet::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -248,56 +158,26 @@ inline Scattercarpet& Scattercarpet::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattercarpet& Scattercarpet::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::legendgrouptitle(Legendgrouptitle f) {
@@ -315,22 +195,10 @@ inline Scattercarpet& Scattercarpet::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::line(Line f) {
@@ -360,12 +228,6 @@ inline Scattercarpet& Scattercarpet::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Scattercarpet& Scattercarpet::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -376,44 +238,20 @@ inline Scattercarpet& Scattercarpet::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::mode(std::string f) {
     json["mode"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::mode(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return mode(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::selected(Selected f) {
@@ -432,22 +270,10 @@ inline Scattercarpet& Scattercarpet::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::stream(Stream f) {
@@ -464,12 +290,6 @@ inline Scattercarpet& Scattercarpet::stream(Callable&& c) {
 inline Scattercarpet& Scattercarpet::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 inline Scattercarpet& Scattercarpet::text(const std::vector<std::string>& f) {
     json["text"] = f;
@@ -502,33 +322,15 @@ inline Scattercarpet& Scattercarpet::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::textpositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textpositionsrc(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 inline Scattercarpet& Scattercarpet::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
@@ -539,34 +341,16 @@ inline Scattercarpet& Scattercarpet::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::texttemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplatesrc(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
 inline Scattercarpet& Scattercarpet::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattercarpet& Scattercarpet::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Scattercarpet& Scattercarpet::unselected(Unselected f) {
@@ -589,33 +373,15 @@ inline Scattercarpet& Scattercarpet::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::xaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xaxis(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::yaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yaxis(std::move(f));
-}
 
 inline Scattercarpet& Scattercarpet::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet& Scattercarpet::zorder(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return zorder(std::move(f));
 }
 
 inline std::string Scattercarpet::Hoverlabel::to_string(Align e) {
@@ -643,12 +409,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::alignsrc(std::strin
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -657,12 +417,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolor(std::string
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -677,12 +431,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolorsrc(std::str
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -691,12 +439,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolor(std::st
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -710,12 +452,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolor(const s
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::font(Font f) {
@@ -733,12 +469,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -747,12 +477,6 @@ inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::namelength(const st
 inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel& Scattercarpet::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Scattercarpet::Hoverlabel::Font::to_string(Style e) {
@@ -794,12 +518,6 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::color(d
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -813,22 +531,10 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::colorsr
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -839,22 +545,10 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::familys
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -865,22 +559,10 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::linepos
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -891,22 +573,10 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::shadows
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -916,12 +586,6 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::size(co
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::style(enum Style f) {
@@ -939,12 +603,6 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::stylesr
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -960,12 +618,6 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::textcas
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::variant(enum Variant f) {
@@ -983,22 +635,10 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::variant
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1008,12 +648,6 @@ inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::weight(
 inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Hoverlabel::Font& Scattercarpet::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1031,12 +665,6 @@ inline Scattercarpet::Legendgrouptitle& Scattercarpet::Legendgrouptitle::font(Ca
 inline Scattercarpet::Legendgrouptitle& Scattercarpet::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle& Scattercarpet::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Scattercarpet::Legendgrouptitle::Font::to_string(Style e) {
@@ -1078,55 +706,25 @@ inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::F
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::style(enum Style f) {
@@ -1148,12 +746,6 @@ inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::F
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Legendgrouptitle::Font& Scattercarpet::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 inline std::string Scattercarpet::Line::to_string(Shape e) {
     switch(e) {
@@ -1168,12 +760,6 @@ inline Scattercarpet::Line& Scattercarpet::Line::backoff(double f) {
     json["backoff"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Line& Scattercarpet::Line::backoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return backoff(std::move(f));
-}
 inline Scattercarpet::Line& Scattercarpet::Line::backoff(const std::vector<double>& f) {
     json["backoff"] = f;
     return *this;
@@ -1182,12 +768,6 @@ inline Scattercarpet::Line& Scattercarpet::Line::backoff(const std::vector<doubl
 inline Scattercarpet::Line& Scattercarpet::Line::backoffsrc(std::string f) {
     json["backoffsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Line& Scattercarpet::Line::backoffsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return backoffsrc(std::move(f));
 }
 
 inline Scattercarpet::Line& Scattercarpet::Line::color(std::string f) {
@@ -1198,22 +778,10 @@ inline Scattercarpet::Line& Scattercarpet::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Line& Scattercarpet::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattercarpet::Line& Scattercarpet::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Line& Scattercarpet::Line::dash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
 }
 
 inline Scattercarpet::Line& Scattercarpet::Line::shape(enum Shape f) {
@@ -1225,22 +793,10 @@ inline Scattercarpet::Line& Scattercarpet::Line::smoothing(double f) {
     json["smoothing"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Line& Scattercarpet::Line::smoothing(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return smoothing(std::move(f));
-}
 
 inline Scattercarpet::Line& Scattercarpet::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Line& Scattercarpet::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Scattercarpet::Marker::to_string(Angleref e) {
@@ -1594,12 +1150,6 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::angle(double f) {
     json["angle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::angle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return angle(std::move(f));
-}
 inline Scattercarpet::Marker& Scattercarpet::Marker::angle(const std::vector<double>& f) {
     json["angle"] = f;
     return *this;
@@ -1614,66 +1164,30 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::anglesrc(std::string f) {
     json["anglesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::anglesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return anglesrc(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::color(std::string f) {
@@ -1683,12 +1197,6 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::color(std::string f) {
 inline Scattercarpet::Marker& Scattercarpet::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Scattercarpet::Marker& Scattercarpet::Marker::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -1702,12 +1210,6 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::color(const std::vector<dou
 inline Scattercarpet::Marker& Scattercarpet::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::colorbar(Colorbar f) {
@@ -1729,22 +1231,10 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::colorscale(const std::vecto
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::gradient(Gradient f) {
@@ -1773,22 +1263,10 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::maxdisplayed(double f) {
     json["maxdisplayed"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::maxdisplayed(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxdisplayed(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 inline Scattercarpet::Marker& Scattercarpet::Marker::opacity(const std::vector<double>& f) {
     json["opacity"] = f;
@@ -1799,44 +1277,20 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::opacitysrc(std::string f) {
     json["opacitysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::opacitysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return opacitysrc(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattercarpet::Marker& Scattercarpet::Marker::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1846,12 +1300,6 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::size(const std::vector<doub
 inline Scattercarpet::Marker& Scattercarpet::Marker::sizemin(double f) {
     json["sizemin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::sizemin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizemin(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::sizemode(enum Sizemode f) {
@@ -1863,33 +1311,15 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::sizeref(double f) {
     json["sizeref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::sizeref(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizeref(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
-}
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::standoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return standoff(std::move(f));
 }
 inline Scattercarpet::Marker& Scattercarpet::Marker::standoff(const std::vector<double>& f) {
     json["standoff"] = f;
@@ -1899,12 +1329,6 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::standoff(const std::vector<
 inline Scattercarpet::Marker& Scattercarpet::Marker::standoffsrc(std::string f) {
     json["standoffsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::standoffsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return standoffsrc(std::move(f));
 }
 
 inline Scattercarpet::Marker& Scattercarpet::Marker::symbol(enum Symbol f) {
@@ -1921,12 +1345,6 @@ inline Scattercarpet::Marker& Scattercarpet::Marker::symbol(const std::vector<en
 inline Scattercarpet::Marker& Scattercarpet::Marker::symbolsrc(std::string f) {
     json["symbolsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker& Scattercarpet::Marker::symbolsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return symbolsrc(std::move(f));
 }
 
 inline std::string Scattercarpet::Marker::Colorbar::to_string(Exponentformat e) {
@@ -2080,12 +1498,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::bgcolor
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -2095,34 +1507,16 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::borderc
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::exponentformat(enum Exponentformat f) {
@@ -2135,22 +1529,10 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::labelal
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::lenmode(enum Lenmode f) {
@@ -2162,22 +1544,10 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::minexpo
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::orientation(enum Orientation f) {
@@ -2193,33 +1563,15 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::outline
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::showexponent(enum Showexponent f) {
@@ -2230,12 +1582,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::showexp
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -2252,12 +1598,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::thickne
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -2269,22 +1609,10 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tick0(T
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickcolor(std::string f) {
@@ -2294,12 +1622,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickcol
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickfont(Tickfont f) {
@@ -2317,23 +1639,7 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickfor
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -2355,22 +1661,10 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticklab
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickmode(enum Tickmode f) {
@@ -2382,12 +1676,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickpre
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -2398,34 +1686,16 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticksuf
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -2433,33 +1703,15 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickval
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::title(Title f) {
@@ -2477,12 +1729,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::x(doubl
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -2492,12 +1738,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::xanchor
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::xref(enum Xref f) {
@@ -2509,12 +1749,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::y(doubl
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -2524,12 +1758,6 @@ inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::yanchor
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar& Scattercarpet::Marker::Colorbar::yref(enum Yref f) {
@@ -2576,55 +1804,25 @@ inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorba
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::style(enum Style f) {
@@ -2646,12 +1844,6 @@ inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorba
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickfont& Scattercarpet::Marker::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -2670,55 +1862,25 @@ inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::C
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Tickformatstop& Scattercarpet::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Scattercarpet::Marker::Colorbar::Title::to_string(Side e) {
@@ -2750,12 +1912,6 @@ inline Scattercarpet::Marker::Colorbar::Title& Scattercarpet::Marker::Colorbar::
 inline Scattercarpet::Marker::Colorbar::Title& Scattercarpet::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title& Scattercarpet::Marker::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Scattercarpet::Marker::Colorbar::Title::Font::to_string(Style e) {
@@ -2797,55 +1953,25 @@ inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colo
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::style(enum Style f) {
@@ -2867,12 +1993,6 @@ inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colo
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Colorbar::Title::Font& Scattercarpet::Marker::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 inline std::string Scattercarpet::Marker::Gradient::to_string(Type e) {
     switch(e) {
@@ -2893,12 +2013,6 @@ inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::color(d
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -2911,12 +2025,6 @@ inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::color(c
 inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::type(enum Type f) {
@@ -2934,67 +2042,31 @@ inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::typesrc
     json["typesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Gradient& Scattercarpet::Marker::Gradient::typesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return typesrc(std::move(f));
-}
 
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::color(std::string f) {
@@ -3004,12 +2076,6 @@ inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::color(std::stri
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -3024,12 +2090,6 @@ inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::coloraxis(std::
     json["coloraxis"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
-}
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
@@ -3039,44 +2099,20 @@ inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::colorscale(cons
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -3086,12 +2122,6 @@ inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::width(const std
 inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Marker::Line& Scattercarpet::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 
@@ -3126,33 +2156,15 @@ inline Scattercarpet::Selected::Marker& Scattercarpet::Selected::Marker::color(d
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Selected::Marker& Scattercarpet::Selected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattercarpet::Selected::Marker& Scattercarpet::Selected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Selected::Marker& Scattercarpet::Selected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Scattercarpet::Selected::Marker& Scattercarpet::Selected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Selected::Marker& Scattercarpet::Selected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -3164,34 +2176,16 @@ inline Scattercarpet::Selected::Textfont& Scattercarpet::Selected::Textfont::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Selected::Textfont& Scattercarpet::Selected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 
 inline Scattercarpet::Stream& Scattercarpet::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Stream& Scattercarpet::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Scattercarpet::Stream& Scattercarpet::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Stream& Scattercarpet::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Scattercarpet::Textfont::to_string(Style e) {
@@ -3233,12 +2227,6 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -3252,22 +2240,10 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::colorsrc(std::string f)
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -3278,22 +2254,10 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::familysrc(std::string f
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -3304,22 +2268,10 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::linepositionsrc(std::st
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -3330,22 +2282,10 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::shadowsrc(std::string f
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -3355,12 +2295,6 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::size(const std::vector<
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::style(enum Style f) {
@@ -3378,12 +2312,6 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::stylesrc(std::string f)
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -3399,12 +2327,6 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::textcase(const std::vec
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::variant(enum Variant f) {
@@ -3422,22 +2344,10 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::variantsrc(std::string 
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -3447,12 +2357,6 @@ inline Scattercarpet::Textfont& Scattercarpet::Textfont::weight(const std::vecto
 inline Scattercarpet::Textfont& Scattercarpet::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Textfont& Scattercarpet::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -3487,33 +2391,15 @@ inline Scattercarpet::Unselected::Marker& Scattercarpet::Unselected::Marker::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Unselected::Marker& Scattercarpet::Unselected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattercarpet::Unselected::Marker& Scattercarpet::Unselected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattercarpet::Unselected::Marker& Scattercarpet::Unselected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Scattercarpet::Unselected::Marker& Scattercarpet::Unselected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Unselected::Marker& Scattercarpet::Unselected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -3524,12 +2410,6 @@ inline Scattercarpet::Unselected::Textfont& Scattercarpet::Unselected::Textfont:
 inline Scattercarpet::Unselected::Textfont& Scattercarpet::Unselected::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattercarpet::Unselected::Textfont& Scattercarpet::Unselected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 } // namespace plotlypp

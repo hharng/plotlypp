@@ -48,66 +48,30 @@ inline Cone& Cone::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Cone& Cone::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Cone& Cone::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Cone& Cone::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
 }
 
 inline Cone& Cone::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
-}
 
 inline Cone& Cone::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Cone& Cone::colorbar(Colorbar f) {
@@ -129,45 +93,21 @@ inline Cone& Cone::colorscale(const std::vector<std::pair<double, std::string>>&
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 template <typename Range, typename>
 inline Cone& Cone::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Cone& Cone::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
-}
 
 inline Cone& Cone::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Cone& Cone::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -177,12 +117,6 @@ inline Cone& Cone::hoverinfo(const std::vector<std::string>& f) {
 inline Cone& Cone::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Cone& Cone::hoverlabel(Hoverlabel f) {
@@ -200,12 +134,6 @@ inline Cone& Cone::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Cone& Cone::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -215,22 +143,10 @@ inline Cone& Cone::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Cone& Cone::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Cone& Cone::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -241,56 +157,26 @@ inline Cone& Cone::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Cone& Cone::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Cone& Cone::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Cone& Cone::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Cone& Cone::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Cone& Cone::legendgrouptitle(Legendgrouptitle f) {
@@ -308,22 +194,10 @@ inline Cone& Cone::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Cone& Cone::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Cone& Cone::lighting(Lighting f) {
@@ -353,12 +227,6 @@ inline Cone& Cone::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Cone& Cone::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -369,77 +237,35 @@ inline Cone& Cone::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Cone& Cone::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Cone& Cone::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Cone& Cone::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
 }
 
 inline Cone& Cone::scene(std::string f) {
     json["scene"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::scene(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scene(std::move(f));
-}
 
 inline Cone& Cone::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
-}
 
 inline Cone& Cone::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
 }
 
 inline Cone& Cone::sizemode(enum Sizemode f) {
@@ -450,12 +276,6 @@ inline Cone& Cone::sizemode(enum Sizemode f) {
 inline Cone& Cone::sizeref(double f) {
     json["sizeref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::sizeref(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizeref(std::move(f));
 }
 
 inline Cone& Cone::stream(Stream f) {
@@ -473,12 +293,6 @@ inline Cone& Cone::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 inline Cone& Cone::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
@@ -488,45 +302,21 @@ inline Cone& Cone::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Cone& Cone::u(Range&& f) {
     json["u"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::u(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return u(std::move(f));
-}
 
 inline Cone& Cone::uhoverformat(std::string f) {
     json["uhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::uhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uhoverformat(std::move(f));
-}
 
 inline Cone& Cone::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
@@ -534,22 +324,10 @@ inline Cone& Cone::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Cone& Cone::usrc(std::string f) {
     json["usrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::usrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return usrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -557,22 +335,10 @@ inline Cone& Cone::v(Range&& f) {
     json["v"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::v(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return v(std::move(f));
-}
 
 inline Cone& Cone::vhoverformat(std::string f) {
     json["vhoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::vhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return vhoverformat(std::move(f));
 }
 
 inline Cone& Cone::visible(enum Visible f) {
@@ -584,45 +350,21 @@ inline Cone& Cone::vsrc(std::string f) {
     json["vsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::vsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return vsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Cone& Cone::w(Range&& f) {
     json["w"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::w(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return w(std::move(f));
-}
 
 inline Cone& Cone::whoverformat(std::string f) {
     json["whoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::whoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return whoverformat(std::move(f));
-}
 
 inline Cone& Cone::wsrc(std::string f) {
     json["wsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::wsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return wsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -630,33 +372,15 @@ inline Cone& Cone::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::x(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Cone& Cone::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::xhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xhoverformat(std::move(f));
-}
 
 inline Cone& Cone::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::xsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -664,33 +388,15 @@ inline Cone& Cone::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::y(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Cone& Cone::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::yhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yhoverformat(std::move(f));
-}
 
 inline Cone& Cone::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::ysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -698,33 +404,15 @@ inline Cone& Cone::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone& Cone::z(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
-}
 
 inline Cone& Cone::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone& Cone::zhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zhoverformat(std::move(f));
-}
 
 inline Cone& Cone::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone& Cone::zsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zsrc(std::move(f));
 }
 
 inline std::string Cone::Colorbar::to_string(Exponentformat e) {
@@ -878,12 +566,6 @@ inline Cone::Colorbar& Cone::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -893,34 +575,16 @@ inline Cone::Colorbar& Cone::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Cone::Colorbar& Cone::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::exponentformat(enum Exponentformat f) {
@@ -933,22 +597,10 @@ inline Cone::Colorbar& Cone::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::lenmode(enum Lenmode f) {
@@ -960,22 +612,10 @@ inline Cone::Colorbar& Cone::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::orientation(enum Orientation f) {
@@ -991,33 +631,15 @@ inline Cone::Colorbar& Cone::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::showexponent(enum Showexponent f) {
@@ -1028,12 +650,6 @@ inline Cone::Colorbar& Cone::Colorbar::showexponent(enum Showexponent f) {
 inline Cone::Colorbar& Cone::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -1050,12 +666,6 @@ inline Cone::Colorbar& Cone::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -1067,22 +677,10 @@ inline Cone::Colorbar& Cone::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::tickcolor(std::string f) {
@@ -1092,12 +690,6 @@ inline Cone::Colorbar& Cone::Colorbar::tickcolor(std::string f) {
 inline Cone::Colorbar& Cone::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::tickfont(Tickfont f) {
@@ -1115,23 +707,7 @@ inline Cone::Colorbar& Cone::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Cone::Colorbar& Cone::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Cone::Colorbar& Cone::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -1153,22 +729,10 @@ inline Cone::Colorbar& Cone::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::tickmode(enum Tickmode f) {
@@ -1180,12 +744,6 @@ inline Cone::Colorbar& Cone::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -1196,34 +754,16 @@ inline Cone::Colorbar& Cone::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Cone::Colorbar& Cone::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -1231,33 +771,15 @@ inline Cone::Colorbar& Cone::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::title(Title f) {
@@ -1275,12 +797,6 @@ inline Cone::Colorbar& Cone::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -1290,12 +806,6 @@ inline Cone::Colorbar& Cone::Colorbar::xanchor(enum Xanchor f) {
 inline Cone::Colorbar& Cone::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::xref(enum Xref f) {
@@ -1307,12 +817,6 @@ inline Cone::Colorbar& Cone::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Cone::Colorbar& Cone::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -1322,12 +826,6 @@ inline Cone::Colorbar& Cone::Colorbar::yanchor(enum Yanchor f) {
 inline Cone::Colorbar& Cone::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar& Cone::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Cone::Colorbar& Cone::Colorbar::yref(enum Yref f) {
@@ -1374,55 +872,25 @@ inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::style(enum Style f) {
@@ -1444,12 +912,6 @@ inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickfont& Cone::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -1468,55 +930,25 @@ inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::dtickrang
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Tickformatstop& Cone::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Cone::Colorbar::Title::to_string(Side e) {
@@ -1548,12 +980,6 @@ inline Cone::Colorbar::Title& Cone::Colorbar::Title::side(enum Side f) {
 inline Cone::Colorbar::Title& Cone::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Title& Cone::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Cone::Colorbar::Title::Font::to_string(Style e) {
@@ -1595,55 +1021,25 @@ inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::style(enum Style f) {
@@ -1664,12 +1060,6 @@ inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::variant(enum Va
 inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Colorbar::Title::Font& Cone::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Cone::Hoverlabel::to_string(Align e) {
@@ -1697,12 +1087,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1711,12 +1095,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolor(std::string f) {
 inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -1731,12 +1109,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1745,12 +1117,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolor(std::string f) {
 inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -1764,12 +1130,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolor(const std::vector<double>
 inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Cone::Hoverlabel& Cone::Hoverlabel::font(Font f) {
@@ -1787,12 +1147,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Cone::Hoverlabel& Cone::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -1801,12 +1155,6 @@ inline Cone::Hoverlabel& Cone::Hoverlabel::namelength(const std::vector<int>& f)
 inline Cone::Hoverlabel& Cone::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel& Cone::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Cone::Hoverlabel::Font::to_string(Style e) {
@@ -1848,12 +1196,6 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1867,22 +1209,10 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1893,22 +1223,10 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::familysrc(std::string f) 
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1919,22 +1237,10 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::linepositionsrc(std::stri
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1945,22 +1251,10 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::shadowsrc(std::string f) 
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1970,12 +1264,6 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::size(const std::vector<do
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::style(enum Style f) {
@@ -1993,12 +1281,6 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -2014,12 +1296,6 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::textcase(const std::vecto
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::variant(enum Variant f) {
@@ -2037,22 +1313,10 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::variantsrc(std::string f)
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -2062,12 +1326,6 @@ inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weight(const std::vector<
 inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Hoverlabel::Font& Cone::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -2085,12 +1343,6 @@ inline Cone::Legendgrouptitle& Cone::Legendgrouptitle::font(Callable&& c) {
 inline Cone::Legendgrouptitle& Cone::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle& Cone::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Cone::Legendgrouptitle::Font::to_string(Style e) {
@@ -2132,55 +1384,25 @@ inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::style(enum Style f) {
@@ -2202,89 +1424,41 @@ inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::weight(int f)
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Legendgrouptitle::Font& Cone::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Cone::Lighting& Cone::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::ambient(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ambient(std::move(f));
-}
 
 inline Cone::Lighting& Cone::Lighting::diffuse(double f) {
     json["diffuse"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::diffuse(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return diffuse(std::move(f));
 }
 
 inline Cone::Lighting& Cone::Lighting::facenormalsepsilon(double f) {
     json["facenormalsepsilon"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::facenormalsepsilon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return facenormalsepsilon(std::move(f));
-}
 
 inline Cone::Lighting& Cone::Lighting::fresnel(double f) {
     json["fresnel"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::fresnel(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fresnel(std::move(f));
 }
 
 inline Cone::Lighting& Cone::Lighting::roughness(double f) {
     json["roughness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::roughness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return roughness(std::move(f));
-}
 
 inline Cone::Lighting& Cone::Lighting::specular(double f) {
     json["specular"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::specular(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return specular(std::move(f));
-}
 
 inline Cone::Lighting& Cone::Lighting::vertexnormalsepsilon(double f) {
     json["vertexnormalsepsilon"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Lighting& Cone::Lighting::vertexnormalsepsilon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return vertexnormalsepsilon(std::move(f));
 }
 
 
@@ -2292,33 +1466,15 @@ inline Cone::Lightposition& Cone::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Lightposition& Cone::Lightposition::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Cone::Lightposition& Cone::Lightposition::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Lightposition& Cone::Lightposition::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Cone::Lightposition& Cone::Lightposition::z(double f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Lightposition& Cone::Lightposition::z(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 
@@ -2326,22 +1482,10 @@ inline Cone::Stream& Cone::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Cone::Stream& Cone::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Cone::Stream& Cone::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Cone::Stream& Cone::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 } // namespace plotlypp

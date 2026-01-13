@@ -73,28 +73,18 @@ class Scattergeo : public Trace {
 
     // Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
     Scattergeo& connectgaps(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo& connectgaps(Callable&& c);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo& customdata(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo& customdata(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `customdata`.
     Scattergeo& customdatasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& customdatasrc(Callable&& c);
 
     // Sets the key in GeoJSON features which is used as id to match the items included in the `locations` array. Only
     // has an effect when `geojson` is set. Support nested property, for example *properties.name*.
     Scattergeo& featureidkey(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& featureidkey(Callable&& c);
 
     // Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of
     // the trace (or each segment of the trace if it has gaps) into a closed shape.
@@ -105,24 +95,17 @@ class Scattergeo : public Trace {
     // color, whichever is available.
     Scattergeo& fillcolor(std::string f);
     Scattergeo& fillcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo& fillcolor(Callable&& c);
 
     // Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value),
     // the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`,
     // and so on.
     Scattergeo& geo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& geo(Callable&& c);
 
     // Sets optional GeoJSON data associated with this trace. If not given, the features on the base map are used when
     // `locations` is set. It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs
     // of type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
     template <typename T>
     Scattergeo& geojson(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo& geojson(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
     // hovering. But, if `none` is set, click and hover events are still fired.
@@ -130,14 +113,10 @@ class Scattergeo : public Trace {
     // - Flags: ['lon', 'lat', 'location', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
     Scattergeo& hoverinfo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& hoverinfo(Callable&& c);
     Scattergeo& hoverinfo(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Scattergeo& hoverinfosrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& hoverinfosrc(Callable&& c);
 
     Scattergeo& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
@@ -157,66 +136,42 @@ class Scattergeo : public Trace {
     // displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     // completely, use an empty tag `<extra></extra>`.
     Scattergeo& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& hovertemplate(Callable&& c);
     Scattergeo& hovertemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertemplate`.
     Scattergeo& hovertemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& hovertemplatesrc(Callable&& c);
 
     // Sets hover text elements associated with each (lon,lat) pair or item in `locations`. If a single string, the same
     // string appears over all the data points. If an array of string, the items are mapped in order to the this trace's
     // (lon,lat) or `locations` coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     Scattergeo& hovertext(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& hovertext(Callable&& c);
     Scattergeo& hovertext(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertext`.
     Scattergeo& hovertextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& hovertextsrc(Callable&& c);
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo& ids(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo& ids(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ids`.
     Scattergeo& idssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& idssrc(Callable&& c);
 
     // Sets the latitude coordinates (in degrees North).
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo& lat(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo& lat(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `lat`.
     Scattergeo& latsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& latsrc(Callable&& c);
 
     // Sets the reference to a legend to show this trace in. References to these legends are *legend*, *legend2*,
     // *legend3*, etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
     Scattergeo& legend(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& legend(Callable&& c);
 
     // Sets the legend group for this trace. Traces and shapes part of the same legend group hide/show at the same time
     // when toggling legend items.
     Scattergeo& legendgroup(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& legendgroup(Callable&& c);
 
     Scattergeo& legendgrouptitle(Legendgrouptitle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legendgrouptitle&>>>
@@ -228,13 +183,9 @@ class Scattergeo : public Trace {
     // after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e.
     // according to their order in data and layout.
     Scattergeo& legendrank(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo& legendrank(Callable&& c);
 
     // Sets the width (in px or fraction) of the legend for this trace.
     Scattergeo& legendwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo& legendwidth(Callable&& c);
 
     Scattergeo& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
@@ -250,28 +201,16 @@ class Scattergeo : public Trace {
     // See `locationmode` for more info.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo& locations(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo& locations(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `locations`.
     Scattergeo& locationssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& locationssrc(Callable&& c);
 
     // Sets the longitude coordinates (in degrees East).
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo& lon(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo& lon(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `lon`.
     Scattergeo& lonsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& lonsrc(Callable&& c);
 
     Scattergeo& marker(Marker f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Marker&>>>
@@ -285,15 +224,11 @@ class Scattergeo : public Trace {
     // trace index.
     template <typename T>
     Scattergeo& meta(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo& meta(Callable&& c);
     template <typename T>
     Scattergeo& meta(const std::vector<T>& f);
 
     // Sets the source reference on Chart Studio Cloud for `meta`.
     Scattergeo& metasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& metasrc(Callable&& c);
 
     // Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text`
     // elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20
@@ -302,18 +237,12 @@ class Scattergeo : public Trace {
     // - Flags: ['lines', 'markers', 'text']
     // - Extras ['none']
     Scattergeo& mode(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& mode(Callable&& c);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Scattergeo& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& name(Callable&& c);
 
     // Sets the opacity of the trace.
     Scattergeo& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo& opacity(Callable&& c);
 
     Scattergeo& selected(Selected f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Selected&>>>
@@ -324,13 +253,9 @@ class Scattergeo : public Trace {
     // other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     template <typename T>
     Scattergeo& selectedpoints(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo& selectedpoints(Callable&& c);
 
     // Determines whether or not an item corresponding to this trace is shown in the legend.
     Scattergeo& showlegend(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo& showlegend(Callable&& c);
 
     Scattergeo& stream(Stream f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Stream&>>>
@@ -341,8 +266,6 @@ class Scattergeo : public Trace {
     // (lon,lat) or `locations` coordinates. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set,
     // these elements will be seen in the hover labels.
     Scattergeo& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& text(Callable&& c);
     Scattergeo& text(const std::vector<std::string>& f);
 
     // Sets the text font.
@@ -357,13 +280,9 @@ class Scattergeo : public Trace {
 
     // Sets the source reference on Chart Studio Cloud for `textposition`.
     Scattergeo& textpositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& textpositionsrc(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `text`.
     Scattergeo& textsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& textsrc(Callable&& c);
 
     // Template string used for rendering the information text that appear on points. Note that this will override
     // `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using
@@ -374,20 +293,14 @@ class Scattergeo : public Trace {
     // attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. Finally, the
     // template string has access to variables `lat`, `lon`, `location` and `text`.
     Scattergeo& texttemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& texttemplate(Callable&& c);
     Scattergeo& texttemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `texttemplate`.
     Scattergeo& texttemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& texttemplatesrc(Callable&& c);
 
     // Assign an id to this trace, Use this to provide object constancy between traces during animations and
     // transitions.
     Scattergeo& uid(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo& uid(Callable&& c);
 
     // Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well
     // as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note
@@ -399,8 +312,6 @@ class Scattergeo : public Trace {
     // still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     template <typename T>
     Scattergeo& uirevision(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo& uirevision(Callable&& c);
 
     Scattergeo& unselected(Unselected f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Unselected&>>>
@@ -436,36 +347,24 @@ class Scattergeo::Hoverlabel {
 
     // Sets the source reference on Chart Studio Cloud for `align`.
     Scattergeo::Hoverlabel& alignsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel& alignsrc(Callable&& c);
 
     // Sets the background color of the hover labels for this trace
     Scattergeo::Hoverlabel& bgcolor(std::string f);
     Scattergeo::Hoverlabel& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Hoverlabel& bgcolor(Callable&& c);
     Scattergeo::Hoverlabel& bgcolor(const std::vector<std::string>& f);
     Scattergeo::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Scattergeo::Hoverlabel& bgcolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel& bgcolorsrc(Callable&& c);
 
     // Sets the border color of the hover labels for this trace.
     Scattergeo::Hoverlabel& bordercolor(std::string f);
     Scattergeo::Hoverlabel& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Hoverlabel& bordercolor(Callable&& c);
     Scattergeo::Hoverlabel& bordercolor(const std::vector<std::string>& f);
     Scattergeo::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Scattergeo::Hoverlabel& bordercolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel& bordercolorsrc(Callable&& c);
 
     // Sets the font used in hover labels.
     Scattergeo::Hoverlabel& font(Font f);
@@ -477,14 +376,10 @@ class Scattergeo::Hoverlabel {
     // name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters
     // and add an ellipsis.
     Scattergeo::Hoverlabel& namelength(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Hoverlabel& namelength(Callable&& c);
     Scattergeo::Hoverlabel& namelength(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `namelength`.
     Scattergeo::Hoverlabel& namelengthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel& namelengthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -523,16 +418,11 @@ class Scattergeo::Hoverlabel::Font {
 
     Scattergeo::Hoverlabel::Font& color(std::string f);
     Scattergeo::Hoverlabel::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Hoverlabel::Font& color(Callable&& c);
     Scattergeo::Hoverlabel::Font& color(const std::vector<std::string>& f);
     Scattergeo::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergeo::Hoverlabel::Font& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -542,14 +432,10 @@ class Scattergeo::Hoverlabel::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergeo::Hoverlabel::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& family(Callable&& c);
     Scattergeo::Hoverlabel::Font& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Scattergeo::Hoverlabel::Font& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& familysrc(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -557,36 +443,24 @@ class Scattergeo::Hoverlabel::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergeo::Hoverlabel::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& lineposition(Callable&& c);
     Scattergeo::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattergeo::Hoverlabel::Font& linepositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& linepositionsrc(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergeo::Hoverlabel::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& shadow(Callable&& c);
     Scattergeo::Hoverlabel::Font& shadow(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `shadow`.
     Scattergeo::Hoverlabel::Font& shadowsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& shadowsrc(Callable&& c);
 
     Scattergeo::Hoverlabel::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Hoverlabel::Font& size(Callable&& c);
     Scattergeo::Hoverlabel::Font& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Scattergeo::Hoverlabel::Font& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -595,8 +469,6 @@ class Scattergeo::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Scattergeo::Hoverlabel::Font& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& stylesrc(Callable&& c);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
@@ -606,8 +478,6 @@ class Scattergeo::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `textcase`.
     Scattergeo::Hoverlabel::Font& textcasesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& textcasesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -616,19 +486,13 @@ class Scattergeo::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Scattergeo::Hoverlabel::Font& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     Scattergeo::Hoverlabel::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Hoverlabel::Font& weight(Callable&& c);
     Scattergeo::Hoverlabel::Font& weight(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Scattergeo::Hoverlabel::Font& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Hoverlabel::Font& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -650,8 +514,6 @@ class Scattergeo::Legendgrouptitle {
 
     // Sets the title of the legend group.
     Scattergeo::Legendgrouptitle& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -690,9 +552,6 @@ class Scattergeo::Legendgrouptitle::Font {
 
     Scattergeo::Legendgrouptitle::Font& color(std::string f);
     Scattergeo::Legendgrouptitle::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -702,8 +561,6 @@ class Scattergeo::Legendgrouptitle::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergeo::Legendgrouptitle::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -711,18 +568,12 @@ class Scattergeo::Legendgrouptitle::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergeo::Legendgrouptitle::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergeo::Legendgrouptitle::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Legendgrouptitle::Font& shadow(Callable&& c);
 
     Scattergeo::Legendgrouptitle::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -739,8 +590,6 @@ class Scattergeo::Legendgrouptitle::Font {
 
     // Sets the weight (or boldness) of the font.
     Scattergeo::Legendgrouptitle::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -755,20 +604,13 @@ class Scattergeo::Line {
     // Sets the line color.
     Scattergeo::Line& color(std::string f);
     Scattergeo::Line& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Line& color(Callable&& c);
 
     // Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or
     // *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
     Scattergeo::Line& dash(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Line& dash(Callable&& c);
 
     // Sets the line width (in px).
     Scattergeo::Line& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Line& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1127,8 +969,6 @@ class Scattergeo::Marker {
 
     // Sets the marker angle in respect to `angleref`.
     Scattergeo::Marker& angle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& angle(Callable&& c);
     Scattergeo::Marker& angle(const std::vector<double>& f);
 
     // Sets the reference for marker angle. With *previous*, angle 0 points along the line from the previous point to
@@ -1139,50 +979,35 @@ class Scattergeo::Marker {
 
     // Sets the source reference on Chart Studio Cloud for `angle`.
     Scattergeo::Marker& anglesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& anglesrc(Callable&& c);
 
     // Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by
     // `marker.colorscale`. Has an effect only if in `marker.color` is set to a numerical array. In case `colorscale` is
     // unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
     // `color` array are all positive, all negative or mixed.
     Scattergeo::Marker& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or
     // the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color` is set to a numerical
     // array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
     Scattergeo::Marker& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `marker.color` is set to a numerical array.
     // Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.
     Scattergeo::Marker& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this
     // point. Has an effect only if in `marker.color` is set to a numerical array. Value should have the same units as
     // in `marker.color`. Has no effect when `marker.cauto` is `false`.
     Scattergeo::Marker& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `marker.color` is set to a numerical array.
     // Value should have the same units as in `marker.color` and if set, `marker.cmax` must be set as well.
     Scattergeo::Marker& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& cmin(Callable&& c);
 
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Scattergeo::Marker& color(std::string f);
     Scattergeo::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& color(Callable&& c);
     Scattergeo::Marker& color(const std::vector<std::string>& f);
     Scattergeo::Marker& color(const std::vector<double>& f);
 
@@ -1190,8 +1015,6 @@ class Scattergeo::Marker {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Scattergeo::Marker& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& coloraxis(Callable&& c);
 
     Scattergeo::Marker& colorbar(Colorbar f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorbar&>>>
@@ -1205,15 +1028,9 @@ class Scattergeo::Marker {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Scattergeo::Marker& colorscale(std::string f);
     Scattergeo::Marker& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Scattergeo::Marker& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergeo::Marker& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& colorsrc(Callable&& c);
 
     Scattergeo::Marker& gradient(Gradient f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Gradient&>>>
@@ -1225,39 +1042,27 @@ class Scattergeo::Marker {
 
     // Sets the marker opacity.
     Scattergeo::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& opacity(Callable&& c);
     Scattergeo::Marker& opacity(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `opacity`.
     Scattergeo::Marker& opacitysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& opacitysrc(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `marker.color` is set to a numerical array. If true,
     // `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first
     // color.
     Scattergeo::Marker& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker& reversescale(Callable&& c);
 
     // Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color` is set
     // to a numerical array.
     Scattergeo::Marker& showscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker& showscale(Callable&& c);
 
     // Sets the marker size (in px).
     Scattergeo::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& size(Callable&& c);
     Scattergeo::Marker& size(const std::vector<double>& f);
 
     // Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered
     // marker points.
     Scattergeo::Marker& sizemin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& sizemin(Callable&& c);
 
     // Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is
     // converted to pixels.
@@ -1267,25 +1072,17 @@ class Scattergeo::Marker {
     // Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the
     // rendered size of marker points. Use with `sizemin` and `sizemode`.
     Scattergeo::Marker& sizeref(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& sizeref(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Scattergeo::Marker& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& sizesrc(Callable&& c);
 
     // Moves the marker away from the data point in the direction of `angle` (in px). This can be useful for example if
     // you have another marker at this location and you want to point an arrowhead marker at it.
     Scattergeo::Marker& standoff(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker& standoff(Callable&& c);
     Scattergeo::Marker& standoff(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `standoff`.
     Scattergeo::Marker& standoffsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& standoffsrc(Callable&& c);
 
     // Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is
     // equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open*
@@ -1296,8 +1093,6 @@ class Scattergeo::Marker {
 
     // Sets the source reference on Chart Studio Cloud for `symbol`.
     Scattergeo::Marker& symbolsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker& symbolsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1429,21 +1224,13 @@ class Scattergeo::Marker::Colorbar {
     // Sets the color of padded area.
     Scattergeo::Marker::Colorbar& bgcolor(std::string f);
     Scattergeo::Marker::Colorbar& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Scattergeo::Marker::Colorbar& bordercolor(std::string f);
     Scattergeo::Marker::Colorbar& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
     Scattergeo::Marker::Colorbar& borderwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& borderwidth(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -1459,8 +1246,6 @@ class Scattergeo::Marker::Colorbar {
     // set `dtick` to *M48*
     template <typename T>
     Scattergeo::Marker::Colorbar& dtick(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo::Marker::Colorbar& dtick(Callable&& c);
 
     // Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*,
     // it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*,
@@ -1475,14 +1260,10 @@ class Scattergeo::Marker::Colorbar {
     // values (if desired) can include html-like tags or MathJax.
     template <typename T>
     Scattergeo::Marker::Colorbar& labelalias(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo::Marker::Colorbar& labelalias(Callable&& c);
 
     // Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is
     // this length minus the padding on both ends.
     Scattergeo::Marker::Colorbar& len(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& len(Callable&& c);
 
     // Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of
     // plot *fraction* or in *pixels. Use `len` to set the value.
@@ -1491,14 +1272,10 @@ class Scattergeo::Marker::Colorbar {
 
     // Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
     Scattergeo::Marker::Colorbar& minexponent(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& minexponent(Callable&& c);
 
     // Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen
     // automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     Scattergeo::Marker::Colorbar& nticks(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Marker::Colorbar& nticks(Callable&& c);
 
     // Sets the orientation of the colorbar.
     // - Default: v
@@ -1507,19 +1284,12 @@ class Scattergeo::Marker::Colorbar {
     // Sets the axis line color.
     Scattergeo::Marker::Colorbar& outlinecolor(std::string f);
     Scattergeo::Marker::Colorbar& outlinecolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
     Scattergeo::Marker::Colorbar& outlinewidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& outlinewidth(Callable&& c);
 
     // If "true", even 4-digit integers are separated
     Scattergeo::Marker::Colorbar& separatethousands(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker::Colorbar& separatethousands(Callable&& c);
 
     // If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is
     // shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
@@ -1528,8 +1298,6 @@ class Scattergeo::Marker::Colorbar {
 
     // Determines whether or not the tick labels are drawn.
     Scattergeo::Marker::Colorbar& showticklabels(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker::Colorbar& showticklabels(Callable&& c);
 
     // If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a
     // prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
@@ -1542,8 +1310,6 @@ class Scattergeo::Marker::Colorbar {
 
     // Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
     Scattergeo::Marker::Colorbar& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& thickness(Callable&& c);
 
     // Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units
     // of plot *fraction* or in *pixels*. Use `thickness` to set the value.
@@ -1557,21 +1323,14 @@ class Scattergeo::Marker::Colorbar {
     // serial number from zero in the order it appears.
     template <typename T>
     Scattergeo::Marker::Colorbar& tick0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Scattergeo::Marker::Colorbar& tick0(Callable&& c);
 
     // Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the
     // tick labels vertically.
     Scattergeo::Marker::Colorbar& tickangle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& tickangle(Callable&& c);
 
     // Sets the tick color.
     Scattergeo::Marker::Colorbar& tickcolor(std::string f);
     Scattergeo::Marker::Colorbar& tickcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
     Scattergeo::Marker::Colorbar& tickfont(Tickfont f);
@@ -1584,12 +1343,7 @@ class Scattergeo::Marker::Colorbar {
     // half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example,
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     Scattergeo::Marker::Colorbar& tickformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar& tickformat(Callable&& c);
 
-    Scattergeo::Marker::Colorbar& tickformatstops(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Scattergeo::Marker::Colorbar& tickformatstops(Callable&& c);
     Scattergeo::Marker::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
@@ -1606,13 +1360,9 @@ class Scattergeo::Marker::Colorbar {
     // labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or
     // *multicategory*, or when `tickmode` is *array*.
     Scattergeo::Marker::Colorbar& ticklabelstep(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Marker::Colorbar& ticklabelstep(Callable&& c);
 
     // Sets the tick length (in px).
     Scattergeo::Marker::Colorbar& ticklen(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& ticklen(Callable&& c);
 
     // Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement
     // of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
@@ -1622,8 +1372,6 @@ class Scattergeo::Marker::Colorbar {
 
     // Sets a tick label prefix.
     Scattergeo::Marker::Colorbar& tickprefix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar& tickprefix(Callable&& c);
 
     // Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this
     // axis' are drawn outside (inside) the axis lines.
@@ -1632,41 +1380,25 @@ class Scattergeo::Marker::Colorbar {
 
     // Sets a tick label suffix.
     Scattergeo::Marker::Colorbar& ticksuffix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar& ticksuffix(Callable&& c);
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo::Marker::Colorbar& ticktext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo::Marker::Colorbar& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
     Scattergeo::Marker::Colorbar& ticktextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar& ticktextsrc(Callable&& c);
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Scattergeo::Marker::Colorbar& tickvals(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Scattergeo::Marker::Colorbar& tickvals(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `tickvals`.
     Scattergeo::Marker::Colorbar& tickvalssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar& tickvalssrc(Callable&& c);
 
     // Sets the tick width (in px).
     Scattergeo::Marker::Colorbar& tickwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& tickwidth(Callable&& c);
 
     Scattergeo::Marker::Colorbar& title(Title f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Title&>>>
@@ -1677,8 +1409,6 @@ class Scattergeo::Marker::Colorbar {
     // when `orientation` is *v* and 0.5 when `orientation` is *h*. Must be between *0* and *1* if `xref` is *container*
     // and between *-2* and *3* if `xref` is *paper*.
     Scattergeo::Marker::Colorbar& x(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& x(Callable&& c);
 
     // Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.
@@ -1686,8 +1416,6 @@ class Scattergeo::Marker::Colorbar {
 
     // Sets the amount of padding (in px) along the x direction.
     Scattergeo::Marker::Colorbar& xpad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& xpad(Callable&& c);
 
     // Sets the container `x` refers to. *container* spans the entire `width` of the plot. *paper* refers to the width
     // of the plotting area only.
@@ -1699,8 +1427,6 @@ class Scattergeo::Marker::Colorbar {
     // when `orientation` is *v* and 1 when `orientation` is *h*. Must be between *0* and *1* if `yref` is *container*
     // and between *-2* and *3* if `yref` is *paper*.
     Scattergeo::Marker::Colorbar& y(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& y(Callable&& c);
 
     // Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.
@@ -1708,8 +1434,6 @@ class Scattergeo::Marker::Colorbar {
 
     // Sets the amount of padding (in px) along the y direction.
     Scattergeo::Marker::Colorbar& ypad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar& ypad(Callable&& c);
 
     // Sets the container `y` refers to. *container* spans the entire `height` of the plot. *paper* refers to the height
     // of the plotting area only.
@@ -1753,9 +1477,6 @@ class Scattergeo::Marker::Colorbar::Tickfont {
 
     Scattergeo::Marker::Colorbar::Tickfont& color(std::string f);
     Scattergeo::Marker::Colorbar::Tickfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1765,8 +1486,6 @@ class Scattergeo::Marker::Colorbar::Tickfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergeo::Marker::Colorbar::Tickfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Tickfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1774,18 +1493,12 @@ class Scattergeo::Marker::Colorbar::Tickfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergeo::Marker::Colorbar::Tickfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Tickfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergeo::Marker::Colorbar::Tickfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Tickfont& shadow(Callable&& c);
 
     Scattergeo::Marker::Colorbar::Tickfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar::Tickfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1802,8 +1515,6 @@ class Scattergeo::Marker::Colorbar::Tickfont {
 
     // Sets the weight (or boldness) of the font.
     Scattergeo::Marker::Colorbar::Tickfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Marker::Colorbar::Tickfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1821,25 +1532,15 @@ class Scattergeo::Marker::Colorbar::Tickformatstop {
     Scattergeo::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
     Scattergeo::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
     Scattergeo::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Scattergeo::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     Scattergeo::Marker::Colorbar::Tickformatstop& enabled(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
     Scattergeo::Marker::Colorbar::Tickformatstop& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
@@ -1847,13 +1548,9 @@ class Scattergeo::Marker::Colorbar::Tickformatstop {
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
     Scattergeo::Marker::Colorbar::Tickformatstop& templateitemname(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
     Scattergeo::Marker::Colorbar::Tickformatstop& value(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1886,8 +1583,6 @@ class Scattergeo::Marker::Colorbar::Title {
 
     // Sets the title of the color bar.
     Scattergeo::Marker::Colorbar::Title& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Title& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1926,9 +1621,6 @@ class Scattergeo::Marker::Colorbar::Title::Font {
 
     Scattergeo::Marker::Colorbar::Title::Font& color(std::string f);
     Scattergeo::Marker::Colorbar::Title::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1938,8 +1630,6 @@ class Scattergeo::Marker::Colorbar::Title::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergeo::Marker::Colorbar::Title::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Title::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1947,18 +1637,12 @@ class Scattergeo::Marker::Colorbar::Title::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergeo::Marker::Colorbar::Title::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Title::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergeo::Marker::Colorbar::Title::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Colorbar::Title::Font& shadow(Callable&& c);
 
     Scattergeo::Marker::Colorbar::Title::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Colorbar::Title::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1975,8 +1659,6 @@ class Scattergeo::Marker::Colorbar::Title::Font {
 
     // Sets the weight (or boldness) of the font.
     Scattergeo::Marker::Colorbar::Title::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Marker::Colorbar::Title::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2000,16 +1682,11 @@ class Scattergeo::Marker::Gradient {
     // for vertical.
     Scattergeo::Marker::Gradient& color(std::string f);
     Scattergeo::Marker::Gradient& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Gradient& color(Callable&& c);
     Scattergeo::Marker::Gradient& color(const std::vector<std::string>& f);
     Scattergeo::Marker::Gradient& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergeo::Marker::Gradient& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Gradient& colorsrc(Callable&& c);
 
     // Sets the type of gradient used to fill the markers
     // - Default: none
@@ -2018,8 +1695,6 @@ class Scattergeo::Marker::Gradient {
 
     // Sets the source reference on Chart Studio Cloud for `type`.
     Scattergeo::Marker::Gradient& typesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Gradient& typesrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2036,46 +1711,33 @@ class Scattergeo::Marker::Line {
     // `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
     // numbers in the `color` array are all positive, all negative or mixed.
     Scattergeo::Marker::Line& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker::Line& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in
     // `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has an effect only if in
     // `marker.line.color` is set to a numerical array. Defaults to `false` when `marker.line.cmin` and
     // `marker.line.cmax` are set by the user.
     Scattergeo::Marker::Line& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker::Line& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `marker.line.color` is set to a numerical
     // array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as
     // well.
     Scattergeo::Marker::Line& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Line& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax` to be equidistant
     // to this point. Has an effect only if in `marker.line.color` is set to a numerical array. Value should have the
     // same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
     Scattergeo::Marker::Line& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Line& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `marker.line.color` is set to a numerical
     // array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as
     // well.
     Scattergeo::Marker::Line& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Line& cmin(Callable&& c);
 
     // Sets the marker.line color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Scattergeo::Marker::Line& color(std::string f);
     Scattergeo::Marker::Line& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Line& color(Callable&& c);
     Scattergeo::Marker::Line& color(const std::vector<std::string>& f);
     Scattergeo::Marker::Line& color(const std::vector<double>& f);
 
@@ -2083,8 +1745,6 @@ class Scattergeo::Marker::Line {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Scattergeo::Marker::Line& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Line& coloraxis(Callable&& c);
 
     // Sets the colorscale. Has an effect only if in `marker.line.color` is set to a numerical array. The colorscale
     // must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color
@@ -2095,33 +1755,21 @@ class Scattergeo::Marker::Line {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Scattergeo::Marker::Line& colorscale(std::string f);
     Scattergeo::Marker::Line& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Scattergeo::Marker::Line& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergeo::Marker::Line& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Line& colorsrc(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `marker.line.color` is set to a numerical array. If
     // true, `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will correspond to
     // the first color.
     Scattergeo::Marker::Line& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Scattergeo::Marker::Line& reversescale(Callable&& c);
 
     // Sets the width (in px) of the lines bounding the marker points.
     Scattergeo::Marker::Line& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Marker::Line& width(Callable&& c);
     Scattergeo::Marker::Line& width(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `width`.
     Scattergeo::Marker::Line& widthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Marker::Line& widthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2157,19 +1805,12 @@ class Scattergeo::Selected::Marker {
     // Sets the marker color of selected points.
     Scattergeo::Selected::Marker& color(std::string f);
     Scattergeo::Selected::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
     Scattergeo::Selected::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Selected::Marker& opacity(Callable&& c);
 
     // Sets the marker size of selected points.
     Scattergeo::Selected::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Selected::Marker& size(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2184,9 +1825,6 @@ class Scattergeo::Selected::Textfont {
     // Sets the text font color of selected points.
     Scattergeo::Selected::Textfont& color(std::string f);
     Scattergeo::Selected::Textfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Selected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2201,14 +1839,10 @@ class Scattergeo::Stream {
     // Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*,
     // only the newest 50 points will be displayed on the plot.
     Scattergeo::Stream& maxpoints(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Stream& maxpoints(Callable&& c);
 
     // The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for
     // more details.
     Scattergeo::Stream& token(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Stream& token(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2247,16 +1881,11 @@ class Scattergeo::Textfont {
 
     Scattergeo::Textfont& color(std::string f);
     Scattergeo::Textfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Textfont& color(Callable&& c);
     Scattergeo::Textfont& color(const std::vector<std::string>& f);
     Scattergeo::Textfont& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Scattergeo::Textfont& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -2266,14 +1895,10 @@ class Scattergeo::Textfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Scattergeo::Textfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& family(Callable&& c);
     Scattergeo::Textfont& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Scattergeo::Textfont& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& familysrc(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -2281,36 +1906,24 @@ class Scattergeo::Textfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Scattergeo::Textfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& lineposition(Callable&& c);
     Scattergeo::Textfont& lineposition(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Scattergeo::Textfont& linepositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& linepositionsrc(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Scattergeo::Textfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& shadow(Callable&& c);
     Scattergeo::Textfont& shadow(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `shadow`.
     Scattergeo::Textfont& shadowsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& shadowsrc(Callable&& c);
 
     Scattergeo::Textfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Textfont& size(Callable&& c);
     Scattergeo::Textfont& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Scattergeo::Textfont& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -2319,8 +1932,6 @@ class Scattergeo::Textfont {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Scattergeo::Textfont& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& stylesrc(Callable&& c);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
@@ -2330,8 +1941,6 @@ class Scattergeo::Textfont {
 
     // Sets the source reference on Chart Studio Cloud for `textcase`.
     Scattergeo::Textfont& textcasesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& textcasesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -2340,19 +1949,13 @@ class Scattergeo::Textfont {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Scattergeo::Textfont& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     Scattergeo::Textfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Scattergeo::Textfont& weight(Callable&& c);
     Scattergeo::Textfont& weight(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Scattergeo::Textfont& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Scattergeo::Textfont& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2388,19 +1991,12 @@ class Scattergeo::Unselected::Marker {
     // Sets the marker color of unselected points, applied only when a selection exists.
     Scattergeo::Unselected::Marker& color(std::string f);
     Scattergeo::Unselected::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.
     Scattergeo::Unselected::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Unselected::Marker& opacity(Callable&& c);
 
     // Sets the marker size of unselected points, applied only when a selection exists.
     Scattergeo::Unselected::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Unselected::Marker& size(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2415,9 +2011,6 @@ class Scattergeo::Unselected::Textfont {
     // Sets the text font color of unselected points, applied only when a selection exists.
     Scattergeo::Unselected::Textfont& color(std::string f);
     Scattergeo::Unselected::Textfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Scattergeo::Unselected::Textfont& color(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

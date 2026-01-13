@@ -61,25 +61,15 @@ class Image : public Trace {
     // *scatter* traces also appends customdata items in the markers DOM elements
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Image& customdata(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Image& customdata(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `customdata`.
     Image& customdatasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& customdatasrc(Callable&& c);
 
     // Set the pixel's horizontal size.
     Image& dx(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image& dx(Callable&& c);
 
     // Set the pixel's vertical size
     Image& dy(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image& dy(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
     // hovering. But, if `none` is set, click and hover events are still fired.
@@ -87,14 +77,10 @@ class Image : public Trace {
     // - Flags: ['x', 'y', 'z', 'color', 'name', 'text']
     // - Extras ['all', 'none', 'skip']
     Image& hoverinfo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& hoverinfo(Callable&& c);
     Image& hoverinfo(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Image& hoverinfosrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& hoverinfosrc(Callable&& c);
 
     Image& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
@@ -115,47 +101,29 @@ class Image : public Trace {
     // for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     // `<extra></extra>`.
     Image& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& hovertemplate(Callable&& c);
     Image& hovertemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertemplate`.
     Image& hovertemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& hovertemplatesrc(Callable&& c);
 
     // Same as `text`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Image& hovertext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Image& hovertext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `hovertext`.
     Image& hovertextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& hovertextsrc(Callable&& c);
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Image& ids(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Image& ids(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ids`.
     Image& idssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& idssrc(Callable&& c);
 
     // Sets the reference to a legend to show this trace in. References to these legends are *legend*, *legend2*,
     // *legend3*, etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
     Image& legend(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& legend(Callable&& c);
 
     Image& legendgrouptitle(Legendgrouptitle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legendgrouptitle&>>>
@@ -167,13 +135,9 @@ class Image : public Trace {
     // after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e.
     // according to their order in data and layout.
     Image& legendrank(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image& legendrank(Callable&& c);
 
     // Sets the width (in px or fraction) of the legend for this trace.
     Image& legendwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image& legendwidth(Callable&& c);
 
     // Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes
     // such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues`
@@ -183,31 +147,21 @@ class Image : public Trace {
     // trace index.
     template <typename T>
     Image& meta(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Image& meta(Callable&& c);
     template <typename T>
     Image& meta(const std::vector<T>& f);
 
     // Sets the source reference on Chart Studio Cloud for `meta`.
     Image& metasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& metasrc(Callable&& c);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Image& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& name(Callable&& c);
 
     // Sets the opacity of the trace.
     Image& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image& opacity(Callable&& c);
 
     // Specifies the data URI of the image to be visualized. The URI consists of "data:image/[<media
     // subtype>][;base64],<data>"
     Image& source(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& source(Callable&& c);
 
     Image& stream(Stream f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Stream&>>>
@@ -216,21 +170,13 @@ class Image : public Trace {
     // Sets the text elements associated with each z value.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Image& text(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Image& text(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `text`.
     Image& textsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& textsrc(Callable&& c);
 
     // Assign an id to this trace, Use this to provide object constancy between traces during animations and
     // transitions.
     Image& uid(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& uid(Callable&& c);
 
     // Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well
     // as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note
@@ -242,8 +188,6 @@ class Image : public Trace {
     // still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     template <typename T>
     Image& uirevision(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Image& uirevision(Callable&& c);
 
     // Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a
     // legend item (provided that the legend itself is visible).
@@ -254,14 +198,10 @@ class Image : public Trace {
     // negative) will be found at xmin=x0-dx/2
     template <typename T>
     Image& x0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Image& x0(Callable&& c);
 
     // Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x
     // coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
     Image& xaxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& xaxis(Callable&& c);
 
     // Set the image's y position. The top edge of the image (or the bottom edge if the y axis is NOT reversed or if dy
     // is negative) will be found at ymin=y0-dy/2. By default when an image trace is included, the y axis will be
@@ -269,22 +209,14 @@ class Image : public Trace {
     // providing an explicit y axis range.
     template <typename T>
     Image& y0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Image& y0(Callable&& c);
 
     // Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y
     // coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
     Image& yaxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& yaxis(Callable&& c);
 
     // A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Image& z(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Image& z(Callable&& c);
 
     // Array defining the higher bound for each color component. Note that the default value will depend on the
     // colormodel. For the `rgb` colormodel, it is [255, 255, 255]. For the `rgba` colormodel, it is [255, 255, 255, 1].
@@ -294,12 +226,6 @@ class Image : public Trace {
     Image& zmax(const std::vector<std::string>& f);
     Image& zmax(const std::vector<std::vector<std::string>>& f);
     Image& zmax(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Image& zmax(Callable&& c);
 
     // Array defining the lower bound for each color component. Note that the default value will depend on the
     // colormodel. For the `rgb` colormodel, it is [0, 0, 0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For the
@@ -309,18 +235,10 @@ class Image : public Trace {
     Image& zmin(const std::vector<std::string>& f);
     Image& zmin(const std::vector<std::vector<std::string>>& f);
     Image& zmin(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Image& zmin(Callable&& c);
 
     // Sets the layer on which this trace is displayed, relative to other SVG traces on the same subplot. SVG traces
     // with higher `zorder` appear in front of those with lower `zorder`.
     Image& zorder(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Image& zorder(Callable&& c);
 
     // Picks a smoothing algorithm used to smooth `z` data. This only applies for image traces that use the `source`
     // attribute.
@@ -329,8 +247,6 @@ class Image : public Trace {
 
     // Sets the source reference on Chart Studio Cloud for `z`.
     Image& zsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image& zsrc(Callable&& c);
 };
 
 class Image::Hoverlabel {
@@ -357,36 +273,24 @@ class Image::Hoverlabel {
 
     // Sets the source reference on Chart Studio Cloud for `align`.
     Image::Hoverlabel& alignsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel& alignsrc(Callable&& c);
 
     // Sets the background color of the hover labels for this trace
     Image::Hoverlabel& bgcolor(std::string f);
     Image::Hoverlabel& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Image::Hoverlabel& bgcolor(Callable&& c);
     Image::Hoverlabel& bgcolor(const std::vector<std::string>& f);
     Image::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Image::Hoverlabel& bgcolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel& bgcolorsrc(Callable&& c);
 
     // Sets the border color of the hover labels for this trace.
     Image::Hoverlabel& bordercolor(std::string f);
     Image::Hoverlabel& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Image::Hoverlabel& bordercolor(Callable&& c);
     Image::Hoverlabel& bordercolor(const std::vector<std::string>& f);
     Image::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Image::Hoverlabel& bordercolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel& bordercolorsrc(Callable&& c);
 
     // Sets the font used in hover labels.
     Image::Hoverlabel& font(Font f);
@@ -398,14 +302,10 @@ class Image::Hoverlabel {
     // name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters
     // and add an ellipsis.
     Image::Hoverlabel& namelength(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Image::Hoverlabel& namelength(Callable&& c);
     Image::Hoverlabel& namelength(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `namelength`.
     Image::Hoverlabel& namelengthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel& namelengthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -444,16 +344,11 @@ class Image::Hoverlabel::Font {
 
     Image::Hoverlabel::Font& color(std::string f);
     Image::Hoverlabel::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Image::Hoverlabel::Font& color(Callable&& c);
     Image::Hoverlabel::Font& color(const std::vector<std::string>& f);
     Image::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Image::Hoverlabel::Font& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -463,14 +358,10 @@ class Image::Hoverlabel::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Image::Hoverlabel::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& family(Callable&& c);
     Image::Hoverlabel::Font& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Image::Hoverlabel::Font& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& familysrc(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -478,36 +369,24 @@ class Image::Hoverlabel::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Image::Hoverlabel::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& lineposition(Callable&& c);
     Image::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Image::Hoverlabel::Font& linepositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& linepositionsrc(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Image::Hoverlabel::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& shadow(Callable&& c);
     Image::Hoverlabel::Font& shadow(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `shadow`.
     Image::Hoverlabel::Font& shadowsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& shadowsrc(Callable&& c);
 
     Image::Hoverlabel::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image::Hoverlabel::Font& size(Callable&& c);
     Image::Hoverlabel::Font& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Image::Hoverlabel::Font& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -516,8 +395,6 @@ class Image::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Image::Hoverlabel::Font& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& stylesrc(Callable&& c);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
@@ -527,8 +404,6 @@ class Image::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `textcase`.
     Image::Hoverlabel::Font& textcasesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& textcasesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -537,19 +412,13 @@ class Image::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Image::Hoverlabel::Font& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     Image::Hoverlabel::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Image::Hoverlabel::Font& weight(Callable&& c);
     Image::Hoverlabel::Font& weight(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Image::Hoverlabel::Font& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Hoverlabel::Font& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -571,8 +440,6 @@ class Image::Legendgrouptitle {
 
     // Sets the title of the legend group.
     Image::Legendgrouptitle& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -611,9 +478,6 @@ class Image::Legendgrouptitle::Font {
 
     Image::Legendgrouptitle::Font& color(std::string f);
     Image::Legendgrouptitle::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Image::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -623,8 +487,6 @@ class Image::Legendgrouptitle::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Image::Legendgrouptitle::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -632,18 +494,12 @@ class Image::Legendgrouptitle::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Image::Legendgrouptitle::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Image::Legendgrouptitle::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Legendgrouptitle::Font& shadow(Callable&& c);
 
     Image::Legendgrouptitle::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -660,8 +516,6 @@ class Image::Legendgrouptitle::Font {
 
     // Sets the weight (or boldness) of the font.
     Image::Legendgrouptitle::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Image::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -676,14 +530,10 @@ class Image::Stream {
     // Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*,
     // only the newest 50 points will be displayed on the plot.
     Image::Stream& maxpoints(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Image::Stream& maxpoints(Callable&& c);
 
     // The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for
     // more details.
     Image::Stream& token(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Image::Stream& token(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

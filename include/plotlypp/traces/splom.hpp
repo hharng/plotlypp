@@ -47,23 +47,14 @@ class Splom : public Trace {
     // *scatter* traces also appends customdata items in the markers DOM elements
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Splom& customdata(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Splom& customdata(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `customdata`.
     Splom& customdatasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& customdatasrc(Callable&& c);
 
     Splom& diagonal(Diagonal f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Diagonal&>>>
     Splom& diagonal(Callable&& c);
 
-    Splom& dimensions(Dimension f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
-    Splom& dimensions(Callable&& c);
     Splom& dimensions(const std::vector<Dimension>& f);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
@@ -72,14 +63,10 @@ class Splom : public Trace {
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
     Splom& hoverinfo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& hoverinfo(Callable&& c);
     Splom& hoverinfo(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Splom& hoverinfosrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& hoverinfosrc(Callable&& c);
 
     Splom& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
@@ -99,51 +86,33 @@ class Splom : public Trace {
     // displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     // completely, use an empty tag `<extra></extra>`.
     Splom& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& hovertemplate(Callable&& c);
     Splom& hovertemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertemplate`.
     Splom& hovertemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& hovertemplatesrc(Callable&& c);
 
     // Same as `text`.
     Splom& hovertext(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& hovertext(Callable&& c);
     Splom& hovertext(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertext`.
     Splom& hovertextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& hovertextsrc(Callable&& c);
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Splom& ids(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Splom& ids(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ids`.
     Splom& idssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& idssrc(Callable&& c);
 
     // Sets the reference to a legend to show this trace in. References to these legends are *legend*, *legend2*,
     // *legend3*, etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
     Splom& legend(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& legend(Callable&& c);
 
     // Sets the legend group for this trace. Traces and shapes part of the same legend group hide/show at the same time
     // when toggling legend items.
     Splom& legendgroup(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& legendgroup(Callable&& c);
 
     Splom& legendgrouptitle(Legendgrouptitle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legendgrouptitle&>>>
@@ -155,13 +124,9 @@ class Splom : public Trace {
     // after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e.
     // according to their order in data and layout.
     Splom& legendrank(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom& legendrank(Callable&& c);
 
     // Sets the width (in px or fraction) of the legend for this trace.
     Splom& legendwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom& legendwidth(Callable&& c);
 
     Splom& marker(Marker f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Marker&>>>
@@ -175,25 +140,17 @@ class Splom : public Trace {
     // trace index.
     template <typename T>
     Splom& meta(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Splom& meta(Callable&& c);
     template <typename T>
     Splom& meta(const std::vector<T>& f);
 
     // Sets the source reference on Chart Studio Cloud for `meta`.
     Splom& metasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& metasrc(Callable&& c);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Splom& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& name(Callable&& c);
 
     // Sets the opacity of the trace.
     Splom& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom& opacity(Callable&& c);
 
     Splom& selected(Selected f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Selected&>>>
@@ -204,23 +161,15 @@ class Splom : public Trace {
     // other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     template <typename T>
     Splom& selectedpoints(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Splom& selectedpoints(Callable&& c);
 
     // Determines whether or not an item corresponding to this trace is shown in the legend.
     Splom& showlegend(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom& showlegend(Callable&& c);
 
     // Determines whether or not subplots on the lower half from the diagonal are displayed.
     Splom& showlowerhalf(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom& showlowerhalf(Callable&& c);
 
     // Determines whether or not subplots on the upper half from the diagonal are displayed.
     Splom& showupperhalf(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom& showupperhalf(Callable&& c);
 
     Splom& stream(Stream f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Stream&>>>
@@ -230,20 +179,14 @@ class Splom : public Trace {
     // appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y)
     // coordinates.
     Splom& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& text(Callable&& c);
     Splom& text(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `text`.
     Splom& textsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& textsrc(Callable&& c);
 
     // Assign an id to this trace, Use this to provide object constancy between traces during animations and
     // transitions.
     Splom& uid(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& uid(Callable&& c);
 
     // Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well
     // as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note
@@ -255,8 +198,6 @@ class Splom : public Trace {
     // still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     template <typename T>
     Splom& uirevision(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Splom& uirevision(Callable&& c);
 
     Splom& unselected(Unselected f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Unselected&>>>
@@ -274,12 +215,6 @@ class Splom : public Trace {
     Splom& xaxes(const std::vector<std::string>& f);
     Splom& xaxes(const std::vector<std::vector<std::string>>& f);
     Splom& xaxes(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Splom& xaxes(Callable&& c);
 
     // Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in
     // Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see:
@@ -288,8 +223,6 @@ class Splom : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `xaxis.hoverformat`.
     Splom& xhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& xhoverformat(Callable&& c);
 
     // Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first
     // N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and
@@ -298,12 +231,6 @@ class Splom : public Trace {
     Splom& yaxes(const std::vector<std::string>& f);
     Splom& yaxes(const std::vector<std::vector<std::string>>& f);
     Splom& yaxes(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Splom& yaxes(Callable&& c);
 
     // Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in
     // Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see:
@@ -312,8 +239,6 @@ class Splom : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `yaxis.hoverformat`.
     Splom& yhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom& yhoverformat(Callable&& c);
 };
 
 class Splom::Diagonal {
@@ -324,8 +249,6 @@ class Splom::Diagonal {
 
     // Determines whether or not subplots on the diagonal are displayed.
     Splom::Diagonal& visible(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Diagonal& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -345,16 +268,12 @@ class Splom::Dimension {
 
     // Sets the label corresponding to this splom dimension.
     Splom::Dimension& label(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimension& label(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
     Splom::Dimension& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimension& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
@@ -362,27 +281,17 @@ class Splom::Dimension {
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
     Splom::Dimension& templateitemname(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimension& templateitemname(Callable&& c);
 
     // Sets the dimension values to be plotted.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Splom::Dimension& values(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Splom::Dimension& values(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `values`.
     Splom::Dimension& valuessrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Dimension& valuessrc(Callable&& c);
 
     // Determines whether or not this dimension is shown on the graph. Note that even visible false dimension contribute
     // to the default grid generate by this splom trace.
     Splom::Dimension& visible(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Dimension& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -405,8 +314,6 @@ class Splom::Dimension::Axis {
     // Determines whether or not the x & y axes generated by this dimension match. Equivalent to setting the `matches`
     // axis attribute in the layout with the correct axis id.
     Splom::Dimension::Axis& matches(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Dimension::Axis& matches(Callable&& c);
 
     // Sets the axis type for this dimension's generated x and y axes. Note that the axis `type` values set in layout
     // take precedence over this attribute.
@@ -440,36 +347,24 @@ class Splom::Hoverlabel {
 
     // Sets the source reference on Chart Studio Cloud for `align`.
     Splom::Hoverlabel& alignsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel& alignsrc(Callable&& c);
 
     // Sets the background color of the hover labels for this trace
     Splom::Hoverlabel& bgcolor(std::string f);
     Splom::Hoverlabel& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Hoverlabel& bgcolor(Callable&& c);
     Splom::Hoverlabel& bgcolor(const std::vector<std::string>& f);
     Splom::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Splom::Hoverlabel& bgcolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel& bgcolorsrc(Callable&& c);
 
     // Sets the border color of the hover labels for this trace.
     Splom::Hoverlabel& bordercolor(std::string f);
     Splom::Hoverlabel& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Hoverlabel& bordercolor(Callable&& c);
     Splom::Hoverlabel& bordercolor(const std::vector<std::string>& f);
     Splom::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Splom::Hoverlabel& bordercolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel& bordercolorsrc(Callable&& c);
 
     // Sets the font used in hover labels.
     Splom::Hoverlabel& font(Font f);
@@ -481,14 +376,10 @@ class Splom::Hoverlabel {
     // name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters
     // and add an ellipsis.
     Splom::Hoverlabel& namelength(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Hoverlabel& namelength(Callable&& c);
     Splom::Hoverlabel& namelength(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `namelength`.
     Splom::Hoverlabel& namelengthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel& namelengthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -527,16 +418,11 @@ class Splom::Hoverlabel::Font {
 
     Splom::Hoverlabel::Font& color(std::string f);
     Splom::Hoverlabel::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Hoverlabel::Font& color(Callable&& c);
     Splom::Hoverlabel::Font& color(const std::vector<std::string>& f);
     Splom::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Splom::Hoverlabel::Font& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -546,14 +432,10 @@ class Splom::Hoverlabel::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Splom::Hoverlabel::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& family(Callable&& c);
     Splom::Hoverlabel::Font& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Splom::Hoverlabel::Font& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& familysrc(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -561,36 +443,24 @@ class Splom::Hoverlabel::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Splom::Hoverlabel::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& lineposition(Callable&& c);
     Splom::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Splom::Hoverlabel::Font& linepositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& linepositionsrc(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Splom::Hoverlabel::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& shadow(Callable&& c);
     Splom::Hoverlabel::Font& shadow(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `shadow`.
     Splom::Hoverlabel::Font& shadowsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& shadowsrc(Callable&& c);
 
     Splom::Hoverlabel::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Hoverlabel::Font& size(Callable&& c);
     Splom::Hoverlabel::Font& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Splom::Hoverlabel::Font& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -599,8 +469,6 @@ class Splom::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Splom::Hoverlabel::Font& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& stylesrc(Callable&& c);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
@@ -610,8 +478,6 @@ class Splom::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `textcase`.
     Splom::Hoverlabel::Font& textcasesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& textcasesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -620,19 +486,13 @@ class Splom::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Splom::Hoverlabel::Font& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     Splom::Hoverlabel::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Hoverlabel::Font& weight(Callable&& c);
     Splom::Hoverlabel::Font& weight(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Splom::Hoverlabel::Font& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Hoverlabel::Font& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -654,8 +514,6 @@ class Splom::Legendgrouptitle {
 
     // Sets the title of the legend group.
     Splom::Legendgrouptitle& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -694,9 +552,6 @@ class Splom::Legendgrouptitle::Font {
 
     Splom::Legendgrouptitle::Font& color(std::string f);
     Splom::Legendgrouptitle::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -706,8 +561,6 @@ class Splom::Legendgrouptitle::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Splom::Legendgrouptitle::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -715,18 +568,12 @@ class Splom::Legendgrouptitle::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Splom::Legendgrouptitle::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Splom::Legendgrouptitle::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Legendgrouptitle::Font& shadow(Callable&& c);
 
     Splom::Legendgrouptitle::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -743,8 +590,6 @@ class Splom::Legendgrouptitle::Font {
 
     // Sets the weight (or boldness) of the font.
     Splom::Legendgrouptitle::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1095,56 +940,39 @@ class Splom::Marker {
 
     // Sets the marker angle in respect to `angleref`.
     Splom::Marker& angle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& angle(Callable&& c);
     Splom::Marker& angle(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `angle`.
     Splom::Marker& anglesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker& anglesrc(Callable&& c);
 
     // Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by
     // `marker.colorscale`. Has an effect only if in `marker.color` is set to a numerical array. In case `colorscale` is
     // unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
     // `color` array are all positive, all negative or mixed.
     Splom::Marker& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or
     // the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in `marker.color` is set to a numerical
     // array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
     Splom::Marker& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `marker.color` is set to a numerical array.
     // Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.
     Splom::Marker& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this
     // point. Has an effect only if in `marker.color` is set to a numerical array. Value should have the same units as
     // in `marker.color`. Has no effect when `marker.cauto` is `false`.
     Splom::Marker& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `marker.color` is set to a numerical array.
     // Value should have the same units as in `marker.color` and if set, `marker.cmax` must be set as well.
     Splom::Marker& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& cmin(Callable&& c);
 
     // Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
     Splom::Marker& color(std::string f);
     Splom::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& color(Callable&& c);
     Splom::Marker& color(const std::vector<std::string>& f);
     Splom::Marker& color(const std::vector<double>& f);
 
@@ -1152,8 +980,6 @@ class Splom::Marker {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Splom::Marker& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker& coloraxis(Callable&& c);
 
     Splom::Marker& colorbar(Colorbar f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorbar&>>>
@@ -1167,15 +993,9 @@ class Splom::Marker {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Splom::Marker& colorscale(std::string f);
     Splom::Marker& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Splom::Marker& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Splom::Marker& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker& colorsrc(Callable&& c);
 
     Splom::Marker& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
@@ -1183,39 +1003,27 @@ class Splom::Marker {
 
     // Sets the marker opacity.
     Splom::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& opacity(Callable&& c);
     Splom::Marker& opacity(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `opacity`.
     Splom::Marker& opacitysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker& opacitysrc(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `marker.color` is set to a numerical array. If true,
     // `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first
     // color.
     Splom::Marker& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker& reversescale(Callable&& c);
 
     // Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color` is set
     // to a numerical array.
     Splom::Marker& showscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker& showscale(Callable&& c);
 
     // Sets the marker size (in px).
     Splom::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& size(Callable&& c);
     Splom::Marker& size(const std::vector<double>& f);
 
     // Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered
     // marker points.
     Splom::Marker& sizemin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& sizemin(Callable&& c);
 
     // Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is
     // converted to pixels.
@@ -1225,13 +1033,9 @@ class Splom::Marker {
     // Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the
     // rendered size of marker points. Use with `sizemin` and `sizemode`.
     Splom::Marker& sizeref(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker& sizeref(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Splom::Marker& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker& sizesrc(Callable&& c);
 
     // Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is
     // equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open*
@@ -1242,8 +1046,6 @@ class Splom::Marker {
 
     // Sets the source reference on Chart Studio Cloud for `symbol`.
     Splom::Marker& symbolsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker& symbolsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1375,21 +1177,13 @@ class Splom::Marker::Colorbar {
     // Sets the color of padded area.
     Splom::Marker::Colorbar& bgcolor(std::string f);
     Splom::Marker::Colorbar& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Splom::Marker::Colorbar& bordercolor(std::string f);
     Splom::Marker::Colorbar& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
     Splom::Marker::Colorbar& borderwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& borderwidth(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -1405,8 +1199,6 @@ class Splom::Marker::Colorbar {
     // set `dtick` to *M48*
     template <typename T>
     Splom::Marker::Colorbar& dtick(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Splom::Marker::Colorbar& dtick(Callable&& c);
 
     // Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*,
     // it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*,
@@ -1421,14 +1213,10 @@ class Splom::Marker::Colorbar {
     // values (if desired) can include html-like tags or MathJax.
     template <typename T>
     Splom::Marker::Colorbar& labelalias(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Splom::Marker::Colorbar& labelalias(Callable&& c);
 
     // Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is
     // this length minus the padding on both ends.
     Splom::Marker::Colorbar& len(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& len(Callable&& c);
 
     // Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of
     // plot *fraction* or in *pixels. Use `len` to set the value.
@@ -1437,14 +1225,10 @@ class Splom::Marker::Colorbar {
 
     // Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
     Splom::Marker::Colorbar& minexponent(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& minexponent(Callable&& c);
 
     // Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen
     // automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     Splom::Marker::Colorbar& nticks(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Marker::Colorbar& nticks(Callable&& c);
 
     // Sets the orientation of the colorbar.
     // - Default: v
@@ -1453,19 +1237,12 @@ class Splom::Marker::Colorbar {
     // Sets the axis line color.
     Splom::Marker::Colorbar& outlinecolor(std::string f);
     Splom::Marker::Colorbar& outlinecolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
     Splom::Marker::Colorbar& outlinewidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& outlinewidth(Callable&& c);
 
     // If "true", even 4-digit integers are separated
     Splom::Marker::Colorbar& separatethousands(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Colorbar& separatethousands(Callable&& c);
 
     // If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is
     // shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
@@ -1474,8 +1251,6 @@ class Splom::Marker::Colorbar {
 
     // Determines whether or not the tick labels are drawn.
     Splom::Marker::Colorbar& showticklabels(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Colorbar& showticklabels(Callable&& c);
 
     // If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a
     // prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
@@ -1488,8 +1263,6 @@ class Splom::Marker::Colorbar {
 
     // Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
     Splom::Marker::Colorbar& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& thickness(Callable&& c);
 
     // Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units
     // of plot *fraction* or in *pixels*. Use `thickness` to set the value.
@@ -1503,21 +1276,14 @@ class Splom::Marker::Colorbar {
     // serial number from zero in the order it appears.
     template <typename T>
     Splom::Marker::Colorbar& tick0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Splom::Marker::Colorbar& tick0(Callable&& c);
 
     // Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the
     // tick labels vertically.
     Splom::Marker::Colorbar& tickangle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& tickangle(Callable&& c);
 
     // Sets the tick color.
     Splom::Marker::Colorbar& tickcolor(std::string f);
     Splom::Marker::Colorbar& tickcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
     Splom::Marker::Colorbar& tickfont(Tickfont f);
@@ -1530,12 +1296,7 @@ class Splom::Marker::Colorbar {
     // half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example,
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     Splom::Marker::Colorbar& tickformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar& tickformat(Callable&& c);
 
-    Splom::Marker::Colorbar& tickformatstops(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Splom::Marker::Colorbar& tickformatstops(Callable&& c);
     Splom::Marker::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
@@ -1552,13 +1313,9 @@ class Splom::Marker::Colorbar {
     // labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or
     // *multicategory*, or when `tickmode` is *array*.
     Splom::Marker::Colorbar& ticklabelstep(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Marker::Colorbar& ticklabelstep(Callable&& c);
 
     // Sets the tick length (in px).
     Splom::Marker::Colorbar& ticklen(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& ticklen(Callable&& c);
 
     // Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement
     // of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
@@ -1568,8 +1325,6 @@ class Splom::Marker::Colorbar {
 
     // Sets a tick label prefix.
     Splom::Marker::Colorbar& tickprefix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar& tickprefix(Callable&& c);
 
     // Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this
     // axis' are drawn outside (inside) the axis lines.
@@ -1578,41 +1333,25 @@ class Splom::Marker::Colorbar {
 
     // Sets a tick label suffix.
     Splom::Marker::Colorbar& ticksuffix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar& ticksuffix(Callable&& c);
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Splom::Marker::Colorbar& ticktext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Splom::Marker::Colorbar& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
     Splom::Marker::Colorbar& ticktextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar& ticktextsrc(Callable&& c);
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Splom::Marker::Colorbar& tickvals(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Splom::Marker::Colorbar& tickvals(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `tickvals`.
     Splom::Marker::Colorbar& tickvalssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar& tickvalssrc(Callable&& c);
 
     // Sets the tick width (in px).
     Splom::Marker::Colorbar& tickwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& tickwidth(Callable&& c);
 
     Splom::Marker::Colorbar& title(Title f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Title&>>>
@@ -1623,8 +1362,6 @@ class Splom::Marker::Colorbar {
     // when `orientation` is *v* and 0.5 when `orientation` is *h*. Must be between *0* and *1* if `xref` is *container*
     // and between *-2* and *3* if `xref` is *paper*.
     Splom::Marker::Colorbar& x(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& x(Callable&& c);
 
     // Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.
@@ -1632,8 +1369,6 @@ class Splom::Marker::Colorbar {
 
     // Sets the amount of padding (in px) along the x direction.
     Splom::Marker::Colorbar& xpad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& xpad(Callable&& c);
 
     // Sets the container `x` refers to. *container* spans the entire `width` of the plot. *paper* refers to the width
     // of the plotting area only.
@@ -1645,8 +1380,6 @@ class Splom::Marker::Colorbar {
     // when `orientation` is *v* and 1 when `orientation` is *h*. Must be between *0* and *1* if `yref` is *container*
     // and between *-2* and *3* if `yref` is *paper*.
     Splom::Marker::Colorbar& y(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& y(Callable&& c);
 
     // Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.
@@ -1654,8 +1387,6 @@ class Splom::Marker::Colorbar {
 
     // Sets the amount of padding (in px) along the y direction.
     Splom::Marker::Colorbar& ypad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar& ypad(Callable&& c);
 
     // Sets the container `y` refers to. *container* spans the entire `height` of the plot. *paper* refers to the height
     // of the plotting area only.
@@ -1699,9 +1430,6 @@ class Splom::Marker::Colorbar::Tickfont {
 
     Splom::Marker::Colorbar::Tickfont& color(std::string f);
     Splom::Marker::Colorbar::Tickfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1711,8 +1439,6 @@ class Splom::Marker::Colorbar::Tickfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Splom::Marker::Colorbar::Tickfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1720,18 +1446,12 @@ class Splom::Marker::Colorbar::Tickfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Splom::Marker::Colorbar::Tickfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Splom::Marker::Colorbar::Tickfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickfont& shadow(Callable&& c);
 
     Splom::Marker::Colorbar::Tickfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar::Tickfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1748,8 +1468,6 @@ class Splom::Marker::Colorbar::Tickfont {
 
     // Sets the weight (or boldness) of the font.
     Splom::Marker::Colorbar::Tickfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Marker::Colorbar::Tickfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1767,25 +1485,15 @@ class Splom::Marker::Colorbar::Tickformatstop {
     Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
     Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
     Splom::Marker::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Splom::Marker::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     Splom::Marker::Colorbar::Tickformatstop& enabled(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
     Splom::Marker::Colorbar::Tickformatstop& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
@@ -1793,13 +1501,9 @@ class Splom::Marker::Colorbar::Tickformatstop {
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
     Splom::Marker::Colorbar::Tickformatstop& templateitemname(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
     Splom::Marker::Colorbar::Tickformatstop& value(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1832,8 +1536,6 @@ class Splom::Marker::Colorbar::Title {
 
     // Sets the title of the color bar.
     Splom::Marker::Colorbar::Title& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Title& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1872,9 +1574,6 @@ class Splom::Marker::Colorbar::Title::Font {
 
     Splom::Marker::Colorbar::Title::Font& color(std::string f);
     Splom::Marker::Colorbar::Title::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1884,8 +1583,6 @@ class Splom::Marker::Colorbar::Title::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Splom::Marker::Colorbar::Title::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Title::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1893,18 +1590,12 @@ class Splom::Marker::Colorbar::Title::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Splom::Marker::Colorbar::Title::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Title::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Splom::Marker::Colorbar::Title::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Colorbar::Title::Font& shadow(Callable&& c);
 
     Splom::Marker::Colorbar::Title::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Colorbar::Title::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1921,8 +1612,6 @@ class Splom::Marker::Colorbar::Title::Font {
 
     // Sets the weight (or boldness) of the font.
     Splom::Marker::Colorbar::Title::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Splom::Marker::Colorbar::Title::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1939,46 +1628,33 @@ class Splom::Marker::Line {
     // `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
     // numbers in the `color` array are all positive, all negative or mixed.
     Splom::Marker::Line& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Line& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in
     // `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has an effect only if in
     // `marker.line.color` is set to a numerical array. Defaults to `false` when `marker.line.cmin` and
     // `marker.line.cmax` are set by the user.
     Splom::Marker::Line& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Line& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `marker.line.color` is set to a numerical
     // array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as
     // well.
     Splom::Marker::Line& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Line& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax` to be equidistant
     // to this point. Has an effect only if in `marker.line.color` is set to a numerical array. Value should have the
     // same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
     Splom::Marker::Line& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Line& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `marker.line.color` is set to a numerical
     // array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as
     // well.
     Splom::Marker::Line& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Line& cmin(Callable&& c);
 
     // Sets the marker.line color. It accepts either a specific color or an array of numbers that are mapped to the
     // colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and
     // `marker.line.cmax` if set.
     Splom::Marker::Line& color(std::string f);
     Splom::Marker::Line& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Line& color(Callable&& c);
     Splom::Marker::Line& color(const std::vector<std::string>& f);
     Splom::Marker::Line& color(const std::vector<double>& f);
 
@@ -1986,8 +1662,6 @@ class Splom::Marker::Line {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Splom::Marker::Line& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Line& coloraxis(Callable&& c);
 
     // Sets the colorscale. Has an effect only if in `marker.line.color` is set to a numerical array. The colorscale
     // must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color
@@ -1998,33 +1672,21 @@ class Splom::Marker::Line {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Splom::Marker::Line& colorscale(std::string f);
     Splom::Marker::Line& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Splom::Marker::Line& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Splom::Marker::Line& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Line& colorsrc(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `marker.line.color` is set to a numerical array. If
     // true, `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will correspond to
     // the first color.
     Splom::Marker::Line& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Splom::Marker::Line& reversescale(Callable&& c);
 
     // Sets the width (in px) of the lines bounding the marker points.
     Splom::Marker::Line& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Marker::Line& width(Callable&& c);
     Splom::Marker::Line& width(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `width`.
     Splom::Marker::Line& widthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Marker::Line& widthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2055,19 +1717,12 @@ class Splom::Selected::Marker {
     // Sets the marker color of selected points.
     Splom::Selected::Marker& color(std::string f);
     Splom::Selected::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Selected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of selected points.
     Splom::Selected::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Selected::Marker& opacity(Callable&& c);
 
     // Sets the marker size of selected points.
     Splom::Selected::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Selected::Marker& size(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2082,14 +1737,10 @@ class Splom::Stream {
     // Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*,
     // only the newest 50 points will be displayed on the plot.
     Splom::Stream& maxpoints(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Stream& maxpoints(Callable&& c);
 
     // The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for
     // more details.
     Splom::Stream& token(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Splom::Stream& token(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -2120,19 +1771,12 @@ class Splom::Unselected::Marker {
     // Sets the marker color of unselected points, applied only when a selection exists.
     Splom::Unselected::Marker& color(std::string f);
     Splom::Unselected::Marker& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Splom::Unselected::Marker& color(Callable&& c);
 
     // Sets the marker opacity of unselected points, applied only when a selection exists.
     Splom::Unselected::Marker& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Unselected::Marker& opacity(Callable&& c);
 
     // Sets the marker size of unselected points, applied only when a selection exists.
     Splom::Unselected::Marker& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Splom::Unselected::Marker& size(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

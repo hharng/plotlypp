@@ -50,8 +50,6 @@ class Isosurface : public Trace {
     // `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be chosen
     // according to whether numbers in the `color` array are all positive, all negative or mixed.
     Isosurface& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface& autocolorscale(Callable&& c);
 
     Isosurface& caps(Caps f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Caps&>>>
@@ -60,33 +58,23 @@ class Isosurface : public Trace {
     // Determines whether or not the color domain is computed with respect to the input data (here `value`) or the
     // bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax` are set by the user.
     Isosurface& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Value should have the same units as `value` and if set, `cmin` must be
     // set as well.
     Isosurface& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this point. Value
     // should have the same units as `value`. Has no effect when `cauto` is `false`.
     Isosurface& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Value should have the same units as `value` and if set, `cmax` must be
     // set as well.
     Isosurface& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& cmin(Callable&& c);
 
     // Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*,
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Isosurface& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& coloraxis(Callable&& c);
 
     Isosurface& colorbar(Colorbar f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorbar&>>>
@@ -100,10 +88,6 @@ class Isosurface : public Trace {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Isosurface& colorscale(std::string f);
     Isosurface& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Isosurface& colorscale(Callable&& c);
 
     Isosurface& contour(Contour f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Contour&>>>
@@ -113,21 +97,13 @@ class Isosurface : public Trace {
     // *scatter* traces also appends customdata items in the markers DOM elements
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface& customdata(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface& customdata(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `customdata`.
     Isosurface& customdatasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& customdatasrc(Callable&& c);
 
     // Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly
     // look via flat reflections.
     Isosurface& flatshading(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface& flatshading(Callable&& c);
 
     // Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon
     // hovering. But, if `none` is set, click and hover events are still fired.
@@ -135,14 +111,10 @@ class Isosurface : public Trace {
     // - Flags: ['x', 'y', 'z', 'text', 'name']
     // - Extras ['all', 'none', 'skip']
     Isosurface& hoverinfo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& hoverinfo(Callable&& c);
     Isosurface& hoverinfo(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hoverinfo`.
     Isosurface& hoverinfosrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& hoverinfosrc(Callable&& c);
 
     Isosurface& hoverlabel(Hoverlabel f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Hoverlabel&>>>
@@ -162,61 +134,39 @@ class Isosurface : public Trace {
     // displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     // completely, use an empty tag `<extra></extra>`.
     Isosurface& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& hovertemplate(Callable&& c);
     Isosurface& hovertemplate(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertemplate`.
     Isosurface& hovertemplatesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& hovertemplatesrc(Callable&& c);
 
     // Same as `text`.
     Isosurface& hovertext(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& hovertext(Callable&& c);
     Isosurface& hovertext(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `hovertext`.
     Isosurface& hovertextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& hovertextsrc(Callable&& c);
 
     // Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an
     // array of strings, not numbers or any other type.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface& ids(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface& ids(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ids`.
     Isosurface& idssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& idssrc(Callable&& c);
 
     // Sets the maximum boundary for iso-surface plot.
     Isosurface& isomax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& isomax(Callable&& c);
 
     // Sets the minimum boundary for iso-surface plot.
     Isosurface& isomin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& isomin(Callable&& c);
 
     // Sets the reference to a legend to show this trace in. References to these legends are *legend*, *legend2*,
     // *legend3*, etc. Settings for these legends are set in the layout, under `layout.legend`, `layout.legend2`, etc.
     Isosurface& legend(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& legend(Callable&& c);
 
     // Sets the legend group for this trace. Traces and shapes part of the same legend group hide/show at the same time
     // when toggling legend items.
     Isosurface& legendgroup(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& legendgroup(Callable&& c);
 
     Isosurface& legendgrouptitle(Legendgrouptitle f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Legendgrouptitle&>>>
@@ -228,13 +178,9 @@ class Isosurface : public Trace {
     // after all unranked items. When having unranked or equal rank items shapes would be displayed after traces i.e.
     // according to their order in data and layout.
     Isosurface& legendrank(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& legendrank(Callable&& c);
 
     // Sets the width (in px or fraction) of the legend for this trace.
     Isosurface& legendwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& legendwidth(Callable&& c);
 
     Isosurface& lighting(Lighting f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Lighting&>>>
@@ -252,51 +198,35 @@ class Isosurface : public Trace {
     // trace index.
     template <typename T>
     Isosurface& meta(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Isosurface& meta(Callable&& c);
     template <typename T>
     Isosurface& meta(const std::vector<T>& f);
 
     // Sets the source reference on Chart Studio Cloud for `meta`.
     Isosurface& metasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& metasrc(Callable&& c);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Isosurface& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& name(Callable&& c);
 
     // Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value
     // greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     // surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future
     // and is subject to change.
     Isosurface& opacity(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface& opacity(Callable&& c);
 
     // Reverses the color mapping if true. If true, `cmin` will correspond to the last color in the array and `cmax`
     // will correspond to the first color.
     Isosurface& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface& reversescale(Callable&& c);
 
     // Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the
     // (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and
     // so on.
     Isosurface& scene(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& scene(Callable&& c);
 
     // Determines whether or not an item corresponding to this trace is shown in the legend.
     Isosurface& showlegend(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface& showlegend(Callable&& c);
 
     // Determines whether or not a colorbar is displayed for this trace.
     Isosurface& showscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface& showscale(Callable&& c);
 
     Isosurface& slices(Slices f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Slices&>>>
@@ -317,20 +247,14 @@ class Isosurface : public Trace {
     // Sets the text elements associated with the vertices. If trace `hoverinfo` contains a *text* flag and *hovertext*
     // is not set, these elements will be seen in the hover labels.
     Isosurface& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& text(Callable&& c);
     Isosurface& text(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `text`.
     Isosurface& textsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& textsrc(Callable&& c);
 
     // Assign an id to this trace, Use this to provide object constancy between traces during animations and
     // transitions.
     Isosurface& uid(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& uid(Callable&& c);
 
     // Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well
     // as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note
@@ -342,28 +266,18 @@ class Isosurface : public Trace {
     // still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     template <typename T>
     Isosurface& uirevision(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Isosurface& uirevision(Callable&& c);
 
     // Sets the 4th dimension (value) of the vertices.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface& value(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface& value(Callable&& c);
 
     // Sets the hover text formatting rulefor `value`  using d3 formatting mini-languages which are very similar to
     // those in Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format.By default the values
     // are formatted using generic number format.
     Isosurface& valuehoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& valuehoverformat(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `value`.
     Isosurface& valuesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& valuesrc(Callable&& c);
 
     // Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a
     // legend item (provided that the legend itself is visible).
@@ -373,10 +287,6 @@ class Isosurface : public Trace {
     // Sets the X coordinates of the vertices on X axis.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface& x(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface& x(Callable&& c);
 
     // Sets the hover text formatting rulefor `x`  using d3 formatting mini-languages which are very similar to those in
     // Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see:
@@ -385,21 +295,13 @@ class Isosurface : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `xaxis.hoverformat`.
     Isosurface& xhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& xhoverformat(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `x`.
     Isosurface& xsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& xsrc(Callable&& c);
 
     // Sets the Y coordinates of the vertices on Y axis.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface& y(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface& y(Callable&& c);
 
     // Sets the hover text formatting rulefor `y`  using d3 formatting mini-languages which are very similar to those in
     // Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see:
@@ -408,21 +310,13 @@ class Isosurface : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `yaxis.hoverformat`.
     Isosurface& yhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& yhoverformat(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `y`.
     Isosurface& ysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& ysrc(Callable&& c);
 
     // Sets the Z coordinates of the vertices on Z axis.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface& z(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface& z(Callable&& c);
 
     // Sets the hover text formatting rulefor `z`  using d3 formatting mini-languages which are very similar to those in
     // Python. For numbers, see: https://github.com/d3/d3-format/tree/v1.4.5#d3-format. And for dates see:
@@ -431,13 +325,9 @@ class Isosurface : public Trace {
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*By default the values are
     // formatted using `zaxis.hoverformat`.
     Isosurface& zhoverformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& zhoverformat(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `z`.
     Isosurface& zsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface& zsrc(Callable&& c);
 };
 
 class Isosurface::Caps {
@@ -476,15 +366,11 @@ class Isosurface::Caps::X {
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Caps::X& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Caps::X& fill(Callable&& c);
 
     // Sets the fill ratio of the `slices`. The default fill value of the x `slices` is 1 meaning that they are entirely
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Caps::X& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Caps::X& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -500,15 +386,11 @@ class Isosurface::Caps::Y {
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Caps::Y& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Caps::Y& fill(Callable&& c);
 
     // Sets the fill ratio of the `slices`. The default fill value of the y `slices` is 1 meaning that they are entirely
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Caps::Y& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Caps::Y& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -524,15 +406,11 @@ class Isosurface::Caps::Z {
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Caps::Z& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Caps::Z& fill(Callable&& c);
 
     // Sets the fill ratio of the `slices`. The default fill value of the z `slices` is 1 meaning that they are entirely
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Caps::Z& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Caps::Z& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -664,21 +542,13 @@ class Isosurface::Colorbar {
     // Sets the color of padded area.
     Isosurface::Colorbar& bgcolor(std::string f);
     Isosurface::Colorbar& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Isosurface::Colorbar& bordercolor(std::string f);
     Isosurface::Colorbar& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
     Isosurface::Colorbar& borderwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& borderwidth(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -694,8 +564,6 @@ class Isosurface::Colorbar {
     // set `dtick` to *M48*
     template <typename T>
     Isosurface::Colorbar& dtick(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Isosurface::Colorbar& dtick(Callable&& c);
 
     // Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*,
     // it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*,
@@ -710,14 +578,10 @@ class Isosurface::Colorbar {
     // values (if desired) can include html-like tags or MathJax.
     template <typename T>
     Isosurface::Colorbar& labelalias(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Isosurface::Colorbar& labelalias(Callable&& c);
 
     // Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is
     // this length minus the padding on both ends.
     Isosurface::Colorbar& len(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& len(Callable&& c);
 
     // Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of
     // plot *fraction* or in *pixels. Use `len` to set the value.
@@ -726,14 +590,10 @@ class Isosurface::Colorbar {
 
     // Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
     Isosurface::Colorbar& minexponent(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& minexponent(Callable&& c);
 
     // Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen
     // automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     Isosurface::Colorbar& nticks(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Colorbar& nticks(Callable&& c);
 
     // Sets the orientation of the colorbar.
     // - Default: v
@@ -742,19 +602,12 @@ class Isosurface::Colorbar {
     // Sets the axis line color.
     Isosurface::Colorbar& outlinecolor(std::string f);
     Isosurface::Colorbar& outlinecolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
     Isosurface::Colorbar& outlinewidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& outlinewidth(Callable&& c);
 
     // If "true", even 4-digit integers are separated
     Isosurface::Colorbar& separatethousands(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Colorbar& separatethousands(Callable&& c);
 
     // If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is
     // shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
@@ -763,8 +616,6 @@ class Isosurface::Colorbar {
 
     // Determines whether or not the tick labels are drawn.
     Isosurface::Colorbar& showticklabels(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Colorbar& showticklabels(Callable&& c);
 
     // If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a
     // prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
@@ -777,8 +628,6 @@ class Isosurface::Colorbar {
 
     // Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
     Isosurface::Colorbar& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& thickness(Callable&& c);
 
     // Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units
     // of plot *fraction* or in *pixels*. Use `thickness` to set the value.
@@ -792,21 +641,14 @@ class Isosurface::Colorbar {
     // serial number from zero in the order it appears.
     template <typename T>
     Isosurface::Colorbar& tick0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Isosurface::Colorbar& tick0(Callable&& c);
 
     // Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the
     // tick labels vertically.
     Isosurface::Colorbar& tickangle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& tickangle(Callable&& c);
 
     // Sets the tick color.
     Isosurface::Colorbar& tickcolor(std::string f);
     Isosurface::Colorbar& tickcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
     Isosurface::Colorbar& tickfont(Tickfont f);
@@ -819,12 +661,7 @@ class Isosurface::Colorbar {
     // half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example,
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     Isosurface::Colorbar& tickformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar& tickformat(Callable&& c);
 
-    Isosurface::Colorbar& tickformatstops(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Isosurface::Colorbar& tickformatstops(Callable&& c);
     Isosurface::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
@@ -841,13 +678,9 @@ class Isosurface::Colorbar {
     // labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or
     // *multicategory*, or when `tickmode` is *array*.
     Isosurface::Colorbar& ticklabelstep(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Colorbar& ticklabelstep(Callable&& c);
 
     // Sets the tick length (in px).
     Isosurface::Colorbar& ticklen(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& ticklen(Callable&& c);
 
     // Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement
     // of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
@@ -857,8 +690,6 @@ class Isosurface::Colorbar {
 
     // Sets a tick label prefix.
     Isosurface::Colorbar& tickprefix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar& tickprefix(Callable&& c);
 
     // Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this
     // axis' are drawn outside (inside) the axis lines.
@@ -867,41 +698,25 @@ class Isosurface::Colorbar {
 
     // Sets a tick label suffix.
     Isosurface::Colorbar& ticksuffix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar& ticksuffix(Callable&& c);
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface::Colorbar& ticktext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface::Colorbar& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
     Isosurface::Colorbar& ticktextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar& ticktextsrc(Callable&& c);
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface::Colorbar& tickvals(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface::Colorbar& tickvals(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `tickvals`.
     Isosurface::Colorbar& tickvalssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar& tickvalssrc(Callable&& c);
 
     // Sets the tick width (in px).
     Isosurface::Colorbar& tickwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& tickwidth(Callable&& c);
 
     Isosurface::Colorbar& title(Title f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Title&>>>
@@ -912,8 +727,6 @@ class Isosurface::Colorbar {
     // when `orientation` is *v* and 0.5 when `orientation` is *h*. Must be between *0* and *1* if `xref` is *container*
     // and between *-2* and *3* if `xref` is *paper*.
     Isosurface::Colorbar& x(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& x(Callable&& c);
 
     // Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.
@@ -921,8 +734,6 @@ class Isosurface::Colorbar {
 
     // Sets the amount of padding (in px) along the x direction.
     Isosurface::Colorbar& xpad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& xpad(Callable&& c);
 
     // Sets the container `x` refers to. *container* spans the entire `width` of the plot. *paper* refers to the width
     // of the plotting area only.
@@ -934,8 +745,6 @@ class Isosurface::Colorbar {
     // when `orientation` is *v* and 1 when `orientation` is *h*. Must be between *0* and *1* if `yref` is *container*
     // and between *-2* and *3* if `yref` is *paper*.
     Isosurface::Colorbar& y(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& y(Callable&& c);
 
     // Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.
@@ -943,8 +752,6 @@ class Isosurface::Colorbar {
 
     // Sets the amount of padding (in px) along the y direction.
     Isosurface::Colorbar& ypad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar& ypad(Callable&& c);
 
     // Sets the container `y` refers to. *container* spans the entire `height` of the plot. *paper* refers to the height
     // of the plotting area only.
@@ -988,9 +795,6 @@ class Isosurface::Colorbar::Tickfont {
 
     Isosurface::Colorbar::Tickfont& color(std::string f);
     Isosurface::Colorbar::Tickfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1000,8 +804,6 @@ class Isosurface::Colorbar::Tickfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Isosurface::Colorbar::Tickfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Tickfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1009,18 +811,12 @@ class Isosurface::Colorbar::Tickfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Isosurface::Colorbar::Tickfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Tickfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Isosurface::Colorbar::Tickfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Tickfont& shadow(Callable&& c);
 
     Isosurface::Colorbar::Tickfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar::Tickfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1037,8 +833,6 @@ class Isosurface::Colorbar::Tickfont {
 
     // Sets the weight (or boldness) of the font.
     Isosurface::Colorbar::Tickfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Colorbar::Tickfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1056,25 +850,15 @@ class Isosurface::Colorbar::Tickformatstop {
     Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
     Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
     Isosurface::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Isosurface::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     Isosurface::Colorbar::Tickformatstop& enabled(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
     Isosurface::Colorbar::Tickformatstop& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
@@ -1082,13 +866,9 @@ class Isosurface::Colorbar::Tickformatstop {
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
     Isosurface::Colorbar::Tickformatstop& templateitemname(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
     Isosurface::Colorbar::Tickformatstop& value(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1121,8 +901,6 @@ class Isosurface::Colorbar::Title {
 
     // Sets the title of the color bar.
     Isosurface::Colorbar::Title& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Title& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1161,9 +939,6 @@ class Isosurface::Colorbar::Title::Font {
 
     Isosurface::Colorbar::Title::Font& color(std::string f);
     Isosurface::Colorbar::Title::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1173,8 +948,6 @@ class Isosurface::Colorbar::Title::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Isosurface::Colorbar::Title::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Title::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1182,18 +955,12 @@ class Isosurface::Colorbar::Title::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Isosurface::Colorbar::Title::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Title::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Isosurface::Colorbar::Title::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Colorbar::Title::Font& shadow(Callable&& c);
 
     Isosurface::Colorbar::Title::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Colorbar::Title::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1210,8 +977,6 @@ class Isosurface::Colorbar::Title::Font {
 
     // Sets the weight (or boldness) of the font.
     Isosurface::Colorbar::Title::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Colorbar::Title::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1226,19 +991,12 @@ class Isosurface::Contour {
     // Sets the color of the contour lines.
     Isosurface::Contour& color(std::string f);
     Isosurface::Contour& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Contour& color(Callable&& c);
 
     // Sets whether or not dynamic contours are shown on hover
     Isosurface::Contour& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Contour& show(Callable&& c);
 
     // Sets the width of the contour lines.
     Isosurface::Contour& width(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Contour& width(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1268,36 +1026,24 @@ class Isosurface::Hoverlabel {
 
     // Sets the source reference on Chart Studio Cloud for `align`.
     Isosurface::Hoverlabel& alignsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel& alignsrc(Callable&& c);
 
     // Sets the background color of the hover labels for this trace
     Isosurface::Hoverlabel& bgcolor(std::string f);
     Isosurface::Hoverlabel& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Hoverlabel& bgcolor(Callable&& c);
     Isosurface::Hoverlabel& bgcolor(const std::vector<std::string>& f);
     Isosurface::Hoverlabel& bgcolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bgcolor`.
     Isosurface::Hoverlabel& bgcolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel& bgcolorsrc(Callable&& c);
 
     // Sets the border color of the hover labels for this trace.
     Isosurface::Hoverlabel& bordercolor(std::string f);
     Isosurface::Hoverlabel& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Hoverlabel& bordercolor(Callable&& c);
     Isosurface::Hoverlabel& bordercolor(const std::vector<std::string>& f);
     Isosurface::Hoverlabel& bordercolor(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `bordercolor`.
     Isosurface::Hoverlabel& bordercolorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel& bordercolorsrc(Callable&& c);
 
     // Sets the font used in hover labels.
     Isosurface::Hoverlabel& font(Font f);
@@ -1309,14 +1055,10 @@ class Isosurface::Hoverlabel {
     // name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters
     // and add an ellipsis.
     Isosurface::Hoverlabel& namelength(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Hoverlabel& namelength(Callable&& c);
     Isosurface::Hoverlabel& namelength(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `namelength`.
     Isosurface::Hoverlabel& namelengthsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel& namelengthsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1355,16 +1097,11 @@ class Isosurface::Hoverlabel::Font {
 
     Isosurface::Hoverlabel::Font& color(std::string f);
     Isosurface::Hoverlabel::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Hoverlabel::Font& color(Callable&& c);
     Isosurface::Hoverlabel::Font& color(const std::vector<std::string>& f);
     Isosurface::Hoverlabel::Font& color(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Isosurface::Hoverlabel::Font& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& colorsrc(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1374,14 +1111,10 @@ class Isosurface::Hoverlabel::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Isosurface::Hoverlabel::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& family(Callable&& c);
     Isosurface::Hoverlabel::Font& family(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `family`.
     Isosurface::Hoverlabel::Font& familysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& familysrc(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1389,36 +1122,24 @@ class Isosurface::Hoverlabel::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Isosurface::Hoverlabel::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& lineposition(Callable&& c);
     Isosurface::Hoverlabel::Font& lineposition(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `lineposition`.
     Isosurface::Hoverlabel::Font& linepositionsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& linepositionsrc(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Isosurface::Hoverlabel::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& shadow(Callable&& c);
     Isosurface::Hoverlabel::Font& shadow(const std::vector<std::string>& f);
 
     // Sets the source reference on Chart Studio Cloud for `shadow`.
     Isosurface::Hoverlabel::Font& shadowsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& shadowsrc(Callable&& c);
 
     Isosurface::Hoverlabel::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Hoverlabel::Font& size(Callable&& c);
     Isosurface::Hoverlabel::Font& size(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `size`.
     Isosurface::Hoverlabel::Font& sizesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& sizesrc(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1427,8 +1148,6 @@ class Isosurface::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `style`.
     Isosurface::Hoverlabel::Font& stylesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& stylesrc(Callable&& c);
 
     // Sets capitalization of text. It can be used to make text appear in all-uppercase or all-lowercase, or with each
     // word capitalized.
@@ -1438,8 +1157,6 @@ class Isosurface::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `textcase`.
     Isosurface::Hoverlabel::Font& textcasesrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& textcasesrc(Callable&& c);
 
     // Sets the variant of the font.
     // - Default: normal
@@ -1448,19 +1165,13 @@ class Isosurface::Hoverlabel::Font {
 
     // Sets the source reference on Chart Studio Cloud for `variant`.
     Isosurface::Hoverlabel::Font& variantsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& variantsrc(Callable&& c);
 
     // Sets the weight (or boldness) of the font.
     Isosurface::Hoverlabel::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Hoverlabel::Font& weight(Callable&& c);
     Isosurface::Hoverlabel::Font& weight(const std::vector<int>& f);
 
     // Sets the source reference on Chart Studio Cloud for `weight`.
     Isosurface::Hoverlabel::Font& weightsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Hoverlabel::Font& weightsrc(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1482,8 +1193,6 @@ class Isosurface::Legendgrouptitle {
 
     // Sets the title of the legend group.
     Isosurface::Legendgrouptitle& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1522,9 +1231,6 @@ class Isosurface::Legendgrouptitle::Font {
 
     Isosurface::Legendgrouptitle::Font& color(std::string f);
     Isosurface::Legendgrouptitle::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Isosurface::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1534,8 +1240,6 @@ class Isosurface::Legendgrouptitle::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Isosurface::Legendgrouptitle::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1543,18 +1247,12 @@ class Isosurface::Legendgrouptitle::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Isosurface::Legendgrouptitle::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Isosurface::Legendgrouptitle::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Legendgrouptitle::Font& shadow(Callable&& c);
 
     Isosurface::Legendgrouptitle::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1571,8 +1269,6 @@ class Isosurface::Legendgrouptitle::Font {
 
     // Sets the weight (or boldness) of the font.
     Isosurface::Legendgrouptitle::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1586,39 +1282,25 @@ class Isosurface::Lighting {
 
     // Ambient light increases overall color visibility but can wash out the image.
     Isosurface::Lighting& ambient(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& ambient(Callable&& c);
 
     // Represents the extent that incident rays are reflected in a range of angles.
     Isosurface::Lighting& diffuse(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& diffuse(Callable&& c);
 
     // Epsilon for face normals calculation avoids math issues arising from degenerate geometry.
     Isosurface::Lighting& facenormalsepsilon(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& facenormalsepsilon(Callable&& c);
 
     // Represents the reflectance as a dependency of the viewing angle; e.g. paper is reflective when viewing it from
     // the edge of the paper (almost 90 degrees), causing shine.
     Isosurface::Lighting& fresnel(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& fresnel(Callable&& c);
 
     // Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.
     Isosurface::Lighting& roughness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& roughness(Callable&& c);
 
     // Represents the level that incident rays are reflected in a single direction, causing shine.
     Isosurface::Lighting& specular(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& specular(Callable&& c);
 
     // Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
     Isosurface::Lighting& vertexnormalsepsilon(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lighting& vertexnormalsepsilon(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1632,18 +1314,12 @@ class Isosurface::Lightposition {
 
     // Numeric vector, representing the X coordinate for each vertex.
     Isosurface::Lightposition& x(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lightposition& x(Callable&& c);
 
     // Numeric vector, representing the Y coordinate for each vertex.
     Isosurface::Lightposition& y(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lightposition& y(Callable&& c);
 
     // Numeric vector, representing the Z coordinate for each vertex.
     Isosurface::Lightposition& z(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Lightposition& z(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1685,27 +1361,17 @@ class Isosurface::Slices::X {
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Slices::X& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Slices::X& fill(Callable&& c);
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis x except start and end.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface::Slices::X& locations(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface::Slices::X& locations(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `locations`.
     Isosurface::Slices::X& locationssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Slices::X& locationssrc(Callable&& c);
 
     // Determines whether or not slice planes about the x dimension are drawn.
     Isosurface::Slices::X& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Slices::X& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1721,27 +1387,17 @@ class Isosurface::Slices::Y {
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Slices::Y& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Slices::Y& fill(Callable&& c);
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis y except start and end.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface::Slices::Y& locations(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface::Slices::Y& locations(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `locations`.
     Isosurface::Slices::Y& locationssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Slices::Y& locationssrc(Callable&& c);
 
     // Determines whether or not slice planes about the y dimension are drawn.
     Isosurface::Slices::Y& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Slices::Y& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1757,27 +1413,17 @@ class Isosurface::Slices::Z {
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Slices::Z& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Slices::Z& fill(Callable&& c);
 
     // Specifies the location(s) of slices on the axis. When not specified slices would be created for all points of the
     // axis z except start and end.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Isosurface::Slices::Z& locations(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Isosurface::Slices::Z& locations(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `locations`.
     Isosurface::Slices::Z& locationssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Slices::Z& locationssrc(Callable&& c);
 
     // Determines whether or not slice planes about the z dimension are drawn.
     Isosurface::Slices::Z& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Slices::Z& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1793,14 +1439,10 @@ class Isosurface::Spaceframe {
     // area of every faces of tetras would be shaded. Applying a greater `fill` ratio would allow the creation of
     // stronger elements or could be sued to have entirely closed areas (in case of using 1).
     Isosurface::Spaceframe& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Spaceframe& fill(Callable&& c);
 
     // Displays/hides tetrahedron shapes between minimum and maximum iso-values. Often useful when either caps or
     // surfaces are disabled or filled with values less than 1.
     Isosurface::Spaceframe& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Spaceframe& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1815,14 +1457,10 @@ class Isosurface::Stream {
     // Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*,
     // only the newest 50 points will be displayed on the plot.
     Isosurface::Stream& maxpoints(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Stream& maxpoints(Callable&& c);
 
     // The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for
     // more details.
     Isosurface::Stream& token(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Stream& token(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1837,15 +1475,11 @@ class Isosurface::Surface {
     // Sets the number of iso-surfaces between minimum and maximum iso-values. By default this value is 2 meaning that
     // only minimum and maximum surfaces would be drawn.
     Isosurface::Surface& count(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Isosurface::Surface& count(Callable&& c);
 
     // Sets the fill ratio of the iso-surface. The default fill value of the surface is 1 meaning that they are entirely
     // shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to
     // the edges.
     Isosurface::Surface& fill(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Isosurface::Surface& fill(Callable&& c);
 
     // Sets the surface pattern of the iso-surface 3-D sections. The default pattern of the surface is `all` meaning
     // that the rest of surface elements would be shaded. The check options (either 1 or 2) could be used to draw half
@@ -1855,13 +1489,9 @@ class Isosurface::Surface {
     // - Flags: ['A', 'B', 'C', 'D', 'E']
     // - Extras ['all', 'odd', 'even']
     Isosurface::Surface& pattern(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Isosurface::Surface& pattern(Callable&& c);
 
     // Hides/displays surfaces between minimum and maximum iso-values.
     Isosurface::Surface& show(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Isosurface::Surface& show(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

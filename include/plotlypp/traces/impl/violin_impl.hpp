@@ -77,22 +77,10 @@ inline Violin& Violin::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::alignmentgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignmentgroup(std::move(f));
-}
 
 inline Violin& Violin::bandwidth(double f) {
     json["bandwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::bandwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return bandwidth(std::move(f));
 }
 
 inline Violin& Violin::box(Box f) {
@@ -111,22 +99,10 @@ inline Violin& Violin::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Violin& Violin::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Violin& Violin::fillcolor(std::string f) {
@@ -137,22 +113,10 @@ inline Violin& Violin::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Violin& Violin::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Violin& Violin::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -162,12 +126,6 @@ inline Violin& Violin::hoverinfo(const std::vector<std::string>& f) {
 inline Violin& Violin::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Violin& Violin::hoverlabel(Hoverlabel f) {
@@ -185,22 +143,10 @@ inline Violin& Violin::hoveron(std::string f) {
     json["hoveron"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::hoveron(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoveron(std::move(f));
-}
 
 inline Violin& Violin::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
 }
 inline Violin& Violin::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
@@ -211,22 +157,10 @@ inline Violin& Violin::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Violin& Violin::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Violin& Violin::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -237,67 +171,31 @@ inline Violin& Violin::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Violin& Violin::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Violin& Violin::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Violin& Violin::jitter(double f) {
     json["jitter"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::jitter(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return jitter(std::move(f));
-}
 
 inline Violin& Violin::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Violin& Violin::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Violin& Violin::legendgrouptitle(Legendgrouptitle f) {
@@ -315,22 +213,10 @@ inline Violin& Violin::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Violin& Violin::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Violin& Violin::line(Line f) {
@@ -371,12 +257,6 @@ inline Violin& Violin::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Violin& Violin::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -387,44 +267,20 @@ inline Violin& Violin::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Violin& Violin::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Violin& Violin::offsetgroup(std::string f) {
     json["offsetgroup"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::offsetgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return offsetgroup(std::move(f));
-}
 
 inline Violin& Violin::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Violin& Violin::orientation(enum Orientation f) {
@@ -435,12 +291,6 @@ inline Violin& Violin::orientation(enum Orientation f) {
 inline Violin& Violin::pointpos(double f) {
     json["pointpos"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::pointpos(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pointpos(std::move(f));
 }
 
 inline Violin& Violin::points(enum Points f) {
@@ -456,12 +306,6 @@ inline Violin& Violin::quartilemethod(enum Quartilemethod f) {
 inline Violin& Violin::scalegroup(std::string f) {
     json["scalegroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::scalegroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scalegroup(std::move(f));
 }
 
 inline Violin& Violin::scalemode(enum Scalemode f) {
@@ -485,22 +329,10 @@ inline Violin& Violin::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Violin& Violin::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Violin& Violin::side(enum Side f) {
@@ -524,12 +356,6 @@ inline Violin& Violin::span(const std::vector<std::vector<double>>& f) {
     json["span"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::span(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return span(std::move(f));
-}
 
 inline Violin& Violin::spanmode(enum Spanmode f) {
     json["spanmode"] = to_string(f);
@@ -551,12 +377,6 @@ inline Violin& Violin::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 inline Violin& Violin::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
@@ -566,34 +386,16 @@ inline Violin& Violin::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Violin& Violin::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
 inline Violin& Violin::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Violin& Violin::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Violin& Violin::unselected(Unselected f) {
@@ -616,23 +418,11 @@ inline Violin& Violin::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
-}
 
 template <typename Range, typename>
 inline Violin& Violin::x(Range&& f) {
     json["x"] = f;
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Violin& Violin::x(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 template <typename T>
@@ -640,44 +430,20 @@ inline Violin& Violin::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::x0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x0(std::move(f));
-}
 
 inline Violin& Violin::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::xaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xaxis(std::move(f));
 }
 
 inline Violin& Violin::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::xhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xhoverformat(std::move(f));
-}
 
 inline Violin& Violin::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::xsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -685,67 +451,31 @@ inline Violin& Violin::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::y(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 template <typename T>
 inline Violin& Violin::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Violin& Violin::y0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y0(std::move(f));
-}
 
 inline Violin& Violin::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::yaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yaxis(std::move(f));
 }
 
 inline Violin& Violin::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::yhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yhoverformat(std::move(f));
-}
 
 inline Violin& Violin::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin& Violin::ysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ysrc(std::move(f));
-}
 
 inline Violin& Violin::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin& Violin::zorder(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return zorder(std::move(f));
 }
 
 
@@ -756,12 +486,6 @@ inline Violin::Box& Violin::Box::fillcolor(std::string f) {
 inline Violin::Box& Violin::Box::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Box& Violin::Box::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
 }
 
 inline Violin::Box& Violin::Box::line(Line f) {
@@ -779,22 +503,10 @@ inline Violin::Box& Violin::Box::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Box& Violin::Box::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Violin::Box& Violin::Box::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Box& Violin::Box::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 
@@ -806,22 +518,10 @@ inline Violin::Box::Line& Violin::Box::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Box::Line& Violin::Box::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Box::Line& Violin::Box::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Box::Line& Violin::Box::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Violin::Hoverlabel::to_string(Align e) {
@@ -849,12 +549,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -863,12 +557,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolor(std::string f) {
 inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -883,12 +571,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -897,12 +579,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolor(std::string f) {
 inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -916,12 +592,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolor(const std::vector<dou
 inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Violin::Hoverlabel& Violin::Hoverlabel::font(Font f) {
@@ -939,12 +609,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Violin::Hoverlabel& Violin::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -953,12 +617,6 @@ inline Violin::Hoverlabel& Violin::Hoverlabel::namelength(const std::vector<int>
 inline Violin::Hoverlabel& Violin::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel& Violin::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Violin::Hoverlabel::Font::to_string(Style e) {
@@ -1000,12 +658,6 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1019,22 +671,10 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::colorsrc(std::string 
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1045,22 +685,10 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::familysrc(std::string
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1071,22 +699,10 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::linepositionsrc(std::
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1097,22 +713,10 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::shadowsrc(std::string
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1122,12 +726,6 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::size(const std::vecto
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::style(enum Style f) {
@@ -1145,12 +743,6 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::stylesrc(std::string 
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1166,12 +758,6 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::textcase(const std::v
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::variant(enum Variant f) {
@@ -1189,22 +775,10 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::variantsrc(std::strin
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1214,12 +788,6 @@ inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::weight(const std::vec
 inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Hoverlabel::Font& Violin::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1237,12 +805,6 @@ inline Violin::Legendgrouptitle& Violin::Legendgrouptitle::font(Callable&& c) {
 inline Violin::Legendgrouptitle& Violin::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle& Violin::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Violin::Legendgrouptitle::Font::to_string(Style e) {
@@ -1284,55 +846,25 @@ inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::style(enum Style f) {
@@ -1354,12 +886,6 @@ inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::weight(in
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Legendgrouptitle::Font& Violin::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Violin::Line& Violin::Line::color(std::string f) {
@@ -1370,22 +896,10 @@ inline Violin::Line& Violin::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Line& Violin::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Line& Violin::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Line& Violin::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Violin::Marker::to_string(Symbol e) {
@@ -1723,12 +1237,6 @@ inline Violin::Marker& Violin::Marker::angle(double f) {
     json["angle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Marker& Violin::Marker::angle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return angle(std::move(f));
-}
 
 inline Violin::Marker& Violin::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -1737,12 +1245,6 @@ inline Violin::Marker& Violin::Marker::color(std::string f) {
 inline Violin::Marker& Violin::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Marker& Violin::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 inline Violin::Marker& Violin::Marker::line(Line f) {
@@ -1760,12 +1262,6 @@ inline Violin::Marker& Violin::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Marker& Violin::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Violin::Marker& Violin::Marker::outliercolor(std::string f) {
     json["outliercolor"] = std::move(f);
@@ -1775,22 +1271,10 @@ inline Violin::Marker& Violin::Marker::outliercolor(double f) {
     json["outliercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Marker& Violin::Marker::outliercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outliercolor(std::move(f));
-}
 
 inline Violin::Marker& Violin::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Marker& Violin::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Violin::Marker& Violin::Marker::symbol(enum Symbol f) {
@@ -1807,12 +1291,6 @@ inline Violin::Marker::Line& Violin::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Marker::Line& Violin::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Marker::Line& Violin::Marker::Line::outliercolor(std::string f) {
     json["outliercolor"] = std::move(f);
@@ -1822,33 +1300,15 @@ inline Violin::Marker::Line& Violin::Marker::Line::outliercolor(double f) {
     json["outliercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Marker::Line& Violin::Marker::Line::outliercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outliercolor(std::move(f));
-}
 
 inline Violin::Marker::Line& Violin::Marker::Line::outlierwidth(double f) {
     json["outlierwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Marker::Line& Violin::Marker::Line::outlierwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlierwidth(std::move(f));
-}
 
 inline Violin::Marker::Line& Violin::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Marker::Line& Violin::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 
@@ -1860,33 +1320,15 @@ inline Violin::Meanline& Violin::Meanline::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Meanline& Violin::Meanline::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Meanline& Violin::Meanline::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Meanline& Violin::Meanline::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Violin::Meanline& Violin::Meanline::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Meanline& Violin::Meanline::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 
@@ -1910,33 +1352,15 @@ inline Violin::Selected::Marker& Violin::Selected::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Selected::Marker& Violin::Selected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Selected::Marker& Violin::Selected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Selected::Marker& Violin::Selected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Violin::Selected::Marker& Violin::Selected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Selected::Marker& Violin::Selected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -1944,22 +1368,10 @@ inline Violin::Stream& Violin::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Stream& Violin::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Violin::Stream& Violin::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Stream& Violin::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 
@@ -1983,33 +1395,15 @@ inline Violin::Unselected::Marker& Violin::Unselected::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Unselected::Marker& Violin::Unselected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Violin::Unselected::Marker& Violin::Unselected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Violin::Unselected::Marker& Violin::Unselected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Violin::Unselected::Marker& Violin::Unselected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Violin::Unselected::Marker& Violin::Unselected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 } // namespace plotlypp

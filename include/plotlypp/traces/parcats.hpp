@@ -72,23 +72,14 @@ class Parcats : public Trace {
 
     // Sort paths so that like colors are bundled together within each category.
     Parcats& bundlecolors(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats& bundlecolors(Callable&& c);
 
     // The number of observations represented by each state. Defaults to 1 so that each state represents one observation
     Parcats& counts(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats& counts(Callable&& c);
     Parcats& counts(const std::vector<double>& f);
 
     // Sets the source reference on Chart Studio Cloud for `counts`.
     Parcats& countssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats& countssrc(Callable&& c);
 
-    Parcats& dimensions(Dimension f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Dimension&>>>
-    Parcats& dimensions(Callable&& c);
     Parcats& dimensions(const std::vector<Dimension>& f);
 
     Parcats& domain(Domain f);
@@ -101,8 +92,6 @@ class Parcats : public Trace {
     // - Flags: ['count', 'probability']
     // - Extras ['all', 'none', 'skip']
     Parcats& hoverinfo(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats& hoverinfo(Callable&& c);
 
     // Sets the hover interaction mode for the parcats diagram. If `category`, hover interaction take place per
     // category. If `color`, hover interactions take place per color per category. If `dimension`, hover interactions
@@ -127,8 +116,6 @@ class Parcats : public Trace {
     // secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty
     // tag `<extra></extra>`.
     Parcats& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats& hovertemplate(Callable&& c);
 
     // Sets the font for the `dimension` labels.
     Parcats& labelfont(Labelfont f);
@@ -141,8 +128,6 @@ class Parcats : public Trace {
 
     // Sets the width (in px or fraction) of the legend for this trace.
     Parcats& legendwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats& legendwidth(Callable&& c);
 
     Parcats& line(Line f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Line&>>>
@@ -156,20 +141,14 @@ class Parcats : public Trace {
     // trace index.
     template <typename T>
     Parcats& meta(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Parcats& meta(Callable&& c);
     template <typename T>
     Parcats& meta(const std::vector<T>& f);
 
     // Sets the source reference on Chart Studio Cloud for `meta`.
     Parcats& metasrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats& metasrc(Callable&& c);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Parcats& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats& name(Callable&& c);
 
     // Sets the path sorting algorithm. If `forward`, sort paths based on dimension categories from left to right. If
     // `backward`, sort paths based on dimensions categories from right to left.
@@ -188,8 +167,6 @@ class Parcats : public Trace {
     // Assign an id to this trace, Use this to provide object constancy between traces during animations and
     // transitions.
     Parcats& uid(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats& uid(Callable&& c);
 
     // Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well
     // as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note
@@ -201,8 +178,6 @@ class Parcats : public Trace {
     // still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     template <typename T>
     Parcats& uirevision(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Parcats& uirevision(Callable&& c);
 
     // Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a
     // legend item (provided that the legend itself is visible).
@@ -228,15 +203,9 @@ class Parcats::Dimension {
     // *array*. Used with `categoryorder`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Parcats::Dimension& categoryarray(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Dimension& categoryarray(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `categoryarray`.
     Parcats::Dimension& categoryarraysrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimension& categoryarraysrc(Callable&& c);
 
     // Specifies the ordering logic for the categories in the dimension. By default, plotly uses *trace*, which
     // specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or
@@ -249,46 +218,28 @@ class Parcats::Dimension {
 
     // The display index of dimension, from left to right, zero indexed, defaults to dimension index.
     Parcats::Dimension& displayindex(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Dimension& displayindex(Callable&& c);
 
     // The shown name of the dimension.
     Parcats::Dimension& label(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimension& label(Callable&& c);
 
     // Sets alternative tick labels for the categories in this dimension. Only has an effect if `categoryorder` is set
     // to *array*. Should be an array the same length as `categoryarray` Used with `categoryorder`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Parcats::Dimension& ticktext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Dimension& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
     Parcats::Dimension& ticktextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimension& ticktextsrc(Callable&& c);
 
     // Dimension values. `values[n]` represents the category value of the `n`th point in the dataset, therefore the
     // `values` vector for all dimensions must be the same (longer vectors will be truncated).
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Parcats::Dimension& values(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Dimension& values(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `values`.
     Parcats::Dimension& valuessrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Dimension& valuessrc(Callable&& c);
 
     // Shows the dimension when set to `true` (the default). Hides the dimension for `false`.
     Parcats::Dimension& visible(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Dimension& visible(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -302,37 +253,21 @@ class Parcats::Domain {
 
     // If there is a layout grid, use the domain for this column in the grid for this parcats trace .
     Parcats::Domain& column(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Domain& column(Callable&& c);
 
     // If there is a layout grid, use the domain for this row in the grid for this parcats trace .
     Parcats::Domain& row(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Domain& row(Callable&& c);
 
     // Sets the horizontal domain of this parcats trace (in plot fraction).
     Parcats::Domain& x(const std::vector<double>& f);
     Parcats::Domain& x(const std::vector<std::string>& f);
     Parcats::Domain& x(const std::vector<std::vector<std::string>>& f);
     Parcats::Domain& x(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Parcats::Domain& x(Callable&& c);
 
     // Sets the vertical domain of this parcats trace (in plot fraction).
     Parcats::Domain& y(const std::vector<double>& f);
     Parcats::Domain& y(const std::vector<std::string>& f);
     Parcats::Domain& y(const std::vector<std::vector<std::string>>& f);
     Parcats::Domain& y(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Parcats::Domain& y(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -371,9 +306,6 @@ class Parcats::Labelfont {
 
     Parcats::Labelfont& color(std::string f);
     Parcats::Labelfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Labelfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -383,8 +315,6 @@ class Parcats::Labelfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Parcats::Labelfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Labelfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -392,18 +322,12 @@ class Parcats::Labelfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Parcats::Labelfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Labelfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Parcats::Labelfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Labelfont& shadow(Callable&& c);
 
     Parcats::Labelfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Labelfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -420,8 +344,6 @@ class Parcats::Labelfont {
 
     // Sets the weight (or boldness) of the font.
     Parcats::Labelfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Labelfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -443,8 +365,6 @@ class Parcats::Legendgrouptitle {
 
     // Sets the title of the legend group.
     Parcats::Legendgrouptitle& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Legendgrouptitle& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -483,9 +403,6 @@ class Parcats::Legendgrouptitle::Font {
 
     Parcats::Legendgrouptitle::Font& color(std::string f);
     Parcats::Legendgrouptitle::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Legendgrouptitle::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -495,8 +412,6 @@ class Parcats::Legendgrouptitle::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Parcats::Legendgrouptitle::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Legendgrouptitle::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -504,18 +419,12 @@ class Parcats::Legendgrouptitle::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Parcats::Legendgrouptitle::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Legendgrouptitle::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Parcats::Legendgrouptitle::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Legendgrouptitle::Font& shadow(Callable&& c);
 
     Parcats::Legendgrouptitle::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Legendgrouptitle::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -532,8 +441,6 @@ class Parcats::Legendgrouptitle::Font {
 
     // Sets the weight (or boldness) of the font.
     Parcats::Legendgrouptitle::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Legendgrouptitle::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -558,42 +465,29 @@ class Parcats::Line {
     // unspecified or `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
     // `color` array are all positive, all negative or mixed.
     Parcats::Line& autocolorscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line& autocolorscale(Callable&& c);
 
     // Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or
     // the bounds set in `line.cmin` and `line.cmax` Has an effect only if in `line.color` is set to a numerical array.
     // Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.
     Parcats::Line& cauto(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line& cauto(Callable&& c);
 
     // Sets the upper bound of the color domain. Has an effect only if in `line.color` is set to a numerical array.
     // Value should have the same units as in `line.color` and if set, `line.cmin` must be set as well.
     Parcats::Line& cmax(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line& cmax(Callable&& c);
 
     // Sets the mid-point of the color domain by scaling `line.cmin` and/or `line.cmax` to be equidistant to this point.
     // Has an effect only if in `line.color` is set to a numerical array. Value should have the same units as in
     // `line.color`. Has no effect when `line.cauto` is `false`.
     Parcats::Line& cmid(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line& cmid(Callable&& c);
 
     // Sets the lower bound of the color domain. Has an effect only if in `line.color` is set to a numerical array.
     // Value should have the same units as in `line.color` and if set, `line.cmax` must be set as well.
     Parcats::Line& cmin(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line& cmin(Callable&& c);
 
     // Sets the line color. It accepts either a specific color or an array of numbers that are mapped to the colorscale
     // relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if set.
     Parcats::Line& color(std::string f);
     Parcats::Line& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line& color(Callable&& c);
     Parcats::Line& color(const std::vector<std::string>& f);
     Parcats::Line& color(const std::vector<double>& f);
 
@@ -601,8 +495,6 @@ class Parcats::Line {
     // *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`,
     // `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     Parcats::Line& coloraxis(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line& coloraxis(Callable&& c);
 
     Parcats::Line& colorbar(Colorbar f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Colorbar&>>>
@@ -616,15 +508,9 @@ class Parcats::Line {
     // Blackbody,Bluered,Blues,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,Picnic,Portland,Rainbow,RdBu,Reds,Viridis,YlGnBu,YlOrRd.
     Parcats::Line& colorscale(std::string f);
     Parcats::Line& colorscale(const std::vector<std::pair<double, std::string>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::pair<double, std::string>>&>>>
-    Parcats::Line& colorscale(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `color`.
     Parcats::Line& colorsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line& colorsrc(Callable&& c);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -641,14 +527,10 @@ class Parcats::Line {
     // tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
     // secondary box completely, use an empty tag `<extra></extra>`.
     Parcats::Line& hovertemplate(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line& hovertemplate(Callable&& c);
 
     // Reverses the color mapping if true. Has an effect only if in `line.color` is set to a numerical array. If true,
     // `line.cmin` will correspond to the last color in the array and `line.cmax` will correspond to the first color.
     Parcats::Line& reversescale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line& reversescale(Callable&& c);
 
     // Sets the shape of the paths. If `linear`, paths are composed of straight lines. If `hspline`, paths are composed
     // of horizontal curved splines
@@ -658,8 +540,6 @@ class Parcats::Line {
     // Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `line.color` is set to
     // a numerical array.
     Parcats::Line& showscale(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line& showscale(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -791,21 +671,13 @@ class Parcats::Line::Colorbar {
     // Sets the color of padded area.
     Parcats::Line::Colorbar& bgcolor(std::string f);
     Parcats::Line::Colorbar& bgcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& bgcolor(Callable&& c);
 
     // Sets the axis line color.
     Parcats::Line::Colorbar& bordercolor(std::string f);
     Parcats::Line::Colorbar& bordercolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& bordercolor(Callable&& c);
 
     // Sets the width (in px) or the border enclosing this color bar.
     Parcats::Line::Colorbar& borderwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& borderwidth(Callable&& c);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -821,8 +693,6 @@ class Parcats::Line::Colorbar {
     // set `dtick` to *M48*
     template <typename T>
     Parcats::Line::Colorbar& dtick(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Parcats::Line::Colorbar& dtick(Callable&& c);
 
     // Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*,
     // it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*,
@@ -837,14 +707,10 @@ class Parcats::Line::Colorbar {
     // values (if desired) can include html-like tags or MathJax.
     template <typename T>
     Parcats::Line::Colorbar& labelalias(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Parcats::Line::Colorbar& labelalias(Callable&& c);
 
     // Sets the length of the color bar This measure excludes the padding of both ends. That is, the color bar length is
     // this length minus the padding on both ends.
     Parcats::Line::Colorbar& len(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& len(Callable&& c);
 
     // Determines whether this color bar's length (i.e. the measure in the color variation direction) is set in units of
     // plot *fraction* or in *pixels. Use `len` to set the value.
@@ -853,14 +719,10 @@ class Parcats::Line::Colorbar {
 
     // Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*.
     Parcats::Line::Colorbar& minexponent(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& minexponent(Callable&& c);
 
     // Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen
     // automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
     Parcats::Line::Colorbar& nticks(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Line::Colorbar& nticks(Callable&& c);
 
     // Sets the orientation of the colorbar.
     // - Default: v
@@ -869,19 +731,12 @@ class Parcats::Line::Colorbar {
     // Sets the axis line color.
     Parcats::Line::Colorbar& outlinecolor(std::string f);
     Parcats::Line::Colorbar& outlinecolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& outlinecolor(Callable&& c);
 
     // Sets the width (in px) of the axis line.
     Parcats::Line::Colorbar& outlinewidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& outlinewidth(Callable&& c);
 
     // If "true", even 4-digit integers are separated
     Parcats::Line::Colorbar& separatethousands(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line::Colorbar& separatethousands(Callable&& c);
 
     // If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is
     // shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
@@ -890,8 +745,6 @@ class Parcats::Line::Colorbar {
 
     // Determines whether or not the tick labels are drawn.
     Parcats::Line::Colorbar& showticklabels(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line::Colorbar& showticklabels(Callable&& c);
 
     // If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a
     // prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
@@ -904,8 +757,6 @@ class Parcats::Line::Colorbar {
 
     // Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
     Parcats::Line::Colorbar& thickness(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& thickness(Callable&& c);
 
     // Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units
     // of plot *fraction* or in *pixels*. Use `thickness` to set the value.
@@ -919,21 +770,14 @@ class Parcats::Line::Colorbar {
     // serial number from zero in the order it appears.
     template <typename T>
     Parcats::Line::Colorbar& tick0(T f);
-    template <typename T, typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, T&>>>
-    Parcats::Line::Colorbar& tick0(Callable&& c);
 
     // Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the
     // tick labels vertically.
     Parcats::Line::Colorbar& tickangle(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& tickangle(Callable&& c);
 
     // Sets the tick color.
     Parcats::Line::Colorbar& tickcolor(std::string f);
     Parcats::Line::Colorbar& tickcolor(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& tickcolor(Callable&& c);
 
     // Sets the color bar's tick label font
     Parcats::Line::Colorbar& tickfont(Tickfont f);
@@ -946,12 +790,7 @@ class Parcats::Line::Colorbar {
     // half of the year as a decimal number as well as *%{n}f* for fractional seconds with n digits. For example,
     // *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
     Parcats::Line::Colorbar& tickformat(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar& tickformat(Callable&& c);
 
-    Parcats::Line::Colorbar& tickformatstops(Tickformatstop f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Tickformatstop&>>>
-    Parcats::Line::Colorbar& tickformatstops(Callable&& c);
     Parcats::Line::Colorbar& tickformatstops(const std::vector<Tickformatstop>& f);
 
     // Determines how we handle tick labels that would overflow either the graph div or the domain of the axis. The
@@ -968,13 +807,9 @@ class Parcats::Line::Colorbar {
     // labeled. `tick0` determines which labels are shown. Not implemented for axes with `type` *log* or
     // *multicategory*, or when `tickmode` is *array*.
     Parcats::Line::Colorbar& ticklabelstep(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Line::Colorbar& ticklabelstep(Callable&& c);
 
     // Sets the tick length (in px).
     Parcats::Line::Colorbar& ticklen(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& ticklen(Callable&& c);
 
     // Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement
     // of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
@@ -984,8 +819,6 @@ class Parcats::Line::Colorbar {
 
     // Sets a tick label prefix.
     Parcats::Line::Colorbar& tickprefix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar& tickprefix(Callable&& c);
 
     // Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this
     // axis' are drawn outside (inside) the axis lines.
@@ -994,41 +827,25 @@ class Parcats::Line::Colorbar {
 
     // Sets a tick label suffix.
     Parcats::Line::Colorbar& ticksuffix(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar& ticksuffix(Callable&& c);
 
     // Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*.
     // Used with `tickvals`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Parcats::Line::Colorbar& ticktext(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Line::Colorbar& ticktext(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `ticktext`.
     Parcats::Line::Colorbar& ticktextsrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar& ticktextsrc(Callable&& c);
 
     // Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with
     // `ticktext`.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
     Parcats::Line::Colorbar& tickvals(Range&& f);
-    template <
-        typename T, typename Callable,
-        typename = std::enable_if_t<is_data_array_element_v<T> && (std::is_invocable_v<Callable, std::vector<T>&>)>>
-    Parcats::Line::Colorbar& tickvals(Callable&& c);
 
     // Sets the source reference on Chart Studio Cloud for `tickvals`.
     Parcats::Line::Colorbar& tickvalssrc(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar& tickvalssrc(Callable&& c);
 
     // Sets the tick width (in px).
     Parcats::Line::Colorbar& tickwidth(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& tickwidth(Callable&& c);
 
     Parcats::Line::Colorbar& title(Title f);
     template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, Title&>>>
@@ -1039,8 +856,6 @@ class Parcats::Line::Colorbar {
     // when `orientation` is *v* and 0.5 when `orientation` is *h*. Must be between *0* and *1* if `xref` is *container*
     // and between *-2* and *3* if `xref` is *paper*.
     Parcats::Line::Colorbar& x(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& x(Callable&& c);
 
     // Sets this color bar's horizontal position anchor. This anchor binds the `x` position to the *left*, *center* or
     // *right* of the color bar. Defaults to *left* when `orientation` is *v* and *center* when `orientation` is *h*.
@@ -1048,8 +863,6 @@ class Parcats::Line::Colorbar {
 
     // Sets the amount of padding (in px) along the x direction.
     Parcats::Line::Colorbar& xpad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& xpad(Callable&& c);
 
     // Sets the container `x` refers to. *container* spans the entire `width` of the plot. *paper* refers to the width
     // of the plotting area only.
@@ -1061,8 +874,6 @@ class Parcats::Line::Colorbar {
     // when `orientation` is *v* and 1 when `orientation` is *h*. Must be between *0* and *1* if `yref` is *container*
     // and between *-2* and *3* if `yref` is *paper*.
     Parcats::Line::Colorbar& y(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& y(Callable&& c);
 
     // Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or
     // *bottom* of the color bar. Defaults to *middle* when `orientation` is *v* and *bottom* when `orientation` is *h*.
@@ -1070,8 +881,6 @@ class Parcats::Line::Colorbar {
 
     // Sets the amount of padding (in px) along the y direction.
     Parcats::Line::Colorbar& ypad(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar& ypad(Callable&& c);
 
     // Sets the container `y` refers to. *container* spans the entire `height` of the plot. *paper* refers to the height
     // of the plotting area only.
@@ -1115,9 +924,6 @@ class Parcats::Line::Colorbar::Tickfont {
 
     Parcats::Line::Colorbar::Tickfont& color(std::string f);
     Parcats::Line::Colorbar::Tickfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1127,8 +933,6 @@ class Parcats::Line::Colorbar::Tickfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Parcats::Line::Colorbar::Tickfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1136,18 +940,12 @@ class Parcats::Line::Colorbar::Tickfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Parcats::Line::Colorbar::Tickfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Parcats::Line::Colorbar::Tickfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickfont& shadow(Callable&& c);
 
     Parcats::Line::Colorbar::Tickfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar::Tickfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1164,8 +962,6 @@ class Parcats::Line::Colorbar::Tickfont {
 
     // Sets the weight (or boldness) of the font.
     Parcats::Line::Colorbar::Tickfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Line::Colorbar::Tickfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1183,25 +979,15 @@ class Parcats::Line::Colorbar::Tickformatstop {
     Parcats::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::string>& f);
     Parcats::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<std::string>>& f);
     Parcats::Line::Colorbar::Tickformatstop& dtickrange(const std::vector<std::vector<double>>& f);
-    template <typename Callable,
-              typename = std::enable_if_t<std::is_invocable_v<Callable, std::vector<double>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::string>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<std::string>>&> ||
-                                          std::is_invocable_v<Callable, std::vector<std::vector<double>>&>>>
-    Parcats::Line::Colorbar::Tickformatstop& dtickrange(Callable&& c);
 
     // Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
     Parcats::Line::Colorbar::Tickformatstop& enabled(bool f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, bool&>>>
-    Parcats::Line::Colorbar::Tickformatstop& enabled(Callable&& c);
 
     // When used in a template, named items are created in the output figure in addition to any items the figure already
     // has in this array. You can modify these items in the output figure by making your own item with
     // `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled:
     // false` to hide it). Has no effect outside of a template.
     Parcats::Line::Colorbar::Tickformatstop& name(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickformatstop& name(Callable&& c);
 
     // Used to refer to a named item in this array in the template. Named items from the template will be created even
     // without a matching item in the input figure, but you can modify one by making an item with `templateitemname`
@@ -1209,13 +995,9 @@ class Parcats::Line::Colorbar::Tickformatstop {
     // there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible:
     // true`.
     Parcats::Line::Colorbar::Tickformatstop& templateitemname(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickformatstop& templateitemname(Callable&& c);
 
     // string - dtickformat for described zoom level, the same as *tickformat*
     Parcats::Line::Colorbar::Tickformatstop& value(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Tickformatstop& value(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1248,8 +1030,6 @@ class Parcats::Line::Colorbar::Title {
 
     // Sets the title of the color bar.
     Parcats::Line::Colorbar::Title& text(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Title& text(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1288,9 +1068,6 @@ class Parcats::Line::Colorbar::Title::Font {
 
     Parcats::Line::Colorbar::Title::Font& color(std::string f);
     Parcats::Line::Colorbar::Title::Font& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar::Title::Font& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1300,8 +1077,6 @@ class Parcats::Line::Colorbar::Title::Font {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Parcats::Line::Colorbar::Title::Font& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Title::Font& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1309,18 +1084,12 @@ class Parcats::Line::Colorbar::Title::Font {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Parcats::Line::Colorbar::Title::Font& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Title::Font& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Parcats::Line::Colorbar::Title::Font& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Line::Colorbar::Title::Font& shadow(Callable&& c);
 
     Parcats::Line::Colorbar::Title::Font& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Line::Colorbar::Title::Font& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1337,8 +1106,6 @@ class Parcats::Line::Colorbar::Title::Font {
 
     // Sets the weight (or boldness) of the font.
     Parcats::Line::Colorbar::Title::Font& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Line::Colorbar::Title::Font& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1353,14 +1120,10 @@ class Parcats::Stream {
     // Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*,
     // only the newest 50 points will be displayed on the plot.
     Parcats::Stream& maxpoints(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Stream& maxpoints(Callable&& c);
 
     // The stream id number links a data trace on a plot with a stream. See https://chart-studio.plotly.com/settings for
     // more details.
     Parcats::Stream& token(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Stream& token(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};
@@ -1399,9 +1162,6 @@ class Parcats::Tickfont {
 
     Parcats::Tickfont& color(std::string f);
     Parcats::Tickfont& color(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&> ||
-                                                             std::is_invocable_v<Callable, double&>>>
-    Parcats::Tickfont& color(Callable&& c);
 
     // HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to
     // apply a font if it is available on the system which it operates. Provide multiple font families, separated by
@@ -1411,8 +1171,6 @@ class Parcats::Tickfont {
     // Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*,
     // *Raleway*, *Times New Roman*.
     Parcats::Tickfont& family(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Tickfont& family(Callable&& c);
 
     // Sets the kind of decoration line(s) with text, such as an *under*, *over* or *through* as well as combinations
     // e.g. *under+over*, etc.
@@ -1420,18 +1178,12 @@ class Parcats::Tickfont {
     // - Flags: ['under', 'over', 'through']
     // - Extras ['none']
     Parcats::Tickfont& lineposition(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Tickfont& lineposition(Callable&& c);
 
     // Sets the shape and color of the shadow behind text. *auto* places minimal shadow and applies contrast text font
     // color. See https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow for additional options.
     Parcats::Tickfont& shadow(std::string f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, std::string&>>>
-    Parcats::Tickfont& shadow(Callable&& c);
 
     Parcats::Tickfont& size(double f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, double&>>>
-    Parcats::Tickfont& size(Callable&& c);
 
     // Sets whether a font should be styled with a normal or italic face from its family.
     // - Default: normal
@@ -1448,8 +1200,6 @@ class Parcats::Tickfont {
 
     // Sets the weight (or boldness) of the font.
     Parcats::Tickfont& weight(int f);
-    template <typename Callable, typename = std::enable_if_t<std::is_invocable_v<Callable, int&>>>
-    Parcats::Tickfont& weight(Callable&& c);
 
     // Advanced users may modify the JSON representation directly, at their own peril!
     Json json{};

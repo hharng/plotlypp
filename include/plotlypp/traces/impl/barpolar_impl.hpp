@@ -34,12 +34,6 @@ inline Barpolar& Barpolar::base(T f) {
     json["base"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::base(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return base(std::move(f));
-}
 template <typename T>
 inline Barpolar& Barpolar::base(const std::vector<T>& f) {
     json["base"] = f;
@@ -50,67 +44,31 @@ inline Barpolar& Barpolar::basesrc(std::string f) {
     json["basesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::basesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return basesrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Barpolar& Barpolar::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Barpolar& Barpolar::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Barpolar& Barpolar::dr(double f) {
     json["dr"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::dr(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dr(std::move(f));
-}
 
 inline Barpolar& Barpolar::dtheta(double f) {
     json["dtheta"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::dtheta(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dtheta(std::move(f));
-}
 
 inline Barpolar& Barpolar::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Barpolar& Barpolar::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -120,12 +78,6 @@ inline Barpolar& Barpolar::hoverinfo(const std::vector<std::string>& f) {
 inline Barpolar& Barpolar::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Barpolar& Barpolar::hoverlabel(Hoverlabel f) {
@@ -143,12 +95,6 @@ inline Barpolar& Barpolar::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Barpolar& Barpolar::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -158,22 +104,10 @@ inline Barpolar& Barpolar::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Barpolar& Barpolar::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Barpolar& Barpolar::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -184,56 +118,26 @@ inline Barpolar& Barpolar::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Barpolar& Barpolar::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Barpolar& Barpolar::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Barpolar& Barpolar::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Barpolar& Barpolar::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Barpolar& Barpolar::legendgrouptitle(Legendgrouptitle f) {
@@ -251,22 +155,10 @@ inline Barpolar& Barpolar::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Barpolar& Barpolar::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Barpolar& Barpolar::marker(Marker f) {
@@ -285,12 +177,6 @@ inline Barpolar& Barpolar::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Barpolar& Barpolar::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -301,33 +187,15 @@ inline Barpolar& Barpolar::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Barpolar& Barpolar::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Barpolar& Barpolar::offset(double f) {
     json["offset"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::offset(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return offset(std::move(f));
 }
 inline Barpolar& Barpolar::offset(const std::vector<double>& f) {
     json["offset"] = f;
@@ -338,22 +206,10 @@ inline Barpolar& Barpolar::offsetsrc(std::string f) {
     json["offsetsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::offsetsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return offsetsrc(std::move(f));
-}
 
 inline Barpolar& Barpolar::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 template <typename Range, typename>
@@ -361,34 +217,16 @@ inline Barpolar& Barpolar::r(Range&& f) {
     json["r"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::r(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return r(std::move(f));
-}
 
 template <typename T>
 inline Barpolar& Barpolar::r0(T f) {
     json["r0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::r0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return r0(std::move(f));
-}
 
 inline Barpolar& Barpolar::rsrc(std::string f) {
     json["rsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::rsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return rsrc(std::move(f));
 }
 
 inline Barpolar& Barpolar::selected(Selected f) {
@@ -407,22 +245,10 @@ inline Barpolar& Barpolar::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Barpolar& Barpolar::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Barpolar& Barpolar::stream(Stream f) {
@@ -440,22 +266,10 @@ inline Barpolar& Barpolar::subplot(std::string f) {
     json["subplot"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::subplot(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return subplot(std::move(f));
-}
 
 inline Barpolar& Barpolar::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 inline Barpolar& Barpolar::text(const std::vector<std::string>& f) {
     json["text"] = f;
@@ -466,23 +280,11 @@ inline Barpolar& Barpolar::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Barpolar& Barpolar::theta(Range&& f) {
     json["theta"] = f;
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::theta(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return theta(std::move(f));
 }
 
 template <typename T>
@@ -490,22 +292,10 @@ inline Barpolar& Barpolar::theta0(T f) {
     json["theta0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::theta0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return theta0(std::move(f));
-}
 
 inline Barpolar& Barpolar::thetasrc(std::string f) {
     json["thetasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::thetasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return thetasrc(std::move(f));
 }
 
 inline Barpolar& Barpolar::thetaunit(enum Thetaunit f) {
@@ -517,23 +307,11 @@ inline Barpolar& Barpolar::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
-}
 
 template <typename T>
 inline Barpolar& Barpolar::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Barpolar& Barpolar::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Barpolar& Barpolar::unselected(Unselected f) {
@@ -556,12 +334,6 @@ inline Barpolar& Barpolar::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar& Barpolar::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
-}
 inline Barpolar& Barpolar::width(const std::vector<double>& f) {
     json["width"] = f;
     return *this;
@@ -570,12 +342,6 @@ inline Barpolar& Barpolar::width(const std::vector<double>& f) {
 inline Barpolar& Barpolar::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar& Barpolar::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 inline std::string Barpolar::Hoverlabel::to_string(Align e) {
@@ -603,12 +369,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -617,12 +377,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolor(std::string f) {
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -637,12 +391,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -651,12 +399,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolor(std::string f) {
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -670,12 +412,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolor(const std::vector
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::font(Font f) {
@@ -693,12 +429,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -707,12 +437,6 @@ inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::namelength(const std::vector<
 inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel& Barpolar::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Barpolar::Hoverlabel::Font::to_string(Style e) {
@@ -754,12 +478,6 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -773,22 +491,10 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::colorsrc(std::str
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -799,22 +505,10 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::familysrc(std::st
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -825,22 +519,10 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::linepositionsrc(s
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -851,22 +533,10 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::shadowsrc(std::st
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -876,12 +546,6 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::size(const std::v
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::style(enum Style f) {
@@ -899,12 +563,6 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::stylesrc(std::str
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -920,12 +578,6 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::textcase(const st
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::variant(enum Variant f) {
@@ -943,22 +595,10 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::variantsrc(std::s
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -968,12 +608,6 @@ inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::weight(const std:
 inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Hoverlabel::Font& Barpolar::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -991,12 +625,6 @@ inline Barpolar::Legendgrouptitle& Barpolar::Legendgrouptitle::font(Callable&& c
 inline Barpolar::Legendgrouptitle& Barpolar::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle& Barpolar::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Barpolar::Legendgrouptitle::Font::to_string(Style e) {
@@ -1038,55 +666,25 @@ inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::color
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::style(enum Style f) {
@@ -1108,67 +706,31 @@ inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::weigh
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Legendgrouptitle::Font& Barpolar::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Barpolar::Marker& Barpolar::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Barpolar::Marker& Barpolar::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Barpolar::Marker& Barpolar::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Barpolar::Marker& Barpolar::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Barpolar::Marker& Barpolar::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Barpolar::Marker& Barpolar::Marker::color(std::string f) {
@@ -1178,12 +740,6 @@ inline Barpolar::Marker& Barpolar::Marker::color(std::string f) {
 inline Barpolar::Marker& Barpolar::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Barpolar::Marker& Barpolar::Marker::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -1197,12 +753,6 @@ inline Barpolar::Marker& Barpolar::Marker::color(const std::vector<double>& f) {
 inline Barpolar::Marker& Barpolar::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Barpolar::Marker& Barpolar::Marker::colorbar(Colorbar f) {
@@ -1224,22 +774,10 @@ inline Barpolar::Marker& Barpolar::Marker::colorscale(const std::vector<std::pai
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Barpolar::Marker& Barpolar::Marker::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Barpolar::Marker& Barpolar::Marker::line(Line f) {
@@ -1257,12 +795,6 @@ inline Barpolar::Marker& Barpolar::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 inline Barpolar::Marker& Barpolar::Marker::opacity(const std::vector<double>& f) {
     json["opacity"] = f;
     return *this;
@@ -1271,12 +803,6 @@ inline Barpolar::Marker& Barpolar::Marker::opacity(const std::vector<double>& f)
 inline Barpolar::Marker& Barpolar::Marker::opacitysrc(std::string f) {
     json["opacitysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::opacitysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return opacitysrc(std::move(f));
 }
 
 inline Barpolar::Marker& Barpolar::Marker::pattern(Pattern f) {
@@ -1294,22 +820,10 @@ inline Barpolar::Marker& Barpolar::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Barpolar::Marker& Barpolar::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker& Barpolar::Marker::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
 }
 
 inline std::string Barpolar::Marker::Colorbar::to_string(Exponentformat e) {
@@ -1463,12 +977,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::bgcolor(double f)
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1478,34 +986,16 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::bordercolor(doubl
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::exponentformat(enum Exponentformat f) {
@@ -1518,22 +1008,10 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::lenmode(enum Lenmode f) {
@@ -1545,22 +1023,10 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::minexponent(doubl
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::orientation(enum Orientation f) {
@@ -1576,33 +1042,15 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::outlinecolor(doub
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::showexponent(enum Showexponent f) {
@@ -1613,12 +1061,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::showexponent(enum
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -1635,12 +1077,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::thickness(double 
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -1652,22 +1088,10 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickcolor(std::string f) {
@@ -1677,12 +1101,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickcolor(std::st
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickfont(Tickfont f) {
@@ -1700,23 +1118,7 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickformat(std::s
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -1738,22 +1140,10 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticklabelstep(int
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickmode(enum Tickmode f) {
@@ -1765,12 +1155,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickprefix(std::s
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -1781,34 +1165,16 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticksuffix(std::s
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -1816,33 +1182,15 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickvals(Range&& 
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::title(Title f) {
@@ -1860,12 +1208,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -1875,12 +1217,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::xanchor(enum Xanc
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::xref(enum Xref f) {
@@ -1892,12 +1228,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -1907,12 +1237,6 @@ inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::yanchor(enum Yanc
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar& Barpolar::Marker::Colorbar::yref(enum Yref f) {
@@ -1959,55 +1283,25 @@ inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfon
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::style(enum Style f) {
@@ -2029,12 +1323,6 @@ inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfon
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickfont& Barpolar::Marker::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -2053,55 +1341,25 @@ inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::T
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Tickformatstop& Barpolar::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Barpolar::Marker::Colorbar::Title::to_string(Side e) {
@@ -2133,12 +1391,6 @@ inline Barpolar::Marker::Colorbar::Title& Barpolar::Marker::Colorbar::Title::sid
 inline Barpolar::Marker::Colorbar::Title& Barpolar::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title& Barpolar::Marker::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Barpolar::Marker::Colorbar::Title::Font::to_string(Style e) {
@@ -2180,55 +1432,25 @@ inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Titl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::style(enum Style f) {
@@ -2250,67 +1472,31 @@ inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Titl
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Colorbar::Title::Font& Barpolar::Marker::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::color(std::string f) {
@@ -2320,12 +1506,6 @@ inline Barpolar::Marker::Line& Barpolar::Marker::Line::color(std::string f) {
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -2340,12 +1520,6 @@ inline Barpolar::Marker::Line& Barpolar::Marker::Line::coloraxis(std::string f) 
     json["coloraxis"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
-}
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
@@ -2355,44 +1529,20 @@ inline Barpolar::Marker::Line& Barpolar::Marker::Line::colorscale(const std::vec
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -2402,12 +1552,6 @@ inline Barpolar::Marker::Line& Barpolar::Marker::Line::width(const std::vector<d
 inline Barpolar::Marker::Line& Barpolar::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Line& Barpolar::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 inline std::string Barpolar::Marker::Pattern::to_string(Fillmode e) {
@@ -2427,12 +1571,6 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
     return *this;
@@ -2446,12 +1584,6 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::bgcolorsrc(std::str
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolor(std::string f) {
     json["fgcolor"] = std::move(f);
@@ -2460,12 +1592,6 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolor(std::string
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolor(double f) {
     json["fgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolor(std::move(f));
 }
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
     json["fgcolor"] = f;
@@ -2480,22 +1606,10 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolorsrc(std::str
     json["fgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolorsrc(std::move(f));
-}
 
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgopacity(double f) {
     json["fgopacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fgopacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fgopacity(std::move(f));
 }
 
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::fillmode(enum Fillmode f) {
@@ -2507,12 +1621,6 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::shape(std::string f
     json["shape"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::shape(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shape(std::move(f));
-}
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::shape(const std::vector<std::string>& f) {
     json["shape"] = f;
     return *this;
@@ -2522,22 +1630,10 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::shapesrc(std::strin
     json["shapesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::shapesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shapesrc(std::move(f));
-}
 
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2548,22 +1644,10 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::sizesrc(std::string
     json["sizesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
-}
 
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::solidity(double f) {
     json["solidity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::solidity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return solidity(std::move(f));
 }
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::solidity(const std::vector<double>& f) {
     json["solidity"] = f;
@@ -2573,12 +1657,6 @@ inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::solidity(const std:
 inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::soliditysrc(std::string f) {
     json["soliditysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Marker::Pattern& Barpolar::Marker::Pattern::soliditysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return soliditysrc(std::move(f));
 }
 
 
@@ -2613,22 +1691,10 @@ inline Barpolar::Selected::Marker& Barpolar::Selected::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Selected::Marker& Barpolar::Selected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Barpolar::Selected::Marker& Barpolar::Selected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Selected::Marker& Barpolar::Selected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 
@@ -2640,34 +1706,16 @@ inline Barpolar::Selected::Textfont& Barpolar::Selected::Textfont::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Selected::Textfont& Barpolar::Selected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 
 inline Barpolar::Stream& Barpolar::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Stream& Barpolar::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Barpolar::Stream& Barpolar::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Stream& Barpolar::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 
@@ -2702,22 +1750,10 @@ inline Barpolar::Unselected::Marker& Barpolar::Unselected::Marker::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Barpolar::Unselected::Marker& Barpolar::Unselected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Barpolar::Unselected::Marker& Barpolar::Unselected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Unselected::Marker& Barpolar::Unselected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 
@@ -2728,12 +1764,6 @@ inline Barpolar::Unselected::Textfont& Barpolar::Unselected::Textfont::color(std
 inline Barpolar::Unselected::Textfont& Barpolar::Unselected::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Barpolar::Unselected::Textfont& Barpolar::Unselected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 } // namespace plotlypp

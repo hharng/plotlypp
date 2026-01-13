@@ -52,34 +52,16 @@ inline Treemap& Treemap::count(std::string f) {
     json["count"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::count(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return count(std::move(f));
-}
 
 template <typename Range, typename>
 inline Treemap& Treemap::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Treemap& Treemap::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Treemap& Treemap::domain(Domain f) {
@@ -97,12 +79,6 @@ inline Treemap& Treemap::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
-}
 inline Treemap& Treemap::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
     return *this;
@@ -111,12 +87,6 @@ inline Treemap& Treemap::hoverinfo(const std::vector<std::string>& f) {
 inline Treemap& Treemap::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Treemap& Treemap::hoverlabel(Hoverlabel f) {
@@ -134,12 +104,6 @@ inline Treemap& Treemap::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Treemap& Treemap::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -149,22 +113,10 @@ inline Treemap& Treemap::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Treemap& Treemap::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Treemap& Treemap::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -175,34 +127,16 @@ inline Treemap& Treemap::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Treemap& Treemap::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Treemap& Treemap::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Treemap& Treemap::insidetextfont(Insidetextfont f) {
@@ -221,33 +155,15 @@ inline Treemap& Treemap::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::labels(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return labels(std::move(f));
-}
 
 inline Treemap& Treemap::labelssrc(std::string f) {
     json["labelssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::labelssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return labelssrc(std::move(f));
-}
 
 inline Treemap& Treemap::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
 }
 
 inline Treemap& Treemap::legendgrouptitle(Legendgrouptitle f) {
@@ -265,34 +181,16 @@ inline Treemap& Treemap::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Treemap& Treemap::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 template <typename T>
 inline Treemap& Treemap::level(T f) {
     json["level"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::level(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return level(std::move(f));
 }
 
 inline Treemap& Treemap::marker(Marker f) {
@@ -310,23 +208,11 @@ inline Treemap& Treemap::maxdepth(int f) {
     json["maxdepth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::maxdepth(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return maxdepth(std::move(f));
-}
 
 template <typename T>
 inline Treemap& Treemap::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
 }
 template <typename T>
 inline Treemap& Treemap::meta(const std::vector<T>& f) {
@@ -338,33 +224,15 @@ inline Treemap& Treemap::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Treemap& Treemap::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Treemap& Treemap::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Treemap& Treemap::outsidetextfont(Outsidetextfont f) {
@@ -383,22 +251,10 @@ inline Treemap& Treemap::parents(Range&& f) {
     json["parents"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::parents(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return parents(std::move(f));
-}
 
 inline Treemap& Treemap::parentssrc(std::string f) {
     json["parentssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::parentssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return parentssrc(std::move(f));
 }
 
 inline Treemap& Treemap::pathbar(Pathbar f) {
@@ -427,12 +283,6 @@ inline Treemap& Treemap::sort(bool f) {
     json["sort"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::sort(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return sort(std::move(f));
-}
 
 inline Treemap& Treemap::stream(Stream f) {
     json["stream"] = std::move(f.json);
@@ -450,12 +300,6 @@ inline Treemap& Treemap::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::text(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Treemap& Treemap::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
@@ -472,12 +316,6 @@ inline Treemap& Treemap::textinfo(std::string f) {
     json["textinfo"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::textinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textinfo(std::move(f));
-}
 
 inline Treemap& Treemap::textposition(enum Textposition f) {
     json["textposition"] = to_string(f);
@@ -488,22 +326,10 @@ inline Treemap& Treemap::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Treemap& Treemap::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 inline Treemap& Treemap::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
@@ -513,12 +339,6 @@ inline Treemap& Treemap::texttemplate(const std::vector<std::string>& f) {
 inline Treemap& Treemap::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::texttemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplatesrc(std::move(f));
 }
 
 inline Treemap& Treemap::tiling(Tiling f) {
@@ -536,23 +356,11 @@ inline Treemap& Treemap::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap& Treemap::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
-}
 
 template <typename T>
 inline Treemap& Treemap::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 template <typename Range, typename>
@@ -560,22 +368,10 @@ inline Treemap& Treemap::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap& Treemap::values(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return values(std::move(f));
-}
 
 inline Treemap& Treemap::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap& Treemap::valuessrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return valuessrc(std::move(f));
 }
 
 inline Treemap& Treemap::visible(enum Visible f) {
@@ -588,22 +384,10 @@ inline Treemap::Domain& Treemap::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Domain& Treemap::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Treemap::Domain& Treemap::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Domain& Treemap::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Treemap::Domain& Treemap::Domain::x(const std::vector<double>& f) {
@@ -622,12 +406,6 @@ inline Treemap::Domain& Treemap::Domain::x(const std::vector<std::vector<double>
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Domain& Treemap::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Treemap::Domain& Treemap::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -644,12 +422,6 @@ inline Treemap::Domain& Treemap::Domain::y(const std::vector<std::vector<std::st
 inline Treemap::Domain& Treemap::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Domain& Treemap::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Treemap::Hoverlabel::to_string(Align e) {
@@ -677,12 +449,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -691,12 +457,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolor(std::string f) {
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -711,12 +471,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -725,12 +479,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolor(std::string f) {
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -744,12 +492,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolor(const std::vector<d
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::font(Font f) {
@@ -767,12 +509,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -781,12 +517,6 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelength(const std::vector<in
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Treemap::Hoverlabel::Font::to_string(Style e) {
@@ -828,12 +558,6 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -847,22 +571,10 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::colorsrc(std::strin
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -873,22 +585,10 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::familysrc(std::stri
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -899,22 +599,10 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::linepositionsrc(std
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -925,22 +613,10 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::shadowsrc(std::stri
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -950,12 +626,6 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::size(const std::vec
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::style(enum Style f) {
@@ -973,12 +643,6 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::stylesrc(std::strin
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -994,12 +658,6 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcase(const std:
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::variant(enum Variant f) {
@@ -1017,22 +675,10 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::variantsrc(std::str
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1042,12 +688,6 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weight(const std::v
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Treemap::Insidetextfont::to_string(Style e) {
@@ -1089,12 +729,6 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1108,22 +742,10 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::colorsrc(std::string f)
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1134,22 +756,10 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::familysrc(std::string f
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1160,22 +770,10 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::linepositionsrc(std::st
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1186,22 +784,10 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::shadowsrc(std::string f
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1211,12 +797,6 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::size(const std::vector<
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::style(enum Style f) {
@@ -1234,12 +814,6 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::stylesrc(std::string f)
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1255,12 +829,6 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcase(const std::vec
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::variant(enum Variant f) {
@@ -1278,22 +846,10 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::variantsrc(std::string 
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1303,12 +859,6 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::weight(const std::vecto
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Insidetextfont& Treemap::Insidetextfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1326,12 +876,6 @@ inline Treemap::Legendgrouptitle& Treemap::Legendgrouptitle::font(Callable&& c) 
 inline Treemap::Legendgrouptitle& Treemap::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle& Treemap::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Treemap::Legendgrouptitle::Font::to_string(Style e) {
@@ -1373,55 +917,25 @@ inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::color(d
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::style(enum Style f) {
@@ -1443,12 +957,6 @@ inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::weight(
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 inline std::string Treemap::Marker::to_string(Depthfade e) {
     switch(e) {
@@ -1464,66 +972,30 @@ inline Treemap::Marker& Treemap::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Treemap::Marker& Treemap::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
 }
 
 inline Treemap::Marker& Treemap::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Treemap::Marker& Treemap::Marker::colorbar(Colorbar f) {
@@ -1542,12 +1014,6 @@ inline Treemap::Marker& Treemap::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::colors(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return colors(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
@@ -1557,33 +1023,15 @@ inline Treemap::Marker& Treemap::Marker::colorscale(const std::vector<std::pair<
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::colorssrc(std::string f) {
     json["colorssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::colorssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorssrc(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::cornerradius(double f) {
     json["cornerradius"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::cornerradius(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cornerradius(std::move(f));
 }
 
 inline Treemap::Marker& Treemap::Marker::depthfade(enum Depthfade f) {
@@ -1628,22 +1076,10 @@ inline Treemap::Marker& Treemap::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Treemap::Marker& Treemap::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker& Treemap::Marker::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
 }
 
 inline std::string Treemap::Marker::Colorbar::to_string(Exponentformat e) {
@@ -1797,12 +1233,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1812,34 +1242,16 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::bordercolor(double 
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::exponentformat(enum Exponentformat f) {
@@ -1852,22 +1264,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::lenmode(enum Lenmode f) {
@@ -1879,22 +1279,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::minexponent(double 
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::orientation(enum Orientation f) {
@@ -1910,33 +1298,15 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::outlinecolor(double
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showexponent(enum Showexponent f) {
@@ -1947,12 +1317,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showexponent(enum S
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -1969,12 +1333,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::thickness(double f)
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -1986,22 +1344,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickcolor(std::string f) {
@@ -2011,12 +1357,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickcolor(std::stri
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickfont(Tickfont f) {
@@ -2034,23 +1374,7 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickformat(std::str
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -2072,22 +1396,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklabelstep(int f
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickmode(enum Tickmode f) {
@@ -2099,12 +1411,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickprefix(std::str
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -2115,34 +1421,16 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticksuffix(std::str
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -2150,33 +1438,15 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickvals(Range&& f)
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::title(Title f) {
@@ -2194,12 +1464,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -2209,12 +1473,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xanchor(enum Xancho
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xref(enum Xref f) {
@@ -2226,12 +1484,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -2241,12 +1493,6 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::yanchor(enum Yancho
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::yref(enum Yref f) {
@@ -2293,55 +1539,25 @@ inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::style(enum Style f) {
@@ -2363,12 +1579,6 @@ inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont:
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -2387,55 +1597,25 @@ inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tic
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Treemap::Marker::Colorbar::Title::to_string(Side e) {
@@ -2467,12 +1647,6 @@ inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::side(
 inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Style e) {
@@ -2514,55 +1688,25 @@ inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::style(enum Style f) {
@@ -2584,12 +1728,6 @@ inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title:
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Treemap::Marker::Line& Treemap::Marker::Line::color(std::string f) {
@@ -2599,12 +1737,6 @@ inline Treemap::Marker::Line& Treemap::Marker::Line::color(std::string f) {
 inline Treemap::Marker::Line& Treemap::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Line& Treemap::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Treemap::Marker::Line& Treemap::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -2619,22 +1751,10 @@ inline Treemap::Marker::Line& Treemap::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Line& Treemap::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Treemap::Marker::Line& Treemap::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Line& Treemap::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Treemap::Marker::Line& Treemap::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -2645,56 +1765,26 @@ inline Treemap::Marker::Line& Treemap::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Line& Treemap::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
-}
 
 
 inline Treemap::Marker::Pad& Treemap::Marker::Pad::b(double f) {
     json["b"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pad& Treemap::Marker::Pad::b(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return b(std::move(f));
-}
 
 inline Treemap::Marker::Pad& Treemap::Marker::Pad::l(double f) {
     json["l"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pad& Treemap::Marker::Pad::l(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return l(std::move(f));
 }
 
 inline Treemap::Marker::Pad& Treemap::Marker::Pad::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pad& Treemap::Marker::Pad::r(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return r(std::move(f));
-}
 
 inline Treemap::Marker::Pad& Treemap::Marker::Pad::t(double f) {
     json["t"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pad& Treemap::Marker::Pad::t(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return t(std::move(f));
 }
 
 inline std::string Treemap::Marker::Pattern::to_string(Fillmode e) {
@@ -2714,12 +1804,6 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
     return *this;
@@ -2733,12 +1817,6 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::bgcolorsrc(std::strin
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolor(std::string f) {
     json["fgcolor"] = std::move(f);
@@ -2747,12 +1825,6 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolor(std::string f
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolor(double f) {
     json["fgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolor(std::move(f));
 }
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
     json["fgcolor"] = f;
@@ -2767,22 +1839,10 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolorsrc(std::strin
     json["fgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolorsrc(std::move(f));
-}
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgopacity(double f) {
     json["fgopacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgopacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fgopacity(std::move(f));
 }
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fillmode(enum Fillmode f) {
@@ -2794,12 +1854,6 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::shape(std::string f) 
     json["shape"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::shape(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shape(std::move(f));
-}
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::shape(const std::vector<std::string>& f) {
     json["shape"] = f;
     return *this;
@@ -2809,22 +1863,10 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::shapesrc(std::string 
     json["shapesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::shapesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shapesrc(std::move(f));
-}
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2835,22 +1877,10 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::sizesrc(std::string f
     json["sizesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
-}
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::solidity(double f) {
     json["solidity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::solidity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return solidity(std::move(f));
 }
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::solidity(const std::vector<double>& f) {
     json["solidity"] = f;
@@ -2860,12 +1890,6 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::solidity(const std::v
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::soliditysrc(std::string f) {
     json["soliditysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::soliditysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return soliditysrc(std::move(f));
 }
 
 inline std::string Treemap::Outsidetextfont::to_string(Style e) {
@@ -2907,12 +1931,6 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -2926,22 +1944,10 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::colorsrc(std::string 
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -2952,22 +1958,10 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::familysrc(std::string
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -2978,22 +1972,10 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::linepositionsrc(std::
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -3004,22 +1986,10 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::shadowsrc(std::string
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -3029,12 +1999,6 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::size(const std::vecto
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::style(enum Style f) {
@@ -3052,12 +2016,6 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::stylesrc(std::string 
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -3073,12 +2031,6 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcase(const std::v
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::variant(enum Variant f) {
@@ -3096,22 +2048,10 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::variantsrc(std::strin
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -3121,12 +2061,6 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weight(const std::vec
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Treemap::Pathbar::to_string(Edgeshape e) {
@@ -3174,22 +2108,10 @@ inline Treemap::Pathbar& Treemap::Pathbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar& Treemap::Pathbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Treemap::Pathbar& Treemap::Pathbar::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar& Treemap::Pathbar::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Treemap::Pathbar::Textfont::to_string(Style e) {
@@ -3231,12 +2153,6 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -3250,22 +2166,10 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::colorsrc(std::str
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -3276,22 +2180,10 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::familysrc(std::st
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -3302,22 +2194,10 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::linepositionsrc(s
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -3328,22 +2208,10 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::shadowsrc(std::st
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -3353,12 +2221,6 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::size(const std::v
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::style(enum Style f) {
@@ -3376,12 +2238,6 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::stylesrc(std::str
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -3397,12 +2253,6 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcase(const st
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::variant(enum Variant f) {
@@ -3420,22 +2270,10 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::variantsrc(std::s
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -3445,12 +2283,6 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::weight(const std:
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -3462,34 +2294,16 @@ inline Treemap::Root& Treemap::Root::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Root& Treemap::Root::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 
 inline Treemap::Stream& Treemap::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Stream& Treemap::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Treemap::Stream& Treemap::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Stream& Treemap::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Treemap::Textfont::to_string(Style e) {
@@ -3531,12 +2345,6 @@ inline Treemap::Textfont& Treemap::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Treemap::Textfont& Treemap::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -3550,22 +2358,10 @@ inline Treemap::Textfont& Treemap::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Treemap::Textfont& Treemap::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Treemap::Textfont& Treemap::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -3576,22 +2372,10 @@ inline Treemap::Textfont& Treemap::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Treemap::Textfont& Treemap::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Treemap::Textfont& Treemap::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -3602,22 +2386,10 @@ inline Treemap::Textfont& Treemap::Textfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Treemap::Textfont& Treemap::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Treemap::Textfont& Treemap::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -3628,22 +2400,10 @@ inline Treemap::Textfont& Treemap::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Treemap::Textfont& Treemap::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Treemap::Textfont& Treemap::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -3653,12 +2413,6 @@ inline Treemap::Textfont& Treemap::Textfont::size(const std::vector<double>& f) 
 inline Treemap::Textfont& Treemap::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Treemap::Textfont& Treemap::Textfont::style(enum Style f) {
@@ -3676,12 +2430,6 @@ inline Treemap::Textfont& Treemap::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Treemap::Textfont& Treemap::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -3697,12 +2445,6 @@ inline Treemap::Textfont& Treemap::Textfont::textcase(const std::vector<enum Tex
 inline Treemap::Textfont& Treemap::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Treemap::Textfont& Treemap::Textfont::variant(enum Variant f) {
@@ -3720,22 +2462,10 @@ inline Treemap::Textfont& Treemap::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Treemap::Textfont& Treemap::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Treemap::Textfont& Treemap::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -3745,12 +2475,6 @@ inline Treemap::Textfont& Treemap::Textfont::weight(const std::vector<int>& f) {
 inline Treemap::Textfont& Treemap::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Textfont& Treemap::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Treemap::Tiling::to_string(Packing e) {
@@ -3770,12 +2494,6 @@ inline Treemap::Tiling& Treemap::Tiling::flip(std::string f) {
     json["flip"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Tiling& Treemap::Tiling::flip(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return flip(std::move(f));
-}
 
 inline Treemap::Tiling& Treemap::Tiling::packing(enum Packing f) {
     json["packing"] = to_string(f);
@@ -3786,22 +2504,10 @@ inline Treemap::Tiling& Treemap::Tiling::pad(double f) {
     json["pad"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Treemap::Tiling& Treemap::Tiling::pad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pad(std::move(f));
-}
 
 inline Treemap::Tiling& Treemap::Tiling::squarifyratio(double f) {
     json["squarifyratio"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Treemap::Tiling& Treemap::Tiling::squarifyratio(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return squarifyratio(std::move(f));
 }
 
 } // namespace plotlypp

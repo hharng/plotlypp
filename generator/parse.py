@@ -197,10 +197,12 @@ def emit_field_setter(class_object, field, output_val_type, writer):
             else:
                 writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(int index, {output_val_type} f) {{")
         with IndentBlock(writer):
+            # Hmm
+            writer.write(f"const auto key = std::string(\"{field.name}\") + (index > 1 ? std::to_string(index) : \"\");")
             if field.is_object:
-                writer.write(f"json[\"{field.name}\" + std::to_string(index)] = std::move(f.json);")
+                writer.write(f"json[key] = std::move(f.json);")
             else:
-                writer.write(f"json[\"{field.name}\"+ std::to_string(index)] = " + ("f" if vec_type else "std::move(f)") + ";")
+                writer.write(f"json[key] = " + ("f" if vec_type else "std::move(f)") + ";")
             writer.write("return *this;")
         writer.write("}")
 
@@ -300,9 +302,12 @@ def emit_class_public_members(class_object, writer):
                 output_val_types = [f"{object_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
-            for output_val_type_overload in output_val_types:
-                emit_field_setter(class_object, field, output_val_type_overload, writer)
-            emit_lambda_setter(class_object, field, output_val_types, writer)
+            if not (field.is_object and field.array_ok):
+                for output_val_type_overload in output_val_types:
+                    emit_field_setter(class_object, field, output_val_type_overload, writer)
+                if field.is_object:
+                    # Lambda setter is only generated for non-array objects.
+                    emit_lambda_setter(class_object, field, output_val_types, writer)
             if field.array_ok:
                 for output_val_type_overload in output_val_types:
                     emit_array_field_setter(class_object, field, output_val_type_overload, writer)
@@ -337,9 +342,11 @@ def emit_class_public_members_decl(class_object, writer):
                 output_val_types = [f"{field_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
-            for output_val_type_overload in output_val_types:
-                emit_field_setter_decl(class_object, field, output_val_type_overload, writer)
-            emit_lambda_setter_decl(class_object, field, output_val_types, writer)
+            if not (field.is_object and field.array_ok):
+                for output_val_type_overload in output_val_types:
+                    emit_field_setter_decl(class_object, field, output_val_type_overload, writer)
+                if field.is_object:
+                    emit_lambda_setter_decl(class_object, field, output_val_types, writer)
             if field.array_ok:
                 for output_val_type_overload in output_val_types:
                     emit_array_field_setter_decl(class_object, field, output_val_type_overload, writer)

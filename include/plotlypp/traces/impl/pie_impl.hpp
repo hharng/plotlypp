@@ -52,34 +52,16 @@ inline Pie& Pie::automargin(bool f) {
     json["automargin"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::automargin(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return automargin(std::move(f));
-}
 
 template <typename Range, typename>
 inline Pie& Pie::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie& Pie::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Pie& Pie::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Pie& Pie::direction(enum Direction f) {
@@ -90,12 +72,6 @@ inline Pie& Pie::direction(enum Direction f) {
 inline Pie& Pie::dlabel(double f) {
     json["dlabel"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::dlabel(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dlabel(std::move(f));
 }
 
 inline Pie& Pie::domain(Domain f) {
@@ -113,22 +89,10 @@ inline Pie& Pie::hole(double f) {
     json["hole"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::hole(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return hole(std::move(f));
-}
 
 inline Pie& Pie::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Pie& Pie::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -138,12 +102,6 @@ inline Pie& Pie::hoverinfo(const std::vector<std::string>& f) {
 inline Pie& Pie::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Pie& Pie::hoverlabel(Hoverlabel f) {
@@ -161,12 +119,6 @@ inline Pie& Pie::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Pie& Pie::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -176,22 +128,10 @@ inline Pie& Pie::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Pie& Pie::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Pie& Pie::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -202,34 +142,16 @@ inline Pie& Pie::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Pie& Pie::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie& Pie::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Pie& Pie::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Pie& Pie::insidetextfont(Insidetextfont f) {
@@ -252,56 +174,26 @@ inline Pie& Pie::label0(double f) {
     json["label0"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::label0(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return label0(std::move(f));
-}
 
 template <typename Range, typename>
 inline Pie& Pie::labels(Range&& f) {
     json["labels"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie& Pie::labels(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return labels(std::move(f));
-}
 
 inline Pie& Pie::labelssrc(std::string f) {
     json["labelssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::labelssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return labelssrc(std::move(f));
 }
 
 inline Pie& Pie::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Pie& Pie::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Pie& Pie::legendgrouptitle(Legendgrouptitle f) {
@@ -319,22 +211,10 @@ inline Pie& Pie::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Pie& Pie::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Pie& Pie::marker(Marker f) {
@@ -353,12 +233,6 @@ inline Pie& Pie::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie& Pie::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Pie& Pie::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -369,33 +243,15 @@ inline Pie& Pie::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Pie& Pie::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Pie& Pie::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Pie& Pie::outsidetextfont(Outsidetextfont f) {
@@ -413,12 +269,6 @@ inline Pie& Pie::pull(double f) {
     json["pull"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::pull(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pull(std::move(f));
-}
 inline Pie& Pie::pull(const std::vector<double>& f) {
     json["pull"] = f;
     return *this;
@@ -428,55 +278,25 @@ inline Pie& Pie::pullsrc(std::string f) {
     json["pullsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::pullsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return pullsrc(std::move(f));
-}
 
 inline Pie& Pie::rotation(double f) {
     json["rotation"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::rotation(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return rotation(std::move(f));
 }
 
 inline Pie& Pie::scalegroup(std::string f) {
     json["scalegroup"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::scalegroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scalegroup(std::move(f));
-}
 
 inline Pie& Pie::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
-}
 
 inline Pie& Pie::sort(bool f) {
     json["sort"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::sort(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return sort(std::move(f));
 }
 
 inline Pie& Pie::stream(Stream f) {
@@ -495,12 +315,6 @@ inline Pie& Pie::text(Range&& f) {
     json["text"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie& Pie::text(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Pie& Pie::textfont(Textfont f) {
     json["textfont"] = std::move(f.json);
@@ -516,12 +330,6 @@ inline Pie& Pie::textfont(Callable&& c) {
 inline Pie& Pie::textinfo(std::string f) {
     json["textinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::textinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textinfo(std::move(f));
 }
 
 inline Pie& Pie::textposition(enum Textposition f) {
@@ -539,33 +347,15 @@ inline Pie& Pie::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::textpositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textpositionsrc(std::move(f));
-}
 
 inline Pie& Pie::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Pie& Pie::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 inline Pie& Pie::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
@@ -575,12 +365,6 @@ inline Pie& Pie::texttemplate(const std::vector<std::string>& f) {
 inline Pie& Pie::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::texttemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplatesrc(std::move(f));
 }
 
 inline Pie& Pie::title(Title f) {
@@ -598,23 +382,11 @@ inline Pie& Pie::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie& Pie::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
-}
 
 template <typename T>
 inline Pie& Pie::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Pie& Pie::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 template <typename Range, typename>
@@ -622,22 +394,10 @@ inline Pie& Pie::values(Range&& f) {
     json["values"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie& Pie::values(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return values(std::move(f));
-}
 
 inline Pie& Pie::valuessrc(std::string f) {
     json["valuessrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie& Pie::valuessrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return valuessrc(std::move(f));
 }
 
 inline Pie& Pie::visible(enum Visible f) {
@@ -650,22 +410,10 @@ inline Pie::Domain& Pie::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Domain& Pie::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Pie::Domain& Pie::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Domain& Pie::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Pie::Domain& Pie::Domain::x(const std::vector<double>& f) {
@@ -684,12 +432,6 @@ inline Pie::Domain& Pie::Domain::x(const std::vector<std::vector<double>>& f) {
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Domain& Pie::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Pie::Domain& Pie::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -706,12 +448,6 @@ inline Pie::Domain& Pie::Domain::y(const std::vector<std::vector<std::string>>& 
 inline Pie::Domain& Pie::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Domain& Pie::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Pie::Hoverlabel::to_string(Align e) {
@@ -739,12 +475,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -753,12 +483,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(std::string f) {
 inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -773,12 +497,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -787,12 +505,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(std::string f) {
 inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -806,12 +518,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolor(const std::vector<double>& 
 inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Pie::Hoverlabel& Pie::Hoverlabel::font(Font f) {
@@ -829,12 +535,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -843,12 +543,6 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::namelength(const std::vector<int>& f) {
 inline Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Pie::Hoverlabel::Font::to_string(Style e) {
@@ -890,12 +584,6 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -909,22 +597,10 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -935,22 +611,10 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -961,22 +625,10 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::linepositionsrc(std::string
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -987,22 +639,10 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1012,12 +652,6 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::size(const std::vector<doub
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::style(enum Style f) {
@@ -1035,12 +669,6 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1056,12 +684,6 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcase(const std::vector<
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variant(enum Variant f) {
@@ -1079,22 +701,10 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1104,12 +714,6 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weight(const std::vector<in
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Pie::Insidetextfont::to_string(Style e) {
@@ -1151,12 +755,6 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Pie::Insidetextfont& Pie::Insidetextfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1170,22 +768,10 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Pie::Insidetextfont& Pie::Insidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1196,22 +782,10 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Pie::Insidetextfont& Pie::Insidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1222,22 +796,10 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::linepositionsrc(std::string f) 
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Pie::Insidetextfont& Pie::Insidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1248,22 +810,10 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Pie::Insidetextfont& Pie::Insidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1273,12 +823,6 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::size(const std::vector<double>&
 inline Pie::Insidetextfont& Pie::Insidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::style(enum Style f) {
@@ -1296,12 +840,6 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1317,12 +855,6 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::textcase(const std::vector<enum
 inline Pie::Insidetextfont& Pie::Insidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::variant(enum Variant f) {
@@ -1340,22 +872,10 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Pie::Insidetextfont& Pie::Insidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1365,12 +885,6 @@ inline Pie::Insidetextfont& Pie::Insidetextfont::weight(const std::vector<int>& 
 inline Pie::Insidetextfont& Pie::Insidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Insidetextfont& Pie::Insidetextfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1388,12 +902,6 @@ inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::font(Callable&& c) {
 inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Pie::Legendgrouptitle::Font::to_string(Style e) {
@@ -1435,55 +943,25 @@ inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::style(enum Style f) {
@@ -1505,12 +983,6 @@ inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 template <typename Range, typename>
@@ -1518,22 +990,10 @@ inline Pie::Marker& Pie::Marker::colors(Range&& f) {
     json["colors"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Pie::Marker& Pie::Marker::colors(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return colors(std::move(f));
-}
 
 inline Pie::Marker& Pie::Marker::colorssrc(std::string f) {
     json["colorssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker& Pie::Marker::colorssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorssrc(std::move(f));
 }
 
 inline Pie::Marker& Pie::Marker::line(Line f) {
@@ -1567,12 +1027,6 @@ inline Pie::Marker::Line& Pie::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Line& Pie::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Pie::Marker::Line& Pie::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1586,22 +1040,10 @@ inline Pie::Marker::Line& Pie::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Line& Pie::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Pie::Marker::Line& Pie::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Line& Pie::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Pie::Marker::Line& Pie::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -1611,12 +1053,6 @@ inline Pie::Marker::Line& Pie::Marker::Line::width(const std::vector<double>& f)
 inline Pie::Marker::Line& Pie::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Line& Pie::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 inline std::string Pie::Marker::Pattern::to_string(Fillmode e) {
@@ -1636,12 +1072,6 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
     return *this;
@@ -1655,12 +1085,6 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(std::string f) {
     json["fgcolor"] = std::move(f);
@@ -1669,12 +1093,6 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(std::string f) {
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(double f) {
     json["fgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolor(std::move(f));
 }
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolor(const std::vector<std::string>& f) {
     json["fgcolor"] = f;
@@ -1689,22 +1107,10 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolorsrc(std::string f) {
     json["fgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fgcolorsrc(std::move(f));
-}
 
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgopacity(double f) {
     json["fgopacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::fgopacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fgopacity(std::move(f));
 }
 
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::fillmode(enum Fillmode f) {
@@ -1716,12 +1122,6 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::shape(std::string f) {
     json["shape"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::shape(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shape(std::move(f));
-}
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::shape(const std::vector<std::string>& f) {
     json["shape"] = f;
     return *this;
@@ -1731,22 +1131,10 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::shapesrc(std::string f) {
     json["shapesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::shapesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shapesrc(std::move(f));
-}
 
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1757,22 +1145,10 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
-}
 
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(double f) {
     json["solidity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return solidity(std::move(f));
 }
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(const std::vector<double>& f) {
     json["solidity"] = f;
@@ -1782,12 +1158,6 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::solidity(const std::vector<do
 inline Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(std::string f) {
     json["soliditysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return soliditysrc(std::move(f));
 }
 
 inline std::string Pie::Outsidetextfont::to_string(Style e) {
@@ -1829,12 +1199,6 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1848,22 +1212,10 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1874,22 +1226,10 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1900,22 +1240,10 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::linepositionsrc(std::string f
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1926,22 +1254,10 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1951,12 +1267,6 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::size(const std::vector<double
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::style(enum Style f) {
@@ -1974,12 +1284,6 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1995,12 +1299,6 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcase(const std::vector<en
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::variant(enum Variant f) {
@@ -2018,22 +1316,10 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -2044,34 +1330,16 @@ inline Pie::Outsidetextfont& Pie::Outsidetextfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Outsidetextfont& Pie::Outsidetextfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
-}
 
 
 inline Pie::Stream& Pie::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Stream& Pie::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Pie::Stream& Pie::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Stream& Pie::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Pie::Textfont::to_string(Style e) {
@@ -2113,12 +1381,6 @@ inline Pie::Textfont& Pie::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Pie::Textfont& Pie::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -2132,22 +1394,10 @@ inline Pie::Textfont& Pie::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Pie::Textfont& Pie::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Pie::Textfont& Pie::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -2158,22 +1408,10 @@ inline Pie::Textfont& Pie::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Pie::Textfont& Pie::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Pie::Textfont& Pie::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -2184,22 +1422,10 @@ inline Pie::Textfont& Pie::Textfont::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Pie::Textfont& Pie::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Pie::Textfont& Pie::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -2210,22 +1436,10 @@ inline Pie::Textfont& Pie::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Pie::Textfont& Pie::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Pie::Textfont& Pie::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2235,12 +1449,6 @@ inline Pie::Textfont& Pie::Textfont::size(const std::vector<double>& f) {
 inline Pie::Textfont& Pie::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Pie::Textfont& Pie::Textfont::style(enum Style f) {
@@ -2258,12 +1466,6 @@ inline Pie::Textfont& Pie::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Pie::Textfont& Pie::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -2279,12 +1481,6 @@ inline Pie::Textfont& Pie::Textfont::textcase(const std::vector<enum Textcase>& 
 inline Pie::Textfont& Pie::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Pie::Textfont& Pie::Textfont::variant(enum Variant f) {
@@ -2302,22 +1498,10 @@ inline Pie::Textfont& Pie::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Pie::Textfont& Pie::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Pie::Textfont& Pie::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -2327,12 +1511,6 @@ inline Pie::Textfont& Pie::Textfont::weight(const std::vector<int>& f) {
 inline Pie::Textfont& Pie::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Textfont& Pie::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 inline std::string Pie::Title::to_string(Position e) {
@@ -2368,12 +1546,6 @@ inline Pie::Title& Pie::Title::position(enum Position f) {
 inline Pie::Title& Pie::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title& Pie::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Pie::Title::Font::to_string(Style e) {
@@ -2415,12 +1587,6 @@ inline Pie::Title::Font& Pie::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Pie::Title::Font& Pie::Title::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -2434,22 +1600,10 @@ inline Pie::Title::Font& Pie::Title::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Pie::Title::Font& Pie::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Pie::Title::Font& Pie::Title::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -2460,22 +1614,10 @@ inline Pie::Title::Font& Pie::Title::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Pie::Title::Font& Pie::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Pie::Title::Font& Pie::Title::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -2486,22 +1628,10 @@ inline Pie::Title::Font& Pie::Title::Font::linepositionsrc(std::string f) {
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Pie::Title::Font& Pie::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Pie::Title::Font& Pie::Title::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -2512,22 +1642,10 @@ inline Pie::Title::Font& Pie::Title::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Pie::Title::Font& Pie::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Pie::Title::Font& Pie::Title::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2537,12 +1655,6 @@ inline Pie::Title::Font& Pie::Title::Font::size(const std::vector<double>& f) {
 inline Pie::Title::Font& Pie::Title::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Pie::Title::Font& Pie::Title::Font::style(enum Style f) {
@@ -2560,12 +1672,6 @@ inline Pie::Title::Font& Pie::Title::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Pie::Title::Font& Pie::Title::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -2581,12 +1687,6 @@ inline Pie::Title::Font& Pie::Title::Font::textcase(const std::vector<enum Textc
 inline Pie::Title::Font& Pie::Title::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Pie::Title::Font& Pie::Title::Font::variant(enum Variant f) {
@@ -2604,22 +1704,10 @@ inline Pie::Title::Font& Pie::Title::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Pie::Title::Font& Pie::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Pie::Title::Font& Pie::Title::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -2629,12 +1717,6 @@ inline Pie::Title::Font& Pie::Title::Font::weight(const std::vector<int>& f) {
 inline Pie::Title::Font& Pie::Title::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Pie::Title::Font& Pie::Title::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 } // namespace plotlypp

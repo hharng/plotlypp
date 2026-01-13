@@ -172,16 +172,6 @@ inline Layout& Layout::activeshape(Callable&& c) {
     return activeshape(std::move(f));
 }
 
-inline Layout& Layout::annotations(Annotation f) {
-    json["annotations"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::annotations(Callable&& c) {
-    Annotation f{};
-    std::forward<Callable>(c)(f);
-    return annotations(std::move(f));
-}
 inline Layout& Layout::annotations(const std::vector<Annotation>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -192,12 +182,6 @@ inline Layout& Layout::annotations(const std::vector<Annotation>& f) {
 inline Layout& Layout::autosize(bool f) {
     json["autosize"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::autosize(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autosize(std::move(f));
 }
 
 inline Layout& Layout::autotypenumbers(enum Autotypenumbers f) {
@@ -214,19 +198,14 @@ inline Layout& Layout::clickmode(std::string f) {
     json["clickmode"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::clickmode(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return clickmode(std::move(f));
-}
 
 inline Layout& Layout::coloraxis(Coloraxis f) {
     json["coloraxis"] = std::move(f.json);
     return *this;
 }
 inline Layout& Layout::coloraxis(int index, Coloraxis f) {
-    json["coloraxis" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("coloraxis") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -261,35 +240,17 @@ inline Layout& Layout::colorway(const std::vector<double>& f) {
     json["colorway"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::colorway(Callable&& c) {
-    std::vector<std::string> f{};
-    std::forward<Callable>(c)(f);
-    return colorway(std::move(f));
-}
 
 template <typename T>
 inline Layout& Layout::computed(T f) {
     json["computed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout& Layout::computed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return computed(std::move(f));
-}
 
 template <typename T>
 inline Layout& Layout::datarevision(T f) {
     json["datarevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout& Layout::datarevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return datarevision(std::move(f));
 }
 
 inline Layout& Layout::dragmode(enum Dragmode f) {
@@ -301,12 +262,6 @@ template <typename T>
 inline Layout& Layout::editrevision(T f) {
     json["editrevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout& Layout::editrevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return editrevision(std::move(f));
 }
 
 inline Layout& Layout::font(Font f) {
@@ -325,7 +280,8 @@ inline Layout& Layout::geo(Geo f) {
     return *this;
 }
 inline Layout& Layout::geo(int index, Geo f) {
-    json["geo" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("geo") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -356,33 +312,15 @@ inline Layout& Layout::height(double f) {
     json["height"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::height(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return height(std::move(f));
-}
 
 inline Layout& Layout::hidesources(bool f) {
     json["hidesources"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::hidesources(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return hidesources(std::move(f));
-}
 
 inline Layout& Layout::hoverdistance(int f) {
     json["hoverdistance"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::hoverdistance(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return hoverdistance(std::move(f));
 }
 
 inline Layout& Layout::hoverlabel(Hoverlabel f) {
@@ -406,16 +344,6 @@ inline Layout& Layout::hoversubplots(enum Hoversubplots f) {
     return *this;
 }
 
-inline Layout& Layout::images(Image f) {
-    json["images"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::images(Callable&& c) {
-    Image f{};
-    std::forward<Callable>(c)(f);
-    return images(std::move(f));
-}
 inline Layout& Layout::images(const std::vector<Image>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -428,7 +356,8 @@ inline Layout& Layout::legend(Legend f) {
     return *this;
 }
 inline Layout& Layout::legend(int index, Legend f) {
-    json["legend" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("legend") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -449,7 +378,8 @@ inline Layout& Layout::map(Map f) {
     return *this;
 }
 inline Layout& Layout::map(int index, Map f) {
-    json["map" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("map") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -470,7 +400,8 @@ inline Layout& Layout::mapbox(Mapbox f) {
     return *this;
 }
 inline Layout& Layout::mapbox(int index, Mapbox f) {
-    json["mapbox" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("mapbox") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -502,12 +433,6 @@ inline Layout& Layout::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout& Layout::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Layout& Layout::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -518,33 +443,15 @@ inline Layout& Layout::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Layout& Layout::minreducedheight(double f) {
     json["minreducedheight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::minreducedheight(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minreducedheight(std::move(f));
-}
 
 inline Layout& Layout::minreducedwidth(double f) {
     json["minreducedwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::minreducedwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minreducedwidth(std::move(f));
 }
 
 inline Layout& Layout::modebar(Modebar f) {
@@ -588,12 +495,6 @@ inline Layout& Layout::paper_bgcolor(double f) {
     json["paper_bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::paper_bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return paper_bgcolor(std::move(f));
-}
 
 inline Layout& Layout::plot_bgcolor(std::string f) {
     json["plot_bgcolor"] = std::move(f);
@@ -603,19 +504,14 @@ inline Layout& Layout::plot_bgcolor(double f) {
     json["plot_bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::plot_bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return plot_bgcolor(std::move(f));
-}
 
 inline Layout& Layout::polar(Polar f) {
     json["polar"] = std::move(f.json);
     return *this;
 }
 inline Layout& Layout::polar(int index, Polar f) {
-    json["polar" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("polar") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -636,7 +532,8 @@ inline Layout& Layout::scene(Scene f) {
     return *this;
 }
 inline Layout& Layout::scene(int index, Scene f) {
-    json["scene" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("scene") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -662,23 +559,7 @@ inline Layout& Layout::selectionrevision(T f) {
     json["selectionrevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout& Layout::selectionrevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectionrevision(std::move(f));
-}
 
-inline Layout& Layout::selections(Selection f) {
-    json["selections"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::selections(Callable&& c) {
-    Selection f{};
-    std::forward<Callable>(c)(f);
-    return selections(std::move(f));
-}
 inline Layout& Layout::selections(const std::vector<Selection>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -690,23 +571,7 @@ inline Layout& Layout::separators(std::string f) {
     json["separators"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::separators(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return separators(std::move(f));
-}
 
-inline Layout& Layout::shapes(Shape f) {
-    json["shapes"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::shapes(Callable&& c) {
-    Shape f{};
-    std::forward<Callable>(c)(f);
-    return shapes(std::move(f));
-}
 inline Layout& Layout::shapes(const std::vector<Shape>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -718,23 +583,7 @@ inline Layout& Layout::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
-}
 
-inline Layout& Layout::sliders(Slider f) {
-    json["sliders"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::sliders(Callable&& c) {
-    Slider f{};
-    std::forward<Callable>(c)(f);
-    return sliders(std::move(f));
-}
 inline Layout& Layout::sliders(const std::vector<Slider>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -747,7 +596,8 @@ inline Layout& Layout::smith(Smith f) {
     return *this;
 }
 inline Layout& Layout::smith(int index, Smith f) {
-    json["smith" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("smith") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -767,23 +617,11 @@ inline Layout& Layout::spikedistance(int f) {
     json["spikedistance"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::spikedistance(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return spikedistance(std::move(f));
-}
 
 template <typename T>
 inline Layout& Layout::plotly_template(T f) {
     json["plotly_template"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout& Layout::plotly_template(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return plotly_template(std::move(f));
 }
 
 inline Layout& Layout::ternary(Ternary f) {
@@ -791,7 +629,8 @@ inline Layout& Layout::ternary(Ternary f) {
     return *this;
 }
 inline Layout& Layout::ternary(int index, Ternary f) {
-    json["ternary" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("ternary") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -834,12 +673,6 @@ inline Layout& Layout::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout& Layout::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout& Layout::uniformtext(Uniformtext f) {
     json["uniformtext"] = std::move(f.json);
@@ -852,16 +685,6 @@ inline Layout& Layout::uniformtext(Callable&& c) {
     return uniformtext(std::move(f));
 }
 
-inline Layout& Layout::updatemenus(Updatemenu f) {
-    json["updatemenus"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::updatemenus(Callable&& c) {
-    Updatemenu f{};
-    std::forward<Callable>(c)(f);
-    return updatemenus(std::move(f));
-}
 inline Layout& Layout::updatemenus(const std::vector<Updatemenu>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -873,19 +696,14 @@ inline Layout& Layout::width(double f) {
     json["width"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
-}
 
 inline Layout& Layout::xaxis(Xaxis f) {
     json["xaxis"] = std::move(f.json);
     return *this;
 }
 inline Layout& Layout::xaxis(int index, Xaxis f) {
-    json["xaxis" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("xaxis") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -906,7 +724,8 @@ inline Layout& Layout::yaxis(Yaxis f) {
     return *this;
 }
 inline Layout& Layout::yaxis(int index, Yaxis f) {
-    json["yaxis" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("yaxis") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -927,33 +746,15 @@ inline Layout& Layout::barcornerradius(T f) {
     json["barcornerradius"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout& Layout::barcornerradius(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return barcornerradius(std::move(f));
-}
 
 inline Layout& Layout::bargap(double f) {
     json["bargap"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::bargap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return bargap(std::move(f));
-}
 
 inline Layout& Layout::bargroupgap(double f) {
     json["bargroupgap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::bargroupgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return bargroupgap(std::move(f));
 }
 
 inline Layout& Layout::barmode(enum Barmode f) {
@@ -970,22 +771,10 @@ inline Layout& Layout::boxgap(double f) {
     json["boxgap"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::boxgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return boxgap(std::move(f));
-}
 
 inline Layout& Layout::boxgroupgap(double f) {
     json["boxgroupgap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::boxgroupgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return boxgroupgap(std::move(f));
 }
 
 inline Layout& Layout::boxmode(enum Boxmode f) {
@@ -997,22 +786,10 @@ inline Layout& Layout::funnelgap(double f) {
     json["funnelgap"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::funnelgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return funnelgap(std::move(f));
-}
 
 inline Layout& Layout::funnelgroupgap(double f) {
     json["funnelgroupgap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::funnelgroupgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return funnelgroupgap(std::move(f));
 }
 
 inline Layout& Layout::funnelmode(enum Funnelmode f) {
@@ -1024,12 +801,6 @@ inline Layout& Layout::extendfunnelareacolors(bool f) {
     json["extendfunnelareacolors"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::extendfunnelareacolors(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return extendfunnelareacolors(std::move(f));
-}
 
 inline Layout& Layout::funnelareacolorway(const std::vector<std::string>& f) {
     json["funnelareacolorway"] = f;
@@ -1039,45 +810,21 @@ inline Layout& Layout::funnelareacolorway(const std::vector<double>& f) {
     json["funnelareacolorway"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::funnelareacolorway(Callable&& c) {
-    std::vector<std::string> f{};
-    std::forward<Callable>(c)(f);
-    return funnelareacolorway(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout& Layout::hiddenlabels(Range&& f) {
     json["hiddenlabels"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout& Layout::hiddenlabels(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return hiddenlabels(std::move(f));
-}
 
 inline Layout& Layout::hiddenlabelssrc(std::string f) {
     json["hiddenlabelssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::hiddenlabelssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hiddenlabelssrc(std::move(f));
-}
 
 inline Layout& Layout::extendiciclecolors(bool f) {
     json["extendiciclecolors"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::extendiciclecolors(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return extendiciclecolors(std::move(f));
 }
 
 inline Layout& Layout::iciclecolorway(const std::vector<std::string>& f) {
@@ -1088,22 +835,10 @@ inline Layout& Layout::iciclecolorway(const std::vector<double>& f) {
     json["iciclecolorway"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::iciclecolorway(Callable&& c) {
-    std::vector<std::string> f{};
-    std::forward<Callable>(c)(f);
-    return iciclecolorway(std::move(f));
-}
 
 inline Layout& Layout::extendpiecolors(bool f) {
     json["extendpiecolors"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::extendpiecolors(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return extendpiecolors(std::move(f));
 }
 
 inline Layout& Layout::piecolorway(const std::vector<std::string>& f) {
@@ -1114,22 +849,10 @@ inline Layout& Layout::piecolorway(const std::vector<double>& f) {
     json["piecolorway"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::piecolorway(Callable&& c) {
-    std::vector<std::string> f{};
-    std::forward<Callable>(c)(f);
-    return piecolorway(std::move(f));
-}
 
 inline Layout& Layout::scattergap(double f) {
     json["scattergap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::scattergap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return scattergap(std::move(f));
 }
 
 inline Layout& Layout::scattermode(enum Scattermode f) {
@@ -1141,12 +864,6 @@ inline Layout& Layout::extendsunburstcolors(bool f) {
     json["extendsunburstcolors"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::extendsunburstcolors(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return extendsunburstcolors(std::move(f));
-}
 
 inline Layout& Layout::sunburstcolorway(const std::vector<std::string>& f) {
     json["sunburstcolorway"] = f;
@@ -1156,22 +873,10 @@ inline Layout& Layout::sunburstcolorway(const std::vector<double>& f) {
     json["sunburstcolorway"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::sunburstcolorway(Callable&& c) {
-    std::vector<std::string> f{};
-    std::forward<Callable>(c)(f);
-    return sunburstcolorway(std::move(f));
-}
 
 inline Layout& Layout::extendtreemapcolors(bool f) {
     json["extendtreemapcolors"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::extendtreemapcolors(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return extendtreemapcolors(std::move(f));
 }
 
 inline Layout& Layout::treemapcolorway(const std::vector<std::string>& f) {
@@ -1182,33 +887,15 @@ inline Layout& Layout::treemapcolorway(const std::vector<double>& f) {
     json["treemapcolorway"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::treemapcolorway(Callable&& c) {
-    std::vector<std::string> f{};
-    std::forward<Callable>(c)(f);
-    return treemapcolorway(std::move(f));
-}
 
 inline Layout& Layout::violingap(double f) {
     json["violingap"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::violingap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return violingap(std::move(f));
-}
 
 inline Layout& Layout::violingroupgap(double f) {
     json["violingroupgap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::violingroupgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return violingroupgap(std::move(f));
 }
 
 inline Layout& Layout::violinmode(enum Violinmode f) {
@@ -1220,22 +907,10 @@ inline Layout& Layout::waterfallgap(double f) {
     json["waterfallgap"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout& Layout::waterfallgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return waterfallgap(std::move(f));
-}
 
 inline Layout& Layout::waterfallgroupgap(double f) {
     json["waterfallgroupgap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout& Layout::waterfallgroupgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return waterfallgroupgap(std::move(f));
 }
 
 inline Layout& Layout::waterfallmode(enum Waterfallmode f) {
@@ -1252,22 +927,10 @@ inline Layout::Activeselection& Layout::Activeselection::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Activeselection& Layout::Activeselection::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Layout::Activeselection& Layout::Activeselection::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Activeselection& Layout::Activeselection::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 
@@ -1279,22 +942,10 @@ inline Layout::Activeshape& Layout::Activeshape::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Activeshape& Layout::Activeshape::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Layout::Activeshape& Layout::Activeshape::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Activeshape& Layout::Activeshape::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline std::string Layout::Annotation::to_string(Align e) {
@@ -1358,55 +1009,25 @@ inline Layout::Annotation& Layout::Annotation::arrowcolor(double f) {
     json["arrowcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::arrowcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arrowcolor(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::arrowhead(int f) {
     json["arrowhead"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::arrowhead(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return arrowhead(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::arrowside(std::string f) {
     json["arrowside"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::arrowside(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arrowside(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::arrowsize(double f) {
     json["arrowsize"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::arrowsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return arrowsize(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::arrowwidth(double f) {
     json["arrowwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::arrowwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return arrowwidth(std::move(f));
 }
 
 template <typename T>
@@ -1414,22 +1035,10 @@ inline Layout::Annotation& Layout::Annotation::ax(T f) {
     json["ax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::ax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return ax(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::axref(std::string f) {
     json["axref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::axref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return axref(std::move(f));
 }
 
 template <typename T>
@@ -1437,22 +1046,10 @@ inline Layout::Annotation& Layout::Annotation::ay(T f) {
     json["ay"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::ay(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return ay(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::ayref(std::string f) {
     json["ayref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::ayref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ayref(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::bgcolor(std::string f) {
@@ -1463,12 +1060,6 @@ inline Layout::Annotation& Layout::Annotation::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1478,44 +1069,20 @@ inline Layout::Annotation& Layout::Annotation::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::borderpad(double f) {
     json["borderpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::borderpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderpad(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::captureevents(bool f) {
     json["captureevents"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::captureevents(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return captureevents(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::clicktoshow(enum Clicktoshow f) {
@@ -1538,12 +1105,6 @@ inline Layout::Annotation& Layout::Annotation::height(double f) {
     json["height"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::height(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return height(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
@@ -1560,121 +1121,55 @@ inline Layout::Annotation& Layout::Annotation::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::showarrow(bool f) {
     json["showarrow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::showarrow(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showarrow(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::standoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return standoff(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::startarrowhead(int f) {
     json["startarrowhead"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::startarrowhead(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return startarrowhead(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::startarrowsize(double f) {
     json["startarrowsize"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::startarrowsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return startarrowsize(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::startstandoff(double f) {
     json["startstandoff"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::startstandoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return startstandoff(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::textangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return textangle(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::valign(enum Valign f) {
@@ -1686,34 +1181,16 @@ inline Layout::Annotation& Layout::Annotation::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 template <typename T>
 inline Layout::Annotation& Layout::Annotation::x(T f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::x(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::xanchor(enum Xanchor f) {
@@ -1726,45 +1203,21 @@ inline Layout::Annotation& Layout::Annotation::xclick(T f) {
     json["xclick"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::xclick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xclick(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::xref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xref(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::xshift(double f) {
     json["xshift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::xshift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xshift(std::move(f));
-}
 
 template <typename T>
 inline Layout::Annotation& Layout::Annotation::y(T f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::y(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Annotation& Layout::Annotation::yanchor(enum Yanchor f) {
@@ -1777,33 +1230,15 @@ inline Layout::Annotation& Layout::Annotation::yclick(T f) {
     json["yclick"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::yclick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return yclick(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::yref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yref(std::move(f));
-}
 
 inline Layout::Annotation& Layout::Annotation::yshift(double f) {
     json["yshift"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation& Layout::Annotation::yshift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return yshift(std::move(f));
 }
 
 inline std::string Layout::Annotation::Font::to_string(Style e) {
@@ -1845,55 +1280,25 @@ inline Layout::Annotation::Font& Layout::Annotation::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Font& Layout::Annotation::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation::Font& Layout::Annotation::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Font& Layout::Annotation::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Font& Layout::Annotation::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation::Font& Layout::Annotation::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::style(enum Style f) {
@@ -1915,12 +1320,6 @@ inline Layout::Annotation::Font& Layout::Annotation::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Font& Layout::Annotation::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bgcolor(std::string f) {
@@ -1931,12 +1330,6 @@ inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bgcolor(d
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1945,12 +1338,6 @@ inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bordercol
 inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 
 inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::font(Font f) {
@@ -2003,55 +1390,25 @@ inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Fon
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::style(enum Style f) {
@@ -2073,67 +1430,31 @@ inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Fon
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Coloraxis& Layout::Coloraxis::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Layout::Coloraxis& Layout::Coloraxis::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Layout::Coloraxis& Layout::Coloraxis::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Layout::Coloraxis& Layout::Coloraxis::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Layout::Coloraxis& Layout::Coloraxis::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Layout::Coloraxis& Layout::Coloraxis::colorbar(Colorbar f) {
@@ -2155,33 +1476,15 @@ inline Layout::Coloraxis& Layout::Coloraxis::colorscale(const std::vector<std::p
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Layout::Coloraxis& Layout::Coloraxis::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Layout::Coloraxis& Layout::Coloraxis::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis& Layout::Coloraxis::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
 }
 
 inline std::string Layout::Coloraxis::Colorbar::to_string(Exponentformat e) {
@@ -2335,12 +1638,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::bgcolor(double 
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -2350,34 +1647,16 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::bordercolor(dou
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::exponentformat(enum Exponentformat f) {
@@ -2390,22 +1669,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::labelalias(T f)
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::lenmode(enum Lenmode f) {
@@ -2417,22 +1684,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::minexponent(dou
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::orientation(enum Orientation f) {
@@ -2448,33 +1703,15 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::outlinecolor(do
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showexponent(enum Showexponent f) {
@@ -2485,12 +1722,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showexponent(en
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -2507,12 +1738,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::thickness(doubl
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -2524,22 +1749,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickcolor(std::string f) {
@@ -2549,12 +1762,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickcolor(std::
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickfont(Tickfont f) {
@@ -2572,23 +1779,7 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformat(std:
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -2610,22 +1801,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklabelstep(i
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickmode(enum Tickmode f) {
@@ -2637,12 +1816,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickprefix(std:
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -2653,34 +1826,16 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticksuffix(std:
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -2688,33 +1843,15 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickvals(Range&
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::title(Title f) {
@@ -2732,12 +1869,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -2747,12 +1878,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xanchor(enum Xa
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xref(enum Xref f) {
@@ -2764,12 +1889,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -2779,12 +1898,6 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::yanchor(enum Ya
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::yref(enum Yref f) {
@@ -2831,55 +1944,25 @@ inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickf
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::style(enum Style f) {
@@ -2901,12 +1984,6 @@ inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickf
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -2925,55 +2002,25 @@ inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar:
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Layout::Coloraxis::Colorbar::Title::to_string(Side e) {
@@ -3005,12 +2052,6 @@ inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::s
 inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Style e) {
@@ -3052,55 +2093,25 @@ inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Ti
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::style(enum Style f) {
@@ -3122,12 +2133,6 @@ inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Ti
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Colorscale& Layout::Colorscale::diverging(std::string f) {
@@ -3138,12 +2143,6 @@ inline Layout::Colorscale& Layout::Colorscale::diverging(const std::vector<std::
     json["diverging"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Colorscale& Layout::Colorscale::diverging(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return diverging(std::move(f));
-}
 
 inline Layout::Colorscale& Layout::Colorscale::sequential(std::string f) {
     json["sequential"] = std::move(f);
@@ -3153,12 +2152,6 @@ inline Layout::Colorscale& Layout::Colorscale::sequential(const std::vector<std:
     json["sequential"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Colorscale& Layout::Colorscale::sequential(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sequential(std::move(f));
-}
 
 inline Layout::Colorscale& Layout::Colorscale::sequentialminus(std::string f) {
     json["sequentialminus"] = std::move(f);
@@ -3167,12 +2160,6 @@ inline Layout::Colorscale& Layout::Colorscale::sequentialminus(std::string f) {
 inline Layout::Colorscale& Layout::Colorscale::sequentialminus(const std::vector<std::pair<double, std::string>>& f) {
     json["sequentialminus"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Colorscale& Layout::Colorscale::sequentialminus(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sequentialminus(std::move(f));
 }
 
 inline std::string Layout::Font::to_string(Style e) {
@@ -3214,55 +2201,25 @@ inline Layout::Font& Layout::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Font& Layout::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Font& Layout::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Font& Layout::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Font& Layout::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Font& Layout::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Font& Layout::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Font& Layout::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Font& Layout::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Font& Layout::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Font& Layout::Font::style(enum Style f) {
@@ -3283,12 +2240,6 @@ inline Layout::Font& Layout::Font::variant(enum Variant f) {
 inline Layout::Font& Layout::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Font& Layout::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Geo::to_string(Fitbounds e) {
@@ -3330,12 +2281,6 @@ inline Layout::Geo& Layout::Geo::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::center(Center f) {
     json["center"] = std::move(f.json);
@@ -3356,22 +2301,10 @@ inline Layout::Geo& Layout::Geo::coastlinecolor(double f) {
     json["coastlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::coastlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coastlinecolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::coastlinewidth(double f) {
     json["coastlinewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::coastlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return coastlinewidth(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::countrycolor(std::string f) {
@@ -3382,22 +2315,10 @@ inline Layout::Geo& Layout::Geo::countrycolor(double f) {
     json["countrycolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::countrycolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return countrycolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::countrywidth(double f) {
     json["countrywidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::countrywidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return countrywidth(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::domain(Domain f) {
@@ -3424,22 +2345,10 @@ inline Layout::Geo& Layout::Geo::framecolor(double f) {
     json["framecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::framecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return framecolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::framewidth(double f) {
     json["framewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::framewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return framewidth(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::lakecolor(std::string f) {
@@ -3450,12 +2359,6 @@ inline Layout::Geo& Layout::Geo::lakecolor(double f) {
     json["lakecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::lakecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lakecolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::landcolor(std::string f) {
     json["landcolor"] = std::move(f);
@@ -3464,12 +2367,6 @@ inline Layout::Geo& Layout::Geo::landcolor(std::string f) {
 inline Layout::Geo& Layout::Geo::landcolor(double f) {
     json["landcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::landcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return landcolor(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::lataxis(Lataxis f) {
@@ -3502,12 +2399,6 @@ inline Layout::Geo& Layout::Geo::oceancolor(double f) {
     json["oceancolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::oceancolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return oceancolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::projection(Projection f) {
     json["projection"] = std::move(f.json);
@@ -3533,22 +2424,10 @@ inline Layout::Geo& Layout::Geo::rivercolor(double f) {
     json["rivercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::rivercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return rivercolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::riverwidth(double f) {
     json["riverwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::riverwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return riverwidth(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::scope(enum Scope f) {
@@ -3560,88 +2439,40 @@ inline Layout::Geo& Layout::Geo::showcoastlines(bool f) {
     json["showcoastlines"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showcoastlines(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showcoastlines(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::showcountries(bool f) {
     json["showcountries"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showcountries(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showcountries(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::showframe(bool f) {
     json["showframe"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showframe(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showframe(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::showlakes(bool f) {
     json["showlakes"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showlakes(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlakes(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::showland(bool f) {
     json["showland"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showland(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showland(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::showocean(bool f) {
     json["showocean"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showocean(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showocean(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::showrivers(bool f) {
     json["showrivers"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showrivers(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showrivers(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::showsubunits(bool f) {
     json["showsubunits"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::showsubunits(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showsubunits(std::move(f));
 }
 
 inline Layout::Geo& Layout::Geo::subunitcolor(std::string f) {
@@ -3652,22 +2483,10 @@ inline Layout::Geo& Layout::Geo::subunitcolor(double f) {
     json["subunitcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::subunitcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return subunitcolor(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::subunitwidth(double f) {
     json["subunitwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::subunitwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return subunitwidth(std::move(f));
 }
 
 template <typename T>
@@ -3675,22 +2494,10 @@ inline Layout::Geo& Layout::Geo::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Geo& Layout::Geo::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Geo& Layout::Geo::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo& Layout::Geo::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 
@@ -3698,22 +2505,10 @@ inline Layout::Geo::Center& Layout::Geo::Center::lat(double f) {
     json["lat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Center& Layout::Geo::Center::lat(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lat(std::move(f));
-}
 
 inline Layout::Geo::Center& Layout::Geo::Center::lon(double f) {
     json["lon"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Center& Layout::Geo::Center::lon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lon(std::move(f));
 }
 
 
@@ -3721,22 +2516,10 @@ inline Layout::Geo::Domain& Layout::Geo::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Domain& Layout::Geo::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Geo::Domain& Layout::Geo::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Domain& Layout::Geo::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Geo::Domain& Layout::Geo::Domain::x(const std::vector<double>& f) {
@@ -3755,12 +2538,6 @@ inline Layout::Geo::Domain& Layout::Geo::Domain::x(const std::vector<std::vector
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Domain& Layout::Geo::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Geo::Domain& Layout::Geo::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -3778,23 +2555,11 @@ inline Layout::Geo::Domain& Layout::Geo::Domain::y(const std::vector<std::vector
     json["y"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Domain& Layout::Geo::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::dtick(double f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::dtick(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::gridcolor(std::string f) {
@@ -3805,33 +2570,15 @@ inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
-}
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
 }
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::range(const std::vector<double>& f) {
@@ -3850,45 +2597,21 @@ inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::range(const std::vector<std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
 }
 
 inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::tick0(double f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lataxis& Layout::Geo::Lataxis::tick0(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::dtick(double f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::dtick(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::gridcolor(std::string f) {
@@ -3899,33 +2622,15 @@ inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
-}
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
 }
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::range(const std::vector<double>& f) {
@@ -3944,33 +2649,15 @@ inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::range(const std::vector<std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::tick0(double f) {
     json["tick0"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::tick0(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
 }
 
 inline std::string Layout::Geo::Projection::to_string(Type e) {
@@ -4068,12 +2755,6 @@ inline Layout::Geo::Projection& Layout::Geo::Projection::distance(double f) {
     json["distance"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Projection& Layout::Geo::Projection::distance(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return distance(std::move(f));
-}
 
 inline Layout::Geo::Projection& Layout::Geo::Projection::parallels(const std::vector<double>& f) {
     json["parallels"] = f;
@@ -4091,12 +2772,6 @@ inline Layout::Geo::Projection& Layout::Geo::Projection::parallels(const std::ve
     json["parallels"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Projection& Layout::Geo::Projection::parallels(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return parallels(std::move(f));
-}
 
 inline Layout::Geo::Projection& Layout::Geo::Projection::rotation(Rotation f) {
     json["rotation"] = std::move(f.json);
@@ -4113,22 +2788,10 @@ inline Layout::Geo::Projection& Layout::Geo::Projection::scale(double f) {
     json["scale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Projection& Layout::Geo::Projection::scale(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return scale(std::move(f));
-}
 
 inline Layout::Geo::Projection& Layout::Geo::Projection::tilt(double f) {
     json["tilt"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Projection& Layout::Geo::Projection::tilt(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tilt(std::move(f));
 }
 
 inline Layout::Geo::Projection& Layout::Geo::Projection::type(enum Type f) {
@@ -4141,33 +2804,15 @@ inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::lat
     json["lat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::lat(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lat(std::move(f));
-}
 
 inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::lon(double f) {
     json["lon"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::lon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lon(std::move(f));
-}
 
 inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::roll(double f) {
     json["roll"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::roll(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return roll(std::move(f));
 }
 
 inline std::string Layout::Grid::to_string(Pattern e) {
@@ -4211,12 +2856,6 @@ inline Layout::Grid& Layout::Grid::columns(int f) {
     json["columns"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::columns(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return columns(std::move(f));
-}
 
 inline Layout::Grid& Layout::Grid::domain(Domain f) {
     json["domain"] = std::move(f.json);
@@ -4243,12 +2882,6 @@ inline Layout::Grid& Layout::Grid::rows(int f) {
     json["rows"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::rows(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return rows(std::move(f));
-}
 
 inline Layout::Grid& Layout::Grid::subplots(const std::vector<double>& f) {
     json["subplots"] = f;
@@ -4265,12 +2898,6 @@ inline Layout::Grid& Layout::Grid::subplots(const std::vector<std::vector<std::s
 inline Layout::Grid& Layout::Grid::subplots(const std::vector<std::vector<double>>& f) {
     json["subplots"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::subplots(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return subplots(std::move(f));
 }
 
 inline Layout::Grid& Layout::Grid::xaxes(const std::vector<double>& f) {
@@ -4289,22 +2916,10 @@ inline Layout::Grid& Layout::Grid::xaxes(const std::vector<std::vector<double>>&
     json["xaxes"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::xaxes(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return xaxes(std::move(f));
-}
 
 inline Layout::Grid& Layout::Grid::xgap(double f) {
     json["xgap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::xgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xgap(std::move(f));
 }
 
 inline Layout::Grid& Layout::Grid::xside(enum Xside f) {
@@ -4328,22 +2943,10 @@ inline Layout::Grid& Layout::Grid::yaxes(const std::vector<std::vector<double>>&
     json["yaxes"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::yaxes(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return yaxes(std::move(f));
-}
 
 inline Layout::Grid& Layout::Grid::ygap(double f) {
     json["ygap"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Grid& Layout::Grid::ygap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ygap(std::move(f));
 }
 
 inline Layout::Grid& Layout::Grid::yside(enum Yside f) {
@@ -4368,12 +2971,6 @@ inline Layout::Grid::Domain& Layout::Grid::Domain::x(const std::vector<std::vect
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Grid::Domain& Layout::Grid::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Grid::Domain& Layout::Grid::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -4390,12 +2987,6 @@ inline Layout::Grid::Domain& Layout::Grid::Domain::y(const std::vector<std::vect
 inline Layout::Grid::Domain& Layout::Grid::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Grid::Domain& Layout::Grid::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Hoverlabel::to_string(Align e) {
@@ -4421,12 +3012,6 @@ inline Layout::Hoverlabel& Layout::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel& Layout::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Hoverlabel& Layout::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -4435,12 +3020,6 @@ inline Layout::Hoverlabel& Layout::Hoverlabel::bordercolor(std::string f) {
 inline Layout::Hoverlabel& Layout::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel& Layout::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 
 inline Layout::Hoverlabel& Layout::Hoverlabel::font(Font f) {
@@ -4468,12 +3047,6 @@ inline Layout::Hoverlabel& Layout::Hoverlabel::grouptitlefont(Callable&& c) {
 inline Layout::Hoverlabel& Layout::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel& Layout::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
 }
 
 inline std::string Layout::Hoverlabel::Font::to_string(Style e) {
@@ -4515,55 +3088,25 @@ inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::style(enum Style f) {
@@ -4584,12 +3127,6 @@ inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::variant(enum Variant 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Style e) {
@@ -4631,55 +3168,25 @@ inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::c
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::style(enum Style f) {
@@ -4700,12 +3207,6 @@ inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::v
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Image::to_string(Layer e) {
@@ -4753,44 +3254,20 @@ inline Layout::Image& Layout::Image::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Image& Layout::Image::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Layout::Image& Layout::Image::sizex(double f) {
     json["sizex"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::sizex(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizex(std::move(f));
-}
 
 inline Layout::Image& Layout::Image::sizey(double f) {
     json["sizey"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::sizey(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizey(std::move(f));
 }
 
 inline Layout::Image& Layout::Image::sizing(enum Sizing f) {
@@ -4802,45 +3279,21 @@ inline Layout::Image& Layout::Image::source(std::string f) {
     json["source"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::source(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return source(std::move(f));
-}
 
 inline Layout::Image& Layout::Image::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Image& Layout::Image::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 template <typename T>
 inline Layout::Image& Layout::Image::x(T f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Image& Layout::Image::x(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Image& Layout::Image::xanchor(enum Xanchor f) {
@@ -4852,23 +3305,11 @@ inline Layout::Image& Layout::Image::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::xref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xref(std::move(f));
-}
 
 template <typename T>
 inline Layout::Image& Layout::Image::y(T f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Image& Layout::Image::y(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Image& Layout::Image::yanchor(enum Yanchor f) {
@@ -4879,12 +3320,6 @@ inline Layout::Image& Layout::Image::yanchor(enum Yanchor f) {
 inline Layout::Image& Layout::Image::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Image& Layout::Image::yref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yref(std::move(f));
 }
 
 inline std::string Layout::Legend::to_string(Entrywidthmode e) {
@@ -4991,12 +3426,6 @@ inline Layout::Legend& Layout::Legend::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Legend& Layout::Legend::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -5006,33 +3435,15 @@ inline Layout::Legend& Layout::Legend::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Legend& Layout::Legend::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
-}
 
 inline Layout::Legend& Layout::Legend::entrywidth(double f) {
     json["entrywidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::entrywidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return entrywidth(std::move(f));
 }
 
 inline Layout::Legend& Layout::Legend::entrywidthmode(enum Entrywidthmode f) {
@@ -5071,12 +3482,6 @@ inline Layout::Legend& Layout::Legend::indentation(double f) {
     json["indentation"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::indentation(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return indentation(std::move(f));
-}
 
 inline Layout::Legend& Layout::Legend::itemclick(enum Itemclick f) {
     json["itemclick"] = to_string(f);
@@ -5096,12 +3501,6 @@ inline Layout::Legend& Layout::Legend::itemsizing(enum Itemsizing f) {
 inline Layout::Legend& Layout::Legend::itemwidth(double f) {
     json["itemwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::itemwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return itemwidth(std::move(f));
 }
 
 inline Layout::Legend& Layout::Legend::orientation(enum Orientation f) {
@@ -5124,34 +3523,16 @@ inline Layout::Legend& Layout::Legend::tracegroupgap(double f) {
     json["tracegroupgap"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::tracegroupgap(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tracegroupgap(std::move(f));
-}
 
 inline Layout::Legend& Layout::Legend::traceorder(std::string f) {
     json["traceorder"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::traceorder(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return traceorder(std::move(f));
 }
 
 template <typename T>
 inline Layout::Legend& Layout::Legend::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Legend& Layout::Legend::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Layout::Legend& Layout::Legend::valign(enum Valign f) {
@@ -5163,22 +3544,10 @@ inline Layout::Legend& Layout::Legend::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Legend& Layout::Legend::x(double f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Legend& Layout::Legend::xanchor(enum Xanchor f) {
@@ -5194,12 +3563,6 @@ inline Layout::Legend& Layout::Legend::xref(enum Xref f) {
 inline Layout::Legend& Layout::Legend::y(double f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend& Layout::Legend::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Legend& Layout::Legend::yanchor(enum Yanchor f) {
@@ -5251,55 +3614,25 @@ inline Layout::Legend::Font& Layout::Legend::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Font& Layout::Legend::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Legend::Font& Layout::Legend::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Font& Layout::Legend::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Font& Layout::Legend::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Legend::Font& Layout::Legend::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Font& Layout::Legend::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Legend::Font& Layout::Legend::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Font& Layout::Legend::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::style(enum Style f) {
@@ -5320,12 +3653,6 @@ inline Layout::Legend::Font& Layout::Legend::Font::variant(enum Variant f) {
 inline Layout::Legend::Font& Layout::Legend::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Font& Layout::Legend::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Legend::Grouptitlefont::to_string(Style e) {
@@ -5367,55 +3694,25 @@ inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::style(enum Style f) {
@@ -5436,12 +3733,6 @@ inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::variant(e
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Legend::Title::to_string(Side e) {
@@ -5475,12 +3766,6 @@ inline Layout::Legend::Title& Layout::Legend::Title::side(enum Side f) {
 inline Layout::Legend::Title& Layout::Legend::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Title& Layout::Legend::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Legend::Title::Font::to_string(Style e) {
@@ -5522,55 +3807,25 @@ inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::style(enum Style f) {
@@ -5592,23 +3847,11 @@ inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Map& Layout::Map::bearing(double f) {
     json["bearing"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map& Layout::Map::bearing(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return bearing(std::move(f));
 }
 
 inline Layout::Map& Layout::Map::bounds(Bounds f) {
@@ -5644,16 +3887,6 @@ inline Layout::Map& Layout::Map::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-inline Layout::Map& Layout::Map::layers(Layer f) {
-    json["layers"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map& Layout::Map::layers(Callable&& c) {
-    Layer f{};
-    std::forward<Callable>(c)(f);
-    return layers(std::move(f));
-}
 inline Layout::Map& Layout::Map::layers(const std::vector<Layer>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -5665,23 +3898,11 @@ inline Layout::Map& Layout::Map::pitch(double f) {
     json["pitch"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map& Layout::Map::pitch(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pitch(std::move(f));
-}
 
 template <typename T>
 inline Layout::Map& Layout::Map::style(T f) {
     json["style"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Map& Layout::Map::style(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return style(std::move(f));
 }
 
 template <typename T>
@@ -5689,22 +3910,10 @@ inline Layout::Map& Layout::Map::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Map& Layout::Map::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Map& Layout::Map::zoom(double f) {
     json["zoom"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map& Layout::Map::zoom(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zoom(std::move(f));
 }
 
 
@@ -5712,44 +3921,20 @@ inline Layout::Map::Bounds& Layout::Map::Bounds::east(double f) {
     json["east"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Bounds& Layout::Map::Bounds::east(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return east(std::move(f));
-}
 
 inline Layout::Map::Bounds& Layout::Map::Bounds::north(double f) {
     json["north"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Bounds& Layout::Map::Bounds::north(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return north(std::move(f));
 }
 
 inline Layout::Map::Bounds& Layout::Map::Bounds::south(double f) {
     json["south"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Bounds& Layout::Map::Bounds::south(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return south(std::move(f));
-}
 
 inline Layout::Map::Bounds& Layout::Map::Bounds::west(double f) {
     json["west"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Bounds& Layout::Map::Bounds::west(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return west(std::move(f));
 }
 
 
@@ -5757,22 +3942,10 @@ inline Layout::Map::Center& Layout::Map::Center::lat(double f) {
     json["lat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Center& Layout::Map::Center::lat(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lat(std::move(f));
-}
 
 inline Layout::Map::Center& Layout::Map::Center::lon(double f) {
     json["lon"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Center& Layout::Map::Center::lon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lon(std::move(f));
 }
 
 
@@ -5780,22 +3953,10 @@ inline Layout::Map::Domain& Layout::Map::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Domain& Layout::Map::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Map::Domain& Layout::Map::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Domain& Layout::Map::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Map::Domain& Layout::Map::Domain::x(const std::vector<double>& f) {
@@ -5814,12 +3975,6 @@ inline Layout::Map::Domain& Layout::Map::Domain::x(const std::vector<std::vector
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Domain& Layout::Map::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Map::Domain& Layout::Map::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -5836,12 +3991,6 @@ inline Layout::Map::Domain& Layout::Map::Domain::y(const std::vector<std::vector
 inline Layout::Map::Domain& Layout::Map::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Domain& Layout::Map::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Map::Layer::to_string(Sourcetype e) {
@@ -5870,12 +4019,6 @@ inline Layout::Map::Layer& Layout::Map::Layer::below(std::string f) {
     json["below"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::below(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return below(std::move(f));
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::circle(Circle f) {
     json["circle"] = std::move(f.json);
@@ -5896,23 +4039,11 @@ inline Layout::Map::Layer& Layout::Map::Layer::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Map::Layer& Layout::Map::Layer::coordinates(T f) {
     json["coordinates"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::coordinates(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return coordinates(std::move(f));
 }
 
 inline Layout::Map::Layer& Layout::Map::Layer::fill(Fill f) {
@@ -5941,44 +4072,20 @@ inline Layout::Map::Layer& Layout::Map::Layer::maxzoom(double f) {
     json["maxzoom"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::maxzoom(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxzoom(std::move(f));
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::minzoom(double f) {
     json["minzoom"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::minzoom(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minzoom(std::move(f));
 }
 
 inline Layout::Map::Layer& Layout::Map::Layer::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 template <typename T>
@@ -5986,33 +4093,15 @@ inline Layout::Map::Layer& Layout::Map::Layer::source(T f) {
     json["source"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::source(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return source(std::move(f));
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::sourceattribution(std::string f) {
     json["sourceattribution"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::sourceattribution(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sourceattribution(std::move(f));
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::sourcelayer(std::string f) {
     json["sourcelayer"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::sourcelayer(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sourcelayer(std::move(f));
 }
 
 inline Layout::Map::Layer& Layout::Map::Layer::sourcetype(enum Sourcetype f) {
@@ -6035,12 +4124,6 @@ inline Layout::Map::Layer& Layout::Map::Layer::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::type(enum Type f) {
     json["type"] = to_string(f);
@@ -6051,23 +4134,11 @@ inline Layout::Map::Layer& Layout::Map::Layer::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer& Layout::Map::Layer::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 
 inline Layout::Map::Layer::Circle& Layout::Map::Layer::Circle::radius(double f) {
     json["radius"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer::Circle& Layout::Map::Layer::Circle::radius(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return radius(std::move(f));
 }
 
 
@@ -6079,12 +4150,6 @@ inline Layout::Map::Layer::Fill& Layout::Map::Layer::Fill::outlinecolor(double f
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer::Fill& Layout::Map::Layer::Fill::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 
 template <typename Range, typename>
@@ -6092,33 +4157,15 @@ inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::dash(Range&& f) {
     json["dash"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::dash(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::dashsrc(std::string f) {
     json["dashsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::dashsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dashsrc(std::move(f));
-}
 
 inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Layout::Map::Layer::Symbol::to_string(Placement e) {
@@ -6150,22 +4197,10 @@ inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::icon(std::string 
     json["icon"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::icon(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return icon(std::move(f));
-}
 
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::iconsize(double f) {
     json["iconsize"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::iconsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return iconsize(std::move(f));
 }
 
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::placement(enum Placement f) {
@@ -6176,12 +4211,6 @@ inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::placement(enum Pl
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::textfont(Textfont f) {
@@ -6217,33 +4246,15 @@ inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfon
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
-}
 
 inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::style(enum Style f) {
@@ -6255,34 +4266,16 @@ inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfon
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Mapbox& Layout::Mapbox::accesstoken(std::string f) {
     json["accesstoken"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::accesstoken(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return accesstoken(std::move(f));
-}
 
 inline Layout::Mapbox& Layout::Mapbox::bearing(double f) {
     json["bearing"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::bearing(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return bearing(std::move(f));
 }
 
 inline Layout::Mapbox& Layout::Mapbox::bounds(Bounds f) {
@@ -6318,16 +4311,6 @@ inline Layout::Mapbox& Layout::Mapbox::domain(Callable&& c) {
     return domain(std::move(f));
 }
 
-inline Layout::Mapbox& Layout::Mapbox::layers(Layer f) {
-    json["layers"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::layers(Callable&& c) {
-    Layer f{};
-    std::forward<Callable>(c)(f);
-    return layers(std::move(f));
-}
 inline Layout::Mapbox& Layout::Mapbox::layers(const std::vector<Layer>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -6339,23 +4322,11 @@ inline Layout::Mapbox& Layout::Mapbox::pitch(double f) {
     json["pitch"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::pitch(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pitch(std::move(f));
-}
 
 template <typename T>
 inline Layout::Mapbox& Layout::Mapbox::style(T f) {
     json["style"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::style(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return style(std::move(f));
 }
 
 template <typename T>
@@ -6363,22 +4334,10 @@ inline Layout::Mapbox& Layout::Mapbox::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Mapbox& Layout::Mapbox::zoom(double f) {
     json["zoom"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox& Layout::Mapbox::zoom(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zoom(std::move(f));
 }
 
 
@@ -6386,44 +4345,20 @@ inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::east(double f) {
     json["east"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::east(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return east(std::move(f));
-}
 
 inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::north(double f) {
     json["north"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::north(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return north(std::move(f));
 }
 
 inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::south(double f) {
     json["south"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::south(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return south(std::move(f));
-}
 
 inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::west(double f) {
     json["west"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Bounds& Layout::Mapbox::Bounds::west(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return west(std::move(f));
 }
 
 
@@ -6431,22 +4366,10 @@ inline Layout::Mapbox::Center& Layout::Mapbox::Center::lat(double f) {
     json["lat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Center& Layout::Mapbox::Center::lat(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lat(std::move(f));
-}
 
 inline Layout::Mapbox::Center& Layout::Mapbox::Center::lon(double f) {
     json["lon"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Center& Layout::Mapbox::Center::lon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return lon(std::move(f));
 }
 
 
@@ -6454,22 +4377,10 @@ inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::x(const std::vector<double>& f) {
@@ -6488,12 +4399,6 @@ inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::x(const std::vector<std::
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -6510,12 +4415,6 @@ inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::y(const std::vector<std::
 inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Mapbox::Layer::to_string(Sourcetype e) {
@@ -6544,12 +4443,6 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::below(std::string f) {
     json["below"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::below(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return below(std::move(f));
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::circle(Circle f) {
     json["circle"] = std::move(f.json);
@@ -6570,23 +4463,11 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::coordinates(T f) {
     json["coordinates"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::coordinates(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return coordinates(std::move(f));
 }
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::fill(Fill f) {
@@ -6615,44 +4496,20 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::maxzoom(double f) {
     json["maxzoom"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::maxzoom(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxzoom(std::move(f));
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::minzoom(double f) {
     json["minzoom"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::minzoom(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minzoom(std::move(f));
 }
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 template <typename T>
@@ -6660,33 +4517,15 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::source(T f) {
     json["source"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::source(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return source(std::move(f));
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourceattribution(std::string f) {
     json["sourceattribution"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourceattribution(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sourceattribution(std::move(f));
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcelayer(std::string f) {
     json["sourcelayer"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcelayer(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sourcelayer(std::move(f));
 }
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcetype(enum Sourcetype f) {
@@ -6709,12 +4548,6 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::templateitemname(std::strin
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::type(enum Type f) {
     json["type"] = to_string(f);
@@ -6725,23 +4558,11 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 
 inline Layout::Mapbox::Layer::Circle& Layout::Mapbox::Layer::Circle::radius(double f) {
     json["radius"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Circle& Layout::Mapbox::Layer::Circle::radius(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return radius(std::move(f));
 }
 
 
@@ -6753,12 +4574,6 @@ inline Layout::Mapbox::Layer::Fill& Layout::Mapbox::Layer::Fill::outlinecolor(do
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Fill& Layout::Mapbox::Layer::Fill::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 
 template <typename Range, typename>
@@ -6766,33 +4581,15 @@ inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dash(Range&& f)
     json["dash"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dash(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dashsrc(std::string f) {
     json["dashsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::dashsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dashsrc(std::move(f));
-}
 
 inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Layout::Mapbox::Layer::Symbol::to_string(Placement e) {
@@ -6824,22 +4621,10 @@ inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::icon(std::s
     json["icon"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::icon(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return icon(std::move(f));
-}
 
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::iconsize(double f) {
     json["iconsize"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::iconsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return iconsize(std::move(f));
 }
 
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::placement(enum Placement f) {
@@ -6850,12 +4635,6 @@ inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::placement(e
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::textfont(Textfont f) {
@@ -6891,33 +4670,15 @@ inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::T
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
-}
 
 inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::style(enum Style f) {
@@ -6929,78 +4690,36 @@ inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::T
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Margin& Layout::Margin::autoexpand(bool f) {
     json["autoexpand"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Margin& Layout::Margin::autoexpand(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autoexpand(std::move(f));
-}
 
 inline Layout::Margin& Layout::Margin::b(double f) {
     json["b"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Margin& Layout::Margin::b(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return b(std::move(f));
 }
 
 inline Layout::Margin& Layout::Margin::l(double f) {
     json["l"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Margin& Layout::Margin::l(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return l(std::move(f));
-}
 
 inline Layout::Margin& Layout::Margin::pad(double f) {
     json["pad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Margin& Layout::Margin::pad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pad(std::move(f));
 }
 
 inline Layout::Margin& Layout::Margin::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Margin& Layout::Margin::r(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return r(std::move(f));
-}
 
 inline Layout::Margin& Layout::Margin::t(double f) {
     json["t"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Margin& Layout::Margin::t(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return t(std::move(f));
 }
 
 inline std::string Layout::Modebar::to_string(Orientation e) {
@@ -7020,22 +4739,10 @@ inline Layout::Modebar& Layout::Modebar::activecolor(double f) {
     json["activecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::activecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return activecolor(std::move(f));
-}
 
 inline Layout::Modebar& Layout::Modebar::add(std::string f) {
     json["add"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::add(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return add(std::move(f));
 }
 inline Layout::Modebar& Layout::Modebar::add(const std::vector<std::string>& f) {
     json["add"] = f;
@@ -7046,12 +4753,6 @@ inline Layout::Modebar& Layout::Modebar::addsrc(std::string f) {
     json["addsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::addsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return addsrc(std::move(f));
-}
 
 inline Layout::Modebar& Layout::Modebar::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -7061,12 +4762,6 @@ inline Layout::Modebar& Layout::Modebar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Modebar& Layout::Modebar::color(std::string f) {
     json["color"] = std::move(f);
@@ -7075,12 +4770,6 @@ inline Layout::Modebar& Layout::Modebar::color(std::string f) {
 inline Layout::Modebar& Layout::Modebar::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 inline Layout::Modebar& Layout::Modebar::orientation(enum Orientation f) {
@@ -7092,12 +4781,6 @@ inline Layout::Modebar& Layout::Modebar::remove(std::string f) {
     json["remove"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::remove(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return remove(std::move(f));
-}
 inline Layout::Modebar& Layout::Modebar::remove(const std::vector<std::string>& f) {
     json["remove"] = f;
     return *this;
@@ -7107,23 +4790,11 @@ inline Layout::Modebar& Layout::Modebar::removesrc(std::string f) {
     json["removesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::removesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return removesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Modebar& Layout::Modebar::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Modebar& Layout::Modebar::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline std::string Layout::Newselection::to_string(Mode e) {
@@ -7160,33 +4831,15 @@ inline Layout::Newselection::Line& Layout::Newselection::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newselection::Line& Layout::Newselection::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Newselection::Line& Layout::Newselection::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newselection::Line& Layout::Newselection::Line::dash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Layout::Newselection::Line& Layout::Newselection::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newselection::Line& Layout::Newselection::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Layout::Newshape::to_string(Drawdirection e) {
@@ -7239,12 +4892,6 @@ inline Layout::Newshape& Layout::Newshape::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Layout::Newshape& Layout::Newshape::fillrule(enum Fillrule f) {
     json["fillrule"] = to_string(f);
@@ -7271,22 +4918,10 @@ inline Layout::Newshape& Layout::Newshape::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Layout::Newshape& Layout::Newshape::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Layout::Newshape& Layout::Newshape::legendgrouptitle(Legendgrouptitle f) {
@@ -7304,22 +4939,10 @@ inline Layout::Newshape& Layout::Newshape::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Layout::Newshape& Layout::Newshape::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Layout::Newshape& Layout::Newshape::line(Line f) {
@@ -7337,33 +4960,15 @@ inline Layout::Newshape& Layout::Newshape::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Newshape& Layout::Newshape::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Layout::Newshape& Layout::Newshape::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape& Layout::Newshape::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Layout::Newshape& Layout::Newshape::visible(enum Visible f) {
@@ -7424,33 +5029,15 @@ inline Layout::Newshape::Label& Layout::Newshape::Label::padding(double f) {
     json["padding"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Label& Layout::Newshape::Label::padding(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return padding(std::move(f));
-}
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Label& Layout::Newshape::Label::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Label& Layout::Newshape::Label::textangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return textangle(std::move(f));
 }
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::textposition(enum Textposition f) {
@@ -7461,12 +5048,6 @@ inline Layout::Newshape::Label& Layout::Newshape::Label::textposition(enum Textp
 inline Layout::Newshape::Label& Layout::Newshape::Label::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Label& Layout::Newshape::Label::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::xanchor(enum Xanchor f) {
@@ -7518,55 +5099,25 @@ inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::style(enum Style f) {
@@ -7588,12 +5139,6 @@ inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::weight(int 
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Newshape::Legendgrouptitle& Layout::Newshape::Legendgrouptitle::font(Font f) {
@@ -7610,12 +5155,6 @@ inline Layout::Newshape::Legendgrouptitle& Layout::Newshape::Legendgrouptitle::f
 inline Layout::Newshape::Legendgrouptitle& Layout::Newshape::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle& Layout::Newshape::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Style e) {
@@ -7657,55 +5196,25 @@ inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgroupti
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::style(enum Style f) {
@@ -7727,12 +5236,6 @@ inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgroupti
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Newshape::Line& Layout::Newshape::Line::color(std::string f) {
@@ -7743,33 +5246,15 @@ inline Layout::Newshape::Line& Layout::Newshape::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Line& Layout::Newshape::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Newshape::Line& Layout::Newshape::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Newshape::Line& Layout::Newshape::Line::dash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Layout::Newshape::Line& Layout::Newshape::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Newshape::Line& Layout::Newshape::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Layout::Polar::to_string(Gridshape e) {
@@ -7800,12 +5285,6 @@ inline Layout::Polar& Layout::Polar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar& Layout::Polar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Polar& Layout::Polar::domain(Domain f) {
     json["domain"] = std::move(f.json);
@@ -7826,12 +5305,6 @@ inline Layout::Polar& Layout::Polar::gridshape(enum Gridshape f) {
 inline Layout::Polar& Layout::Polar::hole(double f) {
     json["hole"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar& Layout::Polar::hole(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return hole(std::move(f));
 }
 
 inline Layout::Polar& Layout::Polar::radialaxis(Radialaxis f) {
@@ -7861,23 +5334,11 @@ inline Layout::Polar& Layout::Polar::sector(const std::vector<std::vector<double
     json["sector"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar& Layout::Polar::sector(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return sector(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar& Layout::Polar::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar& Layout::Polar::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline std::string Layout::Polar::Angularaxis::to_string(Autotypenumbers e) {
@@ -8015,22 +5476,10 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarray(Ran
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryorder(enum Categoryorder f) {
@@ -8046,12 +5495,6 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::direction(enum Direction f) {
     json["direction"] = to_string(f);
@@ -8062,12 +5505,6 @@ template <typename T>
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::exponentformat(enum Exponentformat f) {
@@ -8083,56 +5520,26 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::gridcolor(double 
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::layer(enum Layer f) {
@@ -8148,77 +5555,35 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::linecolor(double 
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::period(double f) {
     json["period"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::period(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return period(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::rotation(double f) {
     json["rotation"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::rotation(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return rotation(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showexponent(enum Showexponent f) {
@@ -8230,33 +5595,15 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showgrid(bool f) 
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showtickprefix(enum Showtickprefix f) {
@@ -8279,22 +5626,10 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickcolor(std::string f) {
@@ -8304,12 +5639,6 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickcolor(std::st
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickfont(Tickfont f) {
@@ -8327,23 +5656,7 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformat(std::s
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -8355,22 +5668,10 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticklabelstep(int
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickmode(enum Tickmode f) {
@@ -8382,12 +5683,6 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickprefix(std::s
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -8398,34 +5693,16 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticksuffix(std::s
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -8433,33 +5710,15 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickvals(Range&& 
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::type(enum Type f) {
@@ -8472,22 +5731,10 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Style e) {
@@ -8529,55 +5776,25 @@ inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfon
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::style(enum Style f) {
@@ -8599,12 +5816,6 @@ inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfon
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -8623,55 +5834,25 @@ inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::T
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Angularaxis::Tickformatstop& Layout::Polar::Angularaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -8679,22 +5860,10 @@ inline Layout::Polar::Domain& Layout::Polar::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Domain& Layout::Polar::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Polar::Domain& Layout::Polar::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Domain& Layout::Polar::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Polar::Domain& Layout::Polar::Domain::x(const std::vector<double>& f) {
@@ -8713,12 +5882,6 @@ inline Layout::Polar::Domain& Layout::Polar::Domain::x(const std::vector<std::ve
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Domain& Layout::Polar::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Polar::Domain& Layout::Polar::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -8735,12 +5898,6 @@ inline Layout::Polar::Domain& Layout::Polar::Domain::y(const std::vector<std::ve
 inline Layout::Polar::Domain& Layout::Polar::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Domain& Layout::Polar::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Polar::Radialaxis::to_string(Autorange e) {
@@ -8910,12 +6067,6 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::angle(double f) {
     json["angle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::angle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return angle(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autorange(enum Autorange f) {
     json["autorange"] = to_string(f);
@@ -8949,12 +6100,6 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autotickangles(cons
     json["autotickangles"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autotickangles(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return autotickangles(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autotypenumbers(enum Autotypenumbers f) {
     json["autotypenumbers"] = to_string(f);
@@ -8971,22 +6116,10 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarray(Range
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryorder(enum Categoryorder f) {
@@ -9002,23 +6135,11 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::exponentformat(enum Exponentformat f) {
@@ -9034,56 +6155,26 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::gridcolor(double f)
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::layer(enum Layer f) {
@@ -9099,22 +6190,10 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::linecolor(double f)
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 template <typename T>
@@ -9122,45 +6201,21 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::range(const std::vector<double>& f) {
@@ -9179,12 +6234,6 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::range(const std::ve
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::rangemode(enum Rangemode f) {
     json["rangemode"] = to_string(f);
@@ -9194,12 +6243,6 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::rangemode(enum Rang
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showexponent(enum Showexponent f) {
@@ -9211,33 +6254,15 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showtickprefix(enum Showtickprefix f) {
@@ -9260,22 +6285,10 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickcolor(std::string f) {
@@ -9285,12 +6298,6 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickcolor(std::stri
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickfont(Tickfont f) {
@@ -9308,23 +6315,7 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformat(std::str
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -9336,22 +6327,10 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticklabelstep(int f
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickmode(enum Tickmode f) {
@@ -9363,12 +6342,6 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickprefix(std::str
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -9379,34 +6352,16 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticksuffix(std::str
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -9414,33 +6369,15 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickvals(Range&& f)
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::title(Title f) {
@@ -9464,22 +6401,10 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 
@@ -9488,35 +6413,17 @@ inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::A
     json["clipmax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::clipmax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmax(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::clipmin(T f) {
     json["clipmin"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::clipmin(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmin(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::include(T f) {
     json["include"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::include(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return include(std::move(f));
 }
 template <typename T>
 inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::include(const std::vector<T>& f) {
@@ -9528,35 +6435,17 @@ inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::A
     json["includesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::includesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return includesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::Autorangeoptions::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
 }
 
 inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Style e) {
@@ -9598,55 +6487,25 @@ inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::style(enum Style f) {
@@ -9668,12 +6527,6 @@ inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont:
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -9692,55 +6545,25 @@ inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tic
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Tickformatstop& Layout::Polar::Radialaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -9758,12 +6581,6 @@ inline Layout::Polar::Radialaxis::Title& Layout::Polar::Radialaxis::Title::font(
 inline Layout::Polar::Radialaxis::Title& Layout::Polar::Radialaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title& Layout::Polar::Radialaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Style e) {
@@ -9805,55 +6622,25 @@ inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::style(enum Style f) {
@@ -9874,12 +6661,6 @@ inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title:
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Scene::to_string(Aspectmode e) {
@@ -9912,16 +6693,6 @@ inline std::string Layout::Scene::to_string(Hovermode e) {
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
-inline Layout::Scene& Layout::Scene::annotations(Annotation f) {
-    json["annotations"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene& Layout::Scene::annotations(Callable&& c) {
-    Annotation f{};
-    std::forward<Callable>(c)(f);
-    return annotations(std::move(f));
-}
 inline Layout::Scene& Layout::Scene::annotations(const std::vector<Annotation>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -9952,12 +6723,6 @@ inline Layout::Scene& Layout::Scene::bgcolor(std::string f) {
 inline Layout::Scene& Layout::Scene::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene& Layout::Scene::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 
 inline Layout::Scene& Layout::Scene::camera(Camera f) {
@@ -9996,12 +6761,6 @@ template <typename T>
 inline Layout::Scene& Layout::Scene::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene& Layout::Scene::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Layout::Scene& Layout::Scene::xaxis(Xaxis f) {
@@ -10089,77 +6848,35 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowcolor(double f
     json["arrowcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arrowcolor(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowhead(int f) {
     json["arrowhead"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowhead(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return arrowhead(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowside(std::string f) {
     json["arrowside"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowside(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return arrowside(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowsize(double f) {
     json["arrowsize"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return arrowsize(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowwidth(double f) {
     json["arrowwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::arrowwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return arrowwidth(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::ax(double f) {
     json["ax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::ax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ax(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::ay(double f) {
     json["ay"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::ay(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ay(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::bgcolor(std::string f) {
@@ -10170,12 +6887,6 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -10185,44 +6896,20 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::bordercolor(double 
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::borderpad(double f) {
     json["borderpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::borderpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderpad(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::captureevents(bool f) {
     json["captureevents"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::captureevents(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return captureevents(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::font(Font f) {
@@ -10240,12 +6927,6 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::height(double f) {
     json["height"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::height(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return height(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::hoverlabel(Hoverlabel f) {
     json["hoverlabel"] = std::move(f.json);
@@ -10262,121 +6943,55 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::hovertext(std::stri
     json["hovertext"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::showarrow(bool f) {
     json["showarrow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::showarrow(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showarrow(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::standoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return standoff(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowhead(int f) {
     json["startarrowhead"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowhead(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return startarrowhead(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowsize(double f) {
     json["startarrowsize"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::startarrowsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return startarrowsize(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::startstandoff(double f) {
     json["startstandoff"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::startstandoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return startstandoff(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::textangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return textangle(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::valign(enum Valign f) {
@@ -10388,34 +7003,16 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 template <typename T>
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::x(T f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::x(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::xanchor(enum Xanchor f) {
@@ -10427,23 +7024,11 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::xshift(double f) {
     json["xshift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::xshift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xshift(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::y(T f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::y(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::yanchor(enum Yanchor f) {
@@ -10455,23 +7040,11 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::yshift(double f) {
     json["yshift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::yshift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return yshift(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::z(T f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Annotation& Layout::Scene::Annotation::z(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 inline std::string Layout::Scene::Annotation::Font::to_string(Style e) {
@@ -10513,55 +7086,25 @@ inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::color(d
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::style(enum Style f) {
@@ -10583,12 +7126,6 @@ inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::weight(
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bgcolor(std::string f) {
@@ -10599,12 +7136,6 @@ inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverla
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -10613,12 +7144,6 @@ inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverla
 inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 
 inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverlabel::font(Font f) {
@@ -10671,55 +7196,25 @@ inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::H
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::style(enum Style f) {
@@ -10741,12 +7236,6 @@ inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::H
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::impliedEdits(Impliededits f) {
@@ -10764,33 +7253,15 @@ inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::z(double f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Aspectratio& Layout::Scene::Aspectratio::z(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 
@@ -10844,33 +7315,15 @@ inline Layout::Scene::Camera::Center& Layout::Scene::Camera::Center::x(double f)
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Center& Layout::Scene::Camera::Center::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Scene::Camera::Center& Layout::Scene::Camera::Center::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Center& Layout::Scene::Camera::Center::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Layout::Scene::Camera::Center& Layout::Scene::Camera::Center::z(double f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Center& Layout::Scene::Camera::Center::z(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 
@@ -10878,33 +7331,15 @@ inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::z(double f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::z(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 inline std::string Layout::Scene::Camera::Projection::to_string(Type e) {
@@ -10926,33 +7361,15 @@ inline Layout::Scene::Camera::Up& Layout::Scene::Camera::Up::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Up& Layout::Scene::Camera::Up::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Scene::Camera::Up& Layout::Scene::Camera::Up::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Up& Layout::Scene::Camera::Up::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Layout::Scene::Camera::Up& Layout::Scene::Camera::Up::z(double f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Camera::Up& Layout::Scene::Camera::Up::z(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 
@@ -10960,22 +7377,10 @@ inline Layout::Scene::Domain& Layout::Scene::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Domain& Layout::Scene::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Scene::Domain& Layout::Scene::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Domain& Layout::Scene::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Scene::Domain& Layout::Scene::Domain::x(const std::vector<double>& f) {
@@ -10994,12 +7399,6 @@ inline Layout::Scene::Domain& Layout::Scene::Domain::x(const std::vector<std::ve
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Domain& Layout::Scene::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Scene::Domain& Layout::Scene::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -11016,12 +7415,6 @@ inline Layout::Scene::Domain& Layout::Scene::Domain::y(const std::vector<std::ve
 inline Layout::Scene::Domain& Layout::Scene::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Domain& Layout::Scene::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Scene::Xaxis::to_string(Autorange e) {
@@ -11211,12 +7604,6 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::backgroundcolor(double f) {
     json["backgroundcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::backgroundcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return backgroundcolor(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::calendar(enum Calendar f) {
     json["calendar"] = to_string(f);
@@ -11228,22 +7615,10 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryorder(enum Categoryorder f) {
@@ -11259,23 +7634,11 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::exponentformat(enum Exponentformat f) {
@@ -11291,45 +7654,21 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::linecolor(std::string f) {
@@ -11340,22 +7679,10 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 template <typename T>
@@ -11363,34 +7690,16 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::mirror(enum Mirror f) {
@@ -11401,12 +7710,6 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::mirror(enum Mirror f) {
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::range(const std::vector<double>& f) {
@@ -11425,12 +7728,6 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::range(const std::vector<std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::rangemode(enum Rangemode f) {
     json["rangemode"] = to_string(f);
@@ -11441,33 +7738,15 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showaxeslabels(bool f) {
     json["showaxeslabels"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showaxeslabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showaxeslabels(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showbackground(bool f) {
     json["showbackground"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showbackground(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showbackground(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showexponent(enum Showexponent f) {
@@ -11479,44 +7758,20 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showspikes(bool f) {
     json["showspikes"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showspikes(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showspikes(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showtickprefix(enum Showtickprefix f) {
@@ -11537,33 +7792,15 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::spikecolor(double f) {
     json["spikecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::spikecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikecolor(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::spikesides(bool f) {
     json["spikesides"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::spikesides(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return spikesides(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::spikethickness(double f) {
     json["spikethickness"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::spikethickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return spikethickness(std::move(f));
 }
 
 template <typename T>
@@ -11571,22 +7808,10 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickcolor(std::string f) {
@@ -11596,12 +7821,6 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickcolor(std::string f) {
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickfont(Tickfont f) {
@@ -11619,23 +7838,7 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -11647,12 +7850,6 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
@@ -11662,12 +7859,6 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickmode(enum Tickmode f) {
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticks(enum Ticks f) {
@@ -11679,34 +7870,16 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -11714,33 +7887,15 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::title(Title f) {
@@ -11763,22 +7918,10 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zeroline(bool f) {
     json["zeroline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zeroline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return zeroline(std::move(f));
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zerolinecolor(std::string f) {
@@ -11789,22 +7932,10 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zerolinecolor(double f) {
     json["zerolinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zerolinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zerolinecolor(std::move(f));
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zerolinewidth(double f) {
     json["zerolinewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::zerolinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zerolinewidth(std::move(f));
 }
 
 
@@ -11813,35 +7944,17 @@ inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeop
     json["clipmax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::clipmax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmax(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::clipmin(T f) {
     json["clipmin"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::clipmin(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmin(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::include(T f) {
     json["include"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::include(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return include(std::move(f));
 }
 template <typename T>
 inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::include(const std::vector<T>& f) {
@@ -11853,35 +7966,17 @@ inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeop
     json["includesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::includesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return includesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeoptions::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
 }
 
 inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Style e) {
@@ -11923,55 +8018,25 @@ inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::style(enum Style f) {
@@ -11993,12 +8058,6 @@ inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::weight(in
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -12017,55 +8076,25 @@ inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatsto
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Tickformatstop& Layout::Scene::Xaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -12083,12 +8112,6 @@ inline Layout::Scene::Xaxis::Title& Layout::Scene::Xaxis::Title::font(Callable&&
 inline Layout::Scene::Xaxis::Title& Layout::Scene::Xaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title& Layout::Scene::Xaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Style e) {
@@ -12130,55 +8153,25 @@ inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::style(enum Style f) {
@@ -12199,12 +8192,6 @@ inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::var
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Scene::Yaxis::to_string(Autorange e) {
@@ -12394,12 +8381,6 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::backgroundcolor(double f) {
     json["backgroundcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::backgroundcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return backgroundcolor(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::calendar(enum Calendar f) {
     json["calendar"] = to_string(f);
@@ -12411,22 +8392,10 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryorder(enum Categoryorder f) {
@@ -12442,23 +8411,11 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::exponentformat(enum Exponentformat f) {
@@ -12474,45 +8431,21 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::linecolor(std::string f) {
@@ -12523,22 +8456,10 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 template <typename T>
@@ -12546,34 +8467,16 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::mirror(enum Mirror f) {
@@ -12584,12 +8487,6 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::mirror(enum Mirror f) {
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::range(const std::vector<double>& f) {
@@ -12608,12 +8505,6 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::range(const std::vector<std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::rangemode(enum Rangemode f) {
     json["rangemode"] = to_string(f);
@@ -12624,33 +8515,15 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showaxeslabels(bool f) {
     json["showaxeslabels"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showaxeslabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showaxeslabels(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showbackground(bool f) {
     json["showbackground"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showbackground(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showbackground(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showexponent(enum Showexponent f) {
@@ -12662,44 +8535,20 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showspikes(bool f) {
     json["showspikes"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showspikes(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showspikes(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showtickprefix(enum Showtickprefix f) {
@@ -12720,33 +8569,15 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::spikecolor(double f) {
     json["spikecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::spikecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikecolor(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::spikesides(bool f) {
     json["spikesides"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::spikesides(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return spikesides(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::spikethickness(double f) {
     json["spikethickness"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::spikethickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return spikethickness(std::move(f));
 }
 
 template <typename T>
@@ -12754,22 +8585,10 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickcolor(std::string f) {
@@ -12779,12 +8598,6 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickcolor(std::string f) {
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickfont(Tickfont f) {
@@ -12802,23 +8615,7 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -12830,12 +8627,6 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
@@ -12845,12 +8636,6 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickmode(enum Tickmode f) {
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticks(enum Ticks f) {
@@ -12862,34 +8647,16 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -12897,33 +8664,15 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::title(Title f) {
@@ -12946,22 +8695,10 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zeroline(bool f) {
     json["zeroline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zeroline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return zeroline(std::move(f));
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zerolinecolor(std::string f) {
@@ -12972,22 +8709,10 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zerolinecolor(double f) {
     json["zerolinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zerolinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zerolinecolor(std::move(f));
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zerolinewidth(double f) {
     json["zerolinewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::zerolinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zerolinewidth(std::move(f));
 }
 
 
@@ -12996,35 +8721,17 @@ inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeop
     json["clipmax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::clipmax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmax(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::clipmin(T f) {
     json["clipmin"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::clipmin(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmin(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::include(T f) {
     json["include"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::include(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return include(std::move(f));
 }
 template <typename T>
 inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::include(const std::vector<T>& f) {
@@ -13036,35 +8743,17 @@ inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeop
     json["includesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::includesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return includesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeoptions::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
 }
 
 inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Style e) {
@@ -13106,55 +8795,25 @@ inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::style(enum Style f) {
@@ -13176,12 +8835,6 @@ inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::weight(in
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -13200,55 +8853,25 @@ inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatsto
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Tickformatstop& Layout::Scene::Yaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -13266,12 +8889,6 @@ inline Layout::Scene::Yaxis::Title& Layout::Scene::Yaxis::Title::font(Callable&&
 inline Layout::Scene::Yaxis::Title& Layout::Scene::Yaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title& Layout::Scene::Yaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Style e) {
@@ -13313,55 +8930,25 @@ inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::style(enum Style f) {
@@ -13382,12 +8969,6 @@ inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::var
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Scene::Zaxis::to_string(Autorange e) {
@@ -13577,12 +9158,6 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::backgroundcolor(double f) {
     json["backgroundcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::backgroundcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return backgroundcolor(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::calendar(enum Calendar f) {
     json["calendar"] = to_string(f);
@@ -13594,22 +9169,10 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryorder(enum Categoryorder f) {
@@ -13625,23 +9188,11 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::exponentformat(enum Exponentformat f) {
@@ -13657,45 +9208,21 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::linecolor(std::string f) {
@@ -13706,22 +9233,10 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 template <typename T>
@@ -13729,34 +9244,16 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::mirror(enum Mirror f) {
@@ -13767,12 +9264,6 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::mirror(enum Mirror f) {
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::range(const std::vector<double>& f) {
@@ -13791,12 +9282,6 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::range(const std::vector<std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::rangemode(enum Rangemode f) {
     json["rangemode"] = to_string(f);
@@ -13807,33 +9292,15 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showaxeslabels(bool f) {
     json["showaxeslabels"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showaxeslabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showaxeslabels(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showbackground(bool f) {
     json["showbackground"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showbackground(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showbackground(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showexponent(enum Showexponent f) {
@@ -13845,44 +9312,20 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showspikes(bool f) {
     json["showspikes"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showspikes(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showspikes(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showtickprefix(enum Showtickprefix f) {
@@ -13903,33 +9346,15 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::spikecolor(double f) {
     json["spikecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::spikecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikecolor(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::spikesides(bool f) {
     json["spikesides"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::spikesides(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return spikesides(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::spikethickness(double f) {
     json["spikethickness"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::spikethickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return spikethickness(std::move(f));
 }
 
 template <typename T>
@@ -13937,22 +9362,10 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickcolor(std::string f) {
@@ -13962,12 +9375,6 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickcolor(std::string f) {
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickfont(Tickfont f) {
@@ -13985,23 +9392,7 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -14013,12 +9404,6 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickmode(enum Tickmode f) {
     json["tickmode"] = to_string(f);
@@ -14028,12 +9413,6 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickmode(enum Tickmode f) {
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticks(enum Ticks f) {
@@ -14045,34 +9424,16 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -14080,33 +9441,15 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::title(Title f) {
@@ -14129,22 +9472,10 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zeroline(bool f) {
     json["zeroline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zeroline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return zeroline(std::move(f));
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zerolinecolor(std::string f) {
@@ -14155,22 +9486,10 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zerolinecolor(double f) {
     json["zerolinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zerolinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zerolinecolor(std::move(f));
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zerolinewidth(double f) {
     json["zerolinewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::zerolinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zerolinewidth(std::move(f));
 }
 
 
@@ -14179,35 +9498,17 @@ inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeop
     json["clipmax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::clipmax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmax(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::clipmin(T f) {
     json["clipmin"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::clipmin(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmin(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::include(T f) {
     json["include"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::include(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return include(std::move(f));
 }
 template <typename T>
 inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::include(const std::vector<T>& f) {
@@ -14219,35 +9520,17 @@ inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeop
     json["includesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::includesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return includesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeoptions::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
 }
 
 inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Style e) {
@@ -14289,55 +9572,25 @@ inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::style(enum Style f) {
@@ -14359,12 +9612,6 @@ inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::weight(in
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -14383,55 +9630,25 @@ inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatsto
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Tickformatstop& Layout::Scene::Zaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -14449,12 +9666,6 @@ inline Layout::Scene::Zaxis::Title& Layout::Scene::Zaxis::Title::font(Callable&&
 inline Layout::Scene::Zaxis::Title& Layout::Scene::Zaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title& Layout::Scene::Zaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Style e) {
@@ -14496,55 +9707,25 @@ inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::style(enum Style f) {
@@ -14565,12 +9746,6 @@ inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::var
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Selection::to_string(Type e) {
@@ -14597,44 +9772,20 @@ inline Layout::Selection& Layout::Selection::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Selection& Layout::Selection::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Selection& Layout::Selection::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Selection& Layout::Selection::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Layout::Selection& Layout::Selection::path(std::string f) {
     json["path"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Selection& Layout::Selection::path(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return path(std::move(f));
-}
 
 inline Layout::Selection& Layout::Selection::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Selection& Layout::Selection::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Selection& Layout::Selection::type(enum Type f) {
@@ -14647,34 +9798,16 @@ inline Layout::Selection& Layout::Selection::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Selection& Layout::Selection::x0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x0(std::move(f));
-}
 
 template <typename T>
 inline Layout::Selection& Layout::Selection::x1(T f) {
     json["x1"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Selection& Layout::Selection::x1(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x1(std::move(f));
-}
 
 inline Layout::Selection& Layout::Selection::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Selection& Layout::Selection::xref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xref(std::move(f));
 }
 
 template <typename T>
@@ -14682,34 +9815,16 @@ inline Layout::Selection& Layout::Selection::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Selection& Layout::Selection::y0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y0(std::move(f));
-}
 
 template <typename T>
 inline Layout::Selection& Layout::Selection::y1(T f) {
     json["y1"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Selection& Layout::Selection::y1(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y1(std::move(f));
-}
 
 inline Layout::Selection& Layout::Selection::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Selection& Layout::Selection::yref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yref(std::move(f));
 }
 
 
@@ -14721,33 +9836,15 @@ inline Layout::Selection::Line& Layout::Selection::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Selection::Line& Layout::Selection::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Selection::Line& Layout::Selection::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Selection::Line& Layout::Selection::Line::dash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Layout::Selection::Line& Layout::Selection::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Selection::Line& Layout::Selection::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Layout::Shape::to_string(Fillrule e) {
@@ -14807,12 +9904,6 @@ inline Layout::Shape& Layout::Shape::editable(bool f) {
     json["editable"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::editable(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return editable(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::fillcolor(std::string f) {
     json["fillcolor"] = std::move(f);
@@ -14821,12 +9912,6 @@ inline Layout::Shape& Layout::Shape::fillcolor(std::string f) {
 inline Layout::Shape& Layout::Shape::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::fillrule(enum Fillrule f) {
@@ -14854,22 +9939,10 @@ inline Layout::Shape& Layout::Shape::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::legendgrouptitle(Legendgrouptitle f) {
@@ -14887,22 +9960,10 @@ inline Layout::Shape& Layout::Shape::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::line(Line f) {
@@ -14920,55 +9981,25 @@ inline Layout::Shape& Layout::Shape::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::path(std::string f) {
     json["path"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::path(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return path(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::type(enum Type f) {
@@ -14986,22 +10017,10 @@ inline Layout::Shape& Layout::Shape::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Shape& Layout::Shape::x0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x0(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::x0shift(double f) {
     json["x0shift"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::x0shift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x0shift(std::move(f));
 }
 
 template <typename T>
@@ -15009,22 +10028,10 @@ inline Layout::Shape& Layout::Shape::x1(T f) {
     json["x1"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Shape& Layout::Shape::x1(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x1(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::x1shift(double f) {
     json["x1shift"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::x1shift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x1shift(std::move(f));
 }
 
 template <typename T>
@@ -15032,22 +10039,10 @@ inline Layout::Shape& Layout::Shape::xanchor(T f) {
     json["xanchor"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Shape& Layout::Shape::xanchor(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xanchor(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::xref(std::string f) {
     json["xref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::xref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xref(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::xsizemode(enum Xsizemode f) {
@@ -15060,22 +10055,10 @@ inline Layout::Shape& Layout::Shape::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Shape& Layout::Shape::y0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y0(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::y0shift(double f) {
     json["y0shift"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::y0shift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y0shift(std::move(f));
 }
 
 template <typename T>
@@ -15083,22 +10066,10 @@ inline Layout::Shape& Layout::Shape::y1(T f) {
     json["y1"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Shape& Layout::Shape::y1(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y1(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::y1shift(double f) {
     json["y1shift"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::y1shift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y1shift(std::move(f));
 }
 
 template <typename T>
@@ -15106,22 +10077,10 @@ inline Layout::Shape& Layout::Shape::yanchor(T f) {
     json["yanchor"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Shape& Layout::Shape::yanchor(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return yanchor(std::move(f));
-}
 
 inline Layout::Shape& Layout::Shape::yref(std::string f) {
     json["yref"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape& Layout::Shape::yref(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yref(std::move(f));
 }
 
 inline Layout::Shape& Layout::Shape::ysizemode(enum Ysizemode f) {
@@ -15182,33 +10141,15 @@ inline Layout::Shape::Label& Layout::Shape::Label::padding(double f) {
     json["padding"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Label& Layout::Shape::Label::padding(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return padding(std::move(f));
-}
 
 inline Layout::Shape::Label& Layout::Shape::Label::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Label& Layout::Shape::Label::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Layout::Shape::Label& Layout::Shape::Label::textangle(double f) {
     json["textangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Label& Layout::Shape::Label::textangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return textangle(std::move(f));
 }
 
 inline Layout::Shape::Label& Layout::Shape::Label::textposition(enum Textposition f) {
@@ -15219,12 +10160,6 @@ inline Layout::Shape::Label& Layout::Shape::Label::textposition(enum Textpositio
 inline Layout::Shape::Label& Layout::Shape::Label::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Label& Layout::Shape::Label::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 
 inline Layout::Shape::Label& Layout::Shape::Label::xanchor(enum Xanchor f) {
@@ -15276,55 +10211,25 @@ inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::style(enum Style f) {
@@ -15346,12 +10251,6 @@ inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::font(Font f) {
@@ -15368,12 +10267,6 @@ inline Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::font(Ca
 inline Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Style e) {
@@ -15415,55 +10308,25 @@ inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::F
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::style(enum Style f) {
@@ -15485,12 +10348,6 @@ inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::F
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Shape::Line& Layout::Shape::Line::color(std::string f) {
@@ -15501,33 +10358,15 @@ inline Layout::Shape::Line& Layout::Shape::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Line& Layout::Shape::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Shape::Line& Layout::Shape::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Shape::Line& Layout::Shape::Line::dash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Layout::Shape::Line& Layout::Shape::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Shape::Line& Layout::Shape::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Layout::Slider::to_string(Lenmode e) {
@@ -15563,12 +10402,6 @@ inline Layout::Slider& Layout::Slider::active(double f) {
     json["active"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::active(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return active(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::activebgcolor(std::string f) {
     json["activebgcolor"] = std::move(f);
@@ -15577,12 +10410,6 @@ inline Layout::Slider& Layout::Slider::activebgcolor(std::string f) {
 inline Layout::Slider& Layout::Slider::activebgcolor(double f) {
     json["activebgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::activebgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return activebgcolor(std::move(f));
 }
 
 inline Layout::Slider& Layout::Slider::bgcolor(std::string f) {
@@ -15593,12 +10420,6 @@ inline Layout::Slider& Layout::Slider::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -15608,22 +10429,10 @@ inline Layout::Slider& Layout::Slider::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 inline Layout::Slider& Layout::Slider::currentvalue(Currentvalue f) {
@@ -15652,12 +10461,6 @@ inline Layout::Slider& Layout::Slider::len(double f) {
     json["len"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::lenmode(enum Lenmode f) {
     json["lenmode"] = to_string(f);
@@ -15668,22 +10471,10 @@ inline Layout::Slider& Layout::Slider::minorticklen(double f) {
     json["minorticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::minorticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minorticklen(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Layout::Slider& Layout::Slider::pad(Pad f) {
@@ -15697,16 +10488,6 @@ inline Layout::Slider& Layout::Slider::pad(Callable&& c) {
     return pad(std::move(f));
 }
 
-inline Layout::Slider& Layout::Slider::steps(Step f) {
-    json["steps"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::steps(Callable&& c) {
-    Step f{};
-    std::forward<Callable>(c)(f);
-    return steps(std::move(f));
-}
 inline Layout::Slider& Layout::Slider::steps(const std::vector<Step>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -15718,12 +10499,6 @@ inline Layout::Slider& Layout::Slider::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::tickcolor(std::string f) {
     json["tickcolor"] = std::move(f);
@@ -15733,33 +10508,15 @@ inline Layout::Slider& Layout::Slider::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Slider& Layout::Slider::transition(Transition f) {
@@ -15777,22 +10534,10 @@ inline Layout::Slider& Layout::Slider::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Slider& Layout::Slider::x(double f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Slider& Layout::Slider::xanchor(enum Xanchor f) {
@@ -15803,12 +10548,6 @@ inline Layout::Slider& Layout::Slider::xanchor(enum Xanchor f) {
 inline Layout::Slider& Layout::Slider::y(double f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider& Layout::Slider::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Slider& Layout::Slider::yanchor(enum Yanchor f) {
@@ -15841,44 +10580,20 @@ inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::offset(double
     json["offset"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::offset(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return offset(std::move(f));
-}
 
 inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::prefix(std::string f) {
     json["prefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::prefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return prefix(std::move(f));
 }
 
 inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::suffix(std::string f) {
     json["suffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::suffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return suffix(std::move(f));
-}
 
 inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::xanchor(enum Xanchor f) {
@@ -15925,55 +10640,25 @@ inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::c
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::style(enum Style f) {
@@ -15994,12 +10679,6 @@ inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::v
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Slider::Font::to_string(Style e) {
@@ -16041,55 +10720,25 @@ inline Layout::Slider::Font& Layout::Slider::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Font& Layout::Slider::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Slider::Font& Layout::Slider::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Font& Layout::Slider::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Font& Layout::Slider::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Slider::Font& Layout::Slider::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Font& Layout::Slider::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Slider::Font& Layout::Slider::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Font& Layout::Slider::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::style(enum Style f) {
@@ -16111,56 +10760,26 @@ inline Layout::Slider::Font& Layout::Slider::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Font& Layout::Slider::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Slider::Pad& Layout::Slider::Pad::b(double f) {
     json["b"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Pad& Layout::Slider::Pad::b(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return b(std::move(f));
-}
 
 inline Layout::Slider::Pad& Layout::Slider::Pad::l(double f) {
     json["l"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Pad& Layout::Slider::Pad::l(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return l(std::move(f));
 }
 
 inline Layout::Slider::Pad& Layout::Slider::Pad::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Pad& Layout::Slider::Pad::r(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return r(std::move(f));
-}
 
 inline Layout::Slider::Pad& Layout::Slider::Pad::t(double f) {
     json["t"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Pad& Layout::Slider::Pad::t(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return t(std::move(f));
 }
 
 inline std::string Layout::Slider::Step::to_string(Method e) {
@@ -16191,33 +10810,15 @@ inline Layout::Slider::Step& Layout::Slider::Step::args(const std::vector<std::v
     json["args"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::args(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return args(std::move(f));
-}
 
 inline Layout::Slider::Step& Layout::Slider::Step::execute(bool f) {
     json["execute"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::execute(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return execute(std::move(f));
-}
 
 inline Layout::Slider::Step& Layout::Slider::Step::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::label(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return label(std::move(f));
 }
 
 inline Layout::Slider::Step& Layout::Slider::Step::method(enum Method f) {
@@ -16229,44 +10830,20 @@ inline Layout::Slider::Step& Layout::Slider::Step::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Slider::Step& Layout::Slider::Step::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Slider::Step& Layout::Slider::Step::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
-}
 
 inline Layout::Slider::Step& Layout::Slider::Step::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Slider::Step& Layout::Slider::Step::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Layout::Slider::Transition::to_string(Easing e) {
@@ -16316,12 +10893,6 @@ inline Layout::Slider::Transition& Layout::Slider::Transition::duration(double f
     json["duration"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Slider::Transition& Layout::Slider::Transition::duration(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return duration(std::move(f));
-}
 
 inline Layout::Slider::Transition& Layout::Slider::Transition::easing(enum Easing f) {
     json["easing"] = to_string(f);
@@ -16336,12 +10907,6 @@ inline Layout::Smith& Layout::Smith::bgcolor(std::string f) {
 inline Layout::Smith& Layout::Smith::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith& Layout::Smith::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 
 inline Layout::Smith& Layout::Smith::domain(Domain f) {
@@ -16382,22 +10947,10 @@ inline Layout::Smith::Domain& Layout::Smith::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Domain& Layout::Smith::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Smith::Domain& Layout::Smith::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Domain& Layout::Smith::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Smith::Domain& Layout::Smith::Domain::x(const std::vector<double>& f) {
@@ -16416,12 +10969,6 @@ inline Layout::Smith::Domain& Layout::Smith::Domain::x(const std::vector<std::ve
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Domain& Layout::Smith::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Smith::Domain& Layout::Smith::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -16438,12 +10985,6 @@ inline Layout::Smith::Domain& Layout::Smith::Domain::y(const std::vector<std::ve
 inline Layout::Smith::Domain& Layout::Smith::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Domain& Layout::Smith::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Smith::Imaginaryaxis::to_string(Layer e) {
@@ -16492,12 +11033,6 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::gridcolor(std::string f) {
     json["gridcolor"] = std::move(f);
@@ -16507,56 +11042,26 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::gridcolor(dou
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::layer(enum Layer f) {
@@ -16572,55 +11077,25 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::linecolor(dou
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showtickprefix(enum Showtickprefix f) {
@@ -16641,12 +11116,6 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickcolor(dou
     json["tickcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickfont(Tickfont f) {
     json["tickfont"] = std::move(f.json);
@@ -16663,33 +11132,15 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickformat(st
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticks(enum Ticks f) {
@@ -16701,56 +11152,26 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticksuffix(st
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Style e) {
@@ -16792,55 +11213,25 @@ inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tic
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::style(enum Style f) {
@@ -16861,12 +11252,6 @@ inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tic
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Smith::Realaxis::to_string(Layer e) {
@@ -16923,12 +11308,6 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::gridcolor(std::string f) {
     json["gridcolor"] = std::move(f);
@@ -16938,56 +11317,26 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::layer(enum Layer f) {
@@ -17003,55 +11352,25 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showtickprefix(enum Showtickprefix f) {
@@ -17073,12 +11392,6 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickcolor(std::string f) {
     json["tickcolor"] = std::move(f);
@@ -17087,12 +11400,6 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickcolor(std::string f
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickfont(Tickfont f) {
@@ -17110,33 +11417,15 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickformat(std::string 
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticks(enum Ticks f) {
@@ -17148,56 +11437,26 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticksuffix(std::string 
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Style e) {
@@ -17239,55 +11498,25 @@ inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::style(enum Style f) {
@@ -17308,12 +11537,6 @@ inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::var
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 
@@ -17347,12 +11570,6 @@ inline Layout::Ternary& Layout::Ternary::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary& Layout::Ternary::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Ternary& Layout::Ternary::caxis(Caxis f) {
     json["caxis"] = std::move(f.json);
@@ -17380,23 +11597,11 @@ inline Layout::Ternary& Layout::Ternary::sum(double f) {
     json["sum"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary& Layout::Ternary::sum(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sum(std::move(f));
-}
 
 template <typename T>
 inline Layout::Ternary& Layout::Ternary::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary& Layout::Ternary::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline std::string Layout::Ternary::Aaxis::to_string(Exponentformat e) {
@@ -17475,23 +11680,11 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::exponentformat(enum Exponentformat f) {
@@ -17507,56 +11700,26 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::layer(enum Layer f) {
@@ -17572,66 +11735,30 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::min(double f) {
     json["min"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::min(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return min(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showexponent(enum Showexponent f) {
@@ -17643,33 +11770,15 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showtickprefix(enum Showtickprefix f) {
@@ -17687,22 +11796,10 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickcolor(std::string f) {
@@ -17712,12 +11809,6 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickcolor(std::string f) 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickfont(Tickfont f) {
@@ -17735,23 +11826,7 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformat(std::string f)
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -17763,22 +11838,10 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickmode(enum Tickmode f) {
@@ -17790,12 +11853,6 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickprefix(std::string f)
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -17806,34 +11863,16 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticksuffix(std::string f)
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -17841,33 +11880,15 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::title(Title f) {
@@ -17885,12 +11906,6 @@ template <typename T>
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Style e) {
@@ -17932,55 +11947,25 @@ inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::color
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::style(enum Style f) {
@@ -18002,12 +11987,6 @@ inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::weigh
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -18026,55 +12005,25 @@ inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickforma
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Tickformatstop& Layout::Ternary::Aaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -18092,12 +12041,6 @@ inline Layout::Ternary::Aaxis::Title& Layout::Ternary::Aaxis::Title::font(Callab
 inline Layout::Ternary::Aaxis::Title& Layout::Ternary::Aaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title& Layout::Ternary::Aaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Style e) {
@@ -18139,55 +12082,25 @@ inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::style(enum Style f) {
@@ -18208,12 +12121,6 @@ inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font:
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Ternary::Baxis::to_string(Exponentformat e) {
@@ -18292,23 +12199,11 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::exponentformat(enum Exponentformat f) {
@@ -18324,56 +12219,26 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::layer(enum Layer f) {
@@ -18389,66 +12254,30 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::min(double f) {
     json["min"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::min(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return min(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showexponent(enum Showexponent f) {
@@ -18460,33 +12289,15 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showtickprefix(enum Showtickprefix f) {
@@ -18504,22 +12315,10 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickcolor(std::string f) {
@@ -18529,12 +12328,6 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickcolor(std::string f) 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickfont(Tickfont f) {
@@ -18552,23 +12345,7 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformat(std::string f)
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -18580,22 +12357,10 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickmode(enum Tickmode f) {
@@ -18607,12 +12372,6 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickprefix(std::string f)
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -18623,34 +12382,16 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticksuffix(std::string f)
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -18658,33 +12399,15 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::title(Title f) {
@@ -18702,12 +12425,6 @@ template <typename T>
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Style e) {
@@ -18749,55 +12466,25 @@ inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::color
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::style(enum Style f) {
@@ -18819,12 +12506,6 @@ inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::weigh
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -18843,55 +12524,25 @@ inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickforma
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Tickformatstop& Layout::Ternary::Baxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -18909,12 +12560,6 @@ inline Layout::Ternary::Baxis::Title& Layout::Ternary::Baxis::Title::font(Callab
 inline Layout::Ternary::Baxis::Title& Layout::Ternary::Baxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title& Layout::Ternary::Baxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Style e) {
@@ -18956,55 +12601,25 @@ inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::style(enum Style f) {
@@ -19025,12 +12640,6 @@ inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font:
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Ternary::Caxis::to_string(Exponentformat e) {
@@ -19109,23 +12718,11 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 template <typename T>
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::exponentformat(enum Exponentformat f) {
@@ -19141,56 +12738,26 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 template <typename T>
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::layer(enum Layer f) {
@@ -19206,66 +12773,30 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::min(double f) {
     json["min"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::min(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return min(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showexponent(enum Showexponent f) {
@@ -19277,33 +12808,15 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showtickprefix(enum Showtickprefix f) {
@@ -19321,22 +12834,10 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickcolor(std::string f) {
@@ -19346,12 +12847,6 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickcolor(std::string f) 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickfont(Tickfont f) {
@@ -19369,23 +12864,7 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformat(std::string f)
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -19397,22 +12876,10 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickmode(enum Tickmode f) {
@@ -19424,12 +12891,6 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickprefix(std::string f)
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -19440,34 +12901,16 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticksuffix(std::string f)
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -19475,33 +12918,15 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::title(Title f) {
@@ -19519,12 +12944,6 @@ template <typename T>
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Style e) {
@@ -19566,55 +12985,25 @@ inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::color
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::style(enum Style f) {
@@ -19636,12 +13025,6 @@ inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::weigh
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -19660,55 +13043,25 @@ inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickforma
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Tickformatstop& Layout::Ternary::Caxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -19726,12 +13079,6 @@ inline Layout::Ternary::Caxis::Title& Layout::Ternary::Caxis::Title::font(Callab
 inline Layout::Ternary::Caxis::Title& Layout::Ternary::Caxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title& Layout::Ternary::Caxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Style e) {
@@ -19773,55 +13120,25 @@ inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font:
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::style(enum Style f) {
@@ -19843,34 +13160,16 @@ inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font:
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Ternary::Domain& Layout::Ternary::Domain::column(int f) {
     json["column"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Domain& Layout::Ternary::Domain::column(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return column(std::move(f));
-}
 
 inline Layout::Ternary::Domain& Layout::Ternary::Domain::row(int f) {
     json["row"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Domain& Layout::Ternary::Domain::row(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return row(std::move(f));
 }
 
 inline Layout::Ternary::Domain& Layout::Ternary::Domain::x(const std::vector<double>& f) {
@@ -19889,12 +13188,6 @@ inline Layout::Ternary::Domain& Layout::Ternary::Domain::x(const std::vector<std
     json["x"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Ternary::Domain& Layout::Ternary::Domain::x(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Layout::Ternary::Domain& Layout::Ternary::Domain::y(const std::vector<double>& f) {
     json["y"] = f;
@@ -19911,12 +13204,6 @@ inline Layout::Ternary::Domain& Layout::Ternary::Domain::y(const std::vector<std
 inline Layout::Ternary::Domain& Layout::Ternary::Domain::y(const std::vector<std::vector<double>>& f) {
     json["y"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Ternary::Domain& Layout::Ternary::Domain::y(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline std::string Layout::Title::to_string(Xanchor e) {
@@ -19960,12 +13247,6 @@ inline Layout::Title& Layout::Title::automargin(bool f) {
     json["automargin"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title& Layout::Title::automargin(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return automargin(std::move(f));
-}
 
 inline Layout::Title& Layout::Title::font(Font f) {
     json["font"] = std::move(f.json);
@@ -20004,22 +13285,10 @@ inline Layout::Title& Layout::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title& Layout::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 
 inline Layout::Title& Layout::Title::x(double f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title& Layout::Title::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Title& Layout::Title::xanchor(enum Xanchor f) {
@@ -20035,12 +13304,6 @@ inline Layout::Title& Layout::Title::xref(enum Xref f) {
 inline Layout::Title& Layout::Title::y(double f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title& Layout::Title::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Title& Layout::Title::yanchor(enum Yanchor f) {
@@ -20092,55 +13355,25 @@ inline Layout::Title::Font& Layout::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Font& Layout::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Title::Font& Layout::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Font& Layout::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Title::Font& Layout::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Font& Layout::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Title::Font& Layout::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Font& Layout::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Title::Font& Layout::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Font& Layout::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Title::Font& Layout::Title::Font::style(enum Style f) {
@@ -20162,56 +13395,26 @@ inline Layout::Title::Font& Layout::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Font& Layout::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Title::Pad& Layout::Title::Pad::b(double f) {
     json["b"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Pad& Layout::Title::Pad::b(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return b(std::move(f));
-}
 
 inline Layout::Title::Pad& Layout::Title::Pad::l(double f) {
     json["l"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Pad& Layout::Title::Pad::l(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return l(std::move(f));
 }
 
 inline Layout::Title::Pad& Layout::Title::Pad::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Pad& Layout::Title::Pad::r(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return r(std::move(f));
-}
 
 inline Layout::Title::Pad& Layout::Title::Pad::t(double f) {
     json["t"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Pad& Layout::Title::Pad::t(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return t(std::move(f));
 }
 
 
@@ -20229,12 +13432,6 @@ inline Layout::Title::Subtitle& Layout::Title::Subtitle::font(Callable&& c) {
 inline Layout::Title::Subtitle& Layout::Title::Subtitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Subtitle& Layout::Title::Subtitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Title::Subtitle::Font::to_string(Style e) {
@@ -20276,55 +13473,25 @@ inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::color(doubl
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::style(enum Style f) {
@@ -20345,12 +13512,6 @@ inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::variant(enu
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Transition::to_string(Easing e) {
@@ -20408,12 +13569,6 @@ inline Layout::Transition& Layout::Transition::duration(double f) {
     json["duration"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Transition& Layout::Transition::duration(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return duration(std::move(f));
-}
 
 inline Layout::Transition& Layout::Transition::easing(enum Easing f) {
     json["easing"] = to_string(f);
@@ -20438,12 +13593,6 @@ inline std::string Layout::Uniformtext::to_string(Mode e) {
 inline Layout::Uniformtext& Layout::Uniformtext::minsize(double f) {
     json["minsize"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Uniformtext& Layout::Uniformtext::minsize(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minsize(std::move(f));
 }
 
 inline Layout::Uniformtext& Layout::Uniformtext::mode(enum Mode f) {
@@ -20494,12 +13643,6 @@ inline Layout::Updatemenu& Layout::Updatemenu::active(int f) {
     json["active"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::active(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return active(std::move(f));
-}
 
 inline Layout::Updatemenu& Layout::Updatemenu::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -20508,12 +13651,6 @@ inline Layout::Updatemenu& Layout::Updatemenu::bgcolor(std::string f) {
 inline Layout::Updatemenu& Layout::Updatemenu::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::bordercolor(std::string f) {
@@ -20524,34 +13661,12 @@ inline Layout::Updatemenu& Layout::Updatemenu::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Updatemenu& Layout::Updatemenu::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
-}
 
-inline Layout::Updatemenu& Layout::Updatemenu::buttons(Button f) {
-    json["buttons"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::buttons(Callable&& c) {
-    Button f{};
-    std::forward<Callable>(c)(f);
-    return buttons(std::move(f));
-}
 inline Layout::Updatemenu& Layout::Updatemenu::buttons(const std::vector<Button>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -20579,12 +13694,6 @@ inline Layout::Updatemenu& Layout::Updatemenu::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Updatemenu& Layout::Updatemenu::pad(Pad f) {
     json["pad"] = std::move(f.json);
@@ -20601,22 +13710,10 @@ inline Layout::Updatemenu& Layout::Updatemenu::showactive(bool f) {
     json["showactive"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::showactive(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showactive(std::move(f));
-}
 
 inline Layout::Updatemenu& Layout::Updatemenu::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::type(enum Type f) {
@@ -20628,22 +13725,10 @@ inline Layout::Updatemenu& Layout::Updatemenu::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Updatemenu& Layout::Updatemenu::x(double f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::xanchor(enum Xanchor f) {
@@ -20654,12 +13739,6 @@ inline Layout::Updatemenu& Layout::Updatemenu::xanchor(enum Xanchor f) {
 inline Layout::Updatemenu& Layout::Updatemenu::y(double f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu& Layout::Updatemenu::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::yanchor(enum Yanchor f) {
@@ -20695,12 +13774,6 @@ inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::args(const std::v
     json["args"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::args(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return args(std::move(f));
-}
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::args2(const std::vector<double>& f) {
     json["args2"] = f;
@@ -20718,33 +13791,15 @@ inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::args2(const std::
     json["args2"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::args2(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return args2(std::move(f));
-}
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::execute(bool f) {
     json["execute"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::execute(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return execute(std::move(f));
-}
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::label(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return label(std::move(f));
 }
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::method(enum Method f) {
@@ -20756,33 +13811,15 @@ inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::name(std::string 
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Layout::Updatemenu::Font::to_string(Style e) {
@@ -20824,55 +13861,25 @@ inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::style(enum Style f) {
@@ -20894,56 +13901,26 @@ inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::b(double f) {
     json["b"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::b(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return b(std::move(f));
-}
 
 inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::l(double f) {
     json["l"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::l(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return l(std::move(f));
 }
 
 inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::r(double f) {
     json["r"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::r(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return r(std::move(f));
-}
 
 inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::t(double f) {
     json["t"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::t(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return t(std::move(f));
 }
 
 inline std::string Layout::Xaxis::to_string(Autorange e) {
@@ -21198,22 +14175,10 @@ inline Layout::Xaxis& Layout::Xaxis::anchor(std::string f) {
     json["anchor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::anchor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return anchor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::automargin(std::string f) {
     json["automargin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::automargin(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return automargin(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::autorange(enum Autorange f) {
@@ -21248,12 +14213,6 @@ inline Layout::Xaxis& Layout::Xaxis::autotickangles(const std::vector<std::vecto
     json["autotickangles"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::autotickangles(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return autotickangles(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::autotypenumbers(enum Autotypenumbers f) {
     json["autotypenumbers"] = to_string(f);
@@ -21270,22 +14229,10 @@ inline Layout::Xaxis& Layout::Xaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::categoryorder(enum Categoryorder f) {
@@ -21300,12 +14247,6 @@ inline Layout::Xaxis& Layout::Xaxis::color(std::string f) {
 inline Layout::Xaxis& Layout::Xaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::constrain(enum Constrain f) {
@@ -21326,22 +14267,10 @@ inline Layout::Xaxis& Layout::Xaxis::dividercolor(double f) {
     json["dividercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::dividercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dividercolor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::dividerwidth(double f) {
     json["dividerwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::dividerwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dividerwidth(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::domain(const std::vector<double>& f) {
@@ -21360,23 +14289,11 @@ inline Layout::Xaxis& Layout::Xaxis::domain(const std::vector<std::vector<double
     json["domain"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::domain(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return domain(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis& Layout::Xaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::exponentformat(enum Exponentformat f) {
@@ -21388,12 +14305,6 @@ inline Layout::Xaxis& Layout::Xaxis::fixedrange(bool f) {
     json["fixedrange"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::fixedrange(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return fixedrange(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::gridcolor(std::string f) {
     json["gridcolor"] = std::move(f);
@@ -21403,44 +14314,20 @@ inline Layout::Xaxis& Layout::Xaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::insiderange(const std::vector<double>& f) {
@@ -21459,23 +14346,11 @@ inline Layout::Xaxis& Layout::Xaxis::insiderange(const std::vector<std::vector<d
     json["insiderange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::insiderange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return insiderange(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis& Layout::Xaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::layer(enum Layer f) {
@@ -21491,33 +14366,15 @@ inline Layout::Xaxis& Layout::Xaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::matches(std::string f) {
     json["matches"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::matches(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return matches(std::move(f));
 }
 
 template <typename T>
@@ -21525,34 +14382,16 @@ inline Layout::Xaxis& Layout::Xaxis::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis& Layout::Xaxis::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::minor(Minor f) {
@@ -21575,33 +14414,15 @@ inline Layout::Xaxis& Layout::Xaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::overlaying(std::string f) {
     json["overlaying"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::overlaying(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return overlaying(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::position(double f) {
     json["position"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::position(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return position(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::range(const std::vector<double>& f) {
@@ -21620,23 +14441,7 @@ inline Layout::Xaxis& Layout::Xaxis::range(const std::vector<std::vector<double>
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
-inline Layout::Xaxis& Layout::Xaxis::rangebreaks(Rangebreak f) {
-    json["rangebreaks"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::rangebreaks(Callable&& c) {
-    Rangebreak f{};
-    std::forward<Callable>(c)(f);
-    return rangebreaks(std::move(f));
-}
 inline Layout::Xaxis& Layout::Xaxis::rangebreaks(const std::vector<Rangebreak>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -21675,44 +14480,20 @@ inline Layout::Xaxis& Layout::Xaxis::scaleanchor(std::string f) {
     json["scaleanchor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::scaleanchor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scaleanchor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::scaleratio(double f) {
     json["scaleratio"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::scaleratio(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return scaleratio(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::showdividers(bool f) {
     json["showdividers"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::showdividers(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showdividers(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::showexponent(enum Showexponent f) {
@@ -21724,44 +14505,20 @@ inline Layout::Xaxis& Layout::Xaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::showspikes(bool f) {
     json["showspikes"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::showspikes(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showspikes(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::showtickprefix(enum Showtickprefix f) {
@@ -21787,33 +14544,15 @@ inline Layout::Xaxis& Layout::Xaxis::spikecolor(double f) {
     json["spikecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::spikecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikecolor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::spikedash(std::string f) {
     json["spikedash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::spikedash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikedash(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::spikemode(std::string f) {
     json["spikemode"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::spikemode(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikemode(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::spikesnap(enum Spikesnap f) {
@@ -21825,34 +14564,16 @@ inline Layout::Xaxis& Layout::Xaxis::spikethickness(double f) {
     json["spikethickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::spikethickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return spikethickness(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis& Layout::Xaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::tickcolor(std::string f) {
@@ -21862,12 +14583,6 @@ inline Layout::Xaxis& Layout::Xaxis::tickcolor(std::string f) {
 inline Layout::Xaxis& Layout::Xaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::tickfont(Tickfont f) {
@@ -21885,23 +14600,7 @@ inline Layout::Xaxis& Layout::Xaxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Xaxis& Layout::Xaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Xaxis& Layout::Xaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -21913,12 +14612,6 @@ inline Layout::Xaxis& Layout::Xaxis::ticklabelindex(int f) {
     json["ticklabelindex"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticklabelindex(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelindex(std::move(f));
-}
 inline Layout::Xaxis& Layout::Xaxis::ticklabelindex(const std::vector<int>& f) {
     json["ticklabelindex"] = f;
     return *this;
@@ -21927,12 +14620,6 @@ inline Layout::Xaxis& Layout::Xaxis::ticklabelindex(const std::vector<int>& f) {
 inline Layout::Xaxis& Layout::Xaxis::ticklabelindexsrc(std::string f) {
     json["ticklabelindexsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticklabelindexsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelindexsrc(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticklabelmode(enum Ticklabelmode f) {
@@ -21954,44 +14641,20 @@ inline Layout::Xaxis& Layout::Xaxis::ticklabelshift(int f) {
     json["ticklabelshift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticklabelshift(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelshift(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::ticklabelstandoff(int f) {
     json["ticklabelstandoff"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticklabelstandoff(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstandoff(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::tickmode(enum Tickmode f) {
@@ -22002,12 +14665,6 @@ inline Layout::Xaxis& Layout::Xaxis::tickmode(enum Tickmode f) {
 inline Layout::Xaxis& Layout::Xaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticks(enum Ticks f) {
@@ -22024,34 +14681,16 @@ inline Layout::Xaxis& Layout::Xaxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Xaxis& Layout::Xaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -22059,33 +14698,15 @@ inline Layout::Xaxis& Layout::Xaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::title(Title f) {
@@ -22109,33 +14730,15 @@ inline Layout::Xaxis& Layout::Xaxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::zeroline(bool f) {
     json["zeroline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::zeroline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return zeroline(std::move(f));
 }
 
 inline Layout::Xaxis& Layout::Xaxis::zerolinecolor(std::string f) {
@@ -22146,22 +14749,10 @@ inline Layout::Xaxis& Layout::Xaxis::zerolinecolor(double f) {
     json["zerolinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::zerolinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zerolinecolor(std::move(f));
-}
 
 inline Layout::Xaxis& Layout::Xaxis::zerolinewidth(double f) {
     json["zerolinewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis& Layout::Xaxis::zerolinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zerolinewidth(std::move(f));
 }
 
 
@@ -22170,35 +14761,17 @@ inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::clipmax
     json["clipmax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::clipmax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmax(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::clipmin(T f) {
     json["clipmin"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::clipmin(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmin(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::include(T f) {
     json["include"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::include(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return include(std::move(f));
 }
 template <typename T>
 inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::include(const std::vector<T>& f) {
@@ -22210,35 +14783,17 @@ inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::include
     json["includesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::includesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return includesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
 }
 
 inline std::string Layout::Xaxis::Minor::to_string(Tickmode e) {
@@ -22265,12 +14820,6 @@ inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
-}
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::gridcolor(std::string f) {
     json["gridcolor"] = std::move(f);
@@ -22280,67 +14829,31 @@ inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 template <typename T>
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
 }
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickcolor(std::string f) {
@@ -22351,22 +14864,10 @@ inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
-}
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickmode(enum Tickmode f) {
@@ -22384,33 +14885,15 @@ inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline std::string Layout::Xaxis::Rangebreak::to_string(Pattern e) {
@@ -22439,44 +14922,20 @@ inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::bounds(const std::v
     json["bounds"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::bounds(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return bounds(std::move(f));
-}
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::dvalue(double f) {
     json["dvalue"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::dvalue(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dvalue(std::move(f));
 }
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
-}
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::pattern(enum Pattern f) {
@@ -22487,12 +14946,6 @@ inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::pattern(enum Patter
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(const std::vector<double>& f) {
@@ -22510,12 +14963,6 @@ inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(const std::v
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(const std::vector<std::vector<double>>& f) {
     json["values"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return values(std::move(f));
 }
 
 inline std::string Layout::Xaxis::Rangeselector::to_string(Xanchor e) {
@@ -22547,12 +14994,6 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::activecolor(d
     json["activecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::activecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return activecolor(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -22561,12 +15002,6 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bgcolor(std::
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bordercolor(std::string f) {
@@ -22577,34 +15012,12 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bordercolor(d
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
-}
 
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(Button f) {
-    json["buttons"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(Callable&& c) {
-    Button f{};
-    std::forward<Callable>(c)(f);
-    return buttons(std::move(f));
-}
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::buttons(const std::vector<Button>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -22627,22 +15040,10 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::visible(bool 
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::x(double f) {
     json["x"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::xanchor(enum Xanchor f) {
@@ -22653,12 +15054,6 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::xanchor(enum 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::y(double f) {
     json["y"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::yanchor(enum Yanchor f) {
@@ -22692,33 +15087,15 @@ inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Butto
     json["count"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::count(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return count(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::label(std::string f) {
     json["label"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::label(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return label(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::step(enum Step f) {
@@ -22735,22 +15112,10 @@ inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Butto
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Style e) {
@@ -22792,55 +15157,25 @@ inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::c
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::style(enum Style f) {
@@ -22862,23 +15197,11 @@ inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::w
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::autorange(bool f) {
     json["autorange"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::autorange(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autorange(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::bgcolor(std::string f) {
@@ -22889,12 +15212,6 @@ inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::bgcolor(double f)
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -22904,22 +15221,10 @@ inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::bordercolor(doubl
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::borderwidth(int f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::borderwidth(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::range(const std::vector<double>& f) {
@@ -22938,33 +15243,15 @@ inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::range(const std::
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::yaxis(Yaxis f) {
@@ -22972,7 +15259,8 @@ inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::yaxis(Yaxis f) {
     return *this;
 }
 inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::yaxis(int index, Yaxis f) {
-    json["yaxis" + std::to_string(index)] = std::move(f.json);
+    const auto key = std::string("yaxis") + (index > 1 ? std::to_string(index) : "");
+    json[key] = std::move(f.json);
     return *this;
 }
 template <typename Callable, typename>
@@ -23013,12 +15301,6 @@ inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::ran
 inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::range(const std::vector<std::vector<double>>& f) {
     json["range"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
 }
 
 inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::rangemode(enum Rangemode f) {
@@ -23065,55 +15347,25 @@ inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::style(enum Style f) {
@@ -23135,12 +15387,6 @@ inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -23159,55 +15405,25 @@ inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::dtickrange(
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Tickformatstop& Layout::Xaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -23226,22 +15442,10 @@ inline Layout::Xaxis::Title& Layout::Xaxis::Title::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Title& Layout::Xaxis::Title::standoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return standoff(std::move(f));
-}
 
 inline Layout::Xaxis::Title& Layout::Xaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Title& Layout::Xaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Xaxis::Title::Font::to_string(Style e) {
@@ -23283,55 +15487,25 @@ inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::style(enum Style f) {
@@ -23352,12 +15526,6 @@ inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::variant(enum Vari
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 inline std::string Layout::Yaxis::to_string(Autorange e) {
@@ -23612,22 +15780,10 @@ inline Layout::Yaxis& Layout::Yaxis::anchor(std::string f) {
     json["anchor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::anchor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return anchor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::automargin(std::string f) {
     json["automargin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::automargin(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return automargin(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::autorange(enum Autorange f) {
@@ -23650,12 +15806,6 @@ inline Layout::Yaxis& Layout::Yaxis::autoshift(bool f) {
     json["autoshift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::autoshift(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autoshift(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::autotickangles(const std::vector<double>& f) {
     json["autotickangles"] = f;
@@ -23673,12 +15823,6 @@ inline Layout::Yaxis& Layout::Yaxis::autotickangles(const std::vector<std::vecto
     json["autotickangles"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::autotickangles(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return autotickangles(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::autotypenumbers(enum Autotypenumbers f) {
     json["autotypenumbers"] = to_string(f);
@@ -23695,22 +15839,10 @@ inline Layout::Yaxis& Layout::Yaxis::categoryarray(Range&& f) {
     json["categoryarray"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::categoryarray(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return categoryarray(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::categoryarraysrc(std::string f) {
     json["categoryarraysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::categoryarraysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return categoryarraysrc(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::categoryorder(enum Categoryorder f) {
@@ -23725,12 +15857,6 @@ inline Layout::Yaxis& Layout::Yaxis::color(std::string f) {
 inline Layout::Yaxis& Layout::Yaxis::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::constrain(enum Constrain f) {
@@ -23751,22 +15877,10 @@ inline Layout::Yaxis& Layout::Yaxis::dividercolor(double f) {
     json["dividercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::dividercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dividercolor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::dividerwidth(double f) {
     json["dividerwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::dividerwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dividerwidth(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::domain(const std::vector<double>& f) {
@@ -23785,23 +15899,11 @@ inline Layout::Yaxis& Layout::Yaxis::domain(const std::vector<std::vector<double
     json["domain"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::domain(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return domain(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis& Layout::Yaxis::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::exponentformat(enum Exponentformat f) {
@@ -23813,12 +15915,6 @@ inline Layout::Yaxis& Layout::Yaxis::fixedrange(bool f) {
     json["fixedrange"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::fixedrange(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return fixedrange(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::gridcolor(std::string f) {
     json["gridcolor"] = std::move(f);
@@ -23828,44 +15924,20 @@ inline Layout::Yaxis& Layout::Yaxis::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::hoverformat(std::string f) {
     json["hoverformat"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::hoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverformat(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::insiderange(const std::vector<double>& f) {
@@ -23884,23 +15956,11 @@ inline Layout::Yaxis& Layout::Yaxis::insiderange(const std::vector<std::vector<d
     json["insiderange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::insiderange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return insiderange(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis& Layout::Yaxis::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::layer(enum Layer f) {
@@ -23916,33 +15976,15 @@ inline Layout::Yaxis& Layout::Yaxis::linecolor(double f) {
     json["linecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::linecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linecolor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::linewidth(double f) {
     json["linewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::linewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return linewidth(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::matches(std::string f) {
     json["matches"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::matches(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return matches(std::move(f));
 }
 
 template <typename T>
@@ -23950,34 +15992,16 @@ inline Layout::Yaxis& Layout::Yaxis::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis& Layout::Yaxis::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::minor(Minor f) {
@@ -24000,33 +16024,15 @@ inline Layout::Yaxis& Layout::Yaxis::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::overlaying(std::string f) {
     json["overlaying"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::overlaying(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return overlaying(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::position(double f) {
     json["position"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::position(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return position(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::range(const std::vector<double>& f) {
@@ -24045,23 +16051,7 @@ inline Layout::Yaxis& Layout::Yaxis::range(const std::vector<std::vector<double>
     json["range"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::range(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return range(std::move(f));
-}
 
-inline Layout::Yaxis& Layout::Yaxis::rangebreaks(Rangebreak f) {
-    json["rangebreaks"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::rangebreaks(Callable&& c) {
-    Rangebreak f{};
-    std::forward<Callable>(c)(f);
-    return rangebreaks(std::move(f));
-}
 inline Layout::Yaxis& Layout::Yaxis::rangebreaks(const std::vector<Rangebreak>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -24078,55 +16068,25 @@ inline Layout::Yaxis& Layout::Yaxis::scaleanchor(std::string f) {
     json["scaleanchor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::scaleanchor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scaleanchor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::scaleratio(double f) {
     json["scaleratio"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::scaleratio(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return scaleratio(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::shift(double f) {
     json["shift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::shift(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return shift(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::showdividers(bool f) {
     json["showdividers"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::showdividers(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showdividers(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::showexponent(enum Showexponent f) {
@@ -24138,44 +16098,20 @@ inline Layout::Yaxis& Layout::Yaxis::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::showline(bool f) {
     json["showline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::showline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showline(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::showspikes(bool f) {
     json["showspikes"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::showspikes(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showspikes(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::showtickprefix(enum Showtickprefix f) {
@@ -24201,33 +16137,15 @@ inline Layout::Yaxis& Layout::Yaxis::spikecolor(double f) {
     json["spikecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::spikecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikecolor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::spikedash(std::string f) {
     json["spikedash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::spikedash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikedash(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::spikemode(std::string f) {
     json["spikemode"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::spikemode(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return spikemode(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::spikesnap(enum Spikesnap f) {
@@ -24239,34 +16157,16 @@ inline Layout::Yaxis& Layout::Yaxis::spikethickness(double f) {
     json["spikethickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::spikethickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return spikethickness(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis& Layout::Yaxis::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::tickcolor(std::string f) {
@@ -24276,12 +16176,6 @@ inline Layout::Yaxis& Layout::Yaxis::tickcolor(std::string f) {
 inline Layout::Yaxis& Layout::Yaxis::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::tickfont(Tickfont f) {
@@ -24299,23 +16193,7 @@ inline Layout::Yaxis& Layout::Yaxis::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Layout::Yaxis& Layout::Yaxis::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Layout::Yaxis& Layout::Yaxis::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -24327,12 +16205,6 @@ inline Layout::Yaxis& Layout::Yaxis::ticklabelindex(int f) {
     json["ticklabelindex"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticklabelindex(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelindex(std::move(f));
-}
 inline Layout::Yaxis& Layout::Yaxis::ticklabelindex(const std::vector<int>& f) {
     json["ticklabelindex"] = f;
     return *this;
@@ -24341,12 +16213,6 @@ inline Layout::Yaxis& Layout::Yaxis::ticklabelindex(const std::vector<int>& f) {
 inline Layout::Yaxis& Layout::Yaxis::ticklabelindexsrc(std::string f) {
     json["ticklabelindexsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticklabelindexsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelindexsrc(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticklabelmode(enum Ticklabelmode f) {
@@ -24368,44 +16234,20 @@ inline Layout::Yaxis& Layout::Yaxis::ticklabelshift(int f) {
     json["ticklabelshift"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticklabelshift(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelshift(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::ticklabelstandoff(int f) {
     json["ticklabelstandoff"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticklabelstandoff(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstandoff(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::tickmode(enum Tickmode f) {
@@ -24416,12 +16258,6 @@ inline Layout::Yaxis& Layout::Yaxis::tickmode(enum Tickmode f) {
 inline Layout::Yaxis& Layout::Yaxis::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticks(enum Ticks f) {
@@ -24438,34 +16274,16 @@ inline Layout::Yaxis& Layout::Yaxis::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Layout::Yaxis& Layout::Yaxis::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -24473,33 +16291,15 @@ inline Layout::Yaxis& Layout::Yaxis::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::title(Title f) {
@@ -24523,33 +16323,15 @@ inline Layout::Yaxis& Layout::Yaxis::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::visible(bool f) {
     json["visible"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::visible(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return visible(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::zeroline(bool f) {
     json["zeroline"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::zeroline(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return zeroline(std::move(f));
 }
 
 inline Layout::Yaxis& Layout::Yaxis::zerolinecolor(std::string f) {
@@ -24560,22 +16342,10 @@ inline Layout::Yaxis& Layout::Yaxis::zerolinecolor(double f) {
     json["zerolinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::zerolinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zerolinecolor(std::move(f));
-}
 
 inline Layout::Yaxis& Layout::Yaxis::zerolinewidth(double f) {
     json["zerolinewidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis& Layout::Yaxis::zerolinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return zerolinewidth(std::move(f));
 }
 
 
@@ -24584,35 +16354,17 @@ inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::clipmax
     json["clipmax"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::clipmax(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmax(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::clipmin(T f) {
     json["clipmin"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::clipmin(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return clipmin(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::include(T f) {
     json["include"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::include(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return include(std::move(f));
 }
 template <typename T>
 inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::include(const std::vector<T>& f) {
@@ -24624,35 +16376,17 @@ inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::include
     json["includesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::includesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return includesrc(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::maxallowed(T f) {
     json["maxallowed"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::maxallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return maxallowed(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::minallowed(T f) {
     json["minallowed"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::minallowed(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return minallowed(std::move(f));
 }
 
 inline std::string Layout::Yaxis::Minor::to_string(Tickmode e) {
@@ -24679,12 +16413,6 @@ inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
-}
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::gridcolor(std::string f) {
     json["gridcolor"] = std::move(f);
@@ -24694,67 +16422,31 @@ inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::gridcolor(double f) {
     json["gridcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::gridcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return gridcolor(std::move(f));
-}
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::griddash(std::string f) {
     json["griddash"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::griddash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return griddash(std::move(f));
 }
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::gridwidth(double f) {
     json["gridwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::gridwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return gridwidth(std::move(f));
-}
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::showgrid(bool f) {
     json["showgrid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::showgrid(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showgrid(std::move(f));
-}
 
 template <typename T>
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
 }
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickcolor(std::string f) {
@@ -24765,22 +16457,10 @@ inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
-}
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickmode(enum Tickmode f) {
@@ -24798,33 +16478,15 @@ inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline std::string Layout::Yaxis::Rangebreak::to_string(Pattern e) {
@@ -24853,44 +16515,20 @@ inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::bounds(const std::v
     json["bounds"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::bounds(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return bounds(std::move(f));
-}
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::dvalue(double f) {
     json["dvalue"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::dvalue(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dvalue(std::move(f));
 }
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
-}
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::pattern(enum Pattern f) {
@@ -24901,12 +16539,6 @@ inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::pattern(enum Patter
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
 }
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(const std::vector<double>& f) {
@@ -24924,12 +16556,6 @@ inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(const std::v
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(const std::vector<std::vector<double>>& f) {
     json["values"] = f;
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return values(std::move(f));
 }
 
 inline std::string Layout::Yaxis::Tickfont::to_string(Style e) {
@@ -24971,55 +16597,25 @@ inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::style(enum Style f) {
@@ -25041,12 +16637,6 @@ inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -25065,55 +16655,25 @@ inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::dtickrange(
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Tickformatstop& Layout::Yaxis::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 
@@ -25132,22 +16692,10 @@ inline Layout::Yaxis::Title& Layout::Yaxis::Title::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Title& Layout::Yaxis::Title::standoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return standoff(std::move(f));
-}
 
 inline Layout::Yaxis::Title& Layout::Yaxis::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Title& Layout::Yaxis::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Layout::Yaxis::Title::Font::to_string(Style e) {
@@ -25189,55 +16737,25 @@ inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::style(enum Style f) {
@@ -25258,12 +16776,6 @@ inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::variant(enum Vari
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 
 } // namespace plotlypp

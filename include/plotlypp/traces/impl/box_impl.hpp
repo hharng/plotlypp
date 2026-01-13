@@ -130,12 +130,6 @@ inline Box& Box::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::alignmentgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignmentgroup(std::move(f));
-}
 
 inline Box& Box::boxmean(enum Boxmean f) {
     json["boxmean"] = to_string(f);
@@ -152,44 +146,20 @@ inline Box& Box::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Box& Box::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Box& Box::dx(double f) {
     json["dx"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::dx(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dx(std::move(f));
-}
 
 inline Box& Box::dy(double f) {
     json["dy"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::dy(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return dy(std::move(f));
 }
 
 inline Box& Box::fillcolor(std::string f) {
@@ -200,22 +170,10 @@ inline Box& Box::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Box& Box::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Box& Box::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -225,12 +183,6 @@ inline Box& Box::hoverinfo(const std::vector<std::string>& f) {
 inline Box& Box::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Box& Box::hoverlabel(Hoverlabel f) {
@@ -248,22 +200,10 @@ inline Box& Box::hoveron(std::string f) {
     json["hoveron"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::hoveron(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoveron(std::move(f));
-}
 
 inline Box& Box::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
 }
 inline Box& Box::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
@@ -274,22 +214,10 @@ inline Box& Box::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Box& Box::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Box& Box::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -300,67 +228,31 @@ inline Box& Box::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Box& Box::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Box& Box::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Box& Box::jitter(double f) {
     json["jitter"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::jitter(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return jitter(std::move(f));
-}
 
 inline Box& Box::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Box& Box::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Box& Box::legendgrouptitle(Legendgrouptitle f) {
@@ -378,22 +270,10 @@ inline Box& Box::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Box& Box::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Box& Box::line(Line f) {
@@ -412,22 +292,10 @@ inline Box& Box::lowerfence(Range&& f) {
     json["lowerfence"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::lowerfence(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return lowerfence(std::move(f));
-}
 
 inline Box& Box::lowerfencesrc(std::string f) {
     json["lowerfencesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::lowerfencesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lowerfencesrc(std::move(f));
 }
 
 inline Box& Box::marker(Marker f) {
@@ -446,22 +314,10 @@ inline Box& Box::mean(Range&& f) {
     json["mean"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::mean(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return mean(std::move(f));
-}
 
 inline Box& Box::meansrc(std::string f) {
     json["meansrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::meansrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return meansrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -469,34 +325,16 @@ inline Box& Box::median(Range&& f) {
     json["median"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::median(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return median(std::move(f));
-}
 
 inline Box& Box::mediansrc(std::string f) {
     json["mediansrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::mediansrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return mediansrc(std::move(f));
 }
 
 template <typename T>
 inline Box& Box::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Box& Box::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
 }
 template <typename T>
 inline Box& Box::meta(const std::vector<T>& f) {
@@ -508,33 +346,15 @@ inline Box& Box::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Box& Box::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Box& Box::notched(bool f) {
     json["notched"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::notched(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return notched(std::move(f));
 }
 
 template <typename Range, typename>
@@ -542,55 +362,25 @@ inline Box& Box::notchspan(Range&& f) {
     json["notchspan"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::notchspan(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return notchspan(std::move(f));
-}
 
 inline Box& Box::notchspansrc(std::string f) {
     json["notchspansrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::notchspansrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return notchspansrc(std::move(f));
 }
 
 inline Box& Box::notchwidth(double f) {
     json["notchwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::notchwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return notchwidth(std::move(f));
-}
 
 inline Box& Box::offsetgroup(std::string f) {
     json["offsetgroup"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::offsetgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return offsetgroup(std::move(f));
-}
 
 inline Box& Box::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Box& Box::orientation(enum Orientation f) {
@@ -602,34 +392,16 @@ inline Box& Box::pointpos(double f) {
     json["pointpos"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::pointpos(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return pointpos(std::move(f));
-}
 
 template <typename Range, typename>
 inline Box& Box::q1(Range&& f) {
     json["q1"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::q1(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return q1(std::move(f));
-}
 
 inline Box& Box::q1src(std::string f) {
     json["q1src"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::q1src(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return q1src(std::move(f));
 }
 
 template <typename Range, typename>
@@ -637,22 +409,10 @@ inline Box& Box::q3(Range&& f) {
     json["q3"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::q3(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return q3(std::move(f));
-}
 
 inline Box& Box::q3src(std::string f) {
     json["q3src"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::q3src(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return q3src(std::move(f));
 }
 
 inline Box& Box::quartilemethod(enum Quartilemethod f) {
@@ -665,33 +425,15 @@ inline Box& Box::sd(Range&& f) {
     json["sd"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::sd(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return sd(std::move(f));
-}
 
 inline Box& Box::sdmultiple(double f) {
     json["sdmultiple"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::sdmultiple(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sdmultiple(std::move(f));
-}
 
 inline Box& Box::sdsrc(std::string f) {
     json["sdsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::sdsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sdsrc(std::move(f));
 }
 
 inline Box& Box::selected(Selected f) {
@@ -710,33 +452,15 @@ inline Box& Box::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Box& Box::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
-}
 
 inline Box& Box::showwhiskers(bool f) {
     json["showwhiskers"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::showwhiskers(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showwhiskers(std::move(f));
 }
 
 inline Box& Box::sizemode(enum Sizemode f) {
@@ -759,12 +483,6 @@ inline Box& Box::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 inline Box& Box::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
@@ -774,34 +492,16 @@ inline Box& Box::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Box& Box::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
 inline Box& Box::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Box& Box::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Box& Box::unselected(Unselected f) {
@@ -820,22 +520,10 @@ inline Box& Box::upperfence(Range&& f) {
     json["upperfence"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::upperfence(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return upperfence(std::move(f));
-}
 
 inline Box& Box::upperfencesrc(std::string f) {
     json["upperfencesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::upperfencesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return upperfencesrc(std::move(f));
 }
 
 inline Box& Box::visible(enum Visible f) {
@@ -847,22 +535,10 @@ inline Box& Box::whiskerwidth(double f) {
     json["whiskerwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::whiskerwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return whiskerwidth(std::move(f));
-}
 
 inline Box& Box::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 template <typename Range, typename>
@@ -870,34 +546,16 @@ inline Box& Box::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::x(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 template <typename T>
 inline Box& Box::x0(T f) {
     json["x0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::x0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return x0(std::move(f));
-}
 
 inline Box& Box::xaxis(std::string f) {
     json["xaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::xaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xaxis(std::move(f));
 }
 
 inline Box& Box::xcalendar(enum Xcalendar f) {
@@ -909,35 +567,17 @@ inline Box& Box::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::xhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xhoverformat(std::move(f));
-}
 
 template <typename T>
 inline Box& Box::xperiod(T f) {
     json["xperiod"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::xperiod(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xperiod(std::move(f));
-}
 
 template <typename T>
 inline Box& Box::xperiod0(T f) {
     json["xperiod0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Box& Box::xperiod0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return xperiod0(std::move(f));
 }
 
 inline Box& Box::xperiodalignment(enum Xperiodalignment f) {
@@ -949,23 +589,11 @@ inline Box& Box::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::xsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Box& Box::y(Range&& f) {
     json["y"] = f;
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Box& Box::y(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
 }
 
 template <typename T>
@@ -973,22 +601,10 @@ inline Box& Box::y0(T f) {
     json["y0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::y0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return y0(std::move(f));
-}
 
 inline Box& Box::yaxis(std::string f) {
     json["yaxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::yaxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yaxis(std::move(f));
 }
 
 inline Box& Box::ycalendar(enum Ycalendar f) {
@@ -1000,35 +616,17 @@ inline Box& Box::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::yhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yhoverformat(std::move(f));
-}
 
 template <typename T>
 inline Box& Box::yperiod(T f) {
     json["yperiod"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Box& Box::yperiod(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return yperiod(std::move(f));
-}
 
 template <typename T>
 inline Box& Box::yperiod0(T f) {
     json["yperiod0"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Box& Box::yperiod0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return yperiod0(std::move(f));
 }
 
 inline Box& Box::yperiodalignment(enum Yperiodalignment f) {
@@ -1040,22 +638,10 @@ inline Box& Box::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box& Box::ysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ysrc(std::move(f));
-}
 
 inline Box& Box::zorder(int f) {
     json["zorder"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box& Box::zorder(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return zorder(std::move(f));
 }
 
 inline std::string Box::Hoverlabel::to_string(Align e) {
@@ -1083,12 +669,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Box::Hoverlabel& Box::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1097,12 +677,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::bgcolor(std::string f) {
 inline Box::Hoverlabel& Box::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Box::Hoverlabel& Box::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -1117,12 +691,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::bgcolorsrc(std::string f) {
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Box::Hoverlabel& Box::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1131,12 +699,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::bordercolor(std::string f) {
 inline Box::Hoverlabel& Box::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Box::Hoverlabel& Box::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -1150,12 +712,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::bordercolor(const std::vector<double>& 
 inline Box::Hoverlabel& Box::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Box::Hoverlabel& Box::Hoverlabel::font(Font f) {
@@ -1173,12 +729,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Box::Hoverlabel& Box::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -1187,12 +737,6 @@ inline Box::Hoverlabel& Box::Hoverlabel::namelength(const std::vector<int>& f) {
 inline Box::Hoverlabel& Box::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel& Box::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Box::Hoverlabel::Font::to_string(Style e) {
@@ -1234,12 +778,6 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1253,22 +791,10 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -1279,22 +805,10 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -1305,22 +819,10 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::linepositionsrc(std::string
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -1331,22 +833,10 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1356,12 +846,6 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::size(const std::vector<doub
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::style(enum Style f) {
@@ -1379,12 +863,6 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -1400,12 +878,6 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::textcase(const std::vector<
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::variant(enum Variant f) {
@@ -1423,22 +895,10 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1448,12 +908,6 @@ inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::weight(const std::vector<in
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1471,12 +925,6 @@ inline Box::Legendgrouptitle& Box::Legendgrouptitle::font(Callable&& c) {
 inline Box::Legendgrouptitle& Box::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Legendgrouptitle& Box::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Box::Legendgrouptitle::Font::to_string(Style e) {
@@ -1518,55 +966,25 @@ inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::color(double f)
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::style(enum Style f) {
@@ -1588,12 +1006,6 @@ inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Box::Line& Box::Line::color(std::string f) {
@@ -1604,22 +1016,10 @@ inline Box::Line& Box::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Line& Box::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Box::Line& Box::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Line& Box::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Box::Marker::to_string(Symbol e) {
@@ -1957,12 +1357,6 @@ inline Box::Marker& Box::Marker::angle(double f) {
     json["angle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Marker& Box::Marker::angle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return angle(std::move(f));
-}
 
 inline Box::Marker& Box::Marker::color(std::string f) {
     json["color"] = std::move(f);
@@ -1971,12 +1365,6 @@ inline Box::Marker& Box::Marker::color(std::string f) {
 inline Box::Marker& Box::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Marker& Box::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 inline Box::Marker& Box::Marker::line(Line f) {
@@ -1994,12 +1382,6 @@ inline Box::Marker& Box::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Marker& Box::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Box::Marker& Box::Marker::outliercolor(std::string f) {
     json["outliercolor"] = std::move(f);
@@ -2009,22 +1391,10 @@ inline Box::Marker& Box::Marker::outliercolor(double f) {
     json["outliercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Marker& Box::Marker::outliercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outliercolor(std::move(f));
-}
 
 inline Box::Marker& Box::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Marker& Box::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Box::Marker& Box::Marker::symbol(enum Symbol f) {
@@ -2041,12 +1411,6 @@ inline Box::Marker::Line& Box::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Marker::Line& Box::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Box::Marker::Line& Box::Marker::Line::outliercolor(std::string f) {
     json["outliercolor"] = std::move(f);
@@ -2056,33 +1420,15 @@ inline Box::Marker::Line& Box::Marker::Line::outliercolor(double f) {
     json["outliercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Marker::Line& Box::Marker::Line::outliercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outliercolor(std::move(f));
-}
 
 inline Box::Marker::Line& Box::Marker::Line::outlierwidth(double f) {
     json["outlierwidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Marker::Line& Box::Marker::Line::outlierwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlierwidth(std::move(f));
-}
 
 inline Box::Marker::Line& Box::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Marker::Line& Box::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 
@@ -2106,33 +1452,15 @@ inline Box::Selected::Marker& Box::Selected::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Selected::Marker& Box::Selected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Box::Selected::Marker& Box::Selected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Selected::Marker& Box::Selected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Box::Selected::Marker& Box::Selected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Selected::Marker& Box::Selected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -2140,22 +1468,10 @@ inline Box::Stream& Box::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Stream& Box::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Box::Stream& Box::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Stream& Box::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 
@@ -2179,33 +1495,15 @@ inline Box::Unselected::Marker& Box::Unselected::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Unselected::Marker& Box::Unselected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Box::Unselected::Marker& Box::Unselected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Box::Unselected::Marker& Box::Unselected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Box::Unselected::Marker& Box::Unselected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Box::Unselected::Marker& Box::Unselected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 } // namespace plotlypp

@@ -24,12 +24,6 @@ inline Isosurface& Isosurface::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Isosurface& Isosurface::caps(Caps f) {
     json["caps"] = std::move(f.json);
@@ -46,55 +40,25 @@ inline Isosurface& Isosurface::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
-}
 
 inline Isosurface& Isosurface::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
 }
 
 inline Isosurface& Isosurface::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Isosurface& Isosurface::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
-}
 
 inline Isosurface& Isosurface::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Isosurface& Isosurface::colorbar(Colorbar f) {
@@ -116,12 +80,6 @@ inline Isosurface& Isosurface::colorscale(const std::vector<std::pair<double, st
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Isosurface& Isosurface::contour(Contour f) {
     json["contour"] = std::move(f.json);
@@ -139,44 +97,20 @@ inline Isosurface& Isosurface::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Isosurface& Isosurface::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
 }
 
 inline Isosurface& Isosurface::flatshading(bool f) {
     json["flatshading"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::flatshading(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return flatshading(std::move(f));
-}
 
 inline Isosurface& Isosurface::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Isosurface& Isosurface::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -186,12 +120,6 @@ inline Isosurface& Isosurface::hoverinfo(const std::vector<std::string>& f) {
 inline Isosurface& Isosurface::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Isosurface& Isosurface::hoverlabel(Hoverlabel f) {
@@ -209,12 +137,6 @@ inline Isosurface& Isosurface::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Isosurface& Isosurface::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -224,22 +146,10 @@ inline Isosurface& Isosurface::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Isosurface& Isosurface::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Isosurface& Isosurface::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -250,78 +160,36 @@ inline Isosurface& Isosurface::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Isosurface& Isosurface::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Isosurface& Isosurface::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 inline Isosurface& Isosurface::isomax(double f) {
     json["isomax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::isomax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return isomax(std::move(f));
-}
 
 inline Isosurface& Isosurface::isomin(double f) {
     json["isomin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::isomin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return isomin(std::move(f));
 }
 
 inline Isosurface& Isosurface::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Isosurface& Isosurface::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Isosurface& Isosurface::legendgrouptitle(Legendgrouptitle f) {
@@ -339,22 +207,10 @@ inline Isosurface& Isosurface::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Isosurface& Isosurface::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Isosurface& Isosurface::lighting(Lighting f) {
@@ -384,12 +240,6 @@ inline Isosurface& Isosurface::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Isosurface& Isosurface::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -400,77 +250,35 @@ inline Isosurface& Isosurface::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Isosurface& Isosurface::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
 }
 
 inline Isosurface& Isosurface::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Isosurface& Isosurface::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
 }
 
 inline Isosurface& Isosurface::scene(std::string f) {
     json["scene"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::scene(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return scene(std::move(f));
-}
 
 inline Isosurface& Isosurface::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
-}
 
 inline Isosurface& Isosurface::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
 }
 
 inline Isosurface& Isosurface::slices(Slices f) {
@@ -521,12 +329,6 @@ inline Isosurface& Isosurface::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
-}
 inline Isosurface& Isosurface::text(const std::vector<std::string>& f) {
     json["text"] = f;
     return *this;
@@ -536,22 +338,10 @@ inline Isosurface& Isosurface::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Isosurface& Isosurface::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
@@ -559,45 +349,21 @@ inline Isosurface& Isosurface::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
-}
 
 template <typename Range, typename>
 inline Isosurface& Isosurface::value(Range&& f) {
     json["value"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::value(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
-}
 
 inline Isosurface& Isosurface::valuehoverformat(std::string f) {
     json["valuehoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::valuehoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return valuehoverformat(std::move(f));
-}
 
 inline Isosurface& Isosurface::valuesrc(std::string f) {
     json["valuesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::valuesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return valuesrc(std::move(f));
 }
 
 inline Isosurface& Isosurface::visible(enum Visible f) {
@@ -610,33 +376,15 @@ inline Isosurface& Isosurface::x(Range&& f) {
     json["x"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::x(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Isosurface& Isosurface::xhoverformat(std::string f) {
     json["xhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::xhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xhoverformat(std::move(f));
-}
 
 inline Isosurface& Isosurface::xsrc(std::string f) {
     json["xsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::xsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return xsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -644,33 +392,15 @@ inline Isosurface& Isosurface::y(Range&& f) {
     json["y"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::y(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Isosurface& Isosurface::yhoverformat(std::string f) {
     json["yhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::yhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return yhoverformat(std::move(f));
-}
 
 inline Isosurface& Isosurface::ysrc(std::string f) {
     json["ysrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::ysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ysrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -678,33 +408,15 @@ inline Isosurface& Isosurface::z(Range&& f) {
     json["z"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface& Isosurface::z(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
-}
 
 inline Isosurface& Isosurface::zhoverformat(std::string f) {
     json["zhoverformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface& Isosurface::zhoverformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zhoverformat(std::move(f));
-}
 
 inline Isosurface& Isosurface::zsrc(std::string f) {
     json["zsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface& Isosurface::zsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return zsrc(std::move(f));
 }
 
 
@@ -746,22 +458,10 @@ inline Isosurface::Caps::X& Isosurface::Caps::X::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Caps::X& Isosurface::Caps::X::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 inline Isosurface::Caps::X& Isosurface::Caps::X::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Caps::X& Isosurface::Caps::X::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 
@@ -769,22 +469,10 @@ inline Isosurface::Caps::Y& Isosurface::Caps::Y::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Caps::Y& Isosurface::Caps::Y::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 inline Isosurface::Caps::Y& Isosurface::Caps::Y::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Caps::Y& Isosurface::Caps::Y::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 
@@ -792,22 +480,10 @@ inline Isosurface::Caps::Z& Isosurface::Caps::Z::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Caps::Z& Isosurface::Caps::Z::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 inline Isosurface::Caps::Z& Isosurface::Caps::Z::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Caps::Z& Isosurface::Caps::Z::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 inline std::string Isosurface::Colorbar::to_string(Exponentformat e) {
@@ -961,12 +637,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -976,34 +646,16 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Isosurface::Colorbar& Isosurface::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::exponentformat(enum Exponentformat f) {
@@ -1016,22 +668,10 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::labelalias(T f) {
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::lenmode(enum Lenmode f) {
@@ -1043,22 +683,10 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::minexponent(double f) {
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::orientation(enum Orientation f) {
@@ -1074,33 +702,15 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::outlinecolor(double f) {
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::showexponent(enum Showexponent f) {
@@ -1111,12 +721,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::showexponent(enum Showexponen
 inline Isosurface::Colorbar& Isosurface::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -1133,12 +737,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::thickness(double f) {
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -1150,22 +748,10 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickcolor(std::string f) {
@@ -1175,12 +761,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::tickcolor(std::string f) {
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickfont(Tickfont f) {
@@ -1198,23 +778,7 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::tickformat(std::string f) {
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -1236,22 +800,10 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::ticklabelstep(int f) {
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickmode(enum Tickmode f) {
@@ -1263,12 +815,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::tickprefix(std::string f) {
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -1279,34 +825,16 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::ticksuffix(std::string f) {
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Isosurface::Colorbar& Isosurface::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -1314,33 +842,15 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::tickvals(Range&& f) {
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::title(Title f) {
@@ -1358,12 +868,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -1373,12 +877,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::xanchor(enum Xanchor f) {
 inline Isosurface::Colorbar& Isosurface::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::xref(enum Xref f) {
@@ -1390,12 +888,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -1405,12 +897,6 @@ inline Isosurface::Colorbar& Isosurface::Colorbar::yanchor(enum Yanchor f) {
 inline Isosurface::Colorbar& Isosurface::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar& Isosurface::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Isosurface::Colorbar& Isosurface::Colorbar::yref(enum Yref f) {
@@ -1457,55 +943,25 @@ inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::style(enum Style f) {
@@ -1527,12 +983,6 @@ inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::weight(in
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickfont& Isosurface::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -1551,55 +1001,25 @@ inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatsto
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Tickformatstop& Isosurface::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Isosurface::Colorbar::Title::to_string(Side e) {
@@ -1631,12 +1051,6 @@ inline Isosurface::Colorbar::Title& Isosurface::Colorbar::Title::side(enum Side 
 inline Isosurface::Colorbar::Title& Isosurface::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title& Isosurface::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Isosurface::Colorbar::Title::Font::to_string(Style e) {
@@ -1678,55 +1092,25 @@ inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::col
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::style(enum Style f) {
@@ -1748,12 +1132,6 @@ inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::wei
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Colorbar::Title::Font& Isosurface::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Isosurface::Contour& Isosurface::Contour::color(std::string f) {
@@ -1764,33 +1142,15 @@ inline Isosurface::Contour& Isosurface::Contour::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Contour& Isosurface::Contour::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Isosurface::Contour& Isosurface::Contour::show(bool f) {
     json["show"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Contour& Isosurface::Contour::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
-}
 
 inline Isosurface::Contour& Isosurface::Contour::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Contour& Isosurface::Contour::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Isosurface::Hoverlabel::to_string(Align e) {
@@ -1818,12 +1178,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1832,12 +1186,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolor(std::string f) {
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -1852,12 +1200,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolorsrc(std::string f)
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -1866,12 +1208,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolor(std::string f
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -1885,12 +1221,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolor(const std::ve
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::font(Font f) {
@@ -1908,12 +1238,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -1922,12 +1246,6 @@ inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelength(const std::vec
 inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel& Isosurface::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Isosurface::Hoverlabel::Font::to_string(Style e) {
@@ -1969,12 +1287,6 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -1988,22 +1300,10 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::colorsrc(std:
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -2014,22 +1314,10 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::familysrc(std
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -2040,22 +1328,10 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::linepositions
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -2066,22 +1342,10 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::shadowsrc(std
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -2091,12 +1355,6 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::size(const st
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::style(enum Style f) {
@@ -2114,12 +1372,6 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::stylesrc(std:
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -2135,12 +1387,6 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::textcase(cons
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::variant(enum Variant f) {
@@ -2158,22 +1404,10 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::variantsrc(st
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -2183,12 +1417,6 @@ inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weight(const 
 inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Hoverlabel::Font& Isosurface::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -2206,12 +1434,6 @@ inline Isosurface::Legendgrouptitle& Isosurface::Legendgrouptitle::font(Callable
 inline Isosurface::Legendgrouptitle& Isosurface::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle& Isosurface::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Isosurface::Legendgrouptitle::Font::to_string(Style e) {
@@ -2253,55 +1475,25 @@ inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::c
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::style(enum Style f) {
@@ -2323,89 +1515,41 @@ inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::w
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Legendgrouptitle::Font& Isosurface::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Isosurface::Lighting& Isosurface::Lighting::ambient(double f) {
     json["ambient"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::ambient(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ambient(std::move(f));
-}
 
 inline Isosurface::Lighting& Isosurface::Lighting::diffuse(double f) {
     json["diffuse"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::diffuse(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return diffuse(std::move(f));
 }
 
 inline Isosurface::Lighting& Isosurface::Lighting::facenormalsepsilon(double f) {
     json["facenormalsepsilon"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::facenormalsepsilon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return facenormalsepsilon(std::move(f));
-}
 
 inline Isosurface::Lighting& Isosurface::Lighting::fresnel(double f) {
     json["fresnel"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::fresnel(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fresnel(std::move(f));
 }
 
 inline Isosurface::Lighting& Isosurface::Lighting::roughness(double f) {
     json["roughness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::roughness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return roughness(std::move(f));
-}
 
 inline Isosurface::Lighting& Isosurface::Lighting::specular(double f) {
     json["specular"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::specular(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return specular(std::move(f));
-}
 
 inline Isosurface::Lighting& Isosurface::Lighting::vertexnormalsepsilon(double f) {
     json["vertexnormalsepsilon"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Lighting& Isosurface::Lighting::vertexnormalsepsilon(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return vertexnormalsepsilon(std::move(f));
 }
 
 
@@ -2413,33 +1557,15 @@ inline Isosurface::Lightposition& Isosurface::Lightposition::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Lightposition& Isosurface::Lightposition::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Isosurface::Lightposition& Isosurface::Lightposition::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Lightposition& Isosurface::Lightposition::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Isosurface::Lightposition& Isosurface::Lightposition::z(double f) {
     json["z"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Lightposition& Isosurface::Lightposition::z(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return z(std::move(f));
 }
 
 
@@ -2481,45 +1607,21 @@ inline Isosurface::Slices::X& Isosurface::Slices::X::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Slices::X& Isosurface::Slices::X::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 template <typename Range, typename>
 inline Isosurface::Slices::X& Isosurface::Slices::X::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Slices::X& Isosurface::Slices::X::locations(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return locations(std::move(f));
-}
 
 inline Isosurface::Slices::X& Isosurface::Slices::X::locationssrc(std::string f) {
     json["locationssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Slices::X& Isosurface::Slices::X::locationssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return locationssrc(std::move(f));
-}
 
 inline Isosurface::Slices::X& Isosurface::Slices::X::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Slices::X& Isosurface::Slices::X::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 
@@ -2527,45 +1629,21 @@ inline Isosurface::Slices::Y& Isosurface::Slices::Y::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Slices::Y& Isosurface::Slices::Y::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 template <typename Range, typename>
 inline Isosurface::Slices::Y& Isosurface::Slices::Y::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Slices::Y& Isosurface::Slices::Y::locations(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return locations(std::move(f));
-}
 
 inline Isosurface::Slices::Y& Isosurface::Slices::Y::locationssrc(std::string f) {
     json["locationssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Slices::Y& Isosurface::Slices::Y::locationssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return locationssrc(std::move(f));
-}
 
 inline Isosurface::Slices::Y& Isosurface::Slices::Y::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Slices::Y& Isosurface::Slices::Y::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 
@@ -2573,45 +1651,21 @@ inline Isosurface::Slices::Z& Isosurface::Slices::Z::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Slices::Z& Isosurface::Slices::Z::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 template <typename Range, typename>
 inline Isosurface::Slices::Z& Isosurface::Slices::Z::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Isosurface::Slices::Z& Isosurface::Slices::Z::locations(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return locations(std::move(f));
-}
 
 inline Isosurface::Slices::Z& Isosurface::Slices::Z::locationssrc(std::string f) {
     json["locationssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Slices::Z& Isosurface::Slices::Z::locationssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return locationssrc(std::move(f));
-}
 
 inline Isosurface::Slices::Z& Isosurface::Slices::Z::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Slices::Z& Isosurface::Slices::Z::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 
@@ -2619,22 +1673,10 @@ inline Isosurface::Spaceframe& Isosurface::Spaceframe::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Spaceframe& Isosurface::Spaceframe::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
-}
 
 inline Isosurface::Spaceframe& Isosurface::Spaceframe::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Spaceframe& Isosurface::Spaceframe::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 
@@ -2642,22 +1684,10 @@ inline Isosurface::Stream& Isosurface::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Stream& Isosurface::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Isosurface::Stream& Isosurface::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Stream& Isosurface::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 
@@ -2665,44 +1695,20 @@ inline Isosurface::Surface& Isosurface::Surface::count(int f) {
     json["count"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Surface& Isosurface::Surface::count(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return count(std::move(f));
-}
 
 inline Isosurface::Surface& Isosurface::Surface::fill(double f) {
     json["fill"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Surface& Isosurface::Surface::fill(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return fill(std::move(f));
 }
 
 inline Isosurface::Surface& Isosurface::Surface::pattern(std::string f) {
     json["pattern"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Isosurface::Surface& Isosurface::Surface::pattern(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return pattern(std::move(f));
-}
 
 inline Isosurface::Surface& Isosurface::Surface::show(bool f) {
     json["show"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Isosurface::Surface& Isosurface::Surface::show(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return show(std::move(f));
 }
 
 } // namespace plotlypp

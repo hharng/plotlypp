@@ -57,45 +57,21 @@ inline Scattergeo& Scattergeo::connectgaps(bool f) {
     json["connectgaps"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::connectgaps(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return connectgaps(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergeo& Scattergeo::customdata(Range&& f) {
     json["customdata"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::customdata(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return customdata(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::customdatasrc(std::string f) {
     json["customdatasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::customdatasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return customdatasrc(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::featureidkey(std::string f) {
     json["featureidkey"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::featureidkey(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return featureidkey(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::fill(enum Fill f) {
@@ -111,22 +87,10 @@ inline Scattergeo& Scattergeo::fillcolor(double f) {
     json["fillcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::fillcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return fillcolor(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::geo(std::string f) {
     json["geo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::geo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return geo(std::move(f));
 }
 
 template <typename T>
@@ -134,22 +98,10 @@ inline Scattergeo& Scattergeo::geojson(T f) {
     json["geojson"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::geojson(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return geojson(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::hoverinfo(std::string f) {
     json["hoverinfo"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::hoverinfo(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfo(std::move(f));
 }
 inline Scattergeo& Scattergeo::hoverinfo(const std::vector<std::string>& f) {
     json["hoverinfo"] = f;
@@ -159,12 +111,6 @@ inline Scattergeo& Scattergeo::hoverinfo(const std::vector<std::string>& f) {
 inline Scattergeo& Scattergeo::hoverinfosrc(std::string f) {
     json["hoverinfosrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::hoverinfosrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hoverinfosrc(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::hoverlabel(Hoverlabel f) {
@@ -182,12 +128,6 @@ inline Scattergeo& Scattergeo::hovertemplate(std::string f) {
     json["hovertemplate"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::hovertemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplate(std::move(f));
-}
 inline Scattergeo& Scattergeo::hovertemplate(const std::vector<std::string>& f) {
     json["hovertemplate"] = f;
     return *this;
@@ -197,22 +137,10 @@ inline Scattergeo& Scattergeo::hovertemplatesrc(std::string f) {
     json["hovertemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::hovertemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertemplatesrc(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::hovertext(std::string f) {
     json["hovertext"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::hovertext(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertext(std::move(f));
 }
 inline Scattergeo& Scattergeo::hovertext(const std::vector<std::string>& f) {
     json["hovertext"] = f;
@@ -223,34 +151,16 @@ inline Scattergeo& Scattergeo::hovertextsrc(std::string f) {
     json["hovertextsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::hovertextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return hovertextsrc(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergeo& Scattergeo::ids(Range&& f) {
     json["ids"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::ids(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ids(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::idssrc(std::string f) {
     json["idssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::idssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return idssrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -258,44 +168,20 @@ inline Scattergeo& Scattergeo::lat(Range&& f) {
     json["lat"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::lat(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return lat(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::latsrc(std::string f) {
     json["latsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::latsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return latsrc(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::legend(std::string f) {
     json["legend"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::legend(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legend(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::legendgroup(std::string f) {
     json["legendgroup"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::legendgroup(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return legendgroup(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::legendgrouptitle(Legendgrouptitle f) {
@@ -313,22 +199,10 @@ inline Scattergeo& Scattergeo::legendrank(double f) {
     json["legendrank"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::legendrank(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendrank(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::legendwidth(double f) {
     json["legendwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::legendwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return legendwidth(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::line(Line f) {
@@ -352,22 +226,10 @@ inline Scattergeo& Scattergeo::locations(Range&& f) {
     json["locations"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::locations(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return locations(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::locationssrc(std::string f) {
     json["locationssrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::locationssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return locationssrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -375,22 +237,10 @@ inline Scattergeo& Scattergeo::lon(Range&& f) {
     json["lon"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::lon(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return lon(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::lonsrc(std::string f) {
     json["lonsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::lonsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lonsrc(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::marker(Marker f) {
@@ -409,12 +259,6 @@ inline Scattergeo& Scattergeo::meta(T f) {
     json["meta"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::meta(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return meta(std::move(f));
-}
 template <typename T>
 inline Scattergeo& Scattergeo::meta(const std::vector<T>& f) {
     json["meta"] = f;
@@ -425,44 +269,20 @@ inline Scattergeo& Scattergeo::metasrc(std::string f) {
     json["metasrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::metasrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return metasrc(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::mode(std::string f) {
     json["mode"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::mode(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return mode(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::selected(Selected f) {
@@ -481,22 +301,10 @@ inline Scattergeo& Scattergeo::selectedpoints(T f) {
     json["selectedpoints"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::selectedpoints(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return selectedpoints(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::showlegend(bool f) {
     json["showlegend"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::showlegend(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showlegend(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::stream(Stream f) {
@@ -513,12 +321,6 @@ inline Scattergeo& Scattergeo::stream(Callable&& c) {
 inline Scattergeo& Scattergeo::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 inline Scattergeo& Scattergeo::text(const std::vector<std::string>& f) {
     json["text"] = f;
@@ -551,33 +353,15 @@ inline Scattergeo& Scattergeo::textpositionsrc(std::string f) {
     json["textpositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::textpositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textpositionsrc(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::textsrc(std::string f) {
     json["textsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::textsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textsrc(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::texttemplate(std::string f) {
     json["texttemplate"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::texttemplate(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplate(std::move(f));
 }
 inline Scattergeo& Scattergeo::texttemplate(const std::vector<std::string>& f) {
     json["texttemplate"] = f;
@@ -588,34 +372,16 @@ inline Scattergeo& Scattergeo::texttemplatesrc(std::string f) {
     json["texttemplatesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::texttemplatesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return texttemplatesrc(std::move(f));
-}
 
 inline Scattergeo& Scattergeo::uid(std::string f) {
     json["uid"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo& Scattergeo::uid(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return uid(std::move(f));
 }
 
 template <typename T>
 inline Scattergeo& Scattergeo::uirevision(T f) {
     json["uirevision"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergeo& Scattergeo::uirevision(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return uirevision(std::move(f));
 }
 
 inline Scattergeo& Scattergeo::unselected(Unselected f) {
@@ -659,12 +425,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::alignsrc(std::string f) {
     json["alignsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::alignsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return alignsrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -673,12 +433,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolor(std::string f) {
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolor(double f) {
     json["bgcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
 }
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolor(const std::vector<std::string>& f) {
     json["bgcolor"] = f;
@@ -693,12 +447,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolorsrc(std::string f)
     json["bgcolorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bgcolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolorsrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -707,12 +455,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolor(std::string f
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolor(double f) {
     json["bordercolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
 }
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolor(const std::vector<std::string>& f) {
     json["bordercolor"] = f;
@@ -726,12 +468,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolor(const std::ve
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolorsrc(std::string f) {
     json["bordercolorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::bordercolorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolorsrc(std::move(f));
 }
 
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::font(Font f) {
@@ -749,12 +485,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::namelength(int f) {
     json["namelength"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::namelength(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return namelength(std::move(f));
-}
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::namelength(const std::vector<int>& f) {
     json["namelength"] = f;
     return *this;
@@ -763,12 +493,6 @@ inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::namelength(const std::vec
 inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::namelengthsrc(std::string f) {
     json["namelengthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel& Scattergeo::Hoverlabel::namelengthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return namelengthsrc(std::move(f));
 }
 
 inline std::string Scattergeo::Hoverlabel::Font::to_string(Style e) {
@@ -810,12 +534,6 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -829,22 +547,10 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::colorsrc(std:
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -855,22 +561,10 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::familysrc(std
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -881,22 +575,10 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::linepositions
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -907,22 +589,10 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::shadowsrc(std
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -932,12 +602,6 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::size(const st
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::style(enum Style f) {
@@ -955,12 +619,6 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::stylesrc(std:
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -976,12 +634,6 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::textcase(cons
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::variant(enum Variant f) {
@@ -999,22 +651,10 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::variantsrc(st
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -1024,12 +664,6 @@ inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::weight(const 
 inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Hoverlabel::Font& Scattergeo::Hoverlabel::Font::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -1047,12 +681,6 @@ inline Scattergeo::Legendgrouptitle& Scattergeo::Legendgrouptitle::font(Callable
 inline Scattergeo::Legendgrouptitle& Scattergeo::Legendgrouptitle::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle& Scattergeo::Legendgrouptitle::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Scattergeo::Legendgrouptitle::Font::to_string(Style e) {
@@ -1094,55 +722,25 @@ inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::c
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::style(enum Style f) {
@@ -1164,12 +762,6 @@ inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::w
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Legendgrouptitle::Font& Scattergeo::Legendgrouptitle::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Scattergeo::Line& Scattergeo::Line::color(std::string f) {
@@ -1180,33 +772,15 @@ inline Scattergeo::Line& Scattergeo::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Line& Scattergeo::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergeo::Line& Scattergeo::Line::dash(std::string f) {
     json["dash"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Line& Scattergeo::Line::dash(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return dash(std::move(f));
-}
 
 inline Scattergeo::Line& Scattergeo::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Line& Scattergeo::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 
 inline std::string Scattergeo::Marker::to_string(Angleref e) {
@@ -1561,12 +1135,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::angle(double f) {
     json["angle"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::angle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return angle(std::move(f));
-}
 inline Scattergeo::Marker& Scattergeo::Marker::angle(const std::vector<double>& f) {
     json["angle"] = f;
     return *this;
@@ -1581,66 +1149,30 @@ inline Scattergeo::Marker& Scattergeo::Marker::anglesrc(std::string f) {
     json["anglesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::anglesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return anglesrc(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::color(std::string f) {
@@ -1650,12 +1182,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::color(std::string f) {
 inline Scattergeo::Marker& Scattergeo::Marker::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Scattergeo::Marker& Scattergeo::Marker::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -1669,12 +1195,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::color(const std::vector<double>& 
 inline Scattergeo::Marker& Scattergeo::Marker::coloraxis(std::string f) {
     json["coloraxis"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::colorbar(Colorbar f) {
@@ -1696,22 +1216,10 @@ inline Scattergeo::Marker& Scattergeo::Marker::colorscale(const std::vector<std:
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::gradient(Gradient f) {
@@ -1740,12 +1248,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 inline Scattergeo::Marker& Scattergeo::Marker::opacity(const std::vector<double>& f) {
     json["opacity"] = f;
     return *this;
@@ -1755,44 +1257,20 @@ inline Scattergeo::Marker& Scattergeo::Marker::opacitysrc(std::string f) {
     json["opacitysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::opacitysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return opacitysrc(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::showscale(bool f) {
     json["showscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::showscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showscale(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattergeo::Marker& Scattergeo::Marker::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -1802,12 +1280,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::size(const std::vector<double>& f
 inline Scattergeo::Marker& Scattergeo::Marker::sizemin(double f) {
     json["sizemin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::sizemin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizemin(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::sizemode(enum Sizemode f) {
@@ -1819,33 +1291,15 @@ inline Scattergeo::Marker& Scattergeo::Marker::sizeref(double f) {
     json["sizeref"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::sizeref(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return sizeref(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
-}
 
 inline Scattergeo::Marker& Scattergeo::Marker::standoff(double f) {
     json["standoff"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::standoff(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return standoff(std::move(f));
 }
 inline Scattergeo::Marker& Scattergeo::Marker::standoff(const std::vector<double>& f) {
     json["standoff"] = f;
@@ -1855,12 +1309,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::standoff(const std::vector<double
 inline Scattergeo::Marker& Scattergeo::Marker::standoffsrc(std::string f) {
     json["standoffsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::standoffsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return standoffsrc(std::move(f));
 }
 
 inline Scattergeo::Marker& Scattergeo::Marker::symbol(enum Symbol f) {
@@ -1877,12 +1325,6 @@ inline Scattergeo::Marker& Scattergeo::Marker::symbol(const std::vector<enum Sym
 inline Scattergeo::Marker& Scattergeo::Marker::symbolsrc(std::string f) {
     json["symbolsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker& Scattergeo::Marker::symbolsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return symbolsrc(std::move(f));
 }
 
 inline std::string Scattergeo::Marker::Colorbar::to_string(Exponentformat e) {
@@ -2036,12 +1478,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::bgcolor(doubl
     json["bgcolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::bgcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bgcolor(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::bordercolor(std::string f) {
     json["bordercolor"] = std::move(f);
@@ -2051,34 +1487,16 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::bordercolor(d
     json["bordercolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::bordercolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return bordercolor(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::borderwidth(double f) {
     json["borderwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::borderwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return borderwidth(std::move(f));
 }
 
 template <typename T>
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::dtick(T f) {
     json["dtick"] = std::move(f);
     return *this;
-}
-template <typename T, typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::dtick(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return dtick(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::exponentformat(enum Exponentformat f) {
@@ -2091,22 +1509,10 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::labelalias(T 
     json["labelalias"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::labelalias(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return labelalias(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::len(double f) {
     json["len"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::len(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return len(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::lenmode(enum Lenmode f) {
@@ -2118,22 +1524,10 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::minexponent(d
     json["minexponent"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::minexponent(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return minexponent(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::nticks(int f) {
     json["nticks"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::nticks(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return nticks(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::orientation(enum Orientation f) {
@@ -2149,33 +1543,15 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::outlinecolor(
     json["outlinecolor"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::outlinecolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return outlinecolor(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::outlinewidth(double f) {
     json["outlinewidth"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::outlinewidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return outlinewidth(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::separatethousands(bool f) {
     json["separatethousands"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::separatethousands(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return separatethousands(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::showexponent(enum Showexponent f) {
@@ -2186,12 +1562,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::showexponent(
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::showticklabels(bool f) {
     json["showticklabels"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::showticklabels(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return showticklabels(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
@@ -2208,12 +1578,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::thickness(dou
     json["thickness"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::thickness(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return thickness(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
     json["thicknessmode"] = to_string(f);
@@ -2225,22 +1589,10 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tick0(T f) {
     json["tick0"] = std::move(f);
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tick0(Callable&& c) {
-    T f{};
-    std::forward<Callable>(c)(f);
-    return tick0(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickangle(double f) {
     json["tickangle"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickangle(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickangle(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickcolor(std::string f) {
@@ -2250,12 +1602,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickcolor(std
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickcolor(double f) {
     json["tickcolor"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickcolor(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickcolor(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickfont(Tickfont f) {
@@ -2273,23 +1619,7 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickformat(st
     json["tickformat"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickformat(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickformat(std::move(f));
-}
 
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickformatstops(Tickformatstop f) {
-    json["tickformatstops"] = std::move(f.json);
-    return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickformatstops(Callable&& c) {
-    Tickformatstop f{};
-    std::forward<Callable>(c)(f);
-    return tickformatstops(std::move(f));
-}
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickformatstops(const std::vector<Tickformatstop>& f) {
     std::vector<Json> jsonified(f.size());
     std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });
@@ -2311,22 +1641,10 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticklabelstep
     json["ticklabelstep"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticklabelstep(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return ticklabelstep(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticklen(double f) {
     json["ticklen"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticklen(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ticklen(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickmode(enum Tickmode f) {
@@ -2338,12 +1656,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickprefix(st
     json["tickprefix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickprefix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickprefix(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticks(enum Ticks f) {
     json["ticks"] = to_string(f);
@@ -2354,34 +1666,16 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticksuffix(st
     json["ticksuffix"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticksuffix(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticksuffix(std::move(f));
-}
 
 template <typename Range, typename>
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktext(Range&& f) {
     json["ticktext"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktext(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return ticktext(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktextsrc(std::string f) {
     json["ticktextsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ticktextsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return ticktextsrc(std::move(f));
 }
 
 template <typename Range, typename>
@@ -2389,33 +1683,15 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickvals(Rang
     json["tickvals"] = f;
     return *this;
 }
-template <typename T, typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickvals(Callable&& c) {
-    std::vector<T> f{};
-    std::forward<Callable>(c)(f);
-    return tickvals(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickvalssrc(std::string f) {
     json["tickvalssrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickvalssrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return tickvalssrc(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickwidth(double f) {
     json["tickwidth"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::tickwidth(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return tickwidth(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::title(Title f) {
@@ -2433,12 +1709,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::x(double f) {
     json["x"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::x(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return x(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::xanchor(enum Xanchor f) {
     json["xanchor"] = to_string(f);
@@ -2448,12 +1718,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::xanchor(enum 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::xpad(double f) {
     json["xpad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::xpad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return xpad(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::xref(enum Xref f) {
@@ -2465,12 +1729,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::y(double f) {
     json["y"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::y(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return y(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::yanchor(enum Yanchor f) {
     json["yanchor"] = to_string(f);
@@ -2480,12 +1738,6 @@ inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::yanchor(enum 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ypad(double f) {
     json["ypad"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::ypad(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return ypad(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar& Scattergeo::Marker::Colorbar::yref(enum Yref f) {
@@ -2532,55 +1784,25 @@ inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tic
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::style(enum Style f) {
@@ -2602,12 +1824,6 @@ inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tic
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickfont& Scattergeo::Marker::Colorbar::Tickfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 
 inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::dtickrange(const std::vector<double>& f) {
@@ -2626,55 +1842,25 @@ inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorba
     json["dtickrange"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::dtickrange(Callable&& c) {
-    std::vector<double> f{};
-    std::forward<Callable>(c)(f);
-    return dtickrange(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::enabled(bool f) {
     json["enabled"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::enabled(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return enabled(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::name(std::string f) {
     json["name"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::name(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return name(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::templateitemname(std::string f) {
     json["templateitemname"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::templateitemname(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return templateitemname(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::value(std::string f) {
     json["value"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Tickformatstop& Scattergeo::Marker::Colorbar::Tickformatstop::value(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return value(std::move(f));
 }
 
 inline std::string Scattergeo::Marker::Colorbar::Title::to_string(Side e) {
@@ -2706,12 +1892,6 @@ inline Scattergeo::Marker::Colorbar::Title& Scattergeo::Marker::Colorbar::Title:
 inline Scattergeo::Marker::Colorbar::Title& Scattergeo::Marker::Colorbar::Title::text(std::string f) {
     json["text"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title& Scattergeo::Marker::Colorbar::Title::text(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return text(std::move(f));
 }
 
 inline std::string Scattergeo::Marker::Colorbar::Title::Font::to_string(Style e) {
@@ -2753,55 +1933,25 @@ inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
-}
 
 inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::style(enum Style f) {
@@ -2823,12 +1973,6 @@ inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::
     json["weight"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Colorbar::Title::Font& Scattergeo::Marker::Colorbar::Title::Font::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
-}
 
 inline std::string Scattergeo::Marker::Gradient::to_string(Type e) {
     switch(e) {
@@ -2849,12 +1993,6 @@ inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -2867,12 +2005,6 @@ inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::color(const s
 inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::type(enum Type f) {
@@ -2890,67 +2022,31 @@ inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::typesrc(std::
     json["typesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Gradient& Scattergeo::Marker::Gradient::typesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return typesrc(std::move(f));
-}
 
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::autocolorscale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return autocolorscale(std::move(f));
-}
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cauto(bool f) {
     json["cauto"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cauto(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return cauto(std::move(f));
 }
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cmax(double f) {
     json["cmax"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cmax(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmax(std::move(f));
-}
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cmid(double f) {
     json["cmid"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cmid(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmid(std::move(f));
-}
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cmin(double f) {
     json["cmin"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::cmin(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return cmin(std::move(f));
 }
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::color(std::string f) {
@@ -2960,12 +2056,6 @@ inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::color(std::string f) 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::color(const std::vector<std::string>& f) {
     json["color"] = f;
@@ -2980,12 +2070,6 @@ inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::coloraxis(std::string
     json["coloraxis"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::coloraxis(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return coloraxis(std::move(f));
-}
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::colorscale(std::string f) {
     json["colorscale"] = std::move(f);
@@ -2995,44 +2079,20 @@ inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::colorscale(const std:
     json["colorscale"] = f;
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::colorscale(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorscale(std::move(f));
-}
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
 }
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::reversescale(bool f) {
     json["reversescale"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::reversescale(Callable&& c) {
-    bool f{};
-    std::forward<Callable>(c)(f);
-    return reversescale(std::move(f));
-}
 
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::width(double f) {
     json["width"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::width(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return width(std::move(f));
 }
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::width(const std::vector<double>& f) {
     json["width"] = f;
@@ -3042,12 +2102,6 @@ inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::width(const std::vect
 inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::widthsrc(std::string f) {
     json["widthsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Marker::Line& Scattergeo::Marker::Line::widthsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return widthsrc(std::move(f));
 }
 
 
@@ -3082,33 +2136,15 @@ inline Scattergeo::Selected::Marker& Scattergeo::Selected::Marker::color(double 
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Selected::Marker& Scattergeo::Selected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergeo::Selected::Marker& Scattergeo::Selected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Selected::Marker& Scattergeo::Selected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Scattergeo::Selected::Marker& Scattergeo::Selected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Selected::Marker& Scattergeo::Selected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -3120,34 +2156,16 @@ inline Scattergeo::Selected::Textfont& Scattergeo::Selected::Textfont::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Selected::Textfont& Scattergeo::Selected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 
 inline Scattergeo::Stream& Scattergeo::Stream::maxpoints(double f) {
     json["maxpoints"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Stream& Scattergeo::Stream::maxpoints(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return maxpoints(std::move(f));
-}
 
 inline Scattergeo::Stream& Scattergeo::Stream::token(std::string f) {
     json["token"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Stream& Scattergeo::Stream::token(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return token(std::move(f));
 }
 
 inline std::string Scattergeo::Textfont::to_string(Style e) {
@@ -3189,12 +2207,6 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 inline Scattergeo::Textfont& Scattergeo::Textfont::color(const std::vector<std::string>& f) {
     json["color"] = f;
     return *this;
@@ -3208,22 +2220,10 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::colorsrc(std::string f) {
     json["colorsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::colorsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return colorsrc(std::move(f));
-}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::family(std::string f) {
     json["family"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::family(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return family(std::move(f));
 }
 inline Scattergeo::Textfont& Scattergeo::Textfont::family(const std::vector<std::string>& f) {
     json["family"] = f;
@@ -3234,22 +2234,10 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::familysrc(std::string f) {
     json["familysrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::familysrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return familysrc(std::move(f));
-}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(std::string f) {
     json["lineposition"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return lineposition(std::move(f));
 }
 inline Scattergeo::Textfont& Scattergeo::Textfont::lineposition(const std::vector<std::string>& f) {
     json["lineposition"] = f;
@@ -3260,22 +2248,10 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::linepositionsrc(std::string f
     json["linepositionsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::linepositionsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return linepositionsrc(std::move(f));
-}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::shadow(std::string f) {
     json["shadow"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::shadow(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadow(std::move(f));
 }
 inline Scattergeo::Textfont& Scattergeo::Textfont::shadow(const std::vector<std::string>& f) {
     json["shadow"] = f;
@@ -3286,22 +2262,10 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::shadowsrc(std::string f) {
     json["shadowsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::shadowsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return shadowsrc(std::move(f));
-}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 inline Scattergeo::Textfont& Scattergeo::Textfont::size(const std::vector<double>& f) {
     json["size"] = f;
@@ -3311,12 +2275,6 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::size(const std::vector<double
 inline Scattergeo::Textfont& Scattergeo::Textfont::sizesrc(std::string f) {
     json["sizesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::sizesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return sizesrc(std::move(f));
 }
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::style(enum Style f) {
@@ -3334,12 +2292,6 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::stylesrc(std::string f) {
     json["stylesrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::stylesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return stylesrc(std::move(f));
-}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::textcase(enum Textcase f) {
     json["textcase"] = to_string(f);
@@ -3355,12 +2307,6 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::textcase(const std::vector<en
 inline Scattergeo::Textfont& Scattergeo::Textfont::textcasesrc(std::string f) {
     json["textcasesrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::textcasesrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return textcasesrc(std::move(f));
 }
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::variant(enum Variant f) {
@@ -3378,22 +2324,10 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::variantsrc(std::string f) {
     json["variantsrc"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::variantsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return variantsrc(std::move(f));
-}
 
 inline Scattergeo::Textfont& Scattergeo::Textfont::weight(int f) {
     json["weight"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::weight(Callable&& c) {
-    int f{};
-    std::forward<Callable>(c)(f);
-    return weight(std::move(f));
 }
 inline Scattergeo::Textfont& Scattergeo::Textfont::weight(const std::vector<int>& f) {
     json["weight"] = f;
@@ -3403,12 +2337,6 @@ inline Scattergeo::Textfont& Scattergeo::Textfont::weight(const std::vector<int>
 inline Scattergeo::Textfont& Scattergeo::Textfont::weightsrc(std::string f) {
     json["weightsrc"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Textfont& Scattergeo::Textfont::weightsrc(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return weightsrc(std::move(f));
 }
 
 
@@ -3443,33 +2371,15 @@ inline Scattergeo::Unselected::Marker& Scattergeo::Unselected::Marker::color(dou
     json["color"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Unselected::Marker& Scattergeo::Unselected::Marker::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
-}
 
 inline Scattergeo::Unselected::Marker& Scattergeo::Unselected::Marker::opacity(double f) {
     json["opacity"] = std::move(f);
     return *this;
 }
-template <typename Callable, typename>
-inline Scattergeo::Unselected::Marker& Scattergeo::Unselected::Marker::opacity(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return opacity(std::move(f));
-}
 
 inline Scattergeo::Unselected::Marker& Scattergeo::Unselected::Marker::size(double f) {
     json["size"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Unselected::Marker& Scattergeo::Unselected::Marker::size(Callable&& c) {
-    double f{};
-    std::forward<Callable>(c)(f);
-    return size(std::move(f));
 }
 
 
@@ -3480,12 +2390,6 @@ inline Scattergeo::Unselected::Textfont& Scattergeo::Unselected::Textfont::color
 inline Scattergeo::Unselected::Textfont& Scattergeo::Unselected::Textfont::color(double f) {
     json["color"] = std::move(f);
     return *this;
-}
-template <typename Callable, typename>
-inline Scattergeo::Unselected::Textfont& Scattergeo::Unselected::Textfont::color(Callable&& c) {
-    std::string f{};
-    std::forward<Callable>(c)(f);
-    return color(std::move(f));
 }
 
 } // namespace plotlypp
