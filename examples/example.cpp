@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#include <plotlypp/plot.hpp>
+#include <plotlypp/figure.hpp>
 
 void waitForEnter() {
     std::cout << "Press Enter to generate next plot...\n";

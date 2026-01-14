@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-#include <plotlypp/plot.hpp>
+#include <plotlypp/figure.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traces/bar.hpp>
 #include <plotlypp/traces/pie.hpp>

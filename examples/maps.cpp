@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-#include <plotlypp/plot.hpp>
+#include <plotlypp/figure.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traces/choropleth.hpp>
 #include <plotlypp/traces/densitymap.hpp>

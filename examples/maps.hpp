@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-#include <plotlypp/plot.hpp>
+#include <plotlypp/figure.hpp>
 
 namespace plotlypp {
 

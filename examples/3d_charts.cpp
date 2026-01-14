@@ -7,7 +7,7 @@
 #include <vector>
 
 #include <math_utils.hpp>
-#include <plotlypp/plot.hpp>
+#include <plotlypp/figure.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traces/isosurface.hpp>
 #include <plotlypp/traces/mesh3d.hpp>

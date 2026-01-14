@@ -4,8 +4,8 @@
 #include <utility>
 #include <vector>
 
+#include <plotlypp/figure.hpp>
 #include <plotlypp/layout/layout.hpp>
-#include <plotlypp/plot.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traces/carpet.hpp>
 #include <plotlypp/traces/contour.hpp>

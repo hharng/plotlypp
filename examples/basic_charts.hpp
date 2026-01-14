@@ -1,6 +1,6 @@
 #pragma once
 
-#include <plotlypp/plot.hpp>
+#include <plotlypp/figure.hpp>
 
 namespace plotlypp {
 
