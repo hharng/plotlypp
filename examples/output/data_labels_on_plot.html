@@ -19,8 +19,8 @@
             const div = document.getElementById('plot');
             div.style.width = window.innerWidth;
             div.style.height = window.innerHeight;
-            data = JSON.parse('[{"delta":{"reference":512.0,"valueformat":".0f"},"domain":{"x":[0.25,0.75],"y":[0.0,1.0]},"mode":"number+delta","title":{"text":"Users online"},"type":"indicator","value":492.0},{"type":"scatter","y":[325,324,405,400,424,404,417,432,419,394,410,426,413,419,404,408,401,377,368,361,356,359,375,397,394,418,437,450,430,442,424,443,420,418,423,423,426,440,437,436,447,460,478,472,450,456,436,418,429,412,429,442,464,447,434,457,474,480,499,497,480,502,512,492]}]')
-            layout = JSON.parse('{"height":450.0,"width":600.0,"xaxis":{"range":[0.0,62.0]}}')
+            data = JSON.parse('[{"marker":{"size":12.0},"mode":"markers+text","name":"Team A","text":["A-1","A-2","A-3","A-4","A-5"],"textfont":{"family":"Raleway, sans-serif"},"textposition":"top center","type":"scatter","x":[1,2,3,4,5],"y":[1,6,3,6,1]},{"marker":{"size":12.0},"mode":"markers+text","name":"Team B","text":["B-a","B-b","B-c","B-d","B-e"],"textfont":{"family":"Times New Roman"},"textposition":"bottom center","type":"scatter","x":[1.5,2.5,3.5,4.5,5.5],"y":[4,1,7,1,4]}]')
+            layout = JSON.parse('{"legend":{"font":{"color":"grey","family":"Arial, sans-serif","size":20.0},"y":0.5,"yref":"paper"},"title":{"text":"Data Labels on the Plot"},"xaxis":{"range":[0.75,5.25]},"yaxis":{"range":[0.0,8.0]}}')
             Plotly.newPlot('plot', data, layout);
         }
         // Call resizeDiv initially to set the size on page load.

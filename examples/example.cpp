@@ -2,6 +2,13 @@
 // Licensed under and subject to the terms of the LICENSE file accompanying this distribution.
 // Official repository: https://github.com/jimmyorourke/plotlypp
 
+#include <algorithm>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+
 #include "3d_charts.hpp"
 #include "basic_charts.hpp"
 #include "financial_charts.hpp"
@@ -9,8 +16,6 @@
 #include "scientific_charts.hpp"
 #include "statistical_charts.hpp"
 #include "subplots.hpp"
-
-#include <iostream>
 
 #include <plotlypp/figure.hpp>
 
@@ -30,6 +35,7 @@ void showBasicCharts() {
     using namespace plotlypp;
 
     showAndWait(lineAndScatterWithNamesAxesTitle());
+    showAndWait(dataLabelsOnPlot());
     showAndWait(scatterWithColorDimension());
     showAndWait(groupedScatter());
     showAndWait(lineDashes());
@@ -45,6 +51,7 @@ void showBasicCharts() {
 void saveBasicCharts() {
     using namespace plotlypp;
     saveFigure(lineAndScatterWithNamesAxesTitle(), "../examples/output/line_and_scatter_with_names_axes_title.html");
+    saveFigure(dataLabelsOnPlot(), "../examples/output/data_labels_on_plot.html");
     saveFigure(scatterWithColorDimension(), "../examples/output/scatter_with_color_dimension.html");
     saveFigure(groupedScatter(), "../examples/output/grouped_scatter.html");
     saveFigure(lineDashes(), "../examples/output/line_dashes.html");
@@ -189,6 +196,34 @@ void showAllCharts() {
     showSubplots();
 }
 
+void writeIndexHtml(const std::filesystem::path& outputDir) {
+    std::vector<std::string> htmlFiles;
+    for (const auto& entry : std::filesystem::directory_iterator(outputDir)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".html" && entry.path().filename() != "index.html") {
+            htmlFiles.push_back(entry.path().filename().string());
+        }
+    }
+    std::sort(htmlFiles.begin(), htmlFiles.end());
+
+    std::ofstream indexFile(outputDir / "index.html");
+    indexFile << "<!DOCTYPE html>\n"
+                 "<html lang=\"en\">\n"
+                 "<head>\n"
+                 "    <meta charset=\"UTF-8\">\n"
+                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                 "    <title>Plotly++ Examples</title>\n"
+                 "</head>\n"
+                 "<body>\n"
+                 "    <h1>Plotly++ Examples</h1>\n"
+                 "    <ul>\n";
+    for (const auto& filename : htmlFiles) {
+        indexFile << "        <li><a href=\"" << filename << "\">" << filename << "</a></li>\n";
+    }
+    indexFile << "    </ul>\n"
+                 "</body>\n"
+                 "</html>\n";
+}
+
 void saveAllCharts() {
     saveBasicCharts();
     saveMaps();
@@ -197,11 +232,12 @@ void saveAllCharts() {
     saveScientificCharts();
     saveStatisticalCharts();
     saveSubplots();
+    writeIndexHtml("../examples/output");
 }
 
 int main() {
     showAllCharts();
-    // To update the example outputs:
+    //  To update the example outputs:
     // saveAllCharts();
 
     std::cout << "Done" << "\n";
