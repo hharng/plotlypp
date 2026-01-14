@@ -1,0 +1,1 @@
+The html files in this folder were generated from the C++ examples. They are live at https://jimmyorourke.github.io/plotlypp/examples/output/<example_name>.html.
