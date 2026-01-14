@@ -32,7 +32,7 @@ jobs:
           cmake -S . -B build
           -G "Ninja"
           -DCMAKE_BUILD_TYPE=Release
-          -DCMAKE_CXX_STANDARD=${{ matrix.cpp_std }}
+          -DCMAKE_CXX_STANDARD=${{ inputs.cpp_std }}
           -DCMAKE_CXX_STANDARD_REQUIRED=ON
 
       - name: Build
