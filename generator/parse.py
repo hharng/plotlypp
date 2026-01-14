@@ -812,14 +812,36 @@ def package_js() -> None:
     with open(Path(__file__).parent / 'plotly.min.js') as f:
         plotly_js = f.read()
 
-    writer = Writer(Path(__file__).parent.parent / "include" / "plotlypp" / "plotly_min_js.hpp")
+    writer = Writer(Path(__file__).parent.parent / "include" / "plotlypp" / "plotly_min_js2.hpp")
     emit_preamble(writer)
     writer.write("namespace plotlypp {")
     writer.write("")
     writer.write("// Note: constexpr string_view excessively bloats compile times due to length counts.")
-    writer.write('inline constexpr const char* const plotlyJS = R"plotly(')
-    writer.write(plotly_js)
-    writer.write(')plotly";')
+    writer.write("// Note: Plotly JS is chunked into multiple raw string literals to support MSVC limits, and 0x1a characters are escaped to avoid MSVC trating them as EOF.")
+    writer.write("inline constexpr const char* const plotlyJS = ")
+    chunk_size = 4096 # Under MSVC limit of 65535
+
+    def find_safe_delimiter(chunk: str) -> str:
+        i = 0
+        while True:
+            delim = "d" + str(i)
+            if f'){delim}"' not in chunk:
+                return delim
+            i + 1
+
+    # Split by 0x1A byte
+    segments = plotly_js.split("\x1a")
+
+    for i, segment in enumerate(segments):
+        if segment:
+            for j in range(0, len(segment), chunk_size):
+                chunk = segment[j:j+chunk_size]
+                delimiter = find_safe_delimiter(chunk)
+                writer.write(f'R"{delimiter}({chunk}){delimiter}"')
+        # Add the escaped byte between segments
+        if i < len(segments) - 1:
+            writer.write('"\\x1a\"')
+    writer.write(";")
     writer.write("")
     writer.write("} // namespace plotlypp")
     writer.close()
