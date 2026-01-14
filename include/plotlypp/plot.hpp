@@ -102,6 +102,9 @@ class Figure {
         showInBrowser(tempFile.string());
     }
 
+    const Json& json() const& { return _json; }
+    Json json() && { return std::move(_json); }
+
  private:
     void showInBrowser(const std::string& plotFile) {
         std::cout << "opening " << plotFile << "\n";
