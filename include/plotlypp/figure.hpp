@@ -49,8 +49,12 @@ class Figure {
 
     void toHtml(std::ostream& os) const {
         // clang-format off
-        os << "<meta charset=\"utf-8\">\n"
+        os << "<!DOCTYPE html>\n"
+              "<html lang=\"en\">\n"
               "<head>\n"
+              "    <meta charset=\"utf-8\">\n"
+              "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+              "    <title>Plotly++ Plot</title>\n"
               // Try to load plotly JS from a local pre-defined location. If that fails, try an alternate local
               // location and fallback to a CDN.
               "    <script src=\"./js/plotly.min.js\"></script>\n"
@@ -77,7 +81,8 @@ class Figure {
               "        // Add an event listener to the window's resize event.\n"
               "        window.addEventListener('resize', resizeDiv);\n"
               "    </script>\n"
-              "</body>\n";
+              "</body>\n"
+              "</html>\n";
         // clang-format on
     }
 
