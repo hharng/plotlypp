@@ -44,6 +44,45 @@ Figure lineAndScatterWithNamesAxesTitle() {
         .setLayout(std::move(layout));
 }
 
+Figure dataLabelsOnPlot() {
+    auto trace1 = Scatter()
+                      .x(std::vector{1, 2, 3, 4, 5})
+                      .y(std::vector{1, 6, 3, 6, 1})
+                      .mode({Scatter::Mode::Markers, Scatter::Mode::Text})
+                      .name("Team A")
+                      .text({"A-1", "A-2", "A-3", "A-4", "A-5"})
+                      .textposition(Scatter::Textposition::TopCenter)
+                      .textfont([](auto& f) { f.family("Raleway, sans-serif"); })
+                      .marker([](auto& m) { m.size(12); });
+
+    auto trace2 = Scatter()
+                      .x(std::vector{1.5, 2.5, 3.5, 4.5, 5.5})
+                      .y(std::vector{4, 1, 7, 1, 4})
+                      .mode({Scatter::Mode::Markers, Scatter::Mode::Text})
+                      .name("Team B")
+                      .text({"B-a", "B-b", "B-c", "B-d", "B-e"})
+                      .textposition(Scatter::Textposition::BottomCenter)
+                      .textfont([](auto& f) { f.family("Times New Roman"); })
+                      .marker([](auto& m) { m.size(12); });
+
+    return Figure()
+        .addTrace(std::move(trace1))
+        .addTrace(std::move(trace2))
+        .setLayout(Layout()
+                       .xaxis([](auto& a) { a.range({0.75, 5.25}); })
+                       .yaxis([](auto& a) { a.range({0, 8}); })
+                       .legend([](auto& l) {
+                           l.y(0.5);
+                           l.yref(Layout::Legend::Yref::Paper);
+                           l.font([](auto& f) {
+                               f.family("Arial, sans-serif");
+                               f.size(20);
+                               f.color("grey");
+                           });
+                       })
+                       .title([](auto& title) { title.text("Data Labels on the Plot"); }));
+}
+
 Figure scatterWithColorDimension() {
     return Figure()
         .addTrace(Scatter()

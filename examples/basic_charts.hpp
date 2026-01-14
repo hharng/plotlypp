@@ -14,6 +14,8 @@ namespace plotlypp {
 
 Figure lineAndScatterWithNamesAxesTitle();
 
+Figure dataLabelsOnPlot();
+
 Figure scatterWithColorDimension();
 
 Figure groupedScatter();
