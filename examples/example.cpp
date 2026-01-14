@@ -24,6 +24,8 @@ void showAndWait(const plotlypp::Figure& figure) {
     waitForEnter();
 }
 
+void saveFigure(const plotlypp::Figure& figure, const char* file_path) { figure.writeHtml(file_path); }
+
 void showBasicCharts() {
     using namespace plotlypp;
 
@@ -40,6 +42,21 @@ void showBasicCharts() {
     showAndWait(horizontalBar());
 }
 
+void saveBasicCharts() {
+    using namespace plotlypp;
+    saveFigure(lineAndScatterWithNamesAxesTitle(), "../examples/output/line_and_scatter_with_names_axes_title.html");
+    saveFigure(scatterWithColorDimension(), "../examples/output/scatter_with_color_dimension.html");
+    saveFigure(groupedScatter(), "../examples/output/grouped_scatter.html");
+    saveFigure(lineDashes(), "../examples/output/line_dashes.html");
+    saveFigure(groupedBar(), "../examples/output/grouped_bar.html");
+    saveFigure(basicPie(), "../examples/output/basic_pie.html");
+    saveFigure(donut(), "../examples/output/donut.html");
+    saveFigure(bubbleWithMarkerSizeAndColor(), "../examples/output/bubble_with_marker_size_and_color.html");
+    saveFigure(categoricalDotPlot(), "../examples/output/categorical_dot_plot.html");
+    saveFigure(basicOverlaidArea(), "../examples/output/basic_overlaid_area.html");
+    saveFigure(horizontalBar(), "../examples/output/horizontal_bar.html");
+}
+
 void showMaps() {
     using namespace plotlypp;
 
@@ -49,6 +66,14 @@ void showMaps() {
     showAndWait(scatterTileMaps());
 }
 
+void saveMaps() {
+    using namespace plotlypp;
+    saveFigure(linesOnMaps(), "../examples/output/lines_on_maps.html");
+    saveFigure(lightTile(), "../examples/output/light_tile.html");
+    saveFigure(outlineMapLocations(), "../examples/output/outline_map_locations.html");
+    saveFigure(scatterTileMaps(), "../examples/output/scatter_tile_maps.html");
+}
+
 void showFinancialCharts() {
     using namespace plotlypp;
 
@@ -56,111 +81,128 @@ void showFinancialCharts() {
     showAndWait(indicator());
 }
 
+void saveFinancialCharts() {
+    using namespace plotlypp;
+    saveFigure(basicFunnel(), "../examples/output/basic_funnel.html");
+    saveFigure(indicator(), "../examples/output/indicator.html");
+}
+
 void show3dCharts() {
     using namespace plotlypp;
 
-    multiple3DSurfacePlots().show();
-    waitForEnter();
+    showAndWait(multiple3DSurfacePlots());
+    showAndWait(gen3dSurfaceContours());
+    showAndWait(gen3dSurfaceTorus());
+    showAndWait(meshCube());
+    showAndWait(gen3dLineSpiral());
+    showAndWait(gen3dScatterWithColorscalingAndMarkerStyling());
+    showAndWait(simpleVolumePlot());
+    showAndWait(multiple3dIsosurfaces());
+    showAndWait(bubbleChartSizedByVariable());
+}
 
-    gen3dSurfaceContours().show();
-    waitForEnter();
-
-    gen3dSurfaceTorus().show();
-    waitForEnter();
-
-    meshCube().show();
-    waitForEnter();
-
-    gen3dLineSpiral().show();
-    waitForEnter();
-
-    gen3dScatterWithColorscalingAndMarkerStyling().show();
-    waitForEnter();
-
-    simpleVolumePlot().show();
-    waitForEnter();
-
-    multiple3dIsosurfaces().show();
-    waitForEnter();
-
-    bubbleChartSizedByVariable().show();
-    waitForEnter();
+void save3dCharts() {
+    using namespace plotlypp;
+    saveFigure(multiple3DSurfacePlots(), "../examples/output/multiple_3d_surface_plots.html");
+    saveFigure(gen3dSurfaceContours(), "../examples/output/gen3d_surface_contours.html");
+    saveFigure(gen3dSurfaceTorus(), "../examples/output/gen3d_surface_torus.html");
+    saveFigure(meshCube(), "../examples/output/mesh_cube.html");
+    saveFigure(gen3dLineSpiral(), "../examples/output/gen3d_line_spiral.html");
+    saveFigure(gen3dScatterWithColorscalingAndMarkerStyling(),
+               "../examples/output/gen3d_scatter_with_colorscaling_and_marker_"
+               "styling.html");
+    saveFigure(simpleVolumePlot(), "../examples/output/simple_volume_plot.html");
+    saveFigure(multiple3dIsosurfaces(), "../examples/output/multiple_3d_isosurfaces.html");
+    saveFigure(bubbleChartSizedByVariable(), "../examples/output/bubble_chart_sized_by_variable.html");
 }
 
 void showScientificCharts() {
     using namespace plotlypp;
 
-    areaPolarChart().show();
-    waitForEnter();
+    showAndWait(areaPolarChart());
+    showAndWait(multipleTraceRadarChart());
+    showAndWait(carpetWithScatterTrace());
+    showAndWait(colorscaleForContourPlot());
+    showAndWait(smithChartSubplotsWithStlying());
+}
 
-    multipleTraceRadarChart().show();
-    waitForEnter();
-
-    carpetWithScatterTrace().show();
-    waitForEnter();
-
-    colorscaleForContourPlot().show();
-    waitForEnter();
-
-    smithChartSubplotsWithStlying().show();
-    waitForEnter();
+void saveScientificCharts() {
+    using namespace plotlypp;
+    saveFigure(areaPolarChart(), "../examples/output/area_polar_chart.html");
+    saveFigure(multipleTraceRadarChart(), "../examples/output/multiple_trace_radar_chart.html");
+    saveFigure(carpetWithScatterTrace(), "../examples/output/carpet_with_scatter_trace.html");
+    saveFigure(colorscaleForContourPlot(), "../examples/output/colorscale_for_contour_plot.html");
+    saveFigure(smithChartSubplotsWithStlying(), "../examples/output/smith_chart_subplots_with_stlying.html");
 }
 
 void showStatisticalCharts() {
     using namespace plotlypp;
 
-    coloredBoxPlot().show();
-    waitForEnter();
+    showAndWait(coloredBoxPlot());
+    showAndWait(coloredAndStyledHistograms());
+    showAndWait(continuousFilledErrorBars());
+    showAndWait(asymmetricErrorBars());
+    showAndWait(gen2DHistogramBivariateNormal());
+    showAndWait(gen2DHistogramContour());
+    showAndWait(basicHorizontalViolinPlot());
+}
 
-    coloredAndStyledHistograms().show();
-    waitForEnter();
-
-    continuousFilledErrorBars().show();
-    waitForEnter();
-
-    asymmetricErrorBars().show();
-    waitForEnter();
-
-    gen2DHistogramBivariateNormal().show();
-    waitForEnter();
-
-    gen2DHistogramContour().show();
-    waitForEnter();
-
-    basicHorizontalViolinPlot().show();
-    waitForEnter();
+void saveStatisticalCharts() {
+    using namespace plotlypp;
+    saveFigure(coloredBoxPlot(), "../examples/output/colored_box_plot.html");
+    saveFigure(coloredAndStyledHistograms(), "../examples/output/colored_and_styled_histograms.html");
+    saveFigure(continuousFilledErrorBars(), "../examples/output/continuous_filled_error_bars.html");
+    saveFigure(asymmetricErrorBars(), "../examples/output/asymmetric_error_bars.html");
+    saveFigure(gen2DHistogramBivariateNormal(), "../examples/output/gen2d_histogram_bivariate_normal.html");
+    saveFigure(gen2DHistogramContour(), "../examples/output/gen2d_histogram_contour.html");
+    saveFigure(basicHorizontalViolinPlot(), "../examples/output/basic_horizontal_violin_plot.html");
 }
 
 void showSubplots() {
     using namespace plotlypp;
 
-    subplotsGridLayout().show();
-    waitForEnter();
-
-    subplotsDomainLayout().show();
-    waitForEnter();
-
-    multipleSubplotsWithSharedAxes().show();
-    waitForEnter();
-
-    gen3dSubplots().show();
-    waitForEnter();
-
-    insetGraph().show();
-    waitForEnter();
-
-    mixedSubplots().show();
-    waitForEnter();
+    showAndWait(subplotsGridLayout());
+    showAndWait(subplotsDomainLayout());
+    showAndWait(multipleSubplotsWithSharedAxes());
+    showAndWait(gen3dSubplots());
+    showAndWait(insetGraph());
+    showAndWait(mixedSubplots());
 }
 
-int main() {
+void saveSubplots() {
+    using namespace plotlypp;
+    saveFigure(subplotsGridLayout(), "../examples/output/subplots_grid_layout.html");
+    saveFigure(subplotsDomainLayout(), "../examples/output/subplots_domain_layout.html");
+    saveFigure(multipleSubplotsWithSharedAxes(), "../examples/output/multiple_subplots_with_shared_axes.html");
+    saveFigure(gen3dSubplots(), "../examples/output/gen3d_subplots.html");
+    saveFigure(insetGraph(), "../examples/output/inset_graph.html");
+    saveFigure(mixedSubplots(), "../examples/output/mixed_subplots.html");
+}
+
+void showAllCharts() {
     showBasicCharts();
-    show3dCharts();
-    showFinancialCharts();
     showMaps();
+    showFinancialCharts();
+    show3dCharts();
     showScientificCharts();
     showStatisticalCharts();
     showSubplots();
+}
+
+void saveAllCharts() {
+    saveBasicCharts();
+    saveMaps();
+    saveFinancialCharts();
+    save3dCharts();
+    saveScientificCharts();
+    saveStatisticalCharts();
+    saveSubplots();
+}
+
+int main() {
+    showAllCharts();
+    // To update the example outputs:
+    // saveAllCharts();
 
     std::cout << "Done" << "\n";
 }

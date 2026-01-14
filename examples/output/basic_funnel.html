@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<head>
+    <script src="./js/plotly.min.js"></script>
+    <script>
+        if (typeof Plotly === 'undefined') {
+            document.write('<script src="./plotly.min.js">\x3C/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+        }
+    </script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        function resizeDiv() {
+            const div = document.getElementById('plot');
+            div.style.width = window.innerWidth;
+            div.style.height = window.innerHeight;
+            data = JSON.parse('[{"hoverinfo":"x+percent previous+percent initial","type":"funnel","x":[13873,10533,5443,2703,908],"y":["Website visit","Downloads","Potential customers","Invoice sent","Closed deals"]}]')
+            layout = JSON.parse('{"height":500.0,"margin":{"l":150.0},"width":600.0}')
+            Plotly.newPlot('plot', data, layout);
+        }
+        // Call resizeDiv initially to set the size on page load.
+        resizeDiv();
+        // Add an event listener to the window's resize event.
+        window.addEventListener('resize', resizeDiv);
+    </script>
+</body>

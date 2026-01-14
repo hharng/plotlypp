@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<head>
+    <script src="./js/plotly.min.js"></script>
+    <script>
+        if (typeof Plotly === 'undefined') {
+            document.write('<script src="./plotly.min.js">\x3C/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+        }
+    </script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        function resizeDiv() {
+            const div = document.getElementById('plot');
+            div.style.width = window.innerWidth;
+            div.style.height = window.innerHeight;
+            data = JSON.parse('[{"delta":{"reference":512.0,"valueformat":".0f"},"domain":{"x":[0.25,0.75],"y":[0.0,1.0]},"mode":"number+delta","title":{"text":"Users online"},"type":"indicator","value":492.0},{"type":"scatter","y":[325,324,405,400,424,404,417,432,419,394,410,426,413,419,404,408,401,377,368,361,356,359,375,397,394,418,437,450,430,442,424,443,420,418,423,423,426,440,437,436,447,460,478,472,450,456,436,418,429,412,429,442,464,447,434,457,474,480,499,497,480,502,512,492]}]')
+            layout = JSON.parse('{"height":450.0,"width":600.0,"xaxis":{"range":[0.0,62.0]}}')
+            Plotly.newPlot('plot', data, layout);
+        }
+        // Call resizeDiv initially to set the size on page load.
+        resizeDiv();
+        // Add an event listener to the window's resize event.
+        window.addEventListener('resize', resizeDiv);
+    </script>
+</body>

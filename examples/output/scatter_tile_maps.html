@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<head>
+    <script src="./js/plotly.min.js"></script>
+    <script>
+        if (typeof Plotly === 'undefined') {
+            document.write('<script src="./plotly.min.js">\x3C/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+        }
+    </script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        function resizeDiv() {
+            const div = document.getElementById('plot');
+            div.style.width = window.innerWidth;
+            div.style.height = window.innerHeight;
+            data = JSON.parse('[{"lat":[45,20,-20],"lon":[-75,-80,-50],"marker":{"size":20.0,"symbol":["bus","harbor","airport"]},"mode":"markers+text+lines","text":["Bus","Harbor","Airport"],"textposition":"bottom right","type":"scattermap"}]')
+            layout = JSON.parse('{"height":500.0,"map":{"style":"outdoors","zoom":0.7},"showlegend":false,"width":700.0}')
+            Plotly.newPlot('plot', data, layout);
+        }
+        // Call resizeDiv initially to set the size on page load.
+        resizeDiv();
+        // Add an event listener to the window's resize event.
+        window.addEventListener('resize', resizeDiv);
+    </script>
+</body>

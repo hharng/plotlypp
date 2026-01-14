@@ -87,7 +87,7 @@ class Figure {
         jsFile << plotlyJS;
     }
 
-    void writeHtmlFigure(const std::filesystem::path& outputFilePath, bool includeJsResources = true) const {
+    void writeHtml(const std::filesystem::path& outputFilePath, bool includeJsResources = true) const {
         if (includeJsResources) {
             writePlotlyJsResourceFile(outputFilePath.parent_path());
         }
@@ -98,7 +98,7 @@ class Figure {
     void show() const {
         const auto tempFile =
             std::filesystem::temp_directory_path() / ("plotlypp_plot_" + std::to_string(_showCount++) + ".html");
-        writeHtmlFigure(tempFile);
+        writeHtml(tempFile);
         showInBrowser(tempFile.string());
     }
 

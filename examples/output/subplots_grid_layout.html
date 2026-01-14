@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<head>
+    <script src="./js/plotly.min.js"></script>
+    <script>
+        if (typeof Plotly === 'undefined') {
+            document.write('<script src="./plotly.min.js">\x3C/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+        }
+    </script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        function resizeDiv() {
+            const div = document.getElementById('plot');
+            div.style.width = window.innerWidth;
+            div.style.height = window.innerHeight;
+            data = JSON.parse('[{"type":"scatter","x":[1,2,3],"y":[4,5,6]},{"type":"scatter","x":[20,30,40],"xaxis":"x2","y":[50,60,70],"yaxis":"y2"}]')
+            layout = JSON.parse('{"grid":{"columns":2,"pattern":"independent","rows":1}}')
+            Plotly.newPlot('plot', data, layout);
+        }
+        // Call resizeDiv initially to set the size on page load.
+        resizeDiv();
+        // Add an event listener to the window's resize event.
+        window.addEventListener('resize', resizeDiv);
+    </script>
+</body>
