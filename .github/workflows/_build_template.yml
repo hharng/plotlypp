@@ -21,9 +21,6 @@ jobs:
         if: inputs.os == 'windows-latest'
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Install Ninja
-        uses: turtlesec-no/get-ninja@main
-
       - name: Configure CMake
         env:
           CXX: ${{ inputs.cxx }}
