@@ -114,7 +114,9 @@ class Figure {
         system(("open " + plotFile).c_str());
 #elif __linux__
         // On some systems, using `system` opens a text editor rather than a web browser, for unknown reasons.
-        (void)popen(("xdg-open " + plotFile).c_str(), "r");
+        if (auto* pipe = popen(("xdg-open " + plotFile).c_str(), "r"); pipe) {
+            pclose(pipe);
+        }
 #else
         // Force a linker error, only if this function is actually called.
         unimplementedPlatorm();
