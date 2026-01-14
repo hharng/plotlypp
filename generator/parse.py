@@ -812,7 +812,7 @@ def package_js() -> None:
     with open(Path(__file__).parent / 'plotly.min.js') as f:
         plotly_js = f.read()
 
-    writer = Writer(Path(__file__).parent.parent / "include" / "plotlypp" / "plotly_min_js2.hpp")
+    writer = Writer(Path(__file__).parent.parent / "include" / "plotlypp" / "plotly_min_js.hpp")
     emit_preamble(writer)
     writer.write("namespace plotlypp {")
     writer.write("")
