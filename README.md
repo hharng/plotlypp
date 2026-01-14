@@ -16,11 +16,12 @@ TODO
 ### Building and running the examples
 
 ```
-mkdir build && cd build
-cmake -G <your favourite generator> ..
-cmake --build .
-./examples/example
+cmake -S . -B build -G <your favourite generator>
+cmake --build build
+./build/examples/example
 ```
+
+When included as part of a larger CMake project, the example target will not be built, unless `PLOTLYPP_BUILD_EXAMPLES` is set.
 
 ## Additional Documentation
 
@@ -28,12 +29,14 @@ Since much of Plotly++ is auto-generated from Plotly.js sources, the official [P
 
 ## Dependencies
 
-* C++17
+* C++17 or newer
 * [nlohmann JSON](https://github.com/nlohmann/json)
 
 The CMakeLists will attempt to use `find_package` to find `nlohmann_json` when Plotly++ is built as part of a larger project. When Plotly++ is the main project (eg for just building the examples), CMake will use `FetchContent` to download `nlohmann_json` to a project-local directory.
 
 While not directly supported at present, nlohmann JSON could be swapped out for another JSON library will minimal work. Libraries with similar APIs such as Boost JSON could easily be swapped in by updating the alias type in [json.hpp](include/plotlypp/json.hpp). For less similar libraries a stronger abstraction would be required.
+
+When compiling with C++17, trace data for plots is required to be `std::vector`. When using C++20 or newer, `std::span` automatically becomes supported.
 
 If regenerating Plotly++ headers, Python3.6+ is required.
 
