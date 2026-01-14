@@ -12,6 +12,23 @@
 
 namespace plotlypp {
 
+inline std::string Choropleth::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Location: return "location";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Choropleth::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 inline std::string Choropleth::to_string(Locationmode e) {
     switch(e) {
         case Locationmode::Iso3: return "ISO-3";
@@ -30,23 +47,6 @@ inline std::string Choropleth::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Choropleth::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::Location: return "location";
-        case Hoverinfo::Z: return "z";
-        case Hoverinfo::Text: return "text";
-        case Hoverinfo::Name: return "name";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
-}
-inline std::string Choropleth::to_string(HoverinfoExtra e) {
-    switch(e) {
-        case HoverinfoExtra::All: return "all";
-        case HoverinfoExtra::None: return "none";
-        case HoverinfoExtra::Skip: return "skip";
-    }
-    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
 
 inline Choropleth& Choropleth::autocolorscale(bool f) {
@@ -782,6 +782,20 @@ inline Choropleth::Colorbar& Choropleth::Colorbar::yref(enum Yref f) {
     return *this;
 }
 
+inline std::string Choropleth::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Choropleth::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Choropleth::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -811,20 +825,6 @@ inline std::string Choropleth::Colorbar::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Choropleth::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Choropleth::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Choropleth::Colorbar::Tickfont& Choropleth::Colorbar::Tickfont::color(std::string f) {
@@ -949,6 +949,20 @@ inline Choropleth::Colorbar::Title& Choropleth::Colorbar::Title::text(std::strin
     return *this;
 }
 
+inline std::string Choropleth::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Choropleth::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Choropleth::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -978,20 +992,6 @@ inline std::string Choropleth::Colorbar::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Choropleth::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Choropleth::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Choropleth::Colorbar::Title::Font& Choropleth::Colorbar::Title::Font::color(std::string f) {
@@ -1142,6 +1142,20 @@ inline Choropleth::Hoverlabel& Choropleth::Hoverlabel::namelengthsrc(std::string
     return *this;
 }
 
+inline std::string Choropleth::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Choropleth::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Choropleth::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1171,20 +1185,6 @@ inline std::string Choropleth::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Choropleth::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Choropleth::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Choropleth::Hoverlabel::Font& Choropleth::Hoverlabel::Font::color(std::string f) {
@@ -1344,6 +1344,20 @@ inline Choropleth::Legendgrouptitle& Choropleth::Legendgrouptitle::text(std::str
     return *this;
 }
 
+inline std::string Choropleth::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Choropleth::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Choropleth::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1373,20 +1387,6 @@ inline std::string Choropleth::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Choropleth::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Choropleth::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Choropleth::Legendgrouptitle::Font& Choropleth::Legendgrouptitle::Font::color(std::string f) {

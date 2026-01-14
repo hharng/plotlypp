@@ -25,6 +25,37 @@ inline std::string Scatterpolargl::to_string(Fill e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scatterpolargl::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::R: return "r";
+        case Hoverinfo::Theta: return "theta";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Scatterpolargl::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Scatterpolargl::to_string(Mode e) {
+    switch(e) {
+        case Mode::Lines: return "lines";
+        case Mode::Markers: return "markers";
+        case Mode::Text: return "text";
+    }
+    throw std::invalid_argument{"Unknown flag value for mode."};
+}
+inline std::string Scatterpolargl::to_string(ModeExtra e) {
+    switch(e) {
+        case ModeExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for mode."};
+}
 inline std::string Scatterpolargl::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
@@ -57,37 +88,6 @@ inline std::string Scatterpolargl::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterpolargl::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::R: return "r";
-        case Hoverinfo::Theta: return "theta";
-        case Hoverinfo::Text: return "text";
-        case Hoverinfo::Name: return "name";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
-}
-inline std::string Scatterpolargl::to_string(HoverinfoExtra e) {
-    switch(e) {
-        case HoverinfoExtra::All: return "all";
-        case HoverinfoExtra::None: return "none";
-        case HoverinfoExtra::Skip: return "skip";
-    }
-    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
-}
-inline std::string Scatterpolargl::to_string(Mode e) {
-    switch(e) {
-        case Mode::Lines: return "lines";
-        case Mode::Markers: return "markers";
-        case Mode::Text: return "text";
-    }
-    throw std::invalid_argument{"Unknown flag value for mode."};
-}
-inline std::string Scatterpolargl::to_string(ModeExtra e) {
-    switch(e) {
-        case ModeExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for mode."};
 }
 
 inline Scatterpolargl& Scatterpolargl::connectgaps(bool f) {
@@ -536,6 +536,20 @@ inline Scatterpolargl::Hoverlabel& Scatterpolargl::Hoverlabel::namelengthsrc(std
     return *this;
 }
 
+inline std::string Scatterpolargl::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolargl::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterpolargl::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -565,20 +579,6 @@ inline std::string Scatterpolargl::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterpolargl::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterpolargl::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterpolargl::Hoverlabel::Font& Scatterpolargl::Hoverlabel::Font::color(std::string f) {
@@ -738,6 +738,20 @@ inline Scatterpolargl::Legendgrouptitle& Scatterpolargl::Legendgrouptitle::text(
     return *this;
 }
 
+inline std::string Scatterpolargl::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolargl::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterpolargl::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -767,20 +781,6 @@ inline std::string Scatterpolargl::Legendgrouptitle::Font::to_string(Variant e) 
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterpolargl::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterpolargl::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterpolargl::Legendgrouptitle::Font& Scatterpolargl::Legendgrouptitle::Font::color(std::string f) {
@@ -1791,6 +1791,20 @@ inline Scatterpolargl::Marker::Colorbar& Scatterpolargl::Marker::Colorbar::yref(
     return *this;
 }
 
+inline std::string Scatterpolargl::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolargl::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterpolargl::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1820,20 +1834,6 @@ inline std::string Scatterpolargl::Marker::Colorbar::Tickfont::to_string(Variant
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterpolargl::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterpolargl::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterpolargl::Marker::Colorbar::Tickfont& Scatterpolargl::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1958,6 +1958,20 @@ inline Scatterpolargl::Marker::Colorbar::Title& Scatterpolargl::Marker::Colorbar
     return *this;
 }
 
+inline std::string Scatterpolargl::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterpolargl::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterpolargl::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1987,20 +2001,6 @@ inline std::string Scatterpolargl::Marker::Colorbar::Title::Font::to_string(Vari
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterpolargl::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterpolargl::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterpolargl::Marker::Colorbar::Title::Font& Scatterpolargl::Marker::Colorbar::Title::Font::color(std::string f) {

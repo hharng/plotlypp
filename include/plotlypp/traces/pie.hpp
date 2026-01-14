@@ -35,29 +35,6 @@ class Pie : public Trace {
     };
     static std::string to_string(Direction e);
 
-    enum class Insidetextorientation {
-        Horizontal,
-        Radial,
-        Tangential,
-        Auto,
-    };
-    static std::string to_string(Insidetextorientation e);
-
-    enum class Textposition {
-        Inside,
-        Outside,
-        Auto,
-        None,
-    };
-    static std::string to_string(Textposition e);
-
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Hoverinfo {
         Label,
         Text,
@@ -73,6 +50,14 @@ class Pie : public Trace {
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
 
+    enum class Insidetextorientation {
+        Horizontal,
+        Radial,
+        Tangential,
+        Auto,
+    };
+    static std::string to_string(Insidetextorientation e);
+
     enum class Textinfo {
         Label,
         Text,
@@ -84,6 +69,21 @@ class Pie : public Trace {
     };
     static std::string to_string(Textinfo e);
     static std::string to_string(TextinfoExtra e);
+
+    enum class Textposition {
+        Inside,
+        Outside,
+        Auto,
+        None,
+    };
+    static std::string to_string(Textposition e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -448,6 +448,17 @@ class Pie::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -471,17 +482,6 @@ class Pie::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Pie::Hoverlabel::Font& color(std::string f);
     Pie::Hoverlabel::Font& color(double f);
@@ -572,6 +572,17 @@ class Pie::Insidetextfont {
     Insidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -595,17 +606,6 @@ class Pie::Insidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Pie::Insidetextfont& color(std::string f);
     Pie::Insidetextfont& color(double f);
@@ -717,6 +717,17 @@ class Pie::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -740,17 +751,6 @@ class Pie::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Pie::Legendgrouptitle::Font& color(std::string f);
     Pie::Legendgrouptitle::Font& color(double f);
@@ -930,6 +930,17 @@ class Pie::Outsidetextfont {
     Outsidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -953,17 +964,6 @@ class Pie::Outsidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Pie::Outsidetextfont& color(std::string f);
     Pie::Outsidetextfont& color(double f);
@@ -1072,6 +1072,17 @@ class Pie::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1095,17 +1106,6 @@ class Pie::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Pie::Textfont& color(std::string f);
     Pie::Textfont& color(double f);
@@ -1231,6 +1231,17 @@ class Pie::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1254,17 +1265,6 @@ class Pie::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Pie::Title::Font& color(std::string f);
     Pie::Title::Font& color(double f);

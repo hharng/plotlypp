@@ -20,6 +20,24 @@ inline std::string Pie::to_string(Direction e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Pie::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Label: return "label";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Value: return "value";
+        case Hoverinfo::Percent: return "percent";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Pie::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 inline std::string Pie::to_string(Insidetextorientation e) {
     switch(e) {
         case Insidetextorientation::Horizontal: return "horizontal";
@@ -29,6 +47,21 @@ inline std::string Pie::to_string(Insidetextorientation e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Pie::to_string(Textinfo e) {
+    switch(e) {
+        case Textinfo::Label: return "label";
+        case Textinfo::Text: return "text";
+        case Textinfo::Value: return "value";
+        case Textinfo::Percent: return "percent";
+    }
+    throw std::invalid_argument{"Unknown flag value for textinfo."};
+}
+inline std::string Pie::to_string(TextinfoExtra e) {
+    switch(e) {
+        case TextinfoExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
 inline std::string Pie::to_string(Textposition e) {
     switch(e) {
@@ -48,39 +81,6 @@ inline std::string Pie::to_string(Visible e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::Label: return "label";
-        case Hoverinfo::Text: return "text";
-        case Hoverinfo::Value: return "value";
-        case Hoverinfo::Percent: return "percent";
-        case Hoverinfo::Name: return "name";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
-}
-inline std::string Pie::to_string(HoverinfoExtra e) {
-    switch(e) {
-        case HoverinfoExtra::All: return "all";
-        case HoverinfoExtra::None: return "none";
-        case HoverinfoExtra::Skip: return "skip";
-    }
-    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
-}
-inline std::string Pie::to_string(Textinfo e) {
-    switch(e) {
-        case Textinfo::Label: return "label";
-        case Textinfo::Text: return "text";
-        case Textinfo::Value: return "value";
-        case Textinfo::Percent: return "percent";
-    }
-    throw std::invalid_argument{"Unknown flag value for textinfo."};
-}
-inline std::string Pie::to_string(TextinfoExtra e) {
-    switch(e) {
-        case TextinfoExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
 
 inline Pie& Pie::automargin(bool f) {
@@ -584,6 +584,20 @@ inline Pie::Hoverlabel& Pie::Hoverlabel::namelengthsrc(std::string f) {
     return *this;
 }
 
+inline std::string Pie::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Pie::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -613,20 +627,6 @@ inline std::string Pie::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Pie::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::color(std::string f) {
@@ -769,6 +769,20 @@ inline Pie::Hoverlabel::Font& Pie::Hoverlabel::Font::weightsrc(std::string f) {
     return *this;
 }
 
+inline std::string Pie::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Pie::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -798,20 +812,6 @@ inline std::string Pie::Insidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::Insidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Pie::Insidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Pie::Insidetextfont& Pie::Insidetextfont::color(std::string f) {
@@ -971,6 +971,20 @@ inline Pie::Legendgrouptitle& Pie::Legendgrouptitle::text(std::string f) {
     return *this;
 }
 
+inline std::string Pie::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Pie::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1000,20 +1014,6 @@ inline std::string Pie::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Pie::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Pie::Legendgrouptitle::Font& Pie::Legendgrouptitle::Font::color(std::string f) {
@@ -1245,6 +1245,20 @@ inline Pie::Marker::Pattern& Pie::Marker::Pattern::soliditysrc(std::string f) {
     return *this;
 }
 
+inline std::string Pie::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Pie::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1274,20 +1288,6 @@ inline std::string Pie::Outsidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::Outsidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Pie::Outsidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Pie::Outsidetextfont& Pie::Outsidetextfont::color(std::string f) {
@@ -1441,6 +1441,20 @@ inline Pie::Stream& Pie::Stream::token(std::string f) {
     return *this;
 }
 
+inline std::string Pie::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Pie::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1470,20 +1484,6 @@ inline std::string Pie::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Pie::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Pie::Textfont& Pie::Textfont::color(std::string f) {
@@ -1661,6 +1661,20 @@ inline Pie::Title& Pie::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Pie::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Pie::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Pie::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1690,20 +1704,6 @@ inline std::string Pie::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Pie::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Pie::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Pie::Title::Font& Pie::Title::Font::color(std::string f) {

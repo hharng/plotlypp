@@ -29,13 +29,6 @@ class Isosurface : public Trace {
     Isosurface(std::string jsonStr)
     : Trace(std::move(jsonStr)) {}
 
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Hoverinfo {
         X,
         Y,
@@ -50,6 +43,13 @@ class Isosurface : public Trace {
     };
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
 
     class Caps;
     class Colorbar;
@@ -786,6 +786,17 @@ class Isosurface::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -809,17 +820,6 @@ class Isosurface::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Isosurface::Colorbar::Tickfont& color(std::string f);
     Isosurface::Colorbar::Tickfont& color(double f);
@@ -942,6 +942,17 @@ class Isosurface::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -965,17 +976,6 @@ class Isosurface::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Isosurface::Colorbar::Title::Font& color(std::string f);
     Isosurface::Colorbar::Title::Font& color(double f);
@@ -1112,6 +1112,17 @@ class Isosurface::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1135,17 +1146,6 @@ class Isosurface::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Isosurface::Hoverlabel::Font& color(std::string f);
     Isosurface::Hoverlabel::Font& color(double f);
@@ -1257,6 +1257,17 @@ class Isosurface::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1280,17 +1291,6 @@ class Isosurface::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Isosurface::Legendgrouptitle::Font& color(std::string f);
     Isosurface::Legendgrouptitle::Font& color(double f);

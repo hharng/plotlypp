@@ -707,6 +707,20 @@ inline Carpet::Aaxis& Carpet::Aaxis::type(enum Type f) {
     return *this;
 }
 
+inline std::string Carpet::Aaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Carpet::Aaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Carpet::Aaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -736,20 +750,6 @@ inline std::string Carpet::Aaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Carpet::Aaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(std::string f) {
@@ -865,6 +865,20 @@ inline Carpet::Aaxis::Title& Carpet::Aaxis::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Carpet::Aaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Carpet::Aaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Carpet::Aaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -894,20 +908,6 @@ inline std::string Carpet::Aaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Carpet::Aaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(std::string f) {
@@ -1416,6 +1416,20 @@ inline Carpet::Baxis& Carpet::Baxis::type(enum Type f) {
     return *this;
 }
 
+inline std::string Carpet::Baxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Carpet::Baxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Carpet::Baxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1445,20 +1459,6 @@ inline std::string Carpet::Baxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Carpet::Baxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(std::string f) {
@@ -1574,6 +1574,20 @@ inline Carpet::Baxis::Title& Carpet::Baxis::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Carpet::Baxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Carpet::Baxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Carpet::Baxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1603,20 +1617,6 @@ inline std::string Carpet::Baxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Carpet::Baxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(std::string f) {
@@ -1672,6 +1672,20 @@ inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::weight(int f) {
     return *this;
 }
 
+inline std::string Carpet::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Carpet::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Carpet::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1701,20 +1715,6 @@ inline std::string Carpet::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Carpet::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Carpet::Font& Carpet::Font::color(std::string f) {
@@ -1787,6 +1787,20 @@ inline Carpet::Legendgrouptitle& Carpet::Legendgrouptitle::text(std::string f) {
     return *this;
 }
 
+inline std::string Carpet::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Carpet::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Carpet::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1816,20 +1830,6 @@ inline std::string Carpet::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Carpet::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(std::string f) {

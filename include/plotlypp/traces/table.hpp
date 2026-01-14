@@ -29,13 +29,6 @@ class Table : public Trace {
     Table(std::string jsonStr)
     : Trace(std::move(jsonStr)) {}
 
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Hoverinfo {
         X,
         Y,
@@ -50,6 +43,13 @@ class Table : public Trace {
     };
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
 
     class Cells;
     class Domain;
@@ -278,6 +278,17 @@ class Table::Cells::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -301,17 +312,6 @@ class Table::Cells::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Table::Cells::Font& color(std::string f);
     Table::Cells::Font& color(double f);
@@ -548,6 +548,17 @@ class Table::Header::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -571,17 +582,6 @@ class Table::Header::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Table::Header::Font& color(std::string f);
     Table::Header::Font& color(double f);
@@ -758,6 +758,17 @@ class Table::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -781,17 +792,6 @@ class Table::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Table::Hoverlabel::Font& color(std::string f);
     Table::Hoverlabel::Font& color(double f);
@@ -903,6 +903,17 @@ class Table::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -926,17 +937,6 @@ class Table::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Table::Legendgrouptitle::Font& color(std::string f);
     Table::Legendgrouptitle::Font& color(double f);

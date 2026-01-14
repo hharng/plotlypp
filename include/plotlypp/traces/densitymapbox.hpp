@@ -29,13 +29,6 @@ class Densitymapbox : public Trace {
     Densitymapbox(std::string jsonStr)
     : Trace(std::move(jsonStr)) {}
 
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Hoverinfo {
         Lon,
         Lat,
@@ -50,6 +43,13 @@ class Densitymapbox : public Trace {
     };
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
 
     class Colorbar;
     class Hoverlabel;
@@ -635,6 +635,17 @@ class Densitymapbox::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -658,17 +669,6 @@ class Densitymapbox::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Densitymapbox::Colorbar::Tickfont& color(std::string f);
     Densitymapbox::Colorbar::Tickfont& color(double f);
@@ -791,6 +791,17 @@ class Densitymapbox::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -814,17 +825,6 @@ class Densitymapbox::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Densitymapbox::Colorbar::Title::Font& color(std::string f);
     Densitymapbox::Colorbar::Title::Font& color(double f);
@@ -941,6 +941,17 @@ class Densitymapbox::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -964,17 +975,6 @@ class Densitymapbox::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Densitymapbox::Hoverlabel::Font& color(std::string f);
     Densitymapbox::Hoverlabel::Font& color(double f);
@@ -1086,6 +1086,17 @@ class Densitymapbox::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1109,17 +1120,6 @@ class Densitymapbox::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Densitymapbox::Legendgrouptitle::Font& color(std::string f);
     Densitymapbox::Legendgrouptitle::Font& color(double f);

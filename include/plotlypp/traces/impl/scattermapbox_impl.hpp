@@ -20,30 +20,6 @@ inline std::string Scattermapbox::to_string(Fill e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Scattermapbox::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattermapbox::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Scattermapbox::to_string(Hoverinfo e) {
     switch(e) {
         case Hoverinfo::Lon: return "lon";
@@ -74,6 +50,30 @@ inline std::string Scattermapbox::to_string(ModeExtra e) {
         case ModeExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for mode."};
+}
+inline std::string Scattermapbox::to_string(Textposition e) {
+    switch(e) {
+        case Textposition::TopLeft: return "top left";
+        case Textposition::TopCenter: return "top center";
+        case Textposition::TopRight: return "top right";
+        case Textposition::MiddleLeft: return "middle left";
+        case Textposition::MiddleCenter: return "middle center";
+        case Textposition::MiddleRight: return "middle right";
+        case Textposition::BottomLeft: return "bottom left";
+        case Textposition::BottomCenter: return "bottom center";
+        case Textposition::BottomRight: return "bottom right";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Scattermapbox::to_string(Visible e) {
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Scattermapbox& Scattermapbox::below(std::string f) {
@@ -575,6 +575,20 @@ inline Scattermapbox::Hoverlabel& Scattermapbox::Hoverlabel::namelengthsrc(std::
     return *this;
 }
 
+inline std::string Scattermapbox::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattermapbox::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattermapbox::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -604,20 +618,6 @@ inline std::string Scattermapbox::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattermapbox::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattermapbox::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattermapbox::Hoverlabel::Font& Scattermapbox::Hoverlabel::Font::color(std::string f) {
@@ -777,6 +777,20 @@ inline Scattermapbox::Legendgrouptitle& Scattermapbox::Legendgrouptitle::text(st
     return *this;
 }
 
+inline std::string Scattermapbox::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattermapbox::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattermapbox::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -806,20 +820,6 @@ inline std::string Scattermapbox::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattermapbox::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattermapbox::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattermapbox::Legendgrouptitle::Font& Scattermapbox::Legendgrouptitle::Font::color(std::string f) {
@@ -1475,6 +1475,20 @@ inline Scattermapbox::Marker::Colorbar& Scattermapbox::Marker::Colorbar::yref(en
     return *this;
 }
 
+inline std::string Scattermapbox::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattermapbox::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattermapbox::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1504,20 +1518,6 @@ inline std::string Scattermapbox::Marker::Colorbar::Tickfont::to_string(Variant 
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattermapbox::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattermapbox::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattermapbox::Marker::Colorbar::Tickfont& Scattermapbox::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1642,6 +1642,20 @@ inline Scattermapbox::Marker::Colorbar::Title& Scattermapbox::Marker::Colorbar::
     return *this;
 }
 
+inline std::string Scattermapbox::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattermapbox::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattermapbox::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1671,20 +1685,6 @@ inline std::string Scattermapbox::Marker::Colorbar::Title::Font::to_string(Varia
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattermapbox::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattermapbox::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattermapbox::Marker::Colorbar::Title::Font& Scattermapbox::Marker::Colorbar::Title::Font::color(std::string f) {

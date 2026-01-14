@@ -36,6 +36,18 @@ class Parcats : public Trace {
     };
     static std::string to_string(Arrangement e);
 
+    enum class Hoverinfo {
+        Count,
+        Probability,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     enum class Hoveron {
         Category,
         Color,
@@ -55,18 +67,6 @@ class Parcats : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
-
-    enum class Hoverinfo {
-        Count,
-        Probability,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
 
     class Dimension;
     class Domain;
@@ -295,6 +295,17 @@ class Parcats::Labelfont {
     Labelfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -318,17 +329,6 @@ class Parcats::Labelfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Parcats::Labelfont& color(std::string f);
     Parcats::Labelfont& color(double f);
@@ -404,6 +404,17 @@ class Parcats::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -427,17 +438,6 @@ class Parcats::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Parcats::Legendgrouptitle::Font& color(std::string f);
     Parcats::Legendgrouptitle::Font& color(double f);
@@ -937,6 +937,17 @@ class Parcats::Line::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -960,17 +971,6 @@ class Parcats::Line::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Parcats::Line::Colorbar::Tickfont& color(std::string f);
     Parcats::Line::Colorbar::Tickfont& color(double f);
@@ -1093,6 +1093,17 @@ class Parcats::Line::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1116,17 +1127,6 @@ class Parcats::Line::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Parcats::Line::Colorbar::Title::Font& color(std::string f);
     Parcats::Line::Colorbar::Title::Font& color(double f);
@@ -1199,6 +1199,17 @@ class Parcats::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1222,17 +1233,6 @@ class Parcats::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Parcats::Tickfont& color(std::string f);
     Parcats::Tickfont& color(double f);

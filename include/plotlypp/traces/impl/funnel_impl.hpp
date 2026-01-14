@@ -22,6 +22,26 @@ inline std::string Funnel::to_string(Constraintext e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Funnel::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::Name: return "name";
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::PercentInitial: return "percent initial";
+        case Hoverinfo::PercentPrevious: return "percent previous";
+        case Hoverinfo::PercentTotal: return "percent total";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Funnel::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
 inline std::string Funnel::to_string(Insidetextanchor e) {
     switch(e) {
         case Insidetextanchor::End: return "end";
@@ -38,6 +58,23 @@ inline std::string Funnel::to_string(Orientation e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Funnel::to_string(Textinfo e) {
+    switch(e) {
+        case Textinfo::Label: return "label";
+        case Textinfo::Text: return "text";
+        case Textinfo::PercentInitial: return "percent initial";
+        case Textinfo::PercentPrevious: return "percent previous";
+        case Textinfo::PercentTotal: return "percent total";
+        case Textinfo::Value: return "value";
+    }
+    throw std::invalid_argument{"Unknown flag value for textinfo."};
+}
+inline std::string Funnel::to_string(TextinfoExtra e) {
+    switch(e) {
+        case TextinfoExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
 inline std::string Funnel::to_string(Textposition e) {
     switch(e) {
@@ -75,43 +112,6 @@ inline std::string Funnel::to_string(Yperiodalignment e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::Name: return "name";
-        case Hoverinfo::X: return "x";
-        case Hoverinfo::Y: return "y";
-        case Hoverinfo::Text: return "text";
-        case Hoverinfo::PercentInitial: return "percent initial";
-        case Hoverinfo::PercentPrevious: return "percent previous";
-        case Hoverinfo::PercentTotal: return "percent total";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
-}
-inline std::string Funnel::to_string(HoverinfoExtra e) {
-    switch(e) {
-        case HoverinfoExtra::All: return "all";
-        case HoverinfoExtra::None: return "none";
-        case HoverinfoExtra::Skip: return "skip";
-    }
-    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
-}
-inline std::string Funnel::to_string(Textinfo e) {
-    switch(e) {
-        case Textinfo::Label: return "label";
-        case Textinfo::Text: return "text";
-        case Textinfo::PercentInitial: return "percent initial";
-        case Textinfo::PercentPrevious: return "percent previous";
-        case Textinfo::PercentTotal: return "percent total";
-        case Textinfo::Value: return "value";
-    }
-    throw std::invalid_argument{"Unknown flag value for textinfo."};
-}
-inline std::string Funnel::to_string(TextinfoExtra e) {
-    switch(e) {
-        case TextinfoExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
 
 inline Funnel& Funnel::alignmentgroup(std::string f) {
@@ -681,6 +681,20 @@ inline Funnel::Hoverlabel& Funnel::Hoverlabel::namelengthsrc(std::string f) {
     return *this;
 }
 
+inline std::string Funnel::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -710,20 +724,6 @@ inline std::string Funnel::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::color(std::string f) {
@@ -866,6 +866,20 @@ inline Funnel::Hoverlabel::Font& Funnel::Hoverlabel::Font::weightsrc(std::string
     return *this;
 }
 
+inline std::string Funnel::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -895,20 +909,6 @@ inline std::string Funnel::Insidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Insidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Insidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Insidetextfont& Funnel::Insidetextfont::color(std::string f) {
@@ -1068,6 +1068,20 @@ inline Funnel::Legendgrouptitle& Funnel::Legendgrouptitle::text(std::string f) {
     return *this;
 }
 
+inline std::string Funnel::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1097,20 +1111,6 @@ inline std::string Funnel::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Legendgrouptitle::Font& Funnel::Legendgrouptitle::Font::color(std::string f) {
@@ -1692,6 +1692,20 @@ inline Funnel::Marker::Colorbar& Funnel::Marker::Colorbar::yref(enum Yref f) {
     return *this;
 }
 
+inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1721,20 +1735,6 @@ inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Marker::Colorbar::Tickfont& Funnel::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1859,6 +1859,20 @@ inline Funnel::Marker::Colorbar::Title& Funnel::Marker::Colorbar::Title::text(st
     return *this;
 }
 
+inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1888,20 +1902,6 @@ inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Marker::Colorbar::Title::Font& Funnel::Marker::Colorbar::Title::Font::color(std::string f) {
@@ -2038,6 +2038,20 @@ inline Funnel::Marker::Line& Funnel::Marker::Line::widthsrc(std::string f) {
     return *this;
 }
 
+inline std::string Funnel::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2067,20 +2081,6 @@ inline std::string Funnel::Outsidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Outsidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Outsidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Outsidetextfont& Funnel::Outsidetextfont::color(std::string f) {
@@ -2234,6 +2234,20 @@ inline Funnel::Stream& Funnel::Stream::token(std::string f) {
     return *this;
 }
 
+inline std::string Funnel::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Funnel::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Funnel::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2263,20 +2277,6 @@ inline std::string Funnel::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Funnel::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Funnel::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Funnel::Textfont& Funnel::Textfont::color(std::string f) {

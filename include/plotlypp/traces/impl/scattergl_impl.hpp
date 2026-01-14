@@ -25,6 +25,38 @@ inline std::string Scattergl::to_string(Fill e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Scattergl::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Scattergl::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Scattergl::to_string(Mode e) {
+    switch(e) {
+        case Mode::Lines: return "lines";
+        case Mode::Markers: return "markers";
+        case Mode::Text: return "text";
+    }
+    throw std::invalid_argument{"Unknown flag value for mode."};
+}
+inline std::string Scattergl::to_string(ModeExtra e) {
+    switch(e) {
+        case ModeExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for mode."};
+}
 inline std::string Scattergl::to_string(Textposition e) {
     switch(e) {
         case Textposition::TopLeft: return "top left";
@@ -110,38 +142,6 @@ inline std::string Scattergl::to_string(Yperiodalignment e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattergl::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::X: return "x";
-        case Hoverinfo::Y: return "y";
-        case Hoverinfo::Z: return "z";
-        case Hoverinfo::Text: return "text";
-        case Hoverinfo::Name: return "name";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
-}
-inline std::string Scattergl::to_string(HoverinfoExtra e) {
-    switch(e) {
-        case HoverinfoExtra::All: return "all";
-        case HoverinfoExtra::None: return "none";
-        case HoverinfoExtra::Skip: return "skip";
-    }
-    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
-}
-inline std::string Scattergl::to_string(Mode e) {
-    switch(e) {
-        case Mode::Lines: return "lines";
-        case Mode::Markers: return "markers";
-        case Mode::Text: return "text";
-    }
-    throw std::invalid_argument{"Unknown flag value for mode."};
-}
-inline std::string Scattergl::to_string(ModeExtra e) {
-    switch(e) {
-        case ModeExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for mode."};
 }
 
 inline Scattergl& Scattergl::connectgaps(bool f) {
@@ -845,6 +845,20 @@ inline Scattergl::Hoverlabel& Scattergl::Hoverlabel::namelengthsrc(std::string f
     return *this;
 }
 
+inline std::string Scattergl::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergl::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattergl::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -874,20 +888,6 @@ inline std::string Scattergl::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattergl::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattergl::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattergl::Hoverlabel::Font& Scattergl::Hoverlabel::Font::color(std::string f) {
@@ -1047,6 +1047,20 @@ inline Scattergl::Legendgrouptitle& Scattergl::Legendgrouptitle::text(std::strin
     return *this;
 }
 
+inline std::string Scattergl::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergl::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattergl::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1076,20 +1090,6 @@ inline std::string Scattergl::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattergl::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattergl::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattergl::Legendgrouptitle::Font& Scattergl::Legendgrouptitle::Font::color(std::string f) {
@@ -2116,6 +2116,20 @@ inline Scattergl::Marker::Colorbar& Scattergl::Marker::Colorbar::yref(enum Yref 
     return *this;
 }
 
+inline std::string Scattergl::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergl::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattergl::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2145,20 +2159,6 @@ inline std::string Scattergl::Marker::Colorbar::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattergl::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattergl::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattergl::Marker::Colorbar::Tickfont& Scattergl::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -2283,6 +2283,20 @@ inline Scattergl::Marker::Colorbar::Title& Scattergl::Marker::Colorbar::Title::t
     return *this;
 }
 
+inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2312,20 +2326,6 @@ inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(Variant e
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scattergl::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scattergl::Marker::Colorbar::Title::Font& Scattergl::Marker::Colorbar::Title::Font::color(std::string f) {

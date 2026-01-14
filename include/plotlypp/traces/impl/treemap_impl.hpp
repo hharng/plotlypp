@@ -20,41 +20,12 @@ inline std::string Treemap::to_string(Branchvalues e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Treemap::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Treemap::to_string(Count e) {
     switch(e) {
         case Count::Branches: return "branches";
         case Count::Leaves: return "leaves";
     }
     throw std::invalid_argument{"Unknown flag value for count."};
-}
-inline std::string Treemap::to_string(CountExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for count."};
 }
 inline std::string Treemap::to_string(Hoverinfo e) {
     switch(e) {
@@ -95,6 +66,30 @@ inline std::string Treemap::to_string(TextinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
+inline std::string Treemap::to_string(Textposition e) {
+    switch(e) {
+        case Textposition::TopLeft: return "top left";
+        case Textposition::TopCenter: return "top center";
+        case Textposition::TopRight: return "top right";
+        case Textposition::MiddleLeft: return "middle left";
+        case Textposition::MiddleCenter: return "middle center";
+        case Textposition::MiddleRight: return "middle right";
+        case Textposition::BottomLeft: return "bottom left";
+        case Textposition::BottomCenter: return "bottom center";
+        case Textposition::BottomRight: return "bottom right";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Treemap::to_string(Visible e) {
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
 
 inline Treemap& Treemap::branchvalues(enum Branchvalues f) {
     json["branchvalues"] = to_string(f);
@@ -103,10 +98,6 @@ inline Treemap& Treemap::branchvalues(enum Branchvalues f) {
 
 inline Treemap& Treemap::count(std::initializer_list<Count> flags) {
     json["count"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Treemap& Treemap::count(CountExtra extra) {
-    json["count"] = to_string(extra);
     return *this;
 }
 
@@ -580,6 +571,20 @@ inline Treemap::Hoverlabel& Treemap::Hoverlabel::namelengthsrc(std::string f) {
     return *this;
 }
 
+inline std::string Treemap::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -609,20 +614,6 @@ inline std::string Treemap::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::color(std::string f) {
@@ -765,6 +756,20 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::weightsrc(std::stri
     return *this;
 }
 
+inline std::string Treemap::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -794,20 +799,6 @@ inline std::string Treemap::Insidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Insidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Insidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::color(std::string f) {
@@ -967,6 +958,20 @@ inline Treemap::Legendgrouptitle& Treemap::Legendgrouptitle::text(std::string f)
     return *this;
 }
 
+inline std::string Treemap::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -996,20 +1001,6 @@ inline std::string Treemap::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::color(std::string f) {
@@ -1607,6 +1598,20 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::yref(enum Yref f) {
     return *this;
 }
 
+inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1636,20 +1641,6 @@ inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1774,6 +1765,20 @@ inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::text(
     return *this;
 }
 
+inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1803,20 +1808,6 @@ inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Variant e) 
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::color(std::string f) {
@@ -2035,6 +2026,20 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::soliditysrc(std::stri
     return *this;
 }
 
+inline std::string Treemap::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2064,20 +2069,6 @@ inline std::string Treemap::Outsidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Outsidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Outsidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::color(std::string f) {
@@ -2271,6 +2262,20 @@ inline Treemap::Pathbar& Treemap::Pathbar::visible(bool f) {
     return *this;
 }
 
+inline std::string Treemap::Pathbar::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Pathbar::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Pathbar::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2300,20 +2305,6 @@ inline std::string Treemap::Pathbar::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Pathbar::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Pathbar::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::color(std::string f) {
@@ -2477,6 +2468,20 @@ inline Treemap::Stream& Treemap::Stream::token(std::string f) {
     return *this;
 }
 
+inline std::string Treemap::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Treemap::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Treemap::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2506,20 +2511,6 @@ inline std::string Treemap::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Treemap::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Treemap::Textfont& Treemap::Textfont::color(std::string f) {
@@ -2662,6 +2653,13 @@ inline Treemap::Textfont& Treemap::Textfont::weightsrc(std::string f) {
     return *this;
 }
 
+inline std::string Treemap::Tiling::to_string(Flip e) {
+    switch(e) {
+        case Flip::X: return "x";
+        case Flip::Y: return "y";
+    }
+    throw std::invalid_argument{"Unknown flag value for flip."};
+}
 inline std::string Treemap::Tiling::to_string(Packing e) {
     switch(e) {
         case Packing::Squarify: return "squarify";
@@ -2674,25 +2672,9 @@ inline std::string Treemap::Tiling::to_string(Packing e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Treemap::Tiling::to_string(Flip e) {
-    switch(e) {
-        case Flip::X: return "x";
-        case Flip::Y: return "y";
-    }
-    throw std::invalid_argument{"Unknown flag value for flip."};
-}
-inline std::string Treemap::Tiling::to_string(FlipExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for flip."};
-}
 
 inline Treemap::Tiling& Treemap::Tiling::flip(std::initializer_list<Flip> flags) {
     json["flip"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Treemap::Tiling& Treemap::Tiling::flip(FlipExtra extra) {
-    json["flip"] = to_string(extra);
     return *this;
 }
 

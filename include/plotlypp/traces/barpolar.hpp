@@ -29,20 +29,6 @@ class Barpolar : public Trace {
     Barpolar(std::string jsonStr)
     : Trace(std::move(jsonStr)) {}
 
-    enum class Thetaunit {
-        Radians,
-        Degrees,
-        Gradians,
-    };
-    static std::string to_string(Thetaunit e);
-
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Hoverinfo {
         R,
         Theta,
@@ -56,6 +42,20 @@ class Barpolar : public Trace {
     };
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
+
+    enum class Thetaunit {
+        Radians,
+        Degrees,
+        Gradians,
+    };
+    static std::string to_string(Thetaunit e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -349,6 +349,17 @@ class Barpolar::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -372,17 +383,6 @@ class Barpolar::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Barpolar::Hoverlabel::Font& color(std::string f);
     Barpolar::Hoverlabel::Font& color(double f);
@@ -494,6 +494,17 @@ class Barpolar::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -517,17 +528,6 @@ class Barpolar::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Barpolar::Legendgrouptitle::Font& color(std::string f);
     Barpolar::Legendgrouptitle::Font& color(double f);
@@ -1020,6 +1020,17 @@ class Barpolar::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1043,17 +1054,6 @@ class Barpolar::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Barpolar::Marker::Colorbar::Tickfont& color(std::string f);
     Barpolar::Marker::Colorbar::Tickfont& color(double f);
@@ -1176,6 +1176,17 @@ class Barpolar::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1199,17 +1210,6 @@ class Barpolar::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Barpolar::Marker::Colorbar::Title::Font& color(std::string f);
     Barpolar::Marker::Colorbar::Title::Font& color(double f);

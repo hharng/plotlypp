@@ -44,6 +44,27 @@ class Box : public Trace {
     };
     static std::string to_string(Boxpoints e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Boxes,
+        Points,
+    };
+    static std::string to_string(Hoveron e);
+
     enum class Orientation {
         V,
         H,
@@ -124,29 +145,6 @@ class Box : public Trace {
     };
     static std::string to_string(Yperiodalignment e);
 
-    enum class Hoverinfo {
-        X,
-        Y,
-        Z,
-        Text,
-        Name,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
-
-    enum class Hoveron {
-        Boxes,
-        Points,
-    };
-    enum class HoveronExtra {};
-    static std::string to_string(Hoveron e);
-    static std::string to_string(HoveronExtra e);
-
     class Hoverlabel;
     class Legendgrouptitle;
     class Line;
@@ -209,7 +207,6 @@ class Box : public Trace {
     // - Default: boxes+points
     // - Flags: ['boxes', 'points']
     Box& hoveron(std::initializer_list<Hoveron> flags);
-    Box& hoveron(HoveronExtra extra);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -634,6 +631,17 @@ class Box::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -657,17 +665,6 @@ class Box::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Box::Hoverlabel::Font& color(std::string f);
     Box::Hoverlabel::Font& color(double f);
@@ -779,6 +776,17 @@ class Box::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -802,17 +810,6 @@ class Box::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Box::Legendgrouptitle::Font& color(std::string f);
     Box::Legendgrouptitle::Font& color(double f);

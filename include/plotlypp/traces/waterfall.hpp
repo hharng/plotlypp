@@ -37,6 +37,23 @@ class Waterfall : public Trace {
     };
     static std::string to_string(Constraintext e);
 
+    enum class Hoverinfo {
+        Name,
+        X,
+        Y,
+        Text,
+        Initial,
+        Delta,
+        Final,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     enum class Insidetextanchor {
         End,
         Middle,
@@ -49,6 +66,19 @@ class Waterfall : public Trace {
         H,
     };
     static std::string to_string(Orientation e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        Initial,
+        Delta,
+        Final,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
 
     enum class Textposition {
         Inside,
@@ -78,36 +108,6 @@ class Waterfall : public Trace {
         End,
     };
     static std::string to_string(Yperiodalignment e);
-
-    enum class Hoverinfo {
-        Name,
-        X,
-        Y,
-        Text,
-        Initial,
-        Delta,
-        Final,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
-
-    enum class Textinfo {
-        Label,
-        Text,
-        Initial,
-        Delta,
-        Final,
-    };
-    enum class TextinfoExtra {
-        None,
-    };
-    static std::string to_string(Textinfo e);
-    static std::string to_string(TextinfoExtra e);
 
     class Connector;
     class Decreasing;
@@ -648,6 +648,17 @@ class Waterfall::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -671,17 +682,6 @@ class Waterfall::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Waterfall::Hoverlabel::Font& color(std::string f);
     Waterfall::Hoverlabel::Font& color(double f);
@@ -825,6 +825,17 @@ class Waterfall::Insidetextfont {
     Insidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -848,17 +859,6 @@ class Waterfall::Insidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Waterfall::Insidetextfont& color(std::string f);
     Waterfall::Insidetextfont& color(double f);
@@ -970,6 +970,17 @@ class Waterfall::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -993,17 +1004,6 @@ class Waterfall::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Waterfall::Legendgrouptitle::Font& color(std::string f);
     Waterfall::Legendgrouptitle::Font& color(double f);
@@ -1058,6 +1058,17 @@ class Waterfall::Outsidetextfont {
     Outsidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1081,17 +1092,6 @@ class Waterfall::Outsidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Waterfall::Outsidetextfont& color(std::string f);
     Waterfall::Outsidetextfont& color(double f);
@@ -1200,6 +1200,17 @@ class Waterfall::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1223,17 +1234,6 @@ class Waterfall::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Waterfall::Textfont& color(std::string f);
     Waterfall::Textfont& color(double f);

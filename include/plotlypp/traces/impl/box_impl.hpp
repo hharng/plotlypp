@@ -31,6 +31,31 @@ inline std::string Box::to_string(Boxpoints e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Box::to_string(Hoverinfo e) {
+    switch(e) {
+        case Hoverinfo::X: return "x";
+        case Hoverinfo::Y: return "y";
+        case Hoverinfo::Z: return "z";
+        case Hoverinfo::Text: return "text";
+        case Hoverinfo::Name: return "name";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
+}
+inline std::string Box::to_string(HoverinfoExtra e) {
+    switch(e) {
+        case HoverinfoExtra::All: return "all";
+        case HoverinfoExtra::None: return "none";
+        case HoverinfoExtra::Skip: return "skip";
+    }
+    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
+}
+inline std::string Box::to_string(Hoveron e) {
+    switch(e) {
+        case Hoveron::Boxes: return "boxes";
+        case Hoveron::Points: return "points";
+    }
+    throw std::invalid_argument{"Unknown flag value for hoveron."};
+}
 inline std::string Box::to_string(Orientation e) {
     switch(e) {
         case Orientation::V: return "v";
@@ -127,36 +152,6 @@ inline std::string Box::to_string(Yperiodalignment e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Box::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::X: return "x";
-        case Hoverinfo::Y: return "y";
-        case Hoverinfo::Z: return "z";
-        case Hoverinfo::Text: return "text";
-        case Hoverinfo::Name: return "name";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoverinfo."};
-}
-inline std::string Box::to_string(HoverinfoExtra e) {
-    switch(e) {
-        case HoverinfoExtra::All: return "all";
-        case HoverinfoExtra::None: return "none";
-        case HoverinfoExtra::Skip: return "skip";
-    }
-    throw std::invalid_argument{"Unknown extra value for hoverinfo."};
-}
-inline std::string Box::to_string(Hoveron e) {
-    switch(e) {
-        case Hoveron::Boxes: return "boxes";
-        case Hoveron::Points: return "points";
-    }
-    throw std::invalid_argument{"Unknown flag value for hoveron."};
-}
-inline std::string Box::to_string(HoveronExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for hoveron."};
-}
 
 inline Box& Box::alignmentgroup(std::string f) {
     json["alignmentgroup"] = std::move(f);
@@ -230,10 +225,6 @@ inline Box& Box::hoverlabel(Callable&& c) {
 
 inline Box& Box::hoveron(std::initializer_list<Hoveron> flags) {
     json["hoveron"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Box& Box::hoveron(HoveronExtra extra) {
-    json["hoveron"] = to_string(extra);
     return *this;
 }
 
@@ -775,6 +766,20 @@ inline Box::Hoverlabel& Box::Hoverlabel::namelengthsrc(std::string f) {
     return *this;
 }
 
+inline std::string Box::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Box::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Box::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -804,20 +809,6 @@ inline std::string Box::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Box::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Box::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Box::Hoverlabel::Font& Box::Hoverlabel::Font::color(std::string f) {
@@ -977,6 +968,20 @@ inline Box::Legendgrouptitle& Box::Legendgrouptitle::text(std::string f) {
     return *this;
 }
 
+inline std::string Box::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Box::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Box::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1006,20 +1011,6 @@ inline std::string Box::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Box::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Box::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Box::Legendgrouptitle::Font& Box::Legendgrouptitle::Font::color(std::string f) {

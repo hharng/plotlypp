@@ -36,21 +36,19 @@ class Indicator : public Trace {
     };
     static std::string to_string(Align e);
 
+    enum class Mode {
+        Number,
+        Delta,
+        Gauge,
+    };
+    static std::string to_string(Mode e);
+
     enum class Visible {
         True,
         False,
         Legendonly,
     };
     static std::string to_string(Visible e);
-
-    enum class Mode {
-        Number,
-        Delta,
-        Gauge,
-    };
-    enum class ModeExtra {};
-    static std::string to_string(Mode e);
-    static std::string to_string(ModeExtra e);
 
     class Delta;
     class Domain;
@@ -131,7 +129,6 @@ class Indicator : public Trace {
     // - Default: number
     // - Flags: ['number', 'delta', 'gauge']
     Indicator& mode(std::initializer_list<Mode> flags);
-    Indicator& mode(ModeExtra extra);
 
     // Sets the trace name. The trace name appears as the legend item and on hover.
     Indicator& name(std::string f);
@@ -252,6 +249,17 @@ class Indicator::Delta::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -275,17 +283,6 @@ class Indicator::Delta::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Indicator::Delta::Font& color(std::string f);
     Indicator::Delta::Font& color(double f);
@@ -640,6 +637,17 @@ class Indicator::Gauge::Axis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -663,17 +671,6 @@ class Indicator::Gauge::Axis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Indicator::Gauge::Axis::Tickfont& color(std::string f);
     Indicator::Gauge::Axis::Tickfont& color(double f);
@@ -924,6 +921,17 @@ class Indicator::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -947,17 +955,6 @@ class Indicator::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Indicator::Legendgrouptitle::Font& color(std::string f);
     Indicator::Legendgrouptitle::Font& color(double f);
@@ -1040,6 +1037,17 @@ class Indicator::Number::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1063,17 +1071,6 @@ class Indicator::Number::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Indicator::Number::Font& color(std::string f);
     Indicator::Number::Font& color(double f);
@@ -1178,6 +1175,17 @@ class Indicator::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1201,17 +1209,6 @@ class Indicator::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Indicator::Title::Font& color(std::string f);
     Indicator::Title::Font& color(double f);

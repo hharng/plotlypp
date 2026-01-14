@@ -9,10 +9,10 @@ import json
 from pathlib import Path
 import subprocess
 import sys
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple, Generator
 import dataclasses
 
-def get_all_valtypes(d: Dict[str, Any]):
+def get_all_valtypes(d: Dict[str, Any]) -> Generator[str, None, None]:
     """Recursively finds all 'valType' values in a dictionary."""
     for key, value in d.items():
         if key == "valType":
@@ -50,52 +50,52 @@ VALTYPE_MAP = {
 
 class IndentBlock:
     """Context manager for managing indentation in Writer."""
-    def __init__(self, writer: "Writer"):
+    def __init__(self, writer: "Writer") -> None:
         self.writer = writer
 
-    def __enter__(self):
+    def __enter__(self) -> None:
         self.writer.indent_level += 1
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
         self.writer.indent_level -= 1
 
 
 class Writer:
     """Helper class for writing indented text to a file or stdout."""
     INDENT_SIZE = 4
-    def __init__(self, output_file: Optional[Path]=None):
+    def __init__(self, output_file: Optional[Path]=None) -> None:
         self.indent_level: int = 0
         self._output_file: Optional[Path] = output_file
         self._output_file_handle = open(self._output_file, "w") if self._output_file is not None else sys.stdout
 
-    def write(self, line: str):
+    def write(self, line: str) -> None:
         """Outputs input text with a newline at current indent level."""
         indent = " " * self.INDENT_SIZE * self.indent_level
         print(f"{indent}{line}", file=self._output_file_handle)
 
-    def close(self):
+    def close(self) -> None:
         """Closes the file handle if it's not stdout."""
         if self._output_file is not None and self._output_file_handle is not sys.stdout:
             self._output_file_handle.close()
 
 
-def emit_json_member(writer):
+def emit_json_member(writer: Writer) -> None:
     writer.write("// Advanced users may modify the JSON representation directly, at their own peril!")
     writer.write("Json json{};")
 
 
-def emit_array_field_setter_decl(class_object, field, output_val_type, writer):
+def emit_array_field_setter_decl(class_object: "Object", field: "Field", output_val_type: str, writer: Writer) -> None:
     if output_val_type == 'T':
         writer.write("template <typename T>")
     writer.write(f"{class_object.name.title()}& {field.name}(const std::vector<{output_val_type}>& f);")
 
 
-def emit_array_field_setter(class_object, field, output_val_type, writer):
+def emit_array_field_setter(class_object: "Object", field: "Field", output_val_type: str, writer: Writer) -> None:
     if output_val_type == 'T':
         writer.write("template <typename T>")
     writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<{output_val_type}>& f) {{")
     with IndentBlock(writer):
-        if field.is_object:
+        if field.object_definition:
             writer.write("std::vector<Json> jsonified(f.size());")
             writer.write("std::transform(f.begin(), f.end(), jsonified.begin(), [](auto& e){ return e.json; });")
             writer.write(f"json[\"{field.name}\"] = std::move(jsonified);")
@@ -105,7 +105,7 @@ def emit_array_field_setter(class_object, field, output_val_type, writer):
     writer.write("}")
 
 
-def emit_lambda_setter_decl(class_object, field, output_val_types, writer):
+def emit_lambda_setter_decl(class_object: "Object", field: "Field", output_val_types: List[str], writer: Writer) -> None:
     enable_if_cond = " || ".join([f"std::is_invocable_v<Callable, {t}&>" for t in output_val_types])
 
     if "T" in output_val_types:
@@ -127,7 +127,7 @@ def emit_lambda_setter_decl(class_object, field, output_val_types, writer):
         writer.write(f"{class_object.name.title()}& {field.name}(int index, Callable&& c);")
 
 
-def emit_field_setter_decl(class_object, field, output_val_type, writer):
+def emit_field_setter_decl(class_object: "Object", field: "Field", output_val_type: str, writer: Writer) -> None:
     def write_template_signature():
         if output_val_type == 'T':
             writer.write("template <typename T>")
@@ -160,7 +160,7 @@ def emit_field_setter_decl(class_object, field, output_val_type, writer):
 
 
 
-def emit_field_setter(class_object, field, output_val_type, writer):
+def emit_field_setter(class_object: "Object", field: "Field", output_val_type: str, writer: Writer) -> None:
     def write_template_signature():
         if output_val_type == 'T':
             writer.write("template <typename T>")
@@ -177,7 +177,7 @@ def emit_field_setter(class_object, field, output_val_type, writer):
         else:
             writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}({output_val_type} f) {{")
     with IndentBlock(writer):
-        if field.is_object:
+        if field.object_definition:
             writer.write(f"json[\"{field.name}\"] = std::move(f.json);")
         else:
             writer.write(f"json[\"{field.name}\"] = " + ("f" if vec_type else "std::move(f)") + ";")
@@ -199,14 +199,14 @@ def emit_field_setter(class_object, field, output_val_type, writer):
         with IndentBlock(writer):
             # Hmm
             writer.write(f"const auto key = std::string(\"{field.name}\") + (index > 1 ? std::to_string(index) : \"\");")
-            if field.is_object:
+            if field.object_definition:
                 writer.write(f"json[key] = std::move(f.json);")
             else:
                 writer.write(f"json[key] = " + ("f" if vec_type else "std::move(f)") + ";")
             writer.write("return *this;")
         writer.write("}")
 
-def emit_lambda_setter(class_object, field, output_val_types, writer):
+def emit_lambda_setter(class_object: "Object", field: "Field", output_val_types: List[str], writer: Writer) -> None:
     if "T" in output_val_types or field.json_val_type == 'data_array':
         writer.write("template <typename T, typename Callable, typename>")
     else:
@@ -231,12 +231,12 @@ def emit_lambda_setter(class_object, field, output_val_types, writer):
 
 
 
-def emit_enum_field_setter_decl(class_object, field, writer):
+def emit_enum_field_setter_decl(class_object: "Object", field: "Field", writer: Writer) -> None:
     # To help compiler ambiguity, add enum keyword.
     writer.write(f"{class_object.name.title()}& {field.name}(enum {field.name.title()} f);")
 
 
-def emit_enum_field_setter(class_object, field, writer):
+def emit_enum_field_setter(class_object: "Object", field: "Field", writer: Writer) -> None:
     # To help compiler ambiguity, add enum keyword.
     writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(enum {field.name.title()} f) {{")
     with IndentBlock(writer):
@@ -245,11 +245,11 @@ def emit_enum_field_setter(class_object, field, writer):
     writer.write("}")
 
 
-def emit_enum_array_field_setter_decl(class_object, field, writer):
+def emit_enum_array_field_setter_decl(class_object: "Object", field: "Field", writer: Writer) -> None:
     writer.write(f"{class_object.name.title()}& {field.name}(const std::vector<enum {field.name.title()}>& f);")
 
 
-def emit_enum_array_field_setter(class_object, field, writer):
+def emit_enum_array_field_setter(class_object: "Object", field: "Field", writer: Writer) -> None:
     writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<enum {field.name.title()}>& f) {{")
     with IndentBlock(writer):
         writer.write("std::vector<std::string> stringified(f.size());")
@@ -259,7 +259,7 @@ def emit_enum_array_field_setter(class_object, field, writer):
     writer.write("}")
 
 
-def emit_enum_definition(enum, writer):
+def emit_enum_definition(enum: "StringEnum", writer: Writer) -> None:
     writer.write("")
     writer.write(f"enum class {enum.name.title()} {{")
     with IndentBlock(writer):
@@ -268,11 +268,11 @@ def emit_enum_definition(enum, writer):
     writer.write("};")
 
 
-def emit_enum_to_string_decl(enum, writer):
+def emit_enum_to_string_decl(enum: "StringEnum", writer: Writer) -> None:
     writer.write(f"static std::string to_string({enum.name.title()} e);")
 
 
-def emit_enum_to_string(class_object, enum, writer):
+def emit_enum_to_string(class_object: "Object", enum: "StringEnum", writer: Writer) -> None:
     writer.write(f"inline std::string {class_object.name.title()}::to_string({enum.name.title()} e) {{")
     with IndentBlock(writer):
         writer.write("switch(e) {")
@@ -285,28 +285,31 @@ def emit_enum_to_string(class_object, enum, writer):
     writer.write("}")
 
 
-def emit_flaglist_definition(fl, writer):
+def emit_flaglist_definition(fl: "FlagList", writer: Writer) -> None:
     writer.write("")
     writer.write(f"enum class {fl.name.title()} {{")
     with IndentBlock(writer):
         for safe_val in fl.safe_flags:
             writer.write(f"{safe_val},")
     writer.write("};")
-    writer.write(f"enum class {fl.name.title()}Extra {{")
-    with IndentBlock(writer):
-        for safe_val in fl.safe_extras:
-            writer.write(f"{safe_val},")
-    writer.write("};")
+    if fl.safe_extras:
+        writer.write(f"enum class {fl.name.title()}Extra {{")
+        with IndentBlock(writer):
+            for safe_val in fl.safe_extras:
+                writer.write(f"{safe_val},")
+        writer.write("};")
 
-def emit_flaglist_to_string_decls(fl, writer):
+def emit_flaglist_to_string_decls(fl: "FlagList", writer: Writer) -> None:
     writer.write(f"static std::string to_string({fl.name.title()} e);")
-    writer.write(f"static std::string to_string({fl.name.title()}Extra e);")
+    if fl.safe_extras:
+        writer.write(f"static std::string to_string({fl.name.title()}Extra e);")
 
-def emit_flaglist_setter_decls(class_object, field, writer):
+def emit_flaglist_setter_decls(class_object: "Object", field: "Field", writer: Writer) -> None:
     writer.write(f"{class_object.name.title()}& {field.name}(std::initializer_list<{field.name.title()}> flags);")
-    writer.write(f"{class_object.name.title()}& {field.name}({field.name.title()}Extra extra);")
+    if field.flaglist and field.flaglist.safe_extras:
+        writer.write(f"{class_object.name.title()}& {field.name}({field.name.title()}Extra extra);")
 
-def emit_flaglist_to_string_impls(class_object, fl, writer):
+def emit_flaglist_to_string_impls(class_object: "Object", fl: "FlagList", writer: Writer) -> None:
     writer.write(f"inline std::string {class_object.name.title()}::to_string({fl.name.title()} e) {{")
     with IndentBlock(writer):
         writer.write("switch(e) {")
@@ -316,54 +319,57 @@ def emit_flaglist_to_string_impls(class_object, fl, writer):
         writer.write("}")
         writer.write('throw std::invalid_argument{"Unknown flag value for ' + fl.name + '."};')
     writer.write("}")
-    writer.write(f"inline std::string {class_object.name.title()}::to_string({fl.name.title()}Extra e) {{")
-    with IndentBlock(writer):
-        writer.write("switch(e) {")
+    if fl.safe_extras:
+        writer.write(f"inline std::string {class_object.name.title()}::to_string({fl.name.title()}Extra e) {{")
         with IndentBlock(writer):
-            for s, j in fl.safe_extras.items():
-                writer.write(f'case {fl.name.title()}Extra::{s}: return "{j}";')
+            writer.write("switch(e) {")
+            with IndentBlock(writer):
+                for s, j in fl.safe_extras.items():
+                    writer.write(f'case {fl.name.title()}Extra::{s}: return "{j}";')
+            writer.write("}")
+            writer.write('throw std::invalid_argument{"Unknown extra value for ' + fl.name + '."};')
         writer.write("}")
-        writer.write('throw std::invalid_argument{"Unknown extra value for ' + fl.name + '."};')
-    writer.write("}")
 
-def emit_flaglist_setter_impls(class_object, field, writer):
+def emit_flaglist_setter_impls(class_object: "Object", field: "Field", writer: Writer) -> None:
     writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(std::initializer_list<{field.name.title()}> flags) {{")
     with IndentBlock(writer):
         writer.write(f"json[\"{field.name}\"] = detail::joinFlaglist(flags, [](auto f){{ return to_string(f); }});")
         writer.write("return *this;")
     writer.write("}")
-    writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}({field.name.title()}Extra extra) {{")
-    with IndentBlock(writer):
-        writer.write(f"json[\"{field.name}\"] = to_string(extra);")
-        writer.write("return *this;")
-    writer.write("}")
+    if field.flaglist and field.flaglist.safe_extras:
+        writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}({field.name.title()}Extra extra) {{")
+        with IndentBlock(writer):
+            writer.write(f"json[\"{field.name}\"] = to_string(extra);")
+            writer.write("return *this;")
+        writer.write("}")
 
 
-def emit_class_public_members(class_object, writer):
-    for e in class_object.enums:
-        emit_enum_to_string(class_object, e, writer)
-    for fl in class_object.flaglists:
-        emit_flaglist_to_string_impls(class_object, fl, writer)
+def emit_class_public_members(class_object: "Object", writer: Writer) -> None:
+    for field in class_object.fields:
+        if field.enum_definition:
+            emit_enum_to_string(class_object, field.enum_definition, writer)
+        if field.flaglist:
+            emit_flaglist_to_string_impls(class_object, field.flaglist, writer)
 
     writer.write("")
 
     for field in class_object.fields:
-        if field.is_enum:
+        if field.enum_definition:
             emit_enum_field_setter(class_object, field, writer)
             if field.array_ok:
                 emit_enum_array_field_setter(class_object, field, writer)
-        elif field.is_flaglist:
+        elif field.flaglist:
             emit_flaglist_setter_impls(class_object, field, writer)
         else:
-            if field.is_object:
+            if field.object_definition:
                 object_type = field.object_type_name if field.object_type_name else field.name
                 output_val_types = [f"{object_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
-            if not (field.is_object and field.array_ok):
+            if not (field.object_definition and field.array_ok):
                 for output_val_type_overload in output_val_types:
                     emit_field_setter(class_object, field, output_val_type_overload, writer)
-                if field.is_object:
+                if field.object_definition:
                     # Lambda setter is only generated for non-array objects.
                     emit_lambda_setter(class_object, field, output_val_types, writer)
             if field.array_ok:
@@ -373,17 +379,19 @@ def emit_class_public_members(class_object, writer):
         writer.write("")
 
 
-def emit_class_public_members_decl(class_object, writer):
-    for e in class_object.enums:
-        emit_enum_definition(e, writer)
-        emit_enum_to_string_decl(e, writer)
-    for fl in class_object.flaglists:
-        emit_flaglist_definition(fl, writer)
-        emit_flaglist_to_string_decls(fl, writer)
+def emit_class_public_members_decl(class_object: "Object", writer: Writer) -> None:
+    for field in class_object.fields:
+        if field.enum_definition:
+            emit_enum_definition(field.enum_definition, writer)
+            emit_enum_to_string_decl(field.enum_definition, writer)
+        if field.flaglist:
+            emit_flaglist_definition(field.flaglist, writer)
+            emit_flaglist_to_string_decls(field.flaglist, writer)
 
     writer.write("")
-    for obj in class_object.objects:
-        emit_forward_object_decl(obj, writer)
+    for field in class_object.fields:
+        if field.object_definition:
+            emit_forward_object_decl(field.object_definition, writer)
 
     writer.write("")
     for field in class_object.fields:
@@ -393,22 +401,22 @@ def emit_class_public_members_decl(class_object, writer):
             writer.write(f"// {lines[0]}")
             for line in lines[1:]:
                 writer.write(f"// - {line}")
-        if field.is_enum:
+        if field.enum_definition:
             emit_enum_field_setter_decl(class_object, field, writer)
             if field.array_ok:
                 emit_enum_array_field_setter_decl(class_object, field, writer)
-        elif field.is_flaglist:
+        elif field.flaglist:
             emit_flaglist_setter_decls(class_object, field, writer)
         else:
-            if field.is_object:
+            if field.object_definition:
                 field_type = field.object_type_name if field.object_type_name else field.name
                 output_val_types = [f"{field_type.title()}"]
             else:
                 output_val_types = VALTYPE_MAP[field.json_val_type]
-            if not (field.is_object and field.array_ok):
+            if not (field.object_definition and field.array_ok):
                 for output_val_type_overload in output_val_types:
                     emit_field_setter_decl(class_object, field, output_val_type_overload, writer)
-                if field.is_object:
+                if field.object_definition:
                     emit_lambda_setter_decl(class_object, field, output_val_types, writer)
             if field.array_ok:
                 for output_val_type_overload in output_val_types:
@@ -417,23 +425,23 @@ def emit_class_public_members_decl(class_object, writer):
         writer.write("")
 
 
-def emit_forward_object_decl(class_object, writer):
+def emit_forward_object_decl(class_object: "Object", writer: Writer) -> None:
     if class_object.description:
         writer.write(f"// {class_object.description}")
     writer.write(f"class {class_object.name.split("::")[-1].title()};")
 
 
-def emit_default_constructor(class_object, writer):
+def emit_default_constructor(class_object: "Object", writer: Writer) -> None:
     writer.write(f"{class_object.name.split("::")[-1].title()}() = default;")
 
-def emit_json_constructor(class_object, writer):
+def emit_json_constructor(class_object: "Object", writer: Writer) -> None:
     # Converting constructor
     writer.write(f"{class_object.name.split("::")[-1].title()}(std::string jsonStr)")
     # https://json.nlohmann.me/home/faq/#brace-initialization-yields-arrays
     writer.write(": json(parse(std::move(jsonStr))) {}")
 
 
-def emit_object_decl(class_object, writer):
+def emit_object_decl(class_object: "Object", writer: Writer) -> None:
     if class_object.description:
         writer.write(f"// {class_object.description}")
     writer.write(f"class {class_object.name.title()} {{")
@@ -447,14 +455,16 @@ def emit_object_decl(class_object, writer):
     writer.write("")
 
 
-def unnest_objects(parent, unnested_objects):
-    for obj in parent.objects:
-        obj.name = f"{parent.name}::{obj.name.capitalize()}"
-        unnested_objects.append(obj)
-        unnest_objects(obj, unnested_objects)
+def unnest_objects(parent: "Object", unnested_objects: List["Object"]) -> None:
+    for field in parent.fields:
+        if field.object_definition:
+            obj = field.object_definition
+            obj.name = f"{parent.name}::{obj.name.capitalize()}"
+            unnested_objects.append(obj)
+            unnest_objects(obj, unnested_objects)
 
 
-def emit_preamble(writer):
+def emit_preamble(writer: Writer) -> None:
     writer.write("// Copyright (c) 2025 Jimmy O'Rourke")
     writer.write("// Licensed under and subject to the terms of the LICENSE file accompanying this distribution.")
     writer.write("// Official repository: https://github.com/jimmyorourke/plotlypp")
@@ -467,7 +477,7 @@ def emit_preamble(writer):
     writer.write("")
 
 
-def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path):
+def emit_trace(trace: "Object", out_dir: Path, impl_subdir: Path) -> None:
     """Emits C++ header and implementation files for a given trace."""
     out_file = out_dir/f"{trace.name}.hpp"
     writer = Writer(out_file)
@@ -532,9 +542,6 @@ class Object:
     name: str = ""
     description: str = ""
     fields: List["Field"] = dataclasses.field(default_factory=list)
-    enums: List["StringEnum"] = dataclasses.field(default_factory=list)
-    flaglists: List["FlagList"] = dataclasses.field(default_factory=list)
-    objects: List["Object"] = dataclasses.field(default_factory=list)
 
 @dataclasses.dataclass
 class Field:
@@ -543,9 +550,9 @@ class Field:
     description: str = ""
     json_val_type: Optional[str] = None
     array_ok: bool = False
-    is_enum: bool = False
-    is_flaglist: bool = False
-    is_object: bool = False
+    enum_definition: Optional["StringEnum"] = None
+    flaglist: Optional["FlagList"] = None
+    object_definition: Optional["Object"] = None
     is_subplot_object: bool = False
     object_type_name: Optional[str] = None
 
@@ -626,7 +633,7 @@ def looks_like_regex(name: str) -> bool:
 #         output(f"{f.name}", indent)
 
 
-def _clean_enum_value(val: Any) -> (str, str):
+def _clean_enum_value(val: Any) -> Tuple[str, str]:
     """Cleans an enum value string to be a valid C++ identifier."""
     json_val = str(val)
     safe_val = str(val)
@@ -652,7 +659,7 @@ def _clean_enum_value(val: Any) -> (str, str):
         safe_val = "Num_" + safe_val
     return safe_val, json_val
 
-def _parse_enumerated_attribute(parent: "Object", f: "Field", node: Dict[str, Any]):
+def _parse_enumerated_attribute(f: "Field", node: Dict[str, Any]) -> None:
     """Parses an enumerated attribute, creating an enum if necessary."""
     # Some "enums" have regex enumerators. These can't be statically defined so treat them as strings.
     for val in node["values"]:
@@ -661,7 +668,6 @@ def _parse_enumerated_attribute(parent: "Object", f: "Field", node: Dict[str, An
             f.json_val_type = "string"
             return
 
-    f.is_enum = True
     # Also create an enum which will be associated with the parent trace.
     e = StringEnum()
     e.name = f.name
@@ -676,12 +682,11 @@ def _parse_enumerated_attribute(parent: "Object", f: "Field", node: Dict[str, An
         # The map also handles the uniqueness requirement.
         e.safe_to_json_vals[safe_val] = json_val
 
-    parent.enums.append(e)
+    f.enum_definition = e
 
 
-def _parse_flaglist_attribute(parent: "Object", f: "Field", node: Dict[str, Any]):
+def _parse_flaglist_attribute(f: "Field", node: Dict[str, Any]) -> None:
     """Parses a flaglist attribute, creating a FlagList object."""
-    f.is_flaglist = True
     fl = FlagList(name=f.name)
     for flag_val in node.get("flags", []):
         safe_val, json_val = _clean_enum_value(flag_val)
@@ -689,10 +694,10 @@ def _parse_flaglist_attribute(parent: "Object", f: "Field", node: Dict[str, Any]
     for extra_val in node.get("extras", []):
         safe_val, json_val = _clean_enum_value(extra_val)
         fl.safe_extras[safe_val] = json_val
-    parent.flaglists.append(fl)
+    f.flaglist = fl
 
 
-def parse_attributes(parent: Object, attributes_node: Dict[str, Any]):
+def parse_attributes(parent: "Object", attributes_node: Dict[str, Any]) -> None:
     """Parses attributes from a schema node into Fields, Enums, or nested Objects."""
     for name, node in attributes_node.items():
         if name == "_deprecated":
@@ -716,54 +721,52 @@ def parse_attributes(parent: Object, attributes_node: Dict[str, Any]):
 
         if "role" in node and node["role"] == "object":
             #  Nested structure.
-            f.is_object = True
+            obj = Object()
+            f.object_definition = obj
             if "arrayOk" in node and node["arrayOk"] == True:
                 f.array_ok = True
             # Quirky but works.
             #f.val_type = f.name
-            obj = Object()
             obj.name = f.name
             obj.description = f.description
 
             # For some reason, "arrayOk" is not set on arrays of objects.
-            is_array_of_objects = "items" in node and node["items"] and len(node["items"]) > 0
+            is_array_of_objects = 'items' in node and node['items'] and len(node['items']) > 0
             if is_array_of_objects:
                 f.array_ok = True
-                item_name = list(node["items"].keys())[0]
-                item_node = node["items"][item_name]
+                item_name = list(node['items'].keys())[0]
+                item_node = node['items'][item_name]
                 obj.name = item_name
                 f.object_type_name = item_name
                 parse_attributes(obj, item_node)
             else:
                 parse_attributes(obj, node)
 
-            parent.objects.append(obj)
-
-        elif "valType" in node:
-            f.json_val_type = node["valType"]
+        elif 'valType' in node:
+            f.json_val_type = node['valType']
             #f.val_type = valtype_map[f.json_val_type]
 
-            if "arrayOk" in node and node["arrayOk"] == True:
+            if 'arrayOk' in node and node['arrayOk'] == True:
                 f.array_ok = True
 
-            if f.json_val_type == "enumerated":
-                _parse_enumerated_attribute(parent, f, node)
-            elif f.json_val_type == "flaglist":
-                _parse_flaglist_attribute(parent, f, node)
-                if "dflt" in node:
-                    f.description += f"\nDefault: {node["dflt"]}"
-                f.description += f"\nFlags: {node["flags"]}"
-                if "extras" in node:
-                    f.description += f"\nExtras {node["extras"]}"
+            if f.json_val_type == 'enumerated':
+                _parse_enumerated_attribute(f, node)
+            elif f.json_val_type == 'flaglist':
+                _parse_flaglist_attribute(f, node)
+                if 'dflt' in node:
+                    f.description += f"\nDefault: {node['dflt']}"
+                f.description += f"\nFlags: {node['flags']}"
+                if 'extras' in node:
+                    f.description += f"\nExtras {node['extras']}"
 
         parent.fields.append(f)
 
 
-def parse_type(trace, type_node):
+def parse_type(trace: "Object", type_node: str) -> None:
     # Just the name again
     assert(trace.name == type_node)
 
-def parse_meta(trace, meta_node):
+def parse_meta(trace: "Object", meta_node: Dict[str, Any]) -> None:
     for name, node in meta_node.items():
         if name == "description":
             trace.description = node
@@ -773,7 +776,7 @@ def parse_meta(trace, meta_node):
             print(f"Skipping unknown meta field {name}. Does parser needs updating?")
 
 
-def create_trace(name: str, trace_node: Dict[str, Any]):
+def create_trace(name: str, trace_node: Dict[str, Any]) -> None:
     """Creates and emits a trace object from a schema node."""
     trace = Object()
     trace.name = name # TODO: convert case
@@ -800,12 +803,12 @@ def create_trace(name: str, trace_node: Dict[str, Any]):
     # We did our best with formatting, but let's auto format to catch long comments, etc.
     subprocess.run(["clang-format", "--style=file", "-i", str(traces_dir/f"{trace.name}.hpp")], check=True)
 
-def create_traces(schema):
+def create_traces(schema: Dict[str, Any]) -> None:
     for name, trace_node in schema['traces'].items():
         create_trace(name, trace_node)
 
 
-def package_js():
+def package_js() -> None:
     with open(Path(__file__).parent / 'plotly.min.js') as f:
         plotly_js = f.read()
 
@@ -821,7 +824,7 @@ def package_js():
     writer.write("} // namespace plotlypp")
     writer.close()
 
-def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
+def emit_layout(layout: "Object", out_dir: Path, impl_subdir: Path) -> None:
     """Emits C++ header and implementation files for the layout object."""
     out_file = out_dir/f"{layout.name}.hpp"
     writer = Writer(out_file)
@@ -867,7 +870,7 @@ def emit_layout(layout: Object, out_dir: Path, impl_subdir: Path):
     writer.close()
 
 
-def collect_layout_attributes(schema):
+def collect_layout_attributes(schema: Dict[str, Any]) -> Dict[str, Any]:
     """Merges layoutAttributes from schema.layout and schema.traces."""
     attributes = schema["layout"]["layoutAttributes"].copy()
     for trace in schema["traces"].values():
@@ -876,7 +879,7 @@ def collect_layout_attributes(schema):
     return attributes
 
 
-def create_layout(layout_attributes_node):
+def create_layout(layout_attributes_node: Dict[str, Any]) -> None:
     """Creates and emits the layout object from a schema node."""
     layout = Object()
     layout.name = "layout"
@@ -893,7 +896,7 @@ def create_layout(layout_attributes_node):
     # We did our best with formatting, but let's auto format to catch long comments, etc.
     subprocess.run(["clang-format", "--style=file", "-i", str(layout_dir/f"{layout.name}.hpp")], check=True)
 
-def main():
+def main() -> None:
     """Main function to parse schema and generate C++ files."""
     schema = {}
     with open(Path(__file__).parent / 'schema.json') as f:

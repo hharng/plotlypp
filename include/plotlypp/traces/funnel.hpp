@@ -37,6 +37,23 @@ class Funnel : public Trace {
     };
     static std::string to_string(Constraintext e);
 
+    enum class Hoverinfo {
+        Name,
+        X,
+        Y,
+        Text,
+        PercentInitial,
+        PercentPrevious,
+        PercentTotal,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
     enum class Insidetextanchor {
         End,
         Middle,
@@ -49,6 +66,20 @@ class Funnel : public Trace {
         H,
     };
     static std::string to_string(Orientation e);
+
+    enum class Textinfo {
+        Label,
+        Text,
+        PercentInitial,
+        PercentPrevious,
+        PercentTotal,
+        Value,
+    };
+    enum class TextinfoExtra {
+        None,
+    };
+    static std::string to_string(Textinfo e);
+    static std::string to_string(TextinfoExtra e);
 
     enum class Textposition {
         Inside,
@@ -78,37 +109,6 @@ class Funnel : public Trace {
         End,
     };
     static std::string to_string(Yperiodalignment e);
-
-    enum class Hoverinfo {
-        Name,
-        X,
-        Y,
-        Text,
-        PercentInitial,
-        PercentPrevious,
-        PercentTotal,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
-
-    enum class Textinfo {
-        Label,
-        Text,
-        PercentInitial,
-        PercentPrevious,
-        PercentTotal,
-        Value,
-    };
-    enum class TextinfoExtra {
-        None,
-    };
-    static std::string to_string(Textinfo e);
-    static std::string to_string(TextinfoExtra e);
 
     class Connector;
     class Hoverlabel;
@@ -562,6 +562,17 @@ class Funnel::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -585,17 +596,6 @@ class Funnel::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Hoverlabel::Font& color(std::string f);
     Funnel::Hoverlabel::Font& color(double f);
@@ -686,6 +686,17 @@ class Funnel::Insidetextfont {
     Insidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -709,17 +720,6 @@ class Funnel::Insidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Insidetextfont& color(std::string f);
     Funnel::Insidetextfont& color(double f);
@@ -831,6 +831,17 @@ class Funnel::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -854,17 +865,6 @@ class Funnel::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Legendgrouptitle::Font& color(std::string f);
     Funnel::Legendgrouptitle::Font& color(double f);
@@ -1350,6 +1350,17 @@ class Funnel::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1373,17 +1384,6 @@ class Funnel::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Marker::Colorbar::Tickfont& color(std::string f);
     Funnel::Marker::Colorbar::Tickfont& color(double f);
@@ -1506,6 +1506,17 @@ class Funnel::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1529,17 +1540,6 @@ class Funnel::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Marker::Colorbar::Title::Font& color(std::string f);
     Funnel::Marker::Colorbar::Title::Font& color(double f);
@@ -1669,6 +1669,17 @@ class Funnel::Outsidetextfont {
     Outsidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1692,17 +1703,6 @@ class Funnel::Outsidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Outsidetextfont& color(std::string f);
     Funnel::Outsidetextfont& color(double f);
@@ -1811,6 +1811,17 @@ class Funnel::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1834,17 +1845,6 @@ class Funnel::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Funnel::Textfont& color(std::string f);
     Funnel::Textfont& color(double f);

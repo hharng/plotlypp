@@ -40,6 +40,32 @@ class Scattergl : public Trace {
     };
     static std::string to_string(Fill e);
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     enum class Textposition {
         TopLeft,
         TopCenter,
@@ -113,32 +139,6 @@ class Scattergl : public Trace {
         End,
     };
     static std::string to_string(Yperiodalignment e);
-
-    enum class Hoverinfo {
-        X,
-        Y,
-        Z,
-        Text,
-        Name,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
-
-    enum class Mode {
-        Lines,
-        Markers,
-        Text,
-    };
-    enum class ModeExtra {
-        None,
-    };
-    static std::string to_string(Mode e);
-    static std::string to_string(ModeExtra e);
 
     class Error_X;
     class Error_Y;
@@ -677,6 +677,17 @@ class Scattergl::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -700,17 +711,6 @@ class Scattergl::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattergl::Hoverlabel::Font& color(std::string f);
     Scattergl::Hoverlabel::Font& color(double f);
@@ -822,6 +822,17 @@ class Scattergl::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -845,17 +856,6 @@ class Scattergl::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattergl::Legendgrouptitle::Font& color(std::string f);
     Scattergl::Legendgrouptitle::Font& color(double f);
@@ -1756,6 +1756,17 @@ class Scattergl::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1779,17 +1790,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattergl::Marker::Colorbar::Tickfont& color(std::string f);
     Scattergl::Marker::Colorbar::Tickfont& color(double f);
@@ -1912,6 +1912,17 @@ class Scattergl::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1935,17 +1946,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattergl::Marker::Colorbar::Title::Font& color(std::string f);
     Scattergl::Marker::Colorbar::Title::Font& color(double f);

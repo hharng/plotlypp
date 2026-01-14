@@ -36,6 +36,37 @@ class Scattercarpet : public Trace {
     };
     static std::string to_string(Fill e);
 
+    enum class Hoverinfo {
+        A,
+        B,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Points,
+        Fills,
+    };
+    static std::string to_string(Hoveron e);
+
+    enum class Mode {
+        Lines,
+        Markers,
+        Text,
+    };
+    enum class ModeExtra {
+        None,
+    };
+    static std::string to_string(Mode e);
+    static std::string to_string(ModeExtra e);
+
     enum class Textposition {
         TopLeft,
         TopCenter,
@@ -55,39 +86,6 @@ class Scattercarpet : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
-
-    enum class Hoverinfo {
-        A,
-        B,
-        Text,
-        Name,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
-
-    enum class Hoveron {
-        Points,
-        Fills,
-    };
-    enum class HoveronExtra {};
-    static std::string to_string(Hoveron e);
-    static std::string to_string(HoveronExtra e);
-
-    enum class Mode {
-        Lines,
-        Markers,
-        Text,
-    };
-    enum class ModeExtra {
-        None,
-    };
-    static std::string to_string(Mode e);
-    static std::string to_string(ModeExtra e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -161,7 +159,6 @@ class Scattercarpet : public Trace {
     // *points*.
     // - Flags: ['points', 'fills']
     Scattercarpet& hoveron(std::initializer_list<Hoveron> flags);
-    Scattercarpet& hoveron(HoveronExtra extra);
 
     // Template string used for rendering the information that appear on hover box. Note that this will override
     // `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}" as well as %{xother}, {%_xother},
@@ -417,6 +414,17 @@ class Scattercarpet::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -440,17 +448,6 @@ class Scattercarpet::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattercarpet::Hoverlabel::Font& color(std::string f);
     Scattercarpet::Hoverlabel::Font& color(double f);
@@ -562,6 +559,17 @@ class Scattercarpet::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -585,17 +593,6 @@ class Scattercarpet::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattercarpet::Legendgrouptitle::Font& color(std::string f);
     Scattercarpet::Legendgrouptitle::Font& color(double f);
@@ -1524,6 +1521,17 @@ class Scattercarpet::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1547,17 +1555,6 @@ class Scattercarpet::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattercarpet::Marker::Colorbar::Tickfont& color(std::string f);
     Scattercarpet::Marker::Colorbar::Tickfont& color(double f);
@@ -1680,6 +1677,17 @@ class Scattercarpet::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1703,17 +1711,6 @@ class Scattercarpet::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattercarpet::Marker::Colorbar::Title::Font& color(std::string f);
     Scattercarpet::Marker::Colorbar::Title::Font& color(double f);
@@ -1952,6 +1949,17 @@ class Scattercarpet::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1975,17 +1983,6 @@ class Scattercarpet::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Scattercarpet::Textfont& color(std::string f);
     Scattercarpet::Textfont& color(double f);

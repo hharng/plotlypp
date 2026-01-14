@@ -35,28 +35,11 @@ class Sunburst : public Trace {
     };
     static std::string to_string(Branchvalues e);
 
-    enum class Insidetextorientation {
-        Horizontal,
-        Radial,
-        Tangential,
-        Auto,
-    };
-    static std::string to_string(Insidetextorientation e);
-
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Count {
         Branches,
         Leaves,
     };
-    enum class CountExtra {};
     static std::string to_string(Count e);
-    static std::string to_string(CountExtra e);
 
     enum class Hoverinfo {
         Label,
@@ -76,6 +59,14 @@ class Sunburst : public Trace {
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
 
+    enum class Insidetextorientation {
+        Horizontal,
+        Radial,
+        Tangential,
+        Auto,
+    };
+    static std::string to_string(Insidetextorientation e);
+
     enum class Textinfo {
         Label,
         Text,
@@ -90,6 +81,13 @@ class Sunburst : public Trace {
     };
     static std::string to_string(Textinfo e);
     static std::string to_string(TextinfoExtra e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -118,7 +116,6 @@ class Sunburst : public Trace {
     // - Default: leaves
     // - Flags: ['branches', 'leaves']
     Sunburst& count(std::initializer_list<Count> flags);
-    Sunburst& count(CountExtra extra);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
@@ -451,6 +448,17 @@ class Sunburst::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -474,17 +482,6 @@ class Sunburst::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Hoverlabel::Font& color(std::string f);
     Sunburst::Hoverlabel::Font& color(double f);
@@ -575,6 +572,17 @@ class Sunburst::Insidetextfont {
     Insidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -598,17 +606,6 @@ class Sunburst::Insidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Insidetextfont& color(std::string f);
     Sunburst::Insidetextfont& color(double f);
@@ -733,6 +730,17 @@ class Sunburst::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -756,17 +764,6 @@ class Sunburst::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Legendgrouptitle::Font& color(std::string f);
     Sunburst::Legendgrouptitle::Font& color(double f);
@@ -1250,6 +1247,17 @@ class Sunburst::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1273,17 +1281,6 @@ class Sunburst::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Marker::Colorbar::Tickfont& color(std::string f);
     Sunburst::Marker::Colorbar::Tickfont& color(double f);
@@ -1406,6 +1403,17 @@ class Sunburst::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1429,17 +1437,6 @@ class Sunburst::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Marker::Colorbar::Title::Font& color(std::string f);
     Sunburst::Marker::Colorbar::Title::Font& color(double f);
@@ -1591,6 +1588,17 @@ class Sunburst::Outsidetextfont {
     Outsidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1614,17 +1622,6 @@ class Sunburst::Outsidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Outsidetextfont& color(std::string f);
     Sunburst::Outsidetextfont& color(double f);
@@ -1748,6 +1745,17 @@ class Sunburst::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1771,17 +1779,6 @@ class Sunburst::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Sunburst::Textfont& color(std::string f);
     Sunburst::Textfont& color(double f);

@@ -38,19 +38,6 @@ class Image : public Trace {
     };
     static std::string to_string(Colormodel e);
 
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
-    enum class Zsmooth {
-        Fast,
-        False,
-    };
-    static std::string to_string(Zsmooth e);
-
     enum class Hoverinfo {
         X,
         Y,
@@ -66,6 +53,19 @@ class Image : public Trace {
     };
     static std::string to_string(Hoverinfo e);
     static std::string to_string(HoverinfoExtra e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
+
+    enum class Zsmooth {
+        Fast,
+        False,
+    };
+    static std::string to_string(Zsmooth e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -336,6 +336,17 @@ class Image::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -359,17 +370,6 @@ class Image::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Image::Hoverlabel::Font& color(std::string f);
     Image::Hoverlabel::Font& color(double f);
@@ -481,6 +481,17 @@ class Image::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -504,17 +515,6 @@ class Image::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Image::Legendgrouptitle::Font& color(std::string f);
     Image::Legendgrouptitle::Font& color(double f);

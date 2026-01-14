@@ -35,33 +35,11 @@ class Icicle : public Trace {
     };
     static std::string to_string(Branchvalues e);
 
-    enum class Textposition {
-        TopLeft,
-        TopCenter,
-        TopRight,
-        MiddleLeft,
-        MiddleCenter,
-        MiddleRight,
-        BottomLeft,
-        BottomCenter,
-        BottomRight,
-    };
-    static std::string to_string(Textposition e);
-
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Count {
         Branches,
         Leaves,
     };
-    enum class CountExtra {};
     static std::string to_string(Count e);
-    static std::string to_string(CountExtra e);
 
     enum class Hoverinfo {
         Label,
@@ -96,6 +74,26 @@ class Icicle : public Trace {
     static std::string to_string(Textinfo e);
     static std::string to_string(TextinfoExtra e);
 
+    enum class Textposition {
+        TopLeft,
+        TopCenter,
+        TopRight,
+        MiddleLeft,
+        MiddleCenter,
+        MiddleRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight,
+    };
+    static std::string to_string(Textposition e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
+
     class Domain;
     class Hoverlabel;
     // Sets the font used for `textinfo` lying inside the sector.
@@ -125,7 +123,6 @@ class Icicle : public Trace {
     // - Default: leaves
     // - Flags: ['branches', 'leaves']
     Icicle& count(std::initializer_list<Count> flags);
-    Icicle& count(CountExtra extra);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
@@ -459,6 +456,17 @@ class Icicle::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -482,17 +490,6 @@ class Icicle::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Hoverlabel::Font& color(std::string f);
     Icicle::Hoverlabel::Font& color(double f);
@@ -583,6 +580,17 @@ class Icicle::Insidetextfont {
     Insidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -606,17 +614,6 @@ class Icicle::Insidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Insidetextfont& color(std::string f);
     Icicle::Insidetextfont& color(double f);
@@ -741,6 +738,17 @@ class Icicle::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -764,17 +772,6 @@ class Icicle::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Legendgrouptitle::Font& color(std::string f);
     Icicle::Legendgrouptitle::Font& color(double f);
@@ -1258,6 +1255,17 @@ class Icicle::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1281,17 +1289,6 @@ class Icicle::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Marker::Colorbar::Tickfont& color(std::string f);
     Icicle::Marker::Colorbar::Tickfont& color(double f);
@@ -1414,6 +1411,17 @@ class Icicle::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1437,17 +1445,6 @@ class Icicle::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Marker::Colorbar::Title::Font& color(std::string f);
     Icicle::Marker::Colorbar::Title::Font& color(double f);
@@ -1599,6 +1596,17 @@ class Icicle::Outsidetextfont {
     Outsidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1622,17 +1630,6 @@ class Icicle::Outsidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Outsidetextfont& color(std::string f);
     Icicle::Outsidetextfont& color(double f);
@@ -1771,6 +1768,17 @@ class Icicle::Pathbar::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1794,17 +1802,6 @@ class Icicle::Pathbar::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Pathbar::Textfont& color(std::string f);
     Icicle::Pathbar::Textfont& color(double f);
@@ -1928,6 +1925,17 @@ class Icicle::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1951,17 +1959,6 @@ class Icicle::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Icicle::Textfont& color(std::string f);
     Icicle::Textfont& color(double f);
@@ -2051,25 +2048,22 @@ class Icicle::Tiling {
     Tiling(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Flip {
+        X,
+        Y,
+    };
+    static std::string to_string(Flip e);
+
     enum class Orientation {
         V,
         H,
     };
     static std::string to_string(Orientation e);
 
-    enum class Flip {
-        X,
-        Y,
-    };
-    enum class FlipExtra {};
-    static std::string to_string(Flip e);
-    static std::string to_string(FlipExtra e);
-
     // Determines if the positions obtained from solver are flipped on each axis.
     // - Default:
     // - Flags: ['x', 'y']
     Icicle::Tiling& flip(std::initializer_list<Flip> flags);
-    Icicle::Tiling& flip(FlipExtra extra);
 
     // When set in conjunction with `tiling.flip`, determines on which side the root nodes are drawn in the chart. If
     // `tiling.orientation` is *v* and `tiling.flip` is **, the root nodes appear at the top. If `tiling.orientation` is

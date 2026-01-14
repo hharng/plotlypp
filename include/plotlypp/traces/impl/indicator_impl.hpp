@@ -21,15 +21,6 @@ inline std::string Indicator::to_string(Align e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Indicator::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Indicator::to_string(Mode e) {
     switch(e) {
         case Mode::Number: return "number";
@@ -38,10 +29,14 @@ inline std::string Indicator::to_string(Mode e) {
     }
     throw std::invalid_argument{"Unknown flag value for mode."};
 }
-inline std::string Indicator::to_string(ModeExtra e) {
+inline std::string Indicator::to_string(Visible e) {
     switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
     }
-    throw std::invalid_argument{"Unknown extra value for mode."};
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Indicator& Indicator::align(enum Align f) {
@@ -148,10 +143,6 @@ inline Indicator& Indicator::metasrc(std::string f) {
 
 inline Indicator& Indicator::mode(std::initializer_list<Mode> flags) {
     json["mode"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Indicator& Indicator::mode(ModeExtra extra) {
-    json["mode"] = to_string(extra);
     return *this;
 }
 
@@ -303,6 +294,20 @@ inline Indicator::Delta::Decreasing& Indicator::Delta::Decreasing::symbol(std::s
     return *this;
 }
 
+inline std::string Indicator::Delta::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Delta::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Indicator::Delta::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -332,20 +337,6 @@ inline std::string Indicator::Delta::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Delta::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Indicator::Delta::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Indicator::Delta::Font& Indicator::Delta::Font::color(std::string f) {
@@ -772,6 +763,20 @@ inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::visible(bool f) {
     return *this;
 }
 
+inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Gauge::Axis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -801,20 +806,6 @@ inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Indicator::Gauge::Axis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::color(std::string f) {
@@ -1071,6 +1062,20 @@ inline Indicator::Legendgrouptitle& Indicator::Legendgrouptitle::text(std::strin
     return *this;
 }
 
+inline std::string Indicator::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Indicator::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1100,20 +1105,6 @@ inline std::string Indicator::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Indicator::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::color(std::string f) {
@@ -1196,6 +1187,20 @@ inline Indicator::Number& Indicator::Number::valueformat(std::string f) {
     return *this;
 }
 
+inline std::string Indicator::Number::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Number::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Indicator::Number::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1225,20 +1230,6 @@ inline std::string Indicator::Number::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Number::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Indicator::Number::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Indicator::Number::Font& Indicator::Number::Font::color(std::string f) {
@@ -1336,6 +1327,20 @@ inline Indicator::Title& Indicator::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Indicator::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Indicator::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Indicator::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1365,20 +1370,6 @@ inline std::string Indicator::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Indicator::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Indicator::Title::Font& Indicator::Title::Font::color(std::string f) {

@@ -42,6 +42,19 @@ inline std::string Layout::to_string(Calendar e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Layout::to_string(Clickmode e) {
+    switch(e) {
+        case Clickmode::Event: return "event";
+        case Clickmode::Select: return "select";
+    }
+    throw std::invalid_argument{"Unknown flag value for clickmode."};
+}
+inline std::string Layout::to_string(ClickmodeExtra e) {
+    switch(e) {
+        case ClickmodeExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for clickmode."};
+}
 inline std::string Layout::to_string(Dragmode e) {
     switch(e) {
         case Dragmode::Zoom: return "zoom";
@@ -150,19 +163,6 @@ inline std::string Layout::to_string(Waterfallmode e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Clickmode e) {
-    switch(e) {
-        case Clickmode::Event: return "event";
-        case Clickmode::Select: return "select";
-    }
-    throw std::invalid_argument{"Unknown flag value for clickmode."};
-}
-inline std::string Layout::to_string(ClickmodeExtra e) {
-    switch(e) {
-        case ClickmodeExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for clickmode."};
 }
 
 inline Layout& Layout::activeselection(Activeselection f) {
@@ -976,6 +976,19 @@ inline std::string Layout::Annotation::to_string(Align e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Layout::Annotation::to_string(Arrowside e) {
+    switch(e) {
+        case Arrowside::End: return "end";
+        case Arrowside::Start: return "start";
+    }
+    throw std::invalid_argument{"Unknown flag value for arrowside."};
+}
+inline std::string Layout::Annotation::to_string(ArrowsideExtra e) {
+    switch(e) {
+        case ArrowsideExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for arrowside."};
+}
 inline std::string Layout::Annotation::to_string(Clicktoshow e) {
     switch(e) {
         case Clicktoshow::False: return "False";
@@ -1013,19 +1026,6 @@ inline std::string Layout::Annotation::to_string(Yanchor e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::to_string(Arrowside e) {
-    switch(e) {
-        case Arrowside::End: return "end";
-        case Arrowside::Start: return "start";
-    }
-    throw std::invalid_argument{"Unknown flag value for arrowside."};
-}
-inline std::string Layout::Annotation::to_string(ArrowsideExtra e) {
-    switch(e) {
-        case ArrowsideExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for arrowside."};
 }
 
 inline Layout::Annotation& Layout::Annotation::align(enum Align f) {
@@ -1277,6 +1277,20 @@ inline Layout::Annotation& Layout::Annotation::yshift(double f) {
     return *this;
 }
 
+inline std::string Layout::Annotation::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Annotation::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Annotation::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1306,20 +1320,6 @@ inline std::string Layout::Annotation::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Annotation::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::color(std::string f) {
@@ -1405,6 +1405,20 @@ inline Layout::Annotation::Hoverlabel& Layout::Annotation::Hoverlabel::font(Call
     return font(std::move(f));
 }
 
+inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Annotation::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1434,20 +1448,6 @@ inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Annotation::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::color(std::string f) {
@@ -1977,6 +1977,20 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::yref(enum Yref 
     return *this;
 }
 
+inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2006,20 +2020,6 @@ inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::color(std::string f) {
@@ -2144,6 +2144,20 @@ inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::t
     return *this;
 }
 
+inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2173,20 +2187,6 @@ inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Variant e
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::color(std::string f) {
@@ -2270,6 +2270,20 @@ inline Layout::Colorscale& Layout::Colorscale::sequentialminus(const std::vector
     return *this;
 }
 
+inline std::string Layout::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2299,20 +2313,6 @@ inline std::string Layout::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Font& Layout::Font::color(std::string f) {
@@ -3175,6 +3175,20 @@ inline Layout::Hoverlabel& Layout::Hoverlabel::namelength(int f) {
     return *this;
 }
 
+inline std::string Layout::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -3204,20 +3218,6 @@ inline std::string Layout::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::color(std::string f) {
@@ -3273,6 +3273,20 @@ inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::weight(int f) {
     return *this;
 }
 
+inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -3302,20 +3316,6 @@ inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::color(std::string f) {
@@ -3534,6 +3534,19 @@ inline std::string Layout::Legend::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Layout::Legend::to_string(Traceorder e) {
+    switch(e) {
+        case Traceorder::Reversed: return "reversed";
+        case Traceorder::Grouped: return "grouped";
+    }
+    throw std::invalid_argument{"Unknown flag value for traceorder."};
+}
+inline std::string Layout::Legend::to_string(TraceorderExtra e) {
+    switch(e) {
+        case TraceorderExtra::Normal: return "normal";
+    }
+    throw std::invalid_argument{"Unknown extra value for traceorder."};
+}
 inline std::string Layout::Legend::to_string(Valign e) {
     switch(e) {
         case Valign::Top: return "top";
@@ -3578,19 +3591,6 @@ inline std::string Layout::Legend::to_string(Yref e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Traceorder e) {
-    switch(e) {
-        case Traceorder::Reversed: return "reversed";
-        case Traceorder::Grouped: return "grouped";
-    }
-    throw std::invalid_argument{"Unknown flag value for traceorder."};
-}
-inline std::string Layout::Legend::to_string(TraceorderExtra e) {
-    switch(e) {
-        case TraceorderExtra::Normal: return "normal";
-    }
-    throw std::invalid_argument{"Unknown extra value for traceorder."};
 }
 
 inline Layout::Legend& Layout::Legend::bgcolor(std::string f) {
@@ -3754,6 +3754,20 @@ inline Layout::Legend& Layout::Legend::yref(enum Yref f) {
     return *this;
 }
 
+inline std::string Layout::Legend::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Legend::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Legend::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -3783,20 +3797,6 @@ inline std::string Layout::Legend::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Legend::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::color(std::string f) {
@@ -3852,6 +3852,20 @@ inline Layout::Legend::Font& Layout::Legend::Font::weight(int f) {
     return *this;
 }
 
+inline std::string Layout::Legend::Grouptitlefont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Legend::Grouptitlefont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Legend::Grouptitlefont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -3881,20 +3895,6 @@ inline std::string Layout::Legend::Grouptitlefont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Grouptitlefont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Legend::Grouptitlefont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::color(std::string f) {
@@ -3983,6 +3983,20 @@ inline Layout::Legend::Title& Layout::Legend::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Layout::Legend::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Legend::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Legend::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -4012,20 +4026,6 @@ inline std::string Layout::Legend::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Legend::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::color(std::string f) {
@@ -5293,6 +5293,20 @@ inline Layout::Newshape::Label& Layout::Newshape::Label::yanchor(enum Yanchor f)
     return *this;
 }
 
+inline std::string Layout::Newshape::Label::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Newshape::Label::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Newshape::Label::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -5322,20 +5336,6 @@ inline std::string Layout::Newshape::Label::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Label::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Newshape::Label::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::color(std::string f) {
@@ -5408,6 +5408,20 @@ inline Layout::Newshape::Legendgrouptitle& Layout::Newshape::Legendgrouptitle::t
     return *this;
 }
 
+inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -5437,20 +5451,6 @@ inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Variant e
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::color(std::string f) {
@@ -6006,6 +6006,20 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::visible(bool f) {
     return *this;
 }
 
+inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -6035,20 +6049,6 @@ inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::color(std::string f) {
@@ -6735,6 +6735,20 @@ inline Layout::Polar::Radialaxis::Autorangeoptions& Layout::Polar::Radialaxis::A
     return *this;
 }
 
+inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -6764,20 +6778,6 @@ inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::color(std::string f) {
@@ -6888,6 +6888,20 @@ inline Layout::Polar::Radialaxis::Title& Layout::Polar::Radialaxis::Title::text(
     return *this;
 }
 
+inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -6917,20 +6931,6 @@ inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Variant e) 
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::color(std::string f) {
@@ -7128,6 +7128,19 @@ inline std::string Layout::Scene::Annotation::to_string(Align e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Layout::Scene::Annotation::to_string(Arrowside e) {
+    switch(e) {
+        case Arrowside::End: return "end";
+        case Arrowside::Start: return "start";
+    }
+    throw std::invalid_argument{"Unknown flag value for arrowside."};
+}
+inline std::string Layout::Scene::Annotation::to_string(ArrowsideExtra e) {
+    switch(e) {
+        case ArrowsideExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for arrowside."};
+}
 inline std::string Layout::Scene::Annotation::to_string(Valign e) {
     switch(e) {
         case Valign::Top: return "top";
@@ -7156,19 +7169,6 @@ inline std::string Layout::Scene::Annotation::to_string(Yanchor e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::to_string(Arrowside e) {
-    switch(e) {
-        case Arrowside::End: return "end";
-        case Arrowside::Start: return "start";
-    }
-    throw std::invalid_argument{"Unknown flag value for arrowside."};
-}
-inline std::string Layout::Scene::Annotation::to_string(ArrowsideExtra e) {
-    switch(e) {
-        case ArrowsideExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for arrowside."};
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::align(enum Align f) {
@@ -7387,6 +7387,20 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::z(T f) {
     return *this;
 }
 
+inline std::string Layout::Scene::Annotation::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Annotation::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Annotation::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -7416,20 +7430,6 @@ inline std::string Layout::Scene::Annotation::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Annotation::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::color(std::string f) {
@@ -7515,6 +7515,20 @@ inline Layout::Scene::Annotation::Hoverlabel& Layout::Scene::Annotation::Hoverla
     return font(std::move(f));
 }
 
+inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -7544,20 +7558,6 @@ inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Varian
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::color(std::string f) {
@@ -8355,6 +8355,20 @@ inline Layout::Scene::Xaxis::Autorangeoptions& Layout::Scene::Xaxis::Autorangeop
     return *this;
 }
 
+inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Xaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -8384,20 +8398,6 @@ inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Xaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::color(std::string f) {
@@ -8508,6 +8508,20 @@ inline Layout::Scene::Xaxis::Title& Layout::Scene::Xaxis::Title::text(std::strin
     return *this;
 }
 
+inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Xaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -8537,20 +8551,6 @@ inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Xaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::color(std::string f) {
@@ -9168,6 +9168,20 @@ inline Layout::Scene::Yaxis::Autorangeoptions& Layout::Scene::Yaxis::Autorangeop
     return *this;
 }
 
+inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Yaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -9197,20 +9211,6 @@ inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Yaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::color(std::string f) {
@@ -9321,6 +9321,20 @@ inline Layout::Scene::Yaxis::Title& Layout::Scene::Yaxis::Title::text(std::strin
     return *this;
 }
 
+inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Yaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -9350,20 +9364,6 @@ inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Yaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::color(std::string f) {
@@ -9981,6 +9981,20 @@ inline Layout::Scene::Zaxis::Autorangeoptions& Layout::Scene::Zaxis::Autorangeop
     return *this;
 }
 
+inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Zaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -10010,20 +10024,6 @@ inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Zaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::color(std::string f) {
@@ -10134,6 +10134,20 @@ inline Layout::Scene::Zaxis::Title& Layout::Scene::Zaxis::Title::text(std::strin
     return *this;
 }
 
+inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Scene::Zaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -10163,20 +10177,6 @@ inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Scene::Zaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::color(std::string f) {
@@ -10656,6 +10656,20 @@ inline Layout::Shape::Label& Layout::Shape::Label::yanchor(enum Yanchor f) {
     return *this;
 }
 
+inline std::string Layout::Shape::Label::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Shape::Label::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Shape::Label::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -10685,20 +10699,6 @@ inline std::string Layout::Shape::Label::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Label::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Shape::Label::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::color(std::string f) {
@@ -10771,6 +10771,20 @@ inline Layout::Shape::Legendgrouptitle& Layout::Shape::Legendgrouptitle::text(st
     return *this;
 }
 
+inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -10800,20 +10814,6 @@ inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::color(std::string f) {
@@ -11121,6 +11121,20 @@ inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::xanchor(enum 
     return *this;
 }
 
+inline std::string Layout::Slider::Currentvalue::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Slider::Currentvalue::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Slider::Currentvalue::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -11150,20 +11164,6 @@ inline std::string Layout::Slider::Currentvalue::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::Currentvalue::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Slider::Currentvalue::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::color(std::string f) {
@@ -11219,6 +11219,20 @@ inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::w
     return *this;
 }
 
+inline std::string Layout::Slider::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Slider::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Slider::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -11248,20 +11262,6 @@ inline std::string Layout::Slider::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Slider::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::color(std::string f) {
@@ -11730,6 +11730,20 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::visible(bool 
     return *this;
 }
 
+inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -11759,20 +11773,6 @@ inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Variant e) 
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::color(std::string f) {
@@ -12033,6 +12033,20 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::visible(bool f) {
     return *this;
 }
 
+inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Smith::Realaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -12062,20 +12076,6 @@ inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Smith::Realaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::color(std::string f) {
@@ -12500,6 +12500,20 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::uirevision(T f) {
     return *this;
 }
 
+inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -12529,20 +12543,6 @@ inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::color(std::string f) {
@@ -12653,6 +12653,20 @@ inline Layout::Ternary::Aaxis::Title& Layout::Ternary::Aaxis::Title::text(std::s
     return *this;
 }
 
+inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -12682,20 +12696,6 @@ inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::color(std::string f) {
@@ -13055,6 +13055,20 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::uirevision(T f) {
     return *this;
 }
 
+inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Ternary::Baxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -13084,20 +13098,6 @@ inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Ternary::Baxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::color(std::string f) {
@@ -13208,6 +13208,20 @@ inline Layout::Ternary::Baxis::Title& Layout::Ternary::Baxis::Title::text(std::s
     return *this;
 }
 
+inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Ternary::Baxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -13237,20 +13251,6 @@ inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Ternary::Baxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::color(std::string f) {
@@ -13610,6 +13610,20 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::uirevision(T f) {
     return *this;
 }
 
+inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Ternary::Caxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -13639,20 +13653,6 @@ inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Ternary::Caxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::color(std::string f) {
@@ -13763,6 +13763,20 @@ inline Layout::Ternary::Caxis::Title& Layout::Ternary::Caxis::Title::text(std::s
     return *this;
 }
 
+inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Ternary::Caxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -13792,20 +13806,6 @@ inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Ternary::Caxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::color(std::string f) {
@@ -14016,6 +14016,20 @@ inline Layout::Title& Layout::Title::yref(enum Yref f) {
     return *this;
 }
 
+inline std::string Layout::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -14045,20 +14059,6 @@ inline std::string Layout::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Title::Font& Layout::Title::Font::color(std::string f) {
@@ -14152,6 +14152,20 @@ inline Layout::Title::Subtitle& Layout::Title::Subtitle::text(std::string f) {
     return *this;
 }
 
+inline std::string Layout::Title::Subtitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Title::Subtitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Title::Subtitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -14181,20 +14195,6 @@ inline std::string Layout::Title::Subtitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::Subtitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Title::Subtitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::color(std::string f) {
@@ -14558,6 +14558,20 @@ inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::visible(bool f) {
     return *this;
 }
 
+inline std::string Layout::Updatemenu::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Updatemenu::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Updatemenu::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -14587,20 +14601,6 @@ inline std::string Layout::Updatemenu::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Updatemenu::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Updatemenu::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::color(std::string f) {
@@ -14677,6 +14677,24 @@ inline Layout::Updatemenu::Pad& Layout::Updatemenu::Pad::t(double f) {
     return *this;
 }
 
+inline std::string Layout::Xaxis::to_string(Automargin e) {
+    switch(e) {
+        case Automargin::Height: return "height";
+        case Automargin::Width: return "width";
+        case Automargin::Left: return "left";
+        case Automargin::Right: return "right";
+        case Automargin::Top: return "top";
+        case Automargin::Bottom: return "bottom";
+    }
+    throw std::invalid_argument{"Unknown flag value for automargin."};
+}
+inline std::string Layout::Xaxis::to_string(AutomarginExtra e) {
+    switch(e) {
+        case AutomarginExtra::True: return "True";
+        case AutomarginExtra::False: return "False";
+    }
+    throw std::invalid_argument{"Unknown extra value for automargin."};
+}
 inline std::string Layout::Xaxis::to_string(Autorange e) {
     switch(e) {
         case Autorange::True: return "True";
@@ -14843,6 +14861,14 @@ inline std::string Layout::Xaxis::to_string(Side e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Layout::Xaxis::to_string(Spikemode e) {
+    switch(e) {
+        case Spikemode::Toaxis: return "toaxis";
+        case Spikemode::Across: return "across";
+        case Spikemode::Marker: return "marker";
+    }
+    throw std::invalid_argument{"Unknown flag value for spikemode."};
+}
 inline std::string Layout::Xaxis::to_string(Spikesnap e) {
     switch(e) {
         case Spikesnap::Data: return "data";
@@ -14923,37 +14949,6 @@ inline std::string Layout::Xaxis::to_string(Type e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Automargin e) {
-    switch(e) {
-        case Automargin::Height: return "height";
-        case Automargin::Width: return "width";
-        case Automargin::Left: return "left";
-        case Automargin::Right: return "right";
-        case Automargin::Top: return "top";
-        case Automargin::Bottom: return "bottom";
-    }
-    throw std::invalid_argument{"Unknown flag value for automargin."};
-}
-inline std::string Layout::Xaxis::to_string(AutomarginExtra e) {
-    switch(e) {
-        case AutomarginExtra::True: return "True";
-        case AutomarginExtra::False: return "False";
-    }
-    throw std::invalid_argument{"Unknown extra value for automargin."};
-}
-inline std::string Layout::Xaxis::to_string(Spikemode e) {
-    switch(e) {
-        case Spikemode::Toaxis: return "toaxis";
-        case Spikemode::Across: return "across";
-        case Spikemode::Marker: return "marker";
-    }
-    throw std::invalid_argument{"Unknown flag value for spikemode."};
-}
-inline std::string Layout::Xaxis::to_string(SpikemodeExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for spikemode."};
 }
 
 inline Layout::Xaxis& Layout::Xaxis::anchor(std::string f) {
@@ -15341,10 +15336,6 @@ inline Layout::Xaxis& Layout::Xaxis::spikedash(std::string f) {
 
 inline Layout::Xaxis& Layout::Xaxis::spikemode(std::initializer_list<Spikemode> flags) {
     json["spikemode"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Layout::Xaxis& Layout::Xaxis::spikemode(SpikemodeExtra extra) {
-    json["spikemode"] = to_string(extra);
     return *this;
 }
 
@@ -15911,6 +15902,20 @@ inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Butto
     return *this;
 }
 
+inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Xaxis::Rangeselector::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -15940,20 +15945,6 @@ inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Xaxis::Rangeselector::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::color(std::string f) {
@@ -16119,6 +16110,20 @@ inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::ran
     return *this;
 }
 
+inline std::string Layout::Xaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Xaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Xaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -16148,20 +16153,6 @@ inline std::string Layout::Xaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Xaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::color(std::string f) {
@@ -16277,6 +16268,20 @@ inline Layout::Xaxis::Title& Layout::Xaxis::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Layout::Xaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Xaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Xaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -16306,20 +16311,6 @@ inline std::string Layout::Xaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Xaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::color(std::string f) {
@@ -16375,6 +16366,24 @@ inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::weight(int f) {
     return *this;
 }
 
+inline std::string Layout::Yaxis::to_string(Automargin e) {
+    switch(e) {
+        case Automargin::Height: return "height";
+        case Automargin::Width: return "width";
+        case Automargin::Left: return "left";
+        case Automargin::Right: return "right";
+        case Automargin::Top: return "top";
+        case Automargin::Bottom: return "bottom";
+    }
+    throw std::invalid_argument{"Unknown flag value for automargin."};
+}
+inline std::string Layout::Yaxis::to_string(AutomarginExtra e) {
+    switch(e) {
+        case AutomarginExtra::True: return "True";
+        case AutomarginExtra::False: return "False";
+    }
+    throw std::invalid_argument{"Unknown extra value for automargin."};
+}
 inline std::string Layout::Yaxis::to_string(Autorange e) {
     switch(e) {
         case Autorange::True: return "True";
@@ -16541,6 +16550,14 @@ inline std::string Layout::Yaxis::to_string(Side e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
+inline std::string Layout::Yaxis::to_string(Spikemode e) {
+    switch(e) {
+        case Spikemode::Toaxis: return "toaxis";
+        case Spikemode::Across: return "across";
+        case Spikemode::Marker: return "marker";
+    }
+    throw std::invalid_argument{"Unknown flag value for spikemode."};
+}
 inline std::string Layout::Yaxis::to_string(Spikesnap e) {
     switch(e) {
         case Spikesnap::Data: return "data";
@@ -16621,37 +16638,6 @@ inline std::string Layout::Yaxis::to_string(Type e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Automargin e) {
-    switch(e) {
-        case Automargin::Height: return "height";
-        case Automargin::Width: return "width";
-        case Automargin::Left: return "left";
-        case Automargin::Right: return "right";
-        case Automargin::Top: return "top";
-        case Automargin::Bottom: return "bottom";
-    }
-    throw std::invalid_argument{"Unknown flag value for automargin."};
-}
-inline std::string Layout::Yaxis::to_string(AutomarginExtra e) {
-    switch(e) {
-        case AutomarginExtra::True: return "True";
-        case AutomarginExtra::False: return "False";
-    }
-    throw std::invalid_argument{"Unknown extra value for automargin."};
-}
-inline std::string Layout::Yaxis::to_string(Spikemode e) {
-    switch(e) {
-        case Spikemode::Toaxis: return "toaxis";
-        case Spikemode::Across: return "across";
-        case Spikemode::Marker: return "marker";
-    }
-    throw std::invalid_argument{"Unknown flag value for spikemode."};
-}
-inline std::string Layout::Yaxis::to_string(SpikemodeExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for spikemode."};
 }
 
 inline Layout::Yaxis& Layout::Yaxis::anchor(std::string f) {
@@ -17027,10 +17013,6 @@ inline Layout::Yaxis& Layout::Yaxis::spikedash(std::string f) {
 
 inline Layout::Yaxis& Layout::Yaxis::spikemode(std::initializer_list<Spikemode> flags) {
     json["spikemode"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Layout::Yaxis& Layout::Yaxis::spikemode(SpikemodeExtra extra) {
-    json["spikemode"] = to_string(extra);
     return *this;
 }
 
@@ -17444,6 +17426,20 @@ inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::values(const std::v
     return *this;
 }
 
+inline std::string Layout::Yaxis::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Yaxis::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Yaxis::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -17473,20 +17469,6 @@ inline std::string Layout::Yaxis::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Yaxis::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::color(std::string f) {
@@ -17602,6 +17584,20 @@ inline Layout::Yaxis::Title& Layout::Yaxis::Title::text(std::string f) {
     return *this;
 }
 
+inline std::string Layout::Yaxis::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Layout::Yaxis::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Layout::Yaxis::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -17631,20 +17627,6 @@ inline std::string Layout::Yaxis::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Layout::Yaxis::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::color(std::string f) {

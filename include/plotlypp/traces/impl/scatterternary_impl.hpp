@@ -21,30 +21,6 @@ inline std::string Scatterternary::to_string(Fill e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Scatterternary::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterternary::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Scatterternary::to_string(Hoverinfo e) {
     switch(e) {
         case Hoverinfo::A: return "a";
@@ -70,11 +46,6 @@ inline std::string Scatterternary::to_string(Hoveron e) {
     }
     throw std::invalid_argument{"Unknown flag value for hoveron."};
 }
-inline std::string Scatterternary::to_string(HoveronExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for hoveron."};
-}
 inline std::string Scatterternary::to_string(Mode e) {
     switch(e) {
         case Mode::Lines: return "lines";
@@ -88,6 +59,30 @@ inline std::string Scatterternary::to_string(ModeExtra e) {
         case ModeExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for mode."};
+}
+inline std::string Scatterternary::to_string(Textposition e) {
+    switch(e) {
+        case Textposition::TopLeft: return "top left";
+        case Textposition::TopCenter: return "top center";
+        case Textposition::TopRight: return "top right";
+        case Textposition::MiddleLeft: return "middle left";
+        case Textposition::MiddleCenter: return "middle center";
+        case Textposition::MiddleRight: return "middle right";
+        case Textposition::BottomLeft: return "bottom left";
+        case Textposition::BottomCenter: return "bottom center";
+        case Textposition::BottomRight: return "bottom right";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Scatterternary::to_string(Visible e) {
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 template <typename Range, typename>
@@ -185,10 +180,6 @@ inline Scatterternary& Scatterternary::hoverlabel(Callable&& c) {
 
 inline Scatterternary& Scatterternary::hoveron(std::initializer_list<Hoveron> flags) {
     json["hoveron"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Scatterternary& Scatterternary::hoveron(HoveronExtra extra) {
-    json["hoveron"] = to_string(extra);
     return *this;
 }
 
@@ -539,6 +530,20 @@ inline Scatterternary::Hoverlabel& Scatterternary::Hoverlabel::namelengthsrc(std
     return *this;
 }
 
+inline std::string Scatterternary::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterternary::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterternary::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -568,20 +573,6 @@ inline std::string Scatterternary::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterternary::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterternary::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterternary::Hoverlabel::Font& Scatterternary::Hoverlabel::Font::color(std::string f) {
@@ -741,6 +732,20 @@ inline Scatterternary::Legendgrouptitle& Scatterternary::Legendgrouptitle::text(
     return *this;
 }
 
+inline std::string Scatterternary::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterternary::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterternary::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -770,20 +775,6 @@ inline std::string Scatterternary::Legendgrouptitle::Font::to_string(Variant e) 
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterternary::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterternary::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterternary::Legendgrouptitle::Font& Scatterternary::Legendgrouptitle::Font::color(std::string f) {
@@ -1857,6 +1848,20 @@ inline Scatterternary::Marker::Colorbar& Scatterternary::Marker::Colorbar::yref(
     return *this;
 }
 
+inline std::string Scatterternary::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterternary::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterternary::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1886,20 +1891,6 @@ inline std::string Scatterternary::Marker::Colorbar::Tickfont::to_string(Variant
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterternary::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterternary::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterternary::Marker::Colorbar::Tickfont& Scatterternary::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -2024,6 +2015,20 @@ inline Scatterternary::Marker::Colorbar::Title& Scatterternary::Marker::Colorbar
     return *this;
 }
 
+inline std::string Scatterternary::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterternary::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterternary::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2053,20 +2058,6 @@ inline std::string Scatterternary::Marker::Colorbar::Title::Font::to_string(Vari
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterternary::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterternary::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterternary::Marker::Colorbar::Title::Font& Scatterternary::Marker::Colorbar::Title::Font::color(std::string f) {
@@ -2316,6 +2307,20 @@ inline Scatterternary::Stream& Scatterternary::Stream::token(std::string f) {
     return *this;
 }
 
+inline std::string Scatterternary::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Scatterternary::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Scatterternary::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2345,20 +2350,6 @@ inline std::string Scatterternary::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Scatterternary::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Scatterternary::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Scatterternary::Textfont& Scatterternary::Textfont::color(std::string f) {

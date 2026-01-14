@@ -29,6 +29,32 @@ class Violin : public Trace {
     Violin(std::string jsonStr)
     : Trace(std::move(jsonStr)) {}
 
+    enum class Hoverinfo {
+        X,
+        Y,
+        Z,
+        Text,
+        Name,
+    };
+    enum class HoverinfoExtra {
+        All,
+        None,
+        Skip,
+    };
+    static std::string to_string(Hoverinfo e);
+    static std::string to_string(HoverinfoExtra e);
+
+    enum class Hoveron {
+        Violins,
+        Points,
+        Kde,
+    };
+    enum class HoveronExtra {
+        All,
+    };
+    static std::string to_string(Hoveron e);
+    static std::string to_string(HoveronExtra e);
+
     enum class Orientation {
         V,
         H,
@@ -76,32 +102,6 @@ class Violin : public Trace {
         Legendonly,
     };
     static std::string to_string(Visible e);
-
-    enum class Hoverinfo {
-        X,
-        Y,
-        Z,
-        Text,
-        Name,
-    };
-    enum class HoverinfoExtra {
-        All,
-        None,
-        Skip,
-    };
-    static std::string to_string(Hoverinfo e);
-    static std::string to_string(HoverinfoExtra e);
-
-    enum class Hoveron {
-        Violins,
-        Points,
-        Kde,
-    };
-    enum class HoveronExtra {
-        All,
-    };
-    static std::string to_string(Hoveron e);
-    static std::string to_string(HoveronExtra e);
 
     class Box;
     class Hoverlabel;
@@ -536,6 +536,17 @@ class Violin::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -559,17 +570,6 @@ class Violin::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Violin::Hoverlabel::Font& color(std::string f);
     Violin::Hoverlabel::Font& color(double f);
@@ -681,6 +681,17 @@ class Violin::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -704,17 +715,6 @@ class Violin::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Violin::Legendgrouptitle::Font& color(std::string f);
     Violin::Legendgrouptitle::Font& color(double f);

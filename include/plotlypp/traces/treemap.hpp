@@ -35,33 +35,11 @@ class Treemap : public Trace {
     };
     static std::string to_string(Branchvalues e);
 
-    enum class Textposition {
-        TopLeft,
-        TopCenter,
-        TopRight,
-        MiddleLeft,
-        MiddleCenter,
-        MiddleRight,
-        BottomLeft,
-        BottomCenter,
-        BottomRight,
-    };
-    static std::string to_string(Textposition e);
-
-    enum class Visible {
-        True,
-        False,
-        Legendonly,
-    };
-    static std::string to_string(Visible e);
-
     enum class Count {
         Branches,
         Leaves,
     };
-    enum class CountExtra {};
     static std::string to_string(Count e);
-    static std::string to_string(CountExtra e);
 
     enum class Hoverinfo {
         Label,
@@ -96,6 +74,26 @@ class Treemap : public Trace {
     static std::string to_string(Textinfo e);
     static std::string to_string(TextinfoExtra e);
 
+    enum class Textposition {
+        TopLeft,
+        TopCenter,
+        TopRight,
+        MiddleLeft,
+        MiddleCenter,
+        MiddleRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight,
+    };
+    static std::string to_string(Textposition e);
+
+    enum class Visible {
+        True,
+        False,
+        Legendonly,
+    };
+    static std::string to_string(Visible e);
+
     class Domain;
     class Hoverlabel;
     // Sets the font used for `textinfo` lying inside the sector.
@@ -124,7 +122,6 @@ class Treemap : public Trace {
     // - Default: leaves
     // - Flags: ['branches', 'leaves']
     Treemap& count(std::initializer_list<Count> flags);
-    Treemap& count(CountExtra extra);
 
     // Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that,
     // *scatter* traces also appends customdata items in the markers DOM elements
@@ -454,6 +451,17 @@ class Treemap::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -477,17 +485,6 @@ class Treemap::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Hoverlabel::Font& color(std::string f);
     Treemap::Hoverlabel::Font& color(double f);
@@ -578,6 +575,17 @@ class Treemap::Insidetextfont {
     Insidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -601,17 +609,6 @@ class Treemap::Insidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Insidetextfont& color(std::string f);
     Treemap::Insidetextfont& color(double f);
@@ -723,6 +720,17 @@ class Treemap::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -746,17 +754,6 @@ class Treemap::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Legendgrouptitle::Font& color(std::string f);
     Treemap::Legendgrouptitle::Font& color(double f);
@@ -1261,6 +1258,17 @@ class Treemap::Marker::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1284,17 +1292,6 @@ class Treemap::Marker::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Marker::Colorbar::Tickfont& color(std::string f);
     Treemap::Marker::Colorbar::Tickfont& color(double f);
@@ -1417,6 +1414,17 @@ class Treemap::Marker::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1440,17 +1448,6 @@ class Treemap::Marker::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Marker::Colorbar::Title::Font& color(std::string f);
     Treemap::Marker::Colorbar::Title::Font& color(double f);
@@ -1624,6 +1621,17 @@ class Treemap::Outsidetextfont {
     Outsidetextfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1647,17 +1655,6 @@ class Treemap::Outsidetextfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Outsidetextfont& color(std::string f);
     Treemap::Outsidetextfont& color(double f);
@@ -1796,6 +1793,17 @@ class Treemap::Pathbar::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1819,17 +1827,6 @@ class Treemap::Pathbar::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Pathbar::Textfont& color(std::string f);
     Treemap::Pathbar::Textfont& color(double f);
@@ -1953,6 +1950,17 @@ class Treemap::Textfont {
     Textfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1976,17 +1984,6 @@ class Treemap::Textfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Treemap::Textfont& color(std::string f);
     Treemap::Textfont& color(double f);
@@ -2076,6 +2073,12 @@ class Treemap::Tiling {
     Tiling(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Flip {
+        X,
+        Y,
+    };
+    static std::string to_string(Flip e);
+
     enum class Packing {
         Squarify,
         Binary,
@@ -2086,19 +2089,10 @@ class Treemap::Tiling {
     };
     static std::string to_string(Packing e);
 
-    enum class Flip {
-        X,
-        Y,
-    };
-    enum class FlipExtra {};
-    static std::string to_string(Flip e);
-    static std::string to_string(FlipExtra e);
-
     // Determines if the positions obtained from solver are flipped on each axis.
     // - Default:
     // - Flags: ['x', 'y']
     Treemap::Tiling& flip(std::initializer_list<Flip> flags);
-    Treemap::Tiling& flip(FlipExtra extra);
 
     // Determines d3 treemap solver. For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
     // - Default: squarify

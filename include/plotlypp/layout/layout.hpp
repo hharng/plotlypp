@@ -51,6 +51,16 @@ class Layout {
     };
     static std::string to_string(Calendar e);
 
+    enum class Clickmode {
+        Event,
+        Select,
+    };
+    enum class ClickmodeExtra {
+        None,
+    };
+    static std::string to_string(Clickmode e);
+    static std::string to_string(ClickmodeExtra e);
+
     enum class Dragmode {
         Zoom,
         Pan,
@@ -137,16 +147,6 @@ class Layout {
         Overlay,
     };
     static std::string to_string(Waterfallmode e);
-
-    enum class Clickmode {
-        Event,
-        Select,
-    };
-    enum class ClickmodeExtra {
-        None,
-    };
-    static std::string to_string(Clickmode e);
-    static std::string to_string(ClickmodeExtra e);
 
     class Activeselection;
     class Activeshape;
@@ -689,6 +689,16 @@ class Layout::Annotation {
     };
     static std::string to_string(Align e);
 
+    enum class Arrowside {
+        End,
+        Start,
+    };
+    enum class ArrowsideExtra {
+        None,
+    };
+    static std::string to_string(Arrowside e);
+    static std::string to_string(ArrowsideExtra e);
+
     enum class Clicktoshow {
         False,
         Onoff,
@@ -718,16 +728,6 @@ class Layout::Annotation {
         Bottom,
     };
     static std::string to_string(Yanchor e);
-
-    enum class Arrowside {
-        End,
-        Start,
-    };
-    enum class ArrowsideExtra {
-        None,
-    };
-    static std::string to_string(Arrowside e);
-    static std::string to_string(ArrowsideExtra e);
 
     // Sets the annotation text font.
     class Font;
@@ -978,6 +978,17 @@ class Layout::Annotation::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1001,17 +1012,6 @@ class Layout::Annotation::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Annotation::Font& color(std::string f);
     Layout::Annotation::Font& color(double f);
@@ -1097,6 +1097,17 @@ class Layout::Annotation::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1120,17 +1131,6 @@ class Layout::Annotation::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Annotation::Hoverlabel::Font& color(std::string f);
     Layout::Annotation::Hoverlabel::Font& color(double f);
@@ -1585,6 +1585,17 @@ class Layout::Coloraxis::Colorbar::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1608,17 +1619,6 @@ class Layout::Coloraxis::Colorbar::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Coloraxis::Colorbar::Tickfont& color(std::string f);
     Layout::Coloraxis::Colorbar::Tickfont& color(double f);
@@ -1741,6 +1741,17 @@ class Layout::Coloraxis::Colorbar::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1764,17 +1775,6 @@ class Layout::Coloraxis::Colorbar::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Coloraxis::Colorbar::Title::Font& color(std::string f);
     Layout::Coloraxis::Colorbar::Title::Font& color(double f);
@@ -1853,6 +1853,17 @@ class Layout::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -1876,17 +1887,6 @@ class Layout::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Font& color(std::string f);
     Layout::Font& color(double f);
@@ -2552,6 +2552,17 @@ class Layout::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -2575,17 +2586,6 @@ class Layout::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Hoverlabel::Font& color(std::string f);
     Layout::Hoverlabel::Font& color(double f);
@@ -2640,6 +2640,17 @@ class Layout::Hoverlabel::Grouptitlefont {
     Grouptitlefont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -2663,17 +2674,6 @@ class Layout::Hoverlabel::Grouptitlefont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Hoverlabel::Grouptitlefont& color(std::string f);
     Layout::Hoverlabel::Grouptitlefont& color(double f);
@@ -2880,6 +2880,16 @@ class Layout::Legend {
     };
     static std::string to_string(Orientation e);
 
+    enum class Traceorder {
+        Reversed,
+        Grouped,
+    };
+    enum class TraceorderExtra {
+        Normal,
+    };
+    static std::string to_string(Traceorder e);
+    static std::string to_string(TraceorderExtra e);
+
     enum class Valign {
         Top,
         Middle,
@@ -2914,16 +2924,6 @@ class Layout::Legend {
         Paper,
     };
     static std::string to_string(Yref e);
-
-    enum class Traceorder {
-        Reversed,
-        Grouped,
-    };
-    enum class TraceorderExtra {
-        Normal,
-    };
-    static std::string to_string(Traceorder e);
-    static std::string to_string(TraceorderExtra e);
 
     // Sets the font used to text the legend items.
     class Font;
@@ -3067,6 +3067,17 @@ class Layout::Legend::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -3090,17 +3101,6 @@ class Layout::Legend::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Legend::Font& color(std::string f);
     Layout::Legend::Font& color(double f);
@@ -3155,6 +3155,17 @@ class Layout::Legend::Grouptitlefont {
     Grouptitlefont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -3178,17 +3189,6 @@ class Layout::Legend::Grouptitlefont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Legend::Grouptitlefont& color(std::string f);
     Layout::Legend::Grouptitlefont& color(double f);
@@ -3278,6 +3278,17 @@ class Layout::Legend::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -3301,17 +3312,6 @@ class Layout::Legend::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Legend::Title::Font& color(std::string f);
     Layout::Legend::Title::Font& color(double f);
@@ -4488,6 +4488,17 @@ class Layout::Newshape::Label::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -4511,17 +4522,6 @@ class Layout::Newshape::Label::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Newshape::Label::Font& color(std::string f);
     Layout::Newshape::Label::Font& color(double f);
@@ -4597,6 +4597,17 @@ class Layout::Newshape::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -4620,17 +4631,6 @@ class Layout::Newshape::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Newshape::Legendgrouptitle::Font& color(std::string f);
     Layout::Newshape::Legendgrouptitle::Font& color(double f);
@@ -5106,6 +5106,17 @@ class Layout::Polar::Angularaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -5129,17 +5140,6 @@ class Layout::Polar::Angularaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Polar::Angularaxis::Tickfont& color(std::string f);
     Layout::Polar::Angularaxis::Tickfont& color(double f);
@@ -5719,6 +5719,17 @@ class Layout::Polar::Radialaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -5742,17 +5753,6 @@ class Layout::Polar::Radialaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Polar::Radialaxis::Tickfont& color(std::string f);
     Layout::Polar::Radialaxis::Tickfont& color(double f);
@@ -5864,6 +5864,17 @@ class Layout::Polar::Radialaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -5887,17 +5898,6 @@ class Layout::Polar::Radialaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Polar::Radialaxis::Title::Font& color(std::string f);
     Layout::Polar::Radialaxis::Title::Font& color(double f);
@@ -6049,6 +6049,16 @@ class Layout::Scene::Annotation {
     };
     static std::string to_string(Align e);
 
+    enum class Arrowside {
+        End,
+        Start,
+    };
+    enum class ArrowsideExtra {
+        None,
+    };
+    static std::string to_string(Arrowside e);
+    static std::string to_string(ArrowsideExtra e);
+
     enum class Valign {
         Top,
         Middle,
@@ -6071,16 +6081,6 @@ class Layout::Scene::Annotation {
         Bottom,
     };
     static std::string to_string(Yanchor e);
-
-    enum class Arrowside {
-        End,
-        Start,
-    };
-    enum class ArrowsideExtra {
-        None,
-    };
-    static std::string to_string(Arrowside e);
-    static std::string to_string(ArrowsideExtra e);
 
     // Sets the annotation text font.
     class Font;
@@ -6257,6 +6257,17 @@ class Layout::Scene::Annotation::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -6280,17 +6291,6 @@ class Layout::Scene::Annotation::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Annotation::Font& color(std::string f);
     Layout::Scene::Annotation::Font& color(double f);
@@ -6376,6 +6376,17 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -6399,17 +6410,6 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Annotation::Hoverlabel::Font& color(std::string f);
     Layout::Scene::Annotation::Hoverlabel::Font& color(double f);
@@ -7105,6 +7105,17 @@ class Layout::Scene::Xaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -7128,17 +7139,6 @@ class Layout::Scene::Xaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Xaxis::Tickfont& color(std::string f);
     Layout::Scene::Xaxis::Tickfont& color(double f);
@@ -7250,6 +7250,17 @@ class Layout::Scene::Xaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -7273,17 +7284,6 @@ class Layout::Scene::Xaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Xaxis::Title::Font& color(std::string f);
     Layout::Scene::Xaxis::Title::Font& color(double f);
@@ -7800,6 +7800,17 @@ class Layout::Scene::Yaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -7823,17 +7834,6 @@ class Layout::Scene::Yaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Yaxis::Tickfont& color(std::string f);
     Layout::Scene::Yaxis::Tickfont& color(double f);
@@ -7945,6 +7945,17 @@ class Layout::Scene::Yaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -7968,17 +7979,6 @@ class Layout::Scene::Yaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Yaxis::Title::Font& color(std::string f);
     Layout::Scene::Yaxis::Title::Font& color(double f);
@@ -8495,6 +8495,17 @@ class Layout::Scene::Zaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -8518,17 +8529,6 @@ class Layout::Scene::Zaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Zaxis::Tickfont& color(std::string f);
     Layout::Scene::Zaxis::Tickfont& color(double f);
@@ -8640,6 +8640,17 @@ class Layout::Scene::Zaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -8663,17 +8674,6 @@ class Layout::Scene::Zaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Scene::Zaxis::Title::Font& color(std::string f);
     Layout::Scene::Zaxis::Title::Font& color(double f);
@@ -9142,6 +9142,17 @@ class Layout::Shape::Label::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -9165,17 +9176,6 @@ class Layout::Shape::Label::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Shape::Label::Font& color(std::string f);
     Layout::Shape::Label::Font& color(double f);
@@ -9251,6 +9251,17 @@ class Layout::Shape::Legendgrouptitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -9274,17 +9285,6 @@ class Layout::Shape::Legendgrouptitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Shape::Legendgrouptitle::Font& color(std::string f);
     Layout::Shape::Legendgrouptitle::Font& color(double f);
@@ -9533,6 +9533,17 @@ class Layout::Slider::Currentvalue::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -9556,17 +9567,6 @@ class Layout::Slider::Currentvalue::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Slider::Currentvalue::Font& color(std::string f);
     Layout::Slider::Currentvalue::Font& color(double f);
@@ -9621,6 +9621,17 @@ class Layout::Slider::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -9644,17 +9655,6 @@ class Layout::Slider::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Slider::Font& color(std::string f);
     Layout::Slider::Font& color(double f);
@@ -10056,6 +10056,17 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -10079,17 +10090,6 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Smith::Imaginaryaxis::Tickfont& color(std::string f);
     Layout::Smith::Imaginaryaxis::Tickfont& color(double f);
@@ -10306,6 +10306,17 @@ class Layout::Smith::Realaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -10329,17 +10340,6 @@ class Layout::Smith::Realaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Smith::Realaxis::Tickfont& color(std::string f);
     Layout::Smith::Realaxis::Tickfont& color(double f);
@@ -10691,6 +10691,17 @@ class Layout::Ternary::Aaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -10714,17 +10725,6 @@ class Layout::Ternary::Aaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Ternary::Aaxis::Tickfont& color(std::string f);
     Layout::Ternary::Aaxis::Tickfont& color(double f);
@@ -10836,6 +10836,17 @@ class Layout::Ternary::Aaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -10859,17 +10870,6 @@ class Layout::Ternary::Aaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Ternary::Aaxis::Title::Font& color(std::string f);
     Layout::Ternary::Aaxis::Title::Font& color(double f);
@@ -11178,6 +11178,17 @@ class Layout::Ternary::Baxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -11201,17 +11212,6 @@ class Layout::Ternary::Baxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Ternary::Baxis::Tickfont& color(std::string f);
     Layout::Ternary::Baxis::Tickfont& color(double f);
@@ -11323,6 +11323,17 @@ class Layout::Ternary::Baxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -11346,17 +11357,6 @@ class Layout::Ternary::Baxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Ternary::Baxis::Title::Font& color(std::string f);
     Layout::Ternary::Baxis::Title::Font& color(double f);
@@ -11665,6 +11665,17 @@ class Layout::Ternary::Caxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -11688,17 +11699,6 @@ class Layout::Ternary::Caxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Ternary::Caxis::Tickfont& color(std::string f);
     Layout::Ternary::Caxis::Tickfont& color(double f);
@@ -11810,6 +11810,17 @@ class Layout::Ternary::Caxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -11833,17 +11844,6 @@ class Layout::Ternary::Caxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Ternary::Caxis::Title::Font& color(std::string f);
     Layout::Ternary::Caxis::Title::Font& color(double f);
@@ -12030,6 +12030,17 @@ class Layout::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -12053,17 +12064,6 @@ class Layout::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Title::Font& color(std::string f);
     Layout::Title::Font& color(double f);
@@ -12165,6 +12165,17 @@ class Layout::Title::Subtitle::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -12188,17 +12199,6 @@ class Layout::Title::Subtitle::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Title::Subtitle::Font& color(std::string f);
     Layout::Title::Subtitle::Font& color(double f);
@@ -12529,6 +12529,17 @@ class Layout::Updatemenu::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -12552,17 +12563,6 @@ class Layout::Updatemenu::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Updatemenu::Font& color(std::string f);
     Layout::Updatemenu::Font& color(double f);
@@ -12638,6 +12638,21 @@ class Layout::Xaxis {
     Xaxis() = default;
     Xaxis(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
+
+    enum class Automargin {
+        Height,
+        Width,
+        Left,
+        Right,
+        Top,
+        Bottom,
+    };
+    enum class AutomarginExtra {
+        True,
+        False,
+    };
+    static std::string to_string(Automargin e);
+    static std::string to_string(AutomarginExtra e);
 
     enum class Autorange {
         True,
@@ -12777,6 +12792,13 @@ class Layout::Xaxis {
     };
     static std::string to_string(Side e);
 
+    enum class Spikemode {
+        Toaxis,
+        Across,
+        Marker,
+    };
+    static std::string to_string(Spikemode e);
+
     enum class Spikesnap {
         Data,
         Cursor,
@@ -12841,30 +12863,6 @@ class Layout::Xaxis {
         Multicategory,
     };
     static std::string to_string(Type e);
-
-    enum class Automargin {
-        Height,
-        Width,
-        Left,
-        Right,
-        Top,
-        Bottom,
-    };
-    enum class AutomarginExtra {
-        True,
-        False,
-    };
-    static std::string to_string(Automargin e);
-    static std::string to_string(AutomarginExtra e);
-
-    enum class Spikemode {
-        Toaxis,
-        Across,
-        Marker,
-    };
-    enum class SpikemodeExtra {};
-    static std::string to_string(Spikemode e);
-    static std::string to_string(SpikemodeExtra e);
 
     class Autorangeoptions;
     class Minor;
@@ -13175,7 +13173,6 @@ class Layout::Xaxis {
     // - Default: toaxis
     // - Flags: ['toaxis', 'across', 'marker']
     Layout::Xaxis& spikemode(std::initializer_list<Spikemode> flags);
-    Layout::Xaxis& spikemode(SpikemodeExtra extra);
 
     // Determines whether spikelines are stuck to the cursor or to the closest datapoints.
     // - Default: hovered data
@@ -13666,6 +13663,17 @@ class Layout::Xaxis::Rangeselector::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -13689,17 +13697,6 @@ class Layout::Xaxis::Rangeselector::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Xaxis::Rangeselector::Font& color(std::string f);
     Layout::Xaxis::Rangeselector::Font& color(double f);
@@ -13834,6 +13831,17 @@ class Layout::Xaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -13857,17 +13865,6 @@ class Layout::Xaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Xaxis::Tickfont& color(std::string f);
     Layout::Xaxis::Tickfont& color(double f);
@@ -13986,6 +13983,17 @@ class Layout::Xaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -14009,17 +14017,6 @@ class Layout::Xaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Xaxis::Title::Font& color(std::string f);
     Layout::Xaxis::Title::Font& color(double f);
@@ -14072,6 +14069,21 @@ class Layout::Yaxis {
     Yaxis() = default;
     Yaxis(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
+
+    enum class Automargin {
+        Height,
+        Width,
+        Left,
+        Right,
+        Top,
+        Bottom,
+    };
+    enum class AutomarginExtra {
+        True,
+        False,
+    };
+    static std::string to_string(Automargin e);
+    static std::string to_string(AutomarginExtra e);
 
     enum class Autorange {
         True,
@@ -14211,6 +14223,13 @@ class Layout::Yaxis {
     };
     static std::string to_string(Side e);
 
+    enum class Spikemode {
+        Toaxis,
+        Across,
+        Marker,
+    };
+    static std::string to_string(Spikemode e);
+
     enum class Spikesnap {
         Data,
         Cursor,
@@ -14275,30 +14294,6 @@ class Layout::Yaxis {
         Multicategory,
     };
     static std::string to_string(Type e);
-
-    enum class Automargin {
-        Height,
-        Width,
-        Left,
-        Right,
-        Top,
-        Bottom,
-    };
-    enum class AutomarginExtra {
-        True,
-        False,
-    };
-    static std::string to_string(Automargin e);
-    static std::string to_string(AutomarginExtra e);
-
-    enum class Spikemode {
-        Toaxis,
-        Across,
-        Marker,
-    };
-    enum class SpikemodeExtra {};
-    static std::string to_string(Spikemode e);
-    static std::string to_string(SpikemodeExtra e);
 
     class Autorangeoptions;
     class Minor;
@@ -14610,7 +14605,6 @@ class Layout::Yaxis {
     // - Default: toaxis
     // - Flags: ['toaxis', 'across', 'marker']
     Layout::Yaxis& spikemode(std::initializer_list<Spikemode> flags);
-    Layout::Yaxis& spikemode(SpikemodeExtra extra);
 
     // Determines whether spikelines are stuck to the cursor or to the closest datapoints.
     // - Default: hovered data
@@ -14968,6 +14962,17 @@ class Layout::Yaxis::Tickfont {
     Tickfont(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -14991,17 +14996,6 @@ class Layout::Yaxis::Tickfont {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Yaxis::Tickfont& color(std::string f);
     Layout::Yaxis::Tickfont& color(double f);
@@ -15120,6 +15114,17 @@ class Layout::Yaxis::Title::Font {
     Font(std::string jsonStr)
     : json(parse(std::move(jsonStr))) {}
 
+    enum class Lineposition {
+        Under,
+        Over,
+        Through,
+    };
+    enum class LinepositionExtra {
+        None,
+    };
+    static std::string to_string(Lineposition e);
+    static std::string to_string(LinepositionExtra e);
+
     enum class Style {
         Normal,
         Italic,
@@ -15143,17 +15148,6 @@ class Layout::Yaxis::Title::Font {
         Unicase,
     };
     static std::string to_string(Variant e);
-
-    enum class Lineposition {
-        Under,
-        Over,
-        Through,
-    };
-    enum class LinepositionExtra {
-        None,
-    };
-    static std::string to_string(Lineposition e);
-    static std::string to_string(LinepositionExtra e);
 
     Layout::Yaxis::Title::Font& color(std::string f);
     Layout::Yaxis::Title::Font& color(double f);

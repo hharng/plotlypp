@@ -20,41 +20,12 @@ inline std::string Icicle::to_string(Branchvalues e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Icicle::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Icicle::to_string(Count e) {
     switch(e) {
         case Count::Branches: return "branches";
         case Count::Leaves: return "leaves";
     }
     throw std::invalid_argument{"Unknown flag value for count."};
-}
-inline std::string Icicle::to_string(CountExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for count."};
 }
 inline std::string Icicle::to_string(Hoverinfo e) {
     switch(e) {
@@ -95,6 +66,30 @@ inline std::string Icicle::to_string(TextinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
+inline std::string Icicle::to_string(Textposition e) {
+    switch(e) {
+        case Textposition::TopLeft: return "top left";
+        case Textposition::TopCenter: return "top center";
+        case Textposition::TopRight: return "top right";
+        case Textposition::MiddleLeft: return "middle left";
+        case Textposition::MiddleCenter: return "middle center";
+        case Textposition::MiddleRight: return "middle right";
+        case Textposition::BottomLeft: return "bottom left";
+        case Textposition::BottomCenter: return "bottom center";
+        case Textposition::BottomRight: return "bottom right";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
+inline std::string Icicle::to_string(Visible e) {
+    switch(e) {
+        case Visible::True: return "True";
+        case Visible::False: return "False";
+        case Visible::Legendonly: return "legendonly";
+    }
+    // Should be unreachable.
+    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
+}
 
 inline Icicle& Icicle::branchvalues(enum Branchvalues f) {
     json["branchvalues"] = to_string(f);
@@ -103,10 +98,6 @@ inline Icicle& Icicle::branchvalues(enum Branchvalues f) {
 
 inline Icicle& Icicle::count(std::initializer_list<Count> flags) {
     json["count"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Icicle& Icicle::count(CountExtra extra) {
-    json["count"] = to_string(extra);
     return *this;
 }
 
@@ -591,6 +582,20 @@ inline Icicle::Hoverlabel& Icicle::Hoverlabel::namelengthsrc(std::string f) {
     return *this;
 }
 
+inline std::string Icicle::Hoverlabel::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Hoverlabel::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Hoverlabel::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -620,20 +625,6 @@ inline std::string Icicle::Hoverlabel::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Hoverlabel::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Hoverlabel::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::color(std::string f) {
@@ -776,6 +767,20 @@ inline Icicle::Hoverlabel::Font& Icicle::Hoverlabel::Font::weightsrc(std::string
     return *this;
 }
 
+inline std::string Icicle::Insidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Insidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Insidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -805,20 +810,6 @@ inline std::string Icicle::Insidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Insidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Insidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Insidetextfont& Icicle::Insidetextfont::color(std::string f) {
@@ -984,6 +975,20 @@ inline Icicle::Legendgrouptitle& Icicle::Legendgrouptitle::text(std::string f) {
     return *this;
 }
 
+inline std::string Icicle::Legendgrouptitle::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Legendgrouptitle::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1013,20 +1018,6 @@ inline std::string Icicle::Legendgrouptitle::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Legendgrouptitle::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Legendgrouptitle::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Legendgrouptitle::Font& Icicle::Legendgrouptitle::Font::color(std::string f) {
@@ -1594,6 +1585,20 @@ inline Icicle::Marker::Colorbar& Icicle::Marker::Colorbar::yref(enum Yref f) {
     return *this;
 }
 
+inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1623,20 +1628,6 @@ inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Marker::Colorbar::Tickfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Marker::Colorbar::Tickfont& Icicle::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1761,6 +1752,20 @@ inline Icicle::Marker::Colorbar::Title& Icicle::Marker::Colorbar::Title::text(st
     return *this;
 }
 
+inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -1790,20 +1795,6 @@ inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Marker::Colorbar::Title::Font::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Marker::Colorbar::Title::Font& Icicle::Marker::Colorbar::Title::Font::color(std::string f) {
@@ -2001,6 +1992,20 @@ inline Icicle::Marker::Pattern& Icicle::Marker::Pattern::soliditysrc(std::string
     return *this;
 }
 
+inline std::string Icicle::Outsidetextfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Outsidetextfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Outsidetextfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2030,20 +2035,6 @@ inline std::string Icicle::Outsidetextfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Outsidetextfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Outsidetextfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Outsidetextfont& Icicle::Outsidetextfont::color(std::string f) {
@@ -2237,6 +2228,20 @@ inline Icicle::Pathbar& Icicle::Pathbar::visible(bool f) {
     return *this;
 }
 
+inline std::string Icicle::Pathbar::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Pathbar::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Pathbar::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2266,20 +2271,6 @@ inline std::string Icicle::Pathbar::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Pathbar::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Pathbar::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Pathbar::Textfont& Icicle::Pathbar::Textfont::color(std::string f) {
@@ -2443,6 +2434,20 @@ inline Icicle::Stream& Icicle::Stream::token(std::string f) {
     return *this;
 }
 
+inline std::string Icicle::Textfont::to_string(Lineposition e) {
+    switch(e) {
+        case Lineposition::Under: return "under";
+        case Lineposition::Over: return "over";
+        case Lineposition::Through: return "through";
+    }
+    throw std::invalid_argument{"Unknown flag value for lineposition."};
+}
+inline std::string Icicle::Textfont::to_string(LinepositionExtra e) {
+    switch(e) {
+        case LinepositionExtra::None: return "none";
+    }
+    throw std::invalid_argument{"Unknown extra value for lineposition."};
+}
 inline std::string Icicle::Textfont::to_string(Style e) {
     switch(e) {
         case Style::Normal: return "normal";
@@ -2472,20 +2477,6 @@ inline std::string Icicle::Textfont::to_string(Variant e) {
     }
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Icicle::Textfont::to_string(Lineposition e) {
-    switch(e) {
-        case Lineposition::Under: return "under";
-        case Lineposition::Over: return "over";
-        case Lineposition::Through: return "through";
-    }
-    throw std::invalid_argument{"Unknown flag value for lineposition."};
-}
-inline std::string Icicle::Textfont::to_string(LinepositionExtra e) {
-    switch(e) {
-        case LinepositionExtra::None: return "none";
-    }
-    throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
 
 inline Icicle::Textfont& Icicle::Textfont::color(std::string f) {
@@ -2628,6 +2619,13 @@ inline Icicle::Textfont& Icicle::Textfont::weightsrc(std::string f) {
     return *this;
 }
 
+inline std::string Icicle::Tiling::to_string(Flip e) {
+    switch(e) {
+        case Flip::X: return "x";
+        case Flip::Y: return "y";
+    }
+    throw std::invalid_argument{"Unknown flag value for flip."};
+}
 inline std::string Icicle::Tiling::to_string(Orientation e) {
     switch(e) {
         case Orientation::V: return "v";
@@ -2636,25 +2634,9 @@ inline std::string Icicle::Tiling::to_string(Orientation e) {
     // Should be unreachable.
     throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
-inline std::string Icicle::Tiling::to_string(Flip e) {
-    switch(e) {
-        case Flip::X: return "x";
-        case Flip::Y: return "y";
-    }
-    throw std::invalid_argument{"Unknown flag value for flip."};
-}
-inline std::string Icicle::Tiling::to_string(FlipExtra e) {
-    switch(e) {
-    }
-    throw std::invalid_argument{"Unknown extra value for flip."};
-}
 
 inline Icicle::Tiling& Icicle::Tiling::flip(std::initializer_list<Flip> flags) {
     json["flip"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
-    return *this;
-}
-inline Icicle::Tiling& Icicle::Tiling::flip(FlipExtra extra) {
-    json["flip"] = to_string(extra);
     return *this;
 }
 
