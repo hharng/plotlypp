@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2025 Jimmy O'Rourke
+# Copyright (c) 2025-2026 Jimmy O'Rourke
 # Licensed under and subject to the terms of the LICENSE file accompanying this distribution.
 # Official repository: https://github.com/jimmyorourke/plotlypp
 
@@ -465,7 +465,7 @@ def unnest_objects(parent: "Object", unnested_objects: List["Object"]) -> None:
 
 
 def emit_preamble(writer: Writer) -> None:
-    writer.write("// Copyright (c) 2025 Jimmy O'Rourke")
+    writer.write("// Copyright (c) 2025-2026 Jimmy O'Rourke")
     writer.write("// Licensed under and subject to the terms of the LICENSE file accompanying this distribution.")
     writer.write("// Official repository: https://github.com/jimmyorourke/plotlypp")
     writer.write("")
