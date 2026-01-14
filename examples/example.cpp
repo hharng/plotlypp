@@ -19,67 +19,41 @@ void waitForEnter() {
     std::cin.get();
 }
 
+void showAndWait(const plotlypp::Figure& figure) {
+    figure.show();
+    waitForEnter();
+}
+
 void showBasicCharts() {
     using namespace plotlypp;
 
-    lineAndScatterWithNamesAxesTitle().show();
-    waitForEnter();
-
-    scatterWithColorDimension().show();
-    waitForEnter();
-
-    groupedScatter().show();
-    waitForEnter();
-
-    lineDashes().show();
-    waitForEnter();
-
-    groupedBar().show();
-    waitForEnter();
-
-    basicPie().show();
-    waitForEnter();
-
-    donut().show();
-    waitForEnter();
-
-    bubbleWithMarkerSizeAndColor().show();
-    waitForEnter();
-
-    categoricalDotPlot().show();
-    waitForEnter();
-
-    basicOverlaidArea().show();
-    waitForEnter();
-
-    horizontalBar().show();
-    waitForEnter();
+    showAndWait(lineAndScatterWithNamesAxesTitle());
+    showAndWait(scatterWithColorDimension());
+    showAndWait(groupedScatter());
+    showAndWait(lineDashes());
+    showAndWait(groupedBar());
+    showAndWait(basicPie());
+    showAndWait(donut());
+    showAndWait(bubbleWithMarkerSizeAndColor());
+    showAndWait(categoricalDotPlot());
+    showAndWait(basicOverlaidArea());
+    showAndWait(horizontalBar());
 }
 
 void showMaps() {
     using namespace plotlypp;
 
-    linesOnMaps().show();
-    waitForEnter();
-
-    lightTile().show();
-    waitForEnter();
-
-    outlineMapLocations().show();
-    waitForEnter();
-
-    scatterTileMaps().show();
-    waitForEnter();
+    showAndWait(linesOnMaps());
+    showAndWait(lightTile());
+    showAndWait(outlineMapLocations());
+    showAndWait(scatterTileMaps());
 }
 
 void showFinancialCharts() {
     using namespace plotlypp;
 
-    basicFunnel().show();
-    waitForEnter();
-
-    indicator().show();
-    waitForEnter();
+    showAndWait(basicFunnel());
+    showAndWait(indicator());
 }
 
 void show3dCharts() {
@@ -180,12 +154,12 @@ void showSubplots() {
 }
 
 int main() {
-    showStatisticalCharts();
-    showScientificCharts();
+    showBasicCharts();
     show3dCharts();
     showFinancialCharts();
     showMaps();
-    showBasicCharts();
+    showScientificCharts();
+    showStatisticalCharts();
     showSubplots();
 
     std::cout << "Done" << "\n";

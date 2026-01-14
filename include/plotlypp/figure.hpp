@@ -47,7 +47,7 @@ class Figure {
         return setLayout(std::move(layout));
     }
 
-    void toHtml(std::ostream& os) {
+    void toHtml(std::ostream& os) const {
         // clang-format off
         os << "<meta charset=\"utf-8\">\n"
               "<head>\n"
@@ -81,13 +81,13 @@ class Figure {
         // clang-format on
     }
 
-    void writePlotlyJsResourceFile(const std::filesystem::path& outputDir) {
+    static void writePlotlyJsResourceFile(const std::filesystem::path& outputDir) {
         std::filesystem::create_directories(outputDir / "js");
         std::ofstream jsFile(outputDir / "js" / "plotly.min.js");
         jsFile << plotlyJS;
     }
 
-    void writeHtmlFigure(const std::filesystem::path& outputFilePath, bool includeJsResources = true) {
+    void writeHtmlFigure(const std::filesystem::path& outputFilePath, bool includeJsResources = true) const {
         if (includeJsResources) {
             writePlotlyJsResourceFile(outputFilePath.parent_path());
         }
@@ -95,7 +95,7 @@ class Figure {
         toHtml(outputFile);
     }
 
-    void show() {
+    void show() const {
         const auto tempFile =
             std::filesystem::temp_directory_path() / ("plotlypp_plot_" + std::to_string(_showCount++) + ".html");
         writeHtmlFigure(tempFile);
@@ -106,7 +106,7 @@ class Figure {
     Json json() && { return std::move(_json); }
 
  private:
-    void showInBrowser(const std::string& plotFile) {
+    void showInBrowser(const std::string& plotFile) const {
         std::cout << "opening " << plotFile << "\n";
 #ifdef _WIN32
         system(("cmd /C start " + plotFile).c_str());
