@@ -65,7 +65,7 @@ Figure gen3dSurfaceContours() {
 }
 
 Figure gen3dSurfaceTorus() {
-    auto u = math_utils::linspace(0, 2 * M_PI, 50);
+    auto u = math_utils::linspace(0, 2 * /*pi=*/std::acos(-1.0), 50);
     auto v = u;
     auto [ugrid, vgrid] = math_utils::meshgrid(u, v);
 
