@@ -1,0 +1,39 @@
+name: Build Template
+on:
+  workflow_call:
+    inputs:
+      os: { required: true, type: string }
+      compiler: { required: true, type: string }
+      cxx: { required: true, type: string }
+      cc: { required: true, type: string }
+      cpp_std: { required: true, type: string }
+
+jobs:
+  build:
+    name: ${{ inputs.os }} - ${{ inputs.compiler }} (C++${{ inputs.cpp_std }})
+    runs-on: ${{ inputs.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Setup MSVC environment (Windows Only)
+      # This adds cl.exe, link.exe, etc. to the PATH. (Fancy way of finding vcvarsall and bringing them into the env)
+      - name: Setup MSVC
+        if: inputs.os == 'windows-latest'
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Ninja
+        uses: turtlesec-no/get-ninja@main
+
+      - name: Configure CMake
+        env:
+          CXX: ${{ inputs.cxx }}
+          CC: ${{ inputs.cc }}
+        run: >
+          cmake -S . -B build
+          -G "Ninja"
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_CXX_STANDARD=${{ matrix.cpp_std }}
+          -DCMAKE_CXX_STANDARD_REQUIRED=ON
+
+      - name: Build
+        run: cmake --build build

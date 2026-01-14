@@ -1,0 +1,21 @@
+name: CI MacOS Clang
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # Enable manual trigger
+
+jobs:
+  call-build:
+    strategy:
+      fail-fast: false
+      matrix:
+        cpp_std: ["17", "20"]
+    uses: ./.github/workflows/_build_template.yml
+    with:
+      os: macos-latest
+      compiler: clang
+      cxx: clang++
+      cc: clang
+      cpp_std: ${{ matrix.cpp_std }}

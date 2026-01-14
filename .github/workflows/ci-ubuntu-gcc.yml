@@ -1,0 +1,21 @@
+name: CI Ubuntu GCC
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # Enable manual trigger
+
+jobs:
+  call-build:
+    strategy:
+      fail-fast: false
+      matrix:
+        cpp_std: ["17", "20"]
+    uses: ./.github/workflows/_build_template.yml
+    with:
+      os: ubuntu-latest
+      compiler: gcc
+      cxx: g++
+      cc: gcc
+      cpp_std: ${{ matrix.cpp_std }}
