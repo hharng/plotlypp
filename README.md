@@ -1,4 +1,5 @@
 # Pʟᴏᴛʟʏ++
+[![CI MacOS Clang](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-macos-clang.yml/badge.svg)](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-macos-clang.yml)[![CI Ubuntu GCC](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-ubuntu-gcc.yml/badge.svg)](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-ubuntu-gcc.yml)[![CI Ubuntu Clang](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-ubuntu-clang.yml/badge.svg)](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-ubuntu-clang.yml)[![CI Windows MSVC](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-windows-msvc.yml/badge.svg)](https://github.com/jimmyorourke/plotlypp/actions/workflows/ci-windows-msvc.yml)
 
 Plotly++ is a header-only C++ graphing library for creating interactive plots and charts, with rendering powered by [Plotly.js](https://plotly.com/javascript). Plots are generated as HTML, providing interactive visualizations that can be viewed in a web browser.
 
