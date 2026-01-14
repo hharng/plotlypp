@@ -30,11 +30,16 @@ jobs:
             cxx: cl
             cc: cl
 
+          - os: macos-latest
+            compiler: clang
+            cxx: clang++
+            cc: clang
+
     steps:
     - uses: actions/checkout@v4
 
     # 1. Setup MSVC environment (Windows Only)
-    # This adds cl.exe, link.exe, etc. to the PATH
+    # This adds cl.exe, link.exe, etc. to the PATH. (Fancy way of finding vcvarsall and bringing them into the env)
     - name: Setup MSVC
       if: matrix.os == 'windows-latest'
       uses: ilammy/msvc-dev-cmd@v1
