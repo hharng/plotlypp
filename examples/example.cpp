@@ -206,22 +206,24 @@ void writeIndexHtml(const std::filesystem::path& outputDir) {
     std::sort(htmlFiles.begin(), htmlFiles.end());
 
     std::ofstream indexFile(outputDir / "index.html");
-    indexFile << "<!DOCTYPE html>\n"
-                 "<html lang=\"en\">\n"
-                 "<head>\n"
-                 "    <meta charset=\"UTF-8\">\n"
-                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                 "    <title>Plotly++ Examples</title>\n"
-                 "</head>\n"
-                 "<body>\n"
-                 "    <h1>Plotly++ Examples</h1>\n"
-                 "    <ul>\n";
+    // clang-format off
+    indexFile << R"(<!doctype html>)" << "\n"
+            << R"(<html lang="en">)" << "\n"
+            << R"(<head>)" << "\n"
+            << R"(    <meta charset="UTF-8">)" << "\n"
+            << R"(    <meta name="viewport" content="width=device-width, initial-scale=1.0">)" << "\n"
+            << R"(    <title>Plotly++ Examples</title>)" << "\n"
+            << R"(</head>)" << "\n"
+            << R"(<body>)" << "\n"
+            << R"(    <h1>Plotly++ Examples</h1>)" << "\n"
+            << R"(    <ul>)" << "\n";
     for (const auto& filename : htmlFiles) {
-        indexFile << "        <li><a href=\"" << filename << "\">" << filename << "</a></li>\n";
+        indexFile << R"(        <li><a href=")" << filename << R"(">)" << filename << "</a></li>" << "\n";
     }
-    indexFile << "    </ul>\n"
-                 "</body>\n"
-                 "</html>\n";
+    indexFile << R"(    </ul>)" << "\n"
+              << R"(</body>)" << "\n"
+              << R"(</html>)" << "\n";
+    // clang-format on
 }
 
 void saveAllCharts() {
