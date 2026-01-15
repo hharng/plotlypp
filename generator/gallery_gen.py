@@ -12,7 +12,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # 2. Process Files
 json_files = sorted([f for f in os.listdir(INPUT_DIR) if f.endswith(".json")])
-html_output = ['<table width="100%">']
+html_output = ['<table width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">']
 
 for i, filename in enumerate(json_files):
     base_name = os.path.splitext(filename)[0]
@@ -60,11 +60,7 @@ for i, filename in enumerate(json_files):
     # style="border-radius: 8px" adds the rounded corners
     # style="border: 1px solid #d0d7de" adds a subtle gray border (GitHub style)
     cell = f'''    <td align="center" width="20%" valign="top" style="padding: 0px;">
-      <a href="{html_link}">
-        <img src="./examples/output/png_exports/{png_name}"
-             width="100%"
-             style="border-radius: 0px; border: 1px solid #d0d7de;" />
-      </a>
+      <a href="{html_link}"><img src="./examples/output/png_exports/{png_name}" width="100%" style="border-radius: 0px; border: 1px solid #d0d7de;" /></a>
     </td>'''
     html_output.append(cell)
 
