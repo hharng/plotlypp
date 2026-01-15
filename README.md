@@ -193,8 +193,8 @@ void linePlotWithMarkers() {
   // Plotly `flaglist` types are specfied with initializer lists. (mode setting is equivalent
   // to "markers+lines" in JavaScript or Python)
   auto scatter_and_lines = Scatter()
-                             .x(x)
-                             .y(y)
+                             .x(x_data)
+                             .y(y_data)
                              .mode({Scatter::Mode::Lines, Scatter::Mode::Markers})
                              .name("Lines & Markers");
 
@@ -207,7 +207,7 @@ void linePlotWithMarkers() {
                   .yaxis(Layout::Yaxis().title(Layout::Yaxis::Title().text("y-axis title")));
 
   // `xaxis` could alternatively have used nested lambdas.
-  layout.xaxis([](auto& x) { x.title([](auto& t) { t.text("New x-axis title"); }) }; );
+  layout.xaxis([](auto& x) { x.title([](auto& t) { t.text("New x-axis title"); }); });
 
   // If you think you really know what you're doing and want to give up type safety, a raw
   // JSON string API is also available.
@@ -221,7 +221,7 @@ void linePlotWithMarkers() {
   figure.show();
 
   // Save the plot to disk for interactive viewing at a later time.
-  figure.writeHtml("line_plot_with_markers.html")
+  figure.writeHtml("line_plot_with_markers.html");
 }
 ```
 
