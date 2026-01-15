@@ -63,7 +63,7 @@ for i, filename in enumerate(json_files):
       <a href="{html_link}">
         <img src="./examples/output/png_exports/{png_name}"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>'''
     html_output.append(cell)

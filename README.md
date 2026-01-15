@@ -23,35 +23,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/area_polar_chart.html">
         <img src="./examples/output/png_exports/area_polar_chart.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/asymmetric_error_bars.html">
         <img src="./examples/output/png_exports/asymmetric_error_bars.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/basic_funnel.html">
         <img src="./examples/output/png_exports/basic_funnel.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/basic_horizontal_violin_plot.html">
         <img src="./examples/output/png_exports/basic_horizontal_violin_plot.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/basic_overlaid_area.html">
         <img src="./examples/output/png_exports/basic_overlaid_area.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -60,35 +60,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/basic_pie.html">
         <img src="./examples/output/png_exports/basic_pie.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/bubble_chart_sized_by_variable.html">
         <img src="./examples/output/png_exports/bubble_chart_sized_by_variable.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/bubble_with_marker_size_and_color.html">
         <img src="./examples/output/png_exports/bubble_with_marker_size_and_color.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/carpet_with_scatter_trace.html">
         <img src="./examples/output/png_exports/carpet_with_scatter_trace.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/categorical_dot_plot.html">
         <img src="./examples/output/png_exports/categorical_dot_plot.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -97,35 +97,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/colored_and_styled_histograms.html">
         <img src="./examples/output/png_exports/colored_and_styled_histograms.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/colored_box_plot.html">
         <img src="./examples/output/png_exports/colored_box_plot.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/colorscale_for_contour_plot.html">
         <img src="./examples/output/png_exports/colorscale_for_contour_plot.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/continuous_filled_error_bars.html">
         <img src="./examples/output/png_exports/continuous_filled_error_bars.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/data_labels_on_plot.html">
         <img src="./examples/output/png_exports/data_labels_on_plot.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -134,35 +134,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/donut.html">
         <img src="./examples/output/png_exports/donut.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen2d_histogram_bivariate_normal.html">
         <img src="./examples/output/png_exports/gen2d_histogram_bivariate_normal.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen2d_histogram_contour.html">
         <img src="./examples/output/png_exports/gen2d_histogram_contour.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen3d_line_spiral.html">
         <img src="./examples/output/png_exports/gen3d_line_spiral.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen3d_scatter_with_colorscaling_and_marker_styling.html">
         <img src="./examples/output/png_exports/gen3d_scatter_with_colorscaling_and_marker_styling.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -171,35 +171,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen3d_subplots.html">
         <img src="./examples/output/png_exports/gen3d_subplots.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen3d_surface_contours.html">
         <img src="./examples/output/png_exports/gen3d_surface_contours.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/gen3d_surface_torus.html">
         <img src="./examples/output/png_exports/gen3d_surface_torus.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/grouped_bar.html">
         <img src="./examples/output/png_exports/grouped_bar.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/grouped_scatter.html">
         <img src="./examples/output/png_exports/grouped_scatter.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -208,35 +208,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/horizontal_bar.html">
         <img src="./examples/output/png_exports/horizontal_bar.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/indicator.html">
         <img src="./examples/output/png_exports/indicator.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/inset_graph.html">
         <img src="./examples/output/png_exports/inset_graph.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/light_tile.html">
         <img src="./examples/output/png_exports/light_tile.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/line_and_scatter_with_names_axes_title.html">
         <img src="./examples/output/png_exports/line_and_scatter_with_names_axes_title.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -245,35 +245,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/line_dashes.html">
         <img src="./examples/output/png_exports/line_dashes.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/lines_on_maps.html">
         <img src="./examples/output/png_exports/lines_on_maps.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/mesh_cube.html">
         <img src="./examples/output/png_exports/mesh_cube.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/mixed_subplots.html">
         <img src="./examples/output/png_exports/mixed_subplots.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/multiple_3d_isosurfaces.html">
         <img src="./examples/output/png_exports/multiple_3d_isosurfaces.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -282,35 +282,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/multiple_3d_surface_plots.html">
         <img src="./examples/output/png_exports/multiple_3d_surface_plots.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/multiple_subplots_with_shared_axes.html">
         <img src="./examples/output/png_exports/multiple_subplots_with_shared_axes.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/multiple_trace_radar_chart.html">
         <img src="./examples/output/png_exports/multiple_trace_radar_chart.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/outline_map_locations.html">
         <img src="./examples/output/png_exports/outline_map_locations.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/scatter_tile_maps.html">
         <img src="./examples/output/png_exports/scatter_tile_maps.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
@@ -319,35 +319,35 @@ A comprehensive set of examples demonstrating various chart types can be found i
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/scatter_with_color_dimension.html">
         <img src="./examples/output/png_exports/scatter_with_color_dimension.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/simple_volume_plot.html">
         <img src="./examples/output/png_exports/simple_volume_plot.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/smith_chart_subplots_with_stlying.html">
         <img src="./examples/output/png_exports/smith_chart_subplots_with_stlying.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/subplots_domain_layout.html">
         <img src="./examples/output/png_exports/subplots_domain_layout.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
     <td align="center" width="20%" valign="top" style="padding: 0px;">
       <a href="https://jimmyorourke.github.io/plotlypp/examples/output/subplots_grid_layout.html">
         <img src="./examples/output/png_exports/subplots_grid_layout.png"
              width="100%"
-             style="border-radius: 6px; border: 1px solid #d0d7de;" />
+             style="border-radius: 0px; border: 1px solid #d0d7de;" />
       </a>
     </td>
   </tr>
