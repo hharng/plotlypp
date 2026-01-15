@@ -182,33 +182,41 @@ Each of the thumbnails below is chart from the the [`examples/`](./examples) dir
 #include <plotlypp/traces/scatter.hpp>
 
 void linePlotWithMarkers() {
-    using namespace plotlypp;
-    // Plotly++ uses a fluent API.
-    // Plotly "flaglist" types are specfied with initializer lists. (mode setting is equivalent to "markers+lines"
-    // in JavaScript or Python)
-    auto scatter_and_lines = Scatter()
-                                 .x(std::vector{1, 2, 3, 4})
-                                 .y(std::vector{12, 9, 15, 12})
-                                 .mode({Scatter::Mode::Lines, Scatter::Mode::Markers})
-                                 .name("Lines & Markers");
+  using namespace plotlypp;
 
-    // Nested types can get verbose, so a lambda-setter API is also available.
-    auto layout = Layout()
-                      .title([](auto& t) { t.text("Title of the Graph"); })
-                      .xaxis(Layout::Xaxis().title([](auto& t) { t.text("x-axis title"); })) // Lambda API
-                      .yaxis(Layout::Yaxis().title(Layout::Yaxis::Title().text("y-axis title"))); // Regular API
-    // If you think you really know what you're doing and want to give up type safety, a raw JSON string API is
-    // also available.
-    layout.yaxis({"{\"title\": {\"text\": \"New y-axis title\"}}"});
+  std::vector x_data = {1, 2, 3, 4};
+  std::vector y_data = {1, 2, 3, 4};
 
-    auto figure = Figure()
-                      .addTrace(std::move(scatter_and_lines))
-                      .setLayout(std::move(layout));
+  // Plotly++ uses a fluent API.
+  // Trace data (eg x, y) are accepted as `const std::vector&` in C++17. In C++20 and later,
+  // `std::span` automatically becomes supported.
+  // Plotly `flaglist` types are specfied with initializer lists. (mode setting is equivalent
+  // to "markers+lines" in JavaScript or Python)
+  auto scatter_and_lines = Scatter()
+                             .x(x)
+                             .y(y)
+                             .mode({Scatter::Mode::Lines, Scatter::Mode::Markers})
+                             .name("Lines & Markers");
 
-    // Open the plot in the default browser for interactive viewing.
-    figure.show();
-    // Save the plot to disk.
-    figure.writeHtml("line_plot_with_markers.html")
+  // Nested types can get verbose, so a lambda-setter API is also available.
+  // `title` and `xaxis` use the lambda API, `yaxis` uses the regular setter API.
+  auto layout = Layout()
+                  .title([](auto& t) { t.text("Title of the Graph"); })
+                  .xaxis(Layout::Xaxis().title([](auto& t) { t.text("x-axis title"); }))
+                  .yaxis(Layout::Yaxis().title(Layout::Yaxis::Title().text("y-axis title")));
+
+  // If you think you really know what you're doing and want to give up type safety, a raw
+  // JSON string API is also available.
+  layout.yaxis({"{\"title\": {\"text\": \"New y-axis title\"}}"});
+
+  auto figure = Figure()
+                  .addTrace(std::move(scatter_and_lines))
+                  .setLayout(std::move(layout));
+
+  // Open the plot in the default browser for interactive viewing.
+  figure.show();
+  // Save the plot to disk.
+  figure.writeHtml("line_plot_with_markers.html")
 }
 ```
 
