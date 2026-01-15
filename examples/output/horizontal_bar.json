@@ -1,0 +1,1 @@
+{"data":[{"marker":{"color":"rgba(55,128,191,0.6)"},"name":"SF Zoo","orientation":"h","type":"bar","x":[20,14,23],"y":["giraffes","orangutans","monkeys"]},{"marker":{"color":"rgba(255,153,51,0.6)"},"name":"LA Zoo","orientation":"h","type":"bar","x":[12,18,29],"y":["giraffes","orangutans","monkeys"]}],"layout":{"barmode":"stack","title":{"text":"Colored Bar Chart"}}}

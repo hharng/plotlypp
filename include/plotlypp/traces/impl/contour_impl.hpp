@@ -30,93 +30,6 @@ inline std::string Contour::to_string(HoverinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
-inline std::string Contour::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::to_string(Xcalendar e) {
-    switch(e) {
-        case Xcalendar::Chinese: return "chinese";
-        case Xcalendar::Coptic: return "coptic";
-        case Xcalendar::Discworld: return "discworld";
-        case Xcalendar::Ethiopian: return "ethiopian";
-        case Xcalendar::Gregorian: return "gregorian";
-        case Xcalendar::Hebrew: return "hebrew";
-        case Xcalendar::Islamic: return "islamic";
-        case Xcalendar::Jalali: return "jalali";
-        case Xcalendar::Julian: return "julian";
-        case Xcalendar::Mayan: return "mayan";
-        case Xcalendar::Nanakshahi: return "nanakshahi";
-        case Xcalendar::Nepali: return "nepali";
-        case Xcalendar::Persian: return "persian";
-        case Xcalendar::Taiwan: return "taiwan";
-        case Xcalendar::Thai: return "thai";
-        case Xcalendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::to_string(Xperiodalignment e) {
-    switch(e) {
-        case Xperiodalignment::Start: return "start";
-        case Xperiodalignment::Middle: return "middle";
-        case Xperiodalignment::End: return "end";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::to_string(Xtype e) {
-    switch(e) {
-        case Xtype::Array: return "array";
-        case Xtype::Scaled: return "scaled";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::to_string(Ycalendar e) {
-    switch(e) {
-        case Ycalendar::Chinese: return "chinese";
-        case Ycalendar::Coptic: return "coptic";
-        case Ycalendar::Discworld: return "discworld";
-        case Ycalendar::Ethiopian: return "ethiopian";
-        case Ycalendar::Gregorian: return "gregorian";
-        case Ycalendar::Hebrew: return "hebrew";
-        case Ycalendar::Islamic: return "islamic";
-        case Ycalendar::Jalali: return "jalali";
-        case Ycalendar::Julian: return "julian";
-        case Ycalendar::Mayan: return "mayan";
-        case Ycalendar::Nanakshahi: return "nanakshahi";
-        case Ycalendar::Nepali: return "nepali";
-        case Ycalendar::Persian: return "persian";
-        case Ycalendar::Taiwan: return "taiwan";
-        case Ycalendar::Thai: return "thai";
-        case Ycalendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::to_string(Yperiodalignment e) {
-    switch(e) {
-        case Yperiodalignment::Start: return "start";
-        case Yperiodalignment::Middle: return "middle";
-        case Yperiodalignment::End: return "end";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::to_string(Ytype e) {
-    switch(e) {
-        case Ytype::Array: return "array";
-        case Ytype::Scaled: return "scaled";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour& Contour::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -408,7 +321,11 @@ inline Contour& Contour::uirevision(T f) {
 }
 
 inline Contour& Contour::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -430,7 +347,24 @@ inline Contour& Contour::xaxis(std::string f) {
 }
 
 inline Contour& Contour::xcalendar(enum Xcalendar f) {
-    json["xcalendar"] = to_string(f);
+    switch(f) {
+        case Xcalendar::Chinese: json["xcalendar"] = "chinese"; break;
+        case Xcalendar::Coptic: json["xcalendar"] = "coptic"; break;
+        case Xcalendar::Discworld: json["xcalendar"] = "discworld"; break;
+        case Xcalendar::Ethiopian: json["xcalendar"] = "ethiopian"; break;
+        case Xcalendar::Gregorian: json["xcalendar"] = "gregorian"; break;
+        case Xcalendar::Hebrew: json["xcalendar"] = "hebrew"; break;
+        case Xcalendar::Islamic: json["xcalendar"] = "islamic"; break;
+        case Xcalendar::Jalali: json["xcalendar"] = "jalali"; break;
+        case Xcalendar::Julian: json["xcalendar"] = "julian"; break;
+        case Xcalendar::Mayan: json["xcalendar"] = "mayan"; break;
+        case Xcalendar::Nanakshahi: json["xcalendar"] = "nanakshahi"; break;
+        case Xcalendar::Nepali: json["xcalendar"] = "nepali"; break;
+        case Xcalendar::Persian: json["xcalendar"] = "persian"; break;
+        case Xcalendar::Taiwan: json["xcalendar"] = "taiwan"; break;
+        case Xcalendar::Thai: json["xcalendar"] = "thai"; break;
+        case Xcalendar::Ummalqura: json["xcalendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -452,7 +386,11 @@ inline Contour& Contour::xperiod0(T f) {
 }
 
 inline Contour& Contour::xperiodalignment(enum Xperiodalignment f) {
-    json["xperiodalignment"] = to_string(f);
+    switch(f) {
+        case Xperiodalignment::Start: json["xperiodalignment"] = "start"; break;
+        case Xperiodalignment::Middle: json["xperiodalignment"] = "middle"; break;
+        case Xperiodalignment::End: json["xperiodalignment"] = "end"; break;
+    }
     return *this;
 }
 
@@ -462,7 +400,10 @@ inline Contour& Contour::xsrc(std::string f) {
 }
 
 inline Contour& Contour::xtype(enum Xtype f) {
-    json["xtype"] = to_string(f);
+    switch(f) {
+        case Xtype::Array: json["xtype"] = "array"; break;
+        case Xtype::Scaled: json["xtype"] = "scaled"; break;
+    }
     return *this;
 }
 
@@ -484,7 +425,24 @@ inline Contour& Contour::yaxis(std::string f) {
 }
 
 inline Contour& Contour::ycalendar(enum Ycalendar f) {
-    json["ycalendar"] = to_string(f);
+    switch(f) {
+        case Ycalendar::Chinese: json["ycalendar"] = "chinese"; break;
+        case Ycalendar::Coptic: json["ycalendar"] = "coptic"; break;
+        case Ycalendar::Discworld: json["ycalendar"] = "discworld"; break;
+        case Ycalendar::Ethiopian: json["ycalendar"] = "ethiopian"; break;
+        case Ycalendar::Gregorian: json["ycalendar"] = "gregorian"; break;
+        case Ycalendar::Hebrew: json["ycalendar"] = "hebrew"; break;
+        case Ycalendar::Islamic: json["ycalendar"] = "islamic"; break;
+        case Ycalendar::Jalali: json["ycalendar"] = "jalali"; break;
+        case Ycalendar::Julian: json["ycalendar"] = "julian"; break;
+        case Ycalendar::Mayan: json["ycalendar"] = "mayan"; break;
+        case Ycalendar::Nanakshahi: json["ycalendar"] = "nanakshahi"; break;
+        case Ycalendar::Nepali: json["ycalendar"] = "nepali"; break;
+        case Ycalendar::Persian: json["ycalendar"] = "persian"; break;
+        case Ycalendar::Taiwan: json["ycalendar"] = "taiwan"; break;
+        case Ycalendar::Thai: json["ycalendar"] = "thai"; break;
+        case Ycalendar::Ummalqura: json["ycalendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -506,7 +464,11 @@ inline Contour& Contour::yperiod0(T f) {
 }
 
 inline Contour& Contour::yperiodalignment(enum Yperiodalignment f) {
-    json["yperiodalignment"] = to_string(f);
+    switch(f) {
+        case Yperiodalignment::Start: json["yperiodalignment"] = "start"; break;
+        case Yperiodalignment::Middle: json["yperiodalignment"] = "middle"; break;
+        case Yperiodalignment::End: json["yperiodalignment"] = "end"; break;
+    }
     return *this;
 }
 
@@ -516,7 +478,10 @@ inline Contour& Contour::ysrc(std::string f) {
 }
 
 inline Contour& Contour::ytype(enum Ytype f) {
-    json["ytype"] = to_string(f);
+    switch(f) {
+        case Ytype::Array: json["ytype"] = "array"; break;
+        case Ytype::Scaled: json["ytype"] = "scaled"; break;
+    }
     return *this;
 }
 
@@ -561,148 +526,6 @@ inline Contour& Contour::zsrc(std::string f) {
     return *this;
 }
 
-inline std::string Contour::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Colorbar& Contour::Colorbar::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -734,7 +557,13 @@ inline Contour::Colorbar& Contour::Colorbar::dtick(T f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -750,7 +579,10 @@ inline Contour::Colorbar& Contour::Colorbar::len(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::lenmode(enum Lenmode f) {
-    json["lenmode"] = to_string(f);
+    switch(f) {
+        case Lenmode::Fraction: json["lenmode"] = "fraction"; break;
+        case Lenmode::Pixels: json["lenmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -765,7 +597,10 @@ inline Contour::Colorbar& Contour::Colorbar::nticks(int f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::H: json["orientation"] = "h"; break;
+        case Orientation::V: json["orientation"] = "v"; break;
+    }
     return *this;
 }
 
@@ -789,7 +624,12 @@ inline Contour::Colorbar& Contour::Colorbar::separatethousands(bool f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -799,12 +639,22 @@ inline Contour::Colorbar& Contour::Colorbar::showticklabels(bool f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Contour::Colorbar& Contour::Colorbar::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -814,7 +664,10 @@ inline Contour::Colorbar& Contour::Colorbar::thickness(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::thicknessmode(enum Thicknessmode f) {
-    json["thicknessmode"] = to_string(f);
+    switch(f) {
+        case Thicknessmode::Fraction: json["thicknessmode"] = "fraction"; break;
+        case Thicknessmode::Pixels: json["thicknessmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -862,12 +715,27 @@ inline Contour::Colorbar& Contour::Colorbar::tickformatstops(const std::vector<T
 }
 
 inline Contour::Colorbar& Contour::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
-    json["ticklabeloverflow"] = to_string(f);
+    switch(f) {
+        case Ticklabeloverflow::Allow: json["ticklabeloverflow"] = "allow"; break;
+        case Ticklabeloverflow::HidePastDiv: json["ticklabeloverflow"] = "hide past div"; break;
+        case Ticklabeloverflow::HidePastDomain: json["ticklabeloverflow"] = "hide past domain"; break;
+    }
     return *this;
 }
 
 inline Contour::Colorbar& Contour::Colorbar::ticklabelposition(enum Ticklabelposition f) {
-    json["ticklabelposition"] = to_string(f);
+    switch(f) {
+        case Ticklabelposition::Outside: json["ticklabelposition"] = "outside"; break;
+        case Ticklabelposition::Inside: json["ticklabelposition"] = "inside"; break;
+        case Ticklabelposition::OutsideTop: json["ticklabelposition"] = "outside top"; break;
+        case Ticklabelposition::InsideTop: json["ticklabelposition"] = "inside top"; break;
+        case Ticklabelposition::OutsideLeft: json["ticklabelposition"] = "outside left"; break;
+        case Ticklabelposition::InsideLeft: json["ticklabelposition"] = "inside left"; break;
+        case Ticklabelposition::OutsideRight: json["ticklabelposition"] = "outside right"; break;
+        case Ticklabelposition::InsideRight: json["ticklabelposition"] = "inside right"; break;
+        case Ticklabelposition::OutsideBottom: json["ticklabelposition"] = "outside bottom"; break;
+        case Ticklabelposition::InsideBottom: json["ticklabelposition"] = "inside bottom"; break;
+    }
     return *this;
 }
 
@@ -882,7 +750,11 @@ inline Contour::Colorbar& Contour::Colorbar::ticklen(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -892,7 +764,11 @@ inline Contour::Colorbar& Contour::Colorbar::tickprefix(std::string f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -945,7 +821,11 @@ inline Contour::Colorbar& Contour::Colorbar::x(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -955,7 +835,10 @@ inline Contour::Colorbar& Contour::Colorbar::xpad(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::xref(enum Xref f) {
-    json["xref"] = to_string(f);
+    switch(f) {
+        case Xref::Container: json["xref"] = "container"; break;
+        case Xref::Paper: json["xref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -965,7 +848,11 @@ inline Contour::Colorbar& Contour::Colorbar::y(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -975,7 +862,10 @@ inline Contour::Colorbar& Contour::Colorbar::ypad(double f) {
 }
 
 inline Contour::Colorbar& Contour::Colorbar::yref(enum Yref f) {
-    json["yref"] = to_string(f);
+    switch(f) {
+        case Yref::Container: json["yref"] = "container"; break;
+        case Yref::Paper: json["yref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -992,36 +882,6 @@ inline std::string Contour::Colorbar::Tickfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Contour::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Contour::Colorbar::Tickfont& Contour::Colorbar::Tickfont::color(std::string f) {
@@ -1058,17 +918,32 @@ inline Contour::Colorbar::Tickfont& Contour::Colorbar::Tickfont::size(double f) 
 }
 
 inline Contour::Colorbar::Tickfont& Contour::Colorbar::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Contour::Colorbar::Tickfont& Contour::Colorbar::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Contour::Colorbar::Tickfont& Contour::Colorbar::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1115,15 +990,6 @@ inline Contour::Colorbar::Tickformatstop& Contour::Colorbar::Tickformatstop::val
     return *this;
 }
 
-inline std::string Contour::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Colorbar::Title& Contour::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
@@ -1137,7 +1003,11 @@ inline Contour::Colorbar::Title& Contour::Colorbar::Title::font(Callable&& c) {
 }
 
 inline Contour::Colorbar::Title& Contour::Colorbar::Title::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Right: json["side"] = "right"; break;
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1159,36 +1029,6 @@ inline std::string Contour::Colorbar::Title::Font::to_string(LinepositionExtra e
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Contour::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Contour::Colorbar::Title::Font& Contour::Colorbar::Title::Font::color(std::string f) {
@@ -1225,17 +1065,32 @@ inline Contour::Colorbar::Title::Font& Contour::Colorbar::Title::Font::size(doub
 }
 
 inline Contour::Colorbar::Title::Font& Contour::Colorbar::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Contour::Colorbar::Title::Font& Contour::Colorbar::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Contour::Colorbar::Title::Font& Contour::Colorbar::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1244,27 +1099,14 @@ inline Contour::Colorbar::Title::Font& Contour::Colorbar::Title::Font::weight(in
     return *this;
 }
 
-inline std::string Contour::Contours::to_string(Coloring e) {
-    switch(e) {
-        case Coloring::Fill: return "fill";
-        case Coloring::Heatmap: return "heatmap";
-        case Coloring::Lines: return "lines";
-        case Coloring::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Contours::to_string(Type e) {
-    switch(e) {
-        case Type::Levels: return "levels";
-        case Type::Constraint: return "constraint";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Contours& Contour::Contours::coloring(enum Coloring f) {
-    json["coloring"] = to_string(f);
+    switch(f) {
+        case Coloring::Fill: json["coloring"] = "fill"; break;
+        case Coloring::Heatmap: json["coloring"] = "heatmap"; break;
+        case Coloring::Lines: json["coloring"] = "lines"; break;
+        case Coloring::None: json["coloring"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1326,7 +1168,10 @@ inline Contour::Contours& Contour::Contours::start(double f) {
 }
 
 inline Contour::Contours& Contour::Contours::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Levels: json["type"] = "levels"; break;
+        case Type::Constraint: json["type"] = "constraint"; break;
+    }
     return *this;
 }
 
@@ -1350,36 +1195,6 @@ inline std::string Contour::Contours::Labelfont::to_string(LinepositionExtra e) 
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Contour::Contours::Labelfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Contours::Labelfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Contours::Labelfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Contour::Contours::Labelfont& Contour::Contours::Labelfont::color(std::string f) {
@@ -1416,17 +1231,32 @@ inline Contour::Contours::Labelfont& Contour::Contours::Labelfont::size(double f
 }
 
 inline Contour::Contours::Labelfont& Contour::Contours::Labelfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Contour::Contours::Labelfont& Contour::Contours::Labelfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Contour::Contours::Labelfont& Contour::Contours::Labelfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1435,24 +1265,25 @@ inline Contour::Contours::Labelfont& Contour::Contours::Labelfont::weight(int f)
     return *this;
 }
 
-inline std::string Contour::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Hoverlabel& Contour::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Contour::Hoverlabel& Contour::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -1544,36 +1375,6 @@ inline std::string Contour::Hoverlabel::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Contour::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1654,13 +1455,21 @@ inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::sizesrc(std::string
 }
 
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -1670,13 +1479,25 @@ inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::stylesrc(std::strin
 }
 
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -1686,13 +1507,29 @@ inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::textcasesrc(std::st
 }
 
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Contour::Hoverlabel::Font& Contour::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -1746,36 +1583,6 @@ inline std::string Contour::Legendgrouptitle::Font::to_string(LinepositionExtra 
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Contour::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Legendgrouptitle::Font& Contour::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1811,17 +1618,32 @@ inline Contour::Legendgrouptitle::Font& Contour::Legendgrouptitle::Font::size(do
 }
 
 inline Contour::Legendgrouptitle::Font& Contour::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Contour::Legendgrouptitle::Font& Contour::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Contour::Legendgrouptitle::Font& Contour::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1880,36 +1702,6 @@ inline std::string Contour::Textfont::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Contour::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Textfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Contour::Textfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Contour::Textfont& Contour::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1945,17 +1737,32 @@ inline Contour::Textfont& Contour::Textfont::size(double f) {
 }
 
 inline Contour::Textfont& Contour::Textfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Contour::Textfont& Contour::Textfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Contour::Textfont& Contour::Textfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 

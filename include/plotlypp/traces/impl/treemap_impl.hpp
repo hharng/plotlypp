@@ -12,14 +12,6 @@
 
 namespace plotlypp {
 
-inline std::string Treemap::to_string(Branchvalues e) {
-    switch(e) {
-        case Branchvalues::Remainder: return "remainder";
-        case Branchvalues::Total: return "total";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Treemap::to_string(Count e) {
     switch(e) {
         case Count::Branches: return "branches";
@@ -66,33 +58,12 @@ inline std::string Treemap::to_string(TextinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for textinfo."};
 }
-inline std::string Treemap::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap& Treemap::branchvalues(enum Branchvalues f) {
-    json["branchvalues"] = to_string(f);
+    switch(f) {
+        case Branchvalues::Remainder: json["branchvalues"] = "remainder"; break;
+        case Branchvalues::Total: json["branchvalues"] = "total"; break;
+    }
     return *this;
 }
 
@@ -370,7 +341,17 @@ inline Treemap& Treemap::textinfo(TextinfoExtra extra) {
 }
 
 inline Treemap& Treemap::textposition(enum Textposition f) {
-    json["textposition"] = to_string(f);
+    switch(f) {
+        case Textposition::TopLeft: json["textposition"] = "top left"; break;
+        case Textposition::TopCenter: json["textposition"] = "top center"; break;
+        case Textposition::TopRight: json["textposition"] = "top right"; break;
+        case Textposition::MiddleLeft: json["textposition"] = "middle left"; break;
+        case Textposition::MiddleCenter: json["textposition"] = "middle center"; break;
+        case Textposition::MiddleRight: json["textposition"] = "middle right"; break;
+        case Textposition::BottomLeft: json["textposition"] = "bottom left"; break;
+        case Textposition::BottomCenter: json["textposition"] = "bottom center"; break;
+        case Textposition::BottomRight: json["textposition"] = "bottom right"; break;
+    }
     return *this;
 }
 
@@ -427,7 +408,11 @@ inline Treemap& Treemap::valuessrc(std::string f) {
 }
 
 inline Treemap& Treemap::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -476,24 +461,25 @@ inline Treemap::Domain& Treemap::Domain::y(const std::vector<std::vector<double>
     return *this;
 }
 
-inline std::string Treemap::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Treemap::Hoverlabel& Treemap::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -585,36 +571,6 @@ inline std::string Treemap::Hoverlabel::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Treemap::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -695,13 +651,21 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::sizesrc(std::string
 }
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -711,13 +675,25 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::stylesrc(std::strin
 }
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -727,13 +703,29 @@ inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::textcasesrc(std::st
 }
 
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Treemap::Hoverlabel::Font& Treemap::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -769,36 +761,6 @@ inline std::string Treemap::Insidetextfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Treemap::Insidetextfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Insidetextfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Insidetextfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::color(std::string f) {
@@ -880,13 +842,21 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::sizesrc(std::string f) 
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -896,13 +866,25 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::stylesrc(std::string f)
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -912,13 +894,29 @@ inline Treemap::Insidetextfont& Treemap::Insidetextfont::textcasesrc(std::string
 }
 
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Treemap::Insidetextfont& Treemap::Insidetextfont::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -972,36 +970,6 @@ inline std::string Treemap::Legendgrouptitle::Font::to_string(LinepositionExtra 
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Treemap::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1037,17 +1005,32 @@ inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::size(do
 }
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1056,15 +1039,6 @@ inline Treemap::Legendgrouptitle::Font& Treemap::Legendgrouptitle::Font::weight(
     return *this;
 }
 
-inline std::string Treemap::Marker::to_string(Depthfade e) {
-    switch(e) {
-        case Depthfade::True: return "True";
-        case Depthfade::False: return "False";
-        case Depthfade::Reversed: return "reversed";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Marker& Treemap::Marker::autocolorscale(bool f) {
     json["autocolorscale"] = std::move(f);
@@ -1133,7 +1107,11 @@ inline Treemap::Marker& Treemap::Marker::cornerradius(double f) {
 }
 
 inline Treemap::Marker& Treemap::Marker::depthfade(enum Depthfade f) {
-    json["depthfade"] = to_string(f);
+    switch(f) {
+        case Depthfade::True: json["depthfade"] = true; break;
+        case Depthfade::False: json["depthfade"] = false; break;
+        case Depthfade::Reversed: json["depthfade"] = "reversed"; break;
+    }
     return *this;
 }
 
@@ -1180,148 +1158,6 @@ inline Treemap::Marker& Treemap::Marker::showscale(bool f) {
     return *this;
 }
 
-inline std::string Treemap::Marker::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1353,7 +1189,13 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::dtick(T f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -1369,7 +1211,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::len(double f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::lenmode(enum Lenmode f) {
-    json["lenmode"] = to_string(f);
+    switch(f) {
+        case Lenmode::Fraction: json["lenmode"] = "fraction"; break;
+        case Lenmode::Pixels: json["lenmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -1384,7 +1229,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::nticks(int f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::H: json["orientation"] = "h"; break;
+        case Orientation::V: json["orientation"] = "v"; break;
+    }
     return *this;
 }
 
@@ -1408,7 +1256,12 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::separatethousands(b
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1418,12 +1271,22 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showticklabels(bool
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1433,7 +1296,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::thickness(double f)
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
-    json["thicknessmode"] = to_string(f);
+    switch(f) {
+        case Thicknessmode::Fraction: json["thicknessmode"] = "fraction"; break;
+        case Thicknessmode::Pixels: json["thicknessmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -1481,12 +1347,27 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickformatstops(con
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
-    json["ticklabeloverflow"] = to_string(f);
+    switch(f) {
+        case Ticklabeloverflow::Allow: json["ticklabeloverflow"] = "allow"; break;
+        case Ticklabeloverflow::HidePastDiv: json["ticklabeloverflow"] = "hide past div"; break;
+        case Ticklabeloverflow::HidePastDomain: json["ticklabeloverflow"] = "hide past domain"; break;
+    }
     return *this;
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklabelposition(enum Ticklabelposition f) {
-    json["ticklabelposition"] = to_string(f);
+    switch(f) {
+        case Ticklabelposition::Outside: json["ticklabelposition"] = "outside"; break;
+        case Ticklabelposition::Inside: json["ticklabelposition"] = "inside"; break;
+        case Ticklabelposition::OutsideTop: json["ticklabelposition"] = "outside top"; break;
+        case Ticklabelposition::InsideTop: json["ticklabelposition"] = "inside top"; break;
+        case Ticklabelposition::OutsideLeft: json["ticklabelposition"] = "outside left"; break;
+        case Ticklabelposition::InsideLeft: json["ticklabelposition"] = "inside left"; break;
+        case Ticklabelposition::OutsideRight: json["ticklabelposition"] = "outside right"; break;
+        case Ticklabelposition::InsideRight: json["ticklabelposition"] = "inside right"; break;
+        case Ticklabelposition::OutsideBottom: json["ticklabelposition"] = "outside bottom"; break;
+        case Ticklabelposition::InsideBottom: json["ticklabelposition"] = "inside bottom"; break;
+    }
     return *this;
 }
 
@@ -1501,7 +1382,11 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticklen(double f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -1511,7 +1396,11 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::tickprefix(std::str
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -1564,7 +1453,11 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::x(double f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -1574,7 +1467,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xpad(double f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::xref(enum Xref f) {
-    json["xref"] = to_string(f);
+    switch(f) {
+        case Xref::Container: json["xref"] = "container"; break;
+        case Xref::Paper: json["xref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -1584,7 +1480,11 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::y(double f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1594,7 +1494,10 @@ inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::ypad(double f) {
 }
 
 inline Treemap::Marker::Colorbar& Treemap::Marker::Colorbar::yref(enum Yref f) {
-    json["yref"] = to_string(f);
+    switch(f) {
+        case Yref::Container: json["yref"] = "container"; break;
+        case Yref::Paper: json["yref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -1611,36 +1514,6 @@ inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(LinepositionEx
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1677,17 +1550,32 @@ inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont:
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Treemap::Marker::Colorbar::Tickfont& Treemap::Marker::Colorbar::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1734,15 +1622,6 @@ inline Treemap::Marker::Colorbar::Tickformatstop& Treemap::Marker::Colorbar::Tic
     return *this;
 }
 
-inline std::string Treemap::Marker::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
@@ -1756,7 +1635,11 @@ inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::font(
 }
 
 inline Treemap::Marker::Colorbar::Title& Treemap::Marker::Colorbar::Title::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Right: json["side"] = "right"; break;
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1778,36 +1661,6 @@ inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Linepositio
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Marker::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::color(std::string f) {
@@ -1844,17 +1697,32 @@ inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title:
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Treemap::Marker::Colorbar::Title::Font& Treemap::Marker::Colorbar::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1921,14 +1789,6 @@ inline Treemap::Marker::Pad& Treemap::Marker::Pad::t(double f) {
     return *this;
 }
 
-inline std::string Treemap::Marker::Pattern::to_string(Fillmode e) {
-    switch(e) {
-        case Fillmode::Replace: return "replace";
-        case Fillmode::Overlay: return "overlay";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1980,7 +1840,10 @@ inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fgopacity(double f) {
 }
 
 inline Treemap::Marker::Pattern& Treemap::Marker::Pattern::fillmode(enum Fillmode f) {
-    json["fillmode"] = to_string(f);
+    switch(f) {
+        case Fillmode::Replace: json["fillmode"] = "replace"; break;
+        case Fillmode::Overlay: json["fillmode"] = "overlay"; break;
+    }
     return *this;
 }
 
@@ -2039,36 +1902,6 @@ inline std::string Treemap::Outsidetextfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Treemap::Outsidetextfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Outsidetextfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Outsidetextfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::color(std::string f) {
@@ -2150,13 +1983,21 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::sizesrc(std::string f
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -2166,13 +2007,25 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::stylesrc(std::string 
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -2182,13 +2035,29 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::textcasesrc(std::stri
 }
 
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -2211,33 +2080,23 @@ inline Treemap::Outsidetextfont& Treemap::Outsidetextfont::weightsrc(std::string
     return *this;
 }
 
-inline std::string Treemap::Pathbar::to_string(Edgeshape e) {
-    switch(e) {
-        case Edgeshape::Gt: return ">";
-        case Edgeshape::Lt: return "<";
-        case Edgeshape::Or: return "|";
-        case Edgeshape::Slash: return "/";
-        case Edgeshape::Doublebackslash: return "\\";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Pathbar::to_string(Side e) {
-    switch(e) {
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Pathbar& Treemap::Pathbar::edgeshape(enum Edgeshape f) {
-    json["edgeshape"] = to_string(f);
+    switch(f) {
+        case Edgeshape::Gt: json["edgeshape"] = ">"; break;
+        case Edgeshape::Lt: json["edgeshape"] = "<"; break;
+        case Edgeshape::Or: json["edgeshape"] = "|"; break;
+        case Edgeshape::Slash: json["edgeshape"] = "/"; break;
+        case Edgeshape::Doublebackslash: json["edgeshape"] = "\\"; break;
+    }
     return *this;
 }
 
 inline Treemap::Pathbar& Treemap::Pathbar::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -2275,36 +2134,6 @@ inline std::string Treemap::Pathbar::Textfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Treemap::Pathbar::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Pathbar::Textfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Pathbar::Textfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::color(std::string f) {
@@ -2386,13 +2215,21 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::sizesrc(std::stri
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -2402,13 +2239,25 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::stylesrc(std::str
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -2418,13 +2267,29 @@ inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::textcasesrc(std::
 }
 
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Treemap::Pathbar::Textfont& Treemap::Pathbar::Textfont::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -2481,36 +2346,6 @@ inline std::string Treemap::Textfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Treemap::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Textfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Treemap::Textfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Treemap::Textfont& Treemap::Textfont::color(std::string f) {
@@ -2592,13 +2427,21 @@ inline Treemap::Textfont& Treemap::Textfont::sizesrc(std::string f) {
 }
 
 inline Treemap::Textfont& Treemap::Textfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Treemap::Textfont& Treemap::Textfont::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -2608,13 +2451,25 @@ inline Treemap::Textfont& Treemap::Textfont::stylesrc(std::string f) {
 }
 
 inline Treemap::Textfont& Treemap::Textfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Treemap::Textfont& Treemap::Textfont::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -2624,13 +2479,29 @@ inline Treemap::Textfont& Treemap::Textfont::textcasesrc(std::string f) {
 }
 
 inline Treemap::Textfont& Treemap::Textfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Treemap::Textfont& Treemap::Textfont::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -2660,18 +2531,6 @@ inline std::string Treemap::Tiling::to_string(Flip e) {
     }
     throw std::invalid_argument{"Unknown flag value for flip."};
 }
-inline std::string Treemap::Tiling::to_string(Packing e) {
-    switch(e) {
-        case Packing::Squarify: return "squarify";
-        case Packing::Binary: return "binary";
-        case Packing::Dice: return "dice";
-        case Packing::Slice: return "slice";
-        case Packing::SliceDice: return "slice-dice";
-        case Packing::DiceSlice: return "dice-slice";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Treemap::Tiling& Treemap::Tiling::flip(std::initializer_list<Flip> flags) {
     json["flip"] = detail::joinFlaglist(flags, [](auto f){ return to_string(f); });
@@ -2679,7 +2538,14 @@ inline Treemap::Tiling& Treemap::Tiling::flip(std::initializer_list<Flip> flags)
 }
 
 inline Treemap::Tiling& Treemap::Tiling::packing(enum Packing f) {
-    json["packing"] = to_string(f);
+    switch(f) {
+        case Packing::Squarify: json["packing"] = "squarify"; break;
+        case Packing::Binary: json["packing"] = "binary"; break;
+        case Packing::Dice: json["packing"] = "dice"; break;
+        case Packing::Slice: json["packing"] = "slice"; break;
+        case Packing::SliceDice: json["packing"] = "slice-dice"; break;
+        case Packing::DiceSlice: json["packing"] = "dice-slice"; break;
+    }
     return *this;
 }
 

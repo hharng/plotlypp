@@ -1,0 +1,1 @@
+{"data":[{"fill":"toself","name":"Group A","r":[39.0,28.0,8.0,7.0,28.0,39.0],"theta":["A","B","C","D","E","A"],"type":"scatterpolar"},{"fill":"toself","name":"Group B","r":[1.5,10.0,39.0,31.0,15.0,1.5],"theta":["A","B","C","D","E","A"],"type":"scatterpolar"}],"layout":{"polar":{"radialaxis":{"range":[0.0,50.0],"visible":true}}}}

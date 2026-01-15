@@ -12,36 +12,6 @@
 
 namespace plotlypp {
 
-inline std::string Layout::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Layout::to_string(Clickmode e) {
     switch(e) {
         case Clickmode::Event: return "event";
@@ -54,115 +24,6 @@ inline std::string Layout::to_string(ClickmodeExtra e) {
         case ClickmodeExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for clickmode."};
-}
-inline std::string Layout::to_string(Dragmode e) {
-    switch(e) {
-        case Dragmode::Zoom: return "zoom";
-        case Dragmode::Pan: return "pan";
-        case Dragmode::Select: return "select";
-        case Dragmode::Lasso: return "lasso";
-        case Dragmode::Drawclosedpath: return "drawclosedpath";
-        case Dragmode::Drawopenpath: return "drawopenpath";
-        case Dragmode::Drawline: return "drawline";
-        case Dragmode::Drawrect: return "drawrect";
-        case Dragmode::Drawcircle: return "drawcircle";
-        case Dragmode::Orbit: return "orbit";
-        case Dragmode::Turntable: return "turntable";
-        case Dragmode::False: return "False";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Hovermode e) {
-    switch(e) {
-        case Hovermode::X: return "x";
-        case Hovermode::Y: return "y";
-        case Hovermode::Closest: return "closest";
-        case Hovermode::False: return "False";
-        case Hovermode::XUnified: return "x unified";
-        case Hovermode::YUnified: return "y unified";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Hoversubplots e) {
-    switch(e) {
-        case Hoversubplots::Single: return "single";
-        case Hoversubplots::Overlaying: return "overlaying";
-        case Hoversubplots::Axis: return "axis";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Selectdirection e) {
-    switch(e) {
-        case Selectdirection::H: return "h";
-        case Selectdirection::V: return "v";
-        case Selectdirection::D: return "d";
-        case Selectdirection::Any: return "any";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Barmode e) {
-    switch(e) {
-        case Barmode::Stack: return "stack";
-        case Barmode::Group: return "group";
-        case Barmode::Overlay: return "overlay";
-        case Barmode::Relative: return "relative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Barnorm e) {
-    switch(e) {
-        case Barnorm::Empty: return "";
-        case Barnorm::Fraction: return "fraction";
-        case Barnorm::Percent: return "percent";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Boxmode e) {
-    switch(e) {
-        case Boxmode::Group: return "group";
-        case Boxmode::Overlay: return "overlay";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Funnelmode e) {
-    switch(e) {
-        case Funnelmode::Stack: return "stack";
-        case Funnelmode::Group: return "group";
-        case Funnelmode::Overlay: return "overlay";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Scattermode e) {
-    switch(e) {
-        case Scattermode::Group: return "group";
-        case Scattermode::Overlay: return "overlay";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Violinmode e) {
-    switch(e) {
-        case Violinmode::Group: return "group";
-        case Violinmode::Overlay: return "overlay";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::to_string(Waterfallmode e) {
-    switch(e) {
-        case Waterfallmode::Group: return "group";
-        case Waterfallmode::Overlay: return "overlay";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout& Layout::activeselection(Activeselection f) {
@@ -200,12 +61,32 @@ inline Layout& Layout::autosize(bool f) {
 }
 
 inline Layout& Layout::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
 inline Layout& Layout::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -273,7 +154,20 @@ inline Layout& Layout::datarevision(T f) {
 }
 
 inline Layout& Layout::dragmode(enum Dragmode f) {
-    json["dragmode"] = to_string(f);
+    switch(f) {
+        case Dragmode::Zoom: json["dragmode"] = "zoom"; break;
+        case Dragmode::Pan: json["dragmode"] = "pan"; break;
+        case Dragmode::Select: json["dragmode"] = "select"; break;
+        case Dragmode::Lasso: json["dragmode"] = "lasso"; break;
+        case Dragmode::Drawclosedpath: json["dragmode"] = "drawclosedpath"; break;
+        case Dragmode::Drawopenpath: json["dragmode"] = "drawopenpath"; break;
+        case Dragmode::Drawline: json["dragmode"] = "drawline"; break;
+        case Dragmode::Drawrect: json["dragmode"] = "drawrect"; break;
+        case Dragmode::Drawcircle: json["dragmode"] = "drawcircle"; break;
+        case Dragmode::Orbit: json["dragmode"] = "orbit"; break;
+        case Dragmode::Turntable: json["dragmode"] = "turntable"; break;
+        case Dragmode::False: json["dragmode"] = false; break;
+    }
     return *this;
 }
 
@@ -354,12 +248,23 @@ inline Layout& Layout::hoverlabel(Callable&& c) {
 }
 
 inline Layout& Layout::hovermode(enum Hovermode f) {
-    json["hovermode"] = to_string(f);
+    switch(f) {
+        case Hovermode::X: json["hovermode"] = "x"; break;
+        case Hovermode::Y: json["hovermode"] = "y"; break;
+        case Hovermode::Closest: json["hovermode"] = "closest"; break;
+        case Hovermode::False: json["hovermode"] = false; break;
+        case Hovermode::XUnified: json["hovermode"] = "x unified"; break;
+        case Hovermode::YUnified: json["hovermode"] = "y unified"; break;
+    }
     return *this;
 }
 
 inline Layout& Layout::hoversubplots(enum Hoversubplots f) {
-    json["hoversubplots"] = to_string(f);
+    switch(f) {
+        case Hoversubplots::Single: json["hoversubplots"] = "single"; break;
+        case Hoversubplots::Overlaying: json["hoversubplots"] = "overlaying"; break;
+        case Hoversubplots::Axis: json["hoversubplots"] = "axis"; break;
+    }
     return *this;
 }
 
@@ -569,7 +474,12 @@ inline Layout& Layout::scene(int index, Callable&& c) {
 }
 
 inline Layout& Layout::selectdirection(enum Selectdirection f) {
-    json["selectdirection"] = to_string(f);
+    switch(f) {
+        case Selectdirection::H: json["selectdirection"] = "h"; break;
+        case Selectdirection::V: json["selectdirection"] = "v"; break;
+        case Selectdirection::D: json["selectdirection"] = "d"; break;
+        case Selectdirection::Any: json["selectdirection"] = "any"; break;
+    }
     return *this;
 }
 
@@ -777,12 +687,21 @@ inline Layout& Layout::bargroupgap(double f) {
 }
 
 inline Layout& Layout::barmode(enum Barmode f) {
-    json["barmode"] = to_string(f);
+    switch(f) {
+        case Barmode::Stack: json["barmode"] = "stack"; break;
+        case Barmode::Group: json["barmode"] = "group"; break;
+        case Barmode::Overlay: json["barmode"] = "overlay"; break;
+        case Barmode::Relative: json["barmode"] = "relative"; break;
+    }
     return *this;
 }
 
 inline Layout& Layout::barnorm(enum Barnorm f) {
-    json["barnorm"] = to_string(f);
+    switch(f) {
+        case Barnorm::Empty: json["barnorm"] = ""; break;
+        case Barnorm::Fraction: json["barnorm"] = "fraction"; break;
+        case Barnorm::Percent: json["barnorm"] = "percent"; break;
+    }
     return *this;
 }
 
@@ -797,7 +716,10 @@ inline Layout& Layout::boxgroupgap(double f) {
 }
 
 inline Layout& Layout::boxmode(enum Boxmode f) {
-    json["boxmode"] = to_string(f);
+    switch(f) {
+        case Boxmode::Group: json["boxmode"] = "group"; break;
+        case Boxmode::Overlay: json["boxmode"] = "overlay"; break;
+    }
     return *this;
 }
 
@@ -812,7 +734,11 @@ inline Layout& Layout::funnelgroupgap(double f) {
 }
 
 inline Layout& Layout::funnelmode(enum Funnelmode f) {
-    json["funnelmode"] = to_string(f);
+    switch(f) {
+        case Funnelmode::Stack: json["funnelmode"] = "stack"; break;
+        case Funnelmode::Group: json["funnelmode"] = "group"; break;
+        case Funnelmode::Overlay: json["funnelmode"] = "overlay"; break;
+    }
     return *this;
 }
 
@@ -875,7 +801,10 @@ inline Layout& Layout::scattergap(double f) {
 }
 
 inline Layout& Layout::scattermode(enum Scattermode f) {
-    json["scattermode"] = to_string(f);
+    switch(f) {
+        case Scattermode::Group: json["scattermode"] = "group"; break;
+        case Scattermode::Overlay: json["scattermode"] = "overlay"; break;
+    }
     return *this;
 }
 
@@ -918,7 +847,10 @@ inline Layout& Layout::violingroupgap(double f) {
 }
 
 inline Layout& Layout::violinmode(enum Violinmode f) {
-    json["violinmode"] = to_string(f);
+    switch(f) {
+        case Violinmode::Group: json["violinmode"] = "group"; break;
+        case Violinmode::Overlay: json["violinmode"] = "overlay"; break;
+    }
     return *this;
 }
 
@@ -933,7 +865,10 @@ inline Layout& Layout::waterfallgroupgap(double f) {
 }
 
 inline Layout& Layout::waterfallmode(enum Waterfallmode f) {
-    json["waterfallmode"] = to_string(f);
+    switch(f) {
+        case Waterfallmode::Group: json["waterfallmode"] = "group"; break;
+        case Waterfallmode::Overlay: json["waterfallmode"] = "overlay"; break;
+    }
     return *this;
 }
 
@@ -967,15 +902,6 @@ inline Layout::Activeshape& Layout::Activeshape::opacity(double f) {
     return *this;
 }
 
-inline std::string Layout::Annotation::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Center: return "center";
-        case Align::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Layout::Annotation::to_string(Arrowside e) {
     switch(e) {
         case Arrowside::End: return "end";
@@ -989,47 +915,13 @@ inline std::string Layout::Annotation::to_string(ArrowsideExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for arrowside."};
 }
-inline std::string Layout::Annotation::to_string(Clicktoshow e) {
-    switch(e) {
-        case Clicktoshow::False: return "False";
-        case Clicktoshow::Onoff: return "onoff";
-        case Clicktoshow::Onout: return "onout";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::to_string(Valign e) {
-    switch(e) {
-        case Valign::Top: return "top";
-        case Valign::Middle: return "middle";
-        case Valign::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Annotation& Layout::Annotation::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Center: json["align"] = "center"; break;
+        case Align::Right: json["align"] = "right"; break;
+    }
     return *this;
 }
 
@@ -1122,7 +1014,11 @@ inline Layout::Annotation& Layout::Annotation::captureevents(bool f) {
 }
 
 inline Layout::Annotation& Layout::Annotation::clicktoshow(enum Clicktoshow f) {
-    json["clicktoshow"] = to_string(f);
+    switch(f) {
+        case Clicktoshow::False: json["clicktoshow"] = false; break;
+        case Clicktoshow::Onoff: json["clicktoshow"] = "onoff"; break;
+        case Clicktoshow::Onout: json["clicktoshow"] = "onout"; break;
+    }
     return *this;
 }
 
@@ -1209,7 +1105,11 @@ inline Layout::Annotation& Layout::Annotation::textangle(double f) {
 }
 
 inline Layout::Annotation& Layout::Annotation::valign(enum Valign f) {
-    json["valign"] = to_string(f);
+    switch(f) {
+        case Valign::Top: json["valign"] = "top"; break;
+        case Valign::Middle: json["valign"] = "middle"; break;
+        case Valign::Bottom: json["valign"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1230,7 +1130,12 @@ inline Layout::Annotation& Layout::Annotation::x(T f) {
 }
 
 inline Layout::Annotation& Layout::Annotation::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -1257,7 +1162,12 @@ inline Layout::Annotation& Layout::Annotation::y(T f) {
 }
 
 inline Layout::Annotation& Layout::Annotation::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1290,36 +1200,6 @@ inline std::string Layout::Annotation::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Annotation::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::color(std::string f) {
@@ -1356,17 +1236,32 @@ inline Layout::Annotation::Font& Layout::Annotation::Font::size(double f) {
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Annotation::Font& Layout::Annotation::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1419,36 +1314,6 @@ inline std::string Layout::Annotation::Hoverlabel::Font::to_string(LinepositionE
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Annotation::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1484,17 +1349,32 @@ inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Fon
 }
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Annotation::Hoverlabel::Font& Layout::Annotation::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1559,148 +1439,6 @@ inline Layout::Coloraxis& Layout::Coloraxis::showscale(bool f) {
     return *this;
 }
 
-inline std::string Layout::Coloraxis::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1732,7 +1470,13 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::dtick(T f) {
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -1748,7 +1492,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::len(double f) {
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::lenmode(enum Lenmode f) {
-    json["lenmode"] = to_string(f);
+    switch(f) {
+        case Lenmode::Fraction: json["lenmode"] = "fraction"; break;
+        case Lenmode::Pixels: json["lenmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -1763,7 +1510,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::nticks(int f) {
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::H: json["orientation"] = "h"; break;
+        case Orientation::V: json["orientation"] = "v"; break;
+    }
     return *this;
 }
 
@@ -1787,7 +1537,12 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::separatethousan
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1797,12 +1552,22 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showticklabels(
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1812,7 +1577,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::thickness(doubl
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::thicknessmode(enum Thicknessmode f) {
-    json["thicknessmode"] = to_string(f);
+    switch(f) {
+        case Thicknessmode::Fraction: json["thicknessmode"] = "fraction"; break;
+        case Thicknessmode::Pixels: json["thicknessmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -1860,12 +1628,27 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickformatstops
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
-    json["ticklabeloverflow"] = to_string(f);
+    switch(f) {
+        case Ticklabeloverflow::Allow: json["ticklabeloverflow"] = "allow"; break;
+        case Ticklabeloverflow::HidePastDiv: json["ticklabeloverflow"] = "hide past div"; break;
+        case Ticklabeloverflow::HidePastDomain: json["ticklabeloverflow"] = "hide past domain"; break;
+    }
     return *this;
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklabelposition(enum Ticklabelposition f) {
-    json["ticklabelposition"] = to_string(f);
+    switch(f) {
+        case Ticklabelposition::Outside: json["ticklabelposition"] = "outside"; break;
+        case Ticklabelposition::Inside: json["ticklabelposition"] = "inside"; break;
+        case Ticklabelposition::OutsideTop: json["ticklabelposition"] = "outside top"; break;
+        case Ticklabelposition::InsideTop: json["ticklabelposition"] = "inside top"; break;
+        case Ticklabelposition::OutsideLeft: json["ticklabelposition"] = "outside left"; break;
+        case Ticklabelposition::InsideLeft: json["ticklabelposition"] = "inside left"; break;
+        case Ticklabelposition::OutsideRight: json["ticklabelposition"] = "outside right"; break;
+        case Ticklabelposition::InsideRight: json["ticklabelposition"] = "inside right"; break;
+        case Ticklabelposition::OutsideBottom: json["ticklabelposition"] = "outside bottom"; break;
+        case Ticklabelposition::InsideBottom: json["ticklabelposition"] = "inside bottom"; break;
+    }
     return *this;
 }
 
@@ -1880,7 +1663,11 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticklen(double 
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -1890,7 +1677,11 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::tickprefix(std:
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -1943,7 +1734,11 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::x(double f) {
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -1953,7 +1748,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xpad(double f) 
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::xref(enum Xref f) {
-    json["xref"] = to_string(f);
+    switch(f) {
+        case Xref::Container: json["xref"] = "container"; break;
+        case Xref::Paper: json["xref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -1963,7 +1761,11 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::y(double f) {
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1973,7 +1775,10 @@ inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::ypad(double f) 
 }
 
 inline Layout::Coloraxis::Colorbar& Layout::Coloraxis::Colorbar::yref(enum Yref f) {
-    json["yref"] = to_string(f);
+    switch(f) {
+        case Yref::Container: json["yref"] = "container"; break;
+        case Yref::Paper: json["yref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -1990,36 +1795,6 @@ inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Lineposition
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::color(std::string f) {
@@ -2056,17 +1831,32 @@ inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickf
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Coloraxis::Colorbar::Tickfont& Layout::Coloraxis::Colorbar::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -2113,15 +1903,6 @@ inline Layout::Coloraxis::Colorbar::Tickformatstop& Layout::Coloraxis::Colorbar:
     return *this;
 }
 
-inline std::string Layout::Coloraxis::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
@@ -2135,7 +1916,11 @@ inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::f
 }
 
 inline Layout::Coloraxis::Colorbar::Title& Layout::Coloraxis::Colorbar::Title::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Right: json["side"] = "right"; break;
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -2157,36 +1942,6 @@ inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Lineposit
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Coloraxis::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::color(std::string f) {
@@ -2223,17 +1978,32 @@ inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Ti
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Coloraxis::Colorbar::Title::Font& Layout::Coloraxis::Colorbar::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -2284,36 +2054,6 @@ inline std::string Layout::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Font& Layout::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -2349,17 +2089,32 @@ inline Layout::Font& Layout::Font::size(double f) {
 }
 
 inline Layout::Font& Layout::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Font& Layout::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Font& Layout::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -2368,36 +2123,6 @@ inline Layout::Font& Layout::Font::weight(int f) {
     return *this;
 }
 
-inline std::string Layout::Geo::to_string(Fitbounds e) {
-    switch(e) {
-        case Fitbounds::False: return "False";
-        case Fitbounds::Locations: return "locations";
-        case Fitbounds::Geojson: return "geojson";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Geo::to_string(Resolution e) {
-    switch(e) {
-        case Resolution::Num_110: return "110";
-        case Resolution::Num_50: return "50";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Geo::to_string(Scope e) {
-    switch(e) {
-        case Scope::Africa: return "africa";
-        case Scope::Asia: return "asia";
-        case Scope::Europe: return "europe";
-        case Scope::NorthAmerica: return "north america";
-        case Scope::SouthAmerica: return "south america";
-        case Scope::Usa: return "usa";
-        case Scope::World: return "world";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Geo& Layout::Geo::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -2459,7 +2184,11 @@ inline Layout::Geo& Layout::Geo::domain(Callable&& c) {
 }
 
 inline Layout::Geo& Layout::Geo::fitbounds(enum Fitbounds f) {
-    json["fitbounds"] = to_string(f);
+    switch(f) {
+        case Fitbounds::False: json["fitbounds"] = false; break;
+        case Fitbounds::Locations: json["fitbounds"] = "locations"; break;
+        case Fitbounds::Geojson: json["fitbounds"] = "geojson"; break;
+    }
     return *this;
 }
 
@@ -2538,7 +2267,10 @@ inline Layout::Geo& Layout::Geo::projection(Callable&& c) {
 }
 
 inline Layout::Geo& Layout::Geo::resolution(enum Resolution f) {
-    json["resolution"] = to_string(f);
+    switch(f) {
+        case Resolution::Num_110: json["resolution"] = 110; break;
+        case Resolution::Num_50: json["resolution"] = 50; break;
+    }
     return *this;
 }
 
@@ -2557,7 +2289,15 @@ inline Layout::Geo& Layout::Geo::riverwidth(double f) {
 }
 
 inline Layout::Geo& Layout::Geo::scope(enum Scope f) {
-    json["scope"] = to_string(f);
+    switch(f) {
+        case Scope::Africa: json["scope"] = "africa"; break;
+        case Scope::Asia: json["scope"] = "asia"; break;
+        case Scope::Europe: json["scope"] = "europe"; break;
+        case Scope::NorthAmerica: json["scope"] = "north america"; break;
+        case Scope::SouthAmerica: json["scope"] = "south america"; break;
+        case Scope::Usa: json["scope"] = "usa"; break;
+        case Scope::World: json["scope"] = "world"; break;
+    }
     return *this;
 }
 
@@ -2786,96 +2526,6 @@ inline Layout::Geo::Lonaxis& Layout::Geo::Lonaxis::tick0(double f) {
     return *this;
 }
 
-inline std::string Layout::Geo::Projection::to_string(Type e) {
-    switch(e) {
-        case Type::Airy: return "airy";
-        case Type::Aitoff: return "aitoff";
-        case Type::Albers: return "albers";
-        case Type::AlbersUsa: return "albers usa";
-        case Type::August: return "august";
-        case Type::AzimuthalEqualArea: return "azimuthal equal area";
-        case Type::AzimuthalEquidistant: return "azimuthal equidistant";
-        case Type::Baker: return "baker";
-        case Type::Bertin1953: return "bertin1953";
-        case Type::Boggs: return "boggs";
-        case Type::Bonne: return "bonne";
-        case Type::Bottomley: return "bottomley";
-        case Type::Bromley: return "bromley";
-        case Type::Collignon: return "collignon";
-        case Type::ConicConformal: return "conic conformal";
-        case Type::ConicEqualArea: return "conic equal area";
-        case Type::ConicEquidistant: return "conic equidistant";
-        case Type::Craig: return "craig";
-        case Type::Craster: return "craster";
-        case Type::CylindricalEqualArea: return "cylindrical equal area";
-        case Type::CylindricalStereographic: return "cylindrical stereographic";
-        case Type::Eckert1: return "eckert1";
-        case Type::Eckert2: return "eckert2";
-        case Type::Eckert3: return "eckert3";
-        case Type::Eckert4: return "eckert4";
-        case Type::Eckert5: return "eckert5";
-        case Type::Eckert6: return "eckert6";
-        case Type::Eisenlohr: return "eisenlohr";
-        case Type::EqualEarth: return "equal earth";
-        case Type::Equirectangular: return "equirectangular";
-        case Type::Fahey: return "fahey";
-        case Type::Foucaut: return "foucaut";
-        case Type::FoucautSinusoidal: return "foucaut sinusoidal";
-        case Type::Ginzburg4: return "ginzburg4";
-        case Type::Ginzburg5: return "ginzburg5";
-        case Type::Ginzburg6: return "ginzburg6";
-        case Type::Ginzburg8: return "ginzburg8";
-        case Type::Ginzburg9: return "ginzburg9";
-        case Type::Gnomonic: return "gnomonic";
-        case Type::Gringorten: return "gringorten";
-        case Type::GringortenQuincuncial: return "gringorten quincuncial";
-        case Type::Guyou: return "guyou";
-        case Type::Hammer: return "hammer";
-        case Type::Hill: return "hill";
-        case Type::Homolosine: return "homolosine";
-        case Type::Hufnagel: return "hufnagel";
-        case Type::Hyperelliptical: return "hyperelliptical";
-        case Type::Kavrayskiy7: return "kavrayskiy7";
-        case Type::Lagrange: return "lagrange";
-        case Type::Larrivee: return "larrivee";
-        case Type::Laskowski: return "laskowski";
-        case Type::Loximuthal: return "loximuthal";
-        case Type::Mercator: return "mercator";
-        case Type::Miller: return "miller";
-        case Type::Mollweide: return "mollweide";
-        case Type::MtFlatPolarParabolic: return "mt flat polar parabolic";
-        case Type::MtFlatPolarQuartic: return "mt flat polar quartic";
-        case Type::MtFlatPolarSinusoidal: return "mt flat polar sinusoidal";
-        case Type::NaturalEarth: return "natural earth";
-        case Type::NaturalEarth1: return "natural earth1";
-        case Type::NaturalEarth2: return "natural earth2";
-        case Type::NellHammer: return "nell hammer";
-        case Type::Nicolosi: return "nicolosi";
-        case Type::Orthographic: return "orthographic";
-        case Type::Patterson: return "patterson";
-        case Type::PeirceQuincuncial: return "peirce quincuncial";
-        case Type::Polyconic: return "polyconic";
-        case Type::RectangularPolyconic: return "rectangular polyconic";
-        case Type::Robinson: return "robinson";
-        case Type::Satellite: return "satellite";
-        case Type::SinuMollweide: return "sinu mollweide";
-        case Type::Sinusoidal: return "sinusoidal";
-        case Type::Stereographic: return "stereographic";
-        case Type::Times: return "times";
-        case Type::TransverseMercator: return "transverse mercator";
-        case Type::VanDerGrinten: return "van der grinten";
-        case Type::VanDerGrinten2: return "van der grinten2";
-        case Type::VanDerGrinten3: return "van der grinten3";
-        case Type::VanDerGrinten4: return "van der grinten4";
-        case Type::Wagner4: return "wagner4";
-        case Type::Wagner6: return "wagner6";
-        case Type::Wiechel: return "wiechel";
-        case Type::WinkelTripel: return "winkel tripel";
-        case Type::Winkel3: return "winkel3";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Geo::Projection& Layout::Geo::Projection::distance(double f) {
     json["distance"] = std::move(f);
@@ -2921,7 +2571,92 @@ inline Layout::Geo::Projection& Layout::Geo::Projection::tilt(double f) {
 }
 
 inline Layout::Geo::Projection& Layout::Geo::Projection::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Airy: json["type"] = "airy"; break;
+        case Type::Aitoff: json["type"] = "aitoff"; break;
+        case Type::Albers: json["type"] = "albers"; break;
+        case Type::AlbersUsa: json["type"] = "albers usa"; break;
+        case Type::August: json["type"] = "august"; break;
+        case Type::AzimuthalEqualArea: json["type"] = "azimuthal equal area"; break;
+        case Type::AzimuthalEquidistant: json["type"] = "azimuthal equidistant"; break;
+        case Type::Baker: json["type"] = "baker"; break;
+        case Type::Bertin1953: json["type"] = "bertin1953"; break;
+        case Type::Boggs: json["type"] = "boggs"; break;
+        case Type::Bonne: json["type"] = "bonne"; break;
+        case Type::Bottomley: json["type"] = "bottomley"; break;
+        case Type::Bromley: json["type"] = "bromley"; break;
+        case Type::Collignon: json["type"] = "collignon"; break;
+        case Type::ConicConformal: json["type"] = "conic conformal"; break;
+        case Type::ConicEqualArea: json["type"] = "conic equal area"; break;
+        case Type::ConicEquidistant: json["type"] = "conic equidistant"; break;
+        case Type::Craig: json["type"] = "craig"; break;
+        case Type::Craster: json["type"] = "craster"; break;
+        case Type::CylindricalEqualArea: json["type"] = "cylindrical equal area"; break;
+        case Type::CylindricalStereographic: json["type"] = "cylindrical stereographic"; break;
+        case Type::Eckert1: json["type"] = "eckert1"; break;
+        case Type::Eckert2: json["type"] = "eckert2"; break;
+        case Type::Eckert3: json["type"] = "eckert3"; break;
+        case Type::Eckert4: json["type"] = "eckert4"; break;
+        case Type::Eckert5: json["type"] = "eckert5"; break;
+        case Type::Eckert6: json["type"] = "eckert6"; break;
+        case Type::Eisenlohr: json["type"] = "eisenlohr"; break;
+        case Type::EqualEarth: json["type"] = "equal earth"; break;
+        case Type::Equirectangular: json["type"] = "equirectangular"; break;
+        case Type::Fahey: json["type"] = "fahey"; break;
+        case Type::Foucaut: json["type"] = "foucaut"; break;
+        case Type::FoucautSinusoidal: json["type"] = "foucaut sinusoidal"; break;
+        case Type::Ginzburg4: json["type"] = "ginzburg4"; break;
+        case Type::Ginzburg5: json["type"] = "ginzburg5"; break;
+        case Type::Ginzburg6: json["type"] = "ginzburg6"; break;
+        case Type::Ginzburg8: json["type"] = "ginzburg8"; break;
+        case Type::Ginzburg9: json["type"] = "ginzburg9"; break;
+        case Type::Gnomonic: json["type"] = "gnomonic"; break;
+        case Type::Gringorten: json["type"] = "gringorten"; break;
+        case Type::GringortenQuincuncial: json["type"] = "gringorten quincuncial"; break;
+        case Type::Guyou: json["type"] = "guyou"; break;
+        case Type::Hammer: json["type"] = "hammer"; break;
+        case Type::Hill: json["type"] = "hill"; break;
+        case Type::Homolosine: json["type"] = "homolosine"; break;
+        case Type::Hufnagel: json["type"] = "hufnagel"; break;
+        case Type::Hyperelliptical: json["type"] = "hyperelliptical"; break;
+        case Type::Kavrayskiy7: json["type"] = "kavrayskiy7"; break;
+        case Type::Lagrange: json["type"] = "lagrange"; break;
+        case Type::Larrivee: json["type"] = "larrivee"; break;
+        case Type::Laskowski: json["type"] = "laskowski"; break;
+        case Type::Loximuthal: json["type"] = "loximuthal"; break;
+        case Type::Mercator: json["type"] = "mercator"; break;
+        case Type::Miller: json["type"] = "miller"; break;
+        case Type::Mollweide: json["type"] = "mollweide"; break;
+        case Type::MtFlatPolarParabolic: json["type"] = "mt flat polar parabolic"; break;
+        case Type::MtFlatPolarQuartic: json["type"] = "mt flat polar quartic"; break;
+        case Type::MtFlatPolarSinusoidal: json["type"] = "mt flat polar sinusoidal"; break;
+        case Type::NaturalEarth: json["type"] = "natural earth"; break;
+        case Type::NaturalEarth1: json["type"] = "natural earth1"; break;
+        case Type::NaturalEarth2: json["type"] = "natural earth2"; break;
+        case Type::NellHammer: json["type"] = "nell hammer"; break;
+        case Type::Nicolosi: json["type"] = "nicolosi"; break;
+        case Type::Orthographic: json["type"] = "orthographic"; break;
+        case Type::Patterson: json["type"] = "patterson"; break;
+        case Type::PeirceQuincuncial: json["type"] = "peirce quincuncial"; break;
+        case Type::Polyconic: json["type"] = "polyconic"; break;
+        case Type::RectangularPolyconic: json["type"] = "rectangular polyconic"; break;
+        case Type::Robinson: json["type"] = "robinson"; break;
+        case Type::Satellite: json["type"] = "satellite"; break;
+        case Type::SinuMollweide: json["type"] = "sinu mollweide"; break;
+        case Type::Sinusoidal: json["type"] = "sinusoidal"; break;
+        case Type::Stereographic: json["type"] = "stereographic"; break;
+        case Type::Times: json["type"] = "times"; break;
+        case Type::TransverseMercator: json["type"] = "transverse mercator"; break;
+        case Type::VanDerGrinten: json["type"] = "van der grinten"; break;
+        case Type::VanDerGrinten2: json["type"] = "van der grinten2"; break;
+        case Type::VanDerGrinten3: json["type"] = "van der grinten3"; break;
+        case Type::VanDerGrinten4: json["type"] = "van der grinten4"; break;
+        case Type::Wagner4: json["type"] = "wagner4"; break;
+        case Type::Wagner6: json["type"] = "wagner6"; break;
+        case Type::Wiechel: json["type"] = "wiechel"; break;
+        case Type::WinkelTripel: json["type"] = "winkel tripel"; break;
+        case Type::Winkel3: json["type"] = "winkel3"; break;
+    }
     return *this;
 }
 
@@ -2941,42 +2676,6 @@ inline Layout::Geo::Projection::Rotation& Layout::Geo::Projection::Rotation::rol
     return *this;
 }
 
-inline std::string Layout::Grid::to_string(Pattern e) {
-    switch(e) {
-        case Pattern::Independent: return "independent";
-        case Pattern::Coupled: return "coupled";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Grid::to_string(Roworder e) {
-    switch(e) {
-        case Roworder::TopToBottom: return "top to bottom";
-        case Roworder::BottomToTop: return "bottom to top";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Grid::to_string(Xside e) {
-    switch(e) {
-        case Xside::Bottom: return "bottom";
-        case Xside::BottomPlot: return "bottom plot";
-        case Xside::TopPlot: return "top plot";
-        case Xside::Top: return "top";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Grid::to_string(Yside e) {
-    switch(e) {
-        case Yside::Left: return "left";
-        case Yside::LeftPlot: return "left plot";
-        case Yside::RightPlot: return "right plot";
-        case Yside::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Grid& Layout::Grid::columns(int f) {
     json["columns"] = std::move(f);
@@ -2995,12 +2694,18 @@ inline Layout::Grid& Layout::Grid::domain(Callable&& c) {
 }
 
 inline Layout::Grid& Layout::Grid::pattern(enum Pattern f) {
-    json["pattern"] = to_string(f);
+    switch(f) {
+        case Pattern::Independent: json["pattern"] = "independent"; break;
+        case Pattern::Coupled: json["pattern"] = "coupled"; break;
+    }
     return *this;
 }
 
 inline Layout::Grid& Layout::Grid::roworder(enum Roworder f) {
-    json["roworder"] = to_string(f);
+    switch(f) {
+        case Roworder::TopToBottom: json["roworder"] = "top to bottom"; break;
+        case Roworder::BottomToTop: json["roworder"] = "bottom to top"; break;
+    }
     return *this;
 }
 
@@ -3049,7 +2754,12 @@ inline Layout::Grid& Layout::Grid::xgap(double f) {
 }
 
 inline Layout::Grid& Layout::Grid::xside(enum Xside f) {
-    json["xside"] = to_string(f);
+    switch(f) {
+        case Xside::Bottom: json["xside"] = "bottom"; break;
+        case Xside::BottomPlot: json["xside"] = "bottom plot"; break;
+        case Xside::TopPlot: json["xside"] = "top plot"; break;
+        case Xside::Top: json["xside"] = "top"; break;
+    }
     return *this;
 }
 
@@ -3076,7 +2786,12 @@ inline Layout::Grid& Layout::Grid::ygap(double f) {
 }
 
 inline Layout::Grid& Layout::Grid::yside(enum Yside f) {
-    json["yside"] = to_string(f);
+    switch(f) {
+        case Yside::Left: json["yside"] = "left"; break;
+        case Yside::LeftPlot: json["yside"] = "left plot"; break;
+        case Yside::RightPlot: json["yside"] = "right plot"; break;
+        case Yside::Right: json["yside"] = "right"; break;
+    }
     return *this;
 }
 
@@ -3115,18 +2830,13 @@ inline Layout::Grid::Domain& Layout::Grid::Domain::y(const std::vector<std::vect
     return *this;
 }
 
-inline std::string Layout::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Hoverlabel& Layout::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 
@@ -3189,36 +2899,6 @@ inline std::string Layout::Hoverlabel::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -3254,17 +2934,32 @@ inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::size(double f) {
 }
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Hoverlabel::Font& Layout::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -3286,36 +2981,6 @@ inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(LinepositionExt
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Hoverlabel::Grouptitlefont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::color(std::string f) {
@@ -3352,17 +3017,32 @@ inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::s
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -3371,44 +3051,12 @@ inline Layout::Hoverlabel::Grouptitlefont& Layout::Hoverlabel::Grouptitlefont::w
     return *this;
 }
 
-inline std::string Layout::Image::to_string(Layer e) {
-    switch(e) {
-        case Layer::Below: return "below";
-        case Layer::Above: return "above";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Image::to_string(Sizing e) {
-    switch(e) {
-        case Sizing::Fill: return "fill";
-        case Sizing::Contain: return "contain";
-        case Sizing::Stretch: return "stretch";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Image::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Image::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Image& Layout::Image::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::Below: json["layer"] = "below"; break;
+        case Layer::Above: json["layer"] = "above"; break;
+    }
     return *this;
 }
 
@@ -3433,7 +3081,11 @@ inline Layout::Image& Layout::Image::sizey(double f) {
 }
 
 inline Layout::Image& Layout::Image::sizing(enum Sizing f) {
-    json["sizing"] = to_string(f);
+    switch(f) {
+        case Sizing::Fill: json["sizing"] = "fill"; break;
+        case Sizing::Contain: json["sizing"] = "contain"; break;
+        case Sizing::Stretch: json["sizing"] = "stretch"; break;
+    }
     return *this;
 }
 
@@ -3459,7 +3111,11 @@ inline Layout::Image& Layout::Image::x(T f) {
 }
 
 inline Layout::Image& Layout::Image::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -3475,7 +3131,11 @@ inline Layout::Image& Layout::Image::y(T f) {
 }
 
 inline Layout::Image& Layout::Image::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -3484,56 +3144,6 @@ inline Layout::Image& Layout::Image::yref(std::string f) {
     return *this;
 }
 
-inline std::string Layout::Legend::to_string(Entrywidthmode e) {
-    switch(e) {
-        case Entrywidthmode::Fraction: return "fraction";
-        case Entrywidthmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Groupclick e) {
-    switch(e) {
-        case Groupclick::Toggleitem: return "toggleitem";
-        case Groupclick::Togglegroup: return "togglegroup";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Itemclick e) {
-    switch(e) {
-        case Itemclick::Toggle: return "toggle";
-        case Itemclick::Toggleothers: return "toggleothers";
-        case Itemclick::False: return "False";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Itemdoubleclick e) {
-    switch(e) {
-        case Itemdoubleclick::Toggle: return "toggle";
-        case Itemdoubleclick::Toggleothers: return "toggleothers";
-        case Itemdoubleclick::False: return "False";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Itemsizing e) {
-    switch(e) {
-        case Itemsizing::Trace: return "trace";
-        case Itemsizing::Constant: return "constant";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::V: return "v";
-        case Orientation::H: return "h";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Layout::Legend::to_string(Traceorder e) {
     switch(e) {
         case Traceorder::Reversed: return "reversed";
@@ -3546,51 +3156,6 @@ inline std::string Layout::Legend::to_string(TraceorderExtra e) {
         case TraceorderExtra::Normal: return "normal";
     }
     throw std::invalid_argument{"Unknown extra value for traceorder."};
-}
-inline std::string Layout::Legend::to_string(Valign e) {
-    switch(e) {
-        case Valign::Top: return "top";
-        case Valign::Middle: return "middle";
-        case Valign::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Legend& Layout::Legend::bgcolor(std::string f) {
@@ -3622,7 +3187,10 @@ inline Layout::Legend& Layout::Legend::entrywidth(double f) {
 }
 
 inline Layout::Legend& Layout::Legend::entrywidthmode(enum Entrywidthmode f) {
-    json["entrywidthmode"] = to_string(f);
+    switch(f) {
+        case Entrywidthmode::Fraction: json["entrywidthmode"] = "fraction"; break;
+        case Entrywidthmode::Pixels: json["entrywidthmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -3638,7 +3206,10 @@ inline Layout::Legend& Layout::Legend::font(Callable&& c) {
 }
 
 inline Layout::Legend& Layout::Legend::groupclick(enum Groupclick f) {
-    json["groupclick"] = to_string(f);
+    switch(f) {
+        case Groupclick::Toggleitem: json["groupclick"] = "toggleitem"; break;
+        case Groupclick::Togglegroup: json["groupclick"] = "togglegroup"; break;
+    }
     return *this;
 }
 
@@ -3659,17 +3230,28 @@ inline Layout::Legend& Layout::Legend::indentation(double f) {
 }
 
 inline Layout::Legend& Layout::Legend::itemclick(enum Itemclick f) {
-    json["itemclick"] = to_string(f);
+    switch(f) {
+        case Itemclick::Toggle: json["itemclick"] = "toggle"; break;
+        case Itemclick::Toggleothers: json["itemclick"] = "toggleothers"; break;
+        case Itemclick::False: json["itemclick"] = false; break;
+    }
     return *this;
 }
 
 inline Layout::Legend& Layout::Legend::itemdoubleclick(enum Itemdoubleclick f) {
-    json["itemdoubleclick"] = to_string(f);
+    switch(f) {
+        case Itemdoubleclick::Toggle: json["itemdoubleclick"] = "toggle"; break;
+        case Itemdoubleclick::Toggleothers: json["itemdoubleclick"] = "toggleothers"; break;
+        case Itemdoubleclick::False: json["itemdoubleclick"] = false; break;
+    }
     return *this;
 }
 
 inline Layout::Legend& Layout::Legend::itemsizing(enum Itemsizing f) {
-    json["itemsizing"] = to_string(f);
+    switch(f) {
+        case Itemsizing::Trace: json["itemsizing"] = "trace"; break;
+        case Itemsizing::Constant: json["itemsizing"] = "constant"; break;
+    }
     return *this;
 }
 
@@ -3679,7 +3261,10 @@ inline Layout::Legend& Layout::Legend::itemwidth(double f) {
 }
 
 inline Layout::Legend& Layout::Legend::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::V: json["orientation"] = "v"; break;
+        case Orientation::H: json["orientation"] = "h"; break;
+    }
     return *this;
 }
 
@@ -3715,7 +3300,11 @@ inline Layout::Legend& Layout::Legend::uirevision(T f) {
 }
 
 inline Layout::Legend& Layout::Legend::valign(enum Valign f) {
-    json["valign"] = to_string(f);
+    switch(f) {
+        case Valign::Top: json["valign"] = "top"; break;
+        case Valign::Middle: json["valign"] = "middle"; break;
+        case Valign::Bottom: json["valign"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -3730,12 +3319,20 @@ inline Layout::Legend& Layout::Legend::x(double f) {
 }
 
 inline Layout::Legend& Layout::Legend::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend& Layout::Legend::xref(enum Xref f) {
-    json["xref"] = to_string(f);
+    switch(f) {
+        case Xref::Container: json["xref"] = "container"; break;
+        case Xref::Paper: json["xref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -3745,12 +3342,20 @@ inline Layout::Legend& Layout::Legend::y(double f) {
 }
 
 inline Layout::Legend& Layout::Legend::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend& Layout::Legend::yref(enum Yref f) {
-    json["yref"] = to_string(f);
+    switch(f) {
+        case Yref::Container: json["yref"] = "container"; break;
+        case Yref::Paper: json["yref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -3767,36 +3372,6 @@ inline std::string Layout::Legend::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Legend::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::color(std::string f) {
@@ -3833,17 +3408,32 @@ inline Layout::Legend::Font& Layout::Legend::Font::size(double f) {
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend::Font& Layout::Legend::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -3865,36 +3455,6 @@ inline std::string Layout::Legend::Grouptitlefont::to_string(LinepositionExtra e
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Legend::Grouptitlefont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Grouptitlefont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Grouptitlefont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::color(std::string f) {
@@ -3931,17 +3491,32 @@ inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::size(doub
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -3950,17 +3525,6 @@ inline Layout::Legend::Grouptitlefont& Layout::Legend::Grouptitlefont::weight(in
     return *this;
 }
 
-inline std::string Layout::Legend::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Top: return "top";
-        case Side::Left: return "left";
-        case Side::TopLeft: return "top left";
-        case Side::TopCenter: return "top center";
-        case Side::TopRight: return "top right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Legend::Title& Layout::Legend::Title::font(Font f) {
     json["font"] = std::move(f.json);
@@ -3974,7 +3538,13 @@ inline Layout::Legend::Title& Layout::Legend::Title::font(Callable&& c) {
 }
 
 inline Layout::Legend::Title& Layout::Legend::Title::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Left: json["side"] = "left"; break;
+        case Side::TopLeft: json["side"] = "top left"; break;
+        case Side::TopCenter: json["side"] = "top center"; break;
+        case Side::TopRight: json["side"] = "top right"; break;
+    }
     return *this;
 }
 
@@ -3996,36 +3566,6 @@ inline std::string Layout::Legend::Title::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Legend::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Legend::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::color(std::string f) {
@@ -4062,17 +3602,32 @@ inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::size(double f) 
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Legend::Title::Font& Layout::Legend::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -4226,27 +3781,6 @@ inline Layout::Map::Domain& Layout::Map::Domain::y(const std::vector<std::vector
     return *this;
 }
 
-inline std::string Layout::Map::Layer::to_string(Sourcetype e) {
-    switch(e) {
-        case Sourcetype::Geojson: return "geojson";
-        case Sourcetype::Vector: return "vector";
-        case Sourcetype::Raster: return "raster";
-        case Sourcetype::Image: return "image";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Map::Layer::to_string(Type e) {
-    switch(e) {
-        case Type::Circle: return "circle";
-        case Type::Line: return "line";
-        case Type::Fill: return "fill";
-        case Type::Symbol: return "symbol";
-        case Type::Raster: return "raster";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Map::Layer& Layout::Map::Layer::below(std::string f) {
     json["below"] = std::move(f);
@@ -4338,7 +3872,12 @@ inline Layout::Map::Layer& Layout::Map::Layer::sourcelayer(std::string f) {
 }
 
 inline Layout::Map::Layer& Layout::Map::Layer::sourcetype(enum Sourcetype f) {
-    json["sourcetype"] = to_string(f);
+    switch(f) {
+        case Sourcetype::Geojson: json["sourcetype"] = "geojson"; break;
+        case Sourcetype::Vector: json["sourcetype"] = "vector"; break;
+        case Sourcetype::Raster: json["sourcetype"] = "raster"; break;
+        case Sourcetype::Image: json["sourcetype"] = "image"; break;
+    }
     return *this;
 }
 
@@ -4359,7 +3898,13 @@ inline Layout::Map::Layer& Layout::Map::Layer::templateitemname(std::string f) {
 }
 
 inline Layout::Map::Layer& Layout::Map::Layer::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Circle: json["type"] = "circle"; break;
+        case Type::Line: json["type"] = "line"; break;
+        case Type::Fill: json["type"] = "fill"; break;
+        case Type::Symbol: json["type"] = "symbol"; break;
+        case Type::Raster: json["type"] = "raster"; break;
+    }
     return *this;
 }
 
@@ -4401,30 +3946,6 @@ inline Layout::Map::Layer::Line& Layout::Map::Layer::Line::width(double f) {
     return *this;
 }
 
-inline std::string Layout::Map::Layer::Symbol::to_string(Placement e) {
-    switch(e) {
-        case Placement::Point: return "point";
-        case Placement::Line: return "line";
-        case Placement::LineCenter: return "line-center";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Map::Layer::Symbol::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::icon(std::string f) {
     json["icon"] = std::move(f);
@@ -4437,7 +3958,11 @@ inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::iconsize(double f
 }
 
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::placement(enum Placement f) {
-    json["placement"] = to_string(f);
+    switch(f) {
+        case Placement::Point: json["placement"] = "point"; break;
+        case Placement::Line: json["placement"] = "line"; break;
+        case Placement::LineCenter: json["placement"] = "line-center"; break;
+    }
     return *this;
 }
 
@@ -4458,18 +3983,20 @@ inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::textfont(Callable
 }
 
 inline Layout::Map::Layer::Symbol& Layout::Map::Layer::Symbol::textposition(enum Textposition f) {
-    json["textposition"] = to_string(f);
+    switch(f) {
+        case Textposition::TopLeft: json["textposition"] = "top left"; break;
+        case Textposition::TopCenter: json["textposition"] = "top center"; break;
+        case Textposition::TopRight: json["textposition"] = "top right"; break;
+        case Textposition::MiddleLeft: json["textposition"] = "middle left"; break;
+        case Textposition::MiddleCenter: json["textposition"] = "middle center"; break;
+        case Textposition::MiddleRight: json["textposition"] = "middle right"; break;
+        case Textposition::BottomLeft: json["textposition"] = "bottom left"; break;
+        case Textposition::BottomCenter: json["textposition"] = "bottom center"; break;
+        case Textposition::BottomRight: json["textposition"] = "bottom right"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Map::Layer::Symbol::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -4491,7 +4018,10 @@ inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfon
 }
 
 inline Layout::Map::Layer::Symbol::Textfont& Layout::Map::Layer::Symbol::Textfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
@@ -4650,27 +4180,6 @@ inline Layout::Mapbox::Domain& Layout::Mapbox::Domain::y(const std::vector<std::
     return *this;
 }
 
-inline std::string Layout::Mapbox::Layer::to_string(Sourcetype e) {
-    switch(e) {
-        case Sourcetype::Geojson: return "geojson";
-        case Sourcetype::Vector: return "vector";
-        case Sourcetype::Raster: return "raster";
-        case Sourcetype::Image: return "image";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Mapbox::Layer::to_string(Type e) {
-    switch(e) {
-        case Type::Circle: return "circle";
-        case Type::Line: return "line";
-        case Type::Fill: return "fill";
-        case Type::Symbol: return "symbol";
-        case Type::Raster: return "raster";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::below(std::string f) {
     json["below"] = std::move(f);
@@ -4762,7 +4271,12 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcelayer(std::string f) 
 }
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::sourcetype(enum Sourcetype f) {
-    json["sourcetype"] = to_string(f);
+    switch(f) {
+        case Sourcetype::Geojson: json["sourcetype"] = "geojson"; break;
+        case Sourcetype::Vector: json["sourcetype"] = "vector"; break;
+        case Sourcetype::Raster: json["sourcetype"] = "raster"; break;
+        case Sourcetype::Image: json["sourcetype"] = "image"; break;
+    }
     return *this;
 }
 
@@ -4783,7 +4297,13 @@ inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::templateitemname(std::strin
 }
 
 inline Layout::Mapbox::Layer& Layout::Mapbox::Layer::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Circle: json["type"] = "circle"; break;
+        case Type::Line: json["type"] = "line"; break;
+        case Type::Fill: json["type"] = "fill"; break;
+        case Type::Symbol: json["type"] = "symbol"; break;
+        case Type::Raster: json["type"] = "raster"; break;
+    }
     return *this;
 }
 
@@ -4825,30 +4345,6 @@ inline Layout::Mapbox::Layer::Line& Layout::Mapbox::Layer::Line::width(double f)
     return *this;
 }
 
-inline std::string Layout::Mapbox::Layer::Symbol::to_string(Placement e) {
-    switch(e) {
-        case Placement::Point: return "point";
-        case Placement::Line: return "line";
-        case Placement::LineCenter: return "line-center";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Mapbox::Layer::Symbol::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::icon(std::string f) {
     json["icon"] = std::move(f);
@@ -4861,7 +4357,11 @@ inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::iconsize(do
 }
 
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::placement(enum Placement f) {
-    json["placement"] = to_string(f);
+    switch(f) {
+        case Placement::Point: json["placement"] = "point"; break;
+        case Placement::Line: json["placement"] = "line"; break;
+        case Placement::LineCenter: json["placement"] = "line-center"; break;
+    }
     return *this;
 }
 
@@ -4882,18 +4382,20 @@ inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::textfont(Ca
 }
 
 inline Layout::Mapbox::Layer::Symbol& Layout::Mapbox::Layer::Symbol::textposition(enum Textposition f) {
-    json["textposition"] = to_string(f);
+    switch(f) {
+        case Textposition::TopLeft: json["textposition"] = "top left"; break;
+        case Textposition::TopCenter: json["textposition"] = "top center"; break;
+        case Textposition::TopRight: json["textposition"] = "top right"; break;
+        case Textposition::MiddleLeft: json["textposition"] = "middle left"; break;
+        case Textposition::MiddleCenter: json["textposition"] = "middle center"; break;
+        case Textposition::MiddleRight: json["textposition"] = "middle right"; break;
+        case Textposition::BottomLeft: json["textposition"] = "bottom left"; break;
+        case Textposition::BottomCenter: json["textposition"] = "bottom center"; break;
+        case Textposition::BottomRight: json["textposition"] = "bottom right"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Mapbox::Layer::Symbol::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -4915,7 +4417,10 @@ inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::T
 }
 
 inline Layout::Mapbox::Layer::Symbol::Textfont& Layout::Mapbox::Layer::Symbol::Textfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
@@ -4955,14 +4460,6 @@ inline Layout::Margin& Layout::Margin::t(double f) {
     return *this;
 }
 
-inline std::string Layout::Modebar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::V: return "v";
-        case Orientation::H: return "h";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Modebar& Layout::Modebar::activecolor(std::string f) {
     json["activecolor"] = std::move(f);
@@ -5006,7 +4503,10 @@ inline Layout::Modebar& Layout::Modebar::color(double f) {
 }
 
 inline Layout::Modebar& Layout::Modebar::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::V: json["orientation"] = "v"; break;
+        case Orientation::H: json["orientation"] = "h"; break;
+    }
     return *this;
 }
 
@@ -5030,14 +4530,6 @@ inline Layout::Modebar& Layout::Modebar::uirevision(T f) {
     return *this;
 }
 
-inline std::string Layout::Newselection::to_string(Mode e) {
-    switch(e) {
-        case Mode::Immediate: return "immediate";
-        case Mode::Gradual: return "gradual";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Newselection& Layout::Newselection::line(Line f) {
     json["line"] = std::move(f.json);
@@ -5051,7 +4543,10 @@ inline Layout::Newselection& Layout::Newselection::line(Callable&& c) {
 }
 
 inline Layout::Newselection& Layout::Newselection::mode(enum Mode f) {
-    json["mode"] = to_string(f);
+    switch(f) {
+        case Mode::Immediate: json["mode"] = "immediate"; break;
+        case Mode::Gradual: json["mode"] = "gradual"; break;
+    }
     return *this;
 }
 
@@ -5075,45 +4570,14 @@ inline Layout::Newselection::Line& Layout::Newselection::Line::width(double f) {
     return *this;
 }
 
-inline std::string Layout::Newshape::to_string(Drawdirection e) {
-    switch(e) {
-        case Drawdirection::Ortho: return "ortho";
-        case Drawdirection::Horizontal: return "horizontal";
-        case Drawdirection::Vertical: return "vertical";
-        case Drawdirection::Diagonal: return "diagonal";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::to_string(Fillrule e) {
-    switch(e) {
-        case Fillrule::Evenodd: return "evenodd";
-        case Fillrule::Nonzero: return "nonzero";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::to_string(Layer e) {
-    switch(e) {
-        case Layer::Below: return "below";
-        case Layer::Above: return "above";
-        case Layer::Between: return "between";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Newshape& Layout::Newshape::drawdirection(enum Drawdirection f) {
-    json["drawdirection"] = to_string(f);
+    switch(f) {
+        case Drawdirection::Ortho: json["drawdirection"] = "ortho"; break;
+        case Drawdirection::Horizontal: json["drawdirection"] = "horizontal"; break;
+        case Drawdirection::Vertical: json["drawdirection"] = "vertical"; break;
+        case Drawdirection::Diagonal: json["drawdirection"] = "diagonal"; break;
+    }
     return *this;
 }
 
@@ -5127,7 +4591,10 @@ inline Layout::Newshape& Layout::Newshape::fillcolor(double f) {
 }
 
 inline Layout::Newshape& Layout::Newshape::fillrule(enum Fillrule f) {
-    json["fillrule"] = to_string(f);
+    switch(f) {
+        case Fillrule::Evenodd: json["fillrule"] = "evenodd"; break;
+        case Fillrule::Nonzero: json["fillrule"] = "nonzero"; break;
+    }
     return *this;
 }
 
@@ -5143,7 +4610,11 @@ inline Layout::Newshape& Layout::Newshape::label(Callable&& c) {
 }
 
 inline Layout::Newshape& Layout::Newshape::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::Below: json["layer"] = "below"; break;
+        case Layer::Above: json["layer"] = "above"; break;
+        case Layer::Between: json["layer"] = "between"; break;
+    }
     return *this;
 }
 
@@ -5205,47 +4676,14 @@ inline Layout::Newshape& Layout::Newshape::showlegend(bool f) {
 }
 
 inline Layout::Newshape& Layout::Newshape::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Newshape::Label::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-        case Textposition::Start: return "start";
-        case Textposition::Middle: return "middle";
-        case Textposition::End: return "end";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Label::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Label::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::font(Font f) {
     json["font"] = std::move(f.json);
@@ -5274,7 +4712,20 @@ inline Layout::Newshape::Label& Layout::Newshape::Label::textangle(double f) {
 }
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::textposition(enum Textposition f) {
-    json["textposition"] = to_string(f);
+    switch(f) {
+        case Textposition::TopLeft: json["textposition"] = "top left"; break;
+        case Textposition::TopCenter: json["textposition"] = "top center"; break;
+        case Textposition::TopRight: json["textposition"] = "top right"; break;
+        case Textposition::MiddleLeft: json["textposition"] = "middle left"; break;
+        case Textposition::MiddleCenter: json["textposition"] = "middle center"; break;
+        case Textposition::MiddleRight: json["textposition"] = "middle right"; break;
+        case Textposition::BottomLeft: json["textposition"] = "bottom left"; break;
+        case Textposition::BottomCenter: json["textposition"] = "bottom center"; break;
+        case Textposition::BottomRight: json["textposition"] = "bottom right"; break;
+        case Textposition::Start: json["textposition"] = "start"; break;
+        case Textposition::Middle: json["textposition"] = "middle"; break;
+        case Textposition::End: json["textposition"] = "end"; break;
+    }
     return *this;
 }
 
@@ -5284,12 +4735,21 @@ inline Layout::Newshape::Label& Layout::Newshape::Label::texttemplate(std::strin
 }
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
 inline Layout::Newshape::Label& Layout::Newshape::Label::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -5306,36 +4766,6 @@ inline std::string Layout::Newshape::Label::Font::to_string(LinepositionExtra e)
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Newshape::Label::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Label::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Label::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::color(std::string f) {
@@ -5372,17 +4802,32 @@ inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::size(double
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Newshape::Label::Font& Layout::Newshape::Label::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -5422,36 +4867,6 @@ inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Lineposit
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Newshape::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -5487,17 +4902,32 @@ inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgroupti
 }
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Newshape::Legendgrouptitle::Font& Layout::Newshape::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -5526,14 +4956,6 @@ inline Layout::Newshape::Line& Layout::Newshape::Line::width(double f) {
     return *this;
 }
 
-inline std::string Layout::Polar::to_string(Gridshape e) {
-    switch(e) {
-        case Gridshape::Circular: return "circular";
-        case Gridshape::Linear: return "linear";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Polar& Layout::Polar::angularaxis(Angularaxis f) {
     json["angularaxis"] = std::move(f.json);
@@ -5567,7 +4989,10 @@ inline Layout::Polar& Layout::Polar::domain(Callable&& c) {
 }
 
 inline Layout::Polar& Layout::Polar::gridshape(enum Gridshape f) {
-    json["gridshape"] = to_string(f);
+    switch(f) {
+        case Gridshape::Circular: json["gridshape"] = "circular"; break;
+        case Gridshape::Linear: json["gridshape"] = "linear"; break;
+    }
     return *this;
 }
 
@@ -5610,133 +5035,12 @@ inline Layout::Polar& Layout::Polar::uirevision(T f) {
     return *this;
 }
 
-inline std::string Layout::Polar::Angularaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Direction e) {
-    switch(e) {
-        case Direction::Counterclockwise: return "counterclockwise";
-        case Direction::Clockwise: return "clockwise";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Thetaunit e) {
-    switch(e) {
-        case Thetaunit::Radians: return "radians";
-        case Thetaunit::Degrees: return "degrees";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
@@ -5752,7 +5056,26 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryarraysrc(
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -5766,7 +5089,10 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::color(double f) {
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::direction(enum Direction f) {
-    json["direction"] = to_string(f);
+    switch(f) {
+        case Direction::Counterclockwise: json["direction"] = "counterclockwise"; break;
+        case Direction::Clockwise: json["direction"] = "clockwise"; break;
+    }
     return *this;
 }
 
@@ -5777,7 +5103,13 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::dtick(T f) {
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -5812,7 +5144,10 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::labelalias(T f) {
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -5856,7 +5191,12 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::separatethousands
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -5876,17 +5216,30 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showticklabels(bo
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::thetaunit(enum Thetaunit f) {
-    json["thetaunit"] = to_string(f);
+    switch(f) {
+        case Thetaunit::Radians: json["thetaunit"] = "radians"; break;
+        case Thetaunit::Degrees: json["thetaunit"] = "degrees"; break;
+    }
     return *this;
 }
 
@@ -5944,7 +5297,11 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticklen(double f)
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -5954,7 +5311,11 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickprefix(std::s
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -5991,7 +5352,11 @@ inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::tickwidth(double 
 }
 
 inline Layout::Polar::Angularaxis& Layout::Polar::Angularaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -6019,36 +5384,6 @@ inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(LinepositionE
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Angularaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::color(std::string f) {
@@ -6085,17 +5420,32 @@ inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfon
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Angularaxis::Tickfont& Layout::Polar::Angularaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -6187,168 +5537,6 @@ inline Layout::Polar::Domain& Layout::Polar::Domain::y(const std::vector<std::ve
     return *this;
 }
 
-inline std::string Layout::Polar::Radialaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-        case Autorange::MinReversed: return "min reversed";
-        case Autorange::MaxReversed: return "max reversed";
-        case Autorange::Min: return "min";
-        case Autorange::Max: return "max";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-        case Rangemode::Normal: return "normal";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Side e) {
-    switch(e) {
-        case Side::Clockwise: return "clockwise";
-        case Side::Counterclockwise: return "counterclockwise";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::angle(double f) {
     json["angle"] = std::move(f);
@@ -6356,7 +5544,15 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::angle(double f) {
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+        case Autorange::MinReversed: json["autorange"] = "min reversed"; break;
+        case Autorange::MaxReversed: json["autorange"] = "max reversed"; break;
+        case Autorange::Min: json["autorange"] = "min"; break;
+        case Autorange::Max: json["autorange"] = "max"; break;
+    }
     return *this;
 }
 
@@ -6389,12 +5585,32 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autotickangles(cons
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -6410,7 +5626,26 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryarraysrc(st
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -6430,7 +5665,13 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::dtick(T f) {
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -6465,7 +5706,10 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::labelalias(T f) {
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -6523,7 +5767,11 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::range(const std::ve
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+    }
     return *this;
 }
 
@@ -6533,7 +5781,12 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::separatethousands(b
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -6553,17 +5806,30 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showticklabels(bool
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Clockwise: json["side"] = "clockwise"; break;
+        case Side::Counterclockwise: json["side"] = "counterclockwise"; break;
+    }
     return *this;
 }
 
@@ -6621,7 +5887,11 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticklen(double f) {
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -6631,7 +5901,11 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::tickprefix(std::str
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -6679,7 +5953,13 @@ inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::title(Callable&& c)
 }
 
 inline Layout::Polar::Radialaxis& Layout::Polar::Radialaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -6749,36 +6029,6 @@ inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(LinepositionEx
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -6814,17 +6064,32 @@ inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont:
 }
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis::Tickfont& Layout::Polar::Radialaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -6902,36 +6167,6 @@ inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Linepositio
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Polar::Radialaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -6967,17 +6202,32 @@ inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title:
 }
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -6986,35 +6236,6 @@ inline Layout::Polar::Radialaxis::Title::Font& Layout::Polar::Radialaxis::Title:
     return *this;
 }
 
-inline std::string Layout::Scene::to_string(Aspectmode e) {
-    switch(e) {
-        case Aspectmode::Auto: return "auto";
-        case Aspectmode::Cube: return "cube";
-        case Aspectmode::Data: return "data";
-        case Aspectmode::Manual: return "manual";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::to_string(Dragmode e) {
-    switch(e) {
-        case Dragmode::Orbit: return "orbit";
-        case Dragmode::Turntable: return "turntable";
-        case Dragmode::Zoom: return "zoom";
-        case Dragmode::Pan: return "pan";
-        case Dragmode::False: return "False";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::to_string(Hovermode e) {
-    switch(e) {
-        case Hovermode::Closest: return "closest";
-        case Hovermode::False: return "False";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene& Layout::Scene::annotations(const std::vector<Annotation>& f) {
     std::vector<Json> jsonified(f.size());
@@ -7024,7 +6245,12 @@ inline Layout::Scene& Layout::Scene::annotations(const std::vector<Annotation>& 
 }
 
 inline Layout::Scene& Layout::Scene::aspectmode(enum Aspectmode f) {
-    json["aspectmode"] = to_string(f);
+    switch(f) {
+        case Aspectmode::Auto: json["aspectmode"] = "auto"; break;
+        case Aspectmode::Cube: json["aspectmode"] = "cube"; break;
+        case Aspectmode::Data: json["aspectmode"] = "data"; break;
+        case Aspectmode::Manual: json["aspectmode"] = "manual"; break;
+    }
     return *this;
 }
 
@@ -7071,12 +6297,21 @@ inline Layout::Scene& Layout::Scene::domain(Callable&& c) {
 }
 
 inline Layout::Scene& Layout::Scene::dragmode(enum Dragmode f) {
-    json["dragmode"] = to_string(f);
+    switch(f) {
+        case Dragmode::Orbit: json["dragmode"] = "orbit"; break;
+        case Dragmode::Turntable: json["dragmode"] = "turntable"; break;
+        case Dragmode::Zoom: json["dragmode"] = "zoom"; break;
+        case Dragmode::Pan: json["dragmode"] = "pan"; break;
+        case Dragmode::False: json["dragmode"] = false; break;
+    }
     return *this;
 }
 
 inline Layout::Scene& Layout::Scene::hovermode(enum Hovermode f) {
-    json["hovermode"] = to_string(f);
+    switch(f) {
+        case Hovermode::Closest: json["hovermode"] = "closest"; break;
+        case Hovermode::False: json["hovermode"] = false; break;
+    }
     return *this;
 }
 
@@ -7119,15 +6354,6 @@ inline Layout::Scene& Layout::Scene::zaxis(Callable&& c) {
     return zaxis(std::move(f));
 }
 
-inline std::string Layout::Scene::Annotation::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Center: return "center";
-        case Align::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Layout::Scene::Annotation::to_string(Arrowside e) {
     switch(e) {
         case Arrowside::End: return "end";
@@ -7141,38 +6367,13 @@ inline std::string Layout::Scene::Annotation::to_string(ArrowsideExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for arrowside."};
 }
-inline std::string Layout::Scene::Annotation::to_string(Valign e) {
-    switch(e) {
-        case Valign::Top: return "top";
-        case Valign::Middle: return "middle";
-        case Valign::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Center: json["align"] = "center"; break;
+        case Align::Right: json["align"] = "right"; break;
+    }
     return *this;
 }
 
@@ -7335,7 +6536,11 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::textangle(double f)
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::valign(enum Valign f) {
-    json["valign"] = to_string(f);
+    switch(f) {
+        case Valign::Top: json["valign"] = "top"; break;
+        case Valign::Middle: json["valign"] = "middle"; break;
+        case Valign::Bottom: json["valign"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -7356,7 +6561,12 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::x(T f) {
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -7372,7 +6582,12 @@ inline Layout::Scene::Annotation& Layout::Scene::Annotation::y(T f) {
 }
 
 inline Layout::Scene::Annotation& Layout::Scene::Annotation::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -7400,36 +6615,6 @@ inline std::string Layout::Scene::Annotation::Font::to_string(LinepositionExtra 
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Scene::Annotation::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::color(std::string f) {
@@ -7466,17 +6651,32 @@ inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::size(do
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Annotation::Font& Layout::Scene::Annotation::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -7529,36 +6729,6 @@ inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Linepo
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Annotation::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -7594,17 +6764,32 @@ inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::H
 }
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Annotation::Hoverlabel::Font& Layout::Scene::Annotation::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -7718,17 +6903,12 @@ inline Layout::Scene::Camera::Eye& Layout::Scene::Camera::Eye::z(double f) {
     return *this;
 }
 
-inline std::string Layout::Scene::Camera::Projection::to_string(Type e) {
-    switch(e) {
-        case Type::Perspective: return "perspective";
-        case Type::Orthographic: return "orthographic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Camera::Projection& Layout::Scene::Camera::Projection::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Perspective: json["type"] = "perspective"; break;
+        case Type::Orthographic: json["type"] = "orthographic"; break;
+    }
     return *this;
 }
 
@@ -7793,166 +6973,17 @@ inline Layout::Scene::Domain& Layout::Scene::Domain::y(const std::vector<std::ve
     return *this;
 }
 
-inline std::string Layout::Scene::Xaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-        case Autorange::MinReversed: return "min reversed";
-        case Autorange::MaxReversed: return "max reversed";
-        case Autorange::Min: return "min";
-        case Autorange::Max: return "max";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Mirror e) {
-    switch(e) {
-        case Mirror::True: return "True";
-        case Mirror::Ticks: return "ticks";
-        case Mirror::False: return "False";
-        case Mirror::All: return "all";
-        case Mirror::Allticks: return "allticks";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+        case Autorange::MinReversed: json["autorange"] = "min reversed"; break;
+        case Autorange::MaxReversed: json["autorange"] = "max reversed"; break;
+        case Autorange::Min: json["autorange"] = "min"; break;
+        case Autorange::Max: json["autorange"] = "max"; break;
+    }
     return *this;
 }
 
@@ -7968,7 +6999,10 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::autorangeoptions(Callable&& c
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
@@ -7982,7 +7016,24 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::backgroundcolor(double f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -7998,7 +7049,26 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryarraysrc(std::string 
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -8018,7 +7088,13 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::dtick(T f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -8079,7 +7155,13 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::minexponent(double f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::mirror(enum Mirror f) {
-    json["mirror"] = to_string(f);
+    switch(f) {
+        case Mirror::True: json["mirror"] = true; break;
+        case Mirror::Ticks: json["mirror"] = "ticks"; break;
+        case Mirror::False: json["mirror"] = false; break;
+        case Mirror::All: json["mirror"] = "all"; break;
+        case Mirror::Allticks: json["mirror"] = "allticks"; break;
+    }
     return *this;
 }
 
@@ -8106,7 +7188,11 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::range(const std::vector<std::
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -8126,7 +7212,12 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showbackground(bool f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -8151,12 +7242,22 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showticklabels(bool f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -8228,7 +7329,11 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticklen(double f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -8238,7 +7343,11 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::tickprefix(std::string f) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -8286,7 +7395,13 @@ inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::title(Callable&& c) {
 }
 
 inline Layout::Scene::Xaxis& Layout::Scene::Xaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -8369,36 +7484,6 @@ inline std::string Layout::Scene::Xaxis::Tickfont::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -8434,17 +7519,32 @@ inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::size(doub
 }
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Xaxis::Tickfont& Layout::Scene::Xaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -8522,36 +7622,6 @@ inline std::string Layout::Scene::Xaxis::Title::Font::to_string(LinepositionExtr
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Xaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -8587,17 +7657,32 @@ inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::siz
 }
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -8606,166 +7691,17 @@ inline Layout::Scene::Xaxis::Title::Font& Layout::Scene::Xaxis::Title::Font::wei
     return *this;
 }
 
-inline std::string Layout::Scene::Yaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-        case Autorange::MinReversed: return "min reversed";
-        case Autorange::MaxReversed: return "max reversed";
-        case Autorange::Min: return "min";
-        case Autorange::Max: return "max";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Mirror e) {
-    switch(e) {
-        case Mirror::True: return "True";
-        case Mirror::Ticks: return "ticks";
-        case Mirror::False: return "False";
-        case Mirror::All: return "all";
-        case Mirror::Allticks: return "allticks";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+        case Autorange::MinReversed: json["autorange"] = "min reversed"; break;
+        case Autorange::MaxReversed: json["autorange"] = "max reversed"; break;
+        case Autorange::Min: json["autorange"] = "min"; break;
+        case Autorange::Max: json["autorange"] = "max"; break;
+    }
     return *this;
 }
 
@@ -8781,7 +7717,10 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::autorangeoptions(Callable&& c
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
@@ -8795,7 +7734,24 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::backgroundcolor(double f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -8811,7 +7767,26 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryarraysrc(std::string 
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -8831,7 +7806,13 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::dtick(T f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -8892,7 +7873,13 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::minexponent(double f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::mirror(enum Mirror f) {
-    json["mirror"] = to_string(f);
+    switch(f) {
+        case Mirror::True: json["mirror"] = true; break;
+        case Mirror::Ticks: json["mirror"] = "ticks"; break;
+        case Mirror::False: json["mirror"] = false; break;
+        case Mirror::All: json["mirror"] = "all"; break;
+        case Mirror::Allticks: json["mirror"] = "allticks"; break;
+    }
     return *this;
 }
 
@@ -8919,7 +7906,11 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::range(const std::vector<std::
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -8939,7 +7930,12 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showbackground(bool f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -8964,12 +7960,22 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showticklabels(bool f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -9041,7 +8047,11 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticklen(double f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -9051,7 +8061,11 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::tickprefix(std::string f) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -9099,7 +8113,13 @@ inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::title(Callable&& c) {
 }
 
 inline Layout::Scene::Yaxis& Layout::Scene::Yaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -9182,36 +8202,6 @@ inline std::string Layout::Scene::Yaxis::Tickfont::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -9247,17 +8237,32 @@ inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::size(doub
 }
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Yaxis::Tickfont& Layout::Scene::Yaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -9335,36 +8340,6 @@ inline std::string Layout::Scene::Yaxis::Title::Font::to_string(LinepositionExtr
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Yaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -9400,17 +8375,32 @@ inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::siz
 }
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -9419,166 +8409,17 @@ inline Layout::Scene::Yaxis::Title::Font& Layout::Scene::Yaxis::Title::Font::wei
     return *this;
 }
 
-inline std::string Layout::Scene::Zaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-        case Autorange::MinReversed: return "min reversed";
-        case Autorange::MaxReversed: return "max reversed";
-        case Autorange::Min: return "min";
-        case Autorange::Max: return "max";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Mirror e) {
-    switch(e) {
-        case Mirror::True: return "True";
-        case Mirror::Ticks: return "ticks";
-        case Mirror::False: return "False";
-        case Mirror::All: return "all";
-        case Mirror::Allticks: return "allticks";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+        case Autorange::MinReversed: json["autorange"] = "min reversed"; break;
+        case Autorange::MaxReversed: json["autorange"] = "max reversed"; break;
+        case Autorange::Min: json["autorange"] = "min"; break;
+        case Autorange::Max: json["autorange"] = "max"; break;
+    }
     return *this;
 }
 
@@ -9594,7 +8435,10 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::autorangeoptions(Callable&& c
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
@@ -9608,7 +8452,24 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::backgroundcolor(double f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -9624,7 +8485,26 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryarraysrc(std::string 
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -9644,7 +8524,13 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::dtick(T f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -9705,7 +8591,13 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::minexponent(double f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::mirror(enum Mirror f) {
-    json["mirror"] = to_string(f);
+    switch(f) {
+        case Mirror::True: json["mirror"] = true; break;
+        case Mirror::Ticks: json["mirror"] = "ticks"; break;
+        case Mirror::False: json["mirror"] = false; break;
+        case Mirror::All: json["mirror"] = "all"; break;
+        case Mirror::Allticks: json["mirror"] = "allticks"; break;
+    }
     return *this;
 }
 
@@ -9732,7 +8624,11 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::range(const std::vector<std::
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -9752,7 +8648,12 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showbackground(bool f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -9777,12 +8678,22 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showticklabels(bool f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -9854,7 +8765,11 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticklen(double f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -9864,7 +8779,11 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::tickprefix(std::string f) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -9912,7 +8831,13 @@ inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::title(Callable&& c) {
 }
 
 inline Layout::Scene::Zaxis& Layout::Scene::Zaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -9995,36 +8920,6 @@ inline std::string Layout::Scene::Zaxis::Tickfont::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -10060,17 +8955,32 @@ inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::size(doub
 }
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Zaxis::Tickfont& Layout::Scene::Zaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -10148,36 +9058,6 @@ inline std::string Layout::Scene::Zaxis::Title::Font::to_string(LinepositionExtr
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Scene::Zaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -10213,17 +9093,32 @@ inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::siz
 }
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -10232,14 +9127,6 @@ inline Layout::Scene::Zaxis::Title::Font& Layout::Scene::Zaxis::Title::Font::wei
     return *this;
 }
 
-inline std::string Layout::Selection::to_string(Type e) {
-    switch(e) {
-        case Type::Rect: return "rect";
-        case Type::Path: return "path";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Selection& Layout::Selection::line(Line f) {
     json["line"] = std::move(f.json);
@@ -10273,7 +9160,10 @@ inline Layout::Selection& Layout::Selection::templateitemname(std::string f) {
 }
 
 inline Layout::Selection& Layout::Selection::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Rect: json["type"] = "rect"; break;
+        case Type::Path: json["type"] = "path"; break;
+    }
     return *this;
 }
 
@@ -10331,58 +9221,6 @@ inline Layout::Selection::Line& Layout::Selection::Line::width(double f) {
     return *this;
 }
 
-inline std::string Layout::Shape::to_string(Fillrule e) {
-    switch(e) {
-        case Fillrule::Evenodd: return "evenodd";
-        case Fillrule::Nonzero: return "nonzero";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::to_string(Layer e) {
-    switch(e) {
-        case Layer::Below: return "below";
-        case Layer::Above: return "above";
-        case Layer::Between: return "between";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::to_string(Type e) {
-    switch(e) {
-        case Type::Circle: return "circle";
-        case Type::Rect: return "rect";
-        case Type::Path: return "path";
-        case Type::Line: return "line";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::to_string(Xsizemode e) {
-    switch(e) {
-        case Xsizemode::Scaled: return "scaled";
-        case Xsizemode::Pixel: return "pixel";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::to_string(Ysizemode e) {
-    switch(e) {
-        case Ysizemode::Scaled: return "scaled";
-        case Ysizemode::Pixel: return "pixel";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Shape& Layout::Shape::editable(bool f) {
     json["editable"] = std::move(f);
@@ -10399,7 +9237,10 @@ inline Layout::Shape& Layout::Shape::fillcolor(double f) {
 }
 
 inline Layout::Shape& Layout::Shape::fillrule(enum Fillrule f) {
-    json["fillrule"] = to_string(f);
+    switch(f) {
+        case Fillrule::Evenodd: json["fillrule"] = "evenodd"; break;
+        case Fillrule::Nonzero: json["fillrule"] = "nonzero"; break;
+    }
     return *this;
 }
 
@@ -10415,7 +9256,11 @@ inline Layout::Shape& Layout::Shape::label(Callable&& c) {
 }
 
 inline Layout::Shape& Layout::Shape::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::Below: json["layer"] = "below"; break;
+        case Layer::Above: json["layer"] = "above"; break;
+        case Layer::Between: json["layer"] = "between"; break;
+    }
     return *this;
 }
 
@@ -10487,12 +9332,21 @@ inline Layout::Shape& Layout::Shape::templateitemname(std::string f) {
 }
 
 inline Layout::Shape& Layout::Shape::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Circle: json["type"] = "circle"; break;
+        case Type::Rect: json["type"] = "rect"; break;
+        case Type::Path: json["type"] = "path"; break;
+        case Type::Line: json["type"] = "line"; break;
+    }
     return *this;
 }
 
 inline Layout::Shape& Layout::Shape::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -10530,7 +9384,10 @@ inline Layout::Shape& Layout::Shape::xref(std::string f) {
 }
 
 inline Layout::Shape& Layout::Shape::xsizemode(enum Xsizemode f) {
-    json["xsizemode"] = to_string(f);
+    switch(f) {
+        case Xsizemode::Scaled: json["xsizemode"] = "scaled"; break;
+        case Xsizemode::Pixel: json["xsizemode"] = "pixel"; break;
+    }
     return *this;
 }
 
@@ -10568,47 +9425,13 @@ inline Layout::Shape& Layout::Shape::yref(std::string f) {
 }
 
 inline Layout::Shape& Layout::Shape::ysizemode(enum Ysizemode f) {
-    json["ysizemode"] = to_string(f);
+    switch(f) {
+        case Ysizemode::Scaled: json["ysizemode"] = "scaled"; break;
+        case Ysizemode::Pixel: json["ysizemode"] = "pixel"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Shape::Label::to_string(Textposition e) {
-    switch(e) {
-        case Textposition::TopLeft: return "top left";
-        case Textposition::TopCenter: return "top center";
-        case Textposition::TopRight: return "top right";
-        case Textposition::MiddleLeft: return "middle left";
-        case Textposition::MiddleCenter: return "middle center";
-        case Textposition::MiddleRight: return "middle right";
-        case Textposition::BottomLeft: return "bottom left";
-        case Textposition::BottomCenter: return "bottom center";
-        case Textposition::BottomRight: return "bottom right";
-        case Textposition::Start: return "start";
-        case Textposition::Middle: return "middle";
-        case Textposition::End: return "end";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Label::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Label::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Shape::Label& Layout::Shape::Label::font(Font f) {
     json["font"] = std::move(f.json);
@@ -10637,7 +9460,20 @@ inline Layout::Shape::Label& Layout::Shape::Label::textangle(double f) {
 }
 
 inline Layout::Shape::Label& Layout::Shape::Label::textposition(enum Textposition f) {
-    json["textposition"] = to_string(f);
+    switch(f) {
+        case Textposition::TopLeft: json["textposition"] = "top left"; break;
+        case Textposition::TopCenter: json["textposition"] = "top center"; break;
+        case Textposition::TopRight: json["textposition"] = "top right"; break;
+        case Textposition::MiddleLeft: json["textposition"] = "middle left"; break;
+        case Textposition::MiddleCenter: json["textposition"] = "middle center"; break;
+        case Textposition::MiddleRight: json["textposition"] = "middle right"; break;
+        case Textposition::BottomLeft: json["textposition"] = "bottom left"; break;
+        case Textposition::BottomCenter: json["textposition"] = "bottom center"; break;
+        case Textposition::BottomRight: json["textposition"] = "bottom right"; break;
+        case Textposition::Start: json["textposition"] = "start"; break;
+        case Textposition::Middle: json["textposition"] = "middle"; break;
+        case Textposition::End: json["textposition"] = "end"; break;
+    }
     return *this;
 }
 
@@ -10647,12 +9483,21 @@ inline Layout::Shape::Label& Layout::Shape::Label::texttemplate(std::string f) {
 }
 
 inline Layout::Shape::Label& Layout::Shape::Label::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
 inline Layout::Shape::Label& Layout::Shape::Label::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -10669,36 +9514,6 @@ inline std::string Layout::Shape::Label::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Shape::Label::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Label::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Label::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::color(std::string f) {
@@ -10735,17 +9550,32 @@ inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::size(double f) {
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Shape::Label::Font& Layout::Shape::Label::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -10785,36 +9615,6 @@ inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Lineposition
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Shape::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -10850,17 +9650,32 @@ inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::F
 }
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Shape::Legendgrouptitle::Font& Layout::Shape::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -10889,34 +9704,6 @@ inline Layout::Shape::Line& Layout::Shape::Line::width(double f) {
     return *this;
 }
 
-inline std::string Layout::Slider::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Slider& Layout::Slider::active(double f) {
     json["active"] = std::move(f);
@@ -10983,7 +9770,10 @@ inline Layout::Slider& Layout::Slider::len(double f) {
 }
 
 inline Layout::Slider& Layout::Slider::lenmode(enum Lenmode f) {
-    json["lenmode"] = to_string(f);
+    switch(f) {
+        case Lenmode::Fraction: json["lenmode"] = "fraction"; break;
+        case Lenmode::Pixels: json["lenmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -11061,7 +9851,12 @@ inline Layout::Slider& Layout::Slider::x(double f) {
 }
 
 inline Layout::Slider& Layout::Slider::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -11071,19 +9866,15 @@ inline Layout::Slider& Layout::Slider::y(double f) {
 }
 
 inline Layout::Slider& Layout::Slider::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Slider::Currentvalue::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::font(Font f) {
     json["font"] = std::move(f.json);
@@ -11117,7 +9908,11 @@ inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::visible(bool 
 }
 
 inline Layout::Slider::Currentvalue& Layout::Slider::Currentvalue::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -11134,36 +9929,6 @@ inline std::string Layout::Slider::Currentvalue::Font::to_string(LinepositionExt
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Slider::Currentvalue::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::Currentvalue::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::Currentvalue::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::color(std::string f) {
@@ -11200,17 +9965,32 @@ inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::s
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Slider::Currentvalue::Font& Layout::Slider::Currentvalue::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -11232,36 +10012,6 @@ inline std::string Layout::Slider::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Slider::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Slider::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::color(std::string f) {
@@ -11298,17 +10048,32 @@ inline Layout::Slider::Font& Layout::Slider::Font::size(double f) {
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Slider::Font& Layout::Slider::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -11338,17 +10103,6 @@ inline Layout::Slider::Pad& Layout::Slider::Pad::t(double f) {
     return *this;
 }
 
-inline std::string Layout::Slider::Step::to_string(Method e) {
-    switch(e) {
-        case Method::Restyle: return "restyle";
-        case Method::Relayout: return "relayout";
-        case Method::Animate: return "animate";
-        case Method::Update: return "update";
-        case Method::Skip: return "skip";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Slider::Step& Layout::Slider::Step::args(const std::vector<double>& f) {
     json["args"] = f;
@@ -11378,7 +10132,13 @@ inline Layout::Slider::Step& Layout::Slider::Step::label(std::string f) {
 }
 
 inline Layout::Slider::Step& Layout::Slider::Step::method(enum Method f) {
-    json["method"] = to_string(f);
+    switch(f) {
+        case Method::Restyle: json["method"] = "restyle"; break;
+        case Method::Relayout: json["method"] = "relayout"; break;
+        case Method::Animate: json["method"] = "animate"; break;
+        case Method::Update: json["method"] = "update"; break;
+        case Method::Skip: json["method"] = "skip"; break;
+    }
     return *this;
 }
 
@@ -11402,48 +10162,6 @@ inline Layout::Slider::Step& Layout::Slider::Step::visible(bool f) {
     return *this;
 }
 
-inline std::string Layout::Slider::Transition::to_string(Easing e) {
-    switch(e) {
-        case Easing::Linear: return "linear";
-        case Easing::Quad: return "quad";
-        case Easing::Cubic: return "cubic";
-        case Easing::Sin: return "sin";
-        case Easing::Exp: return "exp";
-        case Easing::Circle: return "circle";
-        case Easing::Elastic: return "elastic";
-        case Easing::Back: return "back";
-        case Easing::Bounce: return "bounce";
-        case Easing::LinearIn: return "linear-in";
-        case Easing::QuadIn: return "quad-in";
-        case Easing::CubicIn: return "cubic-in";
-        case Easing::SinIn: return "sin-in";
-        case Easing::ExpIn: return "exp-in";
-        case Easing::CircleIn: return "circle-in";
-        case Easing::ElasticIn: return "elastic-in";
-        case Easing::BackIn: return "back-in";
-        case Easing::BounceIn: return "bounce-in";
-        case Easing::LinearOut: return "linear-out";
-        case Easing::QuadOut: return "quad-out";
-        case Easing::CubicOut: return "cubic-out";
-        case Easing::SinOut: return "sin-out";
-        case Easing::ExpOut: return "exp-out";
-        case Easing::CircleOut: return "circle-out";
-        case Easing::ElasticOut: return "elastic-out";
-        case Easing::BackOut: return "back-out";
-        case Easing::BounceOut: return "bounce-out";
-        case Easing::LinearInOut: return "linear-in-out";
-        case Easing::QuadInOut: return "quad-in-out";
-        case Easing::CubicInOut: return "cubic-in-out";
-        case Easing::SinInOut: return "sin-in-out";
-        case Easing::ExpInOut: return "exp-in-out";
-        case Easing::CircleInOut: return "circle-in-out";
-        case Easing::ElasticInOut: return "elastic-in-out";
-        case Easing::BackInOut: return "back-in-out";
-        case Easing::BounceInOut: return "bounce-in-out";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Slider::Transition& Layout::Slider::Transition::duration(double f) {
     json["duration"] = std::move(f);
@@ -11451,7 +10169,44 @@ inline Layout::Slider::Transition& Layout::Slider::Transition::duration(double f
 }
 
 inline Layout::Slider::Transition& Layout::Slider::Transition::easing(enum Easing f) {
-    json["easing"] = to_string(f);
+    switch(f) {
+        case Easing::Linear: json["easing"] = "linear"; break;
+        case Easing::Quad: json["easing"] = "quad"; break;
+        case Easing::Cubic: json["easing"] = "cubic"; break;
+        case Easing::Sin: json["easing"] = "sin"; break;
+        case Easing::Exp: json["easing"] = "exp"; break;
+        case Easing::Circle: json["easing"] = "circle"; break;
+        case Easing::Elastic: json["easing"] = "elastic"; break;
+        case Easing::Back: json["easing"] = "back"; break;
+        case Easing::Bounce: json["easing"] = "bounce"; break;
+        case Easing::LinearIn: json["easing"] = "linear-in"; break;
+        case Easing::QuadIn: json["easing"] = "quad-in"; break;
+        case Easing::CubicIn: json["easing"] = "cubic-in"; break;
+        case Easing::SinIn: json["easing"] = "sin-in"; break;
+        case Easing::ExpIn: json["easing"] = "exp-in"; break;
+        case Easing::CircleIn: json["easing"] = "circle-in"; break;
+        case Easing::ElasticIn: json["easing"] = "elastic-in"; break;
+        case Easing::BackIn: json["easing"] = "back-in"; break;
+        case Easing::BounceIn: json["easing"] = "bounce-in"; break;
+        case Easing::LinearOut: json["easing"] = "linear-out"; break;
+        case Easing::QuadOut: json["easing"] = "quad-out"; break;
+        case Easing::CubicOut: json["easing"] = "cubic-out"; break;
+        case Easing::SinOut: json["easing"] = "sin-out"; break;
+        case Easing::ExpOut: json["easing"] = "exp-out"; break;
+        case Easing::CircleOut: json["easing"] = "circle-out"; break;
+        case Easing::ElasticOut: json["easing"] = "elastic-out"; break;
+        case Easing::BackOut: json["easing"] = "back-out"; break;
+        case Easing::BounceOut: json["easing"] = "bounce-out"; break;
+        case Easing::LinearInOut: json["easing"] = "linear-in-out"; break;
+        case Easing::QuadInOut: json["easing"] = "quad-in-out"; break;
+        case Easing::CubicInOut: json["easing"] = "cubic-in-out"; break;
+        case Easing::SinInOut: json["easing"] = "sin-in-out"; break;
+        case Easing::ExpInOut: json["easing"] = "exp-in-out"; break;
+        case Easing::CircleInOut: json["easing"] = "circle-in-out"; break;
+        case Easing::ElasticInOut: json["easing"] = "elastic-in-out"; break;
+        case Easing::BackInOut: json["easing"] = "back-in-out"; break;
+        case Easing::BounceInOut: json["easing"] = "bounce-in-out"; break;
+    }
     return *this;
 }
 
@@ -11543,43 +10298,6 @@ inline Layout::Smith::Domain& Layout::Smith::Domain::y(const std::vector<std::ve
     return *this;
 }
 
-inline std::string Layout::Smith::Imaginaryaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Imaginaryaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Imaginaryaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Imaginaryaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::color(std::string f) {
     json["color"] = std::move(f);
@@ -11621,7 +10339,10 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::labelalias(T 
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -11655,12 +10376,22 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showticklabel
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -11700,7 +10431,11 @@ inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::tickprefix(st
 }
 
 inline Layout::Smith::Imaginaryaxis& Layout::Smith::Imaginaryaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -11744,36 +10479,6 @@ inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Linepositio
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Imaginaryaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -11809,17 +10514,32 @@ inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tic
 }
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -11828,51 +10548,6 @@ inline Layout::Smith::Imaginaryaxis::Tickfont& Layout::Smith::Imaginaryaxis::Tic
     return *this;
 }
 
-inline std::string Layout::Smith::Realaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::to_string(Side e) {
-    switch(e) {
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Top: return "top";
-        case Ticks::Bottom: return "bottom";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::color(std::string f) {
     json["color"] = std::move(f);
@@ -11914,7 +10589,10 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::labelalias(T f) {
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -11948,17 +10626,30 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showticklabels(bool f) 
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -12003,7 +10694,11 @@ inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::tickprefix(std::string 
 }
 
 inline Layout::Smith::Realaxis& Layout::Smith::Realaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Top: json["ticks"] = "top"; break;
+        case Ticks::Bottom: json["ticks"] = "bottom"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -12047,36 +10742,6 @@ inline std::string Layout::Smith::Realaxis::Tickfont::to_string(LinepositionExtr
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Smith::Realaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -12112,17 +10777,32 @@ inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::siz
 }
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Smith::Realaxis::Tickfont& Layout::Smith::Realaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -12196,73 +10876,6 @@ inline Layout::Ternary& Layout::Ternary::uirevision(T f) {
     return *this;
 }
 
-inline std::string Layout::Ternary::Aaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::color(std::string f) {
     json["color"] = std::move(f);
@@ -12280,7 +10893,13 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::dtick(T f) {
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -12315,7 +10934,10 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::labelalias(T f) {
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -12354,7 +10976,12 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::separatethousands(bool f)
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -12374,12 +11001,22 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showticklabels(bool f) {
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -12437,7 +11074,11 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticklen(double f) {
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -12447,7 +11088,11 @@ inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::tickprefix(std::string f)
 }
 
 inline Layout::Ternary::Aaxis& Layout::Ternary::Aaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -12514,36 +11159,6 @@ inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(LinepositionExtra
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -12579,17 +11194,32 @@ inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::size(
 }
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Aaxis::Tickfont& Layout::Ternary::Aaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -12667,36 +11297,6 @@ inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(LinepositionEx
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Aaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -12732,17 +11332,32 @@ inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font:
 }
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -12751,73 +11366,6 @@ inline Layout::Ternary::Aaxis::Title::Font& Layout::Ternary::Aaxis::Title::Font:
     return *this;
 }
 
-inline std::string Layout::Ternary::Baxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::color(std::string f) {
     json["color"] = std::move(f);
@@ -12835,7 +11383,13 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::dtick(T f) {
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -12870,7 +11424,10 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::labelalias(T f) {
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -12909,7 +11466,12 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::separatethousands(bool f)
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -12929,12 +11491,22 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showticklabels(bool f) {
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -12992,7 +11564,11 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticklen(double f) {
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -13002,7 +11578,11 @@ inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::tickprefix(std::string f)
 }
 
 inline Layout::Ternary::Baxis& Layout::Ternary::Baxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -13069,36 +11649,6 @@ inline std::string Layout::Ternary::Baxis::Tickfont::to_string(LinepositionExtra
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -13134,17 +11684,32 @@ inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::size(
 }
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Baxis::Tickfont& Layout::Ternary::Baxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -13222,36 +11787,6 @@ inline std::string Layout::Ternary::Baxis::Title::Font::to_string(LinepositionEx
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Baxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -13287,17 +11822,32 @@ inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font:
 }
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -13306,73 +11856,6 @@ inline Layout::Ternary::Baxis::Title::Font& Layout::Ternary::Baxis::Title::Font:
     return *this;
 }
 
-inline std::string Layout::Ternary::Caxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::color(std::string f) {
     json["color"] = std::move(f);
@@ -13390,7 +11873,13 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::dtick(T f) {
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -13425,7 +11914,10 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::labelalias(T f) {
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -13464,7 +11956,12 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::separatethousands(bool f)
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -13484,12 +11981,22 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showticklabels(bool f) {
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -13547,7 +12054,11 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticklen(double f) {
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -13557,7 +12068,11 @@ inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::tickprefix(std::string f)
 }
 
 inline Layout::Ternary::Caxis& Layout::Ternary::Caxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -13624,36 +12139,6 @@ inline std::string Layout::Ternary::Caxis::Tickfont::to_string(LinepositionExtra
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -13689,17 +12174,32 @@ inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::size(
 }
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Caxis::Tickfont& Layout::Ternary::Caxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -13777,36 +12277,6 @@ inline std::string Layout::Ternary::Caxis::Title::Font::to_string(LinepositionEx
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Ternary::Caxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -13842,17 +12312,32 @@ inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font:
 }
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Ternary::Caxis::Title::Font& Layout::Ternary::Caxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -13906,42 +12391,6 @@ inline Layout::Ternary::Domain& Layout::Ternary::Domain::y(const std::vector<std
     return *this;
 }
 
-inline std::string Layout::Title::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Title& Layout::Title::automargin(bool f) {
     json["automargin"] = std::move(f);
@@ -13992,12 +12441,20 @@ inline Layout::Title& Layout::Title::x(double f) {
 }
 
 inline Layout::Title& Layout::Title::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
 inline Layout::Title& Layout::Title::xref(enum Xref f) {
-    json["xref"] = to_string(f);
+    switch(f) {
+        case Xref::Container: json["xref"] = "container"; break;
+        case Xref::Paper: json["xref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -14007,12 +12464,20 @@ inline Layout::Title& Layout::Title::y(double f) {
 }
 
 inline Layout::Title& Layout::Title::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
 inline Layout::Title& Layout::Title::yref(enum Yref f) {
-    json["yref"] = to_string(f);
+    switch(f) {
+        case Yref::Container: json["yref"] = "container"; break;
+        case Yref::Paper: json["yref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -14029,36 +12494,6 @@ inline std::string Layout::Title::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Title::Font& Layout::Title::Font::color(std::string f) {
@@ -14095,17 +12530,32 @@ inline Layout::Title::Font& Layout::Title::Font::size(double f) {
 }
 
 inline Layout::Title::Font& Layout::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Title::Font& Layout::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Title::Font& Layout::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -14166,36 +12616,6 @@ inline std::string Layout::Title::Subtitle::Font::to_string(LinepositionExtra e)
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Title::Subtitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::Subtitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Title::Subtitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -14231,17 +12651,32 @@ inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::size(double
 }
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -14250,56 +12685,6 @@ inline Layout::Title::Subtitle::Font& Layout::Title::Subtitle::Font::weight(int 
     return *this;
 }
 
-inline std::string Layout::Transition::to_string(Easing e) {
-    switch(e) {
-        case Easing::Linear: return "linear";
-        case Easing::Quad: return "quad";
-        case Easing::Cubic: return "cubic";
-        case Easing::Sin: return "sin";
-        case Easing::Exp: return "exp";
-        case Easing::Circle: return "circle";
-        case Easing::Elastic: return "elastic";
-        case Easing::Back: return "back";
-        case Easing::Bounce: return "bounce";
-        case Easing::LinearIn: return "linear-in";
-        case Easing::QuadIn: return "quad-in";
-        case Easing::CubicIn: return "cubic-in";
-        case Easing::SinIn: return "sin-in";
-        case Easing::ExpIn: return "exp-in";
-        case Easing::CircleIn: return "circle-in";
-        case Easing::ElasticIn: return "elastic-in";
-        case Easing::BackIn: return "back-in";
-        case Easing::BounceIn: return "bounce-in";
-        case Easing::LinearOut: return "linear-out";
-        case Easing::QuadOut: return "quad-out";
-        case Easing::CubicOut: return "cubic-out";
-        case Easing::SinOut: return "sin-out";
-        case Easing::ExpOut: return "exp-out";
-        case Easing::CircleOut: return "circle-out";
-        case Easing::ElasticOut: return "elastic-out";
-        case Easing::BackOut: return "back-out";
-        case Easing::BounceOut: return "bounce-out";
-        case Easing::LinearInOut: return "linear-in-out";
-        case Easing::QuadInOut: return "quad-in-out";
-        case Easing::CubicInOut: return "cubic-in-out";
-        case Easing::SinInOut: return "sin-in-out";
-        case Easing::ExpInOut: return "exp-in-out";
-        case Easing::CircleInOut: return "circle-in-out";
-        case Easing::ElasticInOut: return "elastic-in-out";
-        case Easing::BackInOut: return "back-in-out";
-        case Easing::BounceInOut: return "bounce-in-out";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Transition::to_string(Ordering e) {
-    switch(e) {
-        case Ordering::LayoutFirst: return "layout first";
-        case Ordering::TracesFirst: return "traces first";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Transition& Layout::Transition::duration(double f) {
     json["duration"] = std::move(f);
@@ -14307,24 +12692,55 @@ inline Layout::Transition& Layout::Transition::duration(double f) {
 }
 
 inline Layout::Transition& Layout::Transition::easing(enum Easing f) {
-    json["easing"] = to_string(f);
+    switch(f) {
+        case Easing::Linear: json["easing"] = "linear"; break;
+        case Easing::Quad: json["easing"] = "quad"; break;
+        case Easing::Cubic: json["easing"] = "cubic"; break;
+        case Easing::Sin: json["easing"] = "sin"; break;
+        case Easing::Exp: json["easing"] = "exp"; break;
+        case Easing::Circle: json["easing"] = "circle"; break;
+        case Easing::Elastic: json["easing"] = "elastic"; break;
+        case Easing::Back: json["easing"] = "back"; break;
+        case Easing::Bounce: json["easing"] = "bounce"; break;
+        case Easing::LinearIn: json["easing"] = "linear-in"; break;
+        case Easing::QuadIn: json["easing"] = "quad-in"; break;
+        case Easing::CubicIn: json["easing"] = "cubic-in"; break;
+        case Easing::SinIn: json["easing"] = "sin-in"; break;
+        case Easing::ExpIn: json["easing"] = "exp-in"; break;
+        case Easing::CircleIn: json["easing"] = "circle-in"; break;
+        case Easing::ElasticIn: json["easing"] = "elastic-in"; break;
+        case Easing::BackIn: json["easing"] = "back-in"; break;
+        case Easing::BounceIn: json["easing"] = "bounce-in"; break;
+        case Easing::LinearOut: json["easing"] = "linear-out"; break;
+        case Easing::QuadOut: json["easing"] = "quad-out"; break;
+        case Easing::CubicOut: json["easing"] = "cubic-out"; break;
+        case Easing::SinOut: json["easing"] = "sin-out"; break;
+        case Easing::ExpOut: json["easing"] = "exp-out"; break;
+        case Easing::CircleOut: json["easing"] = "circle-out"; break;
+        case Easing::ElasticOut: json["easing"] = "elastic-out"; break;
+        case Easing::BackOut: json["easing"] = "back-out"; break;
+        case Easing::BounceOut: json["easing"] = "bounce-out"; break;
+        case Easing::LinearInOut: json["easing"] = "linear-in-out"; break;
+        case Easing::QuadInOut: json["easing"] = "quad-in-out"; break;
+        case Easing::CubicInOut: json["easing"] = "cubic-in-out"; break;
+        case Easing::SinInOut: json["easing"] = "sin-in-out"; break;
+        case Easing::ExpInOut: json["easing"] = "exp-in-out"; break;
+        case Easing::CircleInOut: json["easing"] = "circle-in-out"; break;
+        case Easing::ElasticInOut: json["easing"] = "elastic-in-out"; break;
+        case Easing::BackInOut: json["easing"] = "back-in-out"; break;
+        case Easing::BounceInOut: json["easing"] = "bounce-in-out"; break;
+    }
     return *this;
 }
 
 inline Layout::Transition& Layout::Transition::ordering(enum Ordering f) {
-    json["ordering"] = to_string(f);
+    switch(f) {
+        case Ordering::LayoutFirst: json["ordering"] = "layout first"; break;
+        case Ordering::TracesFirst: json["ordering"] = "traces first"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Uniformtext::to_string(Mode e) {
-    switch(e) {
-        case Mode::False: return "False";
-        case Mode::Hide: return "hide";
-        case Mode::Show: return "show";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Uniformtext& Layout::Uniformtext::minsize(double f) {
     json["minsize"] = std::move(f);
@@ -14332,48 +12748,14 @@ inline Layout::Uniformtext& Layout::Uniformtext::minsize(double f) {
 }
 
 inline Layout::Uniformtext& Layout::Uniformtext::mode(enum Mode f) {
-    json["mode"] = to_string(f);
+    switch(f) {
+        case Mode::False: json["mode"] = false; break;
+        case Mode::Hide: json["mode"] = "hide"; break;
+        case Mode::Show: json["mode"] = "show"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Updatemenu::to_string(Direction e) {
-    switch(e) {
-        case Direction::Left: return "left";
-        case Direction::Right: return "right";
-        case Direction::Up: return "up";
-        case Direction::Down: return "down";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Updatemenu::to_string(Type e) {
-    switch(e) {
-        case Type::Dropdown: return "dropdown";
-        case Type::Buttons: return "buttons";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Updatemenu::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Updatemenu::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Updatemenu& Layout::Updatemenu::active(int f) {
     json["active"] = std::move(f);
@@ -14411,7 +12793,12 @@ inline Layout::Updatemenu& Layout::Updatemenu::buttons(const std::vector<Button>
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::direction(enum Direction f) {
-    json["direction"] = to_string(f);
+    switch(f) {
+        case Direction::Left: json["direction"] = "left"; break;
+        case Direction::Right: json["direction"] = "right"; break;
+        case Direction::Up: json["direction"] = "up"; break;
+        case Direction::Down: json["direction"] = "down"; break;
+    }
     return *this;
 }
 
@@ -14453,7 +12840,10 @@ inline Layout::Updatemenu& Layout::Updatemenu::templateitemname(std::string f) {
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Dropdown: json["type"] = "dropdown"; break;
+        case Type::Buttons: json["type"] = "buttons"; break;
+    }
     return *this;
 }
 
@@ -14468,7 +12858,12 @@ inline Layout::Updatemenu& Layout::Updatemenu::x(double f) {
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -14478,21 +12873,15 @@ inline Layout::Updatemenu& Layout::Updatemenu::y(double f) {
 }
 
 inline Layout::Updatemenu& Layout::Updatemenu::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Updatemenu::Button::to_string(Method e) {
-    switch(e) {
-        case Method::Restyle: return "restyle";
-        case Method::Relayout: return "relayout";
-        case Method::Animate: return "animate";
-        case Method::Update: return "update";
-        case Method::Skip: return "skip";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::args(const std::vector<double>& f) {
     json["args"] = f;
@@ -14539,7 +12928,13 @@ inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::label(std::string
 }
 
 inline Layout::Updatemenu::Button& Layout::Updatemenu::Button::method(enum Method f) {
-    json["method"] = to_string(f);
+    switch(f) {
+        case Method::Restyle: json["method"] = "restyle"; break;
+        case Method::Relayout: json["method"] = "relayout"; break;
+        case Method::Animate: json["method"] = "animate"; break;
+        case Method::Update: json["method"] = "update"; break;
+        case Method::Skip: json["method"] = "skip"; break;
+    }
     return *this;
 }
 
@@ -14571,36 +12966,6 @@ inline std::string Layout::Updatemenu::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Updatemenu::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Updatemenu::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Updatemenu::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::color(std::string f) {
@@ -14637,17 +13002,32 @@ inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::size(double f) {
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Updatemenu::Font& Layout::Updatemenu::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -14695,172 +13075,6 @@ inline std::string Layout::Xaxis::to_string(AutomarginExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for automargin."};
 }
-inline std::string Layout::Xaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-        case Autorange::MinReversed: return "min reversed";
-        case Autorange::MaxReversed: return "max reversed";
-        case Autorange::Min: return "min";
-        case Autorange::Max: return "max";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Constrain e) {
-    switch(e) {
-        case Constrain::Range: return "range";
-        case Constrain::Domain: return "domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Constraintoward e) {
-    switch(e) {
-        case Constraintoward::Left: return "left";
-        case Constraintoward::Center: return "center";
-        case Constraintoward::Right: return "right";
-        case Constraintoward::Top: return "top";
-        case Constraintoward::Middle: return "middle";
-        case Constraintoward::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Mirror e) {
-    switch(e) {
-        case Mirror::True: return "True";
-        case Mirror::Ticks: return "ticks";
-        case Mirror::False: return "False";
-        case Mirror::All: return "all";
-        case Mirror::Allticks: return "allticks";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Side e) {
-    switch(e) {
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-        case Side::Left: return "left";
-        case Side::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Layout::Xaxis::to_string(Spikemode e) {
     switch(e) {
         case Spikemode::Toaxis: return "toaxis";
@@ -14868,87 +13082,6 @@ inline std::string Layout::Xaxis::to_string(Spikemode e) {
         case Spikemode::Marker: return "marker";
     }
     throw std::invalid_argument{"Unknown flag value for spikemode."};
-}
-inline std::string Layout::Xaxis::to_string(Spikesnap e) {
-    switch(e) {
-        case Spikesnap::Data: return "data";
-        case Spikesnap::Cursor: return "cursor";
-        case Spikesnap::HoveredData: return "hovered data";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Ticklabelmode e) {
-    switch(e) {
-        case Ticklabelmode::Instant: return "instant";
-        case Ticklabelmode::Period: return "period";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-        case Tickmode::Sync: return "sync";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Tickson e) {
-    switch(e) {
-        case Tickson::Labels: return "labels";
-        case Tickson::Boundaries: return "boundaries";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-        case Type::Multicategory: return "multicategory";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Xaxis& Layout::Xaxis::anchor(std::string f) {
@@ -14966,7 +13099,15 @@ inline Layout::Xaxis& Layout::Xaxis::automargin(AutomarginExtra extra) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+        case Autorange::MinReversed: json["autorange"] = "min reversed"; break;
+        case Autorange::MaxReversed: json["autorange"] = "max reversed"; break;
+        case Autorange::Min: json["autorange"] = "min"; break;
+        case Autorange::Max: json["autorange"] = "max"; break;
+    }
     return *this;
 }
 
@@ -14999,12 +13140,32 @@ inline Layout::Xaxis& Layout::Xaxis::autotickangles(const std::vector<std::vecto
 }
 
 inline Layout::Xaxis& Layout::Xaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -15020,7 +13181,26 @@ inline Layout::Xaxis& Layout::Xaxis::categoryarraysrc(std::string f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -15034,12 +13214,22 @@ inline Layout::Xaxis& Layout::Xaxis::color(double f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::constrain(enum Constrain f) {
-    json["constrain"] = to_string(f);
+    switch(f) {
+        case Constrain::Range: json["constrain"] = "range"; break;
+        case Constrain::Domain: json["constrain"] = "domain"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::constraintoward(enum Constraintoward f) {
-    json["constraintoward"] = to_string(f);
+    switch(f) {
+        case Constraintoward::Left: json["constraintoward"] = "left"; break;
+        case Constraintoward::Center: json["constraintoward"] = "center"; break;
+        case Constraintoward::Right: json["constraintoward"] = "right"; break;
+        case Constraintoward::Top: json["constraintoward"] = "top"; break;
+        case Constraintoward::Middle: json["constraintoward"] = "middle"; break;
+        case Constraintoward::Bottom: json["constraintoward"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -15081,7 +13271,13 @@ inline Layout::Xaxis& Layout::Xaxis::dtick(T f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -15138,7 +13334,10 @@ inline Layout::Xaxis& Layout::Xaxis::labelalias(T f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -15190,7 +13389,13 @@ inline Layout::Xaxis& Layout::Xaxis::minor(Callable&& c) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::mirror(enum Mirror f) {
-    json["mirror"] = to_string(f);
+    switch(f) {
+        case Mirror::True: json["mirror"] = true; break;
+        case Mirror::Ticks: json["mirror"] = "ticks"; break;
+        case Mirror::False: json["mirror"] = false; break;
+        case Mirror::All: json["mirror"] = "all"; break;
+        case Mirror::Allticks: json["mirror"] = "allticks"; break;
+    }
     return *this;
 }
 
@@ -15234,7 +13439,11 @@ inline Layout::Xaxis& Layout::Xaxis::rangebreaks(const std::vector<Rangebreak>& 
 }
 
 inline Layout::Xaxis& Layout::Xaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -15281,7 +13490,12 @@ inline Layout::Xaxis& Layout::Xaxis::showdividers(bool f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -15306,17 +13520,32 @@ inline Layout::Xaxis& Layout::Xaxis::showticklabels(bool f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+        case Side::Left: json["side"] = "left"; break;
+        case Side::Right: json["side"] = "right"; break;
+    }
     return *this;
 }
 
@@ -15340,7 +13569,11 @@ inline Layout::Xaxis& Layout::Xaxis::spikemode(std::initializer_list<Spikemode> 
 }
 
 inline Layout::Xaxis& Layout::Xaxis::spikesnap(enum Spikesnap f) {
-    json["spikesnap"] = to_string(f);
+    switch(f) {
+        case Spikesnap::Data: json["spikesnap"] = "data"; break;
+        case Spikesnap::Cursor: json["spikesnap"] = "cursor"; break;
+        case Spikesnap::HoveredData: json["spikesnap"] = "hovered data"; break;
+    }
     return *this;
 }
 
@@ -15407,17 +13640,35 @@ inline Layout::Xaxis& Layout::Xaxis::ticklabelindexsrc(std::string f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticklabelmode(enum Ticklabelmode f) {
-    json["ticklabelmode"] = to_string(f);
+    switch(f) {
+        case Ticklabelmode::Instant: json["ticklabelmode"] = "instant"; break;
+        case Ticklabelmode::Period: json["ticklabelmode"] = "period"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticklabeloverflow(enum Ticklabeloverflow f) {
-    json["ticklabeloverflow"] = to_string(f);
+    switch(f) {
+        case Ticklabeloverflow::Allow: json["ticklabeloverflow"] = "allow"; break;
+        case Ticklabeloverflow::HidePastDiv: json["ticklabeloverflow"] = "hide past div"; break;
+        case Ticklabeloverflow::HidePastDomain: json["ticklabeloverflow"] = "hide past domain"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticklabelposition(enum Ticklabelposition f) {
-    json["ticklabelposition"] = to_string(f);
+    switch(f) {
+        case Ticklabelposition::Outside: json["ticklabelposition"] = "outside"; break;
+        case Ticklabelposition::Inside: json["ticklabelposition"] = "inside"; break;
+        case Ticklabelposition::OutsideTop: json["ticklabelposition"] = "outside top"; break;
+        case Ticklabelposition::InsideTop: json["ticklabelposition"] = "inside top"; break;
+        case Ticklabelposition::OutsideLeft: json["ticklabelposition"] = "outside left"; break;
+        case Ticklabelposition::InsideLeft: json["ticklabelposition"] = "inside left"; break;
+        case Ticklabelposition::OutsideRight: json["ticklabelposition"] = "outside right"; break;
+        case Ticklabelposition::InsideRight: json["ticklabelposition"] = "inside right"; break;
+        case Ticklabelposition::OutsideBottom: json["ticklabelposition"] = "outside bottom"; break;
+        case Ticklabelposition::InsideBottom: json["ticklabelposition"] = "inside bottom"; break;
+    }
     return *this;
 }
 
@@ -15442,7 +13693,12 @@ inline Layout::Xaxis& Layout::Xaxis::ticklen(double f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+        case Tickmode::Sync: json["tickmode"] = "sync"; break;
+    }
     return *this;
 }
 
@@ -15452,12 +13708,19 @@ inline Layout::Xaxis& Layout::Xaxis::tickprefix(std::string f) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis& Layout::Xaxis::tickson(enum Tickson f) {
-    json["tickson"] = to_string(f);
+    switch(f) {
+        case Tickson::Labels: json["tickson"] = "labels"; break;
+        case Tickson::Boundaries: json["tickson"] = "boundaries"; break;
+    }
     return *this;
 }
 
@@ -15505,7 +13768,14 @@ inline Layout::Xaxis& Layout::Xaxis::title(Callable&& c) {
 }
 
 inline Layout::Xaxis& Layout::Xaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+        case Type::Multicategory: json["type"] = "multicategory"; break;
+    }
     return *this;
 }
 
@@ -15580,24 +13850,6 @@ inline Layout::Xaxis::Autorangeoptions& Layout::Xaxis::Autorangeoptions::minallo
     return *this;
 }
 
-inline std::string Layout::Xaxis::Minor::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Minor::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 template <typename T>
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::dtick(T f) {
@@ -15655,12 +13907,20 @@ inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::ticklen(double f) {
 }
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -15680,15 +13940,6 @@ inline Layout::Xaxis::Minor& Layout::Xaxis::Minor::tickwidth(double f) {
     return *this;
 }
 
-inline std::string Layout::Xaxis::Rangebreak::to_string(Pattern e) {
-    switch(e) {
-        case Pattern::DayOfWeek: return "day of week";
-        case Pattern::Hour: return "hour";
-        case Pattern::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::bounds(const std::vector<double>& f) {
     json["bounds"] = f;
@@ -15723,7 +13974,11 @@ inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::name(std::string f)
 }
 
 inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::pattern(enum Pattern f) {
-    json["pattern"] = to_string(f);
+    switch(f) {
+        case Pattern::DayOfWeek: json["pattern"] = "day of week"; break;
+        case Pattern::Hour: json["pattern"] = "hour"; break;
+        case Pattern::Empty: json["pattern"] = ""; break;
+    }
     return *this;
 }
 
@@ -15749,26 +14004,6 @@ inline Layout::Xaxis::Rangebreak& Layout::Xaxis::Rangebreak::values(const std::v
     return *this;
 }
 
-inline std::string Layout::Xaxis::Rangeselector::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Auto: return "auto";
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Rangeselector::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Auto: return "auto";
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::activecolor(std::string f) {
     json["activecolor"] = std::move(f);
@@ -15831,7 +14066,12 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::x(double f) {
 }
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Auto: json["xanchor"] = "auto"; break;
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -15841,31 +14081,15 @@ inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::y(double f) {
 }
 
 inline Layout::Xaxis::Rangeselector& Layout::Xaxis::Rangeselector::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Auto: json["yanchor"] = "auto"; break;
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
-inline std::string Layout::Xaxis::Rangeselector::Button::to_string(Step e) {
-    switch(e) {
-        case Step::Month: return "month";
-        case Step::Year: return "year";
-        case Step::Day: return "day";
-        case Step::Hour: return "hour";
-        case Step::Minute: return "minute";
-        case Step::Second: return "second";
-        case Step::All: return "all";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Rangeselector::Button::to_string(Stepmode e) {
-    switch(e) {
-        case Stepmode::Backward: return "backward";
-        case Stepmode::Todate: return "todate";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::count(double f) {
     json["count"] = std::move(f);
@@ -15883,12 +14107,23 @@ inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Butto
 }
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::step(enum Step f) {
-    json["step"] = to_string(f);
+    switch(f) {
+        case Step::Month: json["step"] = "month"; break;
+        case Step::Year: json["step"] = "year"; break;
+        case Step::Day: json["step"] = "day"; break;
+        case Step::Hour: json["step"] = "hour"; break;
+        case Step::Minute: json["step"] = "minute"; break;
+        case Step::Second: json["step"] = "second"; break;
+        case Step::All: json["step"] = "all"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Rangeselector::Button& Layout::Xaxis::Rangeselector::Button::stepmode(enum Stepmode f) {
-    json["stepmode"] = to_string(f);
+    switch(f) {
+        case Stepmode::Backward: json["stepmode"] = "backward"; break;
+        case Stepmode::Todate: json["stepmode"] = "todate"; break;
+    }
     return *this;
 }
 
@@ -15915,36 +14150,6 @@ inline std::string Layout::Xaxis::Rangeselector::Font::to_string(LinepositionExt
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Rangeselector::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::color(std::string f) {
@@ -15981,17 +14186,32 @@ inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::s
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Rangeselector::Font& Layout::Xaxis::Rangeselector::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -16078,15 +14298,6 @@ inline Layout::Xaxis::Rangeslider& Layout::Xaxis::Rangeslider::yaxis(int index, 
     return yaxis(index, std::move(f));
 }
 
-inline std::string Layout::Xaxis::Rangeslider::Yaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Auto: return "auto";
-        case Rangemode::Fixed: return "fixed";
-        case Rangemode::Match: return "match";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::range(const std::vector<double>& f) {
     json["range"] = f;
@@ -16106,7 +14317,11 @@ inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::ran
 }
 
 inline Layout::Xaxis::Rangeslider::Yaxis& Layout::Xaxis::Rangeslider::Yaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Auto: json["rangemode"] = "auto"; break;
+        case Rangemode::Fixed: json["rangemode"] = "fixed"; break;
+        case Rangemode::Match: json["rangemode"] = "match"; break;
+    }
     return *this;
 }
 
@@ -16123,36 +14338,6 @@ inline std::string Layout::Xaxis::Tickfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Layout::Xaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::color(std::string f) {
@@ -16189,17 +14374,32 @@ inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::size(double f) {
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Tickfont& Layout::Xaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -16282,36 +14482,6 @@ inline std::string Layout::Xaxis::Title::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Xaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Xaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -16347,17 +14517,32 @@ inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::size(double f) {
 }
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Xaxis::Title::Font& Layout::Xaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -16384,172 +14569,6 @@ inline std::string Layout::Yaxis::to_string(AutomarginExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for automargin."};
 }
-inline std::string Layout::Yaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-        case Autorange::MinReversed: return "min reversed";
-        case Autorange::MaxReversed: return "max reversed";
-        case Autorange::Min: return "min";
-        case Autorange::Max: return "max";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Calendar e) {
-    switch(e) {
-        case Calendar::Chinese: return "chinese";
-        case Calendar::Coptic: return "coptic";
-        case Calendar::Discworld: return "discworld";
-        case Calendar::Ethiopian: return "ethiopian";
-        case Calendar::Gregorian: return "gregorian";
-        case Calendar::Hebrew: return "hebrew";
-        case Calendar::Islamic: return "islamic";
-        case Calendar::Jalali: return "jalali";
-        case Calendar::Julian: return "julian";
-        case Calendar::Mayan: return "mayan";
-        case Calendar::Nanakshahi: return "nanakshahi";
-        case Calendar::Nepali: return "nepali";
-        case Calendar::Persian: return "persian";
-        case Calendar::Taiwan: return "taiwan";
-        case Calendar::Thai: return "thai";
-        case Calendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-        case Categoryorder::TotalAscending: return "total ascending";
-        case Categoryorder::TotalDescending: return "total descending";
-        case Categoryorder::MinAscending: return "min ascending";
-        case Categoryorder::MinDescending: return "min descending";
-        case Categoryorder::MaxAscending: return "max ascending";
-        case Categoryorder::MaxDescending: return "max descending";
-        case Categoryorder::SumAscending: return "sum ascending";
-        case Categoryorder::SumDescending: return "sum descending";
-        case Categoryorder::MeanAscending: return "mean ascending";
-        case Categoryorder::MeanDescending: return "mean descending";
-        case Categoryorder::GeometricMeanAscending: return "geometric mean ascending";
-        case Categoryorder::GeometricMeanDescending: return "geometric mean descending";
-        case Categoryorder::MedianAscending: return "median ascending";
-        case Categoryorder::MedianDescending: return "median descending";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Constrain e) {
-    switch(e) {
-        case Constrain::Range: return "range";
-        case Constrain::Domain: return "domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Constraintoward e) {
-    switch(e) {
-        case Constraintoward::Left: return "left";
-        case Constraintoward::Center: return "center";
-        case Constraintoward::Right: return "right";
-        case Constraintoward::Top: return "top";
-        case Constraintoward::Middle: return "middle";
-        case Constraintoward::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Layer e) {
-    switch(e) {
-        case Layer::AboveTraces: return "above traces";
-        case Layer::BelowTraces: return "below traces";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Mirror e) {
-    switch(e) {
-        case Mirror::True: return "True";
-        case Mirror::Ticks: return "ticks";
-        case Mirror::False: return "False";
-        case Mirror::All: return "all";
-        case Mirror::Allticks: return "allticks";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Side e) {
-    switch(e) {
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-        case Side::Left: return "left";
-        case Side::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Layout::Yaxis::to_string(Spikemode e) {
     switch(e) {
         case Spikemode::Toaxis: return "toaxis";
@@ -16557,87 +14576,6 @@ inline std::string Layout::Yaxis::to_string(Spikemode e) {
         case Spikemode::Marker: return "marker";
     }
     throw std::invalid_argument{"Unknown flag value for spikemode."};
-}
-inline std::string Layout::Yaxis::to_string(Spikesnap e) {
-    switch(e) {
-        case Spikesnap::Data: return "data";
-        case Spikesnap::Cursor: return "cursor";
-        case Spikesnap::HoveredData: return "hovered data";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Ticklabelmode e) {
-    switch(e) {
-        case Ticklabelmode::Instant: return "instant";
-        case Ticklabelmode::Period: return "period";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-        case Tickmode::Sync: return "sync";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Tickson e) {
-    switch(e) {
-        case Tickson::Labels: return "labels";
-        case Tickson::Boundaries: return "boundaries";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-        case Type::Multicategory: return "multicategory";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Layout::Yaxis& Layout::Yaxis::anchor(std::string f) {
@@ -16655,7 +14593,15 @@ inline Layout::Yaxis& Layout::Yaxis::automargin(AutomarginExtra extra) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+        case Autorange::MinReversed: json["autorange"] = "min reversed"; break;
+        case Autorange::MaxReversed: json["autorange"] = "max reversed"; break;
+        case Autorange::Min: json["autorange"] = "min"; break;
+        case Autorange::Max: json["autorange"] = "max"; break;
+    }
     return *this;
 }
 
@@ -16693,12 +14639,32 @@ inline Layout::Yaxis& Layout::Yaxis::autotickangles(const std::vector<std::vecto
 }
 
 inline Layout::Yaxis& Layout::Yaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::calendar(enum Calendar f) {
-    json["calendar"] = to_string(f);
+    switch(f) {
+        case Calendar::Chinese: json["calendar"] = "chinese"; break;
+        case Calendar::Coptic: json["calendar"] = "coptic"; break;
+        case Calendar::Discworld: json["calendar"] = "discworld"; break;
+        case Calendar::Ethiopian: json["calendar"] = "ethiopian"; break;
+        case Calendar::Gregorian: json["calendar"] = "gregorian"; break;
+        case Calendar::Hebrew: json["calendar"] = "hebrew"; break;
+        case Calendar::Islamic: json["calendar"] = "islamic"; break;
+        case Calendar::Jalali: json["calendar"] = "jalali"; break;
+        case Calendar::Julian: json["calendar"] = "julian"; break;
+        case Calendar::Mayan: json["calendar"] = "mayan"; break;
+        case Calendar::Nanakshahi: json["calendar"] = "nanakshahi"; break;
+        case Calendar::Nepali: json["calendar"] = "nepali"; break;
+        case Calendar::Persian: json["calendar"] = "persian"; break;
+        case Calendar::Taiwan: json["calendar"] = "taiwan"; break;
+        case Calendar::Thai: json["calendar"] = "thai"; break;
+        case Calendar::Ummalqura: json["calendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -16714,7 +14680,26 @@ inline Layout::Yaxis& Layout::Yaxis::categoryarraysrc(std::string f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+        case Categoryorder::TotalAscending: json["categoryorder"] = "total ascending"; break;
+        case Categoryorder::TotalDescending: json["categoryorder"] = "total descending"; break;
+        case Categoryorder::MinAscending: json["categoryorder"] = "min ascending"; break;
+        case Categoryorder::MinDescending: json["categoryorder"] = "min descending"; break;
+        case Categoryorder::MaxAscending: json["categoryorder"] = "max ascending"; break;
+        case Categoryorder::MaxDescending: json["categoryorder"] = "max descending"; break;
+        case Categoryorder::SumAscending: json["categoryorder"] = "sum ascending"; break;
+        case Categoryorder::SumDescending: json["categoryorder"] = "sum descending"; break;
+        case Categoryorder::MeanAscending: json["categoryorder"] = "mean ascending"; break;
+        case Categoryorder::MeanDescending: json["categoryorder"] = "mean descending"; break;
+        case Categoryorder::GeometricMeanAscending: json["categoryorder"] = "geometric mean ascending"; break;
+        case Categoryorder::GeometricMeanDescending: json["categoryorder"] = "geometric mean descending"; break;
+        case Categoryorder::MedianAscending: json["categoryorder"] = "median ascending"; break;
+        case Categoryorder::MedianDescending: json["categoryorder"] = "median descending"; break;
+    }
     return *this;
 }
 
@@ -16728,12 +14713,22 @@ inline Layout::Yaxis& Layout::Yaxis::color(double f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::constrain(enum Constrain f) {
-    json["constrain"] = to_string(f);
+    switch(f) {
+        case Constrain::Range: json["constrain"] = "range"; break;
+        case Constrain::Domain: json["constrain"] = "domain"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::constraintoward(enum Constraintoward f) {
-    json["constraintoward"] = to_string(f);
+    switch(f) {
+        case Constraintoward::Left: json["constraintoward"] = "left"; break;
+        case Constraintoward::Center: json["constraintoward"] = "center"; break;
+        case Constraintoward::Right: json["constraintoward"] = "right"; break;
+        case Constraintoward::Top: json["constraintoward"] = "top"; break;
+        case Constraintoward::Middle: json["constraintoward"] = "middle"; break;
+        case Constraintoward::Bottom: json["constraintoward"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -16775,7 +14770,13 @@ inline Layout::Yaxis& Layout::Yaxis::dtick(T f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -16832,7 +14833,10 @@ inline Layout::Yaxis& Layout::Yaxis::labelalias(T f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::layer(enum Layer f) {
-    json["layer"] = to_string(f);
+    switch(f) {
+        case Layer::AboveTraces: json["layer"] = "above traces"; break;
+        case Layer::BelowTraces: json["layer"] = "below traces"; break;
+    }
     return *this;
 }
 
@@ -16884,7 +14888,13 @@ inline Layout::Yaxis& Layout::Yaxis::minor(Callable&& c) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::mirror(enum Mirror f) {
-    json["mirror"] = to_string(f);
+    switch(f) {
+        case Mirror::True: json["mirror"] = true; break;
+        case Mirror::Ticks: json["mirror"] = "ticks"; break;
+        case Mirror::False: json["mirror"] = false; break;
+        case Mirror::All: json["mirror"] = "all"; break;
+        case Mirror::Allticks: json["mirror"] = "allticks"; break;
+    }
     return *this;
 }
 
@@ -16928,7 +14938,11 @@ inline Layout::Yaxis& Layout::Yaxis::rangebreaks(const std::vector<Rangebreak>& 
 }
 
 inline Layout::Yaxis& Layout::Yaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -16958,7 +14972,12 @@ inline Layout::Yaxis& Layout::Yaxis::showdividers(bool f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -16983,17 +15002,32 @@ inline Layout::Yaxis& Layout::Yaxis::showticklabels(bool f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+        case Side::Left: json["side"] = "left"; break;
+        case Side::Right: json["side"] = "right"; break;
+    }
     return *this;
 }
 
@@ -17017,7 +15051,11 @@ inline Layout::Yaxis& Layout::Yaxis::spikemode(std::initializer_list<Spikemode> 
 }
 
 inline Layout::Yaxis& Layout::Yaxis::spikesnap(enum Spikesnap f) {
-    json["spikesnap"] = to_string(f);
+    switch(f) {
+        case Spikesnap::Data: json["spikesnap"] = "data"; break;
+        case Spikesnap::Cursor: json["spikesnap"] = "cursor"; break;
+        case Spikesnap::HoveredData: json["spikesnap"] = "hovered data"; break;
+    }
     return *this;
 }
 
@@ -17084,17 +15122,35 @@ inline Layout::Yaxis& Layout::Yaxis::ticklabelindexsrc(std::string f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticklabelmode(enum Ticklabelmode f) {
-    json["ticklabelmode"] = to_string(f);
+    switch(f) {
+        case Ticklabelmode::Instant: json["ticklabelmode"] = "instant"; break;
+        case Ticklabelmode::Period: json["ticklabelmode"] = "period"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticklabeloverflow(enum Ticklabeloverflow f) {
-    json["ticklabeloverflow"] = to_string(f);
+    switch(f) {
+        case Ticklabeloverflow::Allow: json["ticklabeloverflow"] = "allow"; break;
+        case Ticklabeloverflow::HidePastDiv: json["ticklabeloverflow"] = "hide past div"; break;
+        case Ticklabeloverflow::HidePastDomain: json["ticklabeloverflow"] = "hide past domain"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticklabelposition(enum Ticklabelposition f) {
-    json["ticklabelposition"] = to_string(f);
+    switch(f) {
+        case Ticklabelposition::Outside: json["ticklabelposition"] = "outside"; break;
+        case Ticklabelposition::Inside: json["ticklabelposition"] = "inside"; break;
+        case Ticklabelposition::OutsideTop: json["ticklabelposition"] = "outside top"; break;
+        case Ticklabelposition::InsideTop: json["ticklabelposition"] = "inside top"; break;
+        case Ticklabelposition::OutsideLeft: json["ticklabelposition"] = "outside left"; break;
+        case Ticklabelposition::InsideLeft: json["ticklabelposition"] = "inside left"; break;
+        case Ticklabelposition::OutsideRight: json["ticklabelposition"] = "outside right"; break;
+        case Ticklabelposition::InsideRight: json["ticklabelposition"] = "inside right"; break;
+        case Ticklabelposition::OutsideBottom: json["ticklabelposition"] = "outside bottom"; break;
+        case Ticklabelposition::InsideBottom: json["ticklabelposition"] = "inside bottom"; break;
+    }
     return *this;
 }
 
@@ -17119,7 +15175,12 @@ inline Layout::Yaxis& Layout::Yaxis::ticklen(double f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+        case Tickmode::Sync: json["tickmode"] = "sync"; break;
+    }
     return *this;
 }
 
@@ -17129,12 +15190,19 @@ inline Layout::Yaxis& Layout::Yaxis::tickprefix(std::string f) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis& Layout::Yaxis::tickson(enum Tickson f) {
-    json["tickson"] = to_string(f);
+    switch(f) {
+        case Tickson::Labels: json["tickson"] = "labels"; break;
+        case Tickson::Boundaries: json["tickson"] = "boundaries"; break;
+    }
     return *this;
 }
 
@@ -17182,7 +15250,14 @@ inline Layout::Yaxis& Layout::Yaxis::title(Callable&& c) {
 }
 
 inline Layout::Yaxis& Layout::Yaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+        case Type::Multicategory: json["type"] = "multicategory"; break;
+    }
     return *this;
 }
 
@@ -17257,24 +15332,6 @@ inline Layout::Yaxis::Autorangeoptions& Layout::Yaxis::Autorangeoptions::minallo
     return *this;
 }
 
-inline std::string Layout::Yaxis::Minor::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Minor::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 template <typename T>
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::dtick(T f) {
@@ -17332,12 +15389,20 @@ inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::ticklen(double f) {
 }
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -17357,15 +15422,6 @@ inline Layout::Yaxis::Minor& Layout::Yaxis::Minor::tickwidth(double f) {
     return *this;
 }
 
-inline std::string Layout::Yaxis::Rangebreak::to_string(Pattern e) {
-    switch(e) {
-        case Pattern::DayOfWeek: return "day of week";
-        case Pattern::Hour: return "hour";
-        case Pattern::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::bounds(const std::vector<double>& f) {
     json["bounds"] = f;
@@ -17400,7 +15456,11 @@ inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::name(std::string f)
 }
 
 inline Layout::Yaxis::Rangebreak& Layout::Yaxis::Rangebreak::pattern(enum Pattern f) {
-    json["pattern"] = to_string(f);
+    switch(f) {
+        case Pattern::DayOfWeek: json["pattern"] = "day of week"; break;
+        case Pattern::Hour: json["pattern"] = "hour"; break;
+        case Pattern::Empty: json["pattern"] = ""; break;
+    }
     return *this;
 }
 
@@ -17440,36 +15500,6 @@ inline std::string Layout::Yaxis::Tickfont::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Yaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -17505,17 +15535,32 @@ inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::size(double f) {
 }
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis::Tickfont& Layout::Yaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -17598,36 +15643,6 @@ inline std::string Layout::Yaxis::Title::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Layout::Yaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Layout::Yaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -17663,17 +15678,32 @@ inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::size(double f) {
 }
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Layout::Yaxis::Title::Font& Layout::Yaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 

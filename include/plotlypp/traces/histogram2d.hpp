@@ -36,7 +36,6 @@ class Histogram2D : public Trace {
         Min,
         Max,
     };
-    static std::string to_string(Histfunc e);
 
     enum class Histnorm {
         Empty,
@@ -45,7 +44,6 @@ class Histogram2D : public Trace {
         Density,
         ProbabilityDensity,
     };
-    static std::string to_string(Histnorm e);
 
     enum class Hoverinfo {
         X,
@@ -67,7 +65,6 @@ class Histogram2D : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -87,7 +84,6 @@ class Histogram2D : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Ycalendar {
         Chinese,
@@ -107,14 +103,12 @@ class Histogram2D : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Ycalendar e);
 
     enum class Zsmooth {
         Fast,
         Best,
         False,
     };
-    static std::string to_string(Zsmooth e);
 
     class Colorbar;
     class Hoverlabel;
@@ -448,19 +442,16 @@ class Histogram2D::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -468,7 +459,6 @@ class Histogram2D::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -476,7 +466,6 @@ class Histogram2D::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -484,20 +473,17 @@ class Histogram2D::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -511,47 +497,40 @@ class Histogram2D::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -803,7 +782,6 @@ class Histogram2D::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -811,7 +789,6 @@ class Histogram2D::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -821,7 +798,6 @@ class Histogram2D::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram2D::Colorbar::Tickfont& color(std::string f);
     Histogram2D::Colorbar::Tickfont& color(double f);
@@ -916,7 +892,6 @@ class Histogram2D::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -959,7 +934,6 @@ class Histogram2D::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -967,7 +941,6 @@ class Histogram2D::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -977,7 +950,6 @@ class Histogram2D::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram2D::Colorbar::Title::Font& color(std::string f);
     Histogram2D::Colorbar::Title::Font& color(double f);
@@ -1036,7 +1008,6 @@ class Histogram2D::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -1109,7 +1080,6 @@ class Histogram2D::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1117,7 +1087,6 @@ class Histogram2D::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1127,7 +1096,6 @@ class Histogram2D::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram2D::Hoverlabel::Font& color(std::string f);
     Histogram2D::Hoverlabel::Font& color(double f);
@@ -1254,7 +1222,6 @@ class Histogram2D::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1262,7 +1229,6 @@ class Histogram2D::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1272,7 +1238,6 @@ class Histogram2D::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram2D::Legendgrouptitle::Font& color(std::string f);
     Histogram2D::Legendgrouptitle::Font& color(double f);
@@ -1377,7 +1342,6 @@ class Histogram2D::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1385,7 +1349,6 @@ class Histogram2D::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1395,7 +1358,6 @@ class Histogram2D::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram2D::Textfont& color(std::string f);
     Histogram2D::Textfont& color(double f);

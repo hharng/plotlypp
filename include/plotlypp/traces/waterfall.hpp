@@ -35,7 +35,6 @@ class Waterfall : public Trace {
         Both,
         None,
     };
-    static std::string to_string(Constraintext e);
 
     enum class Hoverinfo {
         Name,
@@ -59,13 +58,11 @@ class Waterfall : public Trace {
         Middle,
         Start,
     };
-    static std::string to_string(Insidetextanchor e);
 
     enum class Orientation {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Textinfo {
         Label,
@@ -86,28 +83,24 @@ class Waterfall : public Trace {
         Auto,
         None,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     enum class Yperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Yperiodalignment e);
 
     class Connector;
     class Decreasing;
@@ -486,7 +479,6 @@ class Waterfall::Connector {
         Spanning,
         Between,
     };
-    static std::string to_string(Mode e);
 
     class Line;
 
@@ -590,7 +582,6 @@ class Waterfall::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -663,7 +654,6 @@ class Waterfall::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -671,7 +661,6 @@ class Waterfall::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -681,7 +670,6 @@ class Waterfall::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Waterfall::Hoverlabel::Font& color(std::string f);
     Waterfall::Hoverlabel::Font& color(double f);
@@ -840,7 +828,6 @@ class Waterfall::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -848,7 +835,6 @@ class Waterfall::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -858,7 +844,6 @@ class Waterfall::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Waterfall::Insidetextfont& color(std::string f);
     Waterfall::Insidetextfont& color(double f);
@@ -985,7 +970,6 @@ class Waterfall::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -993,7 +977,6 @@ class Waterfall::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1003,7 +986,6 @@ class Waterfall::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Waterfall::Legendgrouptitle::Font& color(std::string f);
     Waterfall::Legendgrouptitle::Font& color(double f);
@@ -1073,7 +1055,6 @@ class Waterfall::Outsidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1081,7 +1062,6 @@ class Waterfall::Outsidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1091,7 +1071,6 @@ class Waterfall::Outsidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Waterfall::Outsidetextfont& color(std::string f);
     Waterfall::Outsidetextfont& color(double f);
@@ -1215,7 +1194,6 @@ class Waterfall::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1223,7 +1201,6 @@ class Waterfall::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1233,7 +1210,6 @@ class Waterfall::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Waterfall::Textfont& color(std::string f);
     Waterfall::Textfont& color(double f);

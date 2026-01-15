@@ -33,7 +33,6 @@ class Icicle : public Trace {
         Remainder,
         Total,
     };
-    static std::string to_string(Branchvalues e);
 
     enum class Count {
         Branches,
@@ -85,14 +84,12 @@ class Icicle : public Trace {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -398,7 +395,6 @@ class Icicle::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -471,7 +467,6 @@ class Icicle::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -479,7 +474,6 @@ class Icicle::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -489,7 +483,6 @@ class Icicle::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Hoverlabel::Font& color(std::string f);
     Icicle::Hoverlabel::Font& color(double f);
@@ -595,7 +588,6 @@ class Icicle::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -603,7 +595,6 @@ class Icicle::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -613,7 +604,6 @@ class Icicle::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Insidetextfont& color(std::string f);
     Icicle::Insidetextfont& color(double f);
@@ -753,7 +743,6 @@ class Icicle::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -761,7 +750,6 @@ class Icicle::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -771,7 +759,6 @@ class Icicle::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Legendgrouptitle::Font& color(std::string f);
     Icicle::Legendgrouptitle::Font& color(double f);
@@ -915,19 +902,16 @@ class Icicle::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -935,7 +919,6 @@ class Icicle::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -943,7 +926,6 @@ class Icicle::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -951,20 +933,17 @@ class Icicle::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -978,47 +957,40 @@ class Icicle::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1270,7 +1242,6 @@ class Icicle::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1278,7 +1249,6 @@ class Icicle::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1288,7 +1258,6 @@ class Icicle::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Marker::Colorbar::Tickfont& color(std::string f);
     Icicle::Marker::Colorbar::Tickfont& color(double f);
@@ -1383,7 +1352,6 @@ class Icicle::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1426,7 +1394,6 @@ class Icicle::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1434,7 +1401,6 @@ class Icicle::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1444,7 +1410,6 @@ class Icicle::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Marker::Colorbar::Title::Font& color(std::string f);
     Icicle::Marker::Colorbar::Title::Font& color(double f);
@@ -1529,7 +1494,6 @@ class Icicle::Marker::Pattern {
         Replace,
         Overlay,
     };
-    static std::string to_string(Fillmode e);
 
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
@@ -1611,7 +1575,6 @@ class Icicle::Outsidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1619,7 +1582,6 @@ class Icicle::Outsidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1629,7 +1591,6 @@ class Icicle::Outsidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Outsidetextfont& color(std::string f);
     Icicle::Outsidetextfont& color(double f);
@@ -1726,13 +1687,11 @@ class Icicle::Pathbar {
         Slash,
         Doublebackslash,
     };
-    static std::string to_string(Edgeshape e);
 
     enum class Side {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets the font used inside `pathbar`.
     class Textfont;
@@ -1783,7 +1742,6 @@ class Icicle::Pathbar::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1791,7 +1749,6 @@ class Icicle::Pathbar::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1801,7 +1758,6 @@ class Icicle::Pathbar::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Pathbar::Textfont& color(std::string f);
     Icicle::Pathbar::Textfont& color(double f);
@@ -1940,7 +1896,6 @@ class Icicle::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1948,7 +1903,6 @@ class Icicle::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1958,7 +1912,6 @@ class Icicle::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Icicle::Textfont& color(std::string f);
     Icicle::Textfont& color(double f);
@@ -2058,7 +2011,6 @@ class Icicle::Tiling {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     // Determines if the positions obtained from solver are flipped on each axis.
     // - Default:

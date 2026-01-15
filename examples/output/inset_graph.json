@@ -1,0 +1,1 @@
+{"data":[{"type":"scatter","x":[1,2,3],"y":[4,3,2]},{"type":"scatter","x":[20,30,40],"xaxis":"x2","y":[30,40,50],"yaxis":"y2"}],"layout":{"xaxis2":{"anchor":"y2","domain":[0.6,0.95]},"yaxis2":{"anchor":"x2","domain":[0.6,0.95]}}}

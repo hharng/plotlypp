@@ -1,0 +1,1 @@
+{"data":[{"marker":{"color":["rgb(93, 164, 214)","rgb(255, 144, 14)","rgb(44, 160, 101)","rgb(255, 65, 54)"],"opacity":[1.0,0.8,0.6,0.4],"size":[40.0,60.0,80.0,100.0]},"mode":"markers","type":"scatter","x":[1,2,3,4],"y":[10,11,12,13]}],"layout":{"height":600.0,"showlegend":false,"title":{"text":"Marker Size and Color"},"width":600.0}}

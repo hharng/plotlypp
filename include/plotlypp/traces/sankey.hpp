@@ -35,7 +35,6 @@ class Sankey : public Trace {
         Freeform,
         Fixed,
     };
-    static std::string to_string(Arrangement e);
 
     enum class Hoverinfo {};
     enum class HoverinfoExtra {
@@ -50,14 +49,12 @@ class Sankey : public Trace {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -241,7 +238,6 @@ class Sankey::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -314,7 +310,6 @@ class Sankey::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -322,7 +317,6 @@ class Sankey::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -332,7 +326,6 @@ class Sankey::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Sankey::Hoverlabel::Font& color(std::string f);
     Sankey::Hoverlabel::Font& color(double f);
@@ -459,7 +452,6 @@ class Sankey::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -467,7 +459,6 @@ class Sankey::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -477,7 +468,6 @@ class Sankey::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Sankey::Legendgrouptitle::Font& color(std::string f);
     Sankey::Legendgrouptitle::Font& color(double f);
@@ -537,7 +527,6 @@ class Sankey::Link {
         None,
         Skip,
     };
-    static std::string to_string(Hoverinfo e);
 
     class Concentrationscales;
     class Hoverlabel;
@@ -692,7 +681,6 @@ class Sankey::Link::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -765,7 +753,6 @@ class Sankey::Link::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -773,7 +760,6 @@ class Sankey::Link::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -783,7 +769,6 @@ class Sankey::Link::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Sankey::Link::Hoverlabel::Font& color(std::string f);
     Sankey::Link::Hoverlabel::Font& color(double f);
@@ -906,14 +891,12 @@ class Sankey::Node {
         Right,
         Center,
     };
-    static std::string to_string(Align e);
 
     enum class Hoverinfo {
         All,
         None,
         Skip,
     };
-    static std::string to_string(Hoverinfo e);
 
     class Hoverlabel;
     class Line;
@@ -1022,7 +1005,6 @@ class Sankey::Node::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -1095,7 +1077,6 @@ class Sankey::Node::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1103,7 +1084,6 @@ class Sankey::Node::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1113,7 +1093,6 @@ class Sankey::Node::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Sankey::Node::Hoverlabel::Font& color(std::string f);
     Sankey::Node::Hoverlabel::Font& color(double f);
@@ -1263,7 +1242,6 @@ class Sankey::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1271,7 +1249,6 @@ class Sankey::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1281,7 +1258,6 @@ class Sankey::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Sankey::Textfont& color(std::string f);
     Sankey::Textfont& color(double f);

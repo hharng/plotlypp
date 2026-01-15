@@ -35,7 +35,6 @@ class Funnel : public Trace {
         Both,
         None,
     };
-    static std::string to_string(Constraintext e);
 
     enum class Hoverinfo {
         Name,
@@ -59,13 +58,11 @@ class Funnel : public Trace {
         Middle,
         Start,
     };
-    static std::string to_string(Insidetextanchor e);
 
     enum class Orientation {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Textinfo {
         Label,
@@ -87,28 +84,24 @@ class Funnel : public Trace {
         Auto,
         None,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     enum class Yperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Yperiodalignment e);
 
     class Connector;
     class Hoverlabel;
@@ -504,7 +497,6 @@ class Funnel::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -577,7 +569,6 @@ class Funnel::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -585,7 +576,6 @@ class Funnel::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -595,7 +585,6 @@ class Funnel::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Hoverlabel::Font& color(std::string f);
     Funnel::Hoverlabel::Font& color(double f);
@@ -701,7 +690,6 @@ class Funnel::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -709,7 +697,6 @@ class Funnel::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -719,7 +706,6 @@ class Funnel::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Insidetextfont& color(std::string f);
     Funnel::Insidetextfont& color(double f);
@@ -846,7 +832,6 @@ class Funnel::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -854,7 +839,6 @@ class Funnel::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -864,7 +848,6 @@ class Funnel::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Legendgrouptitle::Font& color(std::string f);
     Funnel::Legendgrouptitle::Font& color(double f);
@@ -1010,19 +993,16 @@ class Funnel::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -1030,7 +1010,6 @@ class Funnel::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -1038,7 +1017,6 @@ class Funnel::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -1046,20 +1024,17 @@ class Funnel::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -1073,47 +1048,40 @@ class Funnel::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1365,7 +1333,6 @@ class Funnel::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1373,7 +1340,6 @@ class Funnel::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1383,7 +1349,6 @@ class Funnel::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Marker::Colorbar::Tickfont& color(std::string f);
     Funnel::Marker::Colorbar::Tickfont& color(double f);
@@ -1478,7 +1443,6 @@ class Funnel::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1521,7 +1485,6 @@ class Funnel::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1529,7 +1492,6 @@ class Funnel::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1539,7 +1501,6 @@ class Funnel::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Marker::Colorbar::Title::Font& color(std::string f);
     Funnel::Marker::Colorbar::Title::Font& color(double f);
@@ -1684,7 +1645,6 @@ class Funnel::Outsidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1692,7 +1652,6 @@ class Funnel::Outsidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1702,7 +1661,6 @@ class Funnel::Outsidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Outsidetextfont& color(std::string f);
     Funnel::Outsidetextfont& color(double f);
@@ -1826,7 +1784,6 @@ class Funnel::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1834,7 +1791,6 @@ class Funnel::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1844,7 +1800,6 @@ class Funnel::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnel::Textfont& color(std::string f);
     Funnel::Textfont& color(double f);

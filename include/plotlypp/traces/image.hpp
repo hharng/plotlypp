@@ -36,7 +36,6 @@ class Image : public Trace {
         Hsl,
         Hsla,
     };
-    static std::string to_string(Colormodel e);
 
     enum class Hoverinfo {
         X,
@@ -59,13 +58,11 @@ class Image : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Zsmooth {
         Fast,
         False,
     };
-    static std::string to_string(Zsmooth e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -278,7 +275,6 @@ class Image::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -351,7 +347,6 @@ class Image::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -359,7 +354,6 @@ class Image::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -369,7 +363,6 @@ class Image::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Image::Hoverlabel::Font& color(std::string f);
     Image::Hoverlabel::Font& color(double f);
@@ -496,7 +489,6 @@ class Image::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -504,7 +496,6 @@ class Image::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -514,7 +505,6 @@ class Image::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Image::Legendgrouptitle::Font& color(std::string f);
     Image::Legendgrouptitle::Font& color(double f);

@@ -48,14 +48,12 @@ class Barpolar : public Trace {
         Degrees,
         Gradians,
     };
-    static std::string to_string(Thetaunit e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -291,7 +289,6 @@ class Barpolar::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -364,7 +361,6 @@ class Barpolar::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -372,7 +368,6 @@ class Barpolar::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -382,7 +377,6 @@ class Barpolar::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Barpolar::Hoverlabel::Font& color(std::string f);
     Barpolar::Hoverlabel::Font& color(double f);
@@ -509,7 +503,6 @@ class Barpolar::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -517,7 +510,6 @@ class Barpolar::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -527,7 +519,6 @@ class Barpolar::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Barpolar::Legendgrouptitle::Font& color(std::string f);
     Barpolar::Legendgrouptitle::Font& color(double f);
@@ -680,19 +671,16 @@ class Barpolar::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -700,7 +688,6 @@ class Barpolar::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -708,7 +695,6 @@ class Barpolar::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -716,20 +702,17 @@ class Barpolar::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -743,47 +726,40 @@ class Barpolar::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1035,7 +1011,6 @@ class Barpolar::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1043,7 +1018,6 @@ class Barpolar::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1053,7 +1027,6 @@ class Barpolar::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Barpolar::Marker::Colorbar::Tickfont& color(std::string f);
     Barpolar::Marker::Colorbar::Tickfont& color(double f);
@@ -1148,7 +1121,6 @@ class Barpolar::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1191,7 +1163,6 @@ class Barpolar::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1199,7 +1170,6 @@ class Barpolar::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1209,7 +1179,6 @@ class Barpolar::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Barpolar::Marker::Colorbar::Title::Font& color(std::string f);
     Barpolar::Marker::Colorbar::Title::Font& color(double f);
@@ -1343,7 +1312,6 @@ class Barpolar::Marker::Pattern {
         Replace,
         Overlay,
     };
-    static std::string to_string(Fillmode e);
 
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.

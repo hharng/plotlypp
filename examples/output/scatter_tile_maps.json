@@ -1,0 +1,1 @@
+{"data":[{"lat":[45,20,-20],"lon":[-75,-80,-50],"marker":{"size":20.0,"symbol":["bus","harbor","airport"]},"mode":"markers+text+lines","text":["Bus","Harbor","Airport"],"textposition":"bottom right","type":"scattermap"}],"layout":{"height":500.0,"map":{"style":"outdoors","zoom":0.7},"showlegend":false,"width":700.0}}

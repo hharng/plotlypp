@@ -60,14 +60,12 @@ class Funnelarea : public Trace {
         Inside,
         None,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -341,7 +339,6 @@ class Funnelarea::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -414,7 +411,6 @@ class Funnelarea::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -422,7 +418,6 @@ class Funnelarea::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -432,7 +427,6 @@ class Funnelarea::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnelarea::Hoverlabel::Font& color(std::string f);
     Funnelarea::Hoverlabel::Font& color(double f);
@@ -538,7 +532,6 @@ class Funnelarea::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -546,7 +539,6 @@ class Funnelarea::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -556,7 +548,6 @@ class Funnelarea::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnelarea::Insidetextfont& color(std::string f);
     Funnelarea::Insidetextfont& color(double f);
@@ -683,7 +674,6 @@ class Funnelarea::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -691,7 +681,6 @@ class Funnelarea::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -701,7 +690,6 @@ class Funnelarea::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnelarea::Legendgrouptitle::Font& color(std::string f);
     Funnelarea::Legendgrouptitle::Font& color(double f);
@@ -816,7 +804,6 @@ class Funnelarea::Marker::Pattern {
         Replace,
         Overlay,
     };
-    static std::string to_string(Fillmode e);
 
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
@@ -914,7 +901,6 @@ class Funnelarea::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -922,7 +908,6 @@ class Funnelarea::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -932,7 +917,6 @@ class Funnelarea::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnelarea::Textfont& color(std::string f);
     Funnelarea::Textfont& color(double f);
@@ -1027,7 +1011,6 @@ class Funnelarea::Title {
         TopCenter,
         TopRight,
     };
-    static std::string to_string(Position e);
 
     // Sets the font used for `title`.
     class Font;
@@ -1070,7 +1053,6 @@ class Funnelarea::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1078,7 +1060,6 @@ class Funnelarea::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1088,7 +1069,6 @@ class Funnelarea::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Funnelarea::Title::Font& color(std::string f);
     Funnelarea::Title::Font& color(double f);

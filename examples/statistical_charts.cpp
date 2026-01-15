@@ -90,7 +90,8 @@ Figure continuousFilledErrorBars() {
                       .y(std::vector<double>{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0})
                       .fill(Scatter::Fill::Tozerox)
                       .fillcolor("rgba(0,100,80,0.2)")
-                      .line(Scatter::Line().color("transparent"))
+                      //.line(Scatter::Line().color("transparent"))
+                      .line(Scatter::Line().color("rgba(0,0,0,0)"))
                       .name("Fair")
                       .showlegend(false);
     auto trace2 = Scatter()
@@ -98,7 +99,8 @@ Figure continuousFilledErrorBars() {
                       .y(std::vector<double>{5.5, 3, 5.5, 8, 6, 3, 8, 5, 6, 5.5, 4.75, 5, 4, 7, 2, 4, 7, 4.4, 2, 4.5})
                       .fill(Scatter::Fill::Tozerox)
                       .fillcolor("rgba(0,176,246,0.2)")
-                      .line(Scatter::Line().color("transparent"))
+                      //.line(Scatter::Line().color("transparent"))
+                      .line(Scatter::Line().color("rgba(0,0,0,0)"))
                       .name("Premium")
                       .showlegend(false);
     auto trace3 = Scatter()
@@ -106,7 +108,8 @@ Figure continuousFilledErrorBars() {
                       .y(std::vector<double>{11, 9, 7, 5, 3, 1, 3, 5, 3, 1, -1, 1, 3, 1, -0.5, 1, 3, 5, 7, 9})
                       .fill(Scatter::Fill::Tozerox)
                       .fillcolor("rgba(231,107,243,0.2)")
-                      .line(Scatter::Line().color("transparent"))
+                      //.line(Scatter::Line().color("transparent"))
+                      .line(Scatter::Line().color("rgba(0,0,0,0)"))
                       .name("Ideal")
                       .showlegend(false);
     auto trace4 = Scatter()

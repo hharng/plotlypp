@@ -12,16 +12,6 @@
 
 namespace plotlypp {
 
-inline std::string Sankey::to_string(Arrangement e) {
-    switch(e) {
-        case Arrangement::Snap: return "snap";
-        case Arrangement::Perpendicular: return "perpendicular";
-        case Arrangement::Freeform: return "freeform";
-        case Arrangement::Fixed: return "fixed";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Sankey::to_string(Hoverinfo e) {
     switch(e) {
     }
@@ -35,26 +25,14 @@ inline std::string Sankey::to_string(HoverinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
-inline std::string Sankey::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::V: return "v";
-        case Orientation::H: return "h";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey& Sankey::arrangement(enum Arrangement f) {
-    json["arrangement"] = to_string(f);
+    switch(f) {
+        case Arrangement::Snap: json["arrangement"] = "snap"; break;
+        case Arrangement::Perpendicular: json["arrangement"] = "perpendicular"; break;
+        case Arrangement::Freeform: json["arrangement"] = "freeform"; break;
+        case Arrangement::Fixed: json["arrangement"] = "fixed"; break;
+    }
     return *this;
 }
 
@@ -181,7 +159,10 @@ inline Sankey& Sankey::node(Callable&& c) {
 }
 
 inline Sankey& Sankey::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::V: json["orientation"] = "v"; break;
+        case Orientation::H: json["orientation"] = "h"; break;
+    }
     return *this;
 }
 
@@ -235,7 +216,11 @@ inline Sankey& Sankey::valuesuffix(std::string f) {
 }
 
 inline Sankey& Sankey::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -284,24 +269,25 @@ inline Sankey::Domain& Sankey::Domain::y(const std::vector<std::vector<double>>&
     return *this;
 }
 
-inline std::string Sankey::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Hoverlabel& Sankey::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Sankey::Hoverlabel& Sankey::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -393,36 +379,6 @@ inline std::string Sankey::Hoverlabel::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Sankey::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -503,13 +459,21 @@ inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::sizesrc(std::string f
 }
 
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -519,13 +483,25 @@ inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::stylesrc(std::string 
 }
 
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -535,13 +511,29 @@ inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::textcasesrc(std::stri
 }
 
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Sankey::Hoverlabel::Font& Sankey::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -595,36 +587,6 @@ inline std::string Sankey::Legendgrouptitle::Font::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Sankey::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -660,17 +622,32 @@ inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::size(doub
 }
 
 inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -679,15 +656,6 @@ inline Sankey::Legendgrouptitle::Font& Sankey::Legendgrouptitle::Font::weight(in
     return *this;
 }
 
-inline std::string Sankey::Link::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::All: return "all";
-        case Hoverinfo::None: return "none";
-        case Hoverinfo::Skip: return "skip";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Link& Sankey::Link::arrowlen(double f) {
     json["arrowlen"] = std::move(f);
@@ -757,7 +725,11 @@ inline Sankey::Link& Sankey::Link::hovercolorsrc(std::string f) {
 }
 
 inline Sankey::Link& Sankey::Link::hoverinfo(enum Hoverinfo f) {
-    json["hoverinfo"] = to_string(f);
+    switch(f) {
+        case Hoverinfo::All: json["hoverinfo"] = "all"; break;
+        case Hoverinfo::None: json["hoverinfo"] = "none"; break;
+        case Hoverinfo::Skip: json["hoverinfo"] = "skip"; break;
+    }
     return *this;
 }
 
@@ -876,24 +848,25 @@ inline Sankey::Link::Concentrationscales& Sankey::Link::Concentrationscales::tem
     return *this;
 }
 
-inline std::string Sankey::Link::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Link::Hoverlabel& Sankey::Link::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Sankey::Link::Hoverlabel& Sankey::Link::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -985,36 +958,6 @@ inline std::string Sankey::Link::Hoverlabel::Font::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Sankey::Link::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Link::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Link::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1095,13 +1038,21 @@ inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::sizesrc(s
 }
 
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -1111,13 +1062,25 @@ inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::stylesrc(
 }
 
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -1127,13 +1090,29 @@ inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::textcases
 }
 
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Sankey::Link::Hoverlabel::Font& Sankey::Link::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -1193,28 +1172,14 @@ inline Sankey::Link::Line& Sankey::Link::Line::widthsrc(std::string f) {
     return *this;
 }
 
-inline std::string Sankey::Node::to_string(Align e) {
-    switch(e) {
-        case Align::Justify: return "justify";
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Center: return "center";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Node::to_string(Hoverinfo e) {
-    switch(e) {
-        case Hoverinfo::All: return "all";
-        case Hoverinfo::None: return "none";
-        case Hoverinfo::Skip: return "skip";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Node& Sankey::Node::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Justify: json["align"] = "justify"; break;
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Center: json["align"] = "center"; break;
+    }
     return *this;
 }
 
@@ -1269,7 +1234,11 @@ inline Sankey::Node& Sankey::Node::groups(const std::vector<std::vector<double>>
 }
 
 inline Sankey::Node& Sankey::Node::hoverinfo(enum Hoverinfo f) {
-    json["hoverinfo"] = to_string(f);
+    switch(f) {
+        case Hoverinfo::All: json["hoverinfo"] = "all"; break;
+        case Hoverinfo::None: json["hoverinfo"] = "none"; break;
+        case Hoverinfo::Skip: json["hoverinfo"] = "skip"; break;
+    }
     return *this;
 }
 
@@ -1352,24 +1321,25 @@ inline Sankey::Node& Sankey::Node::ysrc(std::string f) {
     return *this;
 }
 
-inline std::string Sankey::Node::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Node::Hoverlabel& Sankey::Node::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Sankey::Node::Hoverlabel& Sankey::Node::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -1461,36 +1431,6 @@ inline std::string Sankey::Node::Hoverlabel::Font::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Sankey::Node::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Node::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Node::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1571,13 +1511,21 @@ inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::sizesrc(s
 }
 
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -1587,13 +1535,25 @@ inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::stylesrc(
 }
 
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -1603,13 +1563,29 @@ inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::textcases
 }
 
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Sankey::Node::Hoverlabel::Font& Sankey::Node::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -1694,36 +1670,6 @@ inline std::string Sankey::Textfont::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Sankey::Textfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Textfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Sankey::Textfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Sankey::Textfont& Sankey::Textfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -1759,17 +1705,32 @@ inline Sankey::Textfont& Sankey::Textfont::size(double f) {
 }
 
 inline Sankey::Textfont& Sankey::Textfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Sankey::Textfont& Sankey::Textfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Sankey::Textfont& Sankey::Textfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 

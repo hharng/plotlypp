@@ -1,0 +1,1 @@
+{"data":[{"marker":{"color":"rgb(214,12,140)"},"name":"Sample A","type":"box","y":[1,2,3,4,4,4,8,9,10]},{"marker":{"color":"rgb(0,128,128)"},"name":"Sample B","type":"box","y":[2,3,3,3,3,5,6,6,7]}],"layout":{"title":{"text":"Colored Box Plot"}}}

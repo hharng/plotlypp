@@ -35,7 +35,6 @@ class Histogram : public Trace {
         Both,
         None,
     };
-    static std::string to_string(Constraintext e);
 
     enum class Histfunc {
         Count,
@@ -44,7 +43,6 @@ class Histogram : public Trace {
         Min,
         Max,
     };
-    static std::string to_string(Histfunc e);
 
     enum class Histnorm {
         Empty,
@@ -53,7 +51,6 @@ class Histogram : public Trace {
         Density,
         ProbabilityDensity,
     };
-    static std::string to_string(Histnorm e);
 
     enum class Hoverinfo {
         X,
@@ -75,13 +72,11 @@ class Histogram : public Trace {
         Middle,
         Start,
     };
-    static std::string to_string(Insidetextanchor e);
 
     enum class Orientation {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Textposition {
         Inside,
@@ -89,14 +84,12 @@ class Histogram : public Trace {
         Auto,
         None,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -116,7 +109,6 @@ class Histogram : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Ycalendar {
         Chinese,
@@ -136,7 +128,6 @@ class Histogram : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Ycalendar e);
 
     class Cumulative;
     class Error_X;
@@ -490,13 +481,11 @@ class Histogram::Cumulative {
         Exclude,
         Half,
     };
-    static std::string to_string(Currentbin e);
 
     enum class Direction {
         Increasing,
         Decreasing,
     };
-    static std::string to_string(Direction e);
 
     // Only applies if cumulative is enabled. Sets whether the current bin is included, excluded, or has half of its
     // value included in the current cumulative value. *include* is the default for compatibility with various other
@@ -532,7 +521,6 @@ class Histogram::Error_X {
         Sqrt,
         Data,
     };
-    static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
@@ -603,7 +591,6 @@ class Histogram::Error_Y {
         Sqrt,
         Data,
     };
-    static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
@@ -671,7 +658,6 @@ class Histogram::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -744,7 +730,6 @@ class Histogram::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -752,7 +737,6 @@ class Histogram::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -762,7 +746,6 @@ class Histogram::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Hoverlabel::Font& color(std::string f);
     Histogram::Hoverlabel::Font& color(double f);
@@ -868,7 +851,6 @@ class Histogram::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -876,7 +858,6 @@ class Histogram::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -886,7 +867,6 @@ class Histogram::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Insidetextfont& color(std::string f);
     Histogram::Insidetextfont& color(double f);
@@ -977,7 +957,6 @@ class Histogram::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -985,7 +964,6 @@ class Histogram::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -995,7 +973,6 @@ class Histogram::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Legendgrouptitle::Font& color(std::string f);
     Histogram::Legendgrouptitle::Font& color(double f);
@@ -1154,19 +1131,16 @@ class Histogram::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -1174,7 +1148,6 @@ class Histogram::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -1182,7 +1155,6 @@ class Histogram::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -1190,20 +1162,17 @@ class Histogram::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -1217,47 +1186,40 @@ class Histogram::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1509,7 +1471,6 @@ class Histogram::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1517,7 +1478,6 @@ class Histogram::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1527,7 +1487,6 @@ class Histogram::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Marker::Colorbar::Tickfont& color(std::string f);
     Histogram::Marker::Colorbar::Tickfont& color(double f);
@@ -1622,7 +1581,6 @@ class Histogram::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1665,7 +1623,6 @@ class Histogram::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1673,7 +1630,6 @@ class Histogram::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1683,7 +1639,6 @@ class Histogram::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Marker::Colorbar::Title::Font& color(std::string f);
     Histogram::Marker::Colorbar::Title::Font& color(double f);
@@ -1817,7 +1772,6 @@ class Histogram::Marker::Pattern {
         Replace,
         Overlay,
     };
-    static std::string to_string(Fillmode e);
 
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
@@ -1897,7 +1851,6 @@ class Histogram::Outsidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1905,7 +1858,6 @@ class Histogram::Outsidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1915,7 +1867,6 @@ class Histogram::Outsidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Outsidetextfont& color(std::string f);
     Histogram::Outsidetextfont& color(double f);
@@ -2055,7 +2006,6 @@ class Histogram::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -2063,7 +2013,6 @@ class Histogram::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -2073,7 +2022,6 @@ class Histogram::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Histogram::Textfont& color(std::string f);
     Histogram::Textfont& color(double f);

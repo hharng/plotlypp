@@ -30,46 +30,6 @@ inline std::string Ohlc::to_string(HoverinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
-inline std::string Ohlc::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Ohlc::to_string(Xcalendar e) {
-    switch(e) {
-        case Xcalendar::Chinese: return "chinese";
-        case Xcalendar::Coptic: return "coptic";
-        case Xcalendar::Discworld: return "discworld";
-        case Xcalendar::Ethiopian: return "ethiopian";
-        case Xcalendar::Gregorian: return "gregorian";
-        case Xcalendar::Hebrew: return "hebrew";
-        case Xcalendar::Islamic: return "islamic";
-        case Xcalendar::Jalali: return "jalali";
-        case Xcalendar::Julian: return "julian";
-        case Xcalendar::Mayan: return "mayan";
-        case Xcalendar::Nanakshahi: return "nanakshahi";
-        case Xcalendar::Nepali: return "nepali";
-        case Xcalendar::Persian: return "persian";
-        case Xcalendar::Taiwan: return "taiwan";
-        case Xcalendar::Thai: return "thai";
-        case Xcalendar::Ummalqura: return "ummalqura";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Ohlc::to_string(Xperiodalignment e) {
-    switch(e) {
-        case Xperiodalignment::Start: return "start";
-        case Xperiodalignment::Middle: return "middle";
-        case Xperiodalignment::End: return "end";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 template <typename Range, typename>
 inline Ohlc& Ohlc::close(Range&& f) {
@@ -319,7 +279,11 @@ inline Ohlc& Ohlc::uirevision(T f) {
 }
 
 inline Ohlc& Ohlc::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -335,7 +299,24 @@ inline Ohlc& Ohlc::xaxis(std::string f) {
 }
 
 inline Ohlc& Ohlc::xcalendar(enum Xcalendar f) {
-    json["xcalendar"] = to_string(f);
+    switch(f) {
+        case Xcalendar::Chinese: json["xcalendar"] = "chinese"; break;
+        case Xcalendar::Coptic: json["xcalendar"] = "coptic"; break;
+        case Xcalendar::Discworld: json["xcalendar"] = "discworld"; break;
+        case Xcalendar::Ethiopian: json["xcalendar"] = "ethiopian"; break;
+        case Xcalendar::Gregorian: json["xcalendar"] = "gregorian"; break;
+        case Xcalendar::Hebrew: json["xcalendar"] = "hebrew"; break;
+        case Xcalendar::Islamic: json["xcalendar"] = "islamic"; break;
+        case Xcalendar::Jalali: json["xcalendar"] = "jalali"; break;
+        case Xcalendar::Julian: json["xcalendar"] = "julian"; break;
+        case Xcalendar::Mayan: json["xcalendar"] = "mayan"; break;
+        case Xcalendar::Nanakshahi: json["xcalendar"] = "nanakshahi"; break;
+        case Xcalendar::Nepali: json["xcalendar"] = "nepali"; break;
+        case Xcalendar::Persian: json["xcalendar"] = "persian"; break;
+        case Xcalendar::Taiwan: json["xcalendar"] = "taiwan"; break;
+        case Xcalendar::Thai: json["xcalendar"] = "thai"; break;
+        case Xcalendar::Ummalqura: json["xcalendar"] = "ummalqura"; break;
+    }
     return *this;
 }
 
@@ -357,7 +338,11 @@ inline Ohlc& Ohlc::xperiod0(T f) {
 }
 
 inline Ohlc& Ohlc::xperiodalignment(enum Xperiodalignment f) {
-    json["xperiodalignment"] = to_string(f);
+    switch(f) {
+        case Xperiodalignment::Start: json["xperiodalignment"] = "start"; break;
+        case Xperiodalignment::Middle: json["xperiodalignment"] = "middle"; break;
+        case Xperiodalignment::End: json["xperiodalignment"] = "end"; break;
+    }
     return *this;
 }
 
@@ -413,24 +398,25 @@ inline Ohlc::Decreasing::Line& Ohlc::Decreasing::Line::width(double f) {
     return *this;
 }
 
-inline std::string Ohlc::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Ohlc::Hoverlabel& Ohlc::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Ohlc::Hoverlabel& Ohlc::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -527,36 +513,6 @@ inline std::string Ohlc::Hoverlabel::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Ohlc::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Ohlc::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Ohlc::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -637,13 +593,21 @@ inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::sizesrc(std::string f) {
 }
 
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -653,13 +617,25 @@ inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::stylesrc(std::string f) {
 }
 
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -669,13 +645,29 @@ inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::textcasesrc(std::string f
 }
 
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Ohlc::Hoverlabel::Font& Ohlc::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -761,36 +753,6 @@ inline std::string Ohlc::Legendgrouptitle::Font::to_string(LinepositionExtra e) 
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Ohlc::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Ohlc::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Ohlc::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Ohlc::Legendgrouptitle::Font& Ohlc::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -826,17 +788,32 @@ inline Ohlc::Legendgrouptitle::Font& Ohlc::Legendgrouptitle::Font::size(double f
 }
 
 inline Ohlc::Legendgrouptitle::Font& Ohlc::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Ohlc::Legendgrouptitle::Font& Ohlc::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Ohlc::Legendgrouptitle::Font& Ohlc::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 

@@ -12,15 +12,6 @@
 
 namespace plotlypp {
 
-inline std::string Indicator::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Center: return "center";
-        case Align::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 inline std::string Indicator::to_string(Mode e) {
     switch(e) {
         case Mode::Number: return "number";
@@ -29,18 +20,13 @@ inline std::string Indicator::to_string(Mode e) {
     }
     throw std::invalid_argument{"Unknown flag value for mode."};
 }
-inline std::string Indicator::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator& Indicator::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Center: json["align"] = "center"; break;
+        case Align::Right: json["align"] = "right"; break;
+    }
     return *this;
 }
 
@@ -201,20 +187,14 @@ inline Indicator& Indicator::value(double f) {
 }
 
 inline Indicator& Indicator::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
-inline std::string Indicator::Delta::to_string(Position e) {
-    switch(e) {
-        case Position::Top: return "top";
-        case Position::Bottom: return "bottom";
-        case Position::Left: return "left";
-        case Position::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Delta& Indicator::Delta::decreasing(Decreasing f) {
     json["decreasing"] = std::move(f.json);
@@ -250,7 +230,12 @@ inline Indicator::Delta& Indicator::Delta::increasing(Callable&& c) {
 }
 
 inline Indicator::Delta& Indicator::Delta::position(enum Position f) {
-    json["position"] = to_string(f);
+    switch(f) {
+        case Position::Top: json["position"] = "top"; break;
+        case Position::Bottom: json["position"] = "bottom"; break;
+        case Position::Left: json["position"] = "left"; break;
+        case Position::Right: json["position"] = "right"; break;
+    }
     return *this;
 }
 
@@ -308,36 +293,6 @@ inline std::string Indicator::Delta::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Indicator::Delta::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Delta::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Delta::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Delta::Font& Indicator::Delta::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -373,17 +328,32 @@ inline Indicator::Delta::Font& Indicator::Delta::Font::size(double f) {
 }
 
 inline Indicator::Delta::Font& Indicator::Delta::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Indicator::Delta::Font& Indicator::Delta::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Indicator::Delta::Font& Indicator::Delta::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -452,14 +422,6 @@ inline Indicator::Domain& Indicator::Domain::y(const std::vector<std::vector<dou
     return *this;
 }
 
-inline std::string Indicator::Gauge::to_string(Shape e) {
-    switch(e) {
-        case Shape::Angular: return "angular";
-        case Shape::Bullet: return "bullet";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Gauge& Indicator::Gauge::axis(Axis f) {
     json["axis"] = std::move(f.json);
@@ -507,7 +469,10 @@ inline Indicator::Gauge& Indicator::Gauge::borderwidth(double f) {
 }
 
 inline Indicator::Gauge& Indicator::Gauge::shape(enum Shape f) {
-    json["shape"] = to_string(f);
+    switch(f) {
+        case Shape::Angular: json["shape"] = "angular"; break;
+        case Shape::Bullet: json["shape"] = "bullet"; break;
+    }
     return *this;
 }
 
@@ -529,65 +494,6 @@ inline Indicator::Gauge& Indicator::Gauge::threshold(Callable&& c) {
     return threshold(std::move(f));
 }
 
-inline std::string Indicator::Gauge::Axis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 template <typename T>
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::dtick(T f) {
@@ -596,7 +502,13 @@ inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::dtick(T f) {
 }
 
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -639,7 +551,12 @@ inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::separatethousands(bool f)
 }
 
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -649,12 +566,22 @@ inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::showticklabels(bool f) {
 }
 
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -712,7 +639,11 @@ inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticklen(double f) {
 }
 
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -722,7 +653,11 @@ inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::tickprefix(std::string f)
 }
 
 inline Indicator::Gauge::Axis& Indicator::Gauge::Axis::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -777,36 +712,6 @@ inline std::string Indicator::Gauge::Axis::Tickfont::to_string(LinepositionExtra
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Gauge::Axis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::color(std::string f) {
     json["color"] = std::move(f);
@@ -842,17 +747,32 @@ inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::size(
 }
 
 inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Indicator::Gauge::Axis::Tickfont& Indicator::Gauge::Axis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1076,36 +996,6 @@ inline std::string Indicator::Legendgrouptitle::Font::to_string(LinepositionExtr
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Indicator::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1141,17 +1031,32 @@ inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::siz
 }
 
 inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Indicator::Legendgrouptitle::Font& Indicator::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1201,36 +1106,6 @@ inline std::string Indicator::Number::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Indicator::Number::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Number::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Number::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Number::Font& Indicator::Number::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1266,17 +1141,32 @@ inline Indicator::Number::Font& Indicator::Number::Font::size(double f) {
 }
 
 inline Indicator::Number::Font& Indicator::Number::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Indicator::Number::Font& Indicator::Number::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Indicator::Number::Font& Indicator::Number::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1296,18 +1186,13 @@ inline Indicator::Stream& Indicator::Stream::token(std::string f) {
     return *this;
 }
 
-inline std::string Indicator::Title::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Center: return "center";
-        case Align::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Indicator::Title& Indicator::Title::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Center: json["align"] = "center"; break;
+        case Align::Right: json["align"] = "right"; break;
+    }
     return *this;
 }
 
@@ -1340,36 +1225,6 @@ inline std::string Indicator::Title::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Indicator::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Indicator::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Indicator::Title::Font& Indicator::Title::Font::color(std::string f) {
@@ -1406,17 +1261,32 @@ inline Indicator::Title::Font& Indicator::Title::Font::size(double f) {
 }
 
 inline Indicator::Title::Font& Indicator::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Indicator::Title::Font& Indicator::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Indicator::Title::Font& Indicator::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 

@@ -49,7 +49,6 @@ class Contour : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -69,20 +68,17 @@ class Contour : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     enum class Xtype {
         Array,
         Scaled,
     };
-    static std::string to_string(Xtype e);
 
     enum class Ycalendar {
         Chinese,
@@ -102,20 +98,17 @@ class Contour : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Ycalendar e);
 
     enum class Yperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Yperiodalignment e);
 
     enum class Ytype {
         Array,
         Scaled,
     };
-    static std::string to_string(Ytype e);
 
     class Colorbar;
     class Contours;
@@ -485,19 +478,16 @@ class Contour::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -505,7 +495,6 @@ class Contour::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -513,7 +502,6 @@ class Contour::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -521,20 +509,17 @@ class Contour::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -548,47 +533,40 @@ class Contour::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -840,7 +818,6 @@ class Contour::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -848,7 +825,6 @@ class Contour::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -858,7 +834,6 @@ class Contour::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contour::Colorbar::Tickfont& color(std::string f);
     Contour::Colorbar::Tickfont& color(double f);
@@ -953,7 +928,6 @@ class Contour::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -996,7 +970,6 @@ class Contour::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1004,7 +977,6 @@ class Contour::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1014,7 +986,6 @@ class Contour::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contour::Colorbar::Title::Font& color(std::string f);
     Contour::Colorbar::Title::Font& color(double f);
@@ -1074,13 +1045,11 @@ class Contour::Contours {
         Lines,
         None,
     };
-    static std::string to_string(Coloring e);
 
     enum class Type {
         Levels,
         Constraint,
     };
-    static std::string to_string(Type e);
 
     class Impliededits;
     // Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default
@@ -1179,7 +1148,6 @@ class Contour::Contours::Labelfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1187,7 +1155,6 @@ class Contour::Contours::Labelfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1197,7 +1164,6 @@ class Contour::Contours::Labelfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contour::Contours::Labelfont& color(std::string f);
     Contour::Contours::Labelfont& color(double f);
@@ -1256,7 +1222,6 @@ class Contour::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -1329,7 +1294,6 @@ class Contour::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1337,7 +1301,6 @@ class Contour::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1347,7 +1310,6 @@ class Contour::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contour::Hoverlabel::Font& color(std::string f);
     Contour::Hoverlabel::Font& color(double f);
@@ -1474,7 +1436,6 @@ class Contour::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1482,7 +1443,6 @@ class Contour::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1492,7 +1452,6 @@ class Contour::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contour::Legendgrouptitle::Font& color(std::string f);
     Contour::Legendgrouptitle::Font& color(double f);
@@ -1605,7 +1564,6 @@ class Contour::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1613,7 +1571,6 @@ class Contour::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1623,7 +1580,6 @@ class Contour::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contour::Textfont& color(std::string f);
     Contour::Textfont& color(double f);

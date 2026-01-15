@@ -38,7 +38,6 @@ class Scattergl : public Trace {
         Toself,
         Tonext,
     };
-    static std::string to_string(Fill e);
 
     enum class Hoverinfo {
         X,
@@ -77,14 +76,12 @@ class Scattergl : public Trace {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -104,14 +101,12 @@ class Scattergl : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     enum class Ycalendar {
         Chinese,
@@ -131,14 +126,12 @@ class Scattergl : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Ycalendar e);
 
     enum class Yperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Yperiodalignment e);
 
     class Error_X;
     class Error_Y;
@@ -480,7 +473,6 @@ class Scattergl::Error_X {
         Sqrt,
         Data,
     };
-    static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
@@ -551,7 +543,6 @@ class Scattergl::Error_Y {
         Sqrt,
         Data,
     };
-    static std::string to_string(Type e);
 
     // Sets the data corresponding the length of each error bar. Values are plotted relative to the underlying data.
     template <typename Range, typename = std::enable_if_t<is_data_array_v<Range>>>
@@ -619,7 +610,6 @@ class Scattergl::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -692,7 +682,6 @@ class Scattergl::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -700,7 +689,6 @@ class Scattergl::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -710,7 +698,6 @@ class Scattergl::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattergl::Hoverlabel::Font& color(std::string f);
     Scattergl::Hoverlabel::Font& color(double f);
@@ -837,7 +824,6 @@ class Scattergl::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -845,7 +831,6 @@ class Scattergl::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -855,7 +840,6 @@ class Scattergl::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattergl::Legendgrouptitle::Font& color(std::string f);
     Scattergl::Legendgrouptitle::Font& color(double f);
@@ -917,7 +901,6 @@ class Scattergl::Line {
         Longdashdot,
         Solid,
     };
-    static std::string to_string(Dash e);
 
     enum class Shape {
         Linear,
@@ -926,7 +909,6 @@ class Scattergl::Line {
         Hvh,
         Vhv,
     };
-    static std::string to_string(Shape e);
 
     // Sets the line color.
     Scattergl::Line& color(std::string f);
@@ -957,7 +939,6 @@ class Scattergl::Marker {
         Diameter,
         Area,
     };
-    static std::string to_string(Sizemode e);
 
     enum class Symbol {
         Num_0,
@@ -1285,7 +1266,6 @@ class Scattergl::Marker {
         Num_154,
         ArrowWideOpen,
     };
-    static std::string to_string(Symbol e);
 
     class Colorbar;
     class Line;
@@ -1416,19 +1396,16 @@ class Scattergl::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -1436,7 +1413,6 @@ class Scattergl::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -1444,7 +1420,6 @@ class Scattergl::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -1452,20 +1427,17 @@ class Scattergl::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -1479,47 +1451,40 @@ class Scattergl::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1771,7 +1736,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1779,7 +1743,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1789,7 +1752,6 @@ class Scattergl::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattergl::Marker::Colorbar::Tickfont& color(std::string f);
     Scattergl::Marker::Colorbar::Tickfont& color(double f);
@@ -1884,7 +1846,6 @@ class Scattergl::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1927,7 +1888,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1935,7 +1895,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1945,7 +1904,6 @@ class Scattergl::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattergl::Marker::Colorbar::Title::Font& color(std::string f);
     Scattergl::Marker::Colorbar::Title::Font& color(double f);
@@ -2152,19 +2110,16 @@ class Scattergl::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Variant {
         Normal,
         SmallCaps,
     };
-    static std::string to_string(Variant e);
 
     enum class Weight {
         Normal,
         Bold,
     };
-    static std::string to_string(Weight e);
 
     Scattergl::Textfont& color(std::string f);
     Scattergl::Textfont& color(double f);

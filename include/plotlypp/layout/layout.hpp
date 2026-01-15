@@ -29,7 +29,6 @@ class Layout {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -49,7 +48,6 @@ class Layout {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Clickmode {
         Event,
@@ -75,7 +73,6 @@ class Layout {
         Turntable,
         False,
     };
-    static std::string to_string(Dragmode e);
 
     enum class Hovermode {
         X,
@@ -85,14 +82,12 @@ class Layout {
         XUnified,
         YUnified,
     };
-    static std::string to_string(Hovermode e);
 
     enum class Hoversubplots {
         Single,
         Overlaying,
         Axis,
     };
-    static std::string to_string(Hoversubplots e);
 
     enum class Selectdirection {
         H,
@@ -100,7 +95,6 @@ class Layout {
         D,
         Any,
     };
-    static std::string to_string(Selectdirection e);
 
     enum class Barmode {
         Stack,
@@ -108,45 +102,38 @@ class Layout {
         Overlay,
         Relative,
     };
-    static std::string to_string(Barmode e);
 
     enum class Barnorm {
         Empty,
         Fraction,
         Percent,
     };
-    static std::string to_string(Barnorm e);
 
     enum class Boxmode {
         Group,
         Overlay,
     };
-    static std::string to_string(Boxmode e);
 
     enum class Funnelmode {
         Stack,
         Group,
         Overlay,
     };
-    static std::string to_string(Funnelmode e);
 
     enum class Scattermode {
         Group,
         Overlay,
     };
-    static std::string to_string(Scattermode e);
 
     enum class Violinmode {
         Group,
         Overlay,
     };
-    static std::string to_string(Violinmode e);
 
     enum class Waterfallmode {
         Group,
         Overlay,
     };
-    static std::string to_string(Waterfallmode e);
 
     class Activeselection;
     class Activeshape;
@@ -687,7 +674,6 @@ class Layout::Annotation {
         Center,
         Right,
     };
-    static std::string to_string(Align e);
 
     enum class Arrowside {
         End,
@@ -704,14 +690,12 @@ class Layout::Annotation {
         Onoff,
         Onout,
     };
-    static std::string to_string(Clicktoshow e);
 
     enum class Valign {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Valign e);
 
     enum class Xanchor {
         Auto,
@@ -719,7 +703,6 @@ class Layout::Annotation {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Auto,
@@ -727,7 +710,6 @@ class Layout::Annotation {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     // Sets the annotation text font.
     class Font;
@@ -993,7 +975,6 @@ class Layout::Annotation::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1001,7 +982,6 @@ class Layout::Annotation::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1011,7 +991,6 @@ class Layout::Annotation::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Annotation::Font& color(std::string f);
     Layout::Annotation::Font& color(double f);
@@ -1112,7 +1091,6 @@ class Layout::Annotation::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1120,7 +1098,6 @@ class Layout::Annotation::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1130,7 +1107,6 @@ class Layout::Annotation::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Annotation::Hoverlabel::Font& color(std::string f);
     Layout::Annotation::Hoverlabel::Font& color(double f);
@@ -1245,19 +1221,16 @@ class Layout::Coloraxis::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -1265,7 +1238,6 @@ class Layout::Coloraxis::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -1273,7 +1245,6 @@ class Layout::Coloraxis::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -1281,20 +1252,17 @@ class Layout::Coloraxis::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -1308,47 +1276,40 @@ class Layout::Coloraxis::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1600,7 +1561,6 @@ class Layout::Coloraxis::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1608,7 +1568,6 @@ class Layout::Coloraxis::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1618,7 +1577,6 @@ class Layout::Coloraxis::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Coloraxis::Colorbar::Tickfont& color(std::string f);
     Layout::Coloraxis::Colorbar::Tickfont& color(double f);
@@ -1713,7 +1671,6 @@ class Layout::Coloraxis::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1756,7 +1713,6 @@ class Layout::Coloraxis::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1764,7 +1720,6 @@ class Layout::Coloraxis::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1774,7 +1729,6 @@ class Layout::Coloraxis::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Coloraxis::Colorbar::Title::Font& color(std::string f);
     Layout::Coloraxis::Colorbar::Title::Font& color(double f);
@@ -1868,7 +1822,6 @@ class Layout::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1876,7 +1829,6 @@ class Layout::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1886,7 +1838,6 @@ class Layout::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Font& color(std::string f);
     Layout::Font& color(double f);
@@ -1945,13 +1896,11 @@ class Layout::Geo {
         Locations,
         Geojson,
     };
-    static std::string to_string(Fitbounds e);
 
     enum class Resolution {
         Num_110,
         Num_50,
     };
-    static std::string to_string(Resolution e);
 
     enum class Scope {
         Africa,
@@ -1962,7 +1911,6 @@ class Layout::Geo {
         Usa,
         World,
     };
-    static std::string to_string(Scope e);
 
     class Center;
     class Domain;
@@ -2311,7 +2259,6 @@ class Layout::Geo::Projection {
         WinkelTripel,
         Winkel3,
     };
-    static std::string to_string(Type e);
 
     class Rotation;
 
@@ -2372,13 +2319,11 @@ class Layout::Grid {
         Independent,
         Coupled,
     };
-    static std::string to_string(Pattern e);
 
     enum class Roworder {
         TopToBottom,
         BottomToTop,
     };
-    static std::string to_string(Roworder e);
 
     enum class Xside {
         Bottom,
@@ -2386,7 +2331,6 @@ class Layout::Grid {
         TopPlot,
         Top,
     };
-    static std::string to_string(Xside e);
 
     enum class Yside {
         Left,
@@ -2394,7 +2338,6 @@ class Layout::Grid {
         RightPlot,
         Right,
     };
-    static std::string to_string(Yside e);
 
     class Domain;
 
@@ -2505,7 +2448,6 @@ class Layout::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the default hover label font used by all traces on the graph.
     class Font;
@@ -2567,7 +2509,6 @@ class Layout::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -2575,7 +2516,6 @@ class Layout::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -2585,7 +2525,6 @@ class Layout::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Hoverlabel::Font& color(std::string f);
     Layout::Hoverlabel::Font& color(double f);
@@ -2655,7 +2594,6 @@ class Layout::Hoverlabel::Grouptitlefont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -2663,7 +2601,6 @@ class Layout::Hoverlabel::Grouptitlefont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -2673,7 +2610,6 @@ class Layout::Hoverlabel::Grouptitlefont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Hoverlabel::Grouptitlefont& color(std::string f);
     Layout::Hoverlabel::Grouptitlefont& color(double f);
@@ -2731,28 +2667,24 @@ class Layout::Image {
         Below,
         Above,
     };
-    static std::string to_string(Layer e);
 
     enum class Sizing {
         Fill,
         Contain,
         Stretch,
     };
-    static std::string to_string(Sizing e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     // Specifies whether images are drawn below or above traces. When `xref` and `yref` are both set to `paper`, image
     // is drawn below the entire plot area.
@@ -2846,39 +2778,33 @@ class Layout::Legend {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Entrywidthmode e);
 
     enum class Groupclick {
         Toggleitem,
         Togglegroup,
     };
-    static std::string to_string(Groupclick e);
 
     enum class Itemclick {
         Toggle,
         Toggleothers,
         False,
     };
-    static std::string to_string(Itemclick e);
 
     enum class Itemdoubleclick {
         Toggle,
         Toggleothers,
         False,
     };
-    static std::string to_string(Itemdoubleclick e);
 
     enum class Itemsizing {
         Trace,
         Constant,
     };
-    static std::string to_string(Itemsizing e);
 
     enum class Orientation {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Traceorder {
         Reversed,
@@ -2895,7 +2821,6 @@ class Layout::Legend {
         Middle,
         Bottom,
     };
-    static std::string to_string(Valign e);
 
     enum class Xanchor {
         Auto,
@@ -2903,13 +2828,11 @@ class Layout::Legend {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Auto,
@@ -2917,13 +2840,11 @@ class Layout::Legend {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the font used to text the legend items.
     class Font;
@@ -3082,7 +3003,6 @@ class Layout::Legend::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -3090,7 +3010,6 @@ class Layout::Legend::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -3100,7 +3019,6 @@ class Layout::Legend::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Legend::Font& color(std::string f);
     Layout::Legend::Font& color(double f);
@@ -3170,7 +3088,6 @@ class Layout::Legend::Grouptitlefont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -3178,7 +3095,6 @@ class Layout::Legend::Grouptitlefont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -3188,7 +3104,6 @@ class Layout::Legend::Grouptitlefont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Legend::Grouptitlefont& color(std::string f);
     Layout::Legend::Grouptitlefont& color(double f);
@@ -3249,7 +3164,6 @@ class Layout::Legend::Title {
         TopCenter,
         TopRight,
     };
-    static std::string to_string(Side e);
 
     // Sets this legend's title font. Defaults to `legend.font` with its size increased about 20%.
     class Font;
@@ -3293,7 +3207,6 @@ class Layout::Legend::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -3301,7 +3214,6 @@ class Layout::Legend::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -3311,7 +3223,6 @@ class Layout::Legend::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Legend::Title::Font& color(std::string f);
     Layout::Legend::Title::Font& color(double f);
@@ -3493,7 +3404,6 @@ class Layout::Map::Layer {
         Raster,
         Image,
     };
-    static std::string to_string(Sourcetype e);
 
     enum class Type {
         Circle,
@@ -3502,7 +3412,6 @@ class Layout::Map::Layer {
         Symbol,
         Raster,
     };
-    static std::string to_string(Type e);
 
     class Circle;
     class Fill;
@@ -3661,7 +3570,6 @@ class Layout::Map::Layer::Symbol {
         Line,
         LineCenter,
     };
-    static std::string to_string(Placement e);
 
     enum class Textposition {
         TopLeft,
@@ -3674,7 +3582,6 @@ class Layout::Map::Layer::Symbol {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     // Sets the icon text font (color=map.layer.paint.text-color, size=map.layer.layout.text-size). Has an effect only
     // when `type` is set to *symbol*.
@@ -3721,7 +3628,6 @@ class Layout::Map::Layer::Symbol::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     Layout::Map::Layer::Symbol::Textfont& color(std::string f);
     Layout::Map::Layer::Symbol::Textfont& color(double f);
@@ -3890,7 +3796,6 @@ class Layout::Mapbox::Layer {
         Raster,
         Image,
     };
-    static std::string to_string(Sourcetype e);
 
     enum class Type {
         Circle,
@@ -3899,7 +3804,6 @@ class Layout::Mapbox::Layer {
         Symbol,
         Raster,
     };
-    static std::string to_string(Type e);
 
     class Circle;
     class Fill;
@@ -4059,7 +3963,6 @@ class Layout::Mapbox::Layer::Symbol {
         Line,
         LineCenter,
     };
-    static std::string to_string(Placement e);
 
     enum class Textposition {
         TopLeft,
@@ -4072,7 +3975,6 @@ class Layout::Mapbox::Layer::Symbol {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     // Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). Has an effect
     // only when `type` is set to *symbol*.
@@ -4119,7 +4021,6 @@ class Layout::Mapbox::Layer::Symbol::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     Layout::Mapbox::Layer::Symbol::Textfont& color(std::string f);
     Layout::Mapbox::Layer::Symbol::Textfont& color(double f);
@@ -4185,7 +4086,6 @@ class Layout::Modebar {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     // Sets the color of the active or hovered on icons in the modebar.
     Layout::Modebar& activecolor(std::string f);
@@ -4247,7 +4147,6 @@ class Layout::Newselection {
         Immediate,
         Gradual,
     };
-    static std::string to_string(Mode e);
 
     class Line;
 
@@ -4298,27 +4197,23 @@ class Layout::Newshape {
         Vertical,
         Diagonal,
     };
-    static std::string to_string(Drawdirection e);
 
     enum class Fillrule {
         Evenodd,
         Nonzero,
     };
-    static std::string to_string(Fillrule e);
 
     enum class Layer {
         Below,
         Above,
         Between,
     };
-    static std::string to_string(Layer e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Label;
     class Legendgrouptitle;
@@ -4412,7 +4307,6 @@ class Layout::Newshape::Label {
         Middle,
         End,
     };
-    static std::string to_string(Textposition e);
 
     enum class Xanchor {
         Auto,
@@ -4420,14 +4314,12 @@ class Layout::Newshape::Label {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     // Sets the new shape label text font.
     class Font;
@@ -4503,7 +4395,6 @@ class Layout::Newshape::Label::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -4511,7 +4402,6 @@ class Layout::Newshape::Label::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -4521,7 +4411,6 @@ class Layout::Newshape::Label::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Newshape::Label::Font& color(std::string f);
     Layout::Newshape::Label::Font& color(double f);
@@ -4612,7 +4501,6 @@ class Layout::Newshape::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -4620,7 +4508,6 @@ class Layout::Newshape::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -4630,7 +4517,6 @@ class Layout::Newshape::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Newshape::Legendgrouptitle::Font& color(std::string f);
     Layout::Newshape::Legendgrouptitle::Font& color(double f);
@@ -4709,7 +4595,6 @@ class Layout::Polar {
         Circular,
         Linear,
     };
-    static std::string to_string(Gridshape e);
 
     class Angularaxis;
     class Domain;
@@ -4767,7 +4652,6 @@ class Layout::Polar::Angularaxis {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Categoryorder {
         Trace,
@@ -4789,13 +4673,11 @@ class Layout::Polar::Angularaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Direction {
         Counterclockwise,
         Clockwise,
     };
-    static std::string to_string(Direction e);
 
     enum class Exponentformat {
         None,
@@ -4804,13 +4686,11 @@ class Layout::Polar::Angularaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Showexponent {
         All,
@@ -4818,7 +4698,6 @@ class Layout::Polar::Angularaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -4826,7 +4705,6 @@ class Layout::Polar::Angularaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -4834,34 +4712,29 @@ class Layout::Polar::Angularaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thetaunit {
         Radians,
         Degrees,
     };
-    static std::string to_string(Thetaunit e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Type {
         Hyphen,
         Linear,
         Category,
     };
-    static std::string to_string(Type e);
 
     // Sets the tick font.
     class Tickfont;
@@ -5121,7 +4994,6 @@ class Layout::Polar::Angularaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -5129,7 +5001,6 @@ class Layout::Polar::Angularaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -5139,7 +5010,6 @@ class Layout::Polar::Angularaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Polar::Angularaxis::Tickfont& color(std::string f);
     Layout::Polar::Angularaxis::Tickfont& color(double f);
@@ -5266,13 +5136,11 @@ class Layout::Polar::Radialaxis {
         Min,
         Max,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -5292,7 +5160,6 @@ class Layout::Polar::Radialaxis {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Categoryorder {
         Trace,
@@ -5314,7 +5181,6 @@ class Layout::Polar::Radialaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Exponentformat {
         None,
@@ -5323,20 +5189,17 @@ class Layout::Polar::Radialaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Rangemode {
         Tozero,
         Nonnegative,
         Normal,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -5344,7 +5207,6 @@ class Layout::Polar::Radialaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -5352,7 +5214,6 @@ class Layout::Polar::Radialaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -5360,27 +5221,23 @@ class Layout::Polar::Radialaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Side {
         Clockwise,
         Counterclockwise,
     };
-    static std::string to_string(Side e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Type {
         Hyphen,
@@ -5389,7 +5246,6 @@ class Layout::Polar::Radialaxis {
         Date,
         Category,
     };
-    static std::string to_string(Type e);
 
     class Autorangeoptions;
     // Sets the tick font.
@@ -5734,7 +5590,6 @@ class Layout::Polar::Radialaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -5742,7 +5597,6 @@ class Layout::Polar::Radialaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -5752,7 +5606,6 @@ class Layout::Polar::Radialaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Polar::Radialaxis::Tickfont& color(std::string f);
     Layout::Polar::Radialaxis::Tickfont& color(double f);
@@ -5879,7 +5732,6 @@ class Layout::Polar::Radialaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -5887,7 +5739,6 @@ class Layout::Polar::Radialaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -5897,7 +5748,6 @@ class Layout::Polar::Radialaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Polar::Radialaxis::Title::Font& color(std::string f);
     Layout::Polar::Radialaxis::Title::Font& color(double f);
@@ -5957,7 +5807,6 @@ class Layout::Scene {
         Data,
         Manual,
     };
-    static std::string to_string(Aspectmode e);
 
     enum class Dragmode {
         Orbit,
@@ -5966,13 +5815,11 @@ class Layout::Scene {
         Pan,
         False,
     };
-    static std::string to_string(Dragmode e);
 
     enum class Hovermode {
         Closest,
         False,
     };
-    static std::string to_string(Hovermode e);
 
     class Annotation;
     // Sets this scene's axis aspectratio.
@@ -6047,7 +5894,6 @@ class Layout::Scene::Annotation {
         Center,
         Right,
     };
-    static std::string to_string(Align e);
 
     enum class Arrowside {
         End,
@@ -6064,7 +5910,6 @@ class Layout::Scene::Annotation {
         Middle,
         Bottom,
     };
-    static std::string to_string(Valign e);
 
     enum class Xanchor {
         Auto,
@@ -6072,7 +5917,6 @@ class Layout::Scene::Annotation {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Auto,
@@ -6080,7 +5924,6 @@ class Layout::Scene::Annotation {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     // Sets the annotation text font.
     class Font;
@@ -6272,7 +6115,6 @@ class Layout::Scene::Annotation::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -6280,7 +6122,6 @@ class Layout::Scene::Annotation::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -6290,7 +6131,6 @@ class Layout::Scene::Annotation::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Annotation::Font& color(std::string f);
     Layout::Scene::Annotation::Font& color(double f);
@@ -6391,7 +6231,6 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -6399,7 +6238,6 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -6409,7 +6247,6 @@ class Layout::Scene::Annotation::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Annotation::Hoverlabel::Font& color(std::string f);
     Layout::Scene::Annotation::Hoverlabel::Font& color(double f);
@@ -6579,7 +6416,6 @@ class Layout::Scene::Camera::Projection {
         Perspective,
         Orthographic,
     };
-    static std::string to_string(Type e);
 
     // Sets the projection type. The projection type could be either *perspective* or *orthographic*. The default is
     // *perspective*.
@@ -6651,13 +6487,11 @@ class Layout::Scene::Xaxis {
         Min,
         Max,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -6677,7 +6511,6 @@ class Layout::Scene::Xaxis {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Categoryorder {
         Trace,
@@ -6699,7 +6532,6 @@ class Layout::Scene::Xaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Exponentformat {
         None,
@@ -6708,7 +6540,6 @@ class Layout::Scene::Xaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Mirror {
         True,
@@ -6717,14 +6548,12 @@ class Layout::Scene::Xaxis {
         All,
         Allticks,
     };
-    static std::string to_string(Mirror e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -6732,7 +6561,6 @@ class Layout::Scene::Xaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -6740,7 +6568,6 @@ class Layout::Scene::Xaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -6748,21 +6575,18 @@ class Layout::Scene::Xaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Type {
         Hyphen,
@@ -6771,7 +6595,6 @@ class Layout::Scene::Xaxis {
         Date,
         Category,
     };
-    static std::string to_string(Type e);
 
     class Autorangeoptions;
     // Sets the tick font.
@@ -7120,7 +6943,6 @@ class Layout::Scene::Xaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -7128,7 +6950,6 @@ class Layout::Scene::Xaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -7138,7 +6959,6 @@ class Layout::Scene::Xaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Xaxis::Tickfont& color(std::string f);
     Layout::Scene::Xaxis::Tickfont& color(double f);
@@ -7265,7 +7085,6 @@ class Layout::Scene::Xaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -7273,7 +7092,6 @@ class Layout::Scene::Xaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -7283,7 +7101,6 @@ class Layout::Scene::Xaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Xaxis::Title::Font& color(std::string f);
     Layout::Scene::Xaxis::Title::Font& color(double f);
@@ -7346,13 +7163,11 @@ class Layout::Scene::Yaxis {
         Min,
         Max,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -7372,7 +7187,6 @@ class Layout::Scene::Yaxis {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Categoryorder {
         Trace,
@@ -7394,7 +7208,6 @@ class Layout::Scene::Yaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Exponentformat {
         None,
@@ -7403,7 +7216,6 @@ class Layout::Scene::Yaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Mirror {
         True,
@@ -7412,14 +7224,12 @@ class Layout::Scene::Yaxis {
         All,
         Allticks,
     };
-    static std::string to_string(Mirror e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -7427,7 +7237,6 @@ class Layout::Scene::Yaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -7435,7 +7244,6 @@ class Layout::Scene::Yaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -7443,21 +7251,18 @@ class Layout::Scene::Yaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Type {
         Hyphen,
@@ -7466,7 +7271,6 @@ class Layout::Scene::Yaxis {
         Date,
         Category,
     };
-    static std::string to_string(Type e);
 
     class Autorangeoptions;
     // Sets the tick font.
@@ -7815,7 +7619,6 @@ class Layout::Scene::Yaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -7823,7 +7626,6 @@ class Layout::Scene::Yaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -7833,7 +7635,6 @@ class Layout::Scene::Yaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Yaxis::Tickfont& color(std::string f);
     Layout::Scene::Yaxis::Tickfont& color(double f);
@@ -7960,7 +7761,6 @@ class Layout::Scene::Yaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -7968,7 +7768,6 @@ class Layout::Scene::Yaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -7978,7 +7777,6 @@ class Layout::Scene::Yaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Yaxis::Title::Font& color(std::string f);
     Layout::Scene::Yaxis::Title::Font& color(double f);
@@ -8041,13 +7839,11 @@ class Layout::Scene::Zaxis {
         Min,
         Max,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -8067,7 +7863,6 @@ class Layout::Scene::Zaxis {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Categoryorder {
         Trace,
@@ -8089,7 +7884,6 @@ class Layout::Scene::Zaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Exponentformat {
         None,
@@ -8098,7 +7892,6 @@ class Layout::Scene::Zaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Mirror {
         True,
@@ -8107,14 +7900,12 @@ class Layout::Scene::Zaxis {
         All,
         Allticks,
     };
-    static std::string to_string(Mirror e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -8122,7 +7913,6 @@ class Layout::Scene::Zaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -8130,7 +7920,6 @@ class Layout::Scene::Zaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -8138,21 +7927,18 @@ class Layout::Scene::Zaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Type {
         Hyphen,
@@ -8161,7 +7947,6 @@ class Layout::Scene::Zaxis {
         Date,
         Category,
     };
-    static std::string to_string(Type e);
 
     class Autorangeoptions;
     // Sets the tick font.
@@ -8510,7 +8295,6 @@ class Layout::Scene::Zaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -8518,7 +8302,6 @@ class Layout::Scene::Zaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -8528,7 +8311,6 @@ class Layout::Scene::Zaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Zaxis::Tickfont& color(std::string f);
     Layout::Scene::Zaxis::Tickfont& color(double f);
@@ -8655,7 +8437,6 @@ class Layout::Scene::Zaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -8663,7 +8444,6 @@ class Layout::Scene::Zaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -8673,7 +8453,6 @@ class Layout::Scene::Zaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Scene::Zaxis::Title::Font& color(std::string f);
     Layout::Scene::Zaxis::Title::Font& color(double f);
@@ -8731,7 +8510,6 @@ class Layout::Selection {
         Rect,
         Path,
     };
-    static std::string to_string(Type e);
 
     class Line;
 
@@ -8832,14 +8610,12 @@ class Layout::Shape {
         Evenodd,
         Nonzero,
     };
-    static std::string to_string(Fillrule e);
 
     enum class Layer {
         Below,
         Above,
         Between,
     };
-    static std::string to_string(Layer e);
 
     enum class Type {
         Circle,
@@ -8847,26 +8623,22 @@ class Layout::Shape {
         Path,
         Line,
     };
-    static std::string to_string(Type e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xsizemode {
         Scaled,
         Pixel,
     };
-    static std::string to_string(Xsizemode e);
 
     enum class Ysizemode {
         Scaled,
         Pixel,
     };
-    static std::string to_string(Ysizemode e);
 
     class Label;
     class Legendgrouptitle;
@@ -9066,7 +8838,6 @@ class Layout::Shape::Label {
         Middle,
         End,
     };
-    static std::string to_string(Textposition e);
 
     enum class Xanchor {
         Auto,
@@ -9074,14 +8845,12 @@ class Layout::Shape::Label {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     // Sets the shape label text font.
     class Font;
@@ -9157,7 +8926,6 @@ class Layout::Shape::Label::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -9165,7 +8933,6 @@ class Layout::Shape::Label::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -9175,7 +8942,6 @@ class Layout::Shape::Label::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Shape::Label::Font& color(std::string f);
     Layout::Shape::Label::Font& color(double f);
@@ -9266,7 +9032,6 @@ class Layout::Shape::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -9274,7 +9039,6 @@ class Layout::Shape::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -9284,7 +9048,6 @@ class Layout::Shape::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Shape::Legendgrouptitle::Font& color(std::string f);
     Layout::Shape::Legendgrouptitle::Font& color(double f);
@@ -9363,7 +9126,6 @@ class Layout::Slider {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Xanchor {
         Auto,
@@ -9371,7 +9133,6 @@ class Layout::Slider {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Auto,
@@ -9379,7 +9140,6 @@ class Layout::Slider {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     class Currentvalue;
     // Sets the font of the slider step labels.
@@ -9496,7 +9256,6 @@ class Layout::Slider::Currentvalue {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     // Sets the font of the current value label text.
     class Font;
@@ -9548,7 +9307,6 @@ class Layout::Slider::Currentvalue::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -9556,7 +9314,6 @@ class Layout::Slider::Currentvalue::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -9566,7 +9323,6 @@ class Layout::Slider::Currentvalue::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Slider::Currentvalue::Font& color(std::string f);
     Layout::Slider::Currentvalue::Font& color(double f);
@@ -9636,7 +9392,6 @@ class Layout::Slider::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -9644,7 +9399,6 @@ class Layout::Slider::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -9654,7 +9408,6 @@ class Layout::Slider::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Slider::Font& color(std::string f);
     Layout::Slider::Font& color(double f);
@@ -9738,7 +9491,6 @@ class Layout::Slider::Step {
         Update,
         Skip,
     };
-    static std::string to_string(Method e);
 
     // Sets the arguments values to be passed to the Plotly method set in `method` on slide.
     Layout::Slider::Step& args(const std::vector<double>& f);
@@ -9829,7 +9581,6 @@ class Layout::Slider::Transition {
         BackInOut,
         BounceInOut,
     };
-    static std::string to_string(Easing e);
 
     // Sets the duration of the slider transition
     Layout::Slider::Transition& duration(double f);
@@ -9910,7 +9661,6 @@ class Layout::Smith::Imaginaryaxis {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Showtickprefix {
         All,
@@ -9918,7 +9668,6 @@ class Layout::Smith::Imaginaryaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -9926,14 +9675,12 @@ class Layout::Smith::Imaginaryaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the tick font.
     class Tickfont;
@@ -10071,7 +9818,6 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -10079,7 +9825,6 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -10089,7 +9834,6 @@ class Layout::Smith::Imaginaryaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Smith::Imaginaryaxis::Tickfont& color(std::string f);
     Layout::Smith::Imaginaryaxis::Tickfont& color(double f);
@@ -10147,7 +9891,6 @@ class Layout::Smith::Realaxis {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Showtickprefix {
         All,
@@ -10155,7 +9898,6 @@ class Layout::Smith::Realaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -10163,20 +9905,17 @@ class Layout::Smith::Realaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Side {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     enum class Ticks {
         Top,
         Bottom,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the tick font.
     class Tickfont;
@@ -10321,7 +10060,6 @@ class Layout::Smith::Realaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -10329,7 +10067,6 @@ class Layout::Smith::Realaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -10339,7 +10076,6 @@ class Layout::Smith::Realaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Smith::Realaxis::Tickfont& color(std::string f);
     Layout::Smith::Realaxis::Tickfont& color(double f);
@@ -10443,13 +10179,11 @@ class Layout::Ternary::Aaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Showexponent {
         All,
@@ -10457,7 +10191,6 @@ class Layout::Ternary::Aaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -10465,7 +10198,6 @@ class Layout::Ternary::Aaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -10473,21 +10205,18 @@ class Layout::Ternary::Aaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the tick font.
     class Tickfont;
@@ -10706,7 +10435,6 @@ class Layout::Ternary::Aaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -10714,7 +10442,6 @@ class Layout::Ternary::Aaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -10724,7 +10451,6 @@ class Layout::Ternary::Aaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Ternary::Aaxis::Tickfont& color(std::string f);
     Layout::Ternary::Aaxis::Tickfont& color(double f);
@@ -10851,7 +10577,6 @@ class Layout::Ternary::Aaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -10859,7 +10584,6 @@ class Layout::Ternary::Aaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -10869,7 +10593,6 @@ class Layout::Ternary::Aaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Ternary::Aaxis::Title::Font& color(std::string f);
     Layout::Ternary::Aaxis::Title::Font& color(double f);
@@ -10930,13 +10653,11 @@ class Layout::Ternary::Baxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Showexponent {
         All,
@@ -10944,7 +10665,6 @@ class Layout::Ternary::Baxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -10952,7 +10672,6 @@ class Layout::Ternary::Baxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -10960,21 +10679,18 @@ class Layout::Ternary::Baxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the tick font.
     class Tickfont;
@@ -11193,7 +10909,6 @@ class Layout::Ternary::Baxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -11201,7 +10916,6 @@ class Layout::Ternary::Baxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -11211,7 +10925,6 @@ class Layout::Ternary::Baxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Ternary::Baxis::Tickfont& color(std::string f);
     Layout::Ternary::Baxis::Tickfont& color(double f);
@@ -11338,7 +11051,6 @@ class Layout::Ternary::Baxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -11346,7 +11058,6 @@ class Layout::Ternary::Baxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -11356,7 +11067,6 @@ class Layout::Ternary::Baxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Ternary::Baxis::Title::Font& color(std::string f);
     Layout::Ternary::Baxis::Title::Font& color(double f);
@@ -11417,13 +11127,11 @@ class Layout::Ternary::Caxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Showexponent {
         All,
@@ -11431,7 +11139,6 @@ class Layout::Ternary::Caxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -11439,7 +11146,6 @@ class Layout::Ternary::Caxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -11447,21 +11153,18 @@ class Layout::Ternary::Caxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the tick font.
     class Tickfont;
@@ -11680,7 +11383,6 @@ class Layout::Ternary::Caxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -11688,7 +11390,6 @@ class Layout::Ternary::Caxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -11698,7 +11399,6 @@ class Layout::Ternary::Caxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Ternary::Caxis::Tickfont& color(std::string f);
     Layout::Ternary::Caxis::Tickfont& color(double f);
@@ -11825,7 +11525,6 @@ class Layout::Ternary::Caxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -11833,7 +11532,6 @@ class Layout::Ternary::Caxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -11843,7 +11541,6 @@ class Layout::Ternary::Caxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Ternary::Caxis::Title::Font& color(std::string f);
     Layout::Ternary::Caxis::Title::Font& color(double f);
@@ -11931,13 +11628,11 @@ class Layout::Title {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Auto,
@@ -11945,13 +11640,11 @@ class Layout::Title {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the title font.
     class Font;
@@ -12045,7 +11738,6 @@ class Layout::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -12053,7 +11745,6 @@ class Layout::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -12063,7 +11754,6 @@ class Layout::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Title::Font& color(std::string f);
     Layout::Title::Font& color(double f);
@@ -12180,7 +11870,6 @@ class Layout::Title::Subtitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -12188,7 +11877,6 @@ class Layout::Title::Subtitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -12198,7 +11886,6 @@ class Layout::Title::Subtitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Title::Subtitle::Font& color(std::string f);
     Layout::Title::Subtitle::Font& color(double f);
@@ -12291,13 +11978,11 @@ class Layout::Transition {
         BackInOut,
         BounceInOut,
     };
-    static std::string to_string(Easing e);
 
     enum class Ordering {
         LayoutFirst,
         TracesFirst,
     };
-    static std::string to_string(Ordering e);
 
     // The duration of the transition, in milliseconds. If equal to zero, updates are synchronous.
     Layout::Transition& duration(double f);
@@ -12326,7 +12011,6 @@ class Layout::Uniformtext {
         Hide,
         Show,
     };
-    static std::string to_string(Mode e);
 
     // Sets the minimum text size between traces of the same type.
     Layout::Uniformtext& minsize(double f);
@@ -12354,13 +12038,11 @@ class Layout::Updatemenu {
         Up,
         Down,
     };
-    static std::string to_string(Direction e);
 
     enum class Type {
         Dropdown,
         Buttons,
     };
-    static std::string to_string(Type e);
 
     enum class Xanchor {
         Auto,
@@ -12368,7 +12050,6 @@ class Layout::Updatemenu {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Auto,
@@ -12376,7 +12057,6 @@ class Layout::Updatemenu {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     class Button;
     // Sets the font of the update menu button text.
@@ -12472,7 +12152,6 @@ class Layout::Updatemenu::Button {
         Update,
         Skip,
     };
-    static std::string to_string(Method e);
 
     // Sets the arguments values to be passed to the Plotly method set in `method` on click.
     Layout::Updatemenu::Button& args(const std::vector<double>& f);
@@ -12544,7 +12223,6 @@ class Layout::Updatemenu::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -12552,7 +12230,6 @@ class Layout::Updatemenu::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -12562,7 +12239,6 @@ class Layout::Updatemenu::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Updatemenu::Font& color(std::string f);
     Layout::Updatemenu::Font& color(double f);
@@ -12663,13 +12339,11 @@ class Layout::Xaxis {
         Min,
         Max,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -12689,7 +12363,6 @@ class Layout::Xaxis {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Categoryorder {
         Trace,
@@ -12711,13 +12384,11 @@ class Layout::Xaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Constrain {
         Range,
         Domain,
     };
-    static std::string to_string(Constrain e);
 
     enum class Constraintoward {
         Left,
@@ -12727,7 +12398,6 @@ class Layout::Xaxis {
         Middle,
         Bottom,
     };
-    static std::string to_string(Constraintoward e);
 
     enum class Exponentformat {
         None,
@@ -12736,13 +12406,11 @@ class Layout::Xaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Mirror {
         True,
@@ -12751,14 +12419,12 @@ class Layout::Xaxis {
         All,
         Allticks,
     };
-    static std::string to_string(Mirror e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -12766,7 +12432,6 @@ class Layout::Xaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -12774,7 +12439,6 @@ class Layout::Xaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -12782,7 +12446,6 @@ class Layout::Xaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Side {
         Top,
@@ -12790,7 +12453,6 @@ class Layout::Xaxis {
         Left,
         Right,
     };
-    static std::string to_string(Side e);
 
     enum class Spikemode {
         Toaxis,
@@ -12804,20 +12466,17 @@ class Layout::Xaxis {
         Cursor,
         HoveredData,
     };
-    static std::string to_string(Spikesnap e);
 
     enum class Ticklabelmode {
         Instant,
         Period,
     };
-    static std::string to_string(Ticklabelmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -12831,7 +12490,6 @@ class Layout::Xaxis {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
@@ -12839,20 +12497,17 @@ class Layout::Xaxis {
         Array,
         Sync,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Tickson {
         Labels,
         Boundaries,
     };
-    static std::string to_string(Tickson e);
 
     enum class Type {
         Hyphen,
@@ -12862,7 +12517,6 @@ class Layout::Xaxis {
         Category,
         Multicategory,
     };
-    static std::string to_string(Type e);
 
     class Autorangeoptions;
     class Minor;
@@ -13383,14 +13037,12 @@ class Layout::Xaxis::Minor {
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -13476,7 +13128,6 @@ class Layout::Xaxis::Rangebreak {
         Hour,
         Empty,
     };
-    static std::string to_string(Pattern e);
 
     // Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
     Layout::Xaxis::Rangebreak& bounds(const std::vector<double>& f);
@@ -13535,7 +13186,6 @@ class Layout::Xaxis::Rangeselector {
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Yanchor {
         Auto,
@@ -13543,7 +13193,6 @@ class Layout::Xaxis::Rangeselector {
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     class Button;
     // Sets the font of the range selector button text.
@@ -13610,13 +13259,11 @@ class Layout::Xaxis::Rangeselector::Button {
         Second,
         All,
     };
-    static std::string to_string(Step e);
 
     enum class Stepmode {
         Backward,
         Todate,
     };
-    static std::string to_string(Stepmode e);
 
     // Sets the number of steps to take to update the range. Use with `step` to specify the update interval.
     Layout::Xaxis::Rangeselector::Button& count(double f);
@@ -13678,7 +13325,6 @@ class Layout::Xaxis::Rangeselector::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -13686,7 +13332,6 @@ class Layout::Xaxis::Rangeselector::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -13696,7 +13341,6 @@ class Layout::Xaxis::Rangeselector::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Xaxis::Rangeselector::Font& color(std::string f);
     Layout::Xaxis::Rangeselector::Font& color(double f);
@@ -13806,7 +13450,6 @@ class Layout::Xaxis::Rangeslider::Yaxis {
         Fixed,
         Match,
     };
-    static std::string to_string(Rangemode e);
 
     // Sets the range of this axis for the rangeslider.
     Layout::Xaxis::Rangeslider::Yaxis& range(const std::vector<double>& f);
@@ -13846,7 +13489,6 @@ class Layout::Xaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -13854,7 +13496,6 @@ class Layout::Xaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -13864,7 +13505,6 @@ class Layout::Xaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Xaxis::Tickfont& color(std::string f);
     Layout::Xaxis::Tickfont& color(double f);
@@ -13998,7 +13638,6 @@ class Layout::Xaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -14006,7 +13645,6 @@ class Layout::Xaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -14016,7 +13654,6 @@ class Layout::Xaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Xaxis::Title::Font& color(std::string f);
     Layout::Xaxis::Title::Font& color(double f);
@@ -14094,13 +13731,11 @@ class Layout::Yaxis {
         Min,
         Max,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Calendar {
         Chinese,
@@ -14120,7 +13755,6 @@ class Layout::Yaxis {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Calendar e);
 
     enum class Categoryorder {
         Trace,
@@ -14142,13 +13776,11 @@ class Layout::Yaxis {
         MedianAscending,
         MedianDescending,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Constrain {
         Range,
         Domain,
     };
-    static std::string to_string(Constrain e);
 
     enum class Constraintoward {
         Left,
@@ -14158,7 +13790,6 @@ class Layout::Yaxis {
         Middle,
         Bottom,
     };
-    static std::string to_string(Constraintoward e);
 
     enum class Exponentformat {
         None,
@@ -14167,13 +13798,11 @@ class Layout::Yaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Layer {
         AboveTraces,
         BelowTraces,
     };
-    static std::string to_string(Layer e);
 
     enum class Mirror {
         True,
@@ -14182,14 +13811,12 @@ class Layout::Yaxis {
         All,
         Allticks,
     };
-    static std::string to_string(Mirror e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -14197,7 +13824,6 @@ class Layout::Yaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -14205,7 +13831,6 @@ class Layout::Yaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -14213,7 +13838,6 @@ class Layout::Yaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Side {
         Top,
@@ -14221,7 +13845,6 @@ class Layout::Yaxis {
         Left,
         Right,
     };
-    static std::string to_string(Side e);
 
     enum class Spikemode {
         Toaxis,
@@ -14235,20 +13858,17 @@ class Layout::Yaxis {
         Cursor,
         HoveredData,
     };
-    static std::string to_string(Spikesnap e);
 
     enum class Ticklabelmode {
         Instant,
         Period,
     };
-    static std::string to_string(Ticklabelmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -14262,7 +13882,6 @@ class Layout::Yaxis {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
@@ -14270,20 +13889,17 @@ class Layout::Yaxis {
         Array,
         Sync,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Tickson {
         Labels,
         Boundaries,
     };
-    static std::string to_string(Tickson e);
 
     enum class Type {
         Hyphen,
@@ -14293,7 +13909,6 @@ class Layout::Yaxis {
         Category,
         Multicategory,
     };
-    static std::string to_string(Type e);
 
     class Autorangeoptions;
     class Minor;
@@ -14815,14 +14430,12 @@ class Layout::Yaxis::Minor {
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings
     // available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is
@@ -14908,7 +14521,6 @@ class Layout::Yaxis::Rangebreak {
         Hour,
         Empty,
     };
-    static std::string to_string(Pattern e);
 
     // Sets the lower and upper bounds of this axis rangebreak. Can be used with `pattern`.
     Layout::Yaxis::Rangebreak& bounds(const std::vector<double>& f);
@@ -14977,7 +14589,6 @@ class Layout::Yaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -14985,7 +14596,6 @@ class Layout::Yaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -14995,7 +14605,6 @@ class Layout::Yaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Yaxis::Tickfont& color(std::string f);
     Layout::Yaxis::Tickfont& color(double f);
@@ -15129,7 +14738,6 @@ class Layout::Yaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -15137,7 +14745,6 @@ class Layout::Yaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -15147,7 +14754,6 @@ class Layout::Yaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Layout::Yaxis::Title::Font& color(std::string f);
     Layout::Yaxis::Title::Font& color(double f);

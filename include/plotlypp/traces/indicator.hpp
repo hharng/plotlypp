@@ -34,7 +34,6 @@ class Indicator : public Trace {
         Center,
         Right,
     };
-    static std::string to_string(Align e);
 
     enum class Mode {
         Number,
@@ -48,7 +47,6 @@ class Indicator : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Delta;
     class Domain;
@@ -181,7 +179,6 @@ class Indicator::Delta {
         Left,
         Right,
     };
-    static std::string to_string(Position e);
 
     class Decreasing;
     // Set the font used to display the delta
@@ -264,7 +261,6 @@ class Indicator::Delta::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -272,7 +268,6 @@ class Indicator::Delta::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -282,7 +277,6 @@ class Indicator::Delta::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Indicator::Delta::Font& color(std::string f);
     Indicator::Delta::Font& color(double f);
@@ -386,7 +380,6 @@ class Indicator::Gauge {
         Angular,
         Bullet,
     };
-    static std::string to_string(Shape e);
 
     class Axis;
     // Set the appearance of the gauge's value
@@ -441,7 +434,6 @@ class Indicator::Gauge::Axis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Showexponent {
         All,
@@ -449,7 +441,6 @@ class Indicator::Gauge::Axis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -457,7 +448,6 @@ class Indicator::Gauge::Axis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -465,21 +455,18 @@ class Indicator::Gauge::Axis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -652,7 +639,6 @@ class Indicator::Gauge::Axis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -660,7 +646,6 @@ class Indicator::Gauge::Axis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -670,7 +655,6 @@ class Indicator::Gauge::Axis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Indicator::Gauge::Axis::Tickfont& color(std::string f);
     Indicator::Gauge::Axis::Tickfont& color(double f);
@@ -936,7 +920,6 @@ class Indicator::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -944,7 +927,6 @@ class Indicator::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -954,7 +936,6 @@ class Indicator::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Indicator::Legendgrouptitle::Font& color(std::string f);
     Indicator::Legendgrouptitle::Font& color(double f);
@@ -1052,7 +1033,6 @@ class Indicator::Number::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1060,7 +1040,6 @@ class Indicator::Number::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1070,7 +1049,6 @@ class Indicator::Number::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Indicator::Number::Font& color(std::string f);
     Indicator::Number::Font& color(double f);
@@ -1147,7 +1125,6 @@ class Indicator::Title {
         Center,
         Right,
     };
-    static std::string to_string(Align e);
 
     // Set the font used to display the title
     class Font;
@@ -1190,7 +1167,6 @@ class Indicator::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1198,7 +1174,6 @@ class Indicator::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1208,7 +1183,6 @@ class Indicator::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Indicator::Title::Font& color(std::string f);
     Indicator::Title::Font& color(double f);

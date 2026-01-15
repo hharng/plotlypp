@@ -1,0 +1,1 @@
+{"data":[{"name":"SF Zoo","type":"bar","x":["giraffes","orangutans","monkeys"],"y":[20,14,23]},{"name":"LA Zoo","type":"bar","x":["giraffes","orangutans","monkeys"],"y":[12,18,29]}],"layout":{"barmode":"group"}}

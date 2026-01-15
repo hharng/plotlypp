@@ -240,7 +240,27 @@ def emit_enum_field_setter(class_object: "Object", field: "Field", writer: Write
     # To help compiler ambiguity, add enum keyword.
     writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(enum {field.name.title()} f) {{")
     with IndentBlock(writer):
-        writer.write(f"json[\"{field.name}\"] = to_string(f);")
+        # For enums, we cannot rely on a simple to_string() function because
+        # enumerated values in the Plotly schema can be strings, booleans, or numbers
+        # (e.g., `false`, 'all', 0). Therefore, we generate a switch statement
+        # to serialize each enum member to the correct JSON type.
+        writer.write("switch(f) {")
+        with IndentBlock(writer):
+            for safe_val, json_val in field.enum_definition.safe_to_json_vals.items():
+                val_repr = ""
+                if isinstance(json_val, bool):
+                    val_repr = "true" if json_val else "false"
+                elif isinstance(json_val, str):
+                    # Use json.dumps() to produce a valid JSON string representation
+                    # (e.g., '"string"'), which also works as a correctly escaped
+                    # C++ string literal for assignment.
+                    val_repr = json.dumps(json_val)
+                elif isinstance(json_val, (int, float)):
+                    val_repr = str(json_val)
+                else:
+                    raise TypeError(f"Unsupported enum value type: {type(json_val)} for {json_val}")
+                writer.write(f'case {field.name.title()}::{safe_val}: json["{field.name}"] = {val_repr}; break;')
+        writer.write("}")
         writer.write("return *this;")
     writer.write("}")
 
@@ -252,9 +272,32 @@ def emit_enum_array_field_setter_decl(class_object: "Object", field: "Field", wr
 def emit_enum_array_field_setter(class_object: "Object", field: "Field", writer: Writer) -> None:
     writer.write(f"inline {class_object.name.title()}& {class_object.name.title()}::{field.name}(const std::vector<enum {field.name.title()}>& f) {{")
     with IndentBlock(writer):
-        writer.write("std::vector<std::string> stringified(f.size());")
-        writer.write("std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});")
-        writer.write(f"json[\"{field.name}\"] = std::move(stringified);")
+        writer.write("Json arr = Json::array();")
+        writer.write("for(const auto& e : f) {")
+        with IndentBlock(writer):
+            # For enums, we cannot rely on a simple to_string() function because
+            # enumerated values in the Plotly schema can be strings, booleans, or numbers
+            # (e.g., `false`, 'all', 0). Therefore, we generate a switch statement
+            # to serialize each enum member to the correct JSON type.
+            writer.write("switch(e) {")
+            with IndentBlock(writer):
+                for safe_val, json_val in field.enum_definition.safe_to_json_vals.items():
+                    val_repr = ""
+                    if isinstance(json_val, bool):
+                        val_repr = "true" if json_val else "false"
+                    elif isinstance(json_val, str):
+                        # Use json.dumps() to produce a valid JSON string representation
+                        # (e.g., '"string"'), which also works as a correctly escaped
+                        # C++ string literal for assignment.
+                        val_repr = json.dumps(json_val)
+                    elif isinstance(json_val, (int, float)):
+                        val_repr = str(json_val)
+                    else:
+                        raise TypeError(f"Unsupported enum value type: {type(json_val)} for {json_val}")
+                    writer.write(f'case {field.name.title()}::{safe_val}: arr.push_back({val_repr}); break;')
+            writer.write("}")
+        writer.write("}")
+        writer.write(f"json[\"{field.name}\"] = std::move(arr);")
         writer.write("return *this;")
     writer.write("}")
 
@@ -269,20 +312,17 @@ def emit_enum_definition(enum: "StringEnum", writer: Writer) -> None:
 
 
 def emit_enum_to_string_decl(enum: "StringEnum", writer: Writer) -> None:
-    writer.write(f"static std::string to_string({enum.name.title()} e);")
+    # No-op: As enums can represent different types (bool, str, int),
+    # serialization is now handled in setters via switch statements,
+    # and a single to_string() function is no longer generated for enums.
+    pass
 
 
 def emit_enum_to_string(class_object: "Object", enum: "StringEnum", writer: Writer) -> None:
-    writer.write(f"inline std::string {class_object.name.title()}::to_string({enum.name.title()} e) {{")
-    with IndentBlock(writer):
-        writer.write("switch(e) {")
-        with IndentBlock(writer):
-            for safe_val, json_val in enum.safe_to_json_vals.items():
-                writer.write(f'case {enum.name.title()}::{safe_val}: return "{json_val}";')
-        writer.write("}")
-        writer.write("// Should be unreachable.")
-        writer.write('throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};')
-    writer.write("}")
+    # No-op: As enums can represent different types (bool, str, int),
+    # serialization is now handled in setters via switch statements,
+    # and a single to_string() function is no longer generated for enums.
+    pass
 
 
 def emit_flaglist_definition(fl: "FlagList", writer: Writer) -> None:
@@ -310,6 +350,8 @@ def emit_flaglist_setter_decls(class_object: "Object", field: "Field", writer: W
         writer.write(f"{class_object.name.title()}& {field.name}({field.name.title()}Extra extra);")
 
 def emit_flaglist_to_string_impls(class_object: "Object", fl: "FlagList", writer: Writer) -> None:
+    # Unlike enums, flaglist values ('flags' and 'extras') are always
+    # serialized as strings in Plotly, so a to_string method is appropriate.
     writer.write(f"inline std::string {class_object.name.title()}::to_string({fl.name.title()} e) {{")
     with IndentBlock(writer):
         writer.write("switch(e) {")
@@ -633,12 +675,11 @@ def looks_like_regex(name: str) -> bool:
 #         output(f"{f.name}", indent)
 
 
-def _clean_enum_value(val: Any) -> Tuple[str, str]:
-    """Cleans an enum value string to be a valid C++ identifier."""
-    json_val = str(val)
+def _clean_enum_value(val: Any) -> Tuple[str, Any]:
+    """Cleans a schema enum value (e.g. 'foo', '-', false, 1) to be a valid C++
+    identifier, returning the safe identifier and the original value for serialization."""
+    json_val = val
     safe_val = str(val)
-    if json_val in JSON_NAME_ESCAPE_MAP:
-        json_val = JSON_NAME_ESCAPE_MAP[json_val]
 
     # Some are invalid symbols
     if safe_val in JSON_SYMBOL_NAME_MAP:

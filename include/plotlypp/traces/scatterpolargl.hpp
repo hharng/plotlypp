@@ -38,7 +38,6 @@ class Scatterpolargl : public Trace {
         Toself,
         Tonext,
     };
-    static std::string to_string(Fill e);
 
     enum class Hoverinfo {
         R,
@@ -76,21 +75,18 @@ class Scatterpolargl : public Trace {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     enum class Thetaunit {
         Radians,
         Degrees,
         Gradians,
     };
-    static std::string to_string(Thetaunit e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -369,7 +365,6 @@ class Scatterpolargl::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -442,7 +437,6 @@ class Scatterpolargl::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -450,7 +444,6 @@ class Scatterpolargl::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -460,7 +453,6 @@ class Scatterpolargl::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scatterpolargl::Hoverlabel::Font& color(std::string f);
     Scatterpolargl::Hoverlabel::Font& color(double f);
@@ -587,7 +579,6 @@ class Scatterpolargl::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -595,7 +586,6 @@ class Scatterpolargl::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -605,7 +595,6 @@ class Scatterpolargl::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scatterpolargl::Legendgrouptitle::Font& color(std::string f);
     Scatterpolargl::Legendgrouptitle::Font& color(double f);
@@ -667,7 +656,6 @@ class Scatterpolargl::Line {
         Longdashdot,
         Solid,
     };
-    static std::string to_string(Dash e);
 
     // Sets the line color.
     Scatterpolargl::Line& color(std::string f);
@@ -694,7 +682,6 @@ class Scatterpolargl::Marker {
         Diameter,
         Area,
     };
-    static std::string to_string(Sizemode e);
 
     enum class Symbol {
         Num_0,
@@ -1022,7 +1009,6 @@ class Scatterpolargl::Marker {
         Num_154,
         ArrowWideOpen,
     };
-    static std::string to_string(Symbol e);
 
     class Colorbar;
     class Line;
@@ -1153,19 +1139,16 @@ class Scatterpolargl::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -1173,7 +1156,6 @@ class Scatterpolargl::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -1181,7 +1163,6 @@ class Scatterpolargl::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -1189,20 +1170,17 @@ class Scatterpolargl::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -1216,47 +1194,40 @@ class Scatterpolargl::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1508,7 +1479,6 @@ class Scatterpolargl::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1516,7 +1486,6 @@ class Scatterpolargl::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1526,7 +1495,6 @@ class Scatterpolargl::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scatterpolargl::Marker::Colorbar::Tickfont& color(std::string f);
     Scatterpolargl::Marker::Colorbar::Tickfont& color(double f);
@@ -1621,7 +1589,6 @@ class Scatterpolargl::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1664,7 +1631,6 @@ class Scatterpolargl::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1672,7 +1638,6 @@ class Scatterpolargl::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1682,7 +1647,6 @@ class Scatterpolargl::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scatterpolargl::Marker::Colorbar::Title::Font& color(std::string f);
     Scatterpolargl::Marker::Colorbar::Title::Font& color(double f);
@@ -1889,19 +1853,16 @@ class Scatterpolargl::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Variant {
         Normal,
         SmallCaps,
     };
-    static std::string to_string(Variant e);
 
     enum class Weight {
         Normal,
         Bold,
     };
-    static std::string to_string(Weight e);
 
     Scatterpolargl::Textfont& color(std::string f);
     Scatterpolargl::Textfont& color(double f);

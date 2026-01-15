@@ -1,0 +1,1 @@
+{"data":[{"error_y":{"array":[0.1,0.2,0.1,0.1],"arrayminus":[0.2,0.4,1.0,0.2],"symmetric":false,"type":"data"},"type":"scatter","x":[1.0,2.0,3.0,4.0],"y":[2.0,1.0,3.0,4.0]}],"layout":null}

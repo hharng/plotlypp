@@ -33,7 +33,6 @@ class Pie : public Trace {
         Clockwise,
         Counterclockwise,
     };
-    static std::string to_string(Direction e);
 
     enum class Hoverinfo {
         Label,
@@ -56,7 +55,6 @@ class Pie : public Trace {
         Tangential,
         Auto,
     };
-    static std::string to_string(Insidetextorientation e);
 
     enum class Textinfo {
         Label,
@@ -76,14 +74,12 @@ class Pie : public Trace {
         Auto,
         None,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -390,7 +386,6 @@ class Pie::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -463,7 +458,6 @@ class Pie::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -471,7 +465,6 @@ class Pie::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -481,7 +474,6 @@ class Pie::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Pie::Hoverlabel::Font& color(std::string f);
     Pie::Hoverlabel::Font& color(double f);
@@ -587,7 +579,6 @@ class Pie::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -595,7 +586,6 @@ class Pie::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -605,7 +595,6 @@ class Pie::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Pie::Insidetextfont& color(std::string f);
     Pie::Insidetextfont& color(double f);
@@ -732,7 +721,6 @@ class Pie::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -740,7 +728,6 @@ class Pie::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -750,7 +737,6 @@ class Pie::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Pie::Legendgrouptitle::Font& color(std::string f);
     Pie::Legendgrouptitle::Font& color(double f);
@@ -865,7 +851,6 @@ class Pie::Marker::Pattern {
         Replace,
         Overlay,
     };
-    static std::string to_string(Fillmode e);
 
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
@@ -945,7 +930,6 @@ class Pie::Outsidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -953,7 +937,6 @@ class Pie::Outsidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -963,7 +946,6 @@ class Pie::Outsidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Pie::Outsidetextfont& color(std::string f);
     Pie::Outsidetextfont& color(double f);
@@ -1087,7 +1069,6 @@ class Pie::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1095,7 +1076,6 @@ class Pie::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1105,7 +1085,6 @@ class Pie::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Pie::Textfont& color(std::string f);
     Pie::Textfont& color(double f);
@@ -1204,7 +1183,6 @@ class Pie::Title {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Position e);
 
     // Sets the font used for `title`.
     class Font;
@@ -1246,7 +1224,6 @@ class Pie::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1254,7 +1231,6 @@ class Pie::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1264,7 +1240,6 @@ class Pie::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Pie::Title::Font& color(std::string f);
     Pie::Title::Font& color(double f);

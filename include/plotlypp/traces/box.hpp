@@ -34,7 +34,6 @@ class Box : public Trace {
         Sd,
         False,
     };
-    static std::string to_string(Boxmean e);
 
     enum class Boxpoints {
         All,
@@ -42,7 +41,6 @@ class Box : public Trace {
         Suspectedoutliers,
         False,
     };
-    static std::string to_string(Boxpoints e);
 
     enum class Hoverinfo {
         X,
@@ -69,27 +67,23 @@ class Box : public Trace {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Quartilemethod {
         Linear,
         Exclusive,
         Inclusive,
     };
-    static std::string to_string(Quartilemethod e);
 
     enum class Sizemode {
         Quartiles,
         Sd,
     };
-    static std::string to_string(Sizemode e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -109,14 +103,12 @@ class Box : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     enum class Ycalendar {
         Chinese,
@@ -136,14 +128,12 @@ class Box : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Ycalendar e);
 
     enum class Yperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Yperiodalignment e);
 
     class Hoverlabel;
     class Legendgrouptitle;
@@ -573,7 +563,6 @@ class Box::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -646,7 +635,6 @@ class Box::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -654,7 +642,6 @@ class Box::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -664,7 +651,6 @@ class Box::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Box::Hoverlabel::Font& color(std::string f);
     Box::Hoverlabel::Font& color(double f);
@@ -791,7 +777,6 @@ class Box::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -799,7 +784,6 @@ class Box::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -809,7 +793,6 @@ class Box::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Box::Legendgrouptitle::Font& color(std::string f);
     Box::Legendgrouptitle::Font& color(double f);
@@ -1206,7 +1189,6 @@ class Box::Marker {
         Num_154,
         ArrowWideOpen,
     };
-    static std::string to_string(Symbol e);
 
     class Line;
 

@@ -160,18 +160,21 @@ VolcanoData generate_data(int n) {
 Figure mixedSubplots() {
     VolcanoData rows = generate_data(500);
 
-    auto trace1 = Scatter3D()
-                      .x(rows.status)
-                      .y(rows.type)
-                      .z(rows.elev)
-                      .marker([&](auto& m) {
-                          m.size(2).color(rows.elev).colorscale("Reds").line([](auto& l) { l.color("transparent"); });
-                      })
-                      .mode({Scatter3D::Mode::Markers})
-                      .text(rows.country)
-                      .hoverinfo({Scatter3D::Hoverinfo::X, Scatter3D::Hoverinfo::Y, Scatter3D::Hoverinfo::Z,
-                                  Scatter3D::Hoverinfo::Text})
-                      .showlegend(false);
+    auto trace1 =
+        Scatter3D()
+            .x(rows.status)
+            .y(rows.type)
+            .z(rows.elev)
+            .marker([&](auto& m) {
+                // m.size(2).color(rows.elev).colorscale("Reds").line([](auto& l) { l.color("transparent");
+                // });
+                m.size(2).color(rows.elev).colorscale("Reds").line([](auto& l) { l.color("rgba(0, 0, 0, 0)"); });
+            })
+            .mode({Scatter3D::Mode::Markers})
+            .text(rows.country)
+            .hoverinfo(
+                {Scatter3D::Hoverinfo::X, Scatter3D::Hoverinfo::Y, Scatter3D::Hoverinfo::Z, Scatter3D::Hoverinfo::Text})
+            .showlegend(false);
 
     auto trace2 = Histogram()
                       .x(rows.elev)

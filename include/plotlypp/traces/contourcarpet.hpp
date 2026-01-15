@@ -33,20 +33,17 @@ class Contourcarpet : public Trace {
         Array,
         Scaled,
     };
-    static std::string to_string(Atype e);
 
     enum class Btype {
         Array,
         Scaled,
     };
-    static std::string to_string(Btype e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Colorbar;
     class Contours;
@@ -298,19 +295,16 @@ class Contourcarpet::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -318,7 +312,6 @@ class Contourcarpet::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -326,7 +319,6 @@ class Contourcarpet::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -334,20 +326,17 @@ class Contourcarpet::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -361,47 +350,40 @@ class Contourcarpet::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -653,7 +635,6 @@ class Contourcarpet::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -661,7 +642,6 @@ class Contourcarpet::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -671,7 +651,6 @@ class Contourcarpet::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contourcarpet::Colorbar::Tickfont& color(std::string f);
     Contourcarpet::Colorbar::Tickfont& color(double f);
@@ -766,7 +745,6 @@ class Contourcarpet::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -809,7 +787,6 @@ class Contourcarpet::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -817,7 +794,6 @@ class Contourcarpet::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -827,7 +803,6 @@ class Contourcarpet::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contourcarpet::Colorbar::Title::Font& color(std::string f);
     Contourcarpet::Colorbar::Title::Font& color(double f);
@@ -886,13 +861,11 @@ class Contourcarpet::Contours {
         Lines,
         None,
     };
-    static std::string to_string(Coloring e);
 
     enum class Type {
         Levels,
         Constraint,
     };
-    static std::string to_string(Type e);
 
     class Impliededits;
     // Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default
@@ -990,7 +963,6 @@ class Contourcarpet::Contours::Labelfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -998,7 +970,6 @@ class Contourcarpet::Contours::Labelfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1008,7 +979,6 @@ class Contourcarpet::Contours::Labelfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contourcarpet::Contours::Labelfont& color(std::string f);
     Contourcarpet::Contours::Labelfont& color(double f);
@@ -1099,7 +1069,6 @@ class Contourcarpet::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1107,7 +1076,6 @@ class Contourcarpet::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1117,7 +1085,6 @@ class Contourcarpet::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Contourcarpet::Legendgrouptitle::Font& color(std::string f);
     Contourcarpet::Legendgrouptitle::Font& color(double f);

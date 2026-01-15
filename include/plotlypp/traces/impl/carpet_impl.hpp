@@ -12,15 +12,6 @@
 
 namespace plotlypp {
 
-inline std::string Carpet::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 template <typename Range, typename>
 inline Carpet& Carpet::a(Range&& f) {
@@ -213,7 +204,11 @@ inline Carpet& Carpet::uirevision(T f) {
 }
 
 inline Carpet& Carpet::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -254,119 +249,6 @@ inline Carpet& Carpet::zorder(int f) {
     return *this;
 }
 
-inline std::string Carpet::Aaxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Cheatertype e) {
-    switch(e) {
-        case Cheatertype::Index: return "index";
-        case Cheatertype::Value: return "value";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Showticklabels e) {
-    switch(e) {
-        case Showticklabels::Start: return "start";
-        case Showticklabels::End: return "end";
-        case Showticklabels::Both: return "both";
-        case Showticklabels::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Carpet::Aaxis& Carpet::Aaxis::arraydtick(int f) {
     json["arraydtick"] = std::move(f);
@@ -379,12 +261,19 @@ inline Carpet::Aaxis& Carpet::Aaxis::arraytick0(int f) {
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
@@ -400,12 +289,20 @@ inline Carpet::Aaxis& Carpet::Aaxis::categoryarraysrc(std::string f) {
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::cheatertype(enum Cheatertype f) {
-    json["cheatertype"] = to_string(f);
+    switch(f) {
+        case Cheatertype::Index: json["cheatertype"] = "index"; break;
+        case Cheatertype::Value: json["cheatertype"] = "value"; break;
+    }
     return *this;
 }
 
@@ -443,7 +340,13 @@ inline Carpet::Aaxis& Carpet::Aaxis::endlinewidth(double f) {
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -558,7 +461,11 @@ inline Carpet::Aaxis& Carpet::Aaxis::range(const std::vector<std::vector<double>
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -568,7 +475,12 @@ inline Carpet::Aaxis& Carpet::Aaxis::separatethousands(bool f) {
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -583,17 +495,32 @@ inline Carpet::Aaxis& Carpet::Aaxis::showline(bool f) {
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::showticklabels(enum Showticklabels f) {
-    json["showticklabels"] = to_string(f);
+    switch(f) {
+        case Showticklabels::Start: json["showticklabels"] = "start"; break;
+        case Showticklabels::End: json["showticklabels"] = "end"; break;
+        case Showticklabels::Both: json["showticklabels"] = "both"; break;
+        case Showticklabels::None: json["showticklabels"] = "none"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -655,7 +582,10 @@ inline Carpet::Aaxis& Carpet::Aaxis::tickformatstops(const std::vector<Tickforma
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -703,7 +633,12 @@ inline Carpet::Aaxis& Carpet::Aaxis::title(Callable&& c) {
 }
 
 inline Carpet::Aaxis& Carpet::Aaxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -720,36 +655,6 @@ inline std::string Carpet::Aaxis::Tickfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Carpet::Aaxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::color(std::string f) {
@@ -786,17 +691,32 @@ inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::size(double f) {
 }
 
 inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis::Tickfont& Carpet::Aaxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -879,36 +799,6 @@ inline std::string Carpet::Aaxis::Title::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Carpet::Aaxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Aaxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -944,17 +834,32 @@ inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::size(double f) {
 }
 
 inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -963,119 +868,6 @@ inline Carpet::Aaxis::Title::Font& Carpet::Aaxis::Title::Font::weight(int f) {
     return *this;
 }
 
-inline std::string Carpet::Baxis::to_string(Autorange e) {
-    switch(e) {
-        case Autorange::True: return "True";
-        case Autorange::False: return "False";
-        case Autorange::Reversed: return "reversed";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Autotypenumbers e) {
-    switch(e) {
-        case Autotypenumbers::ConvertTypes: return "convert types";
-        case Autotypenumbers::Strict: return "strict";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Categoryorder e) {
-    switch(e) {
-        case Categoryorder::Trace: return "trace";
-        case Categoryorder::CategoryAscending: return "category ascending";
-        case Categoryorder::CategoryDescending: return "category descending";
-        case Categoryorder::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Cheatertype e) {
-    switch(e) {
-        case Cheatertype::Index: return "index";
-        case Cheatertype::Value: return "value";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Rangemode e) {
-    switch(e) {
-        case Rangemode::Normal: return "normal";
-        case Rangemode::Tozero: return "tozero";
-        case Rangemode::Nonnegative: return "nonnegative";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Showticklabels e) {
-    switch(e) {
-        case Showticklabels::Start: return "start";
-        case Showticklabels::End: return "end";
-        case Showticklabels::Both: return "both";
-        case Showticklabels::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::to_string(Type e) {
-    switch(e) {
-        case Type::Hyphen: return "-";
-        case Type::Linear: return "linear";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Carpet::Baxis& Carpet::Baxis::arraydtick(int f) {
     json["arraydtick"] = std::move(f);
@@ -1088,12 +880,19 @@ inline Carpet::Baxis& Carpet::Baxis::arraytick0(int f) {
 }
 
 inline Carpet::Baxis& Carpet::Baxis::autorange(enum Autorange f) {
-    json["autorange"] = to_string(f);
+    switch(f) {
+        case Autorange::True: json["autorange"] = true; break;
+        case Autorange::False: json["autorange"] = false; break;
+        case Autorange::Reversed: json["autorange"] = "reversed"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis& Carpet::Baxis::autotypenumbers(enum Autotypenumbers f) {
-    json["autotypenumbers"] = to_string(f);
+    switch(f) {
+        case Autotypenumbers::ConvertTypes: json["autotypenumbers"] = "convert types"; break;
+        case Autotypenumbers::Strict: json["autotypenumbers"] = "strict"; break;
+    }
     return *this;
 }
 
@@ -1109,12 +908,20 @@ inline Carpet::Baxis& Carpet::Baxis::categoryarraysrc(std::string f) {
 }
 
 inline Carpet::Baxis& Carpet::Baxis::categoryorder(enum Categoryorder f) {
-    json["categoryorder"] = to_string(f);
+    switch(f) {
+        case Categoryorder::Trace: json["categoryorder"] = "trace"; break;
+        case Categoryorder::CategoryAscending: json["categoryorder"] = "category ascending"; break;
+        case Categoryorder::CategoryDescending: json["categoryorder"] = "category descending"; break;
+        case Categoryorder::Array: json["categoryorder"] = "array"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis& Carpet::Baxis::cheatertype(enum Cheatertype f) {
-    json["cheatertype"] = to_string(f);
+    switch(f) {
+        case Cheatertype::Index: json["cheatertype"] = "index"; break;
+        case Cheatertype::Value: json["cheatertype"] = "value"; break;
+    }
     return *this;
 }
 
@@ -1152,7 +959,13 @@ inline Carpet::Baxis& Carpet::Baxis::endlinewidth(double f) {
 }
 
 inline Carpet::Baxis& Carpet::Baxis::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -1267,7 +1080,11 @@ inline Carpet::Baxis& Carpet::Baxis::range(const std::vector<std::vector<double>
 }
 
 inline Carpet::Baxis& Carpet::Baxis::rangemode(enum Rangemode f) {
-    json["rangemode"] = to_string(f);
+    switch(f) {
+        case Rangemode::Normal: json["rangemode"] = "normal"; break;
+        case Rangemode::Tozero: json["rangemode"] = "tozero"; break;
+        case Rangemode::Nonnegative: json["rangemode"] = "nonnegative"; break;
+    }
     return *this;
 }
 
@@ -1277,7 +1094,12 @@ inline Carpet::Baxis& Carpet::Baxis::separatethousands(bool f) {
 }
 
 inline Carpet::Baxis& Carpet::Baxis::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1292,17 +1114,32 @@ inline Carpet::Baxis& Carpet::Baxis::showline(bool f) {
 }
 
 inline Carpet::Baxis& Carpet::Baxis::showticklabels(enum Showticklabels f) {
-    json["showticklabels"] = to_string(f);
+    switch(f) {
+        case Showticklabels::Start: json["showticklabels"] = "start"; break;
+        case Showticklabels::End: json["showticklabels"] = "end"; break;
+        case Showticklabels::Both: json["showticklabels"] = "both"; break;
+        case Showticklabels::None: json["showticklabels"] = "none"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis& Carpet::Baxis::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis& Carpet::Baxis::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1364,7 +1201,10 @@ inline Carpet::Baxis& Carpet::Baxis::tickformatstops(const std::vector<Tickforma
 }
 
 inline Carpet::Baxis& Carpet::Baxis::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -1412,7 +1252,12 @@ inline Carpet::Baxis& Carpet::Baxis::title(Callable&& c) {
 }
 
 inline Carpet::Baxis& Carpet::Baxis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Hyphen: json["type"] = "-"; break;
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
@@ -1429,36 +1274,6 @@ inline std::string Carpet::Baxis::Tickfont::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Carpet::Baxis::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::color(std::string f) {
@@ -1495,17 +1310,32 @@ inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::size(double f) {
 }
 
 inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis::Tickfont& Carpet::Baxis::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1588,36 +1418,6 @@ inline std::string Carpet::Baxis::Title::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Carpet::Baxis::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Baxis::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1653,17 +1453,32 @@ inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::size(double f) {
 }
 
 inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Carpet::Baxis::Title::Font& Carpet::Baxis::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1685,36 +1500,6 @@ inline std::string Carpet::Font::to_string(LinepositionExtra e) {
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Carpet::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Carpet::Font& Carpet::Font::color(std::string f) {
@@ -1751,17 +1536,32 @@ inline Carpet::Font& Carpet::Font::size(double f) {
 }
 
 inline Carpet::Font& Carpet::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Carpet::Font& Carpet::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Carpet::Font& Carpet::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1801,36 +1601,6 @@ inline std::string Carpet::Legendgrouptitle::Font::to_string(LinepositionExtra e
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Carpet::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Carpet::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -1866,17 +1636,32 @@ inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::size(doub
 }
 
 inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Carpet::Legendgrouptitle::Font& Carpet::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 

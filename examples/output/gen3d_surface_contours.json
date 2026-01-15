@@ -1,0 +1,1 @@
+{"data":[{"contours":{"x":{"color":"white","end":2.0,"show":true,"size":0.04,"start":1.5},"z":{"end":0.8,"show":true,"size":0.05,"start":0.5}},"type":"surface","x":[1,2,3,4,5],"y":[1,2,3,4,5],"z":[[0,1,0,1,0],[1,0,1,0,1],[0,1,0,1,0],[1,0,1,0,1],[0,1,0,1,0]]}],"layout":null}

@@ -33,7 +33,6 @@ class Treemap : public Trace {
         Remainder,
         Total,
     };
-    static std::string to_string(Branchvalues e);
 
     enum class Count {
         Branches,
@@ -85,14 +84,12 @@ class Treemap : public Trace {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Domain;
     class Hoverlabel;
@@ -393,7 +390,6 @@ class Treemap::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -466,7 +462,6 @@ class Treemap::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -474,7 +469,6 @@ class Treemap::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -484,7 +478,6 @@ class Treemap::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Hoverlabel::Font& color(std::string f);
     Treemap::Hoverlabel::Font& color(double f);
@@ -590,7 +583,6 @@ class Treemap::Insidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -598,7 +590,6 @@ class Treemap::Insidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -608,7 +599,6 @@ class Treemap::Insidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Insidetextfont& color(std::string f);
     Treemap::Insidetextfont& color(double f);
@@ -735,7 +725,6 @@ class Treemap::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -743,7 +732,6 @@ class Treemap::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -753,7 +741,6 @@ class Treemap::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Legendgrouptitle::Font& color(std::string f);
     Treemap::Legendgrouptitle::Font& color(double f);
@@ -812,7 +799,6 @@ class Treemap::Marker {
         False,
         Reversed,
     };
-    static std::string to_string(Depthfade e);
 
     class Colorbar;
     class Line;
@@ -918,19 +904,16 @@ class Treemap::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -938,7 +921,6 @@ class Treemap::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -946,7 +928,6 @@ class Treemap::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -954,20 +935,17 @@ class Treemap::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -981,47 +959,40 @@ class Treemap::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1273,7 +1244,6 @@ class Treemap::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1281,7 +1251,6 @@ class Treemap::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1291,7 +1260,6 @@ class Treemap::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Marker::Colorbar::Tickfont& color(std::string f);
     Treemap::Marker::Colorbar::Tickfont& color(double f);
@@ -1386,7 +1354,6 @@ class Treemap::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1429,7 +1396,6 @@ class Treemap::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1437,7 +1403,6 @@ class Treemap::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1447,7 +1412,6 @@ class Treemap::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Marker::Colorbar::Title::Font& color(std::string f);
     Treemap::Marker::Colorbar::Title::Font& color(double f);
@@ -1554,7 +1518,6 @@ class Treemap::Marker::Pattern {
         Replace,
         Overlay,
     };
-    static std::string to_string(Fillmode e);
 
     // When there is no colorscale sets the color of background pattern fill. Defaults to a `marker.color` background
     // when `fillmode` is *overlay*. Otherwise, defaults to a transparent background.
@@ -1636,7 +1599,6 @@ class Treemap::Outsidetextfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1644,7 +1606,6 @@ class Treemap::Outsidetextfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1654,7 +1615,6 @@ class Treemap::Outsidetextfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Outsidetextfont& color(std::string f);
     Treemap::Outsidetextfont& color(double f);
@@ -1751,13 +1711,11 @@ class Treemap::Pathbar {
         Slash,
         Doublebackslash,
     };
-    static std::string to_string(Edgeshape e);
 
     enum class Side {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets the font used inside `pathbar`.
     class Textfont;
@@ -1808,7 +1766,6 @@ class Treemap::Pathbar::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1816,7 +1773,6 @@ class Treemap::Pathbar::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1826,7 +1782,6 @@ class Treemap::Pathbar::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Pathbar::Textfont& color(std::string f);
     Treemap::Pathbar::Textfont& color(double f);
@@ -1965,7 +1920,6 @@ class Treemap::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1973,7 +1927,6 @@ class Treemap::Textfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1983,7 +1936,6 @@ class Treemap::Textfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Treemap::Textfont& color(std::string f);
     Treemap::Textfont& color(double f);
@@ -2087,7 +2039,6 @@ class Treemap::Tiling {
         SliceDice,
         DiceSlice,
     };
-    static std::string to_string(Packing e);
 
     // Determines if the positions obtained from solver are flipped on each axis.
     // - Default:

@@ -34,7 +34,6 @@ class Mesh3D : public Trace {
         Y,
         Z,
     };
-    static std::string to_string(Delaunayaxis e);
 
     enum class Hoverinfo {
         X,
@@ -55,14 +54,12 @@ class Mesh3D : public Trace {
         Vertex,
         Cell,
     };
-    static std::string to_string(Intensitymode e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -82,7 +79,6 @@ class Mesh3D : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Ycalendar {
         Chinese,
@@ -102,7 +98,6 @@ class Mesh3D : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Ycalendar e);
 
     enum class Zcalendar {
         Chinese,
@@ -122,7 +117,6 @@ class Mesh3D : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Zcalendar e);
 
     class Colorbar;
     class Contour;
@@ -488,19 +482,16 @@ class Mesh3D::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -508,7 +499,6 @@ class Mesh3D::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -516,7 +506,6 @@ class Mesh3D::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -524,20 +513,17 @@ class Mesh3D::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -551,47 +537,40 @@ class Mesh3D::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -843,7 +822,6 @@ class Mesh3D::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -851,7 +829,6 @@ class Mesh3D::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -861,7 +838,6 @@ class Mesh3D::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Mesh3D::Colorbar::Tickfont& color(std::string f);
     Mesh3D::Colorbar::Tickfont& color(double f);
@@ -956,7 +932,6 @@ class Mesh3D::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -999,7 +974,6 @@ class Mesh3D::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1007,7 +981,6 @@ class Mesh3D::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1017,7 +990,6 @@ class Mesh3D::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Mesh3D::Colorbar::Title::Font& color(std::string f);
     Mesh3D::Colorbar::Title::Font& color(double f);
@@ -1096,7 +1068,6 @@ class Mesh3D::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -1169,7 +1140,6 @@ class Mesh3D::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1177,7 +1147,6 @@ class Mesh3D::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1187,7 +1156,6 @@ class Mesh3D::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Mesh3D::Hoverlabel::Font& color(std::string f);
     Mesh3D::Hoverlabel::Font& color(double f);
@@ -1314,7 +1282,6 @@ class Mesh3D::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1322,7 +1289,6 @@ class Mesh3D::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1332,7 +1298,6 @@ class Mesh3D::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Mesh3D::Legendgrouptitle::Font& color(std::string f);
     Mesh3D::Legendgrouptitle::Font& color(double f);

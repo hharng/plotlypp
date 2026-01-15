@@ -33,7 +33,6 @@ class Scattermap : public Trace {
         None,
         Toself,
     };
-    static std::string to_string(Fill e);
 
     enum class Hoverinfo {
         Lon,
@@ -71,14 +70,12 @@ class Scattermap : public Trace {
         BottomCenter,
         BottomRight,
     };
-    static std::string to_string(Textposition e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Cluster;
     class Hoverlabel;
@@ -384,7 +381,6 @@ class Scattermap::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -457,7 +453,6 @@ class Scattermap::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -465,7 +460,6 @@ class Scattermap::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -475,7 +469,6 @@ class Scattermap::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattermap::Hoverlabel::Font& color(std::string f);
     Scattermap::Hoverlabel::Font& color(double f);
@@ -602,7 +595,6 @@ class Scattermap::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -610,7 +602,6 @@ class Scattermap::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -620,7 +611,6 @@ class Scattermap::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattermap::Legendgrouptitle::Font& color(std::string f);
     Scattermap::Legendgrouptitle::Font& color(double f);
@@ -695,7 +685,6 @@ class Scattermap::Marker {
         Diameter,
         Area,
     };
-    static std::string to_string(Sizemode e);
 
     class Colorbar;
 
@@ -823,19 +812,16 @@ class Scattermap::Marker::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -843,7 +829,6 @@ class Scattermap::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -851,7 +836,6 @@ class Scattermap::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -859,20 +843,17 @@ class Scattermap::Marker::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -886,47 +867,40 @@ class Scattermap::Marker::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -1178,7 +1152,6 @@ class Scattermap::Marker::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1186,7 +1159,6 @@ class Scattermap::Marker::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1196,7 +1168,6 @@ class Scattermap::Marker::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattermap::Marker::Colorbar::Tickfont& color(std::string f);
     Scattermap::Marker::Colorbar::Tickfont& color(double f);
@@ -1291,7 +1262,6 @@ class Scattermap::Marker::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1334,7 +1304,6 @@ class Scattermap::Marker::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1342,7 +1311,6 @@ class Scattermap::Marker::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1352,7 +1320,6 @@ class Scattermap::Marker::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Scattermap::Marker::Colorbar::Title::Font& color(std::string f);
     Scattermap::Marker::Colorbar::Title::Font& color(double f);
@@ -1466,7 +1433,6 @@ class Scattermap::Textfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     Scattermap::Textfont& color(std::string f);
     Scattermap::Textfont& color(double f);

@@ -33,14 +33,12 @@ class Parcoords : public Trace {
         Top,
         Bottom,
     };
-    static std::string to_string(Labelside e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Dimension;
     class Domain;
@@ -298,7 +296,6 @@ class Parcoords::Labelfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -306,7 +303,6 @@ class Parcoords::Labelfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -316,7 +312,6 @@ class Parcoords::Labelfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Parcoords::Labelfont& color(std::string f);
     Parcoords::Labelfont& color(double f);
@@ -407,7 +402,6 @@ class Parcoords::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -415,7 +409,6 @@ class Parcoords::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -425,7 +418,6 @@ class Parcoords::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Parcoords::Legendgrouptitle::Font& color(std::string f);
     Parcoords::Legendgrouptitle::Font& color(double f);
@@ -558,19 +550,16 @@ class Parcoords::Line::Colorbar {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Lenmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Lenmode e);
 
     enum class Orientation {
         H,
         V,
     };
-    static std::string to_string(Orientation e);
 
     enum class Showexponent {
         All,
@@ -578,7 +567,6 @@ class Parcoords::Line::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showtickprefix {
         All,
@@ -586,7 +574,6 @@ class Parcoords::Line::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -594,20 +581,17 @@ class Parcoords::Line::Colorbar {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Thicknessmode {
         Fraction,
         Pixels,
     };
-    static std::string to_string(Thicknessmode e);
 
     enum class Ticklabeloverflow {
         Allow,
         HidePastDiv,
         HidePastDomain,
     };
-    static std::string to_string(Ticklabeloverflow e);
 
     enum class Ticklabelposition {
         Outside,
@@ -621,47 +605,40 @@ class Parcoords::Line::Colorbar {
         OutsideBottom,
         InsideBottom,
     };
-    static std::string to_string(Ticklabelposition e);
 
     enum class Tickmode {
         Auto,
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Ticks {
         Outside,
         Inside,
         Empty,
     };
-    static std::string to_string(Ticks e);
 
     enum class Xanchor {
         Left,
         Center,
         Right,
     };
-    static std::string to_string(Xanchor e);
 
     enum class Xref {
         Container,
         Paper,
     };
-    static std::string to_string(Xref e);
 
     enum class Yanchor {
         Top,
         Middle,
         Bottom,
     };
-    static std::string to_string(Yanchor e);
 
     enum class Yref {
         Container,
         Paper,
     };
-    static std::string to_string(Yref e);
 
     // Sets the color bar's tick label font
     class Tickfont;
@@ -913,7 +890,6 @@ class Parcoords::Line::Colorbar::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -921,7 +897,6 @@ class Parcoords::Line::Colorbar::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -931,7 +906,6 @@ class Parcoords::Line::Colorbar::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Parcoords::Line::Colorbar::Tickfont& color(std::string f);
     Parcoords::Line::Colorbar::Tickfont& color(double f);
@@ -1026,7 +1000,6 @@ class Parcoords::Line::Colorbar::Title {
         Top,
         Bottom,
     };
-    static std::string to_string(Side e);
 
     // Sets this color bar's title font.
     class Font;
@@ -1069,7 +1042,6 @@ class Parcoords::Line::Colorbar::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1077,7 +1049,6 @@ class Parcoords::Line::Colorbar::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1087,7 +1058,6 @@ class Parcoords::Line::Colorbar::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Parcoords::Line::Colorbar::Title::Font& color(std::string f);
     Parcoords::Line::Colorbar::Title::Font& color(double f);
@@ -1157,7 +1127,6 @@ class Parcoords::Rangefont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1165,7 +1134,6 @@ class Parcoords::Rangefont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1175,7 +1143,6 @@ class Parcoords::Rangefont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Parcoords::Rangefont& color(std::string f);
     Parcoords::Rangefont& color(double f);
@@ -1263,7 +1230,6 @@ class Parcoords::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1271,7 +1237,6 @@ class Parcoords::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1281,7 +1246,6 @@ class Parcoords::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Parcoords::Tickfont& color(std::string f);
     Parcoords::Tickfont& color(double f);

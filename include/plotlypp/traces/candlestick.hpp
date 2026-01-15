@@ -49,7 +49,6 @@ class Candlestick : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -69,14 +68,12 @@ class Candlestick : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     class Decreasing;
     class Hoverlabel;
@@ -355,7 +352,6 @@ class Candlestick::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -431,7 +427,6 @@ class Candlestick::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -439,7 +434,6 @@ class Candlestick::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -449,7 +443,6 @@ class Candlestick::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Candlestick::Hoverlabel::Font& color(std::string f);
     Candlestick::Hoverlabel::Font& color(double f);
@@ -614,7 +607,6 @@ class Candlestick::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -622,7 +614,6 @@ class Candlestick::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -632,7 +623,6 @@ class Candlestick::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Candlestick::Legendgrouptitle::Font& color(std::string f);
     Candlestick::Legendgrouptitle::Font& color(double f);

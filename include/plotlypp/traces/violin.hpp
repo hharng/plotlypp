@@ -59,7 +59,6 @@ class Violin : public Trace {
         V,
         H,
     };
-    static std::string to_string(Orientation e);
 
     enum class Points {
         All,
@@ -67,41 +66,35 @@ class Violin : public Trace {
         Suspectedoutliers,
         False,
     };
-    static std::string to_string(Points e);
 
     enum class Quartilemethod {
         Linear,
         Exclusive,
         Inclusive,
     };
-    static std::string to_string(Quartilemethod e);
 
     enum class Scalemode {
         Width,
         Count,
     };
-    static std::string to_string(Scalemode e);
 
     enum class Side {
         Both,
         Positive,
         Negative,
     };
-    static std::string to_string(Side e);
 
     enum class Spanmode {
         Soft,
         Hard,
         Manual,
     };
-    static std::string to_string(Spanmode e);
 
     enum class Visible {
         True,
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Box;
     class Hoverlabel;
@@ -478,7 +471,6 @@ class Violin::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -551,7 +543,6 @@ class Violin::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -559,7 +550,6 @@ class Violin::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -569,7 +559,6 @@ class Violin::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Violin::Hoverlabel::Font& color(std::string f);
     Violin::Hoverlabel::Font& color(double f);
@@ -696,7 +685,6 @@ class Violin::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -704,7 +692,6 @@ class Violin::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -714,7 +701,6 @@ class Violin::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Violin::Legendgrouptitle::Font& color(std::string f);
     Violin::Legendgrouptitle::Font& color(double f);
@@ -1111,7 +1097,6 @@ class Violin::Marker {
         Num_154,
         ArrowWideOpen,
     };
-    static std::string to_string(Symbol e);
 
     class Line;
 

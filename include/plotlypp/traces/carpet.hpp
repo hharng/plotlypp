@@ -34,7 +34,6 @@ class Carpet : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Aaxis;
     class Baxis;
@@ -213,13 +212,11 @@ class Carpet::Aaxis {
         False,
         Reversed,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Categoryorder {
         Trace,
@@ -227,13 +224,11 @@ class Carpet::Aaxis {
         CategoryDescending,
         Array,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Cheatertype {
         Index,
         Value,
     };
-    static std::string to_string(Cheatertype e);
 
     enum class Exponentformat {
         None,
@@ -242,14 +237,12 @@ class Carpet::Aaxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -257,7 +250,6 @@ class Carpet::Aaxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showticklabels {
         Start,
@@ -265,7 +257,6 @@ class Carpet::Aaxis {
         Both,
         None,
     };
-    static std::string to_string(Showticklabels e);
 
     enum class Showtickprefix {
         All,
@@ -273,7 +264,6 @@ class Carpet::Aaxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -281,13 +271,11 @@ class Carpet::Aaxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Type {
         Hyphen,
@@ -295,7 +283,6 @@ class Carpet::Aaxis {
         Date,
         Category,
     };
-    static std::string to_string(Type e);
 
     // Sets the tick font.
     class Tickfont;
@@ -561,7 +548,6 @@ class Carpet::Aaxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -569,7 +555,6 @@ class Carpet::Aaxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -579,7 +564,6 @@ class Carpet::Aaxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Carpet::Aaxis::Tickfont& color(std::string f);
     Carpet::Aaxis::Tickfont& color(double f);
@@ -709,7 +693,6 @@ class Carpet::Aaxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -717,7 +700,6 @@ class Carpet::Aaxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -727,7 +709,6 @@ class Carpet::Aaxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Carpet::Aaxis::Title::Font& color(std::string f);
     Carpet::Aaxis::Title::Font& color(double f);
@@ -786,13 +767,11 @@ class Carpet::Baxis {
         False,
         Reversed,
     };
-    static std::string to_string(Autorange e);
 
     enum class Autotypenumbers {
         ConvertTypes,
         Strict,
     };
-    static std::string to_string(Autotypenumbers e);
 
     enum class Categoryorder {
         Trace,
@@ -800,13 +779,11 @@ class Carpet::Baxis {
         CategoryDescending,
         Array,
     };
-    static std::string to_string(Categoryorder e);
 
     enum class Cheatertype {
         Index,
         Value,
     };
-    static std::string to_string(Cheatertype e);
 
     enum class Exponentformat {
         None,
@@ -815,14 +792,12 @@ class Carpet::Baxis {
         Si,
         B,
     };
-    static std::string to_string(Exponentformat e);
 
     enum class Rangemode {
         Normal,
         Tozero,
         Nonnegative,
     };
-    static std::string to_string(Rangemode e);
 
     enum class Showexponent {
         All,
@@ -830,7 +805,6 @@ class Carpet::Baxis {
         Last,
         None,
     };
-    static std::string to_string(Showexponent e);
 
     enum class Showticklabels {
         Start,
@@ -838,7 +812,6 @@ class Carpet::Baxis {
         Both,
         None,
     };
-    static std::string to_string(Showticklabels e);
 
     enum class Showtickprefix {
         All,
@@ -846,7 +819,6 @@ class Carpet::Baxis {
         Last,
         None,
     };
-    static std::string to_string(Showtickprefix e);
 
     enum class Showticksuffix {
         All,
@@ -854,13 +826,11 @@ class Carpet::Baxis {
         Last,
         None,
     };
-    static std::string to_string(Showticksuffix e);
 
     enum class Tickmode {
         Linear,
         Array,
     };
-    static std::string to_string(Tickmode e);
 
     enum class Type {
         Hyphen,
@@ -868,7 +838,6 @@ class Carpet::Baxis {
         Date,
         Category,
     };
-    static std::string to_string(Type e);
 
     // Sets the tick font.
     class Tickfont;
@@ -1134,7 +1103,6 @@ class Carpet::Baxis::Tickfont {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1142,7 +1110,6 @@ class Carpet::Baxis::Tickfont {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1152,7 +1119,6 @@ class Carpet::Baxis::Tickfont {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Carpet::Baxis::Tickfont& color(std::string f);
     Carpet::Baxis::Tickfont& color(double f);
@@ -1282,7 +1248,6 @@ class Carpet::Baxis::Title::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1290,7 +1255,6 @@ class Carpet::Baxis::Title::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1300,7 +1264,6 @@ class Carpet::Baxis::Title::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Carpet::Baxis::Title::Font& color(std::string f);
     Carpet::Baxis::Title::Font& color(double f);
@@ -1370,7 +1333,6 @@ class Carpet::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1378,7 +1340,6 @@ class Carpet::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1388,7 +1349,6 @@ class Carpet::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Carpet::Font& color(std::string f);
     Carpet::Font& color(double f);
@@ -1479,7 +1439,6 @@ class Carpet::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -1487,7 +1446,6 @@ class Carpet::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -1497,7 +1455,6 @@ class Carpet::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Carpet::Legendgrouptitle::Font& color(std::string f);
     Carpet::Legendgrouptitle::Font& color(double f);

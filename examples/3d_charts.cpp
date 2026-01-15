@@ -122,13 +122,13 @@ Figure gen3dLineSpiral() {
     std::vector<double> x;
     std::vector<double> y;
     std::vector<double> z;
-    std::vector<std::string> c;
+    std::vector<double> c;
     for (int i = 0; i < point_count; i++) {
         double r = i * (point_count - i);
         x.push_back(r * std::cos(i / 30.0));
         y.push_back(r * std::sin(i / 30.0));
         z.push_back(i);
-        c.push_back(std::to_string(i));
+        c.push_back(i);
     }
     return Figure().addTrace(Scatter3D()
                                  .x(x)
@@ -151,16 +151,13 @@ Figure gen3dScatterWithColorscalingAndMarkerStyling() {
         y.push_back(std::sin(t_val));
     }
 
-    std::vector<std::string> colors(t.size());
-    std::transform(t.begin(), t.end(), colors.begin(), [](auto e) { return std::to_string(e); });
-
     return Figure()
         .addTrace(Scatter3D()
                       .x(x)
                       .y(y)
                       .z(t)
                       .mode({Scatter3D::Mode::Markers})
-                      .marker(Scatter3D::Marker().size(12).color(colors).colorscale("Viridis").opacity(0.8)))
+                      .marker(Scatter3D::Marker().size(12).color(t).colorscale("Viridis").opacity(0.8)))
         .setLayout(Layout().margin(Layout::Margin().l(0).r(0).b(0).t(0)));
 }
 

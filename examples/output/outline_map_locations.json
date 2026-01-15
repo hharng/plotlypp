@@ -1,0 +1,1 @@
+{"data":[{"colorscale":"Viridis","locationmode":"ISO-3","locations":["USA","CAN","MEX","BRA","RUS"],"type":"choropleth","z":[100,85,72,95,68]}],"layout":{"geo":{"projection":{"type":"natural earth"}},"title":{"text":"Choropleth with ISO-3 Country Codes"}}}

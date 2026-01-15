@@ -49,7 +49,6 @@ class Ohlc : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     enum class Xcalendar {
         Chinese,
@@ -69,14 +68,12 @@ class Ohlc : public Trace {
         Thai,
         Ummalqura,
     };
-    static std::string to_string(Xcalendar e);
 
     enum class Xperiodalignment {
         Start,
         Middle,
         End,
     };
-    static std::string to_string(Xperiodalignment e);
 
     class Decreasing;
     class Hoverlabel;
@@ -353,7 +350,6 @@ class Ohlc::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -429,7 +425,6 @@ class Ohlc::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -437,7 +432,6 @@ class Ohlc::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -447,7 +441,6 @@ class Ohlc::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Ohlc::Hoverlabel::Font& color(std::string f);
     Ohlc::Hoverlabel::Font& color(double f);
@@ -611,7 +604,6 @@ class Ohlc::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -619,7 +611,6 @@ class Ohlc::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -629,7 +620,6 @@ class Ohlc::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Ohlc::Legendgrouptitle::Font& color(std::string f);
     Ohlc::Legendgrouptitle::Font& color(double f);

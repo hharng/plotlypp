@@ -49,7 +49,6 @@ class Table : public Trace {
         False,
         Legendonly,
     };
-    static std::string to_string(Visible e);
 
     class Cells;
     class Domain;
@@ -188,7 +187,6 @@ class Table::Cells {
         Center,
         Right,
     };
-    static std::string to_string(Align e);
 
     class Fill;
     class Font;
@@ -293,7 +291,6 @@ class Table::Cells::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -301,7 +298,6 @@ class Table::Cells::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -311,7 +307,6 @@ class Table::Cells::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Table::Cells::Font& color(std::string f);
     Table::Cells::Font& color(double f);
@@ -458,7 +453,6 @@ class Table::Header {
         Center,
         Right,
     };
-    static std::string to_string(Align e);
 
     class Fill;
     class Font;
@@ -563,7 +557,6 @@ class Table::Header::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -571,7 +564,6 @@ class Table::Header::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -581,7 +573,6 @@ class Table::Header::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Table::Header::Font& color(std::string f);
     Table::Header::Font& color(double f);
@@ -700,7 +691,6 @@ class Table::Hoverlabel {
         Right,
         Auto,
     };
-    static std::string to_string(Align e);
 
     // Sets the font used in hover labels.
     class Font;
@@ -773,7 +763,6 @@ class Table::Hoverlabel::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -781,7 +770,6 @@ class Table::Hoverlabel::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -791,7 +779,6 @@ class Table::Hoverlabel::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Table::Hoverlabel::Font& color(std::string f);
     Table::Hoverlabel::Font& color(double f);
@@ -918,7 +905,6 @@ class Table::Legendgrouptitle::Font {
         Normal,
         Italic,
     };
-    static std::string to_string(Style e);
 
     enum class Textcase {
         Normal,
@@ -926,7 +912,6 @@ class Table::Legendgrouptitle::Font {
         Upper,
         Lower,
     };
-    static std::string to_string(Textcase e);
 
     enum class Variant {
         Normal,
@@ -936,7 +921,6 @@ class Table::Legendgrouptitle::Font {
         PetiteCaps,
         Unicase,
     };
-    static std::string to_string(Variant e);
 
     Table::Legendgrouptitle::Font& color(std::string f);
     Table::Legendgrouptitle::Font& color(double f);

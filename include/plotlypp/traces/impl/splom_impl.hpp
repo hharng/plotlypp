@@ -30,15 +30,6 @@ inline std::string Splom::to_string(HoverinfoExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for hoverinfo."};
 }
-inline std::string Splom::to_string(Visible e) {
-    switch(e) {
-        case Visible::True: return "True";
-        case Visible::False: return "False";
-        case Visible::Legendonly: return "legendonly";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 template <typename Range, typename>
 inline Splom& Splom::customdata(Range&& f) {
@@ -281,7 +272,11 @@ inline Splom& Splom::unselected(Callable&& c) {
 }
 
 inline Splom& Splom::visible(enum Visible f) {
-    json["visible"] = to_string(f);
+    switch(f) {
+        case Visible::True: json["visible"] = true; break;
+        case Visible::False: json["visible"] = false; break;
+        case Visible::Legendonly: json["visible"] = "legendonly"; break;
+    }
     return *this;
 }
 
@@ -378,16 +373,6 @@ inline Splom::Dimension& Splom::Dimension::visible(bool f) {
     return *this;
 }
 
-inline std::string Splom::Dimension::Axis::to_string(Type e) {
-    switch(e) {
-        case Type::Linear: return "linear";
-        case Type::Log: return "log";
-        case Type::Date: return "date";
-        case Type::Category: return "category";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Dimension::Axis& Splom::Dimension::Axis::matches(bool f) {
     json["matches"] = std::move(f);
@@ -395,28 +380,34 @@ inline Splom::Dimension::Axis& Splom::Dimension::Axis::matches(bool f) {
 }
 
 inline Splom::Dimension::Axis& Splom::Dimension::Axis::type(enum Type f) {
-    json["type"] = to_string(f);
+    switch(f) {
+        case Type::Linear: json["type"] = "linear"; break;
+        case Type::Log: json["type"] = "log"; break;
+        case Type::Date: json["type"] = "date"; break;
+        case Type::Category: json["type"] = "category"; break;
+    }
     return *this;
 }
 
-inline std::string Splom::Hoverlabel::to_string(Align e) {
-    switch(e) {
-        case Align::Left: return "left";
-        case Align::Right: return "right";
-        case Align::Auto: return "auto";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Hoverlabel& Splom::Hoverlabel::align(enum Align f) {
-    json["align"] = to_string(f);
+    switch(f) {
+        case Align::Left: json["align"] = "left"; break;
+        case Align::Right: json["align"] = "right"; break;
+        case Align::Auto: json["align"] = "auto"; break;
+    }
     return *this;
 }
 inline Splom::Hoverlabel& Splom::Hoverlabel::align(const std::vector<enum Align>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["align"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Align::Left: arr.push_back("left"); break;
+            case Align::Right: arr.push_back("right"); break;
+            case Align::Auto: arr.push_back("auto"); break;
+        }
+    }
+    json["align"] = std::move(arr);
     return *this;
 }
 
@@ -508,36 +499,6 @@ inline std::string Splom::Hoverlabel::Font::to_string(LinepositionExtra e) {
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Splom::Hoverlabel::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Hoverlabel::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Hoverlabel::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -618,13 +579,21 @@ inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::sizesrc(std::string f) 
 }
 
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::style(const std::vector<enum Style>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["style"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Style::Normal: arr.push_back("normal"); break;
+            case Style::Italic: arr.push_back("italic"); break;
+        }
+    }
+    json["style"] = std::move(arr);
     return *this;
 }
 
@@ -634,13 +603,25 @@ inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::stylesrc(std::string f)
 }
 
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::textcase(const std::vector<enum Textcase>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["textcase"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Textcase::Normal: arr.push_back("normal"); break;
+            case Textcase::WordCaps: arr.push_back("word caps"); break;
+            case Textcase::Upper: arr.push_back("upper"); break;
+            case Textcase::Lower: arr.push_back("lower"); break;
+        }
+    }
+    json["textcase"] = std::move(arr);
     return *this;
 }
 
@@ -650,13 +631,29 @@ inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::textcasesrc(std::string
 }
 
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 inline Splom::Hoverlabel::Font& Splom::Hoverlabel::Font::variant(const std::vector<enum Variant>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["variant"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Variant::Normal: arr.push_back("normal"); break;
+            case Variant::SmallCaps: arr.push_back("small-caps"); break;
+            case Variant::AllSmallCaps: arr.push_back("all-small-caps"); break;
+            case Variant::AllPetiteCaps: arr.push_back("all-petite-caps"); break;
+            case Variant::PetiteCaps: arr.push_back("petite-caps"); break;
+            case Variant::Unicase: arr.push_back("unicase"); break;
+        }
+    }
+    json["variant"] = std::move(arr);
     return *this;
 }
 
@@ -710,36 +707,6 @@ inline std::string Splom::Legendgrouptitle::Font::to_string(LinepositionExtra e)
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
 }
-inline std::string Splom::Legendgrouptitle::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Legendgrouptitle::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Legendgrouptitle::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Legendgrouptitle::Font& Splom::Legendgrouptitle::Font::color(std::string f) {
     json["color"] = std::move(f);
@@ -775,17 +742,32 @@ inline Splom::Legendgrouptitle::Font& Splom::Legendgrouptitle::Font::size(double
 }
 
 inline Splom::Legendgrouptitle::Font& Splom::Legendgrouptitle::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Splom::Legendgrouptitle::Font& Splom::Legendgrouptitle::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Splom::Legendgrouptitle::Font& Splom::Legendgrouptitle::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -794,344 +776,6 @@ inline Splom::Legendgrouptitle::Font& Splom::Legendgrouptitle::Font::weight(int 
     return *this;
 }
 
-inline std::string Splom::Marker::to_string(Sizemode e) {
-    switch(e) {
-        case Sizemode::Diameter: return "diameter";
-        case Sizemode::Area: return "area";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::to_string(Symbol e) {
-    switch(e) {
-        case Symbol::Num_0: return "0";
-        case Symbol::Circle: return "circle";
-        case Symbol::Num_100: return "100";
-        case Symbol::CircleOpen: return "circle-open";
-        case Symbol::Num_200: return "200";
-        case Symbol::CircleDot: return "circle-dot";
-        case Symbol::Num_300: return "300";
-        case Symbol::CircleOpenDot: return "circle-open-dot";
-        case Symbol::Num_1: return "1";
-        case Symbol::Square: return "square";
-        case Symbol::Num_101: return "101";
-        case Symbol::SquareOpen: return "square-open";
-        case Symbol::Num_201: return "201";
-        case Symbol::SquareDot: return "square-dot";
-        case Symbol::Num_301: return "301";
-        case Symbol::SquareOpenDot: return "square-open-dot";
-        case Symbol::Num_2: return "2";
-        case Symbol::Diamond: return "diamond";
-        case Symbol::Num_102: return "102";
-        case Symbol::DiamondOpen: return "diamond-open";
-        case Symbol::Num_202: return "202";
-        case Symbol::DiamondDot: return "diamond-dot";
-        case Symbol::Num_302: return "302";
-        case Symbol::DiamondOpenDot: return "diamond-open-dot";
-        case Symbol::Num_3: return "3";
-        case Symbol::Cross: return "cross";
-        case Symbol::Num_103: return "103";
-        case Symbol::CrossOpen: return "cross-open";
-        case Symbol::Num_203: return "203";
-        case Symbol::CrossDot: return "cross-dot";
-        case Symbol::Num_303: return "303";
-        case Symbol::CrossOpenDot: return "cross-open-dot";
-        case Symbol::Num_4: return "4";
-        case Symbol::X: return "x";
-        case Symbol::Num_104: return "104";
-        case Symbol::XOpen: return "x-open";
-        case Symbol::Num_204: return "204";
-        case Symbol::XDot: return "x-dot";
-        case Symbol::Num_304: return "304";
-        case Symbol::XOpenDot: return "x-open-dot";
-        case Symbol::Num_5: return "5";
-        case Symbol::TriangleUp: return "triangle-up";
-        case Symbol::Num_105: return "105";
-        case Symbol::TriangleUpOpen: return "triangle-up-open";
-        case Symbol::Num_205: return "205";
-        case Symbol::TriangleUpDot: return "triangle-up-dot";
-        case Symbol::Num_305: return "305";
-        case Symbol::TriangleUpOpenDot: return "triangle-up-open-dot";
-        case Symbol::Num_6: return "6";
-        case Symbol::TriangleDown: return "triangle-down";
-        case Symbol::Num_106: return "106";
-        case Symbol::TriangleDownOpen: return "triangle-down-open";
-        case Symbol::Num_206: return "206";
-        case Symbol::TriangleDownDot: return "triangle-down-dot";
-        case Symbol::Num_306: return "306";
-        case Symbol::TriangleDownOpenDot: return "triangle-down-open-dot";
-        case Symbol::Num_7: return "7";
-        case Symbol::TriangleLeft: return "triangle-left";
-        case Symbol::Num_107: return "107";
-        case Symbol::TriangleLeftOpen: return "triangle-left-open";
-        case Symbol::Num_207: return "207";
-        case Symbol::TriangleLeftDot: return "triangle-left-dot";
-        case Symbol::Num_307: return "307";
-        case Symbol::TriangleLeftOpenDot: return "triangle-left-open-dot";
-        case Symbol::Num_8: return "8";
-        case Symbol::TriangleRight: return "triangle-right";
-        case Symbol::Num_108: return "108";
-        case Symbol::TriangleRightOpen: return "triangle-right-open";
-        case Symbol::Num_208: return "208";
-        case Symbol::TriangleRightDot: return "triangle-right-dot";
-        case Symbol::Num_308: return "308";
-        case Symbol::TriangleRightOpenDot: return "triangle-right-open-dot";
-        case Symbol::Num_9: return "9";
-        case Symbol::TriangleNe: return "triangle-ne";
-        case Symbol::Num_109: return "109";
-        case Symbol::TriangleNeOpen: return "triangle-ne-open";
-        case Symbol::Num_209: return "209";
-        case Symbol::TriangleNeDot: return "triangle-ne-dot";
-        case Symbol::Num_309: return "309";
-        case Symbol::TriangleNeOpenDot: return "triangle-ne-open-dot";
-        case Symbol::Num_10: return "10";
-        case Symbol::TriangleSe: return "triangle-se";
-        case Symbol::Num_110: return "110";
-        case Symbol::TriangleSeOpen: return "triangle-se-open";
-        case Symbol::Num_210: return "210";
-        case Symbol::TriangleSeDot: return "triangle-se-dot";
-        case Symbol::Num_310: return "310";
-        case Symbol::TriangleSeOpenDot: return "triangle-se-open-dot";
-        case Symbol::Num_11: return "11";
-        case Symbol::TriangleSw: return "triangle-sw";
-        case Symbol::Num_111: return "111";
-        case Symbol::TriangleSwOpen: return "triangle-sw-open";
-        case Symbol::Num_211: return "211";
-        case Symbol::TriangleSwDot: return "triangle-sw-dot";
-        case Symbol::Num_311: return "311";
-        case Symbol::TriangleSwOpenDot: return "triangle-sw-open-dot";
-        case Symbol::Num_12: return "12";
-        case Symbol::TriangleNw: return "triangle-nw";
-        case Symbol::Num_112: return "112";
-        case Symbol::TriangleNwOpen: return "triangle-nw-open";
-        case Symbol::Num_212: return "212";
-        case Symbol::TriangleNwDot: return "triangle-nw-dot";
-        case Symbol::Num_312: return "312";
-        case Symbol::TriangleNwOpenDot: return "triangle-nw-open-dot";
-        case Symbol::Num_13: return "13";
-        case Symbol::Pentagon: return "pentagon";
-        case Symbol::Num_113: return "113";
-        case Symbol::PentagonOpen: return "pentagon-open";
-        case Symbol::Num_213: return "213";
-        case Symbol::PentagonDot: return "pentagon-dot";
-        case Symbol::Num_313: return "313";
-        case Symbol::PentagonOpenDot: return "pentagon-open-dot";
-        case Symbol::Num_14: return "14";
-        case Symbol::Hexagon: return "hexagon";
-        case Symbol::Num_114: return "114";
-        case Symbol::HexagonOpen: return "hexagon-open";
-        case Symbol::Num_214: return "214";
-        case Symbol::HexagonDot: return "hexagon-dot";
-        case Symbol::Num_314: return "314";
-        case Symbol::HexagonOpenDot: return "hexagon-open-dot";
-        case Symbol::Num_15: return "15";
-        case Symbol::Hexagon2: return "hexagon2";
-        case Symbol::Num_115: return "115";
-        case Symbol::Hexagon2Open: return "hexagon2-open";
-        case Symbol::Num_215: return "215";
-        case Symbol::Hexagon2Dot: return "hexagon2-dot";
-        case Symbol::Num_315: return "315";
-        case Symbol::Hexagon2OpenDot: return "hexagon2-open-dot";
-        case Symbol::Num_16: return "16";
-        case Symbol::Octagon: return "octagon";
-        case Symbol::Num_116: return "116";
-        case Symbol::OctagonOpen: return "octagon-open";
-        case Symbol::Num_216: return "216";
-        case Symbol::OctagonDot: return "octagon-dot";
-        case Symbol::Num_316: return "316";
-        case Symbol::OctagonOpenDot: return "octagon-open-dot";
-        case Symbol::Num_17: return "17";
-        case Symbol::Star: return "star";
-        case Symbol::Num_117: return "117";
-        case Symbol::StarOpen: return "star-open";
-        case Symbol::Num_217: return "217";
-        case Symbol::StarDot: return "star-dot";
-        case Symbol::Num_317: return "317";
-        case Symbol::StarOpenDot: return "star-open-dot";
-        case Symbol::Num_18: return "18";
-        case Symbol::Hexagram: return "hexagram";
-        case Symbol::Num_118: return "118";
-        case Symbol::HexagramOpen: return "hexagram-open";
-        case Symbol::Num_218: return "218";
-        case Symbol::HexagramDot: return "hexagram-dot";
-        case Symbol::Num_318: return "318";
-        case Symbol::HexagramOpenDot: return "hexagram-open-dot";
-        case Symbol::Num_19: return "19";
-        case Symbol::StarTriangleUp: return "star-triangle-up";
-        case Symbol::Num_119: return "119";
-        case Symbol::StarTriangleUpOpen: return "star-triangle-up-open";
-        case Symbol::Num_219: return "219";
-        case Symbol::StarTriangleUpDot: return "star-triangle-up-dot";
-        case Symbol::Num_319: return "319";
-        case Symbol::StarTriangleUpOpenDot: return "star-triangle-up-open-dot";
-        case Symbol::Num_20: return "20";
-        case Symbol::StarTriangleDown: return "star-triangle-down";
-        case Symbol::Num_120: return "120";
-        case Symbol::StarTriangleDownOpen: return "star-triangle-down-open";
-        case Symbol::Num_220: return "220";
-        case Symbol::StarTriangleDownDot: return "star-triangle-down-dot";
-        case Symbol::Num_320: return "320";
-        case Symbol::StarTriangleDownOpenDot: return "star-triangle-down-open-dot";
-        case Symbol::Num_21: return "21";
-        case Symbol::StarSquare: return "star-square";
-        case Symbol::Num_121: return "121";
-        case Symbol::StarSquareOpen: return "star-square-open";
-        case Symbol::Num_221: return "221";
-        case Symbol::StarSquareDot: return "star-square-dot";
-        case Symbol::Num_321: return "321";
-        case Symbol::StarSquareOpenDot: return "star-square-open-dot";
-        case Symbol::Num_22: return "22";
-        case Symbol::StarDiamond: return "star-diamond";
-        case Symbol::Num_122: return "122";
-        case Symbol::StarDiamondOpen: return "star-diamond-open";
-        case Symbol::Num_222: return "222";
-        case Symbol::StarDiamondDot: return "star-diamond-dot";
-        case Symbol::Num_322: return "322";
-        case Symbol::StarDiamondOpenDot: return "star-diamond-open-dot";
-        case Symbol::Num_23: return "23";
-        case Symbol::DiamondTall: return "diamond-tall";
-        case Symbol::Num_123: return "123";
-        case Symbol::DiamondTallOpen: return "diamond-tall-open";
-        case Symbol::Num_223: return "223";
-        case Symbol::DiamondTallDot: return "diamond-tall-dot";
-        case Symbol::Num_323: return "323";
-        case Symbol::DiamondTallOpenDot: return "diamond-tall-open-dot";
-        case Symbol::Num_24: return "24";
-        case Symbol::DiamondWide: return "diamond-wide";
-        case Symbol::Num_124: return "124";
-        case Symbol::DiamondWideOpen: return "diamond-wide-open";
-        case Symbol::Num_224: return "224";
-        case Symbol::DiamondWideDot: return "diamond-wide-dot";
-        case Symbol::Num_324: return "324";
-        case Symbol::DiamondWideOpenDot: return "diamond-wide-open-dot";
-        case Symbol::Num_25: return "25";
-        case Symbol::Hourglass: return "hourglass";
-        case Symbol::Num_125: return "125";
-        case Symbol::HourglassOpen: return "hourglass-open";
-        case Symbol::Num_26: return "26";
-        case Symbol::Bowtie: return "bowtie";
-        case Symbol::Num_126: return "126";
-        case Symbol::BowtieOpen: return "bowtie-open";
-        case Symbol::Num_27: return "27";
-        case Symbol::CircleCross: return "circle-cross";
-        case Symbol::Num_127: return "127";
-        case Symbol::CircleCrossOpen: return "circle-cross-open";
-        case Symbol::Num_28: return "28";
-        case Symbol::CircleX: return "circle-x";
-        case Symbol::Num_128: return "128";
-        case Symbol::CircleXOpen: return "circle-x-open";
-        case Symbol::Num_29: return "29";
-        case Symbol::SquareCross: return "square-cross";
-        case Symbol::Num_129: return "129";
-        case Symbol::SquareCrossOpen: return "square-cross-open";
-        case Symbol::Num_30: return "30";
-        case Symbol::SquareX: return "square-x";
-        case Symbol::Num_130: return "130";
-        case Symbol::SquareXOpen: return "square-x-open";
-        case Symbol::Num_31: return "31";
-        case Symbol::DiamondCross: return "diamond-cross";
-        case Symbol::Num_131: return "131";
-        case Symbol::DiamondCrossOpen: return "diamond-cross-open";
-        case Symbol::Num_32: return "32";
-        case Symbol::DiamondX: return "diamond-x";
-        case Symbol::Num_132: return "132";
-        case Symbol::DiamondXOpen: return "diamond-x-open";
-        case Symbol::Num_33: return "33";
-        case Symbol::CrossThin: return "cross-thin";
-        case Symbol::Num_133: return "133";
-        case Symbol::CrossThinOpen: return "cross-thin-open";
-        case Symbol::Num_34: return "34";
-        case Symbol::XThin: return "x-thin";
-        case Symbol::Num_134: return "134";
-        case Symbol::XThinOpen: return "x-thin-open";
-        case Symbol::Num_35: return "35";
-        case Symbol::Asterisk: return "asterisk";
-        case Symbol::Num_135: return "135";
-        case Symbol::AsteriskOpen: return "asterisk-open";
-        case Symbol::Num_36: return "36";
-        case Symbol::Hash: return "hash";
-        case Symbol::Num_136: return "136";
-        case Symbol::HashOpen: return "hash-open";
-        case Symbol::Num_236: return "236";
-        case Symbol::HashDot: return "hash-dot";
-        case Symbol::Num_336: return "336";
-        case Symbol::HashOpenDot: return "hash-open-dot";
-        case Symbol::Num_37: return "37";
-        case Symbol::YUp: return "y-up";
-        case Symbol::Num_137: return "137";
-        case Symbol::YUpOpen: return "y-up-open";
-        case Symbol::Num_38: return "38";
-        case Symbol::YDown: return "y-down";
-        case Symbol::Num_138: return "138";
-        case Symbol::YDownOpen: return "y-down-open";
-        case Symbol::Num_39: return "39";
-        case Symbol::YLeft: return "y-left";
-        case Symbol::Num_139: return "139";
-        case Symbol::YLeftOpen: return "y-left-open";
-        case Symbol::Num_40: return "40";
-        case Symbol::YRight: return "y-right";
-        case Symbol::Num_140: return "140";
-        case Symbol::YRightOpen: return "y-right-open";
-        case Symbol::Num_41: return "41";
-        case Symbol::LineEw: return "line-ew";
-        case Symbol::Num_141: return "141";
-        case Symbol::LineEwOpen: return "line-ew-open";
-        case Symbol::Num_42: return "42";
-        case Symbol::LineNs: return "line-ns";
-        case Symbol::Num_142: return "142";
-        case Symbol::LineNsOpen: return "line-ns-open";
-        case Symbol::Num_43: return "43";
-        case Symbol::LineNe: return "line-ne";
-        case Symbol::Num_143: return "143";
-        case Symbol::LineNeOpen: return "line-ne-open";
-        case Symbol::Num_44: return "44";
-        case Symbol::LineNw: return "line-nw";
-        case Symbol::Num_144: return "144";
-        case Symbol::LineNwOpen: return "line-nw-open";
-        case Symbol::Num_45: return "45";
-        case Symbol::ArrowUp: return "arrow-up";
-        case Symbol::Num_145: return "145";
-        case Symbol::ArrowUpOpen: return "arrow-up-open";
-        case Symbol::Num_46: return "46";
-        case Symbol::ArrowDown: return "arrow-down";
-        case Symbol::Num_146: return "146";
-        case Symbol::ArrowDownOpen: return "arrow-down-open";
-        case Symbol::Num_47: return "47";
-        case Symbol::ArrowLeft: return "arrow-left";
-        case Symbol::Num_147: return "147";
-        case Symbol::ArrowLeftOpen: return "arrow-left-open";
-        case Symbol::Num_48: return "48";
-        case Symbol::ArrowRight: return "arrow-right";
-        case Symbol::Num_148: return "148";
-        case Symbol::ArrowRightOpen: return "arrow-right-open";
-        case Symbol::Num_49: return "49";
-        case Symbol::ArrowBarUp: return "arrow-bar-up";
-        case Symbol::Num_149: return "149";
-        case Symbol::ArrowBarUpOpen: return "arrow-bar-up-open";
-        case Symbol::Num_50: return "50";
-        case Symbol::ArrowBarDown: return "arrow-bar-down";
-        case Symbol::Num_150: return "150";
-        case Symbol::ArrowBarDownOpen: return "arrow-bar-down-open";
-        case Symbol::Num_51: return "51";
-        case Symbol::ArrowBarLeft: return "arrow-bar-left";
-        case Symbol::Num_151: return "151";
-        case Symbol::ArrowBarLeftOpen: return "arrow-bar-left-open";
-        case Symbol::Num_52: return "52";
-        case Symbol::ArrowBarRight: return "arrow-bar-right";
-        case Symbol::Num_152: return "152";
-        case Symbol::ArrowBarRightOpen: return "arrow-bar-right-open";
-        case Symbol::Num_53: return "53";
-        case Symbol::Arrow: return "arrow";
-        case Symbol::Num_153: return "153";
-        case Symbol::ArrowOpen: return "arrow-open";
-        case Symbol::Num_54: return "54";
-        case Symbol::ArrowWide: return "arrow-wide";
-        case Symbol::Num_154: return "154";
-        case Symbol::ArrowWideOpen: return "arrow-wide-open";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Marker& Splom::Marker::angle(double f) {
     json["angle"] = std::move(f);
@@ -1269,7 +913,10 @@ inline Splom::Marker& Splom::Marker::sizemin(double f) {
 }
 
 inline Splom::Marker& Splom::Marker::sizemode(enum Sizemode f) {
-    json["sizemode"] = to_string(f);
+    switch(f) {
+        case Sizemode::Diameter: json["sizemode"] = "diameter"; break;
+        case Sizemode::Area: json["sizemode"] = "area"; break;
+    }
     return *this;
 }
 
@@ -1284,13 +931,665 @@ inline Splom::Marker& Splom::Marker::sizesrc(std::string f) {
 }
 
 inline Splom::Marker& Splom::Marker::symbol(enum Symbol f) {
-    json["symbol"] = to_string(f);
+    switch(f) {
+        case Symbol::Num_0: json["symbol"] = "0"; break;
+        case Symbol::Circle: json["symbol"] = "circle"; break;
+        case Symbol::Num_100: json["symbol"] = "100"; break;
+        case Symbol::CircleOpen: json["symbol"] = "circle-open"; break;
+        case Symbol::Num_200: json["symbol"] = "200"; break;
+        case Symbol::CircleDot: json["symbol"] = "circle-dot"; break;
+        case Symbol::Num_300: json["symbol"] = "300"; break;
+        case Symbol::CircleOpenDot: json["symbol"] = "circle-open-dot"; break;
+        case Symbol::Num_1: json["symbol"] = "1"; break;
+        case Symbol::Square: json["symbol"] = "square"; break;
+        case Symbol::Num_101: json["symbol"] = "101"; break;
+        case Symbol::SquareOpen: json["symbol"] = "square-open"; break;
+        case Symbol::Num_201: json["symbol"] = "201"; break;
+        case Symbol::SquareDot: json["symbol"] = "square-dot"; break;
+        case Symbol::Num_301: json["symbol"] = "301"; break;
+        case Symbol::SquareOpenDot: json["symbol"] = "square-open-dot"; break;
+        case Symbol::Num_2: json["symbol"] = "2"; break;
+        case Symbol::Diamond: json["symbol"] = "diamond"; break;
+        case Symbol::Num_102: json["symbol"] = "102"; break;
+        case Symbol::DiamondOpen: json["symbol"] = "diamond-open"; break;
+        case Symbol::Num_202: json["symbol"] = "202"; break;
+        case Symbol::DiamondDot: json["symbol"] = "diamond-dot"; break;
+        case Symbol::Num_302: json["symbol"] = "302"; break;
+        case Symbol::DiamondOpenDot: json["symbol"] = "diamond-open-dot"; break;
+        case Symbol::Num_3: json["symbol"] = "3"; break;
+        case Symbol::Cross: json["symbol"] = "cross"; break;
+        case Symbol::Num_103: json["symbol"] = "103"; break;
+        case Symbol::CrossOpen: json["symbol"] = "cross-open"; break;
+        case Symbol::Num_203: json["symbol"] = "203"; break;
+        case Symbol::CrossDot: json["symbol"] = "cross-dot"; break;
+        case Symbol::Num_303: json["symbol"] = "303"; break;
+        case Symbol::CrossOpenDot: json["symbol"] = "cross-open-dot"; break;
+        case Symbol::Num_4: json["symbol"] = "4"; break;
+        case Symbol::X: json["symbol"] = "x"; break;
+        case Symbol::Num_104: json["symbol"] = "104"; break;
+        case Symbol::XOpen: json["symbol"] = "x-open"; break;
+        case Symbol::Num_204: json["symbol"] = "204"; break;
+        case Symbol::XDot: json["symbol"] = "x-dot"; break;
+        case Symbol::Num_304: json["symbol"] = "304"; break;
+        case Symbol::XOpenDot: json["symbol"] = "x-open-dot"; break;
+        case Symbol::Num_5: json["symbol"] = "5"; break;
+        case Symbol::TriangleUp: json["symbol"] = "triangle-up"; break;
+        case Symbol::Num_105: json["symbol"] = "105"; break;
+        case Symbol::TriangleUpOpen: json["symbol"] = "triangle-up-open"; break;
+        case Symbol::Num_205: json["symbol"] = "205"; break;
+        case Symbol::TriangleUpDot: json["symbol"] = "triangle-up-dot"; break;
+        case Symbol::Num_305: json["symbol"] = "305"; break;
+        case Symbol::TriangleUpOpenDot: json["symbol"] = "triangle-up-open-dot"; break;
+        case Symbol::Num_6: json["symbol"] = "6"; break;
+        case Symbol::TriangleDown: json["symbol"] = "triangle-down"; break;
+        case Symbol::Num_106: json["symbol"] = "106"; break;
+        case Symbol::TriangleDownOpen: json["symbol"] = "triangle-down-open"; break;
+        case Symbol::Num_206: json["symbol"] = "206"; break;
+        case Symbol::TriangleDownDot: json["symbol"] = "triangle-down-dot"; break;
+        case Symbol::Num_306: json["symbol"] = "306"; break;
+        case Symbol::TriangleDownOpenDot: json["symbol"] = "triangle-down-open-dot"; break;
+        case Symbol::Num_7: json["symbol"] = "7"; break;
+        case Symbol::TriangleLeft: json["symbol"] = "triangle-left"; break;
+        case Symbol::Num_107: json["symbol"] = "107"; break;
+        case Symbol::TriangleLeftOpen: json["symbol"] = "triangle-left-open"; break;
+        case Symbol::Num_207: json["symbol"] = "207"; break;
+        case Symbol::TriangleLeftDot: json["symbol"] = "triangle-left-dot"; break;
+        case Symbol::Num_307: json["symbol"] = "307"; break;
+        case Symbol::TriangleLeftOpenDot: json["symbol"] = "triangle-left-open-dot"; break;
+        case Symbol::Num_8: json["symbol"] = "8"; break;
+        case Symbol::TriangleRight: json["symbol"] = "triangle-right"; break;
+        case Symbol::Num_108: json["symbol"] = "108"; break;
+        case Symbol::TriangleRightOpen: json["symbol"] = "triangle-right-open"; break;
+        case Symbol::Num_208: json["symbol"] = "208"; break;
+        case Symbol::TriangleRightDot: json["symbol"] = "triangle-right-dot"; break;
+        case Symbol::Num_308: json["symbol"] = "308"; break;
+        case Symbol::TriangleRightOpenDot: json["symbol"] = "triangle-right-open-dot"; break;
+        case Symbol::Num_9: json["symbol"] = "9"; break;
+        case Symbol::TriangleNe: json["symbol"] = "triangle-ne"; break;
+        case Symbol::Num_109: json["symbol"] = "109"; break;
+        case Symbol::TriangleNeOpen: json["symbol"] = "triangle-ne-open"; break;
+        case Symbol::Num_209: json["symbol"] = "209"; break;
+        case Symbol::TriangleNeDot: json["symbol"] = "triangle-ne-dot"; break;
+        case Symbol::Num_309: json["symbol"] = "309"; break;
+        case Symbol::TriangleNeOpenDot: json["symbol"] = "triangle-ne-open-dot"; break;
+        case Symbol::Num_10: json["symbol"] = "10"; break;
+        case Symbol::TriangleSe: json["symbol"] = "triangle-se"; break;
+        case Symbol::Num_110: json["symbol"] = "110"; break;
+        case Symbol::TriangleSeOpen: json["symbol"] = "triangle-se-open"; break;
+        case Symbol::Num_210: json["symbol"] = "210"; break;
+        case Symbol::TriangleSeDot: json["symbol"] = "triangle-se-dot"; break;
+        case Symbol::Num_310: json["symbol"] = "310"; break;
+        case Symbol::TriangleSeOpenDot: json["symbol"] = "triangle-se-open-dot"; break;
+        case Symbol::Num_11: json["symbol"] = "11"; break;
+        case Symbol::TriangleSw: json["symbol"] = "triangle-sw"; break;
+        case Symbol::Num_111: json["symbol"] = "111"; break;
+        case Symbol::TriangleSwOpen: json["symbol"] = "triangle-sw-open"; break;
+        case Symbol::Num_211: json["symbol"] = "211"; break;
+        case Symbol::TriangleSwDot: json["symbol"] = "triangle-sw-dot"; break;
+        case Symbol::Num_311: json["symbol"] = "311"; break;
+        case Symbol::TriangleSwOpenDot: json["symbol"] = "triangle-sw-open-dot"; break;
+        case Symbol::Num_12: json["symbol"] = "12"; break;
+        case Symbol::TriangleNw: json["symbol"] = "triangle-nw"; break;
+        case Symbol::Num_112: json["symbol"] = "112"; break;
+        case Symbol::TriangleNwOpen: json["symbol"] = "triangle-nw-open"; break;
+        case Symbol::Num_212: json["symbol"] = "212"; break;
+        case Symbol::TriangleNwDot: json["symbol"] = "triangle-nw-dot"; break;
+        case Symbol::Num_312: json["symbol"] = "312"; break;
+        case Symbol::TriangleNwOpenDot: json["symbol"] = "triangle-nw-open-dot"; break;
+        case Symbol::Num_13: json["symbol"] = "13"; break;
+        case Symbol::Pentagon: json["symbol"] = "pentagon"; break;
+        case Symbol::Num_113: json["symbol"] = "113"; break;
+        case Symbol::PentagonOpen: json["symbol"] = "pentagon-open"; break;
+        case Symbol::Num_213: json["symbol"] = "213"; break;
+        case Symbol::PentagonDot: json["symbol"] = "pentagon-dot"; break;
+        case Symbol::Num_313: json["symbol"] = "313"; break;
+        case Symbol::PentagonOpenDot: json["symbol"] = "pentagon-open-dot"; break;
+        case Symbol::Num_14: json["symbol"] = "14"; break;
+        case Symbol::Hexagon: json["symbol"] = "hexagon"; break;
+        case Symbol::Num_114: json["symbol"] = "114"; break;
+        case Symbol::HexagonOpen: json["symbol"] = "hexagon-open"; break;
+        case Symbol::Num_214: json["symbol"] = "214"; break;
+        case Symbol::HexagonDot: json["symbol"] = "hexagon-dot"; break;
+        case Symbol::Num_314: json["symbol"] = "314"; break;
+        case Symbol::HexagonOpenDot: json["symbol"] = "hexagon-open-dot"; break;
+        case Symbol::Num_15: json["symbol"] = "15"; break;
+        case Symbol::Hexagon2: json["symbol"] = "hexagon2"; break;
+        case Symbol::Num_115: json["symbol"] = "115"; break;
+        case Symbol::Hexagon2Open: json["symbol"] = "hexagon2-open"; break;
+        case Symbol::Num_215: json["symbol"] = "215"; break;
+        case Symbol::Hexagon2Dot: json["symbol"] = "hexagon2-dot"; break;
+        case Symbol::Num_315: json["symbol"] = "315"; break;
+        case Symbol::Hexagon2OpenDot: json["symbol"] = "hexagon2-open-dot"; break;
+        case Symbol::Num_16: json["symbol"] = "16"; break;
+        case Symbol::Octagon: json["symbol"] = "octagon"; break;
+        case Symbol::Num_116: json["symbol"] = "116"; break;
+        case Symbol::OctagonOpen: json["symbol"] = "octagon-open"; break;
+        case Symbol::Num_216: json["symbol"] = "216"; break;
+        case Symbol::OctagonDot: json["symbol"] = "octagon-dot"; break;
+        case Symbol::Num_316: json["symbol"] = "316"; break;
+        case Symbol::OctagonOpenDot: json["symbol"] = "octagon-open-dot"; break;
+        case Symbol::Num_17: json["symbol"] = "17"; break;
+        case Symbol::Star: json["symbol"] = "star"; break;
+        case Symbol::Num_117: json["symbol"] = "117"; break;
+        case Symbol::StarOpen: json["symbol"] = "star-open"; break;
+        case Symbol::Num_217: json["symbol"] = "217"; break;
+        case Symbol::StarDot: json["symbol"] = "star-dot"; break;
+        case Symbol::Num_317: json["symbol"] = "317"; break;
+        case Symbol::StarOpenDot: json["symbol"] = "star-open-dot"; break;
+        case Symbol::Num_18: json["symbol"] = "18"; break;
+        case Symbol::Hexagram: json["symbol"] = "hexagram"; break;
+        case Symbol::Num_118: json["symbol"] = "118"; break;
+        case Symbol::HexagramOpen: json["symbol"] = "hexagram-open"; break;
+        case Symbol::Num_218: json["symbol"] = "218"; break;
+        case Symbol::HexagramDot: json["symbol"] = "hexagram-dot"; break;
+        case Symbol::Num_318: json["symbol"] = "318"; break;
+        case Symbol::HexagramOpenDot: json["symbol"] = "hexagram-open-dot"; break;
+        case Symbol::Num_19: json["symbol"] = "19"; break;
+        case Symbol::StarTriangleUp: json["symbol"] = "star-triangle-up"; break;
+        case Symbol::Num_119: json["symbol"] = "119"; break;
+        case Symbol::StarTriangleUpOpen: json["symbol"] = "star-triangle-up-open"; break;
+        case Symbol::Num_219: json["symbol"] = "219"; break;
+        case Symbol::StarTriangleUpDot: json["symbol"] = "star-triangle-up-dot"; break;
+        case Symbol::Num_319: json["symbol"] = "319"; break;
+        case Symbol::StarTriangleUpOpenDot: json["symbol"] = "star-triangle-up-open-dot"; break;
+        case Symbol::Num_20: json["symbol"] = "20"; break;
+        case Symbol::StarTriangleDown: json["symbol"] = "star-triangle-down"; break;
+        case Symbol::Num_120: json["symbol"] = "120"; break;
+        case Symbol::StarTriangleDownOpen: json["symbol"] = "star-triangle-down-open"; break;
+        case Symbol::Num_220: json["symbol"] = "220"; break;
+        case Symbol::StarTriangleDownDot: json["symbol"] = "star-triangle-down-dot"; break;
+        case Symbol::Num_320: json["symbol"] = "320"; break;
+        case Symbol::StarTriangleDownOpenDot: json["symbol"] = "star-triangle-down-open-dot"; break;
+        case Symbol::Num_21: json["symbol"] = "21"; break;
+        case Symbol::StarSquare: json["symbol"] = "star-square"; break;
+        case Symbol::Num_121: json["symbol"] = "121"; break;
+        case Symbol::StarSquareOpen: json["symbol"] = "star-square-open"; break;
+        case Symbol::Num_221: json["symbol"] = "221"; break;
+        case Symbol::StarSquareDot: json["symbol"] = "star-square-dot"; break;
+        case Symbol::Num_321: json["symbol"] = "321"; break;
+        case Symbol::StarSquareOpenDot: json["symbol"] = "star-square-open-dot"; break;
+        case Symbol::Num_22: json["symbol"] = "22"; break;
+        case Symbol::StarDiamond: json["symbol"] = "star-diamond"; break;
+        case Symbol::Num_122: json["symbol"] = "122"; break;
+        case Symbol::StarDiamondOpen: json["symbol"] = "star-diamond-open"; break;
+        case Symbol::Num_222: json["symbol"] = "222"; break;
+        case Symbol::StarDiamondDot: json["symbol"] = "star-diamond-dot"; break;
+        case Symbol::Num_322: json["symbol"] = "322"; break;
+        case Symbol::StarDiamondOpenDot: json["symbol"] = "star-diamond-open-dot"; break;
+        case Symbol::Num_23: json["symbol"] = "23"; break;
+        case Symbol::DiamondTall: json["symbol"] = "diamond-tall"; break;
+        case Symbol::Num_123: json["symbol"] = "123"; break;
+        case Symbol::DiamondTallOpen: json["symbol"] = "diamond-tall-open"; break;
+        case Symbol::Num_223: json["symbol"] = "223"; break;
+        case Symbol::DiamondTallDot: json["symbol"] = "diamond-tall-dot"; break;
+        case Symbol::Num_323: json["symbol"] = "323"; break;
+        case Symbol::DiamondTallOpenDot: json["symbol"] = "diamond-tall-open-dot"; break;
+        case Symbol::Num_24: json["symbol"] = "24"; break;
+        case Symbol::DiamondWide: json["symbol"] = "diamond-wide"; break;
+        case Symbol::Num_124: json["symbol"] = "124"; break;
+        case Symbol::DiamondWideOpen: json["symbol"] = "diamond-wide-open"; break;
+        case Symbol::Num_224: json["symbol"] = "224"; break;
+        case Symbol::DiamondWideDot: json["symbol"] = "diamond-wide-dot"; break;
+        case Symbol::Num_324: json["symbol"] = "324"; break;
+        case Symbol::DiamondWideOpenDot: json["symbol"] = "diamond-wide-open-dot"; break;
+        case Symbol::Num_25: json["symbol"] = "25"; break;
+        case Symbol::Hourglass: json["symbol"] = "hourglass"; break;
+        case Symbol::Num_125: json["symbol"] = "125"; break;
+        case Symbol::HourglassOpen: json["symbol"] = "hourglass-open"; break;
+        case Symbol::Num_26: json["symbol"] = "26"; break;
+        case Symbol::Bowtie: json["symbol"] = "bowtie"; break;
+        case Symbol::Num_126: json["symbol"] = "126"; break;
+        case Symbol::BowtieOpen: json["symbol"] = "bowtie-open"; break;
+        case Symbol::Num_27: json["symbol"] = "27"; break;
+        case Symbol::CircleCross: json["symbol"] = "circle-cross"; break;
+        case Symbol::Num_127: json["symbol"] = "127"; break;
+        case Symbol::CircleCrossOpen: json["symbol"] = "circle-cross-open"; break;
+        case Symbol::Num_28: json["symbol"] = "28"; break;
+        case Symbol::CircleX: json["symbol"] = "circle-x"; break;
+        case Symbol::Num_128: json["symbol"] = "128"; break;
+        case Symbol::CircleXOpen: json["symbol"] = "circle-x-open"; break;
+        case Symbol::Num_29: json["symbol"] = "29"; break;
+        case Symbol::SquareCross: json["symbol"] = "square-cross"; break;
+        case Symbol::Num_129: json["symbol"] = "129"; break;
+        case Symbol::SquareCrossOpen: json["symbol"] = "square-cross-open"; break;
+        case Symbol::Num_30: json["symbol"] = "30"; break;
+        case Symbol::SquareX: json["symbol"] = "square-x"; break;
+        case Symbol::Num_130: json["symbol"] = "130"; break;
+        case Symbol::SquareXOpen: json["symbol"] = "square-x-open"; break;
+        case Symbol::Num_31: json["symbol"] = "31"; break;
+        case Symbol::DiamondCross: json["symbol"] = "diamond-cross"; break;
+        case Symbol::Num_131: json["symbol"] = "131"; break;
+        case Symbol::DiamondCrossOpen: json["symbol"] = "diamond-cross-open"; break;
+        case Symbol::Num_32: json["symbol"] = "32"; break;
+        case Symbol::DiamondX: json["symbol"] = "diamond-x"; break;
+        case Symbol::Num_132: json["symbol"] = "132"; break;
+        case Symbol::DiamondXOpen: json["symbol"] = "diamond-x-open"; break;
+        case Symbol::Num_33: json["symbol"] = "33"; break;
+        case Symbol::CrossThin: json["symbol"] = "cross-thin"; break;
+        case Symbol::Num_133: json["symbol"] = "133"; break;
+        case Symbol::CrossThinOpen: json["symbol"] = "cross-thin-open"; break;
+        case Symbol::Num_34: json["symbol"] = "34"; break;
+        case Symbol::XThin: json["symbol"] = "x-thin"; break;
+        case Symbol::Num_134: json["symbol"] = "134"; break;
+        case Symbol::XThinOpen: json["symbol"] = "x-thin-open"; break;
+        case Symbol::Num_35: json["symbol"] = "35"; break;
+        case Symbol::Asterisk: json["symbol"] = "asterisk"; break;
+        case Symbol::Num_135: json["symbol"] = "135"; break;
+        case Symbol::AsteriskOpen: json["symbol"] = "asterisk-open"; break;
+        case Symbol::Num_36: json["symbol"] = "36"; break;
+        case Symbol::Hash: json["symbol"] = "hash"; break;
+        case Symbol::Num_136: json["symbol"] = "136"; break;
+        case Symbol::HashOpen: json["symbol"] = "hash-open"; break;
+        case Symbol::Num_236: json["symbol"] = "236"; break;
+        case Symbol::HashDot: json["symbol"] = "hash-dot"; break;
+        case Symbol::Num_336: json["symbol"] = "336"; break;
+        case Symbol::HashOpenDot: json["symbol"] = "hash-open-dot"; break;
+        case Symbol::Num_37: json["symbol"] = "37"; break;
+        case Symbol::YUp: json["symbol"] = "y-up"; break;
+        case Symbol::Num_137: json["symbol"] = "137"; break;
+        case Symbol::YUpOpen: json["symbol"] = "y-up-open"; break;
+        case Symbol::Num_38: json["symbol"] = "38"; break;
+        case Symbol::YDown: json["symbol"] = "y-down"; break;
+        case Symbol::Num_138: json["symbol"] = "138"; break;
+        case Symbol::YDownOpen: json["symbol"] = "y-down-open"; break;
+        case Symbol::Num_39: json["symbol"] = "39"; break;
+        case Symbol::YLeft: json["symbol"] = "y-left"; break;
+        case Symbol::Num_139: json["symbol"] = "139"; break;
+        case Symbol::YLeftOpen: json["symbol"] = "y-left-open"; break;
+        case Symbol::Num_40: json["symbol"] = "40"; break;
+        case Symbol::YRight: json["symbol"] = "y-right"; break;
+        case Symbol::Num_140: json["symbol"] = "140"; break;
+        case Symbol::YRightOpen: json["symbol"] = "y-right-open"; break;
+        case Symbol::Num_41: json["symbol"] = "41"; break;
+        case Symbol::LineEw: json["symbol"] = "line-ew"; break;
+        case Symbol::Num_141: json["symbol"] = "141"; break;
+        case Symbol::LineEwOpen: json["symbol"] = "line-ew-open"; break;
+        case Symbol::Num_42: json["symbol"] = "42"; break;
+        case Symbol::LineNs: json["symbol"] = "line-ns"; break;
+        case Symbol::Num_142: json["symbol"] = "142"; break;
+        case Symbol::LineNsOpen: json["symbol"] = "line-ns-open"; break;
+        case Symbol::Num_43: json["symbol"] = "43"; break;
+        case Symbol::LineNe: json["symbol"] = "line-ne"; break;
+        case Symbol::Num_143: json["symbol"] = "143"; break;
+        case Symbol::LineNeOpen: json["symbol"] = "line-ne-open"; break;
+        case Symbol::Num_44: json["symbol"] = "44"; break;
+        case Symbol::LineNw: json["symbol"] = "line-nw"; break;
+        case Symbol::Num_144: json["symbol"] = "144"; break;
+        case Symbol::LineNwOpen: json["symbol"] = "line-nw-open"; break;
+        case Symbol::Num_45: json["symbol"] = "45"; break;
+        case Symbol::ArrowUp: json["symbol"] = "arrow-up"; break;
+        case Symbol::Num_145: json["symbol"] = "145"; break;
+        case Symbol::ArrowUpOpen: json["symbol"] = "arrow-up-open"; break;
+        case Symbol::Num_46: json["symbol"] = "46"; break;
+        case Symbol::ArrowDown: json["symbol"] = "arrow-down"; break;
+        case Symbol::Num_146: json["symbol"] = "146"; break;
+        case Symbol::ArrowDownOpen: json["symbol"] = "arrow-down-open"; break;
+        case Symbol::Num_47: json["symbol"] = "47"; break;
+        case Symbol::ArrowLeft: json["symbol"] = "arrow-left"; break;
+        case Symbol::Num_147: json["symbol"] = "147"; break;
+        case Symbol::ArrowLeftOpen: json["symbol"] = "arrow-left-open"; break;
+        case Symbol::Num_48: json["symbol"] = "48"; break;
+        case Symbol::ArrowRight: json["symbol"] = "arrow-right"; break;
+        case Symbol::Num_148: json["symbol"] = "148"; break;
+        case Symbol::ArrowRightOpen: json["symbol"] = "arrow-right-open"; break;
+        case Symbol::Num_49: json["symbol"] = "49"; break;
+        case Symbol::ArrowBarUp: json["symbol"] = "arrow-bar-up"; break;
+        case Symbol::Num_149: json["symbol"] = "149"; break;
+        case Symbol::ArrowBarUpOpen: json["symbol"] = "arrow-bar-up-open"; break;
+        case Symbol::Num_50: json["symbol"] = "50"; break;
+        case Symbol::ArrowBarDown: json["symbol"] = "arrow-bar-down"; break;
+        case Symbol::Num_150: json["symbol"] = "150"; break;
+        case Symbol::ArrowBarDownOpen: json["symbol"] = "arrow-bar-down-open"; break;
+        case Symbol::Num_51: json["symbol"] = "51"; break;
+        case Symbol::ArrowBarLeft: json["symbol"] = "arrow-bar-left"; break;
+        case Symbol::Num_151: json["symbol"] = "151"; break;
+        case Symbol::ArrowBarLeftOpen: json["symbol"] = "arrow-bar-left-open"; break;
+        case Symbol::Num_52: json["symbol"] = "52"; break;
+        case Symbol::ArrowBarRight: json["symbol"] = "arrow-bar-right"; break;
+        case Symbol::Num_152: json["symbol"] = "152"; break;
+        case Symbol::ArrowBarRightOpen: json["symbol"] = "arrow-bar-right-open"; break;
+        case Symbol::Num_53: json["symbol"] = "53"; break;
+        case Symbol::Arrow: json["symbol"] = "arrow"; break;
+        case Symbol::Num_153: json["symbol"] = "153"; break;
+        case Symbol::ArrowOpen: json["symbol"] = "arrow-open"; break;
+        case Symbol::Num_54: json["symbol"] = "54"; break;
+        case Symbol::ArrowWide: json["symbol"] = "arrow-wide"; break;
+        case Symbol::Num_154: json["symbol"] = "154"; break;
+        case Symbol::ArrowWideOpen: json["symbol"] = "arrow-wide-open"; break;
+    }
     return *this;
 }
 inline Splom::Marker& Splom::Marker::symbol(const std::vector<enum Symbol>& f) {
-    std::vector<std::string> stringified(f.size());
-    std::transform(f.begin(), f.end(), stringified.begin(), [this](const auto& e){return to_string(e);});
-    json["symbol"] = std::move(stringified);
+    Json arr = Json::array();
+    for(const auto& e : f) {
+        switch(e) {
+            case Symbol::Num_0: arr.push_back("0"); break;
+            case Symbol::Circle: arr.push_back("circle"); break;
+            case Symbol::Num_100: arr.push_back("100"); break;
+            case Symbol::CircleOpen: arr.push_back("circle-open"); break;
+            case Symbol::Num_200: arr.push_back("200"); break;
+            case Symbol::CircleDot: arr.push_back("circle-dot"); break;
+            case Symbol::Num_300: arr.push_back("300"); break;
+            case Symbol::CircleOpenDot: arr.push_back("circle-open-dot"); break;
+            case Symbol::Num_1: arr.push_back("1"); break;
+            case Symbol::Square: arr.push_back("square"); break;
+            case Symbol::Num_101: arr.push_back("101"); break;
+            case Symbol::SquareOpen: arr.push_back("square-open"); break;
+            case Symbol::Num_201: arr.push_back("201"); break;
+            case Symbol::SquareDot: arr.push_back("square-dot"); break;
+            case Symbol::Num_301: arr.push_back("301"); break;
+            case Symbol::SquareOpenDot: arr.push_back("square-open-dot"); break;
+            case Symbol::Num_2: arr.push_back("2"); break;
+            case Symbol::Diamond: arr.push_back("diamond"); break;
+            case Symbol::Num_102: arr.push_back("102"); break;
+            case Symbol::DiamondOpen: arr.push_back("diamond-open"); break;
+            case Symbol::Num_202: arr.push_back("202"); break;
+            case Symbol::DiamondDot: arr.push_back("diamond-dot"); break;
+            case Symbol::Num_302: arr.push_back("302"); break;
+            case Symbol::DiamondOpenDot: arr.push_back("diamond-open-dot"); break;
+            case Symbol::Num_3: arr.push_back("3"); break;
+            case Symbol::Cross: arr.push_back("cross"); break;
+            case Symbol::Num_103: arr.push_back("103"); break;
+            case Symbol::CrossOpen: arr.push_back("cross-open"); break;
+            case Symbol::Num_203: arr.push_back("203"); break;
+            case Symbol::CrossDot: arr.push_back("cross-dot"); break;
+            case Symbol::Num_303: arr.push_back("303"); break;
+            case Symbol::CrossOpenDot: arr.push_back("cross-open-dot"); break;
+            case Symbol::Num_4: arr.push_back("4"); break;
+            case Symbol::X: arr.push_back("x"); break;
+            case Symbol::Num_104: arr.push_back("104"); break;
+            case Symbol::XOpen: arr.push_back("x-open"); break;
+            case Symbol::Num_204: arr.push_back("204"); break;
+            case Symbol::XDot: arr.push_back("x-dot"); break;
+            case Symbol::Num_304: arr.push_back("304"); break;
+            case Symbol::XOpenDot: arr.push_back("x-open-dot"); break;
+            case Symbol::Num_5: arr.push_back("5"); break;
+            case Symbol::TriangleUp: arr.push_back("triangle-up"); break;
+            case Symbol::Num_105: arr.push_back("105"); break;
+            case Symbol::TriangleUpOpen: arr.push_back("triangle-up-open"); break;
+            case Symbol::Num_205: arr.push_back("205"); break;
+            case Symbol::TriangleUpDot: arr.push_back("triangle-up-dot"); break;
+            case Symbol::Num_305: arr.push_back("305"); break;
+            case Symbol::TriangleUpOpenDot: arr.push_back("triangle-up-open-dot"); break;
+            case Symbol::Num_6: arr.push_back("6"); break;
+            case Symbol::TriangleDown: arr.push_back("triangle-down"); break;
+            case Symbol::Num_106: arr.push_back("106"); break;
+            case Symbol::TriangleDownOpen: arr.push_back("triangle-down-open"); break;
+            case Symbol::Num_206: arr.push_back("206"); break;
+            case Symbol::TriangleDownDot: arr.push_back("triangle-down-dot"); break;
+            case Symbol::Num_306: arr.push_back("306"); break;
+            case Symbol::TriangleDownOpenDot: arr.push_back("triangle-down-open-dot"); break;
+            case Symbol::Num_7: arr.push_back("7"); break;
+            case Symbol::TriangleLeft: arr.push_back("triangle-left"); break;
+            case Symbol::Num_107: arr.push_back("107"); break;
+            case Symbol::TriangleLeftOpen: arr.push_back("triangle-left-open"); break;
+            case Symbol::Num_207: arr.push_back("207"); break;
+            case Symbol::TriangleLeftDot: arr.push_back("triangle-left-dot"); break;
+            case Symbol::Num_307: arr.push_back("307"); break;
+            case Symbol::TriangleLeftOpenDot: arr.push_back("triangle-left-open-dot"); break;
+            case Symbol::Num_8: arr.push_back("8"); break;
+            case Symbol::TriangleRight: arr.push_back("triangle-right"); break;
+            case Symbol::Num_108: arr.push_back("108"); break;
+            case Symbol::TriangleRightOpen: arr.push_back("triangle-right-open"); break;
+            case Symbol::Num_208: arr.push_back("208"); break;
+            case Symbol::TriangleRightDot: arr.push_back("triangle-right-dot"); break;
+            case Symbol::Num_308: arr.push_back("308"); break;
+            case Symbol::TriangleRightOpenDot: arr.push_back("triangle-right-open-dot"); break;
+            case Symbol::Num_9: arr.push_back("9"); break;
+            case Symbol::TriangleNe: arr.push_back("triangle-ne"); break;
+            case Symbol::Num_109: arr.push_back("109"); break;
+            case Symbol::TriangleNeOpen: arr.push_back("triangle-ne-open"); break;
+            case Symbol::Num_209: arr.push_back("209"); break;
+            case Symbol::TriangleNeDot: arr.push_back("triangle-ne-dot"); break;
+            case Symbol::Num_309: arr.push_back("309"); break;
+            case Symbol::TriangleNeOpenDot: arr.push_back("triangle-ne-open-dot"); break;
+            case Symbol::Num_10: arr.push_back("10"); break;
+            case Symbol::TriangleSe: arr.push_back("triangle-se"); break;
+            case Symbol::Num_110: arr.push_back("110"); break;
+            case Symbol::TriangleSeOpen: arr.push_back("triangle-se-open"); break;
+            case Symbol::Num_210: arr.push_back("210"); break;
+            case Symbol::TriangleSeDot: arr.push_back("triangle-se-dot"); break;
+            case Symbol::Num_310: arr.push_back("310"); break;
+            case Symbol::TriangleSeOpenDot: arr.push_back("triangle-se-open-dot"); break;
+            case Symbol::Num_11: arr.push_back("11"); break;
+            case Symbol::TriangleSw: arr.push_back("triangle-sw"); break;
+            case Symbol::Num_111: arr.push_back("111"); break;
+            case Symbol::TriangleSwOpen: arr.push_back("triangle-sw-open"); break;
+            case Symbol::Num_211: arr.push_back("211"); break;
+            case Symbol::TriangleSwDot: arr.push_back("triangle-sw-dot"); break;
+            case Symbol::Num_311: arr.push_back("311"); break;
+            case Symbol::TriangleSwOpenDot: arr.push_back("triangle-sw-open-dot"); break;
+            case Symbol::Num_12: arr.push_back("12"); break;
+            case Symbol::TriangleNw: arr.push_back("triangle-nw"); break;
+            case Symbol::Num_112: arr.push_back("112"); break;
+            case Symbol::TriangleNwOpen: arr.push_back("triangle-nw-open"); break;
+            case Symbol::Num_212: arr.push_back("212"); break;
+            case Symbol::TriangleNwDot: arr.push_back("triangle-nw-dot"); break;
+            case Symbol::Num_312: arr.push_back("312"); break;
+            case Symbol::TriangleNwOpenDot: arr.push_back("triangle-nw-open-dot"); break;
+            case Symbol::Num_13: arr.push_back("13"); break;
+            case Symbol::Pentagon: arr.push_back("pentagon"); break;
+            case Symbol::Num_113: arr.push_back("113"); break;
+            case Symbol::PentagonOpen: arr.push_back("pentagon-open"); break;
+            case Symbol::Num_213: arr.push_back("213"); break;
+            case Symbol::PentagonDot: arr.push_back("pentagon-dot"); break;
+            case Symbol::Num_313: arr.push_back("313"); break;
+            case Symbol::PentagonOpenDot: arr.push_back("pentagon-open-dot"); break;
+            case Symbol::Num_14: arr.push_back("14"); break;
+            case Symbol::Hexagon: arr.push_back("hexagon"); break;
+            case Symbol::Num_114: arr.push_back("114"); break;
+            case Symbol::HexagonOpen: arr.push_back("hexagon-open"); break;
+            case Symbol::Num_214: arr.push_back("214"); break;
+            case Symbol::HexagonDot: arr.push_back("hexagon-dot"); break;
+            case Symbol::Num_314: arr.push_back("314"); break;
+            case Symbol::HexagonOpenDot: arr.push_back("hexagon-open-dot"); break;
+            case Symbol::Num_15: arr.push_back("15"); break;
+            case Symbol::Hexagon2: arr.push_back("hexagon2"); break;
+            case Symbol::Num_115: arr.push_back("115"); break;
+            case Symbol::Hexagon2Open: arr.push_back("hexagon2-open"); break;
+            case Symbol::Num_215: arr.push_back("215"); break;
+            case Symbol::Hexagon2Dot: arr.push_back("hexagon2-dot"); break;
+            case Symbol::Num_315: arr.push_back("315"); break;
+            case Symbol::Hexagon2OpenDot: arr.push_back("hexagon2-open-dot"); break;
+            case Symbol::Num_16: arr.push_back("16"); break;
+            case Symbol::Octagon: arr.push_back("octagon"); break;
+            case Symbol::Num_116: arr.push_back("116"); break;
+            case Symbol::OctagonOpen: arr.push_back("octagon-open"); break;
+            case Symbol::Num_216: arr.push_back("216"); break;
+            case Symbol::OctagonDot: arr.push_back("octagon-dot"); break;
+            case Symbol::Num_316: arr.push_back("316"); break;
+            case Symbol::OctagonOpenDot: arr.push_back("octagon-open-dot"); break;
+            case Symbol::Num_17: arr.push_back("17"); break;
+            case Symbol::Star: arr.push_back("star"); break;
+            case Symbol::Num_117: arr.push_back("117"); break;
+            case Symbol::StarOpen: arr.push_back("star-open"); break;
+            case Symbol::Num_217: arr.push_back("217"); break;
+            case Symbol::StarDot: arr.push_back("star-dot"); break;
+            case Symbol::Num_317: arr.push_back("317"); break;
+            case Symbol::StarOpenDot: arr.push_back("star-open-dot"); break;
+            case Symbol::Num_18: arr.push_back("18"); break;
+            case Symbol::Hexagram: arr.push_back("hexagram"); break;
+            case Symbol::Num_118: arr.push_back("118"); break;
+            case Symbol::HexagramOpen: arr.push_back("hexagram-open"); break;
+            case Symbol::Num_218: arr.push_back("218"); break;
+            case Symbol::HexagramDot: arr.push_back("hexagram-dot"); break;
+            case Symbol::Num_318: arr.push_back("318"); break;
+            case Symbol::HexagramOpenDot: arr.push_back("hexagram-open-dot"); break;
+            case Symbol::Num_19: arr.push_back("19"); break;
+            case Symbol::StarTriangleUp: arr.push_back("star-triangle-up"); break;
+            case Symbol::Num_119: arr.push_back("119"); break;
+            case Symbol::StarTriangleUpOpen: arr.push_back("star-triangle-up-open"); break;
+            case Symbol::Num_219: arr.push_back("219"); break;
+            case Symbol::StarTriangleUpDot: arr.push_back("star-triangle-up-dot"); break;
+            case Symbol::Num_319: arr.push_back("319"); break;
+            case Symbol::StarTriangleUpOpenDot: arr.push_back("star-triangle-up-open-dot"); break;
+            case Symbol::Num_20: arr.push_back("20"); break;
+            case Symbol::StarTriangleDown: arr.push_back("star-triangle-down"); break;
+            case Symbol::Num_120: arr.push_back("120"); break;
+            case Symbol::StarTriangleDownOpen: arr.push_back("star-triangle-down-open"); break;
+            case Symbol::Num_220: arr.push_back("220"); break;
+            case Symbol::StarTriangleDownDot: arr.push_back("star-triangle-down-dot"); break;
+            case Symbol::Num_320: arr.push_back("320"); break;
+            case Symbol::StarTriangleDownOpenDot: arr.push_back("star-triangle-down-open-dot"); break;
+            case Symbol::Num_21: arr.push_back("21"); break;
+            case Symbol::StarSquare: arr.push_back("star-square"); break;
+            case Symbol::Num_121: arr.push_back("121"); break;
+            case Symbol::StarSquareOpen: arr.push_back("star-square-open"); break;
+            case Symbol::Num_221: arr.push_back("221"); break;
+            case Symbol::StarSquareDot: arr.push_back("star-square-dot"); break;
+            case Symbol::Num_321: arr.push_back("321"); break;
+            case Symbol::StarSquareOpenDot: arr.push_back("star-square-open-dot"); break;
+            case Symbol::Num_22: arr.push_back("22"); break;
+            case Symbol::StarDiamond: arr.push_back("star-diamond"); break;
+            case Symbol::Num_122: arr.push_back("122"); break;
+            case Symbol::StarDiamondOpen: arr.push_back("star-diamond-open"); break;
+            case Symbol::Num_222: arr.push_back("222"); break;
+            case Symbol::StarDiamondDot: arr.push_back("star-diamond-dot"); break;
+            case Symbol::Num_322: arr.push_back("322"); break;
+            case Symbol::StarDiamondOpenDot: arr.push_back("star-diamond-open-dot"); break;
+            case Symbol::Num_23: arr.push_back("23"); break;
+            case Symbol::DiamondTall: arr.push_back("diamond-tall"); break;
+            case Symbol::Num_123: arr.push_back("123"); break;
+            case Symbol::DiamondTallOpen: arr.push_back("diamond-tall-open"); break;
+            case Symbol::Num_223: arr.push_back("223"); break;
+            case Symbol::DiamondTallDot: arr.push_back("diamond-tall-dot"); break;
+            case Symbol::Num_323: arr.push_back("323"); break;
+            case Symbol::DiamondTallOpenDot: arr.push_back("diamond-tall-open-dot"); break;
+            case Symbol::Num_24: arr.push_back("24"); break;
+            case Symbol::DiamondWide: arr.push_back("diamond-wide"); break;
+            case Symbol::Num_124: arr.push_back("124"); break;
+            case Symbol::DiamondWideOpen: arr.push_back("diamond-wide-open"); break;
+            case Symbol::Num_224: arr.push_back("224"); break;
+            case Symbol::DiamondWideDot: arr.push_back("diamond-wide-dot"); break;
+            case Symbol::Num_324: arr.push_back("324"); break;
+            case Symbol::DiamondWideOpenDot: arr.push_back("diamond-wide-open-dot"); break;
+            case Symbol::Num_25: arr.push_back("25"); break;
+            case Symbol::Hourglass: arr.push_back("hourglass"); break;
+            case Symbol::Num_125: arr.push_back("125"); break;
+            case Symbol::HourglassOpen: arr.push_back("hourglass-open"); break;
+            case Symbol::Num_26: arr.push_back("26"); break;
+            case Symbol::Bowtie: arr.push_back("bowtie"); break;
+            case Symbol::Num_126: arr.push_back("126"); break;
+            case Symbol::BowtieOpen: arr.push_back("bowtie-open"); break;
+            case Symbol::Num_27: arr.push_back("27"); break;
+            case Symbol::CircleCross: arr.push_back("circle-cross"); break;
+            case Symbol::Num_127: arr.push_back("127"); break;
+            case Symbol::CircleCrossOpen: arr.push_back("circle-cross-open"); break;
+            case Symbol::Num_28: arr.push_back("28"); break;
+            case Symbol::CircleX: arr.push_back("circle-x"); break;
+            case Symbol::Num_128: arr.push_back("128"); break;
+            case Symbol::CircleXOpen: arr.push_back("circle-x-open"); break;
+            case Symbol::Num_29: arr.push_back("29"); break;
+            case Symbol::SquareCross: arr.push_back("square-cross"); break;
+            case Symbol::Num_129: arr.push_back("129"); break;
+            case Symbol::SquareCrossOpen: arr.push_back("square-cross-open"); break;
+            case Symbol::Num_30: arr.push_back("30"); break;
+            case Symbol::SquareX: arr.push_back("square-x"); break;
+            case Symbol::Num_130: arr.push_back("130"); break;
+            case Symbol::SquareXOpen: arr.push_back("square-x-open"); break;
+            case Symbol::Num_31: arr.push_back("31"); break;
+            case Symbol::DiamondCross: arr.push_back("diamond-cross"); break;
+            case Symbol::Num_131: arr.push_back("131"); break;
+            case Symbol::DiamondCrossOpen: arr.push_back("diamond-cross-open"); break;
+            case Symbol::Num_32: arr.push_back("32"); break;
+            case Symbol::DiamondX: arr.push_back("diamond-x"); break;
+            case Symbol::Num_132: arr.push_back("132"); break;
+            case Symbol::DiamondXOpen: arr.push_back("diamond-x-open"); break;
+            case Symbol::Num_33: arr.push_back("33"); break;
+            case Symbol::CrossThin: arr.push_back("cross-thin"); break;
+            case Symbol::Num_133: arr.push_back("133"); break;
+            case Symbol::CrossThinOpen: arr.push_back("cross-thin-open"); break;
+            case Symbol::Num_34: arr.push_back("34"); break;
+            case Symbol::XThin: arr.push_back("x-thin"); break;
+            case Symbol::Num_134: arr.push_back("134"); break;
+            case Symbol::XThinOpen: arr.push_back("x-thin-open"); break;
+            case Symbol::Num_35: arr.push_back("35"); break;
+            case Symbol::Asterisk: arr.push_back("asterisk"); break;
+            case Symbol::Num_135: arr.push_back("135"); break;
+            case Symbol::AsteriskOpen: arr.push_back("asterisk-open"); break;
+            case Symbol::Num_36: arr.push_back("36"); break;
+            case Symbol::Hash: arr.push_back("hash"); break;
+            case Symbol::Num_136: arr.push_back("136"); break;
+            case Symbol::HashOpen: arr.push_back("hash-open"); break;
+            case Symbol::Num_236: arr.push_back("236"); break;
+            case Symbol::HashDot: arr.push_back("hash-dot"); break;
+            case Symbol::Num_336: arr.push_back("336"); break;
+            case Symbol::HashOpenDot: arr.push_back("hash-open-dot"); break;
+            case Symbol::Num_37: arr.push_back("37"); break;
+            case Symbol::YUp: arr.push_back("y-up"); break;
+            case Symbol::Num_137: arr.push_back("137"); break;
+            case Symbol::YUpOpen: arr.push_back("y-up-open"); break;
+            case Symbol::Num_38: arr.push_back("38"); break;
+            case Symbol::YDown: arr.push_back("y-down"); break;
+            case Symbol::Num_138: arr.push_back("138"); break;
+            case Symbol::YDownOpen: arr.push_back("y-down-open"); break;
+            case Symbol::Num_39: arr.push_back("39"); break;
+            case Symbol::YLeft: arr.push_back("y-left"); break;
+            case Symbol::Num_139: arr.push_back("139"); break;
+            case Symbol::YLeftOpen: arr.push_back("y-left-open"); break;
+            case Symbol::Num_40: arr.push_back("40"); break;
+            case Symbol::YRight: arr.push_back("y-right"); break;
+            case Symbol::Num_140: arr.push_back("140"); break;
+            case Symbol::YRightOpen: arr.push_back("y-right-open"); break;
+            case Symbol::Num_41: arr.push_back("41"); break;
+            case Symbol::LineEw: arr.push_back("line-ew"); break;
+            case Symbol::Num_141: arr.push_back("141"); break;
+            case Symbol::LineEwOpen: arr.push_back("line-ew-open"); break;
+            case Symbol::Num_42: arr.push_back("42"); break;
+            case Symbol::LineNs: arr.push_back("line-ns"); break;
+            case Symbol::Num_142: arr.push_back("142"); break;
+            case Symbol::LineNsOpen: arr.push_back("line-ns-open"); break;
+            case Symbol::Num_43: arr.push_back("43"); break;
+            case Symbol::LineNe: arr.push_back("line-ne"); break;
+            case Symbol::Num_143: arr.push_back("143"); break;
+            case Symbol::LineNeOpen: arr.push_back("line-ne-open"); break;
+            case Symbol::Num_44: arr.push_back("44"); break;
+            case Symbol::LineNw: arr.push_back("line-nw"); break;
+            case Symbol::Num_144: arr.push_back("144"); break;
+            case Symbol::LineNwOpen: arr.push_back("line-nw-open"); break;
+            case Symbol::Num_45: arr.push_back("45"); break;
+            case Symbol::ArrowUp: arr.push_back("arrow-up"); break;
+            case Symbol::Num_145: arr.push_back("145"); break;
+            case Symbol::ArrowUpOpen: arr.push_back("arrow-up-open"); break;
+            case Symbol::Num_46: arr.push_back("46"); break;
+            case Symbol::ArrowDown: arr.push_back("arrow-down"); break;
+            case Symbol::Num_146: arr.push_back("146"); break;
+            case Symbol::ArrowDownOpen: arr.push_back("arrow-down-open"); break;
+            case Symbol::Num_47: arr.push_back("47"); break;
+            case Symbol::ArrowLeft: arr.push_back("arrow-left"); break;
+            case Symbol::Num_147: arr.push_back("147"); break;
+            case Symbol::ArrowLeftOpen: arr.push_back("arrow-left-open"); break;
+            case Symbol::Num_48: arr.push_back("48"); break;
+            case Symbol::ArrowRight: arr.push_back("arrow-right"); break;
+            case Symbol::Num_148: arr.push_back("148"); break;
+            case Symbol::ArrowRightOpen: arr.push_back("arrow-right-open"); break;
+            case Symbol::Num_49: arr.push_back("49"); break;
+            case Symbol::ArrowBarUp: arr.push_back("arrow-bar-up"); break;
+            case Symbol::Num_149: arr.push_back("149"); break;
+            case Symbol::ArrowBarUpOpen: arr.push_back("arrow-bar-up-open"); break;
+            case Symbol::Num_50: arr.push_back("50"); break;
+            case Symbol::ArrowBarDown: arr.push_back("arrow-bar-down"); break;
+            case Symbol::Num_150: arr.push_back("150"); break;
+            case Symbol::ArrowBarDownOpen: arr.push_back("arrow-bar-down-open"); break;
+            case Symbol::Num_51: arr.push_back("51"); break;
+            case Symbol::ArrowBarLeft: arr.push_back("arrow-bar-left"); break;
+            case Symbol::Num_151: arr.push_back("151"); break;
+            case Symbol::ArrowBarLeftOpen: arr.push_back("arrow-bar-left-open"); break;
+            case Symbol::Num_52: arr.push_back("52"); break;
+            case Symbol::ArrowBarRight: arr.push_back("arrow-bar-right"); break;
+            case Symbol::Num_152: arr.push_back("152"); break;
+            case Symbol::ArrowBarRightOpen: arr.push_back("arrow-bar-right-open"); break;
+            case Symbol::Num_53: arr.push_back("53"); break;
+            case Symbol::Arrow: arr.push_back("arrow"); break;
+            case Symbol::Num_153: arr.push_back("153"); break;
+            case Symbol::ArrowOpen: arr.push_back("arrow-open"); break;
+            case Symbol::Num_54: arr.push_back("54"); break;
+            case Symbol::ArrowWide: arr.push_back("arrow-wide"); break;
+            case Symbol::Num_154: arr.push_back("154"); break;
+            case Symbol::ArrowWideOpen: arr.push_back("arrow-wide-open"); break;
+        }
+    }
+    json["symbol"] = std::move(arr);
     return *this;
 }
 
@@ -1299,148 +1598,6 @@ inline Splom::Marker& Splom::Marker::symbolsrc(std::string f) {
     return *this;
 }
 
-inline std::string Splom::Marker::Colorbar::to_string(Exponentformat e) {
-    switch(e) {
-        case Exponentformat::None: return "none";
-        case Exponentformat::E: return "E";
-        case Exponentformat::Power: return "power";
-        case Exponentformat::Si: return "SI";
-        case Exponentformat::B: return "B";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Lenmode e) {
-    switch(e) {
-        case Lenmode::Fraction: return "fraction";
-        case Lenmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Orientation e) {
-    switch(e) {
-        case Orientation::H: return "h";
-        case Orientation::V: return "v";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Showexponent e) {
-    switch(e) {
-        case Showexponent::All: return "all";
-        case Showexponent::First: return "first";
-        case Showexponent::Last: return "last";
-        case Showexponent::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Showtickprefix e) {
-    switch(e) {
-        case Showtickprefix::All: return "all";
-        case Showtickprefix::First: return "first";
-        case Showtickprefix::Last: return "last";
-        case Showtickprefix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Showticksuffix e) {
-    switch(e) {
-        case Showticksuffix::All: return "all";
-        case Showticksuffix::First: return "first";
-        case Showticksuffix::Last: return "last";
-        case Showticksuffix::None: return "none";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Thicknessmode e) {
-    switch(e) {
-        case Thicknessmode::Fraction: return "fraction";
-        case Thicknessmode::Pixels: return "pixels";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Ticklabeloverflow e) {
-    switch(e) {
-        case Ticklabeloverflow::Allow: return "allow";
-        case Ticklabeloverflow::HidePastDiv: return "hide past div";
-        case Ticklabeloverflow::HidePastDomain: return "hide past domain";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Ticklabelposition e) {
-    switch(e) {
-        case Ticklabelposition::Outside: return "outside";
-        case Ticklabelposition::Inside: return "inside";
-        case Ticklabelposition::OutsideTop: return "outside top";
-        case Ticklabelposition::InsideTop: return "inside top";
-        case Ticklabelposition::OutsideLeft: return "outside left";
-        case Ticklabelposition::InsideLeft: return "inside left";
-        case Ticklabelposition::OutsideRight: return "outside right";
-        case Ticklabelposition::InsideRight: return "inside right";
-        case Ticklabelposition::OutsideBottom: return "outside bottom";
-        case Ticklabelposition::InsideBottom: return "inside bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Tickmode e) {
-    switch(e) {
-        case Tickmode::Auto: return "auto";
-        case Tickmode::Linear: return "linear";
-        case Tickmode::Array: return "array";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Ticks e) {
-    switch(e) {
-        case Ticks::Outside: return "outside";
-        case Ticks::Inside: return "inside";
-        case Ticks::Empty: return "";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Xanchor e) {
-    switch(e) {
-        case Xanchor::Left: return "left";
-        case Xanchor::Center: return "center";
-        case Xanchor::Right: return "right";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Xref e) {
-    switch(e) {
-        case Xref::Container: return "container";
-        case Xref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Yanchor e) {
-    switch(e) {
-        case Yanchor::Top: return "top";
-        case Yanchor::Middle: return "middle";
-        case Yanchor::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::to_string(Yref e) {
-    switch(e) {
-        case Yref::Container: return "container";
-        case Yref::Paper: return "paper";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::bgcolor(std::string f) {
     json["bgcolor"] = std::move(f);
@@ -1472,7 +1629,13 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::dtick(T f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::exponentformat(enum Exponentformat f) {
-    json["exponentformat"] = to_string(f);
+    switch(f) {
+        case Exponentformat::None: json["exponentformat"] = "none"; break;
+        case Exponentformat::E: json["exponentformat"] = "E"; break;
+        case Exponentformat::Power: json["exponentformat"] = "power"; break;
+        case Exponentformat::Si: json["exponentformat"] = "SI"; break;
+        case Exponentformat::B: json["exponentformat"] = "B"; break;
+    }
     return *this;
 }
 
@@ -1488,7 +1651,10 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::len(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::lenmode(enum Lenmode f) {
-    json["lenmode"] = to_string(f);
+    switch(f) {
+        case Lenmode::Fraction: json["lenmode"] = "fraction"; break;
+        case Lenmode::Pixels: json["lenmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -1503,7 +1669,10 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::nticks(int f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::orientation(enum Orientation f) {
-    json["orientation"] = to_string(f);
+    switch(f) {
+        case Orientation::H: json["orientation"] = "h"; break;
+        case Orientation::V: json["orientation"] = "v"; break;
+    }
     return *this;
 }
 
@@ -1527,7 +1696,12 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::separatethousands(bool 
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::showexponent(enum Showexponent f) {
-    json["showexponent"] = to_string(f);
+    switch(f) {
+        case Showexponent::All: json["showexponent"] = "all"; break;
+        case Showexponent::First: json["showexponent"] = "first"; break;
+        case Showexponent::Last: json["showexponent"] = "last"; break;
+        case Showexponent::None: json["showexponent"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1537,12 +1711,22 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::showticklabels(bool f) 
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::showtickprefix(enum Showtickprefix f) {
-    json["showtickprefix"] = to_string(f);
+    switch(f) {
+        case Showtickprefix::All: json["showtickprefix"] = "all"; break;
+        case Showtickprefix::First: json["showtickprefix"] = "first"; break;
+        case Showtickprefix::Last: json["showtickprefix"] = "last"; break;
+        case Showtickprefix::None: json["showtickprefix"] = "none"; break;
+    }
     return *this;
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::showticksuffix(enum Showticksuffix f) {
-    json["showticksuffix"] = to_string(f);
+    switch(f) {
+        case Showticksuffix::All: json["showticksuffix"] = "all"; break;
+        case Showticksuffix::First: json["showticksuffix"] = "first"; break;
+        case Showticksuffix::Last: json["showticksuffix"] = "last"; break;
+        case Showticksuffix::None: json["showticksuffix"] = "none"; break;
+    }
     return *this;
 }
 
@@ -1552,7 +1736,10 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::thickness(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::thicknessmode(enum Thicknessmode f) {
-    json["thicknessmode"] = to_string(f);
+    switch(f) {
+        case Thicknessmode::Fraction: json["thicknessmode"] = "fraction"; break;
+        case Thicknessmode::Pixels: json["thicknessmode"] = "pixels"; break;
+    }
     return *this;
 }
 
@@ -1600,12 +1787,27 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickformatstops(const s
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticklabeloverflow(enum Ticklabeloverflow f) {
-    json["ticklabeloverflow"] = to_string(f);
+    switch(f) {
+        case Ticklabeloverflow::Allow: json["ticklabeloverflow"] = "allow"; break;
+        case Ticklabeloverflow::HidePastDiv: json["ticklabeloverflow"] = "hide past div"; break;
+        case Ticklabeloverflow::HidePastDomain: json["ticklabeloverflow"] = "hide past domain"; break;
+    }
     return *this;
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticklabelposition(enum Ticklabelposition f) {
-    json["ticklabelposition"] = to_string(f);
+    switch(f) {
+        case Ticklabelposition::Outside: json["ticklabelposition"] = "outside"; break;
+        case Ticklabelposition::Inside: json["ticklabelposition"] = "inside"; break;
+        case Ticklabelposition::OutsideTop: json["ticklabelposition"] = "outside top"; break;
+        case Ticklabelposition::InsideTop: json["ticklabelposition"] = "inside top"; break;
+        case Ticklabelposition::OutsideLeft: json["ticklabelposition"] = "outside left"; break;
+        case Ticklabelposition::InsideLeft: json["ticklabelposition"] = "inside left"; break;
+        case Ticklabelposition::OutsideRight: json["ticklabelposition"] = "outside right"; break;
+        case Ticklabelposition::InsideRight: json["ticklabelposition"] = "inside right"; break;
+        case Ticklabelposition::OutsideBottom: json["ticklabelposition"] = "outside bottom"; break;
+        case Ticklabelposition::InsideBottom: json["ticklabelposition"] = "inside bottom"; break;
+    }
     return *this;
 }
 
@@ -1620,7 +1822,11 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticklen(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickmode(enum Tickmode f) {
-    json["tickmode"] = to_string(f);
+    switch(f) {
+        case Tickmode::Auto: json["tickmode"] = "auto"; break;
+        case Tickmode::Linear: json["tickmode"] = "linear"; break;
+        case Tickmode::Array: json["tickmode"] = "array"; break;
+    }
     return *this;
 }
 
@@ -1630,7 +1836,11 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::tickprefix(std::string 
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::ticks(enum Ticks f) {
-    json["ticks"] = to_string(f);
+    switch(f) {
+        case Ticks::Outside: json["ticks"] = "outside"; break;
+        case Ticks::Inside: json["ticks"] = "inside"; break;
+        case Ticks::Empty: json["ticks"] = ""; break;
+    }
     return *this;
 }
 
@@ -1683,7 +1893,11 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::x(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::xanchor(enum Xanchor f) {
-    json["xanchor"] = to_string(f);
+    switch(f) {
+        case Xanchor::Left: json["xanchor"] = "left"; break;
+        case Xanchor::Center: json["xanchor"] = "center"; break;
+        case Xanchor::Right: json["xanchor"] = "right"; break;
+    }
     return *this;
 }
 
@@ -1693,7 +1907,10 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::xpad(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::xref(enum Xref f) {
-    json["xref"] = to_string(f);
+    switch(f) {
+        case Xref::Container: json["xref"] = "container"; break;
+        case Xref::Paper: json["xref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -1703,7 +1920,11 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::y(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::yanchor(enum Yanchor f) {
-    json["yanchor"] = to_string(f);
+    switch(f) {
+        case Yanchor::Top: json["yanchor"] = "top"; break;
+        case Yanchor::Middle: json["yanchor"] = "middle"; break;
+        case Yanchor::Bottom: json["yanchor"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1713,7 +1934,10 @@ inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::ypad(double f) {
 }
 
 inline Splom::Marker::Colorbar& Splom::Marker::Colorbar::yref(enum Yref f) {
-    json["yref"] = to_string(f);
+    switch(f) {
+        case Yref::Container: json["yref"] = "container"; break;
+        case Yref::Paper: json["yref"] = "paper"; break;
+    }
     return *this;
 }
 
@@ -1730,36 +1954,6 @@ inline std::string Splom::Marker::Colorbar::Tickfont::to_string(LinepositionExtr
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Splom::Marker::Colorbar::Tickfont::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::Tickfont::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::Tickfont::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Splom::Marker::Colorbar::Tickfont& Splom::Marker::Colorbar::Tickfont::color(std::string f) {
@@ -1796,17 +1990,32 @@ inline Splom::Marker::Colorbar::Tickfont& Splom::Marker::Colorbar::Tickfont::siz
 }
 
 inline Splom::Marker::Colorbar::Tickfont& Splom::Marker::Colorbar::Tickfont::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Splom::Marker::Colorbar::Tickfont& Splom::Marker::Colorbar::Tickfont::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Splom::Marker::Colorbar::Tickfont& Splom::Marker::Colorbar::Tickfont::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
@@ -1853,15 +2062,6 @@ inline Splom::Marker::Colorbar::Tickformatstop& Splom::Marker::Colorbar::Tickfor
     return *this;
 }
 
-inline std::string Splom::Marker::Colorbar::Title::to_string(Side e) {
-    switch(e) {
-        case Side::Right: return "right";
-        case Side::Top: return "top";
-        case Side::Bottom: return "bottom";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
 
 inline Splom::Marker::Colorbar::Title& Splom::Marker::Colorbar::Title::font(Font f) {
     json["font"] = std::move(f.json);
@@ -1875,7 +2075,11 @@ inline Splom::Marker::Colorbar::Title& Splom::Marker::Colorbar::Title::font(Call
 }
 
 inline Splom::Marker::Colorbar::Title& Splom::Marker::Colorbar::Title::side(enum Side f) {
-    json["side"] = to_string(f);
+    switch(f) {
+        case Side::Right: json["side"] = "right"; break;
+        case Side::Top: json["side"] = "top"; break;
+        case Side::Bottom: json["side"] = "bottom"; break;
+    }
     return *this;
 }
 
@@ -1897,36 +2101,6 @@ inline std::string Splom::Marker::Colorbar::Title::Font::to_string(LinepositionE
         case LinepositionExtra::None: return "none";
     }
     throw std::invalid_argument{"Unknown extra value for lineposition."};
-}
-inline std::string Splom::Marker::Colorbar::Title::Font::to_string(Style e) {
-    switch(e) {
-        case Style::Normal: return "normal";
-        case Style::Italic: return "italic";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::Title::Font::to_string(Textcase e) {
-    switch(e) {
-        case Textcase::Normal: return "normal";
-        case Textcase::WordCaps: return "word caps";
-        case Textcase::Upper: return "upper";
-        case Textcase::Lower: return "lower";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
-}
-inline std::string Splom::Marker::Colorbar::Title::Font::to_string(Variant e) {
-    switch(e) {
-        case Variant::Normal: return "normal";
-        case Variant::SmallCaps: return "small-caps";
-        case Variant::AllSmallCaps: return "all-small-caps";
-        case Variant::AllPetiteCaps: return "all-petite-caps";
-        case Variant::PetiteCaps: return "petite-caps";
-        case Variant::Unicase: return "unicase";
-    }
-    // Should be unreachable.
-    throw std::invalid_argument{"Unknown enumerator value " + std::to_string(static_cast<int>(e))};
 }
 
 inline Splom::Marker::Colorbar::Title::Font& Splom::Marker::Colorbar::Title::Font::color(std::string f) {
@@ -1963,17 +2137,32 @@ inline Splom::Marker::Colorbar::Title::Font& Splom::Marker::Colorbar::Title::Fon
 }
 
 inline Splom::Marker::Colorbar::Title::Font& Splom::Marker::Colorbar::Title::Font::style(enum Style f) {
-    json["style"] = to_string(f);
+    switch(f) {
+        case Style::Normal: json["style"] = "normal"; break;
+        case Style::Italic: json["style"] = "italic"; break;
+    }
     return *this;
 }
 
 inline Splom::Marker::Colorbar::Title::Font& Splom::Marker::Colorbar::Title::Font::textcase(enum Textcase f) {
-    json["textcase"] = to_string(f);
+    switch(f) {
+        case Textcase::Normal: json["textcase"] = "normal"; break;
+        case Textcase::WordCaps: json["textcase"] = "word caps"; break;
+        case Textcase::Upper: json["textcase"] = "upper"; break;
+        case Textcase::Lower: json["textcase"] = "lower"; break;
+    }
     return *this;
 }
 
 inline Splom::Marker::Colorbar::Title::Font& Splom::Marker::Colorbar::Title::Font::variant(enum Variant f) {
-    json["variant"] = to_string(f);
+    switch(f) {
+        case Variant::Normal: json["variant"] = "normal"; break;
+        case Variant::SmallCaps: json["variant"] = "small-caps"; break;
+        case Variant::AllSmallCaps: json["variant"] = "all-small-caps"; break;
+        case Variant::AllPetiteCaps: json["variant"] = "all-petite-caps"; break;
+        case Variant::PetiteCaps: json["variant"] = "petite-caps"; break;
+        case Variant::Unicase: json["variant"] = "unicase"; break;
+    }
     return *this;
 }
 
