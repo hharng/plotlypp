@@ -206,23 +206,19 @@ void writeIndexHtml(const std::filesystem::path& outputDir) {
     std::sort(htmlFiles.begin(), htmlFiles.end());
 
     std::ofstream indexFile(outputDir / "index.html");
+    // To render nicely with Github Pages Jekyll, set the required Jekyll frontmatter (layout, title) and don't provide
+    // our own HTML boilerplate.
     // clang-format off
-    indexFile << R"(<!doctype html>)" << "\n"
-            << R"(<html lang="en">)" << "\n"
-            << R"(<head>)" << "\n"
-            << R"(    <meta charset="UTF-8">)" << "\n"
-            << R"(    <meta name="viewport" content="width=device-width, initial-scale=1.0">)" << "\n"
-            << R"(    <title>Plotly++ Examples</title>)" << "\n"
-            << R"(</head>)" << "\n"
-            << R"(<body>)" << "\n"
-            << R"(    <h1>Plotly++ Examples</h1>)" << "\n"
-            << R"(    <ul>)" << "\n";
+    indexFile << R"(---)" << "\n"
+            << R"(layout: default)" << "\n"
+            << R"(title: Plotly++ Examples)" << "\n"
+            << R"(---)" << "\n"
+            << R"(<h1>Plotly++ Examples</h1>)" << "\n"
+            << R"(<ul>)" << "\n";
     for (const auto& filename : htmlFiles) {
-        indexFile << R"(        <li><a href=")" << filename << R"(">)" << filename << "</a></li>" << "\n";
+        indexFile << R"(    <li><a href=")" << filename << R"(">)" << filename << "</a></li>" << "\n";
     }
-    indexFile << R"(    </ul>)" << "\n"
-              << R"(</body>)" << "\n"
-              << R"(</html>)" << "\n";
+    indexFile << R"(</ul>)" << "\n";
     // clang-format on
 }
 
@@ -239,7 +235,7 @@ void saveAllCharts() {
 
 int main() {
     showAllCharts();
-    //  To update the example outputs:
+    //   To update the example outputs:
     // saveAllCharts();
 
     std::cout << "Done" << "\n";

@@ -42,8 +42,7 @@ Figure coloredAndStyledHistograms() {
     std::vector<double> x2;
     std::vector<double> y1;
     std::vector<double> y2;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(1);
     std::uniform_real_distribution<> dis(0.0, 1.0);
     for (int i = 0; i < 499; ++i) {
         double k = dis(gen);
@@ -168,8 +167,7 @@ Figure asymmetricErrorBars() {
 
 // https://plotly.com/javascript/2D-Histogram/
 Figure gen2DHistogramBivariateNormal() {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(1);
     std::uniform_real_distribution<> dis(0.0, 1.0);
     std::vector<double> x;
     std::vector<double> y;
@@ -185,8 +183,7 @@ Figure gen2DHistogramBivariateNormal() {
 Figure gen2DHistogramContour() {
     std::vector<double> x;
     std::vector<double> y;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(1);
     std::uniform_real_distribution<> dis(0.0, 1.0);
     for (int i = 0; i < 500; ++i) {
         x.push_back(dis(gen));
@@ -198,8 +195,7 @@ Figure gen2DHistogramContour() {
 // https://plotly.com/javascript/violin/
 Figure basicHorizontalViolinPlot() {
     std::vector<double> total_bill_data;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(1);
     // Bills centered around $40, std dev $10, min $5
     std::normal_distribution<> dis(40.0, 10.0);
     total_bill_data.reserve(100);
