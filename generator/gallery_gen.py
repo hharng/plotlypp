@@ -1,5 +1,15 @@
 import os
 import json
+
+# This script is a bit of a hack and not an ideal solution.
+# To create a nice README gallery for Github, we need to export plots as PNG for embedding in markdown.
+# The standalone kaleido binary (v0.2) is somewhat obsolete and was having unrelated dependency and permission issues
+# specific to my machine. Instead, to keep things simple, load the plot JSON up in plotly Python, which can use the
+# Python-wrapped Kaleido for PNG export.
+# For an actual PNG export solution, a more robust solution not relying on the Python libs should be used, perhaps
+# using webdriver or something similar.
+# This script will also generate the html for embedding the table of PNGs into the README's markdown.
+
 import plotly.graph_objects as go
 
 # --- CONFIG ---
@@ -10,7 +20,6 @@ COLS = 5
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# 2. Process Files
 json_files = sorted([f for f in os.listdir(INPUT_DIR) if f.endswith(".json")])
 html_output = ['<table width="100%" cellspacing="0" cellpadding="0" style="border-collapse: collapse;">']
 
@@ -39,7 +48,7 @@ for i, filename in enumerate(json_files):
     # The default colorscale is also different between JS and Python, with JS using "RdBu" nad Python using "Viridis".
     # I actually prefer the Python version, so let's keep it even though it will make the thumbnails look different.
 
-    # 2. Check if the plot has a 3D "scene" and shrink its fonts since the axes numbers end up super bloated.
+    # Check if the plot has a 3D "scene" and shrink its fonts since the axes numbers end up super bloated.
     # Look for 'scene' keys in the layout which indicate a 3D plot
     if any(k.startswith('scene') for k in fig.layout):
         fig.update_scenes(

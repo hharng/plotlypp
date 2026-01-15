@@ -211,7 +211,7 @@ void linePlotWithMarkers() {
 
   // If you think you really know what you're doing and want to give up type safety, a raw
   // JSON string API is also available.
-  layout.yaxis({"{\"title\": {\"text\": \"New y-axis title\"}}"});
+  layout.yaxis({R"({"title": {"text": "New y-axis title"}})"});
 
   auto figure = Figure()
                   .addTrace(std::move(scatter_and_lines))
