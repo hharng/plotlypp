@@ -5,9 +5,11 @@ Plotly++ is a header-only C++ graphing library for creating interactive plots an
 
 This makes Plotly++ extremely simple and lightweight for C++ applications; no graphics or rendering libraries or frameworks are required! Plotly++'s only additional dependency is a JSON library.
 
+The Plotly++ API provides strong compile-time type safety, enabling active IDE auto-complete and suggestions.
+
 The more than 40 chart types supported by Plotly.js are supported by Plotly++.
 
-Plotly++ is largely auto-generated from official Plotly.js sources.
+Plotly++ is largely auto-generated from the official Plotly.js schema.
 
 ## Examples
 
@@ -173,8 +175,42 @@ Each of the thumbnails below is chart from the the [`examples/`](./examples) dir
   </tr>
 </table>
 
+### Creating a simple plot
 
-TODO
+```cpp
+#include <plotlypp/figure.hpp>
+#include <plotlypp/traces/scatter.hpp>
+
+void linePlotWithMarkers() {
+    using namespace plotlypp;
+    // Plotly++ uses a fluent API.
+    // Plotly "flaglist" types are specfied with initializer lists. (mode setting is equivalent to "markers+lines"
+    // in JavaScript or Python)
+    auto scatter_and_lines = Scatter()
+                                 .x(std::vector{1, 2, 3, 4})
+                                 .y(std::vector{12, 9, 15, 12})
+                                 .mode({Scatter::Mode::Lines, Scatter::Mode::Markers})
+                                 .name("Lines & Markers");
+
+    // Nested types can get verbose, so a lambda-setter API is also available.
+    auto layout = Layout()
+                      .title([](auto& t) { t.text("Title of the Graph"); })
+                      .xaxis(Layout::Xaxis().title([](auto& t) { t.text("x-axis title"); })) // Lambda API
+                      .yaxis(Layout::Yaxis().title(Layout::Yaxis::Title().text("y-axis title"))); // Regular API
+    // If you think you really know what you're doing and want to give up type safety, a raw JSON string API is
+    // also available.
+    layout.yaxis({"{\"title\": {\"text\": \"New y-axis title\"}}"});
+
+    auto figure = Figure()
+                      .addTrace(std::move(scatter_and_lines))
+                      .setLayout(std::move(layout));
+
+    // Open the plot in the default browser for interactive viewing.
+    figure.show();
+    // Save the plot to disk.
+    figure.writeHtml("line_plot_with_markers.html")
+}
+```
 
 ### Building and running the examples
 
@@ -188,7 +224,9 @@ When included as part of a larger CMake project, the example target will not be 
 
 ## Additional Documentation
 
-Since much of Plotly++ is auto-generated from Plotly.js sources, the official [Plotly.js documentation](https://plotly.com/javascript/) is the best source for additional documentation about trace and chart types and parameters and layout options.
+Since much of Plotly++ is auto-generated from the Plotly.js schema, the official [Plotly.js documentation](https://plotly.com/javascript/) is the best source for additional documentation about trace and chart types and parameters and layout options.
+
+IDE auto-complete and suggestion features are also highly beneficial when working with Plotly++.
 
 ## Dependencies
 
