@@ -131,8 +131,8 @@ inline void writeIndexHtml(const std::filesystem::path& outputDir) {
             << R"(layout: default)" << "\n"
             << R"(title: Plotly++ Examples)" << "\n"
             << R"(---)" << "\n"
-            << R"(Click the links below to view the interactive charts)" << "\n"
             << R"(<h1>Plotly++ Examples</h1>)" << "\n"
+            << R"(Click the links below to view the interactive charts)" << "\n"
             << R"(<ul>)" << "\n";
     for (const auto& filename : htmlFiles) {
         indexFile << R"(    <li><a href=")" << filename << R"(">)" << filename << "</a></li>" << "\n";
