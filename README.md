@@ -185,7 +185,7 @@ void linePlotWithMarkers() {
   using namespace plotlypp;
 
   std::vector x_data = {1, 2, 3, 4};
-  std::vector y_data = {1, 2, 3, 4};
+  std::vector y_data = {2, 4, 6, 8};
 
   // Plotly++ uses a fluent API.
   // Trace data (eg x, y) are accepted as `const std::vector&` in C++17. In C++20 and later,
@@ -199,11 +199,14 @@ void linePlotWithMarkers() {
                              .name("Lines & Markers");
 
   // Nested types can get verbose, so a lambda-setter API is also available.
-  // `title` and `xaxis` use the lambda API, `yaxis` uses the regular setter API.
+  // `title` uses the lambda API, `yaxis` uses the regular setter API, and `xaxis uses both.
   auto layout = Layout()
                   .title([](auto& t) { t.text("Title of the Graph"); })
                   .xaxis(Layout::Xaxis().title([](auto& t) { t.text("x-axis title"); }))
                   .yaxis(Layout::Yaxis().title(Layout::Yaxis::Title().text("y-axis title")));
+
+  // `xaxis` could alternatively have used nested lambdas.
+  layout.xaxis([](auto& x) { x.title([](auto& t) { t.text("New x-axis title"); }) }; );
 
   // If you think you really know what you're doing and want to give up type safety, a raw
   // JSON string API is also available.
@@ -215,7 +218,8 @@ void linePlotWithMarkers() {
 
   // Open the plot in the default browser for interactive viewing.
   figure.show();
-  // Save the plot to disk.
+
+  // Save the plot to disk for interactive viewing at a later time.
   figure.writeHtml("line_plot_with_markers.html")
 }
 ```
