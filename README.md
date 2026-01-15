@@ -11,7 +11,7 @@ Plotly++ is largely auto-generated from official Plotly.js sources.
 
 ## Examples
 
-A comprehensive set of examples demonstrating various chart types can be found in the [`examples/`](./examples) directory and the generated interactive plots can be viewed live: **[View Live Examples](https://jimmyorourke.github.io/plotlypp/)**
+A comprehensive set of examples demonstrating various chart types can be found in the [`examples/`](./examples) directory and the generated interactive plots can be viewed live: **[View Live Examples](https://jimmyorourke.github.io/plotlypp/examples/output/)**
 
 ### Gallery
 
