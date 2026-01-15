@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"domain":{"column":0},"hole":0.4,"hoverinfo":"label+percent+name","labels":["US","China","European Union","Russian Federation","Brazil","India","Rest of World"],"name":"GHG Emissions","type":"pie","values":[16,15,12,6,5,4,42]},{"domain":{"column":1},"hole":0.4,"hoverinfo":"label+percent+name","labels":["US","China","European Union","Russian Federation","Brazil","India","Rest of World"],"name":"CO2 Emissions","text":["CO2"],"textposition":"inside","type":"pie","values":[27,11,25,8,1,3,25]}]')
-            layout = JSON.parse('{"annotations":[{"font":{"size":20.0},"showarrow":false,"text":"GHG","x":0.17,"y":0.5},{"font":{"size":20.0},"showarrow":false,"text":"CO2","x":0.82,"y":0.5}],"grid":{"columns":2,"rows":1},"height":400.0,"showlegend":false,"title":{"text":"Global Emissions 1990-2011"},"width":600.0}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"domain":{"column":0},"hole":0.4,"hoverinfo":"label+percent+name","labels":["US","China","European Union","Russian Federation","Brazil","India","Rest of World"],"name":"GHG Emissions","type":"pie","values":[16,15,12,6,5,4,42]},{"domain":{"column":1},"hole":0.4,"hoverinfo":"label+percent+name","labels":["US","China","European Union","Russian Federation","Brazil","India","Rest of World"],"name":"CO2 Emissions","text":["CO2"],"textposition":"inside","type":"pie","values":[27,11,25,8,1,3,25]}]');
+        const layout = JSON.parse('{"annotations":[{"font":{"size":20.0},"showarrow":false,"text":"GHG","x":0.17,"y":0.5},{"font":{"size":20.0},"showarrow":false,"text":"CO2","x":0.82,"y":0.5}],"grid":{"columns":2,"rows":1},"height":400.0,"showlegend":false,"title":{"text":"Global Emissions 1990-2011"},"width":600.0}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

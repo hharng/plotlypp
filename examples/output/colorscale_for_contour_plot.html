@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"colorscale":"Jet","type":"contour","z":[[10.0,10.625,12.5,15.625,20.0],[5.625,6.25,8.125,11.25,15.625],[2.5,3.125,5.0,8.125,12.5],[0.625,1.25,3.125,6.25,10.625],[0.0,0.625,2.5,5.625,10.0]]}]')
-            layout = JSON.parse('{"title":{"text":"Colorscale for Contour Plot"}}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"colorscale":"Jet","type":"contour","z":[[10.0,10.625,12.5,15.625,20.0],[5.625,6.25,8.125,11.25,15.625],[2.5,3.125,5.0,8.125,12.5],[0.625,1.25,3.125,6.25,10.625],[0.0,0.625,2.5,5.625,10.0]]}]');
+        const layout = JSON.parse('{"title":{"text":"Colorscale for Contour Plot"}}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

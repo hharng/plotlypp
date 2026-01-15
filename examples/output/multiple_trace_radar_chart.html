@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"fill":"toself","name":"Group A","r":[39.0,28.0,8.0,7.0,28.0,39.0],"theta":["A","B","C","D","E","A"],"type":"scatterpolar"},{"fill":"toself","name":"Group B","r":[1.5,10.0,39.0,31.0,15.0,1.5],"theta":["A","B","C","D","E","A"],"type":"scatterpolar"}]')
-            layout = JSON.parse('{"polar":{"radialaxis":{"range":[0.0,50.0],"visible":true}}}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"fill":"toself","name":"Group A","r":[39.0,28.0,8.0,7.0,28.0,39.0],"theta":["A","B","C","D","E","A"],"type":"scatterpolar"},{"fill":"toself","name":"Group B","r":[1.5,10.0,39.0,31.0,15.0,1.5],"theta":["A","B","C","D","E","A"],"type":"scatterpolar"}]');
+        const layout = JSON.parse('{"polar":{"radialaxis":{"range":[0.0,50.0],"visible":true}}}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

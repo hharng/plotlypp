@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"fill":"toself","fillcolor":"#709BFF","line":{"color":"black"},"mode":"lines","r":[0.0,1.5,1.5,0.0,2.5,2.5,0.0],"theta":[0,10,25,0,205,215,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#E4FF87","line":{"color":"black"},"mode":"lines","r":[0.0,3.5,3.5,0.0],"theta":[0,55,75,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#FFAA70","line":{"color":"black"},"mode":"lines","r":[0.0,4.5,4.5,0.0,4.5,4.5,0.0],"theta":[0,100,120,0,305,320,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#FFDF70","line":{"color":"black"},"mode":"lines","r":[0,4,4,0],"theta":[0,165,195,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#B6FFB4","line":{"color":"black"},"mode":"lines","r":[0,3,3,0],"theta":[0.0,262.5,277.5,0.0],"type":"scatterpolar"}]')
-            layout = JSON.parse('{"polar":{"radialaxis":{"range":[0.0,5.0],"visible":true}},"showlegend":false}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"fill":"toself","fillcolor":"#709BFF","line":{"color":"black"},"mode":"lines","r":[0.0,1.5,1.5,0.0,2.5,2.5,0.0],"theta":[0,10,25,0,205,215,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#E4FF87","line":{"color":"black"},"mode":"lines","r":[0.0,3.5,3.5,0.0],"theta":[0,55,75,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#FFAA70","line":{"color":"black"},"mode":"lines","r":[0.0,4.5,4.5,0.0,4.5,4.5,0.0],"theta":[0,100,120,0,305,320,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#FFDF70","line":{"color":"black"},"mode":"lines","r":[0,4,4,0],"theta":[0,165,195,0],"type":"scatterpolar"},{"fill":"toself","fillcolor":"#B6FFB4","line":{"color":"black"},"mode":"lines","r":[0,3,3,0],"theta":[0.0,262.5,277.5,0.0],"type":"scatterpolar"}]');
+        const layout = JSON.parse('{"polar":{"radialaxis":{"range":[0.0,5.0],"visible":true}},"showlegend":false}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

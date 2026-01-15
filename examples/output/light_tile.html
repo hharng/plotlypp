@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"colorbar":{"len":0.45,"y":1.0,"yanchor":"top"},"lat":[15,25,35],"lon":[10,20,30],"radius":50.0,"type":"densitymap","z":[1,3,2]},{"colorbar":{"len":0.45,"y":0.0,"yanchor":"bottom"},"lat":[15,25,35],"lon":[-10,-20,-30],"radius":[50.0,100.0,10.0],"type":"densitymap"}]')
-            layout = JSON.parse('{"height":400.0,"map":{"center":{"lat":20.0},"style":"light"},"width":600.0}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"colorbar":{"len":0.45,"y":1.0,"yanchor":"top"},"lat":[15,25,35],"lon":[10,20,30],"radius":50.0,"type":"densitymap","z":[1,3,2]},{"colorbar":{"len":0.45,"y":0.0,"yanchor":"bottom"},"lat":[15,25,35],"lon":[-10,-20,-30],"radius":[50.0,100.0,10.0],"type":"densitymap"}]');
+        const layout = JSON.parse('{"height":400.0,"map":{"center":{"lat":20.0},"style":"light"},"width":600.0}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

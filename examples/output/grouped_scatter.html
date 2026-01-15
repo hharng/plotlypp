@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"mode":"markers","name":"Gold","type":"scatter","x":["South Korea","China","Canada"],"y":[24,10,9]},{"mode":"markers","name":"Silver","type":"scatter","x":["South Korea","China","Canada"],"y":[13,15,12]},{"mode":"markers","name":"Bronze","type":"scatter","x":["South Korea","China","Canada"],"y":[11,8,12]}]')
-            layout = JSON.parse('{"scattermode":"group","title":{"text":"Grouped by Country"},"xaxis":{"title":{"text":"Country"}},"yaxis":{"title":{"text":"Medals"}}}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"mode":"markers","name":"Gold","type":"scatter","x":["South Korea","China","Canada"],"y":[24,10,9]},{"mode":"markers","name":"Silver","type":"scatter","x":["South Korea","China","Canada"],"y":[13,15,12]},{"mode":"markers","name":"Bronze","type":"scatter","x":["South Korea","China","Canada"],"y":[11,8,12]}]');
+        const layout = JSON.parse('{"scattermode":"group","title":{"text":"Grouped by Country"},"xaxis":{"title":{"text":"Country"}},"yaxis":{"title":{"text":"Medals"}}}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

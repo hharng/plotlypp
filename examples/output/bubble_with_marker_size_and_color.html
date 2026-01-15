@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"marker":{"color":["rgb(93, 164, 214)","rgb(255, 144, 14)","rgb(44, 160, 101)","rgb(255, 65, 54)"],"opacity":[1.0,0.8,0.6,0.4],"size":[40.0,60.0,80.0,100.0]},"mode":"markers","type":"scatter","x":[1,2,3,4],"y":[10,11,12,13]}]')
-            layout = JSON.parse('{"height":600.0,"showlegend":false,"title":{"text":"Marker Size and Color"},"width":600.0}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"marker":{"color":["rgb(93, 164, 214)","rgb(255, 144, 14)","rgb(44, 160, 101)","rgb(255, 65, 54)"],"opacity":[1.0,0.8,0.6,0.4],"size":[40.0,60.0,80.0,100.0]},"mode":"markers","type":"scatter","x":[1,2,3,4],"y":[10,11,12,13]}]');
+        const layout = JSON.parse('{"height":600.0,"showlegend":false,"title":{"text":"Marker Size and Color"},"width":600.0}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

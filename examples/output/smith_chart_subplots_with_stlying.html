@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"imag":[1],"marker":{"color":"pink","size":30.0,"symbol":"x"},"real":[1],"subplot":"smith1","type":"scattersmith"},{"imag":[1],"marker":{"color":"green","size":30.0,"symbol":"x"},"real":[1],"subplot":"smith2","type":"scattersmith"}]')
-            layout = JSON.parse('{"smith":{"bgcolor":"lightgrey","domain":{"x":[0.0,0.45]},"imaginaryaxis":{"gridcolor":"blue"},"realaxis":{"gridcolor":"red"}},"smith2":{"bgcolor":"lightgrey","domain":{"x":[0.55,1.0]},"imaginaryaxis":{"gridcolor":"red"},"realaxis":{"gridcolor":"blue"}}}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"imag":[1],"marker":{"color":"pink","size":30.0,"symbol":"x"},"real":[1],"subplot":"smith1","type":"scattersmith"},{"imag":[1],"marker":{"color":"green","size":30.0,"symbol":"x"},"real":[1],"subplot":"smith2","type":"scattersmith"}]');
+        const layout = JSON.parse('{"smith":{"bgcolor":"lightgrey","domain":{"x":[0.0,0.45]},"imaginaryaxis":{"gridcolor":"blue"},"realaxis":{"gridcolor":"red"}},"smith2":{"bgcolor":"lightgrey","domain":{"x":[0.55,1.0]},"imaginaryaxis":{"gridcolor":"red"},"realaxis":{"gridcolor":"blue"}}}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

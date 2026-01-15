@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"a":[4e-06,4e-06,4e-06,4.5e-06,4.5e-06,4.5e-06,5e-06,5e-06,5e-06,6e-06,6e-06,6e-06],"aaxis":{"minorgridcount":9,"smoothing":1.0,"tickprefix":"a = ","ticksuffix":"m"},"b":[1000000.0,2000000.0,3000000.0,1000000.0,2000000.0,3000000.0,1000000.0,2000000.0,3000000.0,1000000.0,2000000.0,3000000.0],"baxis":{"minorgridcount":9,"smoothing":1.0,"tickprefix":"b = ","ticksuffix":"Pa"},"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0]},{"a":[4e-06,4.5e-06,5e-06,6e-06],"b":[1500000.0,2500000.0,1500000.0,2500000.0],"line":{"shape":"spline","smoothing":1.0},"type":"scattercarpet"}]')
-            layout = JSON.parse('null')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"a":[4e-06,4e-06,4e-06,4.5e-06,4.5e-06,4.5e-06,5e-06,5e-06,5e-06,6e-06,6e-06,6e-06],"aaxis":{"minorgridcount":9,"smoothing":1.0,"tickprefix":"a = ","ticksuffix":"m"},"b":[1000000.0,2000000.0,3000000.0,1000000.0,2000000.0,3000000.0,1000000.0,2000000.0,3000000.0,1000000.0,2000000.0,3000000.0],"baxis":{"minorgridcount":9,"smoothing":1.0,"tickprefix":"b = ","ticksuffix":"Pa"},"type":"carpet","y":[2.0,3.5,4.0,3.0,4.5,5.0,5.5,6.5,7.5,8.0,8.5,10.0]},{"a":[4e-06,4.5e-06,5e-06,6e-06],"b":[1500000.0,2500000.0,1500000.0,2500000.0],"line":{"shape":"spline","smoothing":1.0},"type":"scattercarpet"}]');
+        const layout = JSON.parse('null');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

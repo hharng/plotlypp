@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"marker":{"color":"rgb(82, 64, 219)","size":12.0},"mode":"markers","name":"Markers","type":"scatter","x":[1,2,3,4],"y":[10,15,13,17]},{"mode":"lines","name":"Lines","type":"scatter","x":[2,3,4,5],"y":[16,5,11,9]},{"mode":"lines+markers","name":"Lines & Markers","type":"scatter","x":[1,2,3,4],"y":[12,9,15,12]}]')
-            layout = JSON.parse('{"title":{"text":"Title of the Graph"},"xaxis":{"title":{"text":"x-axis title"}},"yaxis":{"title":{"text":"y-axis title"}}}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"marker":{"color":"rgb(82, 64, 219)","size":12.0},"mode":"markers","name":"Markers","type":"scatter","x":[1,2,3,4],"y":[10,15,13,17]},{"mode":"lines","name":"Lines","type":"scatter","x":[2,3,4,5],"y":[16,5,11,9]},{"mode":"lines+markers","name":"Lines & Markers","type":"scatter","x":[1,2,3,4],"y":[12,9,15,12]}]');
+        const layout = JSON.parse('{"title":{"text":"Title of the Graph"},"xaxis":{"title":{"text":"x-axis title"}},"yaxis":{"title":{"text":"y-axis title"}}}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,26 +7,33 @@
     <script src="./js/plotly.min.js"></script>
     <script>
         if (typeof Plotly === 'undefined') {
-            document.write('<script src="./plotly.min.js">\x3C/script>')
-            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js">\x3C/script>')
+            document.write('<script src="./plotly.min.js"><\/script>')
+            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>')
         }
     </script>
 </head>
 <body>
     <div id="plot"></div>
     <script>
-        function resizeDiv() {
-            const div = document.getElementById('plot');
-            div.style.width = window.innerWidth;
-            div.style.height = window.innerHeight;
-            data = JSON.parse('[{"fill":"tozerox","fillcolor":"rgba(0,100,80,0.2)","line":{"color":"transparent"},"name":"Fair","showlegend":false,"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,10.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0],"y":[2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0,0.0]},{"fill":"tozerox","fillcolor":"rgba(0,176,246,0.2)","line":{"color":"transparent"},"name":"Premium","showlegend":false,"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,10.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0],"y":[5.5,3.0,5.5,8.0,6.0,3.0,8.0,5.0,6.0,5.5,4.75,5.0,4.0,7.0,2.0,4.0,7.0,4.4,2.0,4.5]},{"fill":"tozerox","fillcolor":"rgba(231,107,243,0.2)","line":{"color":"transparent"},"name":"Ideal","showlegend":false,"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,10.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0],"y":[11.0,9.0,7.0,5.0,3.0,1.0,3.0,5.0,3.0,1.0,-1.0,1.0,3.0,1.0,-0.5,1.0,3.0,5.0,7.0,9.0]},{"line":{"color":"rgb(0,100,80)"},"mode":"lines","name":"Fair","type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]},{"line":{"color":"rgb(0,176,246)"},"mode":"lines","name":"Premium","type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0]},{"line":{"color":"rgb(231,107,243)"},"mode":"lines","name":"Ideal","type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[10.0,8.0,6.0,4.0,2.0,0.0,2.0,4.0,2.0,0.0]}]')
-            layout = JSON.parse('{"paper_bgcolor":"rgb(255,255,255)","plot_bgcolor":"rgb(229,229,229)","xaxis":{"gridcolor":"rgb(255,255,255)","range":[1.0,10.0],"showgrid":true,"showline":false,"showticklabels":true,"tickcolor":"rgb(127,127,127)","ticks":"outside","zeroline":false},"yaxis":{"gridcolor":"rgb(255,255,255)","showgrid":true,"showline":false,"showticklabels":true,"tickcolor":"rgb(127,127,127)","ticks":"outside","zeroline":false}}')
-            Plotly.newPlot('plot', data, layout);
+        const plotDiv = document.getElementById('plot');
+        const data = JSON.parse('[{"fill":"tozerox","fillcolor":"rgba(0,100,80,0.2)","line":{"color":"transparent"},"name":"Fair","showlegend":false,"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,10.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0],"y":[2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0,0.0]},{"fill":"tozerox","fillcolor":"rgba(0,176,246,0.2)","line":{"color":"transparent"},"name":"Premium","showlegend":false,"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,10.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0],"y":[5.5,3.0,5.5,8.0,6.0,3.0,8.0,5.0,6.0,5.5,4.75,5.0,4.0,7.0,2.0,4.0,7.0,4.4,2.0,4.5]},{"fill":"tozerox","fillcolor":"rgba(231,107,243,0.2)","line":{"color":"transparent"},"name":"Ideal","showlegend":false,"type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,10.0,9.0,8.0,7.0,6.0,5.0,4.0,3.0,2.0,1.0],"y":[11.0,9.0,7.0,5.0,3.0,1.0,3.0,5.0,3.0,1.0,-1.0,1.0,3.0,1.0,-0.5,1.0,3.0,5.0,7.0,9.0]},{"line":{"color":"rgb(0,100,80)"},"mode":"lines","name":"Fair","type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0]},{"line":{"color":"rgb(0,176,246)"},"mode":"lines","name":"Premium","type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[5.0,2.5,5.0,7.5,5.0,2.5,7.5,4.5,5.5,5.0]},{"line":{"color":"rgb(231,107,243)"},"mode":"lines","name":"Ideal","type":"scatter","x":[1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0],"y":[10.0,8.0,6.0,4.0,2.0,0.0,2.0,4.0,2.0,0.0]}]');
+        const layout = JSON.parse('{"paper_bgcolor":"rgb(255,255,255)","plot_bgcolor":"rgb(229,229,229)","xaxis":{"gridcolor":"rgb(255,255,255)","range":[1.0,10.0],"showgrid":true,"showline":false,"showticklabels":true,"tickcolor":"rgb(127,127,127)","ticks":"outside","zeroline":false},"yaxis":{"gridcolor":"rgb(255,255,255)","showgrid":true,"showline":false,"showticklabels":true,"tickcolor":"rgb(127,127,127)","ticks":"outside","zeroline":false}}');
+        let resizing = false;
+        function applyResize() {
+            plotDiv.style.width = window.innerWidth + 'px';
+            plotDiv.style.height = window.innerHeight + 'px';
+            Plotly.newPlot(plotDiv, data, layout);
+            resizing = false;
         }
-        // Call resizeDiv initially to set the size on page load.
-        resizeDiv();
-        // Add an event listener to the window's resize event.
-        window.addEventListener('resize', resizeDiv);
+        plotDiv.style.width = window.innerWidth + 'px';
+        plotDiv.style.height = window.innerHeight + 'px';
+        Plotly.newPlot(plotDiv, data, layout);
+        window.addEventListener('resize', () => {
+            if (!resizing) {
+                resizing = true;
+                window.requestAnimationFrame(applyResize);
+            }
+        });
     </script>
 </body>
 </html>
