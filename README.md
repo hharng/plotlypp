@@ -200,6 +200,7 @@ void linePlotWithMarkers() {
 
   // Nested types can get verbose, so a lambda-setter API is also available.
   // `title` uses the lambda API, `yaxis` uses the regular setter API, and `xaxis uses both.
+  // Also note that adding a layout is optional.
   auto layout = Layout()
                   .title([](auto& t) { t.text("Title of the Graph"); })
                   .xaxis(Layout::Xaxis().title([](auto& t) { t.text("x-axis title"); }))
