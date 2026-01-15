@@ -19,39 +19,39 @@ for i, filename in enumerate(json_files):
     png_name = f"{base_name}.png"
     html_link = f"https://jimmyorourke.github.io/plotlypp/examples/output/{base_name}.html"
 
-    # print(f"[{i+1}/{len(json_files)}] Rendering {png_name}...")
+    print(f"[{i+1}/{len(json_files)}] Rendering {png_name}...")
 
-    # with open(os.path.join(INPUT_DIR, filename), "r") as f:
-    #     fig_data = json.load(f)
+    with open(os.path.join(INPUT_DIR, filename), "r") as f:
+        fig_data = json.load(f)
 
-    # fig = go.Figure(fig_data)
+    fig = go.Figure(fig_data)
 
-    # # --- THUMBNAIL OPTIMIZATION ---
-    # # 1. Apply global font (best for 2D)
-    # fig.update_layout(
-    #     font=dict(size=26), # High readability
-    #     title=dict(text=base_name, font=dict(size=34)),
-    #     margin=dict(t=100, b=60, l=60, r=60),
-    #     template="plotly_white", # Cleanest look for READMEs and more like the JS default.
-    #     width=WIDTH,
-    #     height=HEIGHT
-    # )
-    # # The default colorscale is also different between JS and Python, with JS using "RdBu" nad Python using "Viridis".
-    # # I actually prefer the Python version, so let's keep it even though it will make the thumbnails look different.
+    # --- THUMBNAIL OPTIMIZATION ---
+    # 1. Apply global font (best for 2D)
+    fig.update_layout(
+        font=dict(size=26), # High readability
+        title=dict(text=base_name, font=dict(size=34)),
+        margin=dict(t=0, b=0, l=0, r=0), # Set margins to 0 to maximize chart area
+        template="plotly_white", # Cleanest look for READMEs and more like the JS default.
+        width=WIDTH,
+        height=HEIGHT
+    )
+    # The default colorscale is also different between JS and Python, with JS using "RdBu" nad Python using "Viridis".
+    # I actually prefer the Python version, so let's keep it even though it will make the thumbnails look different.
 
-    # # 2. Check if the plot has a 3D "scene" and shrink its fonts since the axes numbers end up super bloated.
-    # # Look for 'scene' keys in the layout which indicate a 3D plot
-    # if any(k.startswith('scene') for k in fig.layout):
-    #     fig.update_scenes(
-    #         xaxis=dict(tickfont=dict(size=14), title_font=dict(size=16)),
-    #         yaxis=dict(tickfont=dict(size=14), title_font=dict(size=16)),
-    #         zaxis=dict(tickfont=dict(size=14), title_font=dict(size=16))
-    #     )
+    # 2. Check if the plot has a 3D "scene" and shrink its fonts since the axes numbers end up super bloated.
+    # Look for 'scene' keys in the layout which indicate a 3D plot
+    if any(k.startswith('scene') for k in fig.layout):
+        fig.update_scenes(
+            xaxis=dict(tickfont=dict(size=14), title_font=dict(size=16)),
+            yaxis=dict(tickfont=dict(size=14), title_font=dict(size=16)),
+            zaxis=dict(tickfont=dict(size=14), title_font=dict(size=16))
+        )
 
-    # # Export PNG
-    # png_path = os.path.join(OUTPUT_DIR, f"{os.path.splitext(filename)[0]}.png")
-    # fig.write_image(png_path, scale=SCALE, engine="kaleido")
-    # print(f"[{i+1}/{len(json_files)}] Rendered {png_path}")
+    # Export PNG
+    png_path = os.path.join(OUTPUT_DIR, f"{os.path.splitext(filename)[0]}.png")
+    fig.write_image(png_path, scale=SCALE, engine="kaleido")
+    print(f"[{i+1}/{len(json_files)}] Rendered {png_path}")
 
 
     # --- TABLE CONSTRUCTION WITH UI STYLING ---
