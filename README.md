@@ -12,7 +12,7 @@ The more than 40 chart types supported by Plotly.js are supported by Plotly++.
 Plotly++ is largely auto-generated from the official Plotly.js schema.
 
 <details>
-<summary>Table of Contents</summary>
+<summary><b>Table of Contents</b></summary>
 
 - [Examples](#examples)
 - [Additional Documentation](#additional-documentation)
