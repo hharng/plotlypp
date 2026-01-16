@@ -69,12 +69,14 @@ using range_element_type_t = typename range_element_type<std::decay_t<R>>::type;
 
 } // namespace detail
 
-// A data array is either a std::vector or std::span of arithmetic types or string, or a nested vector (depth currently
-// unbounded) of same. For pre-C++20, a data array is a std::vector.
-// We use these template shenanigans to support both types, and appropriately handle type deduction. A more simplistic
-// alias to either `const std::vector<T>&` or `std::span<const T>` cannot handle implicit type deduction when passing
-// in a non-const vector to a `std::span<const T>`. Even wrapping in a `std::span()` CTAD constructor is not sufficient.
-// Arbitrary ranges are not supported as they might not serialize correctly, eg Eigen column-major matrices.
+// A data array is either a std::vector (or std::array) or std::span of arithmetic types or string, or a nested vector
+// (depth currently unbounded) of same. For pre-C++20, a data array is a std::vector or std::array. We use these
+// template shenanigans to support vector, array, and span types, and appropriately handle type deduction. A more
+// simplistic alias to either `const std::vector<T>&` or `std::span<const T>` cannot handle implicit type deduction when
+// passing in a non-const vector to a `std::span<const T>`. Even wrapping in a `std::span()` CTAD constructor is not
+// sufficient. Arbitrary ranges are not supported as they might not serialize correctly, eg Eigen column-major matrices,
+// and similarly this is why explicit std::span construction is required, rather than just convertibility or
+// constructibility.
 
 template <typename T>
 struct is_data_array_element {
