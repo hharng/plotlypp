@@ -2,6 +2,16 @@
 # Licensed under and subject to the terms of the LICENSE file accompanying this distribution.
 # Official repository: https://github.com/jimmyorourke/plotlypp
 
+include(FetchContent)
+
+set(FETCHCONTENT_BASE_DIR ${PLOTLYPP_FETCH_CONTENT_DIR})
+FetchContent_Declare(
+  eigen
+  URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+  URL_HASH SHA256=8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72
+)
+FetchContent_MakeAvailable(eigen)
+
 add_library(math_utils
     math_utils.cpp
 )
@@ -23,4 +33,5 @@ target_link_libraries(example
   PRIVATE
     plotlypp
     math_utils
+    Eigen3::Eigen
 )

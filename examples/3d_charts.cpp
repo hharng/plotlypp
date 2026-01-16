@@ -19,6 +19,11 @@
 #endif
 #endif
 
+// For this specific example set we are also going to demonstrate using Eigen.
+// This means we need to explicitly also pull in the Eigen support header.
+#include <Eigen/Core>
+#include <plotlypp/contrib/eigen_support.hpp>
+
 #include <math_utils.hpp>
 #include <plotlypp/figure.hpp>
 #include <plotlypp/trace.hpp>
@@ -105,28 +110,32 @@ Figure gen3dSurfaceContours() {
 }
 
 Figure gen3dSurfaceTorus() {
-    auto u = math_utils::linspace(0, 2 * /*pi=*/std::acos(-1.0), 50);
-    auto v = u;
-    auto [ugrid, vgrid] = math_utils::meshgrid(u, v);
+    constexpr int kNumPoints = 50;
+    auto u_vec = math_utils::linspace(0, 2 * /*pi=*/std::acos(-1.0), kNumPoints);
+    auto v_vec = u_vec;
+    auto [ugrid, vgrid] = math_utils::meshgrid(u_vec, v_vec);
 
-    // Eigen or something with vectorized ops would greatly simplify this.
+    // This example demonstrates using Eigen matrices as trace inputs. While the nested loops are still suboptimal (due
+    // to the meshgrid implementation using nested vectors), Eigen is still leveraged for the vectorized trigonometric
+    // operations.
 
-    std::vector<std::vector<double>> x;
-    std::vector<std::vector<double>> y;
-    std::vector<std::vector<double>> z;
-    for (auto r = 0; r < ugrid.size(); ++r) {
-        std::vector<double> xr;
-        std::vector<double> yr;
-        std::vector<double> zr;
-        for (auto c = 0; c < ugrid[0].size(); ++c) {
-            xr.push_back((5 + 2 * std::cos(vgrid[r][c])) * std::cos(ugrid[r][c]));
-            yr.push_back((5 + 2 * std::cos(vgrid[r][c])) * std::sin(ugrid[r][c]));
-            zr.push_back(2 * std::sin(vgrid[r][c]));
+    Eigen::MatrixXd u(kNumPoints, kNumPoints);
+    Eigen::MatrixXd v(kNumPoints, kNumPoints);
+    for (int i = 0; i < kNumPoints; ++i) {
+        for (int j = 0; j < kNumPoints; ++j) {
+            u(i, j) = ugrid[i][j];
+            v(i, j) = vgrid[i][j];
         }
-        x.push_back(std::move(xr));
-        y.push_back(std::move(yr));
-        z.push_back(std::move(zr));
     }
+
+    Eigen::MatrixXd x(kNumPoints, kNumPoints);
+    Eigen::MatrixXd y(kNumPoints, kNumPoints);
+    Eigen::MatrixXd z(kNumPoints, kNumPoints);
+
+    x = (5 + 2 * v.array().cos()) * u.array().cos();
+    y = (5 + 2 * v.array().cos()) * u.array().sin();
+    z = 2 * v.array().sin();
+
     return Figure().addTrace(Surface().x(x).y(y).z(z));
 }
 

@@ -14,6 +14,8 @@ option(PLOTLYPP_BUILD_EXAMPLES "Build the examples" ${MAIN_PROJECT})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(PLOTLYPP_FETCH_CONTENT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party_fetch_content)
+
 # When part of a larger project, nlohmann_json should be made available by the greater project, and discoverable by
 # find_package. This way we impose no requirement on how projects procure their dependencies.
 # When just building plotlypp (eg the examples), use FetchContent.
@@ -26,7 +28,7 @@ else()
     endif()
     include(FetchContent)
 
-    set(FETCHCONTENT_BASE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party_fetch_content)
+    set(FETCHCONTENT_BASE_DIR ${PLOTLYPP_FETCH_CONTENT_DIR})
     FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
     FetchContent_MakeAvailable(json)
 endif()
