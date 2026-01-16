@@ -21,57 +21,58 @@ namespace plotlypp {
 template <typename T>
 struct is_plotly_data_array_extension;
 
-namespace detail {
-
+// Default definition for the extension trait.
 template <typename T>
-struct is_vector_or_array : std::false_type {};
-template <typename T, typename A>
-struct is_vector_or_array<std::vector<T, A>> : std::true_type {};
-template <typename T, size_t N>
-struct is_vector_or_array<std::array<T, N>> : std::true_type {};
-template <typename T>
-constexpr bool is_vector_or_array_v = is_vector_or_array<std::decay_t<T>>::value;
+struct is_plotly_data_array_extension : std::false_type {};
 
+// Users specializing `is_plotly_data_array_extension` must also specialize `range_element_type` to provide the element
+// type of their custom range.
 template <typename T>
 struct range_element_type {};
+
 template <typename T, typename A>
 struct range_element_type<std::vector<T, A>> {
     using type = T;
 };
+
 template <typename T, size_t N>
 struct range_element_type<std::array<T, N>> {
     using type = T;
 };
 
 #if __cplusplus >= 202002L
-
-template <typename T>
-struct is_span : std::false_type {};
-template <typename T, size_t E>
-struct is_span<std::span<T, E>> : std::true_type {};
-template <typename T>
-constexpr bool is_span_v = is_span<std::decay_t<T>>::value;
-
 template <typename T, size_t E>
 struct range_element_type<std::span<T, E>> {
     using type = T;
 };
-
-// Post C++20, allow std::span, std::vector, std::array, or an extension type.
-template <typename T>
-constexpr bool is_data_array_range_v =
-    detail::is_span_v<T> || detail::is_vector_or_array_v<T> || is_plotly_data_array_extension<std::decay_t<T>>::value;
-
-#else
-// Pre-C++20, allow std::vector, std::array, or an extension type.
-template <typename T>
-constexpr bool is_data_array_range_v =
-    detail::is_vector_or_array_v<T> || is_plotly_data_array_extension<std::decay_t<T>>::value;
-
 #endif
 
 template <typename R>
 using range_element_type_t = typename range_element_type<std::decay_t<R>>::type;
+
+namespace detail {
+
+template <typename T>
+struct is_vector_or_array_or_span : std::false_type {};
+
+template <typename T, typename A>
+struct is_vector_or_array_or_span<std::vector<T, A>> : std::true_type {};
+
+template <typename T, size_t N>
+struct is_vector_or_array_or_span<std::array<T, N>> : std::true_type {};
+
+#if __cplusplus >= 202002L
+template <typename T, size_t E>
+struct is_vector_or_array_or_span<std::span<T, E>> : std::true_type {};
+#endif
+
+template <typename T>
+constexpr bool is_vector_or_array_or_span_v = is_vector_or_array_or_span<std::decay_t<T>>::value;
+
+// Post C++20, allow std::span, std::vector, std::array, or an extension type.
+template <typename T>
+constexpr bool is_data_array_range_v =
+    is_vector_or_array_or_span_v<T> || is_plotly_data_array_extension<std::decay_t<T>>::value;
 
 } // namespace detail
 
@@ -83,10 +84,6 @@ using range_element_type_t = typename range_element_type<std::decay_t<R>>::type;
 // sufficient. Arbitrary ranges are not supported as they might not serialize correctly, eg Eigen column-major matrices,
 // and similarly this is why explicit std::span construction is required, rather than just convertibility or
 // constructibility.
-
-// Default definition for the extension trait.
-template <typename T>
-struct is_plotly_data_array_extension : std::false_type {};
 
 template <typename T>
 struct is_data_array_element {
@@ -107,7 +104,7 @@ struct is_data_array : std::false_type {};
 
 template <typename T>
 struct is_data_array<T, std::enable_if_t<detail::is_data_array_range_v<T>>>
-: std::bool_constant<is_data_array_element_v<detail::range_element_type_t<T>>> {};
+: std::bool_constant<is_data_array_element_v<range_element_type_t<T>>> {};
 
 template <typename T>
 inline constexpr bool is_data_array_v = is_data_array<T>::value;
