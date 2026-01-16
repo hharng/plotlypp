@@ -4,6 +4,7 @@
 
 #include "basic_charts.hpp"
 
+#include <array>
 #include <string>
 #include <utility>
 #include <vector>
@@ -21,8 +22,17 @@ namespace plotlypp {
 // https://plotly.com/javascript/line-charts/
 
 Figure lineAndScatterWithNamesAxesTitle() {
+
+#if __cplusplus >= 202002L
+#include <span>
+    std::array<int, 4> x_data = {1, 2, 3, 4};
+    std::span x(x_data); // C++20 supports std::span inputs
+#else
+    std::array<int, 4> x = {1, 2, 3, 4}; // C++17 requires std::vector or std::array
+#endif
+
     auto scatter = Scatter()
-                       .x(std::vector{1, 2, 3, 4})
+                       .x(x)
                        .y(std::vector{10, 15, 13, 17})
                        .mode({Scatter::Mode::Markers})
                        .marker(Scatter::Marker().color("rgb(82, 64, 219)").size(12))
