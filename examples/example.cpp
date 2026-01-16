@@ -127,9 +127,9 @@ void saveAllCharts(bool json = false) {
 }
 
 int main() {
-    // showAllCharts();
+    showAllCharts();
     // To update the example outputs. WARNING: may write into the source directories!
-    saveAllCharts(true);
+    // saveAllCharts(true);
 
     std::cout << "Done" << "\n";
 }

@@ -10,8 +10,7 @@
 #include <type_traits>
 #include <vector>
 
-// Feature-test macros were only introduced in C++20, se we can't use
-// `__cpp_lib_span`.
+// Feature-test macros were only introduced in C++20, se we can't directly check `__cpp_lib_span`.
 #if __cplusplus >= 202002L
 #include <span>
 #endif
@@ -114,3 +113,11 @@ template <typename T>
 inline constexpr bool is_data_array_v = is_data_array<T>::value;
 
 } // namespace plotlypp
+
+#if __cplusplus >= 202002L
+#include <version>
+// If std::mdspan is available (typically requires C++23), include support for it.
+#if defined(__cpp_lib_mdspan) && __cpp_lib_mdspan >= 202207L
+#include <plotlypp/detail/mdspan_support.hpp>
+#endif
+#endif

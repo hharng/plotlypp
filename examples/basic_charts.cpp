@@ -9,6 +9,10 @@
 #include <utility>
 #include <vector>
 
+#if __cplusplus >= 202002L
+#include <span>
+#endif
+
 #include <plotlypp/figure.hpp>
 #include <plotlypp/trace.hpp>
 #include <plotlypp/traces/bar.hpp>
@@ -24,7 +28,6 @@ namespace plotlypp {
 Figure lineAndScatterWithNamesAxesTitle() {
 
 #if __cplusplus >= 202002L
-#include <span>
     std::array<int, 4> x_data = {1, 2, 3, 4};
     std::span x(x_data); // C++20 supports std::span inputs
 #else
