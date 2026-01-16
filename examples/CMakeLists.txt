@@ -14,7 +14,8 @@ FetchContent_Declare(
 set(EIGEN_BUILD_TESTING OFF CACHE BOOL "Disable Eigen testing" FORCE)
 set(EIGEN_BUILD_DOC OFF CACHE BOOL "Disable Eigen docs" FORCE)
 set(EIGEN_LEAVE_TEST_IN_ALL_TARGET OFF CACHE BOOL "" FORCE)
-set(CMAKE_FORTRAN_COMPILER OFF)
+set(CMAKE_Fortran_COMPILER "")
+set(CMAKE_Fortran_COMPILER_WORKS 0)
 FetchContent_MakeAvailable(eigen)
 
 add_library(math_utils
