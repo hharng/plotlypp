@@ -10,6 +10,11 @@ FetchContent_Declare(
   URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
   URL_HASH SHA256=8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72
 )
+# Avoid trying to pull in a fortran compiler for the eigen tests. This fails on Windows.
+set(EIGEN_BUILD_TESTING OFF CACHE BOOL "Disable Eigen testing" FORCE)
+set(EIGEN_BUILD_DOC OFF CACHE BOOL "Disable Eigen docs" FORCE)
+set(EIGEN_LEAVE_TEST_IN_ALL_TARGET OFF CACHE BOOL "" FORCE)
+set(CMAKE_FORTRAN_COMPILER OFF)
 FetchContent_MakeAvailable(eigen)
 
 add_library(math_utils
