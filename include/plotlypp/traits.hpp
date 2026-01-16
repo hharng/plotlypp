@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <array>
 #include <cstddef>
 #include <string>
 #include <type_traits>
@@ -18,12 +19,14 @@
 namespace plotlypp {
 namespace detail {
 
-template <class T>
-struct is_vector : std::false_type {};
-template <class T, class A>
-struct is_vector<std::vector<T, A>> : std::true_type {};
-template <class T>
-constexpr bool is_vector_v = is_vector<std::decay_t<T>>::value;
+template <typename T>
+struct is_vector_or_array : std::false_type {};
+template <typename T, typename A>
+struct is_vector_or_array<std::vector<T, A>> : std::true_type {};
+template <typename T, size_t N>
+struct is_vector_or_array<std::array<T, N>> : std::true_type {};
+template <typename T>
+constexpr bool is_vector_or_array_v = is_vector_or_array<std::decay_t<T>>::value;
 
 template <typename T>
 struct range_element_type {};
@@ -31,14 +34,18 @@ template <typename T, typename A>
 struct range_element_type<std::vector<T, A>> {
     using type = T;
 };
+template <typename T, size_t N>
+struct range_element_type<std::array<T, N>> {
+    using type = T;
+};
 
 #if __cplusplus >= 202002L
 
-template <class T>
+template <typename T>
 struct is_span : std::false_type {};
-template <class T, std::size_t E>
+template <typename T, size_t E>
 struct is_span<std::span<T, E>> : std::true_type {};
-template <class T>
+template <typename T>
 constexpr bool is_span_v = is_span<std::decay_t<T>>::value;
 
 template <typename T, size_t E>
@@ -48,12 +55,12 @@ struct range_element_type<std::span<T, E>> {
 
 // Post C++20, allow std::span or std::vector.
 template <typename T>
-constexpr bool is_data_array_range_v = detail::is_span_v<T> || detail::is_vector_v<T>;
+constexpr bool is_data_array_range_v = detail::is_span_v<T> || detail::is_vector_or_array_v<T>;
 
 #else
 // Pre-C++20, allow only std::vector.
 template <typename T>
-constexpr bool is_data_array_range_v = detail::is_vector_v<T>;
+constexpr bool is_data_array_range_v = detail::is_vector_or_array_v<T>;
 
 #endif
 
