@@ -260,7 +260,7 @@ IDE auto-complete and suggestion features are also highly beneficial when workin
 
 The CMakeLists will attempt to use `find_package` to find `nlohmann_json` when Plotly++ is built as part of a larger project. When Plotly++ is the main project (eg for just building the examples), CMake will use `FetchContent` to download `nlohmann_json` to a project-local directory.
 
-While not directly supported at present, nlohmann JSON could be swapped out for another JSON library will minimal work. Libraries with similar APIs such as Boost JSON could be substituted by updating the alias type in [json.hpp](include/plotlypp/json.hpp). For less similar libraries, and consistent [custom data type support](#supported-data-types) a stronger abstraction would be required.
+While not directly supported at present, nlohmann JSON could be swapped out for another JSON library will minimal work. Libraries with similar APIs such as Boost JSON could be substituted by updating the alias type in [json.hpp](include/plotlypp/json.hpp). For less similar libraries, and consistent [custom data type support](#supported-data-types), a stronger abstraction would be required.
 
 If regenerating Plotly++ headers, Python3.6+ is required.
 
