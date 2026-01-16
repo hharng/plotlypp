@@ -10,12 +10,10 @@
 #include <plotlypp/json.hpp>
 
 namespace plotlypp {
-namespace detail {
 template <typename ET, typename Exts, typename LP, typename Acc>
 struct range_element_type<std::mdspan<ET, Exts, LP, Acc>> {
     using type = ET;
 };
-} // namespace detail
 
 // Specialize is_plotly_range_extension to opt-in mdspan
 template <typename ET, typename Exts, typename LP, typename Acc>
