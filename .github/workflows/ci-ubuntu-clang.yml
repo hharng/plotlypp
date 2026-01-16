@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cpp_std: ["17", "20"]
+        cpp_std: ["17", "23"]
     uses: ./.github/workflows/_build_template.yml
     with:
       os: ubuntu-latest
