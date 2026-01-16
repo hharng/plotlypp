@@ -11,6 +11,17 @@ The more than 40 chart types supported by Plotly.js are supported by Plotly++.
 
 Plotly++ is largely auto-generated from the official Plotly.js schema.
 
+<details>
+<summary>Table of Contents</summary>
+
+- [Examples](#examples)
+- [Additional Documentation](#additional-documentation)
+- [Dependencies](#dependencies)
+- [Supported Data Types](#supported-data-types)
+- [Offline Rendering](#offline-rendering)
+
+</details>
+
 ## Examples
 
 A comprehensive set of examples demonstrating various chart types can be found in the [`examples/`](./examples) directory and the generated interactive plots can be viewed live: **[View Live Examples](https://jimmyorourke.github.io/plotlypp/examples/output/)**
@@ -188,8 +199,9 @@ void linePlotWithMarkers() {
   std::vector y_data = {2, 4, 6, 8};
 
   // Plotly++ uses a fluent API.
-  // Trace data (eg x, y) are accepted as `const std::vector&` in C++17. In C++20 and later,
-  // `std::span` automatically becomes supported.
+  // Trace data (e.g. x, y, z, etc) can be provided as std::vector, std::array,
+  // std::span (C++20+), or std::mdspan (C++23+). For custom types like Eigen, see the
+  // "Supported Data Types" section of the README, below.
   // Plotly `flaglist` types are specfied with initializer lists. (mode setting is equivalent
   // to "markers+lines" in JavaScript or Python)
   auto scatter_and_lines = Scatter()
@@ -250,9 +262,18 @@ The CMakeLists will attempt to use `find_package` to find `nlohmann_json` when P
 
 While not directly supported at present, nlohmann JSON could be swapped out for another JSON library will minimal work. Libraries with similar APIs such as Boost JSON could easily be swapped in by updating the alias type in [json.hpp](include/plotlypp/json.hpp). For less similar libraries a stronger abstraction would be required.
 
-When compiling with C++17, trace data for plots is required to be `std::vector`. When using C++20 or newer, `std::span` automatically becomes supported.
-
 If regenerating Plotly++ headers, Python3.6+ is required.
+
+## Supported Data Types
+
+Plotly++ accepts trace data (e.g., for `x`, `y`, `z` coordinates) in various container types holding arithmetic values or strings:
+
+*   **1D Data**: `std::vector<T>`, `std::array<T,N>`, and (in C++20+) `std::span<T>`.
+*   **2D Data**: `std::vector<std::vector<T>>`, and (in C++23+) `std::mdspan`.
+*   **Custom Types**: You can extend Plotly++ to support other array-like types by specializing [`plotlypp::is_plotly_data_array_extension`](./include/plotlypp/traits.hpp). Any custom type passed to Plotly++ must additionally be serializable by nlohmann JSON into an appropriate JSON array format. See [nlohmann JSON's documentation](https://json.nlohmann.me/features/arbitrary_types/) for details on providing serialization support.
+    The [`contrib/`](./include/plotlypp/contrib/) directory offers opt-in support providing these specializations for libraries not included as core Plotly++ dependencies. For example, to use [Eigen](https://libeigen.gitlab.io/) matrices/vectors as trace data, include [`contrib/eigen_support.hpp`](./include/plotlypp/contrib/eigen_support.hpp) and add Eigen as a dependency to your own build target; Plotly++ itself does not depend on Eigen.
+
+Note: [examples/3d_charts.cpp](./examples/3d_charts.cpp) includes an example using Eigen (as well as std::mdspan), and as such the examples target depends on Eigen. CMake will use `FetchContent` to download Eigen to a project-local directory when the examples target is included to be built.
 
 ## Offline Rendering
 
