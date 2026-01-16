@@ -17,6 +17,11 @@
 #endif
 
 namespace plotlypp {
+
+// Specializations of this trait allow other types to be recognized by is_data_array_v.
+template <typename T>
+struct is_plotly_data_array_extension;
+
 namespace detail {
 
 template <typename T>
@@ -53,14 +58,16 @@ struct range_element_type<std::span<T, E>> {
     using type = T;
 };
 
-// Post C++20, allow std::span or std::vector.
+// Post C++20, allow std::span, std::vector, std::array, or an extension type.
 template <typename T>
-constexpr bool is_data_array_range_v = detail::is_span_v<T> || detail::is_vector_or_array_v<T>;
+constexpr bool is_data_array_range_v =
+    detail::is_span_v<T> || detail::is_vector_or_array_v<T> || is_plotly_data_array_extension<std::decay_t<T>>::value;
 
 #else
-// Pre-C++20, allow only std::vector.
+// Pre-C++20, allow std::vector, std::array, or an extension type.
 template <typename T>
-constexpr bool is_data_array_range_v = detail::is_vector_or_array_v<T>;
+constexpr bool is_data_array_range_v =
+    detail::is_vector_or_array_v<T> || is_plotly_data_array_extension<std::decay_t<T>>::value;
 
 #endif
 
@@ -77,6 +84,10 @@ using range_element_type_t = typename range_element_type<std::decay_t<R>>::type;
 // sufficient. Arbitrary ranges are not supported as they might not serialize correctly, eg Eigen column-major matrices,
 // and similarly this is why explicit std::span construction is required, rather than just convertibility or
 // constructibility.
+
+// Default definition for the extension trait.
+template <typename T>
+struct is_plotly_data_array_extension : std::false_type {};
 
 template <typename T>
 struct is_data_array_element {
