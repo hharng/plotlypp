@@ -23,7 +23,7 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/subplots/
+// Based on examples from https://plotly.com/javascript/subplots/
 
 Figure subplotsGridLayout() {
     auto trace1 = Scatter().x(std::vector{1, 2, 3}).y(std::vector{4, 5, 6});
@@ -60,8 +60,7 @@ Figure multipleSubplotsWithSharedAxes() {
                                      .roworder(Layout::Grid::Roworder::BottomToTop)));
 }
 
-// https://plotly.com/python/3d-subplots/
-// https://plotly.com/javascript/3d-subplots/
+// Based on examples from https://plotly.com/python/3d-subplots/ and https://plotly.com/javascript/3d-subplots/
 
 Figure gen3dSubplots() {
     auto x = math_utils::linspace(-5, 80, 10);
@@ -109,7 +108,7 @@ Figure gen3dSubplots() {
                        })));
 }
 
-// https://plotly.com/javascript/insets/
+// Based on examples from https://plotly.com/javascript/insets/
 
 Figure insetGraph() {
     auto trace1 = Scatter().x(std::vector{1, 2, 3}).y(std::vector{4, 3, 2});
@@ -156,6 +155,8 @@ VolcanoData generate_data(int n) {
     }
     return data;
 }
+
+// Based on examples from https://plotly.com/javascript/mixed-subplots/
 
 Figure mixedSubplots() {
     VolcanoData rows = generate_data(500);

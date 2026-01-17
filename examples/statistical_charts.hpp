@@ -8,28 +8,32 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/box-plots/
+// Based on examples from https://plotly.com/javascript/box-plots/
 
 Figure coloredBoxPlot();
 
-// https://plotly.com/javascript/histograms/
+// Based on examples from https://plotly.com/javascript/histograms/
 
 Figure coloredAndStyledHistograms();
 
-// https://plotly.com/javascript/continuous-error-bars/
+// Based on examples from https://plotly.com/javascript/continuous-error-bars/
+
 Figure continuousFilledErrorBars();
 
-// https://plotly.com/javascript/error-bars/
+// Based on examples from https://plotly.com/javascript/error-bars/
+
 Figure asymmetricErrorBars();
 
-// https://plotly.com/javascript/2D-Histogram/
+// Based on examples from https://plotly.com/javascript/2D-Histogram/
+
 Figure gen2DHistogramBivariateNormal();
 
-// https://plotly.com/javascript/2d-histogram-contour/
+// Based on examples from https://plotly.com/javascript/2d-histogram-contour/
 
 Figure gen2DHistogramContour();
 
-// https://plotly.com/javascript/violin/
+// Based on examples from https://plotly.com/javascript/violin/
+
 Figure basicHorizontalViolinPlot();
 
 } // namespace plotlypp

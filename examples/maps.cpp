@@ -17,7 +17,7 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/lines-on-maps/
+// Based on examples from https://plotly.com/javascript/lines-on-maps/
 
 Figure linesOnMaps() {
     auto trace = Scattergeo()
@@ -45,7 +45,7 @@ Figure linesOnMaps() {
                              Layout::Geo::Lonaxis().range(std::vector<double>{-100, 20}).showgrid(true).dtick(20))));
 }
 
-// https://plotly.com/javascript/tile-density-heatmaps/
+// Based on examples from https://plotly.com/javascript/tile-density-heatmaps/
 
 Figure lightTile() {
     auto trace1 = Densitymap()
@@ -65,7 +65,7 @@ Figure lightTile() {
             Layout().map(Layout::Map().style("light").center(Layout::Map::Center().lat(20))).width(600).height(400));
 }
 
-// https://plotly.com/javascript/outline-map-locations/
+// Based on examples from https://plotly.com/javascript/outline-map-locations/
 
 Figure outlineMapLocations() {
     auto trace = Choropleth()
@@ -81,7 +81,7 @@ Figure outlineMapLocations() {
                            Layout::Geo::Projection().type(Layout::Geo::Projection::Type::NaturalEarth))));
 }
 
-// https://plotly.com/javascript/scatter-tile-maps/
+// Based on examples from https://plotly.com/javascript/scatter-tile-maps/
 
 Figure scatterTileMaps() {
     auto trace = Scattermap()

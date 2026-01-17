@@ -35,7 +35,8 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/3d-surface-plots/
+// Based on examples from https://plotly.com/javascript/3d-surface-plots/
+
 Figure multiple3DSurfacePlots() {
 #ifdef PLOTLY_PP_MDSPAN
     constexpr size_t rows = 15;
@@ -139,8 +140,7 @@ Figure gen3dSurfaceTorus() {
     return Figure().addTrace(Surface().x(x).y(y).z(z));
 }
 
-// https://plotly.com/javascript/3d-mesh/
-// https://plotly.com/python/3d-mesh/
+// Based on examples from https://plotly.com/javascript/3d-mesh/ and https://plotly.com/python/3d-mesh/
 
 Figure meshCube() {
     std::vector<std::pair<double, std::string>> colorscale = {{0, "gold"}, {0.5, "mediumturquoise"}, {1, "magenta"}};
@@ -160,7 +160,7 @@ Figure meshCube() {
     return Figure().addTrace(std::move(trace));
 }
 
-// https://plotly.com/javascript/3d-line-plots/
+// Based on examples from https://plotly.com/javascript/3d-line-plots/
 
 Figure gen3dLineSpiral() {
     int point_count = 3142;
@@ -184,7 +184,7 @@ Figure gen3dLineSpiral() {
                                  .line(Scatter3D::Line().width(10).color(std::move(c)).colorscale("Viridis")));
 }
 
-// https://plotly.com/python/3d-scatter-plots/
+// Based on examples from https://plotly.com/python/3d-scatter-plots/
 
 Figure gen3dScatterWithColorscalingAndMarkerStyling() {
     // Helix equation.
@@ -206,7 +206,7 @@ Figure gen3dScatterWithColorscalingAndMarkerStyling() {
         .setLayout(Layout().margin(Layout::Margin().l(0).r(0).b(0).t(0)));
 }
 
-// https://plotly.com/python/3d-volume-plots/
+// Based on examples from https://plotly.com/python/3d-volume-plots/
 
 Figure simpleVolumePlot() {
 
@@ -250,7 +250,8 @@ Figure simpleVolumePlot() {
                                  .surface(Volume::Surface().count(17)));
 }
 
-// https://plotly.com/python/3d-isosurface-plots/
+// Based on examples from https://plotly.com/python/3d-isosurface-plots/
+
 Figure multiple3dIsosurfaces() {
     constexpr int kNumPointsPerDim = 40;
     const auto x_coords = math_utils::linspace(-5, 5, kNumPointsPerDim);
@@ -293,7 +294,8 @@ Figure multiple3dIsosurfaces() {
             .colorscale("Blackbody"));
 }
 
-// https://plotly.com/python/3d-bubble-charts/
+// Based on examples from https://plotly.com/python/3d-bubble-charts/
+
 plotlypp::Figure bubbleChartSizedByVariable() {
     std::vector<std::string> planets = {"Mercury", "Venus",  "Earth",   "Mars", "Jupiter",
                                         "Saturn",  "Uranus", "Neptune", "Pluto"};

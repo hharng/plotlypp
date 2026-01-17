@@ -16,7 +16,7 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/funnel-charts/
+// Based on examples from https://plotly.com/javascript/funnel-charts/
 
 Figure basicFunnel() {
     auto trace =
@@ -29,7 +29,8 @@ Figure basicFunnel() {
         .setLayout(Layout().margin(Layout::Margin().l(150)).width(600).height(500));
 }
 
-// https://plotly.com/javascript/indicator/
+// Based on examples from https://plotly.com/javascript/indicator/
+
 Figure indicator() {
     auto trace1 = Indicator()
                       .mode({Indicator::Mode::Number, Indicator::Mode::Delta})

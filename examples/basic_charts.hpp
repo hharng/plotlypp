@@ -8,9 +8,7 @@
 
 namespace plotlypp {
 
-// scatter, line
-// https://plotly.com/javascript/line-and-scatter/
-// https://plotly.com/javascript/line-charts/
+// Based on examples from https://plotly.com/javascript/line-and-scatter/ and https://plotly.com/javascript/line-charts/
 
 Figure lineAndScatterWithNamesAxesTitle();
 
@@ -22,29 +20,29 @@ Figure groupedScatter();
 
 Figure lineDashes();
 
-// https://plotly.com/javascript/bar-charts/
+// Based on examples from https://plotly.com/javascript/bar-charts/
 
 Figure groupedBar();
 
-// https://plotly.com/javascript/pie-charts/
+// Based on examples from https://plotly.com/javascript/pie-charts/
 
 Figure basicPie();
 
 Figure donut();
 
-// https://plotly.com/javascript/bubble-charts/
+// Based on examples from https://plotly.com/javascript/bubble-charts/
 
 Figure bubbleWithMarkerSizeAndColor();
 
-// https://plotly.com/javascript/dot-plots/
+// Based on examples from https://plotly.com/javascript/dot-plots/
 
 Figure categoricalDotPlot();
 
-// https://plotly.com/javascript/filled-area-plots/
+// Based on examples from https://plotly.com/javascript/filled-area-plots/
 
 Figure basicOverlaidArea();
 
-// https://plotly.com/javascript/horizontal-bar-charts/
+// Based on examples from https://plotly.com/javascript/horizontal-bar-charts/
 
 Figure horizontalBar();
 

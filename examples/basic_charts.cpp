@@ -21,9 +21,7 @@
 
 namespace plotlypp {
 
-// scatter, line
-// https://plotly.com/javascript/line-and-scatter/
-// https://plotly.com/javascript/line-charts/
+// Based on examples from https://plotly.com/javascript/line-and-scatter/ and https://plotly.com/javascript/line-charts/
 
 Figure lineAndScatterWithNamesAxesTitle() {
 
@@ -179,7 +177,7 @@ Figure lineDashes() {
         .setLayout(std::move(layout));
 }
 
-// https://plotly.com/javascript/bar-charts/
+// Based on examples from https://plotly.com/javascript/bar-charts/
 
 Figure groupedBar() {
     auto trace1 = Bar().x(std::vector{"giraffes", "orangutans", "monkeys"}).y(std::vector{20, 14, 23}).name("SF Zoo");
@@ -189,7 +187,7 @@ Figure groupedBar() {
         .setLayout(Layout().barmode(Layout::Barmode::Group));
 }
 
-// https://plotly.com/javascript/pie-charts/
+// Based on examples from https://plotly.com/javascript/pie-charts/
 
 Figure basicPie() {
     auto trace = Pie().values(std::vector{19, 26, 55}).labels(std::vector{"Residential", "Non-Residential", "Utility"});
@@ -237,7 +235,7 @@ Figure donut() {
                        .grid(Layout::Grid().rows(1).columns(2)));
 }
 
-// https://plotly.com/javascript/bubble-charts/
+// Based on examples from https://plotly.com/javascript/bubble-charts/
 
 Figure bubbleWithMarkerSizeAndColor() {
     auto trace1 = Scatter()
@@ -255,7 +253,7 @@ Figure bubbleWithMarkerSizeAndColor() {
             Layout().title([](auto& t) { t.text("Marker Size and Color"); }).showlegend(false).height(600).width(600));
 }
 
-// https://plotly.com/javascript/dot-plots/
+// Based on examples from https://plotly.com/javascript/dot-plots/
 
 Figure categoricalDotPlot() {
     std::vector<std::string> country = {"Switzerland (2011)", "Chile (2013)",   "Japan (2014)",  "United States (2012)",
@@ -313,7 +311,7 @@ Figure categoricalDotPlot() {
                        .hovermode(Layout::Hovermode::Closest));
 }
 
-// https://plotly.com/javascript/filled-area-plots/
+// Based on examples from https://plotly.com/javascript/filled-area-plots/
 
 Figure basicOverlaidArea() {
     auto trace1 = Scatter().x(std::vector{1, 2, 3, 4}).y(std::vector{0, 2, 3, 5}).fill(Scatter::Fill::Tozeroy);
@@ -321,7 +319,7 @@ Figure basicOverlaidArea() {
     return Figure().addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)});
 }
 
-// https://plotly.com/javascript/horizontal-bar-charts/
+// Based on examples from https://plotly.com/javascript/horizontal-bar-charts/
 
 Figure horizontalBar() {
     auto trace1 = Bar()

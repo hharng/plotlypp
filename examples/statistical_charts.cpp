@@ -21,7 +21,7 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/box-plots/
+// Based on examples from https://plotly.com/javascript/box-plots/
 
 Figure coloredBoxPlot() {
     auto trace1 = Box()
@@ -35,7 +35,7 @@ Figure coloredBoxPlot() {
         .setLayout(Layout().title([](auto& t) { t.text("Colored Box Plot"); }));
 }
 
-// https://plotly.com/javascript/histograms/
+// Based on examples from https://plotly.com/javascript/histograms/
 
 Figure coloredAndStyledHistograms() {
     std::vector<double> x1;
@@ -83,7 +83,8 @@ Figure coloredAndStyledHistograms() {
                        .yaxis(Layout::Yaxis().title([](auto& t) { t.text("Count"); })));
 }
 
-// https://plotly.com/javascript/continuous-error-bars/
+// Based on examples from https://plotly.com/javascript/continuous-error-bars/
+
 Figure continuousFilledErrorBars() {
     auto trace1 = Scatter()
                       .x(std::vector<double>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1})
@@ -156,7 +157,8 @@ Figure continuousFilledErrorBars() {
                                   .zeroline(false)));
 }
 
-// https://plotly.com/javascript/error-bars/
+// Based on examples from https://plotly.com/javascript/error-bars/
+
 Figure asymmetricErrorBars() {
     return Figure().addTrace(Scatter()
                                  .x(std::vector<double>{1, 2, 3, 4})
@@ -168,7 +170,8 @@ Figure asymmetricErrorBars() {
                                               .arrayminus(std::vector<double>{0.2, 0.4, 1, 0.2})));
 }
 
-// https://plotly.com/javascript/2D-Histogram/
+// Based on examples from https://plotly.com/javascript/2D-Histogram/
+
 Figure gen2DHistogramBivariateNormal() {
     std::mt19937 gen(1);
     std::uniform_real_distribution<> dis(0.0, 1.0);
@@ -181,7 +184,7 @@ Figure gen2DHistogramBivariateNormal() {
     return Figure().addTrace(Histogram2D().x(x).y(y));
 }
 
-// https://plotly.com/javascript/2d-histogram-contour/
+// Based on examples from https://plotly.com/javascript/2d-histogram-contour/
 
 Figure gen2DHistogramContour() {
     std::vector<double> x;
@@ -195,7 +198,8 @@ Figure gen2DHistogramContour() {
     return Figure().addTrace(Histogram2Dcontour().x(x).y(y).colorscale("Blues"));
 }
 
-// https://plotly.com/javascript/violin/
+// Based on examples from https://plotly.com/javascript/violin/
+
 Figure basicHorizontalViolinPlot() {
     std::vector<double> total_bill_data;
     std::mt19937 gen(1);

@@ -12,19 +12,19 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/lines-on-maps/
+// Based on examples from https://plotly.com/javascript/lines-on-maps/
 
 Figure linesOnMaps();
 
-// https://plotly.com/javascript/tile-density-heatmaps/
+// Based on examples from https://plotly.com/javascript/tile-density-heatmaps/
 
 Figure lightTile();
 
-// https://plotly.com/javascript/outline-map-locations/
+// Based on examples from https://plotly.com/javascript/outline-map-locations/
 
 Figure outlineMapLocations();
 
-// https://plotly.com/javascript/scatter-tile-maps/
+// Based on examples from https://plotly.com/javascript/scatter-tile-maps/
 
 Figure scatterTileMaps();
 

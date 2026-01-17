@@ -8,7 +8,7 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/subplots/
+// Based on examples from https://plotly.com/javascript/subplots/
 
 Figure subplotsGridLayout();
 
@@ -16,16 +16,15 @@ Figure subplotsDomainLayout();
 
 Figure multipleSubplotsWithSharedAxes();
 
-// https://plotly.com/python/3d-subplots/
-// https://plotly.com/javascript/3d-subplots/
+// Based on examples from https://plotly.com/python/3d-subplots/ and https://plotly.com/javascript/3d-subplots/
 
 Figure gen3dSubplots();
 
-// https://plotly.com/javascript/insets/
+// Based on examples from https://plotly.com/javascript/insets/
 
 Figure insetGraph();
 
-// https://plotly.com/javascript/mixed-subplots/
+// Based on examples from https://plotly.com/javascript/mixed-subplots/
 
 Figure mixedSubplots();
 

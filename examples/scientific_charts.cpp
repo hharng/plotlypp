@@ -19,8 +19,7 @@
 
 namespace plotlypp {
 
-// https://plotly.com/javascript/polar-chart/
-// https://plotly.com/javascript/radar-chart/
+// Based on examples from https://plotly.com/javascript/polar-chart/ and https://plotly.com/javascript/radar-chart/
 
 // LOL this is the matplotlib logo!
 Figure areaPolarChart() {
@@ -87,7 +86,8 @@ Figure multipleTraceRadarChart() {
             Layout().polar(Layout::Polar().radialaxis(Layout::Polar::Radialaxis().visible(true).range({0, 50}))));
 }
 
-// https://plotly.com/javascript/carpet-scatter/
+// Based on examples from https://plotly.com/javascript/carpet-scatter/
+
 Figure carpetWithScatterTrace() {
     auto trace1 = Carpet()
                       .a(std::vector{4e-6, 4e-6, 4e-6, 4.5e-6, 4.5e-6, 4.5e-6, 5e-6, 5e-6, 5e-6, 6e-6, 6e-6, 6e-6})
@@ -102,7 +102,7 @@ Figure carpetWithScatterTrace() {
     return Figure().addTraces(std::vector<Trace>{std::move(trace1), std::move(trace2)});
 }
 
-// https://plotly.com/javascript/contour-plots/
+// Based on examples from https://plotly.com/javascript/contour-plots/
 
 Figure colorscaleForContourPlot() {
     auto trace = Contour()
@@ -117,7 +117,7 @@ Figure colorscaleForContourPlot() {
     }));
 }
 
-// https://plotly.com/python/smith-charts/
+// Based on examples from https://plotly.com/python/smith-charts/
 
 Figure smithChartSubplotsWithStlying() {
     auto smith1 = Scattersmith()
