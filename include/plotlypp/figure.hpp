@@ -7,6 +7,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <type_traits>
 #include <utility>
@@ -118,6 +119,12 @@ class Figure {
 
     const Json& json() const& { return _json; }
     Json json() && { return std::move(_json); }
+
+    std::string html() const {
+        std::stringstream ss;
+        toHtml(ss);
+        return ss.str();
+    }
 
  private:
     void showInBrowser(const std::string& plotFile) const {

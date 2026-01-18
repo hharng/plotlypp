@@ -19,6 +19,7 @@ Plotly++ is largely auto-generated from the official Plotly.js schema.
 - [Dependencies](#dependencies)
 - [Supported Data Types](#supported-data-types)
 - [Offline Rendering](#offline-rendering)
+- [Usage in Web Applications](#usage-in-web-applications)
 
 </details>
 
@@ -278,3 +279,32 @@ Note: [examples/3d_charts.cpp](./examples/3d_charts.cpp) includes an example usi
 ## Offline Rendering
 
 The HTML emitted by Plotly++ requires the Plotly.js Javascript library in order to render in a web browser. Plotly++ prefers offline rendering when possible, so the HTML output instructs the web browser to first try to load Plotly.js from a local file in a `js` subdirectory of the HTML file's directory. Plotly++ emits the required file as `js/plotly.min.js` when `Figure.writeHtml()` is called with parameter `includeJsResources` set to true (the default). If the local Plotly.js file is not found, the Plotly++ HTML will try to acquire and use Plotly.js from the official CDN, requiring an internet connection unless your browser already has it cached.
+
+## Usage in Web Applications
+
+In addition to viewing and exporting local HTML plot files, Plotly++ can be used in C++ web server applications to dynamically generate plots for web clients. There are two possible approaches:
+
+### 1. Generating full HTML
+
+The server can generate a full, self-contained HTML page containing the plot and all necessary JavaScript, which the browser can render directly (the same page produced by `Figure.show()` and `Figure.writeHtml`). The `Figure.html()` method returns the plot as an HTML string, which can be sent in an HTTP response body with a `Content-Type: text/html` header.
+
+### 2. Generating Plotly JSON Payload for Client-Side Rendering
+
+Alternatively, the server can act as a JSON API endpoint and generate just the JSON required for the client to render with Plotly.js. The `Figure.json()` method returns the figure's JSON representation following the Plotly.JS figure spec. The figure JSON can be serialized to string and sent in an HTTP response. The client-side page is required to load the Plotly.js library (e.g., from a CDN), fetch plot data from the server, and use `Plotly.newPlot()` to render the plot in the browser.
+
+```cpp
+// Server-side C++ pseudo-code for /api/plot-data endpoint:
+auto figure = plotlypp::Figure().addTrace(plotlypp::Scatter().y(std::array{2,4,6}));
+std::string json_content = figure.json().dump();
+// send json_content as HTTP response...
+```
+
+```javascript
+// Client-side JavaScript pseudo-code:
+// Assumes Plotly.js is loaded (eg from CDN) and an element with id="plot-div" exists.
+fetch('/api/plot-data')
+    .then(response => response.json())
+    .then(plotData => {
+        Plotly.newPlot('plot-div', plotData.data, plotData.layout);
+    });
+```
