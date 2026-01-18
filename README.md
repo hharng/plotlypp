@@ -290,7 +290,7 @@ The server can generate a full, self-contained HTML page containing the plot and
 
 ### 2. Generating Plotly JSON Payload for Client-Side Rendering
 
-Alternatively, the server can act as a JSON API endpoint and generate just the JSON required for the client to render with Plotly.js. The `Figure.json()` method returns the figure's JSON representation following the Plotly.JS figure spec. The figure JSON can be serialized to string and sent in an HTTP response. The client-side page is required to load the Plotly.js library (e.g., from a CDN), fetch plot data from the server, and use `Plotly.newPlot()` to render the plot in the browser.
+Alternatively, the server can act as a JSON API endpoint and generate just the JSON required for the client to render with Plotly.js. The `Figure.json()` method returns the figure's JSON representation following the Plotly.js figure spec. The figure JSON can be serialized to string and sent in an HTTP response. The client-side page is required to load the Plotly.js library (eg from a CDN), fetch plot data from the server, and use `Plotly.newPlot()` to render the plot in the browser.
 
 ```cpp
 // Server-side C++ pseudo-code for /api/plot-data endpoint:
@@ -301,7 +301,7 @@ std::string json_content = figure.json().dump();
 
 ```javascript
 // Client-side JavaScript pseudo-code:
-// Assumes Plotly.js is loaded (eg from CDN) and an element with id="plot-div" exists.
+// Assumes Plotly.js is loaded and an element with id="plot-div" exists.
 fetch('/api/plot-data')
     .then(response => response.json())
     .then(plotData => {
