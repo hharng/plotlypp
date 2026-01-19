@@ -47,7 +47,7 @@ Figure lineAndScatterWithNamesAxesTitle() {
                                  .name("Lines & Markers");
 
     auto layout = Layout()
-                      .title([](auto& t) { t.text("Title of the Graph"); })
+                      .title([](auto& t) { t.text("This Graph's Title"); })
                       .xaxis(Layout::Xaxis().title([](auto& t) { t.text("x-axis title"); }))
                       .yaxis(Layout::Yaxis().title(Layout::Yaxis::Title().text("y-axis title")));
     return Figure()

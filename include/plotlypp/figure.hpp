@@ -49,50 +49,68 @@ class Figure {
     }
 
     void toHtml(std::ostream& os) const {
+        // Serialize and sanitize for HTML embedding.
+        // This escapes '<' to '\u003c' so the browser never confuses JSON data for HTML tags.
+        auto html_safe_serialize = [this](const auto& json) {
+            std::string s = serialize(json);
+            // Escape '<' to '\u003c' so the browser never confuses JSON data for HTML tags.
+            size_t pos = 0;
+            while ((pos = s.find('<', pos)) != std::string::npos) {
+                s.replace(pos, 1, "\\u003c");
+                pos += 6;
+            }
+            return s;
+        };
+
+        // Embed the JSON directly as javascript objects. This more efficient than JSON parsing at render time, and
+        // avoids issues with quote escaping in the C++ serialized JSON. We just have to be concerned with escaping
+        // HTML tags to ensure none of our blocks get closed.
+
         // clang-format off
-        os << R"(<!doctype html>)" << "\n"
-           << R"(<html lang="en">)" << "\n"
-           << R"(<head>)" << "\n"
-           << R"(    <meta charset="utf-8">)" << "\n"
-           << R"(    <meta name="viewport" content="width=device-width, initial-scale=1.0">)" << "\n"
-           << R"(    <title>Plotly++ Plot</title>)" << "\n"
-           // Try to load plotly JS from a local pre-defined location. If that fails, try an alternate local
-           // location and fallback to a CDN.
-           << R"(    <script src="./js/plotly.min.js"></script>)" << "\n"
-           << R"(    <script>)" << "\n"
-           << R"(        if (typeof Plotly === 'undefined') {)" << "\n"
-           << R"(            document.write('<script src="./plotly.min.js"><\/script>'))" << "\n"
-           << R"(            document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>'))" << "\n"
-           << R"(        })" << "\n"
-           << R"(    </script>)" << "\n"
-           << R"(</head>)" << "\n"
-           << R"(<body>)" << "\n"
-           << R"(    <div id="plot"></div>)" << "\n"
-           << R"(    <script>)" << "\n"
-           << R"(        const plotDiv = document.getElementById('plot');)" << "\n"
-           << R"(        const data = JSON.parse(')" << serialize(_json["data"]) << R"(');)" << "\n"
-           << R"(        const layout = JSON.parse(')" << serialize(_json["layout"]) << R"(');)" << "\n"
-           << R"(        let resizing = false;)" << "\n"
-           << R"(        function applyResize() {)" << "\n"
-           << R"(            plotDiv.style.width = window.innerWidth + 'px';)" << "\n"
-           << R"(            plotDiv.style.height = window.innerHeight + 'px';)" << "\n"
-           // Surpringly redrawing feels a lot smoother than just resixing with Plotly.Plots.resize().
-           << R"(            Plotly.newPlot(plotDiv, data, layout);)" << "\n"
-           << R"(            resizing = false;)" << "\n"
-           << R"(        })" << "\n"
-           << R"(        plotDiv.style.width = window.innerWidth + 'px';)" << "\n"
-           << R"(        plotDiv.style.height = window.innerHeight + 'px';)" << "\n"
-           << R"(        Plotly.newPlot(plotDiv, data, layout);)" << "\n"
-           // Throttle redrawing to occur no more faster than the browser can repaint.
-           << R"(        window.addEventListener('resize', () => {)" << "\n"
-           << R"(            if (!resizing) {)" << "\n"
-           << R"(                resizing = true;)" << "\n"
-           << R"(                window.requestAnimationFrame(applyResize);)" << "\n"
-           << R"(            })" << "\n"
-           << R"(        });)" << "\n"
-           << R"(    </script>)" << "\n"
-           << R"(</body>)" << "\n"
-           << R"(</html>)" << "\n";
+        os << R"(
+            <!doctype html>
+            <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Plotly++ Plot</title>
+                <style>
+                    #plot { width: 100vw; height: 100vh; }
+                </style>
+                <!--  Try to load plotly JS from a local pre-defined location. If that fails, try an alternate local -->
+                <!-- location and fallback to a CDN. -->
+                <script src="./js/plotly.min.js"></script>
+                <script>
+                    if (typeof Plotly === 'undefined') {
+                        document.write('<script src="./plotly.min.js"><\/script>');
+                        document.write('<script src="https://cdn.plot.ly/plotly-3.0.1.min.js"><\/script>');
+                    }
+                </script>
+            </head>
+            <body>
+                <div id="plot"></div>
+                <script>
+                    const data = )" << html_safe_serialize(_json["data"]) << R"(;
+                    const layout = )" << html_safe_serialize(_json["layout"]) << R"(;
+                    const plotDiv = document.getElementById('plot');
+                    Plotly.newPlot(plotDiv, data, layout);
+                    // Throttle redrawing to occur no more faster than the browser can repaint.
+                    let resizing = false;
+                    window.addEventListener('resize', () => {
+                        if (!resizing) {
+                            resizing = true;
+                            window.requestAnimationFrame(() => {
+                                // Drawing a new plot appears more responsize than Plotly.Plots.resize() or
+    Plotly.relayout
+                                // The size already known/fixed by the #plot style.
+                                Plotly.newPlot(plotDiv, data, layout);
+                                resizing = false;
+                            });
+                        }
+                    });
+                </script>
+            </body>
+            </html>)";
         // clang-format on
     }
 
