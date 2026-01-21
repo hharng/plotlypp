@@ -2,8 +2,8 @@
 # Licensed under and subject to the terms of the LICENSE file accompanying this distribution.
 # Official repository: https://github.com/jimmyorourke/plotlypp
 
-cmake_minimum_required(VERSION 3.13)
-project(plotlypp LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.14)
+project(plotlypp VERSION 0.1.0 LANGUAGES CXX)
 
 set(MAIN_PROJECT OFF)
 if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
@@ -39,16 +39,60 @@ endif()
 set(JSON_TARGET nlohmann_json::nlohmann_json)
 
 add_library(plotlypp INTERFACE)
-# Add a namespaced alias
+# Add a namespaced alias for in-tree users.
 add_library(plotlypp::plotlypp ALIAS plotlypp)
+
 target_link_libraries(plotlypp INTERFACE ${JSON_TARGET})
+
 target_include_directories(plotlypp INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
 )
+
 # Require at least C++17. Depending executables can override with a newer version.
 target_compile_features(plotlypp INTERFACE cxx_std_17)
 
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
+# Install headers.
+install(DIRECTORY include/plotlypp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+# Register the target with the export set.
+install(TARGETS plotlypp
+    EXPORT ${PROJECT_NAME}Targets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+# Install/generate the cmake file for rebuilding the export set targets.
+install(EXPORT ${PROJECT_NAME}Targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
+
+# Write the find package config file.
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+"include(CMakeFindDependencyMacro)
+find_dependency(nlohmann_json)
+include(\"\${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")"
+)
+
+# Write the find package version file.
+write_basic_package_version_file(
+    ${PROJECT_NAME}ConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+# Install find package config files.
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+)
 
 if(PLOTLYPP_BUILD_EXAMPLES)
     add_subdirectory(examples)
