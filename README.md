@@ -262,7 +262,7 @@ IDE auto-complete and suggestion features are also highly beneficial when workin
 * C++17 or newer
 * [nlohmann JSON](https://github.com/nlohmann/json)
 
-The CMakeLists will attempt to use `find_package` to find `nlohmann_json` when Plotly++ is built as part of a larger project. When Plotly++ is the main project (eg for just building the examples), CMake will use `FetchContent` to download `nlohmann_json` to a project-local directory.
+The CMakeLists will attempt to use `find_package` to find `nlohmann_json` when Plotly++ is built as part of a larger project. When Plotly++ is the main project (eg for just building the examples), or if `find_package` fails to locate an existing installation, CMake will use `FetchContent` to download `nlohmann_json` to a project-local directory.
 
 While not directly supported at present, nlohmann JSON could be swapped out for another JSON library will minimal work. Libraries with similar APIs such as Boost JSON could be substituted by updating the alias type in [json.hpp](include/plotlypp/json.hpp). For less similar libraries, and consistent [custom data type support](#supported-data-types), a stronger abstraction would be required.
 

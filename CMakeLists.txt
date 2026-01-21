@@ -12,16 +12,20 @@ endif()
 
 option(PLOTLYPP_BUILD_EXAMPLES "Build the examples" ${MAIN_PROJECT})
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+if(MAIN_PROJECT)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
 
 set(PLOTLYPP_FETCH_CONTENT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party_fetch_content)
 
-# When part of a larger project, nlohmann_json should be made available by the greater project, and discoverable by
-# find_package. This way we impose no requirement on how projects procure their dependencies.
-# When just building plotlypp (eg the examples), use FetchContent.
-if(NOT MAIN_PROJECT)
-    find_package(nlohmann_json REQUIRED)
+# When part of a larger project, nlohmann_json may be made available by the greater project, and discoverable by
+# find_package. This way we impose no requirement on how projects procure their dependencies. If not discoverable, or
+# when just building plotlypp (eg the examples), use FetchContent.
+find_package(nlohmann_json QUIET)
+if(nlohmann_json_FOUND)
+    message(STATUS "Found system nlohmann_json")
 else()
+    message(STATUS "nlohmann_json not found, fetching...")
     # Avoid warning about DOWNLOAD_EXTRACT_TIMESTAMP in CMake 3.24+:
     if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
         cmake_policy(SET CMP0135 NEW)
